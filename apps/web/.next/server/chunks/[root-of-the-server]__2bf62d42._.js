@@ -1,0 +1,5 @@
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="f1e84bf1-5497-38ff-77c9-25323ad900ef")}catch(e){}}();
+module.exports=[233405,(e,i,r)=>{i.exports=e.x("child_process",()=>require("child_process"))},943959,e=>{"use strict";var i=e.i(233405);let r=e.i(224361).promisify(i.exec);e.s(["execAsync",0,r])},481266,e=>{"use strict";var i=e.i(522734),r=e.i(943959),t=e.i(404065);async function s(){try{return(await i.promises.readFile("/etc/hostid",{encoding:"utf8"})).trim()}catch(e){t.diag.debug(`error reading machine id: ${e}`)}try{return(await (0,r.execAsync)("kenv -q smbios.system.uuid")).stdout.trim()}catch(e){t.diag.debug(`error reading machine id: ${e}`)}}e.s(["getMachineId",()=>s])}];
+
+//# debugId=f1e84bf1-5497-38ff-77c9-25323ad900ef
+//# sourceMappingURL=%5Broot-of-the-server%5D__2bf62d42._.js.map

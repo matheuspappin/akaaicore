@@ -1,0 +1,195 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/admin/studios/[id]",
+      "regex": "^/admin/studios/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/admin/studios/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations/[slug]",
+      "regex": "^/admin/verticalizations/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/admin/verticalizations/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations/[slug]/new-ecosystem",
+      "regex": "^/admin/verticalizations/([^/]+?)/new\\-ecosystem(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/admin/verticalizations/(?<nxtPslug>[^/]+?)/new\\-ecosystem(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/affiliates",
+      "regex": "^/admin/affiliates(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/affiliates(?:/)?$"
+    },
+    {
+      "page": "/admin/catarina",
+      "regex": "^/admin/catarina(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/catarina(?:/)?$"
+    },
+    {
+      "page": "/admin/ecosystem-status",
+      "regex": "^/admin/ecosystem\\-status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/ecosystem\\-status(?:/)?$"
+    },
+    {
+      "page": "/admin/ecosystems/new",
+      "regex": "^/admin/ecosystems/new(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/ecosystems/new(?:/)?$"
+    },
+    {
+      "page": "/admin/import",
+      "regex": "^/admin/import(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/import(?:/)?$"
+    },
+    {
+      "page": "/admin/logs",
+      "regex": "^/admin/logs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/logs(?:/)?$"
+    },
+    {
+      "page": "/admin/plans",
+      "regex": "^/admin/plans(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/plans(?:/)?$"
+    },
+    {
+      "page": "/admin/settings",
+      "regex": "^/admin/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/settings(?:/)?$"
+    },
+    {
+      "page": "/admin/studios",
+      "regex": "^/admin/studios(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/studios(?:/)?$"
+    },
+    {
+      "page": "/admin/support",
+      "regex": "^/admin/support(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/support(?:/)?$"
+    },
+    {
+      "page": "/admin/testes",
+      "regex": "^/admin/testes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/testes(?:/)?$"
+    },
+    {
+      "page": "/admin/users",
+      "regex": "^/admin/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/users(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations",
+      "regex": "^/admin/verticalizations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/verticalizations(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations/agroflowai",
+      "regex": "^/admin/verticalizations/agroflowai(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/verticalizations/agroflowai(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations/estudio-de-danca",
+      "regex": "^/admin/verticalizations/estudio\\-de\\-danca(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/verticalizations/estudio\\-de\\-danca(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations/fire-protection",
+      "regex": "^/admin/verticalizations/fire\\-protection(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/verticalizations/fire\\-protection(?:/)?$"
+    },
+    {
+      "page": "/admin/verticalizations/new",
+      "regex": "^/admin/verticalizations/new(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/verticalizations/new(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

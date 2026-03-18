@@ -1,0 +1,3 @@
+{
+  "/api/cron/fire-protection-reminders/route": "app/api/cron/fire-protection-reminders/route.js"
+}

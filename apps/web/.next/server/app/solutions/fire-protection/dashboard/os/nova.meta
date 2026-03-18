@@ -1,0 +1,19 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/fire-protection/layout,_N_T_/solutions/fire-protection/dashboard/layout,_N_T_/solutions/fire-protection/dashboard/os/layout,_N_T_/solutions/fire-protection/dashboard/os/nova/layout,_N_T_/solutions/fire-protection/dashboard/os/nova/page,_N_T_/solutions/fire-protection/dashboard/os/nova"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/fire-protection/dashboard/os/nova/__PAGE__",
+    "/solutions/fire-protection/dashboard/os/nova",
+    "/solutions/fire-protection/dashboard/os",
+    "/solutions/fire-protection/dashboard",
+    "/solutions/fire-protection",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

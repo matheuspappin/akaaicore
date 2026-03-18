@@ -1,0 +1,65 @@
+{
+  "node": {
+    "400ef7e5545ee7c0895d86ee0bce01432dd42b6479": {
+      "workers": {
+        "app/dashboard/multi-unit/page": {
+          "moduleId": 926475,
+          "async": false,
+          "exportedName": "getConsolidatedStats",
+          "filename": "apps/web/lib/actions/multi-unit.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/multi-unit/page": "action-browser"
+      },
+      "exportedName": "getConsolidatedStats",
+      "filename": "apps/web/lib/actions/multi-unit.ts"
+    },
+    "60ff67cf22a21ff6a6525a75cbcbe2a1ad58cdf1a5": {
+      "workers": {
+        "app/dashboard/multi-unit/page": {
+          "moduleId": 926475,
+          "async": false,
+          "exportedName": "createUnit",
+          "filename": "apps/web/lib/actions/multi-unit.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/multi-unit/page": "action-browser"
+      },
+      "exportedName": "createUnit",
+      "filename": "apps/web/lib/actions/multi-unit.ts"
+    },
+    "70ec9f0e75b4ff8871ce38da43a1b49a749308b289": {
+      "workers": {
+        "app/dashboard/multi-unit/page": {
+          "moduleId": 926475,
+          "async": false,
+          "exportedName": "updateUnitStatus",
+          "filename": "apps/web/lib/actions/multi-unit.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/multi-unit/page": "action-browser"
+      },
+      "exportedName": "updateUnitStatus",
+      "filename": "apps/web/lib/actions/multi-unit.ts"
+    },
+    "40b2a20c11dcc4f68635d7d402023c9e0ee16b16f4": {
+      "workers": {
+        "app/dashboard/multi-unit/page": {
+          "moduleId": 926475,
+          "async": false,
+          "exportedName": "getUnitLeaderboard",
+          "filename": "apps/web/lib/actions/multi-unit.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/multi-unit/page": "action-browser"
+      },
+      "exportedName": "getUnitLeaderboard",
+      "filename": "apps/web/lib/actions/multi-unit.ts"
+    }
+  },
+  "edge": {}
+}

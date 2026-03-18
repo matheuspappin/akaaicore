@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/fire-protection/layout,_N_T_/solutions/fire-protection/engineer/layout,_N_T_/solutions/fire-protection/engineer/perfil/layout,_N_T_/solutions/fire-protection/engineer/perfil/page,_N_T_/solutions/fire-protection/engineer/perfil"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/fire-protection/engineer/perfil/__PAGE__",
+    "/solutions/fire-protection/engineer/perfil",
+    "/solutions/fire-protection/engineer",
+    "/solutions/fire-protection",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

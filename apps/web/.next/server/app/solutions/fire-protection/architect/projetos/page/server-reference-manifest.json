@@ -1,0 +1,50 @@
+{
+  "node": {
+    "600c475977c5192fc2a32a26c6ef8ed546aa12947d": {
+      "workers": {
+        "app/solutions/fire-protection/architect/projetos/page": {
+          "moduleId": 657381,
+          "async": false,
+          "exportedName": "getEngineerProjects",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/projetos/page": "action-browser"
+      },
+      "exportedName": "getEngineerProjects",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    },
+    "60be9aed2830ca1edab3b0e52b660de5cc3a61e6d3": {
+      "workers": {
+        "app/solutions/fire-protection/architect/projetos/page": {
+          "moduleId": 657381,
+          "async": false,
+          "exportedName": "acceptProject",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/projetos/page": "action-browser"
+      },
+      "exportedName": "acceptProject",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    },
+    "70a364fcf2b1249cf82827198ad591a2c52a85346d": {
+      "workers": {
+        "app/solutions/fire-protection/architect/projetos/page": {
+          "moduleId": 657381,
+          "async": false,
+          "exportedName": "rejectProject",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/projetos/page": "action-browser"
+      },
+      "exportedName": "rejectProject",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/estudio-de-danca/layout,_N_T_/solutions/estudio-de-danca/dashboard/layout,_N_T_/solutions/estudio-de-danca/dashboard/financeiro/layout,_N_T_/solutions/estudio-de-danca/dashboard/financeiro/page,_N_T_/solutions/estudio-de-danca/dashboard/financeiro"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/estudio-de-danca/dashboard/financeiro/__PAGE__",
+    "/solutions/estudio-de-danca/dashboard/financeiro",
+    "/solutions/estudio-de-danca/dashboard",
+    "/solutions/estudio-de-danca",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

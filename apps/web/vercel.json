@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "crons": [
+    {
+      "path": "/api/cron/reminders",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/refresh-ai-reports",
+      "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/cron/process-nfe-queue",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/fiscal-health",
+      "schedule": "0 8 * * *"
+    }
+  ],
+  "framework": "nextjs",
+  "installCommand": "pnpm install",
+  "buildCommand": "next build"
+}

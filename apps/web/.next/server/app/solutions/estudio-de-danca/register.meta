@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/estudio-de-danca/layout,_N_T_/solutions/estudio-de-danca/register/layout,_N_T_/solutions/estudio-de-danca/register/page,_N_T_/solutions/estudio-de-danca/register"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/estudio-de-danca/register/__PAGE__",
+    "/solutions/estudio-de-danca/register",
+    "/solutions/estudio-de-danca",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

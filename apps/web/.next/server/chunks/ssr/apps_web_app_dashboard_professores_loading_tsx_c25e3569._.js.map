@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "debugId": "bae5f8c6-937a-fded-b48b-1da3fb384d52",
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["../../../../../../apps/web/app/dashboard/professores/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return null\n}\n"],"names":[],"mappings":"wCAAe,SAAS,IACtB,OAAO,IACT"}}]
+}

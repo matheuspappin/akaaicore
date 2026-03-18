@@ -1,0 +1,201 @@
+{
+  "node": {
+    "40ec1a58628ad226fdf72e063839edaf2176d33c4a": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "checkSuperAdminDetailed"
+    },
+    "40f9b728afc5928faaad0ddac666a6a49e0f297e55": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getGlobalSystemStats"
+    },
+    "60007c25e79260ec95a5ad723af93049db8858d813": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "saveSystemPlan"
+    },
+    "60351090485d0909a53f03499097de6311dda8dc61": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deleteTenant"
+    },
+    "604b63451d8b2891fdf06bec39d431a4b88dbf3f44": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getOrCreateStudioInvite"
+    },
+    "6090af3aba23ba2961bac9867829d3aef8d0ddf161": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deletePartner"
+    },
+    "6090d3b01230b77ba5b91e2e79cc32a88bf7d63c8b": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deleteStudio"
+    },
+    "609e9f641c746c2be57b623cb33e613331c1cf9d64": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deleteSystemPlan"
+    },
+    "7004e9f65f165bb83ba2e51a36f3c1fdd78c44933f": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updateTenantSettings"
+    },
+    "7043fc226513f90ee14cfbd5197c1de463804f6193": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getPartnersList"
+    },
+    "70651aaba8cfb45f84b72d23ed6bf6a24b40fc1da1": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updateTenantModules"
+    },
+    "709015a7caab1d745033392fa9d7334aa03c94f13d": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getTenantsList"
+    },
+    "70bbacdf5449d22d05e0b0926a8c06a79e9ae9058b": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updatePartner"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "+awyaFWYqbHvdBtRoduyHBg4EbLiIdwWmBy5cU96peg="
+}

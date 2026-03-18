@@ -1,0 +1,20 @@
+{
+  "node": {
+    "401f847413c010e3716c3eafd893daef5c91436683": {
+      "workers": {
+        "app/finance/page": {
+          "moduleId": 47064,
+          "async": false,
+          "exportedName": "getDashboardStatsAction",
+          "filename": "apps/web/lib/actions/dashboard.ts"
+        }
+      },
+      "layer": {
+        "app/finance/page": "action-browser"
+      },
+      "exportedName": "getDashboardStatsAction",
+      "filename": "apps/web/lib/actions/dashboard.ts"
+    }
+  },
+  "edge": {}
+}

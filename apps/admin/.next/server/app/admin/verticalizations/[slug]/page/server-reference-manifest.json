@@ -1,0 +1,335 @@
+{
+  "node": {
+    "4047c07eb989e19d604a802defdf59ff94c719d7a3": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "checkSuperAdminDetailed",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "4087cb80711bd1434cdfada61590259189d24b5949": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "getGlobalSystemStats",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "6020c17cece6302e1a517022e6f3c29b35d524a55f": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "saveSystemPlan",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "603b15bacab48151c9261c48ccda0852d8e278f3d3": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "deletePartner",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "603b7e8009b68316dcae40edd2f75f65386a0baea7": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "deleteTenant",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "6084edb017b0805570467a6d0e07094cb948628bae": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "deleteStudio",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "60bc0c59fc7f2ab2b0da6b68bbbdafa71960ff55c9": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "deleteSystemPlan",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "60d038fe7ec6495eb91f28cdfe3b94ba113e757a17": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "getOrCreateStudioInvite",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "7001f165c84dc9525f6105f75c75f4950f5c19681e": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "getPartnersList",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "702c34a9933b7bf169da0fced8acd329e2210fbfd6": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "updateTenantModules",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "7049acf5a6e9aed554f3ff0e529546629e42b61c94": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "updateTenantSettings",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "70a0c37e5d003688c28ec8ec40508ba12d8a4ddd45": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "updatePartner",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "70de3b2930bf243ead482247891c266a1d0936d2b6": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "rsc"
+      },
+      "exportedName": "getTenantsList",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "4088e5d86d137933347b901a018371dc85800cf58b": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getVerticalizationBySlug",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "getVerticalizationBySlug",
+      "filename": "apps/web/lib/actions/verticalization.ts"
+    },
+    "60b28dc25fecfd1df1eb60b5a842c44516b28646d7": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "updateVerticalization",
+      "filename": "apps/web/lib/actions/verticalization.ts"
+    },
+    "705cbefaf3064e1c3d871c61280dc67f24fd6a42b6": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateVerticalizationModules",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "updateVerticalizationModules",
+      "filename": "apps/web/lib/actions/verticalization.ts"
+    },
+    "60ed0c3f9e631559c3aac291fc41f9da100d32e781": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "deleteVerticalization",
+      "filename": "apps/web/lib/actions/verticalization.ts"
+    },
+    "40dbc792edae218ce209a19e9e6c8a995dfb528efd": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getTenantsForVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "getTenantsForVerticalization",
+      "filename": "apps/web/lib/actions/verticalization.ts"
+    },
+    "4014b0d2980be79298e420ebb671ee699cf21ea5ce": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getVerticalizationPlans",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "getVerticalizationPlans",
+      "filename": "apps/web/lib/actions/verticalization-plans.ts"
+    },
+    "70bb8f4b193df0a4c5ac3c13fa80b524b0e02bfff8": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "createVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "createVerticalizationPlan",
+      "filename": "apps/web/lib/actions/verticalization-plans.ts"
+    },
+    "70b714cc8e120737de95c8ed280dc4a448c780b78b": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "updateVerticalizationPlan",
+      "filename": "apps/web/lib/actions/verticalization-plans.ts"
+    },
+    "60364c444c7bb80983b4d1a99afd7d2920446a246f": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser"
+      },
+      "exportedName": "deleteVerticalizationPlan",
+      "filename": "apps/web/lib/actions/verticalization-plans.ts"
+    }
+  },
+  "edge": {}
+}

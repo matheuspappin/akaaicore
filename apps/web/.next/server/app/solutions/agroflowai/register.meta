@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/agroflowai/layout,_N_T_/solutions/agroflowai/register/layout,_N_T_/solutions/agroflowai/register/page,_N_T_/solutions/agroflowai/register"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/agroflowai/register/__PAGE__",
+    "/solutions/agroflowai/register",
+    "/solutions/agroflowai",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

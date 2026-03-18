@@ -1,0 +1,19 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/estudio-de-danca/layout,_N_T_/solutions/estudio-de-danca/student/layout,_N_T_/solutions/estudio-de-danca/student/turmas/layout,_N_T_/solutions/estudio-de-danca/student/turmas/catalogo/layout,_N_T_/solutions/estudio-de-danca/student/turmas/catalogo/page,_N_T_/solutions/estudio-de-danca/student/turmas/catalogo"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/estudio-de-danca/student/turmas/catalogo/__PAGE__",
+    "/solutions/estudio-de-danca/student/turmas/catalogo",
+    "/solutions/estudio-de-danca/student/turmas",
+    "/solutions/estudio-de-danca/student",
+    "/solutions/estudio-de-danca",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

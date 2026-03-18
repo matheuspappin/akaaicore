@@ -1,0 +1,110 @@
+{
+  "node": {
+    "40196951ab8c1754da2d48de32d398b217f46fdce1": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "getInventory",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "getInventory",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "602ffc1416d629c331a537826295968980cc3a70bc": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "createProduct",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "createProduct",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "7f247e34f3f8c55c33486dcd45f645be8e19833f39": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "registerTransaction",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "registerTransaction",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "40b8c695265c2a7fe009c3f58f6ca54aa83dcb746a": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "getRecentTransactions",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "getRecentTransactions",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "60553f12d31d7afd45483b7feab1e6280a6f2554fa": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "getProductBySku",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "getProductBySku",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "706992d3e67fcf9d5ac767f4bea1ff7951281dc4a3": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "updateProduct",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "updateProduct",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "6041ae59fa8f2abb73fd682d926e4b848fef15d61c": {
+      "workers": {
+        "app/dashboard/estoque/page": {
+          "moduleId": 111373,
+          "async": false,
+          "exportedName": "deleteProduct",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/estoque/page": "action-browser"
+      },
+      "exportedName": "deleteProduct",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    }
+  },
+  "edge": {}
+}

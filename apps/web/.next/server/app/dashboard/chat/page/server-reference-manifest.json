@@ -1,0 +1,20 @@
+{
+  "node": {
+    "401f847413c010e3716c3eafd893daef5c91436683": {
+      "workers": {
+        "app/dashboard/chat/page": {
+          "moduleId": 302204,
+          "async": false,
+          "exportedName": "getDashboardStatsAction",
+          "filename": "apps/web/lib/actions/dashboard.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/chat/page": "action-browser"
+      },
+      "exportedName": "getDashboardStatsAction",
+      "filename": "apps/web/lib/actions/dashboard.ts"
+    }
+  },
+  "edge": {}
+}

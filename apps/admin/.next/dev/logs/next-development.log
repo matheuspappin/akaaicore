@@ -1,0 +1,56 @@
+[00:00:02.035] Server  LOG      ✓ Ready in 1488ms
+[00:00:50.300] Server  LOG     {"level":"debug","time":"2026-03-18T01:38:33.462Z","msg":"getAuthenticatedClient: auth error","args":["Auth session missing!"]}
+[00:00:50.302] Server  LOG     {"level":"error","time":"2026-03-18T01:38:33.464Z","msg":"❌ checkSuperAdminDetailed: Usuário não identificado"}
+[00:00:51.092] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:51.092] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentStateProvider>
+      <RenderFromTemplateContext>
+        <ScrollAndFocusHandler segmentPath={[...]}>
+          <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+            <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+              <LoadingBoundary name="/_not-found/" loading={null}>
+                <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/login" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+                        <SegmentViewNode>
+                        <Next.MetadataOutlet>
+                          <__next_outlet_boundary__>
++                           <Suspense name="Next.MetadataOutlet">
+                      ...
+            ...
+      ...
+
+[00:00:51.213] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:03.504] Server  LOG     {"level":"debug","time":"2026-03-18T01:38:46.666Z","msg":"getAuthenticatedClient: auth error","args":["Auth session missing!"]}
+[00:01:03.504] Server  LOG     {"level":"error","time":"2026-03-18T01:38:46.666Z","msg":"❌ checkSuperAdminDetailed: Usuário não identificado"}
+[00:01:03.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:47.247] Server  LOG      ✓ Compiled in 69ms
+[00:04:48.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:48.158] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:59.783] Server  LOG      ✓ Compiled in 197ms
+[00:05:00.661] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:00.691] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:13.155] Server  LOG      ✓ Compiled in 57ms
+[00:05:14.025] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:14.040] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:40.507] Server  LOG     {"level":"debug","time":"2026-03-18T01:54:23.669Z","msg":"getAuthenticatedClient: auth error","args":["Auth session missing!"]}
+[00:16:40.509] Server  LOG     {"level":"error","time":"2026-03-18T01:54:23.671Z","msg":"❌ checkSuperAdminDetailed: Usuário não identificado"}
+[00:21:18.139] Server  LOG      ✓ Compiled in 2.3s
+[00:21:18.519] Server  LOG      ✓ Compiled in 123ms
+[00:21:18.848] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:21:38.987] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:36.182] Server  LOG      ✓ Compiled in 144ms
+[00:22:37.269] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

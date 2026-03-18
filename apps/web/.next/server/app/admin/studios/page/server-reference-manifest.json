@@ -1,0 +1,200 @@
+{
+  "node": {
+    "4004477f372e3675644708660b4b7f65705bb934af": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "checkSuperAdminDetailed",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "402b2861a6b09609f448f35d2e7100f4d83eb3dbb3": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "getGlobalSystemStats",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "60463b6d398c93082188986ed49f8a8ad8c07b7a08": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "saveSystemPlan",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "604774bb5858bf4e7da1945d09cec495bf487e0fd7": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "deletePartner",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "6057b7de032653cccafed7aa3cf402dfd649e72f71": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "deleteSystemPlan",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "608bf05726daa3d3216c9e8c9b4e8c1bcfe705fa1b": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "deleteTenant",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "609978c851fafffd31e4803646fe87e4eb458a4832": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "action-browser"
+      },
+      "exportedName": "getOrCreateStudioInvite",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "609c1096d814da8224f820b1a92347862195a0806b": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "action-browser"
+      },
+      "exportedName": "deleteStudio",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "704df2c01feaf92906aa3d420a579fe9e8b6e0a791": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "getPartnersList",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "70504997f3b44e65a7d2db213242c212961eba3716": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "action-browser"
+      },
+      "exportedName": "getTenantsList",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "70b40eff370a87a62c1ffd8781a3e8f714c9c928c6": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "updateTenantModules",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "70bb89044ea51610348b60d8f7c177c6404efe906e": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "updatePartner",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
+    "70cc16bf0eacd015b59dde639b15abdb23c73020b2": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "rsc"
+      },
+      "exportedName": "updateTenantSettings",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    }
+  },
+  "edge": {}
+}

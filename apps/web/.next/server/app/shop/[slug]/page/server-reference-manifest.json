@@ -1,0 +1,35 @@
+{
+  "node": {
+    "40baba47ea05b4e798404f11d2802c99b6b96d9d54": {
+      "workers": {
+        "app/shop/[slug]/page": {
+          "moduleId": 499451,
+          "async": false,
+          "exportedName": "getStoreBySlug",
+          "filename": "apps/web/lib/actions/marketplace.ts"
+        }
+      },
+      "layer": {
+        "app/shop/[slug]/page": "action-browser"
+      },
+      "exportedName": "getStoreBySlug",
+      "filename": "apps/web/lib/actions/marketplace.ts"
+    },
+    "608ff52ce012733cc8fd19abcf6bc4008e7323de0f": {
+      "workers": {
+        "app/shop/[slug]/page": {
+          "moduleId": 499451,
+          "async": false,
+          "exportedName": "createERPOrder",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/shop/[slug]/page": "action-browser"
+      },
+      "exportedName": "createERPOrder",
+      "filename": "apps/web/lib/actions/erp.ts"
+    }
+  },
+  "edge": {}
+}

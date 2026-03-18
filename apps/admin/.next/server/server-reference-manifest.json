@@ -1,0 +1,2371 @@
+{
+  "node": {
+    "4047c07eb989e19d604a802defdf59ff94c719d7a3": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "checkSuperAdminDetailed",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "checkSuperAdminDetailed"
+    },
+    "4087cb80711bd1434cdfada61590259189d24b5949": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getGlobalSystemStats",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "action-browser",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getGlobalSystemStats"
+    },
+    "6020c17cece6302e1a517022e6f3c29b35d524a55f": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "saveSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "action-browser",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "saveSystemPlan"
+    },
+    "603b15bacab48151c9261c48ccda0852d8e278f3d3": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "deletePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "action-browser",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deletePartner"
+    },
+    "603b7e8009b68316dcae40edd2f75f65386a0baea7": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "deleteTenant",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deleteTenant"
+    },
+    "6084edb017b0805570467a6d0e07094cb948628bae": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "deleteStudio",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "action-browser",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deleteStudio"
+    },
+    "60bc0c59fc7f2ab2b0da6b68bbbdafa71960ff55c9": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "deleteSystemPlan",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "action-browser",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "deleteSystemPlan"
+    },
+    "60d038fe7ec6495eb91f28cdfe3b94ba113e757a17": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getOrCreateStudioInvite",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "action-browser",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getOrCreateStudioInvite"
+    },
+    "7001f165c84dc9525f6105f75c75f4950f5c19681e": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getPartnersList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "action-browser",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getPartnersList"
+    },
+    "702c34a9933b7bf169da0fced8acd329e2210fbfd6": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "updateTenantModules",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updateTenantModules"
+    },
+    "7049acf5a6e9aed554f3ff0e529546629e42b61c94": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "updateTenantSettings",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "action-browser",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updateTenantSettings"
+    },
+    "70a0c37e5d003688c28ec8ec40508ba12d8a4ddd45": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "updatePartner",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "action-browser",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "rsc",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updatePartner"
+    },
+    "70de3b2930bf243ead482247891c266a1d0936d2b6": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 434473,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 752535,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 264463,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 756794,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 537588,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 829739,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 457848,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 147738,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 243123,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 887583,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 687639,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 266929,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getTenantsList",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "action-browser",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "getTenantsList"
+    },
+    "40fd275fcde28aa56e216fddd3861f65edef4e523c": {
+      "workers": {
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "createEcosystemInvite",
+          "filename": "apps/web/lib/actions/ecosystem.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "createEcosystemInvite",
+          "filename": "apps/web/lib/actions/ecosystem.ts"
+        }
+      },
+      "layer": {
+        "app/admin/ecosystems/new/page": "action-browser",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/ecosystem.ts",
+      "exportedName": "createEcosystemInvite"
+    },
+    "00a166f025366db3949b280bbdb6e694e263580f5e": {
+      "workers": {
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "getSystemModules",
+          "filename": "apps/web/lib/actions/modules.ts"
+        }
+      },
+      "layer": {
+        "app/admin/plans/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/modules.ts",
+      "exportedName": "getSystemModules"
+    },
+    "70e5b00d1ef3c2c4a0b9b7627728746b549cf9bfdf": {
+      "workers": {
+        "app/admin/plans/page": {
+          "moduleId": 277573,
+          "async": false,
+          "exportedName": "updateSystemModule",
+          "filename": "apps/web/lib/actions/modules.ts"
+        }
+      },
+      "layer": {
+        "app/admin/plans/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/modules.ts",
+      "exportedName": "updateSystemModule"
+    },
+    "003e30d2821a3958981ef57b4d78b3f97c847d1e5e": {
+      "workers": {
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getVerticalizations",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "getVerticalizations"
+    },
+    "4000bf38d09b888ed656f286d549e3b5db2441350d": {
+      "workers": {
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 229379,
+          "async": false,
+          "exportedName": "createVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "createVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/new/page": "action-browser",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "createVerticalization"
+    },
+    "4088e5d86d137933347b901a018371dc85800cf58b": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 616471,
+          "async": false,
+          "exportedName": "getVerticalizationBySlug",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getVerticalizationBySlug",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getVerticalizationBySlug",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "action-browser",
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "getVerticalizationBySlug"
+    },
+    "40dbc792edae218ce209a19e9e6c8a995dfb528efd": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getTenantsForVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "getTenantsForVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "getTenantsForVerticalization"
+    },
+    "60b28dc25fecfd1df1eb60b5a842c44516b28646d7": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "updateVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "updateVerticalization"
+    },
+    "60ed0c3f9e631559c3aac291fc41f9da100d32e781": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "deleteVerticalization",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "deleteVerticalization"
+    },
+    "705cbefaf3064e1c3d871c61280dc67f24fd6a42b6": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateVerticalizationModules",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 722082,
+          "async": false,
+          "exportedName": "updateVerticalizationModules",
+          "filename": "apps/web/lib/actions/verticalization.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/verticalization.ts",
+      "exportedName": "updateVerticalizationModules"
+    },
+    "4014b0d2980be79298e420ebb671ee699cf21ea5ce": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "getVerticalizationPlans",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "getVerticalizationPlans",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "getVerticalizationPlans",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "getVerticalizationPlans",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/agroflowai/page": "action-browser",
+        "app/admin/verticalizations/estudio-de-danca/page": "action-browser",
+        "app/admin/verticalizations/fire-protection/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/verticalization-plans.ts",
+      "exportedName": "getVerticalizationPlans"
+    },
+    "70bb8f4b193df0a4c5ac3c13fa80b524b0e02bfff8": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "createVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "createVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "createVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "createVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/agroflowai/page": "action-browser",
+        "app/admin/verticalizations/estudio-de-danca/page": "action-browser",
+        "app/admin/verticalizations/fire-protection/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/verticalization-plans.ts",
+      "exportedName": "createVerticalizationPlan"
+    },
+    "70b714cc8e120737de95c8ed280dc4a448c780b78b": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "updateVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "updateVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "updateVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "updateVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/agroflowai/page": "action-browser",
+        "app/admin/verticalizations/estudio-de-danca/page": "action-browser",
+        "app/admin/verticalizations/fire-protection/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/verticalization-plans.ts",
+      "exportedName": "updateVerticalizationPlan"
+    },
+    "60364c444c7bb80983b4d1a99afd7d2920446a246f": {
+      "workers": {
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 945478,
+          "async": false,
+          "exportedName": "deleteVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 732183,
+          "async": false,
+          "exportedName": "deleteVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 170876,
+          "async": false,
+          "exportedName": "deleteVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 929287,
+          "async": false,
+          "exportedName": "deleteVerticalizationPlan",
+          "filename": "apps/web/lib/actions/verticalization-plans.ts"
+        }
+      },
+      "layer": {
+        "app/admin/verticalizations/[slug]/page": "action-browser",
+        "app/admin/verticalizations/agroflowai/page": "action-browser",
+        "app/admin/verticalizations/estudio-de-danca/page": "action-browser",
+        "app/admin/verticalizations/fire-protection/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/verticalization-plans.ts",
+      "exportedName": "deleteVerticalizationPlan"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "fnoI2/E2S+Dpadml35f3q7ti/CB9GZzYOQ71RkIvJBc="
+}

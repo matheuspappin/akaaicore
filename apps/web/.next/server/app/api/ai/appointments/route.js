@@ -1,0 +1,13 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/ai/appointments/route.js")
+R.c("server/chunks/node_modules_next_dist_esm_build_templates_app-route_dbb63eb4.js")
+R.c("server/chunks/node_modules_decdbaeb._.js")
+R.c("server/chunks/node_modules_next_dist_23bfe24c._.js")
+R.c("server/chunks/[root-of-the-server]__0bc6d341._.js")
+R.c("server/chunks/node_modules_next_92aaecbe._.js")
+R.c("server/chunks/node_modules_@supabase_supabase-js_dist_index_mjs_669a44bf._.js")
+R.c("server/chunks/node_modules_next_6f120bca._.js")
+R.c("server/chunks/[root-of-the-server]__ba39dfbb._.js")
+R.c("server/chunks/node_modules_zod_v3_external_d1e61c8a.js")
+R.c("server/chunks/apps_web__next-internal_server_app_api_ai_appointments_route_actions_742b7bdc.js")
+R.m(299861)
+module.exports=R.m(299861).exports

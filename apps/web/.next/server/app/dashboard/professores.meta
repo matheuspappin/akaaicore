@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/dashboard/layout,_N_T_/dashboard/professores/layout,_N_T_/dashboard/professores/page,_N_T_/dashboard/professores"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/dashboard/professores/__PAGE__",
+    "/dashboard/professores",
+    "/dashboard",
+    "/_index",
+    "/_head"
+  ]
+}

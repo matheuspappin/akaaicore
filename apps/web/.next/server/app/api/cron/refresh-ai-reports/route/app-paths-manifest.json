@@ -1,0 +1,3 @@
+{
+  "/api/cron/refresh-ai-reports/route": "app/api/cron/refresh-ai-reports/route.js"
+}

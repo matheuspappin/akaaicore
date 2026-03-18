@@ -1,0 +1,10 @@
+{
+  "/admin/page": "app/admin/page.js",
+  "/admin/studios/page": "app/admin/studios/page.js",
+  "/api/admin/verticalizations/route": "app/api/admin/verticalizations/route.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/home/page": "app/home/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/portal/login/page": "app/portal/login/page.js"
+}

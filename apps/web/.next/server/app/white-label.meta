@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/white-label/layout,_N_T_/white-label/page,_N_T_/white-label"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/white-label/__PAGE__",
+    "/white-label",
+    "/_index",
+    "/_head"
+  ]
+}

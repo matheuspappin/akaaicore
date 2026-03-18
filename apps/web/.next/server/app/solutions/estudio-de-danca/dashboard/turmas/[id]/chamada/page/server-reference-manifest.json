@@ -1,0 +1,20 @@
+{
+  "node": {
+    "405a05e29745b712002badfbfd1faf6ca6c3df8e69": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/turmas/[id]/chamada/page": {
+          "moduleId": 821387,
+          "async": false,
+          "exportedName": "createCreditUsagePayment",
+          "filename": "apps/web/lib/actions/credit-payments.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/turmas/[id]/chamada/page": "action-browser"
+      },
+      "exportedName": "createCreditUsagePayment",
+      "filename": "apps/web/lib/actions/credit-payments.ts"
+    }
+  },
+  "edge": {}
+}

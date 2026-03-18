@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/fire-protection/layout,_N_T_/solutions/fire-protection/technician/layout,_N_T_/solutions/fire-protection/technician/page,_N_T_/solutions/fire-protection/technician"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/fire-protection/technician/__PAGE__",
+    "/solutions/fire-protection/technician",
+    "/solutions/fire-protection",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

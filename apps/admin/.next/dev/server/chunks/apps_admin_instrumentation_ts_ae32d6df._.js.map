@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/gemini-cli/workflow%20pro%20builder/apps/admin/instrumentation.ts"],"sourcesContent":["/**\n * Next.js Instrumentation Hook — Admin app (minimal, sem OpenTelemetry)\n */\nexport async function register() {\n  // Admin app não usa tracing distribuído\n}\n"],"names":[],"mappings":"AAAA;;CAEC;;;;AACM,eAAe;AACpB,wCAAwC;AAC1C"}}]
+}

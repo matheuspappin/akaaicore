@@ -1,0 +1,20 @@
+{
+  "node": {
+    "402246b695ff112c3446dd62dbfab90fc67cf39f43": {
+      "workers": {
+        "app/s/[slug]/login/page": {
+          "moduleId": 451238,
+          "async": false,
+          "exportedName": "getPublicStudioBySlug",
+          "filename": "apps/web/lib/actions/studios.ts"
+        }
+      },
+      "layer": {
+        "app/s/[slug]/login/page": "action-browser"
+      },
+      "exportedName": "getPublicStudioBySlug",
+      "filename": "apps/web/lib/actions/studios.ts"
+    }
+  },
+  "edge": {}
+}

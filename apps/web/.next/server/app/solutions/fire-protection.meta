@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/fire-protection/layout,_N_T_/solutions/fire-protection/page,_N_T_/solutions/fire-protection"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/fire-protection/__PAGE__",
+    "/solutions/fire-protection",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

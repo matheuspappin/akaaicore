@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/solutions/layout,_N_T_/solutions/agroflowai/layout,_N_T_/solutions/agroflowai/dashboard/layout,_N_T_/solutions/agroflowai/dashboard/planos/layout,_N_T_/solutions/agroflowai/dashboard/planos/page,_N_T_/solutions/agroflowai/dashboard/planos"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/solutions/agroflowai/dashboard/planos/__PAGE__",
+    "/solutions/agroflowai/dashboard/planos",
+    "/solutions/agroflowai/dashboard",
+    "/solutions/agroflowai",
+    "/solutions",
+    "/_index",
+    "/_head"
+  ]
+}

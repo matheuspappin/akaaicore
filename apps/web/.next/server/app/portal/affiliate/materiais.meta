@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/portal/layout,_N_T_/portal/affiliate/layout,_N_T_/portal/affiliate/materiais/layout,_N_T_/portal/affiliate/materiais/page,_N_T_/portal/affiliate/materiais"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/portal/affiliate/materiais/__PAGE__",
+    "/portal/affiliate/materiais",
+    "/portal/affiliate",
+    "/portal",
+    "/_index",
+    "/_head"
+  ]
+}

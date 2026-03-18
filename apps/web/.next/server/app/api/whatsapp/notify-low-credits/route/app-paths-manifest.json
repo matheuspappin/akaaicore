@@ -1,0 +1,3 @@
+{
+  "/api/whatsapp/notify-low-credits/route": "app/api/whatsapp/notify-low-credits/route.js"
+}

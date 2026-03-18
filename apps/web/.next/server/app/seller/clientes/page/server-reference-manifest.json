@@ -1,0 +1,65 @@
+{
+  "node": {
+    "60fca8f93f20206094825391c110a258be92e81967": {
+      "workers": {
+        "app/seller/clientes/page": {
+          "moduleId": 160221,
+          "async": false,
+          "exportedName": "getSellerClients",
+          "filename": "apps/web/lib/actions/seller-clients.ts"
+        }
+      },
+      "layer": {
+        "app/seller/clientes/page": "action-browser"
+      },
+      "exportedName": "getSellerClients",
+      "filename": "apps/web/lib/actions/seller-clients.ts"
+    },
+    "70e3cc41952233b0c576374548bd2e9c37a2d94c16": {
+      "workers": {
+        "app/seller/clientes/page": {
+          "moduleId": 160221,
+          "async": false,
+          "exportedName": "deleteClientBySeller",
+          "filename": "apps/web/lib/actions/seller-clients.ts"
+        }
+      },
+      "layer": {
+        "app/seller/clientes/page": "action-browser"
+      },
+      "exportedName": "deleteClientBySeller",
+      "filename": "apps/web/lib/actions/seller-clients.ts"
+    },
+    "70f975e22d67b3fd5049ba9aca90e840185bf406f7": {
+      "workers": {
+        "app/seller/clientes/page": {
+          "moduleId": 160221,
+          "async": false,
+          "exportedName": "createClientBySeller",
+          "filename": "apps/web/lib/actions/seller-clients.ts"
+        }
+      },
+      "layer": {
+        "app/seller/clientes/page": "action-browser"
+      },
+      "exportedName": "createClientBySeller",
+      "filename": "apps/web/lib/actions/seller-clients.ts"
+    },
+    "78429bbba361ad7bfc1747ec9d687e16e6f6f342a0": {
+      "workers": {
+        "app/seller/clientes/page": {
+          "moduleId": 160221,
+          "async": false,
+          "exportedName": "updateClientBySeller",
+          "filename": "apps/web/lib/actions/seller-clients.ts"
+        }
+      },
+      "layer": {
+        "app/seller/clientes/page": "action-browser"
+      },
+      "exportedName": "updateClientBySeller",
+      "filename": "apps/web/lib/actions/seller-clients.ts"
+    }
+  },
+  "edge": {}
+}

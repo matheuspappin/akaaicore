@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40c6d173c50aad7821ad6c3ab64914416776753841": {
+      "workers": {
+        "app/setup/invite/[token]/page": {
+          "moduleId": 230079,
+          "async": false,
+          "exportedName": "claimEcosystem",
+          "filename": "apps/web/lib/actions/ecosystem.ts"
+        }
+      },
+      "layer": {
+        "app/setup/invite/[token]/page": "action-browser"
+      },
+      "exportedName": "claimEcosystem",
+      "filename": "apps/web/lib/actions/ecosystem.ts"
+    }
+  },
+  "edge": {}
+}

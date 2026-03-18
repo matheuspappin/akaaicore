@@ -1,0 +1,20 @@
+{
+  "node": {
+    "00625083cc8ade17287d3ac653865c62b72d91e85e": {
+      "workers": {
+        "app/solutions/fire-protection/register/page": {
+          "moduleId": 214196,
+          "async": false,
+          "exportedName": "getSystemModules",
+          "filename": "apps/web/lib/actions/modules.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/register/page": "action-browser"
+      },
+      "exportedName": "getSystemModules",
+      "filename": "apps/web/lib/actions/modules.ts"
+    }
+  },
+  "edge": {}
+}

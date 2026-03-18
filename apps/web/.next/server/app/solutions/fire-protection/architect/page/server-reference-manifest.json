@@ -1,0 +1,35 @@
+{
+  "node": {
+    "600c475977c5192fc2a32a26c6ef8ed546aa12947d": {
+      "workers": {
+        "app/solutions/fire-protection/architect/page": {
+          "moduleId": 520456,
+          "async": false,
+          "exportedName": "getEngineerProjects",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/page": "action-browser"
+      },
+      "exportedName": "getEngineerProjects",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    },
+    "407bec416b0328e0d342cfed6814dd6d03045f61ac": {
+      "workers": {
+        "app/solutions/fire-protection/architect/page": {
+          "moduleId": 520456,
+          "async": false,
+          "exportedName": "getEngineerStats",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/page": "action-browser"
+      },
+      "exportedName": "getEngineerStats",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    }
+  },
+  "edge": {}
+}

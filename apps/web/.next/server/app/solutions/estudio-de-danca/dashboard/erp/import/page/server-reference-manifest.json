@@ -1,0 +1,20 @@
+{
+  "node": {
+    "4070768ce5db38c19f8efae6196a57e29d5d09c8fb": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/erp/import/page": {
+          "moduleId": 387822,
+          "async": false,
+          "exportedName": "processXmlInvoice",
+          "filename": "apps/web/lib/actions/erp-import.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/erp/import/page": "action-browser"
+      },
+      "exportedName": "processXmlInvoice",
+      "filename": "apps/web/lib/actions/erp-import.ts"
+    }
+  },
+  "edge": {}
+}

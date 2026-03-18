@@ -1,0 +1,50 @@
+{
+  "node": {
+    "407bec416b0328e0d342cfed6814dd6d03045f61ac": {
+      "workers": {
+        "app/solutions/fire-protection/architect/perfil/page": {
+          "moduleId": 727916,
+          "async": false,
+          "exportedName": "getEngineerStats",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/perfil/page": "action-browser"
+      },
+      "exportedName": "getEngineerStats",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    },
+    "70b8ebd7bb7ef33dd016c39c939c21a59fbfd72882": {
+      "workers": {
+        "app/solutions/fire-protection/architect/perfil/page": {
+          "moduleId": 727916,
+          "async": false,
+          "exportedName": "joinStudioByLink",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/perfil/page": "action-browser"
+      },
+      "exportedName": "joinStudioByLink",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    },
+    "40df824b3120e5c502ea0d6457391d9d9d932c4793": {
+      "workers": {
+        "app/solutions/fire-protection/architect/perfil/page": {
+          "moduleId": 727916,
+          "async": false,
+          "exportedName": "getLinkedCompanies",
+          "filename": "apps/web/lib/actions/engineer.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/fire-protection/architect/perfil/page": "action-browser"
+      },
+      "exportedName": "getLinkedCompanies",
+      "filename": "apps/web/lib/actions/engineer.ts"
+    }
+  },
+  "edge": {}
+}

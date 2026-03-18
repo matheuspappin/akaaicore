@@ -1,0 +1,245 @@
+{
+  "node": {
+    "4014689bd4a95cf862f033cf8ff8057bce91d00b1d": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getChannels",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getChannels",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "78837c387031489040e81bc7761cb19aa2b7cf3ed8": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "connectChannel",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "connectChannel",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "406fffff61b0acf59849f2a1fe26b01a1710572d67": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getERPOrders",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getERPOrders",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "608ff52ce012733cc8fd19abcf6bc4008e7323de0f": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "createERPOrder",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "createERPOrder",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "409ed5ae3414805686eb848dcba0fc2a360b2ad558": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getERPCatalog",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getERPCatalog",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "40346af980e52f5e566447eca61925602f393585db": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getOrganizationSettings",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getOrganizationSettings",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "40287998792679a2c82fed52ccee07023cbb9d228c": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getStudioPlan",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getStudioPlan",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "40198fb252f03302b61b2f3a7a6412ed49ebf9e578": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getERPDashboardStats",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getERPDashboardStats",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "4037e2f96dc91b850021586336073f11119f53152e": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getSuppliers",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getSuppliers",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "60894f5bd761b467234f0f6829cd5cf9640468ad66": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "createSupplier",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "createSupplier",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "402f17d27e771a798e92d8eaccefe7650c19e12305": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getPurchaseOrders",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getPurchaseOrders",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "60e2292a5d088f7a96bcfd053cbeea184f615da950": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "createPurchaseOrder",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "createPurchaseOrder",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "70b8ad67af75f931a86363172d77c604f5ffe894b6": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "updateOrderShipping",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "updateOrderShipping",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "4052849ea0ee5ccc71527fe5236665a1a52153b1eb": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "getB2BStats",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "getB2BStats",
+      "filename": "apps/web/lib/actions/erp.ts"
+    },
+    "602ffc1416d629c331a537826295968980cc3a70bc": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "createProduct",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "createProduct",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    },
+    "6041ae59fa8f2abb73fd682d926e4b848fef15d61c": {
+      "workers": {
+        "app/dashboard/erp/page": {
+          "moduleId": 387157,
+          "async": false,
+          "exportedName": "deleteProduct",
+          "filename": "apps/web/lib/actions/inventory.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/erp/page": "action-browser"
+      },
+      "exportedName": "deleteProduct",
+      "filename": "apps/web/lib/actions/inventory.ts"
+    }
+  },
+  "edge": {}
+}
