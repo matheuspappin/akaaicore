@@ -23,7 +23,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install --prefer-offline --no-audit
+        run: npm ci
 
       - name: Run route security audit
         run: npx tsx scripts/audit-routes.ts --fix-report
