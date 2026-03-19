@@ -109,8 +109,50 @@ export function ConstellationCanvas() {
       }
     }
 
+    // Giroscópio: sincroniza inclinação do telefone com parallax
+    const gyroRequestedRef = { current: false }
+    const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
+      if (e.beta != null && e.gamma != null) {
+        // gamma: -90 a 90 (esquerda/direita), beta: -180 a 180 (frente/trás)
+        const targetX = Math.max(-1, Math.min(1, e.gamma / 45))
+        const targetY = Math.max(-1, Math.min(1, (e.beta - 45) / 45))
+        mouseRef.current.targetX = targetX
+        mouseRef.current.targetY = targetY
+      }
+    }
+
+    const requestGyroAndListen = async () => {
+      if (gyroRequestedRef.current) return
+      gyroRequestedRef.current = true
+      const DeviceOrientationEventWithPermission = DeviceOrientationEvent as unknown as DeviceOrientationEvent & {
+        requestPermission?: () => Promise<"granted" | "denied">
+      }
+      if (typeof DeviceOrientationEventWithPermission.requestPermission === "function") {
+        try {
+          const permission = await DeviceOrientationEventWithPermission.requestPermission()
+          if (permission === "granted") {
+            window.addEventListener("deviceorientation", handleDeviceOrientation, { passive: true })
+          }
+        } catch {
+          gyroRequestedRef.current = false
+        }
+      } else {
+        window.addEventListener("deviceorientation", handleDeviceOrientation, { passive: true })
+      }
+    }
+
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("touchmove", handleTouchMove, { passive: true })
+
+    const needsGyroPermission = typeof (DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }).requestPermission === "function"
+    const onGyroTouch = () => {
+      requestGyroAndListen()
+    }
+    if (needsGyroPermission) {
+      window.addEventListener("touchstart", onGyroTouch, { once: true, passive: true })
+    } else {
+      window.addEventListener("deviceorientation", handleDeviceOrientation, { passive: true })
+    }
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio ?? 1, 2)
@@ -219,6 +261,8 @@ export function ConstellationCanvas() {
       window.removeEventListener("resize", resize)
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("touchmove", handleTouchMove)
+      window.removeEventListener("deviceorientation", handleDeviceOrientation)
+      window.removeEventListener("touchstart", onGyroTouch)
       cancelAnimationFrame(rafRef.current)
     }
   }, [initPoints])
