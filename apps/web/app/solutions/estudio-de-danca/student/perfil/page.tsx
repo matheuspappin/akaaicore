@@ -6,9 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Link from "next/link"
 import {
   UserCircle, Mail, Phone, Save, Loader2,
   Building2, CheckCircle, Link2, Link2Off, AlertCircle, RefreshCw,
+  Shield, Settings, ChevronRight, LogOut,
 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
@@ -381,6 +383,46 @@ export default function StudentPerfilPage() {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Privacidade, Preferências e Sair */}
+      <div className="space-y-3">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 px-1">Configurações</h3>
+        <Link href="/solutions/estudio-de-danca/student/perfil/privacidade">
+          <Button variant="ghost" className="w-full justify-between bg-white dark:bg-slate-900/50 h-14 px-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 border border-slate-200 dark:border-white/10 rounded-xl">
+            <div className="flex items-center gap-3">
+              <Shield className="w-5 h-5 text-violet-500" />
+              <span className="text-sm font-bold">Privacidade e Segurança</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-slate-300" />
+          </Button>
+        </Link>
+        <Link href="/solutions/estudio-de-danca/student/perfil/preferencias">
+          <Button variant="ghost" className="w-full justify-between bg-white dark:bg-slate-900/50 h-14 px-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 border border-slate-200 dark:border-white/10 rounded-xl">
+            <div className="flex items-center gap-3">
+              <Settings className="w-5 h-5 text-slate-500" />
+              <span className="text-sm font-bold">Preferências do App</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-slate-300" />
+          </Button>
+        </Link>
+        <Button
+          variant="ghost"
+          className="w-full justify-between bg-red-50 dark:bg-red-950/30 h-14 px-4 hover:bg-red-100 dark:hover:bg-red-950/50 border border-red-200 dark:border-red-900/30 rounded-xl text-red-600 dark:text-red-400"
+          onClick={async () => {
+            await fetch("/api/auth/logout", { method: "POST" })
+            await supabase.auth.signOut()
+            localStorage.removeItem("danceflow_user")
+            localStorage.removeItem("danceflow_student_vinculo")
+            window.location.href = "/solutions/estudio-de-danca/login"
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <LogOut className="w-5 h-5" />
+            <span className="text-sm font-bold">Sair da Conta</span>
+          </div>
+          <ChevronRight className="w-4 h-4 text-red-400" />
+        </Button>
+      </div>
     </div>
   )
 }

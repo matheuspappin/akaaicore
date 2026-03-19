@@ -37,6 +37,7 @@ const SCANNER_TEXTS = {
   autoCheck: "O sistema verifica automaticamente se o aluno possui créditos disponíveis antes de liberar a entrada.",
   cameraError: "A câmera pode não abrir fora de HTTPS. Use localhost ou URL segura.",
   cameraPermission: "Permissão negada. Ative a câmera nas configurações do site.",
+  cameraInUse: "Câmera em uso ou indisponível. Feche outros apps que usam a câmera e tente novamente.",
   cameraNotFound: "Câmera não encontrada.",
   invalidCode: "Código Inválido",
   formatNotRecognized: "Formato não reconhecido: {code}",
@@ -98,6 +99,12 @@ export default function DanceFlowScannerPage() {
         })
         stream.getTracks().forEach((t) => t.stop())
       } catch {}
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" },
+        })
+        stream.getTracks().forEach((t) => t.stop())
+      } catch {}
 
       const devices = await Html5Qrcode.getCameras()
       if (!devices || devices.length === 0) {
@@ -111,21 +118,44 @@ export default function DanceFlowScannerPage() {
             d.label.toLowerCase().includes("traseira") ||
             d.label.toLowerCase().includes("environment")
         ) || devices[devices.length - 1]
+      const frontCamera =
+        devices.find(
+          (d) =>
+            d.label.toLowerCase().includes("front") ||
+            d.label.toLowerCase().includes("frontal") ||
+            d.label.toLowerCase().includes("user")
+        ) || devices[0]
+      const seen = new Set<string>()
+      const camerasToTry = [backCamera, frontCamera, ...devices].filter((d) => d?.id && !seen.has(d.id) && seen.add(d.id))
 
       const html5QrCode = new Html5Qrcode("danceflow-scanner-container")
       scannerRef.current = html5QrCode
 
-      await html5QrCode.start(
-        backCamera.id,
-        { fps: 15, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0, disableFlip: true },
-        (decodedText) => processScan(decodedText),
-        () => {}
-      )
+      const config = { fps: 15, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0, disableFlip: true }
+      const onSuccess = (decodedText: string) => processScan(decodedText)
+      const onFailure = () => {}
+
+      let lastErr: any = null
+      for (const cam of camerasToTry) {
+        if (!cam?.id) continue
+        try {
+          await html5QrCode.start(cam.id, config, onSuccess, onFailure)
+          return
+        } catch (e: any) {
+          lastErr = e
+          try {
+            await html5QrCode.stop()
+          } catch {}
+        }
+      }
+      throw lastErr || new Error(SCANNER_TEXTS.cameraNotFound)
     } catch (err: any) {
       logger.error("Erro no scanner DanceFlow:", err)
       let msg = SCANNER_TEXTS.cameraPermission
       if (err.name === "NotAllowedError" || err.toString().includes("Permission denied")) {
         msg = SCANNER_TEXTS.cameraPermission
+      } else if (err.name === "NotReadableError" || err.toString().includes("NotReadableError") || err.toString().includes("Could not start video source")) {
+        msg = SCANNER_TEXTS.cameraInUse
       } else if (err.toString().includes("NotFoundError")) {
         msg = SCANNER_TEXTS.cameraNotFound
       }

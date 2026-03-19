@@ -1,11 +1,11 @@
 {
   "version": 1,
   "functions": {
-    "/api/cron/process-nfe-queue": {
-      "maxDuration": 60
-    },
     "/api/cron/fiscal-health": {
       "maxDuration": 30
+    },
+    "/api/cron/process-nfe-queue": {
+      "maxDuration": 60
     },
     "/_middleware": {
       "runtime": "nodejs",

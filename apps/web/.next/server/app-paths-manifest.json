@@ -306,6 +306,8 @@
   "/solutions/estudio-de-danca/student/financeiro/page": "app/solutions/estudio-de-danca/student/financeiro/page.js",
   "/solutions/estudio-de-danca/student/page": "app/solutions/estudio-de-danca/student/page.js",
   "/solutions/estudio-de-danca/student/perfil/page": "app/solutions/estudio-de-danca/student/perfil/page.js",
+  "/solutions/estudio-de-danca/student/perfil/preferencias/page": "app/solutions/estudio-de-danca/student/perfil/preferencias/page.js",
+  "/solutions/estudio-de-danca/student/perfil/privacidade/page": "app/solutions/estudio-de-danca/student/perfil/privacidade/page.js",
   "/solutions/estudio-de-danca/student/turmas/catalogo/page": "app/solutions/estudio-de-danca/student/turmas/catalogo/page.js",
   "/solutions/estudio-de-danca/student/turmas/page": "app/solutions/estudio-de-danca/student/turmas/page.js",
   "/solutions/estudio-de-danca/teacher/chamada/page": "app/solutions/estudio-de-danca/teacher/chamada/page.js",

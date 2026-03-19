@@ -92,3 +92,44 @@ export async function deleteStudent(id: string, studioId: string = getCurrentStu
   if (error) throw error
   return true
 }
+
+/**
+ * Retorna a contagem de aulas (presenças) por aluno para um estúdio.
+ * Usa RPC get_student_attendance_counts quando disponível; fallback para query client-side.
+ */
+export async function getStudentAttendanceCounts(studioId: string): Promise<Record<string, number>> {
+  if (!studioId) return {}
+  try {
+    const { data, error } = await supabase.rpc('get_student_attendance_counts', {
+      p_studio_id: studioId,
+    })
+    if (error) {
+      logger.warn('RPC get_student_attendance_counts não disponível, usando fallback:', error.message)
+      return getStudentAttendanceCountsFallback(studioId)
+    }
+    const map: Record<string, number> = {}
+    ;(data || []).forEach((row: { student_id: string; classes_attended: number }) => {
+      if (row.student_id) map[row.student_id] = Number(row.classes_attended) || 0
+    })
+    return map
+  } catch (e) {
+    logger.warn('Erro ao buscar contagem de aulas, usando fallback:', e)
+    return getStudentAttendanceCountsFallback(studioId)
+  }
+}
+
+async function getStudentAttendanceCountsFallback(studioId: string): Promise<Record<string, number>> {
+  const { data, error } = await supabase
+    .from('attendance')
+    .select('student_id')
+    .eq('studio_id', studioId)
+    .in('status', ['present', 'confirmed'])
+  if (error || !data) return {}
+  const map: Record<string, number> = {}
+  data.forEach((row: { student_id: string | null }) => {
+    if (row.student_id) {
+      map[row.student_id] = (map[row.student_id] || 0) + 1
+    }
+  })
+  return map
+}

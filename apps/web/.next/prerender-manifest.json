@@ -2677,6 +2677,56 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/solutions/estudio-de-danca/student/perfil/preferencias": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/solutions/estudio-de-danca/student/perfil/preferencias",
+      "dataRoute": "/solutions/estudio-de-danca/student/perfil/preferencias.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/solutions/estudio-de-danca/student/perfil/privacidade": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/solutions/estudio-de-danca/student/perfil/privacidade",
+      "dataRoute": "/solutions/estudio-de-danca/student/perfil/privacidade.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/solutions/estudio-de-danca/student/turmas/catalogo": {
       "experimentalBypassFor": [
         {

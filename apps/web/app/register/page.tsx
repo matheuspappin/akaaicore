@@ -439,7 +439,11 @@ function RegisterContent() {
         const studioSlug = data.user?.studioSlug || data.user?.studio_slug
         if (returnTo) {
           router.push(returnTo)
-        } else if (role === 'student') router.push("/student")
+        } else if (role === 'student') {
+          const n = (data.user?.niche || data.user?.vertical || '').toLowerCase()
+          const isDanceFlow = ['dance', 'danca', 'estudio_de_danca', 'estudio-de-danca', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 'beach_tennis', 'music_school', 'language_school', 'art_studio', 'cooking_school', 'photography', 'tutoring', 'driving_school', 'sports_center', 'martial_arts'].includes(n)
+          router.push(isDanceFlow ? "/solutions/estudio-de-danca/student" : "/student")
+        }
         else if (role === 'teacher') router.push("/technician")
         else if (role === 'admin' && studioSlug) router.push(`/s/${studioSlug}`)
         else router.push("/dashboard")

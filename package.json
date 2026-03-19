@@ -22,6 +22,7 @@
     "db:test-postgres": "node test-db.js",
     "db:test-supabase": "node test-supabase-connection.js",
     "db:test-cache": "node test-cache.js",
+    "db:test-upstash": "node test-upstash.js",
     "db:test-chat": "node test-chat-context.js",
     "db:test-chat-improvements": "node test-chat-improvements.js",
     "db:seed": "node -e \"require('./config/supabase').initializeDefaultData().then(() => console.log('✅ Seed completado'))\"",

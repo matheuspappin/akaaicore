@@ -81,7 +81,9 @@ function PortalLoginContent() {
         } else if (returnTo) {
           router.push(decodeURIComponent(returnTo))
         } else if (data.user.role === 'client' || data.user.role === 'student') {
-          router.push("/student")
+          const n = (data.user.niche || data.user.vertical || niche || '').toLowerCase()
+          const isDanceFlow = ['dance', 'danca', 'estudio_de_danca', 'estudio-de-danca', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 'beach_tennis', 'music_school', 'language_school', 'art_studio', 'cooking_school', 'photography', 'tutoring', 'driving_school', 'sports_center', 'martial_arts'].includes(n)
+          router.push(isDanceFlow ? "/solutions/estudio-de-danca/student" : "/student")
         } else if (data.user.role === 'professional' || data.user.role === 'teacher') {
           router.push("/teacher")
         } else if (data.user.role === 'engineer' || data.user.role === 'architect') {

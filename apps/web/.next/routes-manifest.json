@@ -2052,6 +2052,18 @@
       "namedRegex": "^/solutions/estudio\\-de\\-danca/student/perfil(?:/)?$"
     },
     {
+      "page": "/solutions/estudio-de-danca/student/perfil/preferencias",
+      "regex": "^/solutions/estudio\\-de\\-danca/student/perfil/preferencias(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/solutions/estudio\\-de\\-danca/student/perfil/preferencias(?:/)?$"
+    },
+    {
+      "page": "/solutions/estudio-de-danca/student/perfil/privacidade",
+      "regex": "^/solutions/estudio\\-de\\-danca/student/perfil/privacidade(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/solutions/estudio\\-de\\-danca/student/perfil/privacidade(?:/)?$"
+    },
+    {
       "page": "/solutions/estudio-de-danca/student/turmas",
       "regex": "^/solutions/estudio\\-de\\-danca/student/turmas(?:/)?$",
       "routeKeys": {},

@@ -9,7 +9,7 @@ import { isProfessionalsLimitReachedForStudio } from './studio-limits'
 import { isLimitReached } from './plan-limits'
 import { getCachedData, cacheKeys, CACHE_TTL } from './cache/ai-cache'
 import { ProfessionalSchema, ClassSchema, PaymentSchema, ExpenseSchema, AttendanceSchema } from './schemas/entities'
-import { getStudents, getStudentById, saveStudent, deleteStudent } from './repositories/students'
+import { getStudents, getStudentById, saveStudent, deleteStudent, getStudentAttendanceCounts } from './repositories/students'
 
 /**
  * Obtém o ID do estúdio atual de forma segura via autenticação server-side
@@ -1131,6 +1131,7 @@ export {
   getStudentById,
   saveStudent,
   deleteStudent,
+  getStudentAttendanceCounts,
   getProfessionals,
   getProfessionalById,
   getProfessionalByUserId,

@@ -2895,10 +2895,6 @@
     font-family: Geist Mono, Geist Mono Fallback;
   }
 
-  .font-sans {
-    font-family: Geist, Geist Fallback;
-  }
-
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));

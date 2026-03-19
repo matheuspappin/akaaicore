@@ -1,10 +1,13 @@
 {
-  "/admin/page": "app/admin/page.js",
-  "/admin/studios/page": "app/admin/studios/page.js",
-  "/api/admin/verticalizations/route": "app/api/admin/verticalizations/route.js",
   "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/dance-studio/config/route": "app/api/dance-studio/config/route.js",
+  "/api/dance-studio/dashboard/stats/route": "app/api/dance-studio/dashboard/stats/route.js",
+  "/api/dance-studio/studio/invite-code/route": "app/api/dance-studio/studio/invite-code/route.js",
+  "/api/dance-studio/usage/route": "app/api/dance-studio/usage/route.js",
   "/home/page": "app/home/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/portal/login/page": "app/portal/login/page.js"
+  "/solutions/estudio-de-danca/dashboard/page": "app/solutions/estudio-de-danca/dashboard/page.js",
+  "/solutions/estudio-de-danca/dashboard/scanner/page": "app/solutions/estudio-de-danca/dashboard/scanner/page.js",
+  "/solutions/estudio-de-danca/login/page": "app/solutions/estudio-de-danca/login/page.js",
+  "/solutions/estudio-de-danca/page": "app/solutions/estudio-de-danca/page.js"
 }

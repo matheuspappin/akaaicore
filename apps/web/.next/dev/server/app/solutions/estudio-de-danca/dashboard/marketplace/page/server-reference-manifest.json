@@ -1,0 +1,50 @@
+{
+  "node": {
+    "4011b46916c0f02b72800f0bf9b50d8ebfaf077e8a": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/marketplace/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/solutions/estudio-de-danca/dashboard/marketplace/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/marketplace.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/apps/web/lib/actions/erp.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getMarketplaceSettings",
+          "filename": "apps/web/lib/actions/marketplace.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/marketplace/page": "action-browser"
+      },
+      "exportedName": "getMarketplaceSettings",
+      "filename": "apps/web/lib/actions/marketplace.ts"
+    },
+    "6062c9e74fde974a1a3f55eefd7ebc4dfb59788c5a": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/marketplace/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/solutions/estudio-de-danca/dashboard/marketplace/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/marketplace.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/apps/web/lib/actions/erp.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateMarketplaceSettings",
+          "filename": "apps/web/lib/actions/marketplace.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/marketplace/page": "action-browser"
+      },
+      "exportedName": "updateMarketplaceSettings",
+      "filename": "apps/web/lib/actions/marketplace.ts"
+    },
+    "40692c4c7a9be13b4ee3fabdb6943798231152c4df": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/marketplace/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/solutions/estudio-de-danca/dashboard/marketplace/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/marketplace.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/apps/web/lib/actions/erp.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getERPCatalog",
+          "filename": "apps/web/lib/actions/erp.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/marketplace/page": "action-browser"
+      },
+      "exportedName": "getERPCatalog",
+      "filename": "apps/web/lib/actions/erp.ts"
+    }
+  },
+  "edge": {}
+}

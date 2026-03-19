@@ -182,9 +182,12 @@ export default function StudioStudentRegister() {
           description: `Bem-vindo ao ${studio.name}!`,
         })
         
-        // Pequeno delay apenas para garantir que o Supabase processou a sessão no navegador
+        const n = (niche || '').toLowerCase()
+        const isDanceFlow = ['dance', 'danca', 'estudio_de_danca', 'estudio-de-danca', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 'beach_tennis', 'music_school', 'language_school', 'art_studio', 'cooking_school', 'photography', 'tutoring', 'driving_school', 'sports_center', 'martial_arts'].includes(n)
+        const studentUrl = isDanceFlow ? '/solutions/estudio-de-danca/student' : '/student'
+        const teacherUrl = isDanceFlow ? '/solutions/estudio-de-danca/teacher' : '/teacher'
         setTimeout(() => {
-          router.push(roleParam === 'professional' ? '/teacher' : '/student')
+          router.push(roleParam === 'professional' ? teacherUrl : studentUrl)
         }, 500)
         return
       }

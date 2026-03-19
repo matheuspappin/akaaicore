@@ -249,10 +249,13 @@ export async function proxy(request: NextRequest) {
         if (effectiveRole === 'teacher') return NextResponse.redirect(new URL('/solutions/estudio-de-danca/teacher', request.url))
         // student: redirecionar para o portal correto baseado no niche do user_metadata
         if (effectiveRole === 'student') {
-          const niche = user?.user_metadata?.niche || user?.user_metadata?.vertical || ''
+          const niche = (user?.user_metadata?.niche || user?.user_metadata?.vertical || '').toLowerCase()
           if (niche === 'fire_protection') return NextResponse.redirect(new URL('/solutions/fire-protection/client', request.url))
           if (niche === 'agroflowai' || niche === 'agro') return NextResponse.redirect(new URL('/solutions/agroflowai/client', request.url))
-          // Default: portal genérico de aluno (dance/gym/outros)
+          // DanceFlow: dance, gym, estudio-de-danca, etc. → Portal 1 (único portal para DanceFlow)
+          const isDanceFlow = ['dance', 'danca', 'estudio_de_danca', 'estudio-de-danca', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 'beach_tennis', 'music_school', 'language_school', 'art_studio', 'cooking_school', 'photography', 'tutoring', 'driving_school', 'sports_center', 'martial_arts'].includes(niche)
+          if (isDanceFlow) return NextResponse.redirect(new URL('/solutions/estudio-de-danca/student', request.url))
+          // Default: portal genérico de aluno (outros nichos)
           return NextResponse.redirect(new URL('/student', request.url))
         }
         return NextResponse.redirect(new URL('/dashboard', request.url))
@@ -271,6 +274,24 @@ export async function proxy(request: NextRequest) {
         return NextResponse.redirect(new URL('/solutions/estudio-de-danca/login', request.url))
       }
 
+      if (isStudentRoute && (effectiveRole === 'student' || effectiveRole === 'super_admin')) {
+        // DanceFlow: redirecionar /student → Portal 1 (fusão: só existe Portal 1 para DanceFlow)
+        const niche = (user?.user_metadata?.niche || user?.user_metadata?.vertical || '').toLowerCase()
+        const isDanceFlow = ['dance', 'danca', 'estudio_de_danca', 'estudio-de-danca', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 'beach_tennis', 'music_school', 'language_school', 'art_studio', 'cooking_school', 'photography', 'tutoring', 'driving_school', 'sports_center', 'martial_arts'].includes(niche)
+        if (isDanceFlow) {
+          const subPath = pathname.replace(/^\/student\/?/, '') || ''
+          const mapping: Record<string, string> = {
+            '': 'student',
+            'profile': 'student/perfil',
+            'classes': 'student/turmas',
+            'classes/catalogo': 'student/turmas/catalogo',
+            'payments': 'student/financeiro',
+            'os': 'student/classes', // OS genérico → turmas no DanceFlow
+          }
+          const target = mapping[subPath] || 'student'
+          return NextResponse.redirect(new URL(`/solutions/estudio-de-danca/${target}`, request.url))
+        }
+      }
       if (isStudentRoute && effectiveRole !== 'student' && effectiveRole !== 'super_admin') {
         return NextResponse.redirect(new URL('/login', request.url))
       }
@@ -290,7 +311,12 @@ export async function proxy(request: NextRequest) {
         if (effectiveRole === 'engineer') return NextResponse.redirect(new URL('/solutions/fire-protection/engineer', request.url))
         if (effectiveRole === 'technician') return NextResponse.redirect(new URL('/solutions/fire-protection/technician', request.url))
         if (effectiveRole === 'teacher') return NextResponse.redirect(new URL('/solutions/estudio-de-danca/teacher', request.url))
-        if (effectiveRole === 'student') return NextResponse.redirect(new URL('/student', request.url))
+        if (effectiveRole === 'student') {
+          const niche = (user?.user_metadata?.niche || user?.user_metadata?.vertical || '').toLowerCase()
+          const isDanceFlow = ['dance', 'danca', 'estudio_de_danca', 'estudio-de-danca', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 'beach_tennis', 'music_school', 'language_school', 'art_studio', 'cooking_school', 'photography', 'tutoring', 'driving_school', 'sports_center', 'martial_arts'].includes(niche)
+          if (isDanceFlow) return NextResponse.redirect(new URL('/solutions/estudio-de-danca/student', request.url))
+          return NextResponse.redirect(new URL('/student', request.url))
+        }
         return NextResponse.redirect(new URL('/login', request.url))
       }
 

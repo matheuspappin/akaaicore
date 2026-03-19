@@ -1271,6 +1271,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/solutions/estudio-de-danca/student/perfil/preferencias/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/solutions/estudio-de-danca/student/perfil/preferencias">> = Specific
+  const handler = {} as typeof import("../../app/solutions/estudio-de-danca/student/perfil/preferencias/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/solutions/estudio-de-danca/student/perfil/privacidade/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/solutions/estudio-de-danca/student/perfil/privacidade">> = Specific
+  const handler = {} as typeof import("../../app/solutions/estudio-de-danca/student/perfil/privacidade/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/solutions/estudio-de-danca/student/turmas/catalogo/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/solutions/estudio-de-danca/student/turmas/catalogo">> = Specific

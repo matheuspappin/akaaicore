@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40582441c72793a6ebf31454c606bcff415b7456b5": {
+      "workers": {
+        "app/s/[slug]/login/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/s/[slug]/login/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/studios.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getPublicStudioBySlug",
+          "filename": "apps/web/lib/actions/studios.ts"
+        }
+      },
+      "layer": {
+        "app/s/[slug]/login/page": "action-browser"
+      },
+      "exportedName": "getPublicStudioBySlug",
+      "filename": "apps/web/lib/actions/studios.ts"
+    }
+  },
+  "edge": {}
+}

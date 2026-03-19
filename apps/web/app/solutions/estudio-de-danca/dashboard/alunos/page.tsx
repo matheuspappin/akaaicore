@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { supabase } from "@/lib/supabase"
+import { getStudentAttendanceCounts } from "@/lib/repositories/students"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,7 +19,7 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { ChevronDown, Activity } from "lucide-react"
+import { ChevronDown, Activity, BookOpen } from "lucide-react"
 
 function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
   const { toast } = useToast()
@@ -212,6 +213,8 @@ export default function AlunosPage() {
             .single()
           setBusinessModel(studio?.business_model || 'MONETARY')
 
+          const attendanceCounts = await getStudentAttendanceCounts(sid)
+
           // Carregar alunos com créditos se for modelo CREDIT
           if (studio?.business_model === 'CREDIT') {
             const { data: studentsData, error } = await supabase
@@ -232,14 +235,19 @@ export default function AlunosPage() {
                 ...student,
                 credits: student.student_lesson_credits?.[0]?.remaining_credits || 0,
                 totalCredits: student.student_lesson_credits?.[0]?.total_credits || 0,
-                expiryDate: student.student_lesson_credits?.[0]?.expiry_date
+                expiryDate: student.student_lesson_credits?.[0]?.expiry_date,
+                classesAttended: attendanceCounts[student.id] ?? 0
               })))
             }
           } else {
             // Modelo MONETARY - carregar alunos sem créditos
             const res = await fetch(`/api/dance-studio/students?studioId=${sid}`)
             const data = await res.json()
-            setAlunos(Array.isArray(data) ? data : [])
+            const studentsList = Array.isArray(data) ? data : []
+            setAlunos(studentsList.map((s: any) => ({
+              ...s,
+              classesAttended: attendanceCounts[s.id] ?? 0
+            })))
           }
         } catch {
           toast({ title: "Erro ao carregar alunos", variant: "destructive" })
@@ -261,7 +269,7 @@ export default function AlunosPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Erro ao criar aluno')
-      setAlunos(prev => [data, ...prev])
+      setAlunos(prev => [{ ...data, classesAttended: 0 }, ...prev])
       setNewForm({ name: "", email: "", phone: "" })
       setIsNewDialogOpen(false)
       toast({ title: "Aluno cadastrado!", description: `${data.name} foi adicionado com sucesso.` })
@@ -502,6 +510,9 @@ export default function AlunosPage() {
                     <div>
                     <p className="font-bold text-slate-900 dark:text-white">{aluno.name}</p>
                     <div className="flex items-center gap-3 mt-1 flex-wrap">
+                      <span className="flex items-center gap-1 text-xs font-medium text-violet-600 dark:text-violet-400">
+                        <BookOpen className="w-3 h-3" /> {(aluno.classesAttended ?? 0)} {(aluno.classesAttended ?? 0) === 1 ? "aula" : "aulas"}
+                      </span>
                       {(aluno.phone || aluno.phone_1) && (
                         <span className="flex items-center gap-1 text-xs text-slate-500">
                           <Phone className="w-3 h-3" /> {aluno.phone || aluno.phone_1}

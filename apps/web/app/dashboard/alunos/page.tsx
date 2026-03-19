@@ -56,7 +56,7 @@ import { useToast } from "@/hooks/use-toast"
 import StudentProfile from "@/components/StudentProfile"
 import { useSearchParams } from "next/navigation"
 import LoadingComponent from "./loading"
-import { getStudents, saveStudent, getClasses, deleteStudent, getStudentPayments } from "@/lib/database-utils"
+import { getStudents, saveStudent, getClasses, deleteStudent, getStudentPayments, getStudentAttendanceCounts } from "@/lib/database-utils"
 import { isLimitReached, PLAN_LIMITS } from "@/lib/plan-limits"
 import { supabase } from "@/lib/supabase"
 import {
@@ -92,6 +92,7 @@ interface Student {
   credits?: number
   expiryDate?: string
   metadata?: any
+  classesAttended?: number
 }
 
 const initialStudents: Student[] = []
@@ -216,10 +217,15 @@ function StudentsContent() {
       }
 
       setLoading(true)
+      const userStr = localStorage.getItem('danceflow_user')
+      const studioId = userStr ? JSON.parse(userStr).studio_id || JSON.parse(userStr).studioId : null
       const result = await getStudents({
+        studioId: studioId || undefined,
         search: searchTerm || undefined,
         status: statusFilter !== "all" ? statusFilter : undefined
       })
+
+      const attendanceCounts = studioId ? await getStudentAttendanceCounts(studioId) : {}
 
       console.log('👥 Alunos brutos carregados:', result.data.length)
       if (result.data.length > 0) {
@@ -259,7 +265,8 @@ function StudentsContent() {
           studio_id: student.studio_id,
           credits: creditValue,
           expiryDate: expiryValue,
-          metadata: student.metadata || {}
+          metadata: student.metadata || {},
+          classesAttended: attendanceCounts[student.id] ?? 0
         }
       })
 
@@ -547,10 +554,11 @@ function StudentsContent() {
         (t.common as Record<string, string>).phoneLabel || "Telefone", 
         vocabulary.category, 
         t.common.status, 
+        "Aulas feitas",
         t.students.currentMonthlyFee, 
         t.common.paid
       ].join(","),
-      ...filteredStudents.map(s => [s.name, s.email, s.phone, s.modality, s.status, s.monthlyFee, s.paymentStatus].join(","))
+      ...filteredStudents.map(s => [s.name, s.email, s.phone, s.modality, s.status, s.classesAttended ?? 0, s.monthlyFee, s.paymentStatus].join(","))
     ].join("\n")
 
     const blob = new Blob([csv], { type: "text/csv" })
@@ -1005,6 +1013,7 @@ function StudentsContent() {
                     <TableHead>{vocabulary.category}</TableHead>
                 <TableHead>{t.common.status}</TableHead>
                 {businessModel === 'CREDIT' && <TableHead>{t.finance.credits}</TableHead>}
+                <TableHead>Aulas feitas</TableHead>
                 <TableHead>Última {vocabulary.service}</TableHead>
                 <TableHead>{t.students.currentMonthlyFee}</TableHead>
                 <TableHead>{t.students.paymentStatus}</TableHead>
@@ -1034,6 +1043,12 @@ function StudentsContent() {
                           </Badge>
                         </TableCell>
                       )}
+                      <TableCell>
+                        <span className="font-medium">{student.classesAttended ?? 0}</span>
+                        <span className="text-muted-foreground text-sm ml-1">
+                          {(student.classesAttended ?? 0) === 1 ? vocabulary.service : pluralize(vocabulary.service)}
+                        </span>
+                      </TableCell>
                       <TableCell className="text-muted-foreground">{student.lastClass}</TableCell>
                       <TableCell className="text-foreground">R$ {student.monthlyFee}</TableCell>
                       <TableCell>{getPaymentBadge(student.paymentStatus)}</TableCell>

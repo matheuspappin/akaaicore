@@ -1,4 +1,4 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="4fc405d9-3201-e54e-5fec-39855b263bd0")}catch(e){}}();
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="b22ffcec-a651-0f80-69a7-d188141d23a2")}catch(e){}}();
 module.exports = [
 "[externals]/next/dist/server/app-render/work-async-storage.external.js [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
 
@@ -364,10 +364,34 @@ async function proxy(request) {
             if (effectiveRole === 'teacher') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/estudio-de-danca/teacher', request.url));
             // student: redirecionar para o portal correto baseado no niche do user_metadata
             if (effectiveRole === 'student') {
-                const niche = user?.user_metadata?.niche || user?.user_metadata?.vertical || '';
+                const niche = (user?.user_metadata?.niche || user?.user_metadata?.vertical || '').toLowerCase();
                 if (niche === 'fire_protection') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/fire-protection/client', request.url));
                 if (niche === 'agroflowai' || niche === 'agro') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/agroflowai/client', request.url));
-                // Default: portal genérico de aluno (dance/gym/outros)
+                // DanceFlow: dance, gym, estudio-de-danca, etc. → Portal 1 (único portal para DanceFlow)
+                const isDanceFlow = [
+                    'dance',
+                    'danca',
+                    'estudio_de_danca',
+                    'estudio-de-danca',
+                    'gym',
+                    'pilates',
+                    'yoga',
+                    'crossfit',
+                    'swim_school',
+                    'personal',
+                    'beach_tennis',
+                    'music_school',
+                    'language_school',
+                    'art_studio',
+                    'cooking_school',
+                    'photography',
+                    'tutoring',
+                    'driving_school',
+                    'sports_center',
+                    'martial_arts'
+                ].includes(niche);
+                if (isDanceFlow) return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/estudio-de-danca/student', request.url));
+                // Default: portal genérico de aluno (outros nichos)
                 return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/student', request.url));
             }
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/dashboard', request.url));
@@ -381,6 +405,45 @@ async function proxy(request) {
         if (isTeacherRoute && effectiveRole !== 'teacher' && effectiveRole !== 'super_admin') {
             if (effectiveRole === 'engineer') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/fire-protection/engineer', request.url));
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/estudio-de-danca/login', request.url));
+        }
+        if (isStudentRoute && (effectiveRole === 'student' || effectiveRole === 'super_admin')) {
+            // DanceFlow: redirecionar /student → Portal 1 (fusão: só existe Portal 1 para DanceFlow)
+            const niche = (user?.user_metadata?.niche || user?.user_metadata?.vertical || '').toLowerCase();
+            const isDanceFlow = [
+                'dance',
+                'danca',
+                'estudio_de_danca',
+                'estudio-de-danca',
+                'gym',
+                'pilates',
+                'yoga',
+                'crossfit',
+                'swim_school',
+                'personal',
+                'beach_tennis',
+                'music_school',
+                'language_school',
+                'art_studio',
+                'cooking_school',
+                'photography',
+                'tutoring',
+                'driving_school',
+                'sports_center',
+                'martial_arts'
+            ].includes(niche);
+            if (isDanceFlow) {
+                const subPath = pathname.replace(/^\/student\/?/, '') || '';
+                const mapping = {
+                    '': 'student',
+                    'profile': 'student/perfil',
+                    'classes': 'student/turmas',
+                    'classes/catalogo': 'student/turmas/catalogo',
+                    'payments': 'student/financeiro',
+                    'os': 'student/classes'
+                };
+                const target = mapping[subPath] || 'student';
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL(`/solutions/estudio-de-danca/${target}`, request.url));
+            }
         }
         if (isStudentRoute && effectiveRole !== 'student' && effectiveRole !== 'super_admin') {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/login', request.url));
@@ -398,7 +461,33 @@ async function proxy(request) {
             if (effectiveRole === 'engineer') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/fire-protection/engineer', request.url));
             if (effectiveRole === 'technician') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/fire-protection/technician', request.url));
             if (effectiveRole === 'teacher') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/estudio-de-danca/teacher', request.url));
-            if (effectiveRole === 'student') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/student', request.url));
+            if (effectiveRole === 'student') {
+                const niche = (user?.user_metadata?.niche || user?.user_metadata?.vertical || '').toLowerCase();
+                const isDanceFlow = [
+                    'dance',
+                    'danca',
+                    'estudio_de_danca',
+                    'estudio-de-danca',
+                    'gym',
+                    'pilates',
+                    'yoga',
+                    'crossfit',
+                    'swim_school',
+                    'personal',
+                    'beach_tennis',
+                    'music_school',
+                    'language_school',
+                    'art_studio',
+                    'cooking_school',
+                    'photography',
+                    'tutoring',
+                    'driving_school',
+                    'sports_center',
+                    'martial_arts'
+                ].includes(niche);
+                if (isDanceFlow) return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/solutions/estudio-de-danca/student', request.url));
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/student', request.url));
+            }
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/login', request.url));
         }
         if (isAffiliateRoute && effectiveRole !== 'affiliate' && effectiveRole !== 'partner' && effectiveRole !== 'super_admin') {
@@ -428,5 +517,5 @@ const config = {
 }),
 ];
 
-//# debugId=4fc405d9-3201-e54e-5fec-39855b263bd0
+//# debugId=b22ffcec-a651-0f80-69a7-d188141d23a2
 //# sourceMappingURL=%5Broot-of-the-server%5D__aab99918._.js.map

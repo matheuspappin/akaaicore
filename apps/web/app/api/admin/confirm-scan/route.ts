@@ -2,14 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { notifyLowCredits } from '@/lib/whatsapp'
 import logger from '@/lib/logger'
-import { checkSuperAdminDetailed } from '@/lib/actions/super-admin'
+import { requireStudioAccess, StudioAccessError } from '@/lib/auth/require-studio-access'
 
 export async function POST(request: NextRequest) {
-  const { isAdmin } = await checkSuperAdminDetailed();
-  if (!isAdmin) {
-    return NextResponse.json({ success: false, error: 'Não autorizado' }, { status: 403 });
-  }
-
   // Criar cliente com Service Role para ignorar RLS nas buscas administrativas
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -27,7 +22,7 @@ export async function POST(request: NextRequest) {
   });
 
   try {
-    const { attendanceId, adminId } = await request.json()
+    const { attendanceId } = await request.json()
 
     if (!attendanceId) {
       return NextResponse.json({ success: false, error: 'Código de presença ausente' }, { status: 400 })
@@ -42,6 +37,18 @@ export async function POST(request: NextRequest) {
       .maybeSingle();
 
     if (asset) {
+        // Autorizar: admin do estúdio (owner, admin, teacher) — não aluno
+        try {
+          const { userId, role } = await requireStudioAccess(request, asset.studio_id);
+          if (role === 'student') {
+            return NextResponse.json({ success: false, error: 'Não autorizado' }, { status: 403 });
+          }
+        } catch (err) {
+          if (err instanceof StudioAccessError) {
+            return NextResponse.json({ success: false, error: err.message }, { status: err.status });
+          }
+          throw err;
+        }
         // Lógica de validação de Asset
         const now = new Date();
         const expiration = asset.expiration_date ? new Date(asset.expiration_date) : new Date(8640000000000000); // Se não tiver data, assume eterno
@@ -127,6 +134,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Presença não encontrada' }, { status: 404 })
     }
 
+    const studioId = attendance.class?.studio_id
+    if (!studioId) {
+      return NextResponse.json({ success: false, error: 'Turma sem estúdio vinculado' }, { status: 400 })
+    }
+
+    // Autorizar: admin do estúdio (owner, admin, teacher) — não aluno
+    let adminUserId: string;
+    try {
+      const { userId, role } = await requireStudioAccess(request, studioId);
+      if (role === 'student') {
+        return NextResponse.json({ success: false, error: 'Não autorizado' }, { status: 403 });
+      }
+      adminUserId = userId;
+    } catch (err) {
+      if (err instanceof StudioAccessError) {
+        return NextResponse.json({ success: false, error: err.message }, { status: err.status });
+      }
+      throw err;
+    }
+
     if (attendance.status === 'present') {
       return NextResponse.json({ success: false, error: 'Esta presença já foi validada anteriormente.' }, { status: 400 })
     }
@@ -148,7 +175,7 @@ export async function POST(request: NextRequest) {
     // 3. ATUALIZAR TUDO EM TRANSAÇÃO VIA RPC
     const { data: result, error: rpcError } = await supabaseAdmin.rpc('confirm_attendance_with_credit', {
       p_attendance_id: targetId,
-      p_admin_id: adminId
+      p_admin_id: adminUserId
     })
 
     if (rpcError) throw rpcError

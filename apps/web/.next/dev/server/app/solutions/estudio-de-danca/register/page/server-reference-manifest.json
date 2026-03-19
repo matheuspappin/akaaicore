@@ -1,0 +1,20 @@
+{
+  "node": {
+    "0061464f4e546b0c7c3bb01872bce47a82211e3e66": {
+      "workers": {
+        "app/solutions/estudio-de-danca/register/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/solutions/estudio-de-danca/register/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/modules.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSystemModules",
+          "filename": "apps/web/lib/actions/modules.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/register/page": "action-browser"
+      },
+      "exportedName": "getSystemModules",
+      "filename": "apps/web/lib/actions/modules.ts"
+    }
+  },
+  "edge": {}
+}
