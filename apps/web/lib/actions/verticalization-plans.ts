@@ -7,6 +7,8 @@ export interface VerticalizationPlanData {
   plan_id: string
   name: string
   price: number
+  /** Preço anual exibido no app (R$). Opcional se tudo vier do Stripe. */
+  price_annual?: number | null
   description?: string
   features?: string[]
   max_students?: number
@@ -15,12 +17,15 @@ export interface VerticalizationPlanData {
   is_popular?: boolean
   status?: 'active' | 'inactive'
   trial_days?: number
+  /** Stripe Price ID mensal (price_xxx) — tarifa fixa no Dashboard Stripe */
+  stripe_price_id?: string | null
+  /** Stripe Price ID anual (price_xxx) */
+  stripe_price_id_annual?: string | null
 }
 
 export interface VerticalizationPlanRecord extends VerticalizationPlanData {
   id: string
   verticalization_id: string
-  stripe_price_id?: string
   created_at: string
   updated_at?: string
 }
@@ -152,6 +157,7 @@ export async function createVerticalizationPlan(
       plan_id: planId,
       name: data.name,
       price: data.price,
+      price_annual: data.price_annual ?? null,
       description: data.description || null,
       features: data.features || [],
       max_students: data.max_students ?? 10,
@@ -160,6 +166,8 @@ export async function createVerticalizationPlan(
       is_popular: data.is_popular ?? false,
       status: data.status ?? 'active',
       trial_days: data.trial_days ?? 14,
+      stripe_price_id: data.stripe_price_id?.trim() || null,
+      stripe_price_id_annual: data.stripe_price_id_annual?.trim() || null,
     })
     .select()
     .single()
@@ -191,6 +199,9 @@ export async function updateVerticalizationPlan(
   const updatePayload: Record<string, unknown> = { updated_at: new Date().toISOString() }
   if (data.name !== undefined) updatePayload.name = data.name
   if (data.price !== undefined) updatePayload.price = data.price
+  if (data.price_annual !== undefined) updatePayload.price_annual = data.price_annual
+  if (data.stripe_price_id !== undefined) updatePayload.stripe_price_id = data.stripe_price_id?.trim() || null
+  if (data.stripe_price_id_annual !== undefined) updatePayload.stripe_price_id_annual = data.stripe_price_id_annual?.trim() || null
   if (data.description !== undefined) updatePayload.description = data.description
   if (data.features !== undefined) updatePayload.features = data.features
   if (data.max_students !== undefined) updatePayload.max_students = data.max_students

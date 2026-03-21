@@ -27,6 +27,7 @@ import {
   Package, Settings, Users, GraduationCap, ExternalLink, Music,
   Zap, CheckCircle, XCircle, Unlink,
 } from "lucide-react"
+import { getStudioStripeConnectStatus } from "@/lib/actions/studio-stripe-connect"
 
 // ─── tipos ────────────────────────────────────────────────────────────────────
 interface StudioSettings {
@@ -102,7 +103,13 @@ export default function DanceConfiguracoesPage() {
   // créditos
   const [creditPackages, setCreditPackages] = useState<any[]>([])
   const [loadingCredits, setLoadingCredits] = useState(false)
-  const [newPkg, setNewPkg] = useState({ name: "", lessons_count: 10, price: 99, validity_days: 90 })
+  const [newPkg, setNewPkg] = useState({
+    name: "",
+    lessons_count: 10,
+    price: 99,
+    validity_days: 90,
+    billing_type: "one_time" as "one_time" | "monthly",
+  })
 
   // gamificação
   const DEFAULT_ACHIEVEMENTS = [
@@ -129,6 +136,8 @@ export default function DanceConfiguracoesPage() {
   const [stripeSettings, setStripeSettings] = useState({ publicKey: "", secretKey: "" })
   const [waStatus, setWaStatus] = useState<"connected" | "disconnected" | "connecting" | "error">("disconnected")
   const [stripeStatus, setStripeStatus] = useState<"connected" | "disconnected" | "connecting">("disconnected")
+  const [stripeConnectStatus, setStripeConnectStatus] = useState<{ stripe_account_id: string | null; charges_enabled: boolean } | null>(null)
+  const [stripeConnectLoading, setStripeConnectLoading] = useState(false)
 
   // misc
   const [copied, setCopied] = useState(false)
@@ -228,17 +237,25 @@ export default function DanceConfiguracoesPage() {
   }
 
   const loadIntegrations = async (sId: string) => {
-    const { data } = await supabase.from("studio_api_keys").select("*").eq("studio_id", sId)
-    if (!data) return
-    const wa = data.find((k: any) => k.service_name === "whatsapp")
-    const stripe = data.find((k: any) => k.service_name === "stripe")
-    if (wa) {
-      setWaSettings({ apiKey: wa.api_key || "", instanceId: wa.instance_id || "", apiUrl: wa.settings?.api_url || "" })
-      setWaStatus(wa.status === "active" ? "connected" : "disconnected")
-    }
-    if (stripe) {
-      setStripeSettings({ publicKey: stripe.settings?.public_key || "", secretKey: stripe.api_key || "" })
-      setStripeStatus("connected")
+    setStripeConnectLoading(true)
+    try {
+      const { data } = await supabase.from("studio_api_keys").select("*").eq("studio_id", sId)
+      if (data) {
+        const wa = data.find((k: any) => k.service_name === "whatsapp")
+        const stripe = data.find((k: any) => k.service_name === "stripe")
+        if (wa) {
+          setWaSettings({ apiKey: wa.api_key || "", instanceId: wa.instance_id || "", apiUrl: wa.settings?.api_url || "" })
+          setWaStatus(wa.status === "active" ? "connected" : "disconnected")
+        }
+        if (stripe) {
+          setStripeSettings({ publicKey: stripe.settings?.public_key || "", secretKey: stripe.api_key || "" })
+          setStripeStatus("connected")
+        }
+      }
+      const connectStatus = await getStudioStripeConnectStatus(sId)
+      setStripeConnectStatus(connectStatus)
+    } finally {
+      setStripeConnectLoading(false)
     }
   }
 
@@ -331,7 +348,7 @@ export default function DanceConfiguracoesPage() {
         return
       }
       toast({ title: "Pacote criado!" })
-      setNewPkg({ name: "", lessons_count: 10, price: 99, validity_days: 90 })
+      setNewPkg({ name: "", lessons_count: 10, price: 99, validity_days: 90, billing_type: "one_time" })
       loadCredits(studioId)
     } catch (e: any) {
       toast({ title: "Erro ao criar pacote", description: e.message, variant: "destructive" })
@@ -762,7 +779,10 @@ export default function DanceConfiguracoesPage() {
                     <div key={pkg.id} className="flex items-center justify-between p-3 rounded-xl border bg-white dark:bg-white/5">
                       <div>
                         <p className="font-bold text-sm">{pkg.name || `Pacote ${pkg.lessons_count} aulas`}</p>
-                        <p className="text-xs text-slate-500">{pkg.lessons_count} sessões · válido por {pkg.validity_days || 90} dias</p>
+                        <p className="text-xs text-slate-500">
+                          {pkg.lessons_count} sessões · válido por {pkg.validity_days || 90} dias
+                          {pkg.billing_type === "monthly" ? " · cobrança mensal (Stripe)" : " · pagamento avulso"}
+                        </p>
                       </div>
                       <div className="flex items-center gap-3">
                         <p className="font-black text-violet-600">R$ {Number(pkg.price).toFixed(2)}</p>
@@ -801,6 +821,24 @@ export default function DanceConfiguracoesPage() {
                   <div className="space-y-1">
                     <Label className="text-xs">Validade (dias)</Label>
                     <Input type="number" min={1} value={newPkg.validity_days} onChange={e => setNewPkg(p => ({ ...p, validity_days: parseInt(e.target.value) || 30 }))} />
+                  </div>
+                  <div className="space-y-1 col-span-2">
+                    <Label className="text-xs">Forma de cobrança (Stripe)</Label>
+                    <Select
+                      value={newPkg.billing_type}
+                      onValueChange={v => setNewPkg(p => ({ ...p, billing_type: v as "one_time" | "monthly" }))}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Tipo" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="one_time">Avulso — pagamento único</SelectItem>
+                        <SelectItem value="monthly">Mensal — assinatura recorrente</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <p className="text-[10px] text-slate-400">
+                      Avulso usa checkout em modo pagamento; mensal usa subscrição mensal no Stripe (renovações creditam créditos automaticamente).
+                    </p>
                   </div>
                   <div className="flex items-end">
                     <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={addCreditPackage} disabled={!newPkg.lessons_count || !newPkg.price}>
@@ -991,31 +1029,73 @@ export default function DanceConfiguracoesPage() {
             </CardContent>
           </Card>
 
-          {/* Stripe */}
+          {/* Stripe Connect */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-base">
                 <div className="flex items-center gap-2"><CreditCard className="w-4 h-4 text-violet-500" /> Stripe (Pagamentos)</div>
                 <div className="flex items-center gap-1.5 text-xs">
-                  {statusIcon(stripeStatus as any)}
-                  <span className="font-bold text-slate-500">{stripeStatus === "connected" ? "Configurado" : stripeStatus === "connecting" ? "Salvando..." : "Não configurado"}</span>
+                  {stripeConnectLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin text-violet-500" />
+                  ) : stripeConnectStatus?.charges_enabled ? (
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                  ) : stripeConnectStatus?.stripe_account_id ? (
+                    <Loader2 className="w-4 h-4 text-amber-500" />
+                  ) : (
+                    <XCircle className="w-4 h-4 text-slate-400" />
+                  )}
+                  <span className="font-bold text-slate-500">
+                    {stripeConnectLoading ? "Carregando..." : stripeConnectStatus?.charges_enabled ? "Conectado" : stripeConnectStatus?.stripe_account_id ? "Onboarding pendente" : "Não conectado"}
+                  </span>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Chave Pública (pk_live_ / pk_test_)</Label>
-                <Input placeholder="pk_live_..." value={stripeSettings.publicKey} onChange={e => setStripeSettings(p => ({ ...p, publicKey: e.target.value }))} />
-              </div>
-              <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Chave Secreta (sk_live_ / sk_test_)</Label>
-                <Input type="password" placeholder="sk_live_..." value={stripeSettings.secretKey} onChange={e => setStripeSettings(p => ({ ...p, secretKey: e.target.value }))} />
-              </div>
-              <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={saveStripe}>
-                {stripeStatus === "connecting" ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
-                Salvar Chaves Stripe
-              </Button>
-              <p className="text-xs text-slate-400">Use chaves de <strong>test</strong> para homologação e <strong>live</strong> para produção.</p>
+              {stripeConnectStatus?.charges_enabled ? (
+                <>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">Sua conta Stripe está conectada. Os pagamentos de pacotes, mensalidades e loja serão recebidos diretamente na sua conta.</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <a href="https://dashboard.stripe.com" target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" /> Abrir painel Stripe
+                    </a>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    {stripeConnectStatus?.stripe_account_id
+                      ? "Conclua o cadastro no Stripe para habilitar os pagamentos."
+                      : "Conecte sua conta Stripe para receber pagamentos de pacotes, mensalidades e loja diretamente."}
+                  </p>
+                  <Button
+                    className="w-full bg-violet-600 hover:bg-violet-700"
+                    disabled={!studioId || stripeConnectLoading}
+                    onClick={async () => {
+                      if (!studioId) return
+                      setStripeConnectLoading(true)
+                      try {
+                        const returnUrl = typeof window !== "undefined" ? `${window.location.origin}/solutions/estudio-de-danca/dashboard/configuracoes?tab=integracoes` : ""
+                        const res = await fetch("/api/dance-studio/stripe-connect", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ studioId, returnUrl }),
+                        })
+                        const json = await res.json()
+                        if (!res.ok) throw new Error(json.error || "Erro ao conectar Stripe")
+                        if (json.url) window.location.href = json.url
+                        else toast({ title: "Erro", description: "URL não retornada", variant: "destructive" })
+                      } catch (e: any) {
+                        toast({ title: "Erro", description: e.message, variant: "destructive" })
+                      } finally {
+                        setStripeConnectLoading(false)
+                      }
+                    }}
+                  >
+                    {stripeConnectLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
+                    {stripeConnectStatus?.stripe_account_id ? "Continuar onboarding" : "Conectar Stripe"}
+                  </Button>
+                </>
+              )}
             </CardContent>
           </Card>
         </div>

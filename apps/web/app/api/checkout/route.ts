@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe';
 import { supabase } from '@/lib/supabase';
 import Stripe from 'stripe';
+import { getStudioStripeAccountForCheckout } from '@/lib/actions/studio-stripe-connect';
+import { PLATFORM_FEE_PERCENT } from '@/lib/constants/stripe-connect';
+import { getStripeCheckoutPaymentMethodTypes } from '@/lib/stripe-checkout-methods';
 import logger from '@/lib/logger';
 
 /**
@@ -15,31 +18,43 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Dados incompletos' }, { status: 400 });
     }
 
-    // 1. Buscar se o estúdio tem chaves próprias de Stripe
-    const { data: studioKeys } = await supabase
-      .from('studio_api_keys')
-      .select('*')
-      .eq('studio_id', studioId)
-      .eq('service_name', 'stripe')
-      .maybeSingle();
+    const amountCents = Math.round(amount * 100);
+    const stripeAccountId = await getStudioStripeAccountForCheckout(studioId);
 
-    let stripeClient;
-    
-    // Se o estúdio tiver sua própria Secret Key (salva como api_key), criamos um cliente específico
-    if (studioKeys?.api_key) {
-      logger.info(`💳 Usando Stripe do Admin (Estúdio: ${studioId}) - Chave personalizada`);
-      stripeClient = new Stripe(studioKeys.api_key, {
-        apiVersion: '2025-01-27.acacia' as any,
-        typescript: true,
-      });
-    } else {
-      logger.info(`💳 Usando Stripe Global do Workflow AI (Fallback)`);
+    let stripeClient: Stripe;
+    const connectParams: Record<string, unknown> = {};
+
+    // Se o estúdio tem Stripe Connect: taxa plataforma + destino no payment_intent (API Checkout)
+    if (stripeAccountId) {
+      logger.info(`💳 Usando Stripe Connect (Estúdio: ${studioId})`);
       stripeClient = getStripe();
+      connectParams.payment_intent_data = {
+        application_fee_amount: Math.round(amountCents * (PLATFORM_FEE_PERCENT / 100)),
+        transfer_data: { destination: stripeAccountId },
+      };
+    } else {
+      // Fallback: chaves próprias ou plataforma
+      const { data: studioKeys } = await supabase
+        .from('studio_api_keys')
+        .select('*')
+        .eq('studio_id', studioId)
+        .eq('service_name', 'stripe')
+        .maybeSingle();
+
+      if (studioKeys?.api_key) {
+        logger.info(`💳 Usando Stripe do Admin (Estúdio: ${studioId}) - Chave personalizada`);
+        stripeClient = new Stripe(studioKeys.api_key, {
+          apiVersion: '2025-01-27.acacia' as any,
+          typescript: true,
+        });
+      } else {
+        logger.info(`💳 Usando Stripe Global do Workflow AI (Fallback)`);
+        stripeClient = getStripe();
+      }
     }
 
-    // 2. Criar a sessão no Stripe (card + PIX para contas BR elegíveis)
     const session = await stripeClient.checkout.sessions.create({
-      payment_method_types: ['card', 'pix'],
+      payment_method_types: getStripeCheckoutPaymentMethodTypes(),
       line_items: [
         {
           price_data: {
@@ -47,7 +62,7 @@ export async function POST(req: NextRequest) {
             product_data: {
               name: type === 'package' ? description : `Mensalidade - ${description || 'Estúdio de Dança'}`,
             },
-            unit_amount: Math.round(amount * 100), // Stripe usa centavos
+            unit_amount: amountCents,
           },
           quantity: 1,
         },
@@ -59,8 +74,9 @@ export async function POST(req: NextRequest) {
         invoice_id: invoiceId,
         student_id: studentId,
         studio_id: studioId,
-        type: type // 'student_payment' ou 'package'
+        type: type,
       },
+      ...connectParams,
     });
 
     return NextResponse.json({ url: session.url });

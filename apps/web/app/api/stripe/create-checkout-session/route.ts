@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe';
 import { createPublicERPOrder } from '@/lib/actions/erp';
+import { getStudioStripeAccountForCheckout } from '@/lib/actions/studio-stripe-connect';
+import { PLATFORM_FEE_PERCENT } from '@/lib/constants/stripe-connect';
 import logger from '@/lib/logger';
+import { getStripeCheckoutPaymentMethodTypes } from '@/lib/stripe-checkout-methods';
 
 export async function POST(req: NextRequest) {
   const stripe = getStripe();
@@ -18,7 +21,7 @@ export async function POST(req: NextRequest) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
 
-    // Create ERP Order first to get ID
+    // Create ERP Order first to get ID (storeId = studioId)
     const order = await createPublicERPOrder(storeId, {
       customer_name: `${customerInfo.name} (${customerInfo.phone})`,
       total_amount: totalAmount,
@@ -29,8 +32,19 @@ export async function POST(req: NextRequest) {
         return new NextResponse("Failed to create ERP order", { status: 500 });
     }
 
+    const totalCents = Math.round(Number(totalAmount) * 100);
+    const stripeAccountId = await getStudioStripeAccountForCheckout(storeId);
+    const connectParams = stripeAccountId
+      ? {
+          payment_intent_data: {
+            application_fee_amount: Math.round(totalCents * (PLATFORM_FEE_PERCENT / 100)),
+            transfer_data: { destination: stripeAccountId },
+          },
+        }
+      : {};
+
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'pix'],
+      payment_method_types: getStripeCheckoutPaymentMethodTypes(),
       line_items: line_items,
       mode: 'payment',
       success_url: `${req.nextUrl.origin}/shop/${storeId}?success=true&session_id={CHECKOUT_SESSION_ID}`,
@@ -42,6 +56,7 @@ export async function POST(req: NextRequest) {
         store_id: storeId,
         erp_order_id: order.id,
       },
+      ...connectParams,
     });
 
     return NextResponse.json({ url: session.url });

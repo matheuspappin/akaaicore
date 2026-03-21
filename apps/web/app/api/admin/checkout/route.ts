@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import type Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe';
 import { supabaseAdmin } from '@/lib/supabase-admin';
 import logger from '@/lib/logger';
 import { checkSuperAdminDetailed } from '@/lib/actions/super-admin';
 import { checkStudioAccess } from '@/lib/auth';
+import { getStripeCheckoutPaymentMethodTypes } from '@/lib/stripe-checkout-methods';
 
 /**
  * Cria uma sessão de checkout do Stripe para planos (Studio -> Plataforma)
@@ -32,6 +34,7 @@ export async function POST(req: NextRequest) {
     let plan: { id: string; name: string; price: number; description?: string };
     let planType: 'system_plan' | 'verticalization_plan' = 'system_plan';
     let verticalizationPlanId: string | null = null;
+    let vPlanRow: Record<string, unknown> | null = null;
 
     if (verticalizationSlug) {
       // Buscar plano da verticalização (por UUID ou plan_id slug)
@@ -64,6 +67,7 @@ export async function POST(req: NextRequest) {
       plan = { id: vPlan.plan_id, name: vPlan.name, price: vPrice, description: vPlan.description };
       planType = 'verticalization_plan';
       verticalizationPlanId = vPlan.id;
+      vPlanRow = vPlan as unknown as Record<string, unknown>;
     } else {
       // Buscar plano global (system_plans)
       const { data: sp, error: planError } = await supabaseAdmin
@@ -79,6 +83,32 @@ export async function POST(req: NextRequest) {
         ? parseFloat(sp.price_annual)
         : parseFloat(sp.price);
       plan = { id: sp.id, name: sp.name, price: spPrice, description: sp.description };
+    }
+
+    const stripe = getStripe();
+    let resolvedStripePriceId: string | null = null;
+    let resolvedCheckoutMode: 'subscription' | 'payment' | null = null;
+
+    if (vPlanRow) {
+      const yearly = billingInterval === 'yearly';
+      const stripePriceIdRaw = yearly
+        ? (vPlanRow.stripe_price_id_annual as string | undefined)?.trim()
+        : (vPlanRow.stripe_price_id as string | undefined)?.trim();
+
+      if (stripePriceIdRaw) {
+        const priceObj = await stripe.prices.retrieve(stripePriceIdRaw);
+        if (!priceObj.active) {
+          return NextResponse.json(
+            { error: 'O preço vinculado no Stripe está inativo. Atualize o plano no admin.' },
+            { status: 400 }
+          );
+        }
+        if (priceObj.unit_amount != null) {
+          plan = { ...plan, price: priceObj.unit_amount / 100 };
+        }
+        resolvedStripePriceId = stripePriceIdRaw;
+        resolvedCheckoutMode = priceObj.type === 'recurring' ? 'subscription' : 'payment';
+      }
     }
 
     // Criar fatura pendente
@@ -111,29 +141,71 @@ export async function POST(req: NextRequest) {
     if (verticalizationPlanId) {
       metadata.verticalization_plan_id = verticalizationPlanId;
     }
+    if (resolvedStripePriceId) {
+      metadata.stripe_price_id = resolvedStripePriceId;
+    }
 
     const planLabel = billingInterval === 'yearly' ? `${plan.name} (Anual)` : plan.name;
-    const stripe = getStripe();
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'pix'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'brl',
-            product_data: {
-              name: `Plano ${planLabel} - Workflow AI`,
-              description: plan.description || '',
+    const paymentMethodTypes = getStripeCheckoutPaymentMethodTypes();
+
+    let sessionParams: Stripe.Checkout.SessionCreateParams;
+
+    if (vPlanRow && resolvedStripePriceId && resolvedCheckoutMode) {
+      const mode = resolvedCheckoutMode;
+      // customer_creation só é válido com mode: payment (Stripe API). Subscriptions criam customer automaticamente.
+      sessionParams = {
+        payment_method_types: paymentMethodTypes,
+        line_items: [{ price: resolvedStripePriceId, quantity: 1 }],
+        mode,
+        success_url: success_url || defaultSuccess,
+        cancel_url: cancel_url || defaultCancel,
+        metadata,
+      };
+    } else if (vPlanRow) {
+      sessionParams = {
+        payment_method_types: paymentMethodTypes,
+        line_items: [
+          {
+            price_data: {
+              currency: 'brl',
+              product_data: {
+                name: `Plano ${planLabel} - Workflow AI`,
+                description: plan.description || '',
+              },
+              unit_amount: Math.round(plan.price * 100),
             },
-            unit_amount: Math.round(plan.price * 100),
+            quantity: 1,
           },
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: success_url || defaultSuccess,
-      cancel_url: cancel_url || defaultCancel,
-      metadata,
-    });
+        ],
+        mode: 'payment',
+        success_url: success_url || defaultSuccess,
+        cancel_url: cancel_url || defaultCancel,
+        metadata,
+      };
+    } else {
+      sessionParams = {
+        payment_method_types: paymentMethodTypes,
+        line_items: [
+          {
+            price_data: {
+              currency: 'brl',
+              product_data: {
+                name: `Plano ${planLabel} - Workflow AI`,
+                description: plan.description || '',
+              },
+              unit_amount: Math.round(plan.price * 100),
+            },
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        success_url: success_url || defaultSuccess,
+        cancel_url: cancel_url || defaultCancel,
+        metadata,
+      };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     logger.info(`💳 Checkout criado para estúdio ${studioId} (Plano: ${plan.id}, tipo: ${planType})`);
     return NextResponse.json({ url: session.url });

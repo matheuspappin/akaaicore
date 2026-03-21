@@ -4,6 +4,8 @@ import { createClient } from '@/lib/supabase/server';
 import { getPaymentRequirement, getPaymentStrategy } from '@/lib/strategies/payment';
 import { PaymentItem, PaymentResult } from '@/lib/strategies/payment/types';
 import { getStripe } from '@/lib/stripe';
+import { getStudioStripeAccountForCheckout } from '@/lib/actions/studio-stripe-connect';
+import { PLATFORM_FEE_PERCENT } from '@/lib/constants/stripe-connect';
 
 export async function processPosPayment(
   studioId: string, 
@@ -78,6 +80,17 @@ export async function createPosStripeSession(
     .single();
 
   const totalAmount = items.reduce((acc, item) => acc + (item.priceInCurrency * item.quantity), 0);
+  const totalCents = Math.round(totalAmount * 100);
+
+  const stripeAccountId = await getStudioStripeAccountForCheckout(studioId);
+  const connectParams = stripeAccountId
+    ? {
+        payment_intent_data: {
+          application_fee_amount: Math.round(totalCents * (PLATFORM_FEE_PERCENT / 100)),
+          transfer_data: { destination: stripeAccountId },
+        },
+      }
+    : {};
 
   // Criar itens para o Stripe
   const lineItems = items.map(item => ({
@@ -104,6 +117,7 @@ export async function createPosStripeSession(
       items_json: JSON.stringify(items.map(i => ({ id: i.id, quantity: i.quantity, type: i.type, name: i.name, price: i.priceInCurrency }))),
       payment_method: method
     },
+    ...connectParams,
   });
 
   return { url: session.url };

@@ -3,14 +3,13 @@ import type { CreateCheckoutParams, CreateCheckoutResult, PaymentMethod } from '
 
 /**
  * Provedor Stripe com suporte a PIX para contas brasileiras.
- * PIX é habilitado automaticamente quando currency é BRL.
- * Requisitos Stripe: conta BR, 60 dias de histórico, BRL habilitado.
+ * PIX: só inclua em paymentMethods se estiver ativado no Dashboard Stripe (conta BR, BRL).
  */
 export function createStripeCheckoutSession(
   stripe: Stripe,
   params: CreateCheckoutParams
 ): Promise<CreateCheckoutResult> {
-  const methods = params.paymentMethods ?? ['card', 'pix'];
+  const methods = params.paymentMethods ?? ['card'];
   const paymentMethodTypes = methods.map((m) => (m === 'pix' ? 'pix' : 'card'));
 
   return stripe.checkout.sessions

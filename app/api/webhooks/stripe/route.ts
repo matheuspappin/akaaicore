@@ -74,6 +74,34 @@ export async function POST(req: NextRequest) {
           if (rpcError) {
             logger.error(`Erro ao processar pagamento de plano via webhook:`, rpcError);
           }
+          // Subscrição Stripe: guardar IDs para renovações (invoice.paid) e suporte
+          const subId =
+            typeof session.subscription === 'string'
+              ? session.subscription
+              : session.subscription && typeof session.subscription === 'object'
+                ? (session.subscription as Stripe.Subscription).id
+                : null;
+          const custId =
+            typeof session.customer === 'string'
+              ? session.customer
+              : session.customer && typeof session.customer === 'object'
+                ? (session.customer as Stripe.Customer).id
+                : null;
+          if (subId || custId) {
+            const { error: studioStripeErr } = await supabaseAdmin
+              .from('studios')
+              .update({
+                ...(subId ? { stripe_subscription_id: subId } : {}),
+                ...(custId ? { stripe_customer_id: custId } : {}),
+                updated_at: new Date().toISOString(),
+              })
+              .eq('id', studio_id);
+            if (studioStripeErr) {
+              logger.error('[WEBHOOK] Erro ao gravar stripe_subscription_id / stripe_customer_id:', studioStripeErr);
+            } else {
+              logger.info(`[WEBHOOK] Studio ${studio_id} vinculado a subscription ${subId || '—'} / customer ${custId || '—'}`);
+            }
+          }
           // Revenue share: comissão de afiliado quando estúdio indicado paga plano
           const amountBrl = session.amount_total ? session.amount_total / 100 : 0;
           if (amountBrl > 0) {
@@ -276,6 +304,197 @@ export async function POST(req: NextRequest) {
       }
 
       break;
+
+    case 'account.updated': {
+      const account = event.data.object as Stripe.Account;
+      if (account.charges_enabled && account.payouts_enabled) {
+        const { data: studio } = await supabaseAdmin
+          .from('studios')
+          .select('id')
+          .eq('stripe_account_id', account.id)
+          .maybeSingle();
+        if (studio) {
+          logger.info(`Stripe Connect: conta ${account.id} habilitada para estúdio ${studio.id}`);
+        }
+      }
+      break;
+    }
+
+    /** Renovações de subscrição (plano plataforma): alinha subscription_ends_at com o período atual do Stripe */
+    case 'invoice.paid': {
+      const inv = event.data.object as Stripe.Invoice;
+      const subRef = (inv as Stripe.Invoice & { subscription?: string | Stripe.Subscription | null })
+        .subscription;
+      const subId =
+        typeof subRef === 'string' ? subRef : subRef && typeof subRef === 'object' ? subRef.id : null;
+      if (!subId || inv.status !== 'paid') break;
+
+      // Pacote mensal (Connect): renovações — primeiro ciclo credita em checkout.session.completed; ignorar subscription_create
+      try {
+        const subRawPkg = await stripe.subscriptions.retrieve(subId);
+        const sub = subRawPkg as unknown as Stripe.Subscription;
+        const sm = sub.metadata || {};
+        if (
+          sm.type === 'package' &&
+          sm.studio_id &&
+          sm.student_id &&
+          sm.invoice_id
+        ) {
+          if (inv.billing_reason === 'subscription_create') {
+            logger.info(
+              `[WEBHOOK] invoice.paid: pacote subscription_create — crédito no checkout.session.completed (${inv.id})`,
+            );
+            break;
+          }
+          if (inv.billing_reason !== 'subscription_cycle') {
+            logger.info(
+              `[WEBHOOK] invoice.paid: pacote billing_reason=${inv.billing_reason} — sem crédito automático`,
+            );
+            break;
+          }
+
+          const studioId = sm.studio_id;
+          const studentId = sm.student_id;
+          const packageId = sm.invoice_id;
+
+          const { error: insertInvErr } = await supabaseAdmin
+            .from('stripe_package_invoice_credits')
+            .insert({ invoice_id: inv.id });
+
+          if (insertInvErr) {
+            if (insertInvErr.code === '23505') {
+              logger.info(`[WEBHOOK] Fatura ${inv.id} já creditada (renovação pacote)`);
+            } else {
+              logger.error('[WEBHOOK] Erro idempotência renovação pacote:', insertInvErr);
+            }
+            break;
+          }
+
+          const { data: pkgRow } = await supabaseAdmin
+            .from('lesson_packages')
+            .select('lessons_count, name')
+            .eq('id', packageId)
+            .single();
+
+          if (!pkgRow) {
+            await supabaseAdmin
+              .from('stripe_package_invoice_credits')
+              .delete()
+              .eq('invoice_id', inv.id);
+            logger.error('[WEBHOOK] Pacote não encontrado para renovação:', packageId);
+            break;
+          }
+
+          const { error: creditErr } = await supabaseAdmin.rpc('adjust_student_credits', {
+            p_student_id: studentId,
+            p_studio_id: studioId,
+            p_amount: pkgRow.lessons_count,
+          });
+
+          if (creditErr) {
+            logger.error('[WEBHOOK] Erro créditos renovação pacote:', creditErr);
+            await supabaseAdmin
+              .from('stripe_package_invoice_credits')
+              .delete()
+              .eq('invoice_id', inv.id);
+            break;
+          }
+
+          const amountPaid = inv.amount_paid ? inv.amount_paid / 100 : 0;
+          const today = new Date().toISOString().split('T')[0];
+          const refMonth = new Date().toISOString().slice(0, 7);
+          const { data: renewalPayment, error: payInsErr } = await supabaseAdmin
+            .from('payments')
+            .insert({
+              studio_id: studioId,
+              student_id: studentId,
+              amount: amountPaid,
+              due_date: today,
+              payment_date: today,
+              status: 'paid',
+              payment_method: 'stripe_card',
+              reference_month: refMonth,
+              description: `Renovação pacote: ${pkgRow.name} (${pkgRow.lessons_count} créditos)`,
+              payment_source: 'package_purchase',
+              reference_id: packageId,
+            })
+            .select('id')
+            .single();
+
+          if (payInsErr) {
+            logger.error('[WEBHOOK] Erro payment renovação pacote:', payInsErr);
+          } else if (renewalPayment?.id) {
+            const { error: queueErr } = await supabaseAdmin.rpc('enqueue_nfe_emission', {
+              p_studio_id: studioId,
+              p_invoice_id: renewalPayment.id,
+              p_payload: { payment_id: renewalPayment.id, studio_id: studioId },
+            });
+            if (queueErr) {
+              logger.error('[WEBHOOK] NF-e fila renovação pacote:', queueErr);
+            }
+          }
+
+          logger.info(`[WEBHOOK] Renovação pacote creditada: invoice ${inv.id}`);
+          break;
+        }
+      } catch (e) {
+        logger.error('[WEBHOOK] invoice.paid: falha ao tratar subscrição de pacote:', e);
+      }
+
+      const { data: studio } = await supabaseAdmin
+        .from('studios')
+        .select('id')
+        .eq('stripe_subscription_id', subId)
+        .maybeSingle();
+      if (!studio) {
+        logger.info(`[WEBHOOK] invoice.paid: sem studio para subscription ${subId} (ignorado)`);
+        break;
+      }
+
+      try {
+        const periodEnd = inv.period_end
+          ? new Date(inv.period_end * 1000).toISOString()
+          : null;
+        if (periodEnd) {
+          const { error: updErr } = await supabaseAdmin
+            .from('studios')
+            .update({
+              subscription_status: 'active',
+              subscription_ends_at: periodEnd,
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', studio.id);
+          if (updErr) {
+            logger.error('[WEBHOOK] invoice.paid: erro ao atualizar estúdio:', updErr);
+          } else {
+            logger.info(`[WEBHOOK] Renovação: studio ${studio.id} até ${periodEnd}`);
+          }
+        }
+      } catch (e) {
+        logger.error('[WEBHOOK] invoice.paid: falha ao atualizar estúdio (plano):', e);
+      }
+      break;
+    }
+
+    case 'customer.subscription.deleted': {
+      const sub = event.data.object as Stripe.Subscription;
+      const { data: studio } = await supabaseAdmin
+        .from('studios')
+        .select('id')
+        .eq('stripe_subscription_id', sub.id)
+        .maybeSingle();
+      if (!studio) break;
+      await supabaseAdmin
+        .from('studios')
+        .update({
+          subscription_status: 'canceled',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', studio.id);
+      logger.info(`[WEBHOOK] Subscrição cancelada no Stripe → studio ${studio.id}`);
+      break;
+    }
+
     default:
       logger.info(`Unhandled event type ${event.type}`);
   }

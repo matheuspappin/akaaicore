@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   try {
     const { data, error } = await supabase
       .from('lesson_packages')
-      .select('id, name, description, lessons_count, price, validity_days, is_active')
+      .select('id, name, description, lessons_count, price, validity_days, is_active, billing_type')
       .eq('studio_id', studioId)
       .eq('is_active', true)
       .order('price', { ascending: true })
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { studioId, name, lessons_count, price, validity_days, description } = body || {}
+    const { studioId, name, lessons_count, price, validity_days, description, billing_type } = body || {}
 
     if (!studioId || !name || !lessons_count || !price) {
       return NextResponse.json(
@@ -53,6 +53,9 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       )
     }
+
+    const billing =
+      billing_type === 'monthly' ? 'monthly' : 'one_time'
 
     const supabase = getAdmin()
     const { data, error } = await supabase
@@ -65,8 +68,9 @@ export async function POST(request: NextRequest) {
         price: Number(price),
         validity_days: validity_days ? Number(validity_days) : 90,
         is_active: true,
+        billing_type: billing,
       })
-      .select('id, name, description, lessons_count, price, validity_days, is_active')
+      .select('id, name, description, lessons_count, price, validity_days, is_active, billing_type')
       .single()
 
     if (error) throw error
