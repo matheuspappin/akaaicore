@@ -1,4 +1,4 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="85db6f12-dd28-2eb2-3f65-995b20f6ac9f")}catch(e){}}();
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="c75d720e-2cd6-cf31-4994-e0dd39a78425")}catch(e){}}();
 module.exports = [
 "[externals]/next/dist/compiled/next-server/app-page-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-page-turbo.runtime.dev.js, cjs)", ((__turbopack_context__, module, exports) => {
 
@@ -1662,7 +1662,9 @@ __turbopack_context__.s([
     "getTeachersData",
     ()=>getTeachersData,
     "supabase",
-    ()=>supabase
+    ()=>supabase,
+    "supabaseAdmin",
+    ()=>supabaseAdmin
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$supabase$2b$supabase$2d$js$40$2$2e$99$2e$3$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@supabase+supabase-js@2.99.3/node_modules/@supabase/supabase-js/dist/index.mjs [app-ssr] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$supabase$2b$ssr$40$0$2e$8$2e$0_$40$supabase$2b$supabase$2d$js$40$2$2e$99$2e$3$2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@supabase+ssr@0.8.0_@supabase+supabase-js@2.99.3/node_modules/@supabase/ssr/dist/module/index.js [app-ssr] (ecmascript) <locals>");
@@ -1695,6 +1697,12 @@ const supabase = new Proxy({}, {
         const client = getOrCreateSupabase();
         const value = client[prop];
         return typeof value === 'function' ? value.bind(client) : value;
+    }
+});
+const supabaseAdmin = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$supabase$2b$supabase$2d$js$40$2$2e$99$2e$3$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(("TURBOPACK compile-time value", "https://drgibkczwshwjjsdauoj.supabase.co") || '', process.env.SUPABASE_SERVICE_ROLE_KEY || '', {
+    auth: {
+        persistSession: false,
+        autoRefreshToken: false
     }
 });
 function getSupabaseClient() {
@@ -4274,5 +4282,5 @@ const useOrganization = ()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$
 }),
 ];
 
-//# debugId=85db6f12-dd28-2eb2-3f65-995b20f6ac9f
+//# debugId=c75d720e-2cd6-cf31-4994-e0dd39a78425
 //# sourceMappingURL=%5Broot-of-the-server%5D__21403c12._.js.map

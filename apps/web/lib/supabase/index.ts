@@ -47,6 +47,21 @@ export const supabase = new Proxy({} as SupabaseClient, {
 })
 
 /**
+ * Cliente Supabase com privilégios de Admin (Service Role)
+ * USE COM CAUTELA - IGNORA RLS
+ */
+export const supabaseAdmin = createSupabaseClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+  {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false
+    }
+  }
+)
+
+/**
  * Cria um cliente Supabase com a configuração correta
  * (Helper de compatibilidade)
  */
