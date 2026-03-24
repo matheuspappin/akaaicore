@@ -1,0 +1,3 @@
+{
+  "/api/admin/stripe/lookup-price/route": "app/api/admin/stripe/lookup-price/route.js"
+}

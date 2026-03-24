@@ -1172,6 +1172,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/solutions/estudio-de-danca/dashboard/settings/payment/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/solutions/estudio-de-danca/dashboard/settings/payment">> = Specific
+  const handler = {} as typeof import("../../../app/solutions/estudio-de-danca/dashboard/settings/payment/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/solutions/estudio-de-danca/dashboard/turmas/[id]/chamada/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/solutions/estudio-de-danca/dashboard/turmas/[id]/chamada">> = Specific
@@ -2027,6 +2036,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/admin/stripe/lookup-price/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/stripe/lookup-price">> = Specific
+  const handler = {} as typeof import("../../../app/api/admin/stripe/lookup-price/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/admin/studios/[id]/api-keys/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/studios/[id]/api-keys">> = Specific
@@ -2648,6 +2666,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/dance-studio/sessions/complete-chamada/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/dance-studio/sessions/complete-chamada">> = Specific
+  const handler = {} as typeof import("../../../app/api/dance-studio/sessions/complete-chamada/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/dance-studio/stripe-connect/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/dance-studio/stripe-connect">> = Specific
+  const handler = {} as typeof import("../../../app/api/dance-studio/stripe-connect/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/dance-studio/students/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/dance-studio/students">> = Specific
@@ -2715,6 +2751,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/dance-studio/teacher-payout-settings">> = Specific
   const handler = {} as typeof import("../../../app/api/dance-studio/teacher-payout-settings/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/dance-studio/teacher-stripe-connect/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/dance-studio/teacher-stripe-connect">> = Specific
+  const handler = {} as typeof import("../../../app/api/dance-studio/teacher-stripe-connect/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/dance-studio/teacher-withdrawals/execute-stripe/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/dance-studio/teacher-withdrawals/execute-stripe">> = Specific
+  const handler = {} as typeof import("../../../app/api/dance-studio/teacher-withdrawals/execute-stripe/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -3183,6 +3237,33 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/notifications">> = Specific
   const handler = {} as typeof import("../../../app/api/notifications/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/pagbank/oauth/authorize/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/pagbank/oauth/authorize">> = Specific
+  const handler = {} as typeof import("../../../app/api/pagbank/oauth/authorize/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/pagbank/oauth/callback/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/pagbank/oauth/callback">> = Specific
+  const handler = {} as typeof import("../../../app/api/pagbank/oauth/callback/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/pagbank/pix/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/pagbank/pix">> = Specific
+  const handler = {} as typeof import("../../../app/api/pagbank/pix/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

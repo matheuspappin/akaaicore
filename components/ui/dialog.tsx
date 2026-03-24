@@ -51,23 +51,42 @@ function DialogContent({
   children,
   showCloseButton = true,
   onInteractOutside,
+  onPointerDownOutside: onPointerDownOutsideProp,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
 }) {
+  const isOutsideFromSelectOrPopover = React.useCallback((target: EventTarget | null) => {
+    const el = target as HTMLElement | null
+    if (!el?.closest) return false
+    return Boolean(
+      el.closest('[data-slot="select-content"]') ||
+        el.closest('[data-slot="popover-content"]') ||
+        el.closest('[data-radix-select-content]') ||
+        el.closest('[data-radix-popper-content-wrapper]') ||
+        el.closest('[role="listbox"]') ||
+        el.closest('[data-radix-select-viewport]'),
+    )
+  }, [])
+
   const handleInteractOutside = React.useCallback(
     (e: Event) => {
-      const target = e.target as HTMLElement
-      if (
-        target.closest?.('[data-slot="select-content"]') ||
-        target.closest?.('[role="listbox"]') ||
-        target.closest?.('[data-radix-select-viewport]')
-      ) {
+      if (isOutsideFromSelectOrPopover(e.target)) {
         e.preventDefault()
       }
       onInteractOutside?.(e as never)
     },
-    [onInteractOutside]
+    [isOutsideFromSelectOrPopover, onInteractOutside],
+  )
+
+  const handlePointerDownOutside = React.useCallback(
+    (e: Event) => {
+      if (isOutsideFromSelectOrPopover(e.target)) {
+        e.preventDefault()
+      }
+      onPointerDownOutsideProp?.(e as never)
+    },
+    [isOutsideFromSelectOrPopover, onPointerDownOutsideProp],
   )
   return (
     <DialogPortal data-slot="dialog-portal">
@@ -75,8 +94,9 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         onInteractOutside={handleInteractOutside}
+        onPointerDownOutside={handlePointerDownOutside}
         className={cn(
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg',
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg max-h-[calc(100vh-4rem)] overflow-y-auto',
           className,
         )}
         {...props}

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [],
-  "debugId": "b00164ec-fa96-4c2c-d235-73b685b7a131",
+  "debugId": "f4384293-d6b5-5cb5-f4e4-257428971d1c",
   "sections": [
     {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["../../../../../../apps/web/app/loading.tsx"],"sourcesContent":["export default function Loading() {\r\n  return (\r\n    <div className=\"fixed inset-0 flex flex-col items-center justify-center bg-black\">\r\n      <div className=\"h-10 w-10 animate-spin rounded-full border-2 border-white/30 border-t-white\" />\r\n      <p className=\"mt-4 text-sm text-white/60\">Carregando...</p>\r\n    </div>\r\n  )\r\n}\r\n"],"names":[],"mappings":"yDAAe,SAAS,IACtB,MACE,CAAA,EAAA,EAAA,IAAA,EAAC,MAAA,CAAI,UAAU,6EACb,CAAA,EAAA,EAAA,GAAA,EAAC,MAAA,CAAI,UAAU,gFACf,CAAA,EAAA,EAAA,GAAA,EAAC,IAAA,CAAE,UAAU,sCAA6B,oBAGhD"}}]
 }

@@ -310,6 +310,161 @@
       "filename": "apps/web/lib/actions/super-admin.ts",
       "exportedName": "getGlobalSystemStats"
     },
+    "406747a2d7253704485b35ccfc0e61d31e15ac193a": {
+      "workers": {
+        "app/admin/affiliates/page": {
+          "moduleId": 543756,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/catarina/page": {
+          "moduleId": 165197,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystem-status/page": {
+          "moduleId": 624878,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 926768,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/import/page": {
+          "moduleId": 962567,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/logs/page": {
+          "moduleId": 315086,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 513875,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/plans/page": {
+          "moduleId": 586742,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/settings/page": {
+          "moduleId": 104667,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/[id]/page": {
+          "moduleId": 830965,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/studios/page": {
+          "moduleId": 235258,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/support/page": {
+          "moduleId": 897044,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/testes/page": {
+          "moduleId": 260762,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 157187,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": {
+          "moduleId": 996145,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/[slug]/page": {
+          "moduleId": 854292,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/agroflowai/page": {
+          "moduleId": 332685,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/estudio-de-danca/page": {
+          "moduleId": 922015,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/fire-protection/page": {
+          "moduleId": 201397,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/new/page": {
+          "moduleId": 219850,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        },
+        "app/admin/verticalizations/page": {
+          "moduleId": 57393,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/affiliates/page": "rsc",
+        "app/admin/catarina/page": "rsc",
+        "app/admin/ecosystem-status/page": "rsc",
+        "app/admin/ecosystems/new/page": "rsc",
+        "app/admin/import/page": "rsc",
+        "app/admin/logs/page": "rsc",
+        "app/admin/page": "rsc",
+        "app/admin/plans/page": "rsc",
+        "app/admin/settings/page": "rsc",
+        "app/admin/studios/[id]/page": "rsc",
+        "app/admin/studios/page": "action-browser",
+        "app/admin/support/page": "rsc",
+        "app/admin/testes/page": "rsc",
+        "app/admin/users/page": "rsc",
+        "app/admin/verticalizations/[slug]/new-ecosystem/page": "rsc",
+        "app/admin/verticalizations/[slug]/page": "rsc",
+        "app/admin/verticalizations/agroflowai/page": "rsc",
+        "app/admin/verticalizations/estudio-de-danca/page": "rsc",
+        "app/admin/verticalizations/fire-protection/page": "rsc",
+        "app/admin/verticalizations/new/page": "rsc",
+        "app/admin/verticalizations/page": "rsc"
+      },
+      "filename": "apps/web/lib/actions/super-admin.ts",
+      "exportedName": "updateStudioPlanToFreeForever"
+    },
     "60463b6d398c93082188986ed49f8a8ad8c07b7a08": {
       "workers": {
         "app/admin/affiliates/page": {
@@ -3980,6 +4135,21 @@
       },
       "filename": "apps/web/lib/actions/marketplace.ts",
       "exportedName": "getStoreBySlug"
+    },
+    "401fa82b7465aa628a6c74ad7ede4893451d72bce0": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/configuracoes/page": {
+          "moduleId": 328200,
+          "async": false,
+          "exportedName": "getStudioStripeConnectStatus",
+          "filename": "apps/web/lib/actions/studio-stripe-connect.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/configuracoes/page": "action-browser"
+      },
+      "filename": "apps/web/lib/actions/studio-stripe-connect.ts",
+      "exportedName": "getStudioStripeConnectStatus"
     },
     "4045df62e325a4526ca61730126c29a9a5cfd7e409": {
       "workers": {

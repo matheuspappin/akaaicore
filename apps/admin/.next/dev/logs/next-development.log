@@ -1,3 +1,1 @@
-[00:00:01.750] Server  LOG      ✓ Ready in 1210ms
-[00:00:07.159] Server  LOG     {"level":"debug","time":"2026-03-19T14:01:33.055Z","msg":"🔍 checkSuperAdminDetailed: Verificando usuário","args":[{"id":"4490...8bf6"}]}
-[00:00:07.755] Server  LOG     {"level":"warn","time":"2026-03-19T14:01:33.652Z","msg":"⛔ checkSuperAdminDetailed: Acesso NEGADO. Role DB: undefined"}
+[00:00:02.197] Server  LOG      ✓ Ready in 1440ms

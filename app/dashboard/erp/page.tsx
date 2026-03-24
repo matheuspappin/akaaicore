@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Header } from "@/components/dashboard/header"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -71,6 +71,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { EntityPicker } from "@/components/inventory/entity-picker"
 
 export default function ERPPage() {
   const { vocabulary, t, language } = useVocabulary()
@@ -95,6 +96,8 @@ export default function ERPPage() {
     ...customCategories
   ])).sort()
 
+  const [customSubcategoriesByCategory, setCustomSubcategoriesByCategory] = useState<Record<string, string[]>>({})
+
   // --- UI States ---
   const [isSyncing, setIsSyncing] = useState<string | null>(null)
   const [isConnectModalOpen, setIsConnectModalOpen] = useState(false)
@@ -116,7 +119,18 @@ export default function ERPPage() {
   // --- Form States ---
   const [newChannel, setNewChannel] = useState({ platform: '', name: '', apiKey: '' })
   const [newOrder, setNewOrder] = useState({ customer: '', product_id: '', qty: 1 })
-  const [newProduct, setNewProduct] = useState({ name: '', price: 0, stock: 0, sku: '', image_url: '', category: 'Geral' })
+  const [newProduct, setNewProduct] = useState({ name: '', price: 0, stock: 0, sku: '', image_url: '', category: 'Geral', subcategory: '' })
+  const allSubcategoriesForErp = useMemo(() => {
+    const cat = newProduct.category
+    const fromCat = [...new Set(
+      (catalog || [])
+        .filter((p: { category?: string; subcategory?: string }) => p.category === cat && p.subcategory)
+        .map((p: { subcategory?: string }) => String(p.subcategory).trim())
+        .filter(Boolean)
+    )]
+    const custom = customSubcategoriesByCategory[cat] || []
+    return Array.from(new Set([...fromCat, ...custom])).sort((a, b) => a.localeCompare(b, "pt-BR"))
+  }, [newProduct.category, catalog, customSubcategoriesByCategory])
   const [newSupplier, setNewSupplier] = useState({ name: '', contact_name: '', email: '', category: 'products' })
   const [newPO, setNewPO] = useState({ supplier_id: '', total_amount: 0, items: [] as any[], expected_date: '' })
 
@@ -197,6 +211,7 @@ export default function ERPPage() {
         sku: newProduct.sku,
         image_url: newProduct.image_url || `https://source.unsplash.com/random/400x400/?product,${newProduct.name}`, // Fallback imagem
         category: newProduct.category || 'Geral',
+        subcategory: newProduct.subcategory?.trim() || undefined,
         status: 'active',
         min_quantity: 5
       }, studioId)
@@ -206,7 +221,7 @@ export default function ERPPage() {
       
       toast({ title: t.erp.productCreated, description: t.erp.productAddedToCatalog.replace('{productName}', newProduct.name) })
       setIsNewProductModalOpen(false)
-      setNewProduct({ name: '', price: 0, stock: 0, sku: '', image_url: '', category: 'Geral' })
+      setNewProduct({ name: '', price: 0, stock: 0, sku: '', image_url: '', category: 'Geral', subcategory: '' })
     } catch (err: any) {
       console.error(t.erp.errorCreatingProduct, err)
       toast({ title: t.common.error, description: t.erp.failedToCreateProduct.replace('{errorMessage}', err.message || t.common.unknownError), variant: "destructive" })
@@ -746,32 +761,39 @@ export default function ERPPage() {
                       </div>
                       <div className="grid gap-2">
                         <Label>Tipo de Produto (Categoria)</Label>
-                        <Select 
-                          value={newProduct.category} 
-                          onValueChange={val => {
-                            if (val === "ADD_NEW") {
-                              const name = prompt("Digite o nome do novo tipo de produto:");
-                              if (name) {
-                                setCustomCategories(prev => [...prev, name]);
-                                setNewProduct(prev => ({ ...prev, category: name }));
-                              }
-                            } else {
-                              setNewProduct({...newProduct, category: val});
-                            }
+                        <EntityPicker
+                          value={newProduct.category}
+                          options={allCategories}
+                          placeholder="Selecione o tipo..."
+                          onChange={(v) => setNewProduct((prev) => ({ ...prev, category: v, subcategory: "" }))}
+                          onCreateSubmit={(n) => {
+                            setCustomCategories((prev) => [...prev, n])
+                            setNewProduct((prev) => ({ ...prev, category: n, subcategory: "" }))
                           }}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Selecione o tipo..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {allCategories.map(cat => (
-                              <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                            ))}
-                            <SelectItem value="ADD_NEW" className="text-primary font-medium focus:bg-primary/10">
-                              <Plus className="w-3 h-3 mr-2 inline" /> Criar novo tipo...
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
+                          createNewLabel="Criar novo tipo..."
+                          createInputPlaceholder="Ex.: Bebidas, Snacks…"
+                        />
+                      </div>
+                      <div className="grid gap-2">
+                        <Label>Subcategoria</Label>
+                        <p className="text-xs text-muted-foreground">Opcional. Ex.: Bebidas — Red Bull</p>
+                        <EntityPicker
+                          value={newProduct.subcategory?.trim() ? newProduct.subcategory : ""}
+                          options={allSubcategoriesForErp}
+                          allowEmpty
+                          emptyLabel="Sem subcategoria"
+                          placeholder="Nenhuma — ex.: Red Bull"
+                          onChange={(v) => setNewProduct((prev) => ({ ...prev, subcategory: v }))}
+                          onCreateSubmit={(n) => {
+                            setCustomSubcategoriesByCategory((prev) => ({
+                              ...prev,
+                              [newProduct.category]: Array.from(new Set([...(prev[newProduct.category] || []), n])),
+                            }))
+                            setNewProduct((prev) => ({ ...prev, subcategory: n }))
+                          }}
+                          createNewLabel="Nova subcategoria..."
+                          createInputPlaceholder="Ex.: Red Bull, Água…"
+                        />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="grid gap-2">

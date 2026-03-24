@@ -24,6 +24,7 @@ export default function ChamadaPage() {
   const [loadingStudents, setLoadingStudents] = useState(false)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [professionalId, setProfessionalId] = useState<string | null>(null)
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -42,6 +43,8 @@ export default function ChamadaPage() {
         .select('id')
         .eq('user_id', user.id)
         .maybeSingle()
+
+      setProfessionalId(prof?.id ?? null)
 
       const params = new URLSearchParams({ studioId: sid })
       if (prof?.id) params.set('teacherId', prof.id)
@@ -105,7 +108,7 @@ export default function ChamadaPage() {
       const status = isPresent ? 'present' : 'absent'
 
       try {
-        await fetch('/api/dance-studio/enrollments', {
+        const res = await fetch('/api/dance-studio/enrollments', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -116,7 +119,9 @@ export default function ChamadaPage() {
             status,
             attendanceId: s.attendanceId ?? null,
           }),
+          credentials: 'include',
         })
+        if (!res.ok) errors++
       } catch {
         errors++
       }
@@ -131,7 +136,33 @@ export default function ChamadaPage() {
         title: "Chamada salva!",
         description: `${presentCount} de ${students.length} presentes registrados.`,
       })
-      // Recarrega para sincronizar attendanceIds
+      try {
+        const completeRes = await fetch("/api/dance-studio/sessions/complete-chamada", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            studioId,
+            classId: selectedTurma.id,
+            date: today,
+            professionalId: professionalId ?? undefined,
+          }),
+        })
+        const completeJson = await completeRes.json().catch(() => ({}))
+        if (!completeRes.ok) {
+          toast({
+            title: "Sessão não registrada para pagamento",
+            description: (completeJson as { error?: string }).error || "Configure valor por aula em Pagamentos Professores.",
+            variant: "destructive",
+          })
+        }
+      } catch {
+        toast({
+          title: "Aviso",
+          description: "Não foi possível registrar a sessão como realizada para honorários.",
+          variant: "destructive",
+        })
+      }
       loadStudents(selectedTurma.id)
     } else {
       toast({ title: `${errors} aluno(s) com erro ao salvar`, variant: "destructive" })

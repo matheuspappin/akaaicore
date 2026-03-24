@@ -1,21 +1,12 @@
 {
   "app": {
-    "[project]/apps/web/app/home/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/apps/web/app/page": [
+    "[project]/apps/web/app/solutions/estudio-de-danca/dashboard/configuracoes/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/apps/web/app/solutions/estudio-de-danca/dashboard/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/apps/web/app/solutions/estudio-de-danca/dashboard/scanner/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/apps/web/app/solutions/estudio-de-danca/login/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/apps/web/app/solutions/estudio-de-danca/page": [
+    "[project]/apps/web/app/solutions/estudio-de-danca/dashboard/vendas/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ]
   },

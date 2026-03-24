@@ -1,10 +1,10 @@
 var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/fire-protection/configuracoes/route.js")
 R.c("server/chunks/[root-of-the-server]__cfddabf9._.js")
-R.c("server/chunks/node_modules_decdbaeb._.js")
-R.c("server/chunks/node_modules_next_dist_esm_build_templates_app-route_86d19f3e.js")
-R.c("server/chunks/node_modules_next_dist_23bfe24c._.js")
-R.c("server/chunks/node_modules_@supabase_supabase-js_dist_index_mjs_669a44bf._.js")
-R.c("server/chunks/[root-of-the-server]__ba39dfbb._.js")
+R.c("server/chunks/node_modules__pnpm_604390a4._.js")
+R.c("server/chunks/8f1fe_next_dist_esm_build_templates_app-route_501d8c00.js")
+R.c("server/chunks/8f1fe_next_dist_ee3dac23._.js")
+R.c("server/chunks/25b93_@supabase_supabase-js_dist_index_mjs_f7a11afc._.js")
+R.c("server/chunks/[root-of-the-server]__e6eea66b._.js")
 R.c("server/chunks/cc0e2_server_app_api_fire-protection_configuracoes_route_actions_15838a7b.js")
-R.m(486436)
-module.exports=R.m(486436).exports
+R.m(246828)
+module.exports=R.m(246828).exports

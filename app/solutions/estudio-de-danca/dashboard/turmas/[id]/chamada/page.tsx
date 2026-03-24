@@ -84,9 +84,8 @@ export default function DanceFlowAttendancePage() {
         .single()
       setBusinessModel(studio?.business_model || 'MONETARY')
 
-      // Buscar alunos matriculados na turma
-      const { data: enrollments } = await supabase
-        .from('class_enrollments')
+      const { data: enrollments, error: enrollmentsError } = await supabase
+        .from('enrollments')
         .select(`
           student_id,
           students (
@@ -101,18 +100,28 @@ export default function DanceFlowAttendancePage() {
           )
         `)
         .eq('class_id', id)
+        .eq('studio_id', classData.studio_id)
         .eq('status', 'active')
 
-      const enrolledStudents = enrollments?.map(e => ({
-        ...e.students,
-        credits: (e.students as any).student_lesson_credits?.[0]?.remaining_credits || 0,
-        totalCredits: (e.students as any).student_lesson_credits?.[0]?.total_credits || 0,
-        expiryDate: (e.students as any).student_lesson_credits?.[0]?.expiry_date
-      })) || []
+      if (enrollmentsError) {
+        console.error('Chamada: erro ao carregar matrículas', enrollmentsError)
+      }
 
-      setStudents(enrolledStudents)
+      const mapStudentRow = (st: any) => {
+        if (!st?.id) return null
+        const cred = st.student_lesson_credits?.[0]
+        return {
+          ...st,
+          credits: cred?.remaining_credits || 0,
+          totalCredits: cred?.total_credits || 0,
+          expiryDate: cred?.expiry_date,
+        }
+      }
 
-      // Buscar attendance de hoje
+      const enrolledStudents = (enrollments || [])
+        .map((e) => mapStudentRow(e.students))
+        .filter(Boolean) as any[]
+
       const today = new Date().toISOString().split('T')[0]
       const { data: attendanceData } = await supabase
         .from('attendance')
@@ -120,10 +129,58 @@ export default function DanceFlowAttendancePage() {
         .eq('class_id', id)
         .eq('date', today)
 
+      const enrolledIds = new Set(enrolledStudents.map((s) => s.id))
+      const orphanIds = [
+        ...new Set(
+          (attendanceData || [])
+            .map((a) => a.student_id)
+            .filter((sid: string | null) => Boolean(sid) && !enrolledIds.has(sid as string))
+        ),
+      ] as string[]
+
+      let mergedStudents = [...enrolledStudents]
+      if (orphanIds.length > 0) {
+        const { data: extras } = await supabase
+          .from('students')
+          .select(`
+            id,
+            name,
+            email,
+            student_lesson_credits (
+              remaining_credits,
+              total_credits,
+              expiry_date
+            )
+          `)
+          .eq('studio_id', classData.studio_id)
+          .in('id', orphanIds)
+
+        const extraRows = (extras || []).map((row) => mapStudentRow(row)).filter(Boolean) as any[]
+        mergedStudents = [...mergedStudents, ...extraRows]
+
+        const foundExtra = new Set(extraRows.map((r: { id: string }) => r.id))
+        for (const sid of orphanIds) {
+          if (foundExtra.has(sid)) continue
+          mergedStudents.push({
+            id: sid,
+            name: 'Aluno (só presença de hoje)',
+            email: '',
+            credits: 0,
+            totalCredits: 0,
+            expiryDate: undefined,
+          })
+        }
+      }
+
+      mergedStudents.sort((a, b) =>
+        String(a.name || '').localeCompare(String(b.name || ''), 'pt-BR')
+      )
+      setStudents(mergedStudents)
+
       const attendanceMap: Record<string, string> = {}
       const notesMap: Record<string, string> = {}
-      
-      attendanceData?.forEach(record => {
+
+      attendanceData?.forEach((record) => {
         attendanceMap[record.student_id] = record.status
         notesMap[record.student_id] = record.notes || ''
       })
@@ -393,7 +450,11 @@ export default function DanceFlowAttendancePage() {
             </div>
             <div className="flex items-center gap-2">
               <Badge className="bg-violet-100 text-violet-700">
-                {students.length} alunos
+                {students.length === 0
+                  ? "Sem alunos na lista"
+                  : students.length === 1
+                    ? "1 aluno na lista"
+                    : `${students.length} alunos na lista`}
               </Badge>
               {businessModel === 'CREDIT' && (
                 <Badge className="bg-indigo-100 text-indigo-700">

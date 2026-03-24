@@ -1,0 +1,10 @@
+var R=require("../../../../../chunks/[turbopack]_runtime.js")("server/app/api/dance-studio/packages/checkout/route.js")
+R.c("server/chunks/8f1fe_next_877a1dc5._.js")
+R.c("server/chunks/4b6e4_@opentelemetry_api_build_esm_9cee443b._.js")
+R.c("server/chunks/3e751_@supabase_auth-js_dist_module_8d0de81d._.js")
+R.c("server/chunks/ca446_stripe_esm_97ac1ddc._.js")
+R.c("server/chunks/node_modules__pnpm_27284dc3._.js")
+R.c("server/chunks/[root-of-the-server]__136ee82b._.js")
+R.c("server/chunks/cc0e2_server_app_api_dance-studio_packages_checkout_route_actions_914a1fe0.js")
+R.m("[project]/node_modules/.pnpm/next@16.0.10_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@19.2.0_react@19.2.0/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/apps/web/app/api/dance-studio/packages/checkout/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/.pnpm/next@16.0.10_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@19.2.0_react@19.2.0/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/apps/web/app/api/dance-studio/packages/checkout/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

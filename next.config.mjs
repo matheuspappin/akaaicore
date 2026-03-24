@@ -11,6 +11,8 @@ const cspDirectives = {
     // Sentry tunnel (definido em tunnelRoute)
     "'unsafe-inline'", // necessário para Next.js inline scripts — remover quando migrar para nonces
     'https://monitoring-tunnel',
+    'https://va.vercel-scripts.com',
+    'https://vercel.live',
     isDev ? "'unsafe-eval'" : '', // apenas dev (hot reload)
   ].filter(Boolean),
   'style-src': ["'self'", "'unsafe-inline'"], // inline styles do Tailwind
@@ -25,10 +27,16 @@ const cspDirectives = {
     "'self'",
     process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
     'https://*.supabase.co',
+    'wss://*.supabase.co',
+    'https://*.supabase.io',
+    'wss://*.supabase.io',
     'https://generativelanguage.googleapis.com',
     'https://sentry.io',
     'https://*.sentry.io',
+    'https://va.vercel-scripts.com',
+    'https://vitals.vercel-insights.com',
     isDev ? 'ws://localhost:*' : '', // Next.js HMR
+    isDev ? 'wss://localhost:*' : '',
   ].filter(Boolean),
   'frame-src': ["'none'"],
   'object-src': ["'none'"],

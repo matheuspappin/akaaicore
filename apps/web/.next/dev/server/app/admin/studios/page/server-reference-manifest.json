@@ -15,6 +15,21 @@
       "exportedName": "checkSuperAdminDetailed",
       "filename": "apps/web/lib/actions/super-admin.ts"
     },
+    "4049d92b4bb003a0216d1afb6fc275e1d15e28a9cf": {
+      "workers": {
+        "app/admin/studios/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/admin/studios/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/studios/page": "action-browser"
+      },
+      "exportedName": "updateStudioPlanToFreeForever",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
     "40946ae18354ff50f5e2a1be48aa44bbfa95d9c471": {
       "workers": {
         "app/admin/studios/page": {

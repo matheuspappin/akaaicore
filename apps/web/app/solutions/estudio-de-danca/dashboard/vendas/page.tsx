@@ -41,7 +41,7 @@ function POSContent() {
   
   const [isScannerOpen, setIsScannerOpen] = useState(false)
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
-  const [paymentMethod, setPaymentMethod] = useState<'money' | 'card' | 'pix' | null>(null)
+  const [paymentMethod, setPaymentMethod] = useState<'money' | 'card' | 'pix' | 'pagbank_pix' | 'credit' | null>(null)
   
   const [cart, setCart] = useState<{product: any, quantity: number, type: 'product' | 'service_order'}[]>([])
   const [isFinalizingSale, setIsFinalizingSale] = useState(false)
@@ -55,7 +55,11 @@ function POSContent() {
   const [change, setChange] = useState<number>(0)
   const [reaisPerCredit, setReaisPerCredit] = useState<number>(70)
   const [studentCredits, setStudentCredits] = useState<number | null>(null)
-
+  const [customerTaxIdInput, setCustomerTaxIdInput] = useState<string>('')
+  const [showTaxIdInput, setShowTaxIdInput] = useState<boolean>(false)
+  const [pixQRCodeUrl, setPixQRCodeUrl] = useState<string | null>(null)
+  const [pixText, setPixText] = useState<string | null>(null)
+  
   useEffect(() => {
     if (searchParams.get('success') === 'true') {
       toast({ title: "Pagamento confirmado!", description: "A venda foi processada com sucesso via Stripe." })
@@ -149,7 +153,18 @@ function POSContent() {
   }
 
   const handleFinalizeSale = async (forcedMethod?: 'money' | 'card' | 'pix' | 'credit') => {
+    console.log('handleFinalizeSale chamada!');
     const method = forcedMethod || paymentMethod || (businessModel === 'MONETARY' ? 'money' : 'credit');
+    console.log('Método de pagamento:', method);
+
+      if (method === 'pagbank_pix') {
+        setShowTaxIdInput(true); // Exibir o campo de CPF/CNPJ
+        if (!customerTaxIdInput) {
+          toast({ title: "Informe o CPF ou CNPJ", variant: "destructive" });
+          setIsFinalizingSale(false);
+          return;
+        }
+      }
     
     if (!method) {
       toast({ title: "Selecione o pagamento", variant: "destructive" })
@@ -172,7 +187,7 @@ function POSContent() {
         }
       })
 
-      if (method === 'pix' || method === 'card') {
+      if (method === 'card') {
         const { url } = await createPosStripeSession(
           studioId!,
           selectedStudentId === 'none' ? null : selectedStudentId,
@@ -185,7 +200,51 @@ function POSContent() {
           window.location.href = url
           return 
         }
+      } else if (method === 'pagbank_pix') {
+        const totalAmount = cart.reduce((acc, i) => acc + ((i.product.selling_price ?? 0) * i.quantity), 0);
+        const customerEmail = selectedStudentId && selectedStudentId !== 'none' 
+          ? students.find(s => s.id === selectedStudentId)?.email || 'cliente@exemplo.com'
+          : 'cliente.avulso@exemplo.com';
+
+        const pagbankResponse = await createPagBankPixOrder(
+          {
+            customer: {
+              name: selectedStudentId && selectedStudentId !== 'none' ? students.find(s => s.id === selectedStudentId)?.name : 'Cliente Avulso',
+              email: customerEmail,
+              tax_id: customerTaxIdInput || (selectedStudentId && selectedStudentId !== 'none' ? students.find(s => s.id === selectedStudentId)?.tax_id : undefined),
+              phones: [{ country: '55', area: '11', number: '999999999', type: 'MOBILE' }],
+            },
+            items: items.map(item => ({
+              name: item.name,
+              quantity: item.quantity,
+              unit_amount: Math.round(item.priceInCurrency * 100),
+            })),
+            amount: Math.round(totalAmount * 100),
+          },
+          studioId! // Passa o studioId como tenantId
+        );
+        console.log('Resposta PagBank Pix Completa:', JSON.stringify(pagbankResponse, null, 2)); // Log para depuração profunda
+        
+          if (pagbankResponse.qr_codes && pagbankResponse.qr_codes.length > 0) {
+            const qrCodeInfo = pagbankResponse.qr_codes[0];
+            console.log('Informações do QR Code:', JSON.stringify(qrCodeInfo, null, 2)); // Log para depuração profunda
+  
+            const qrCodeImageLink = qrCodeInfo.links?.find((link: any) => link.rel === 'QRCODE.PNG');
+            if (qrCodeImageLink) {
+               setPixQRCodeUrl(qrCodeImageLink.href);
+               console.log('URL do QR Code (PNG):', qrCodeImageLink.href); // Log para depuração
+            }
+            setPixText(qrCodeInfo.text);
+            console.log('Código Pix Copia e Cola:', qrCodeInfo.text); // Log para depuração
+            toast({ title: 'Pix Gerado com Sucesso!', description: 'Leia o QR Code abaixo para pagar.' });
+          } else {
+            toast({ title: 'Aviso', description: 'Pedido gerado, mas QR Code não retornado.', variant: 'destructive' });
+          }
+        
+        setIsFinalizingSale(false);
+        return;
       }
+
 
       const result = await processPosPayment(
         studioId!,
@@ -202,6 +261,9 @@ function POSContent() {
       setPaymentMethod(null)
       setAmountReceived(0)
       setChange(0)
+      setCustomerTaxIdInput('')
+      setPixQRCodeUrl(null)
+      setPixText(null)
       fetchData()
     } catch (error: any) {
       toast({ title: "Erro", description: error.message, variant: "destructive" })
@@ -349,7 +411,7 @@ function POSContent() {
       </div>
 
       <Dialog open={isPaymentModalOpen} onOpenChange={setIsPaymentModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-xl">
           <DialogHeader>
             <DialogTitle>Finalizar Venda</DialogTitle>
             <DialogDescription>Escolha a forma de pagamento e confirme a venda.</DialogDescription>
@@ -371,23 +433,87 @@ function POSContent() {
               <Button type="button" variant={paymentMethod === 'money' ? 'default' : 'outline'} className="h-16 justify-start gap-4" onClick={() => setPaymentMethod('money')}>
                 <Banknote className="w-8 h-8" /> Dinheiro
               </Button>
-              <Button type="button" variant="outline" className="h-16 justify-start gap-4" onClick={() => handleFinalizeSale('pix')}>
-                <QrCode className="w-8 h-8" /> PIX (Stripe)
-              </Button>
-              <Button type="button" variant="outline" className="h-16 justify-start gap-4" onClick={() => handleFinalizeSale('card')}>
+              <div className="flex flex-col gap-2">
+                <Button type="button" variant={paymentMethod === 'pagbank_pix' ? 'default' : 'outline'} className="h-16 justify-start gap-4" onClick={() => setPaymentMethod('pagbank_pix')}>
+                  <QrCode className="w-8 h-8" /> PIX (PagBank)
+                </Button>
+                {paymentMethod === 'pagbank_pix' && (
+                  <div className="space-y-4 p-4 border rounded-xl bg-accent/50 animate-in fade-in slide-in-from-top-2">
+                    {!pixQRCodeUrl ? (
+                      <>
+                        <div className="space-y-2">
+                          <Label htmlFor="tax_id">CPF ou CNPJ (Obrigatório para Pix)</Label>
+                          <Input
+                            id="tax_id"
+                            placeholder="000.000.000-00 ou 00.000.000/0000-00"
+                            value={customerTaxIdInput}
+                            onChange={(e) => setCustomerTaxIdInput(e.target.value.replace(/\D/g, ''))}
+                            maxLength={14}
+                          />
+                        </div>
+                        <Button type="button" className="w-full h-12 bg-green-600 hover:bg-green-700" onClick={() => handleFinalizeSale('pagbank_pix')} disabled={isFinalizingSale || !customerTaxIdInput}>
+                          {isFinalizingSale ? <Loader2 className="animate-spin mr-2" /> : <Check className="w-4 h-4 mr-2" />}
+                          Gerar PIX
+                        </Button>
+                      </>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center space-y-4 py-4">
+                        <p className="font-medium text-center">Escaneie o QR Code abaixo no seu aplicativo bancário</p>
+                        <div className="bg-white p-4 rounded-xl">
+                           {console.log('Final pixQRCodeUrl for img src:', pixQRCodeUrl)} {/* Novo log de depuração */}
+                           <img src={pixQRCodeUrl} alt="QR Code PIX PagBank" className="w-48 h-48 object-contain" />
+                        </div>
+                        {pixText && (
+                          <div className="w-full space-y-2 mt-4">
+                            <Label className="text-center block">Pix Copia e Cola:</Label>
+                            <div className="flex gap-2">
+                              <Input readOnly value={pixText} className="text-xs" />
+                              <Button type="button" variant="outline" onClick={() => {
+                                navigator.clipboard.writeText(pixText);
+                                toast({ title: "Copiado!", description: "Código Pix copiado para a área de transferência." });
+                              }}>Copiar</Button>
+                            </div>
+                          </div>
+                        )}
+                        <Button type="button" className="w-full mt-4" variant="outline" onClick={() => {
+                           toast({ title: "Venda concluída", description: "Verifique o pagamento no extrato." });
+                           setCart([])
+                           setIsPaymentModalOpen(false)
+                           setPaymentMethod(null)
+                           setPixQRCodeUrl(null)
+                           setPixText(null)
+                           setCustomerTaxIdInput('')
+                           fetchData()
+                        }}>
+                          Fechar (Pagamento Concluído)
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              <Button type="button" variant={paymentMethod === 'card' ? 'default' : 'outline'} className="h-16 justify-start gap-4" onClick={() => setPaymentMethod('card')}>
                 <CreditCard className="w-8 h-8" /> Cartão (Stripe)
               </Button>
+              {paymentMethod === 'card' && (
+                  <div className="space-y-4 p-4 border rounded-xl bg-accent/50 animate-in fade-in slide-in-from-top-2">
+                    <Button type="button" className="w-full h-12 bg-blue-600 hover:bg-blue-700" onClick={() => handleFinalizeSale('card')} disabled={isFinalizingSale}>
+                      {isFinalizingSale ? <Loader2 className="animate-spin mr-2" /> : <CreditCard className="w-4 h-4 mr-2" />}
+                      Pagar com Cartão (Stripe)
+                    </Button>
+                  </div>
+              )}
               {selectedStudentId && selectedStudentId !== 'none' && (
                 <div className="space-y-2">
                   <Button
                     type="button"
-                    variant="outline"
+                    variant={paymentMethod === 'credit' ? 'default' : 'outline'}
                     className="h-16 justify-start gap-4 w-full"
                     disabled={
                       isFinalizingSale ||
                       (studentCredits !== null && studentCredits < (cart.reduce((acc, i) => acc + ((i.product.selling_price ?? 0) * i.quantity) / reaisPerCredit, 0)))
                     }
-                    onClick={() => handleFinalizeSale('credit')}
+                    onClick={() => setPaymentMethod('credit')}
                   >
                     <Coins className="w-8 h-8" />
                     <div className="flex flex-col items-start">
@@ -401,6 +527,14 @@ function POSContent() {
                       )}
                     </div>
                   </Button>
+                  {paymentMethod === 'credit' && (
+                    <div className="space-y-4 p-4 border rounded-xl bg-accent/50 animate-in fade-in slide-in-from-top-2">
+                      <Button type="button" className="w-full h-12 bg-amber-500 hover:bg-amber-600" onClick={() => handleFinalizeSale('credit')} disabled={isFinalizingSale}>
+                        {isFinalizingSale ? <Loader2 className="animate-spin mr-2" /> : <Coins className="w-4 h-4 mr-2" />}
+                        Confirmar Pagamento com Créditos
+                      </Button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

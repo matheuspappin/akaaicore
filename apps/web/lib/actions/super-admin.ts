@@ -95,6 +95,35 @@ async function checkSuperAdmin(accessToken?: string): Promise<boolean> {
 }
 
 /**
+ * Altera o plano de um estúdio para Free Forever (portfolio)
+ */
+export async function updateStudioPlanToFreeForever(studioId: string) {
+  try {
+    const { isAdmin, adminClient } = await checkSuperAdminDetailed()
+    
+    if (!isAdmin || !adminClient) {
+      return { success: false, error: "Acesso negado. Apenas super admins podem alterar o plano para Free Forever." }
+    }
+    
+    // Atualizar o plano na tabela studios
+    const { error } = await adminClient
+      .from('studios')
+      .update({ plan: 'free-forever' })
+      .eq('id', studioId)
+      
+    if (error) {
+      console.error('Erro ao atualizar plano do estúdio:', error)
+      return { success: false, error: error.message }
+    }
+    
+    return { success: true }
+  } catch (error: any) {
+    console.error('Erro na ação updateStudioPlanToFreeForever:', error)
+    return { success: false, error: error.message || "Erro desconhecido" }
+  }
+}
+
+/**
  * Busca estatísticas globais do sistema para o Dashboard
  */
 export async function getGlobalSystemStats(accessToken?: string) {

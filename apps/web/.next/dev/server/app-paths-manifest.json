@@ -1,13 +1,9 @@
 {
-  "/api/auth/login/route": "app/api/auth/login/route.js",
-  "/api/dance-studio/config/route": "app/api/dance-studio/config/route.js",
-  "/api/dance-studio/dashboard/stats/route": "app/api/dance-studio/dashboard/stats/route.js",
-  "/api/dance-studio/studio/invite-code/route": "app/api/dance-studio/studio/invite-code/route.js",
+  "/api/dance-studio/inventory/route": "app/api/dance-studio/inventory/route.js",
+  "/api/dance-studio/students/route": "app/api/dance-studio/students/route.js",
   "/api/dance-studio/usage/route": "app/api/dance-studio/usage/route.js",
-  "/home/page": "app/home/page.js",
-  "/page": "app/page.js",
+  "/api/pagbank/oauth/authorize/route": "app/api/pagbank/oauth/authorize/route.js",
+  "/solutions/estudio-de-danca/dashboard/configuracoes/page": "app/solutions/estudio-de-danca/dashboard/configuracoes/page.js",
   "/solutions/estudio-de-danca/dashboard/page": "app/solutions/estudio-de-danca/dashboard/page.js",
-  "/solutions/estudio-de-danca/dashboard/scanner/page": "app/solutions/estudio-de-danca/dashboard/scanner/page.js",
-  "/solutions/estudio-de-danca/login/page": "app/solutions/estudio-de-danca/login/page.js",
-  "/solutions/estudio-de-danca/page": "app/solutions/estudio-de-danca/page.js"
+  "/solutions/estudio-de-danca/dashboard/vendas/page": "app/solutions/estudio-de-danca/dashboard/vendas/page.js"
 }

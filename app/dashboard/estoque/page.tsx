@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { Header } from "@/components/dashboard/header"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,12 +11,14 @@ import {
   Archive, Camera, MoreHorizontal, Trash2, Edit2, Loader2, RefreshCw
 } from "lucide-react"
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
-} from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 import { 
   getInventory, createProduct, registerTransaction, getRecentTransactions, Product, Transaction, getProductBySku, updateProduct, deleteProduct
@@ -25,6 +27,7 @@ import { BarcodeScanner } from "@/components/dashboard/barcode-scanner"
 import { searchLocalCatalog, searchCatalog, getProductByBarcodeFromCatalog, type CatalogSearchResult } from "@/lib/constants/global-skus"
 import { searchNcm, type Ncm } from "@/lib/services/brasil-api"
 import { validateGTIN } from "@/lib/validation-utils"
+import { formatMoneyBr, parseMoneyInput } from "@/lib/money-format"
 import { ModuleGuard } from "@/components/providers/module-guard"
 import {
   DropdownMenu,
@@ -45,6 +48,7 @@ import {
 
 import { useVocabulary } from "@/hooks/use-vocabulary"
 import { useOrganization } from "@/components/providers/organization-provider"
+import { EntityPicker } from "@/components/inventory/entity-picker"
 
 export default function InventoryPage() {
   const { toast } = useToast()
@@ -67,8 +71,9 @@ export default function InventoryPage() {
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false)
   const [productToDelete, setProductToDelete] = useState<string | null>(null)
   
-  // Categorias
+  // Categorias e subcategorias (ex.: Bebidas → Red Bull)
   const [customCategories, setCustomCategories] = useState<string[]>([])
+  const [customSubcategoriesByCategory, setCustomSubcategoriesByCategory] = useState<Record<string, string[]>>({})
   const defaultCategories = ["Bebidas", "Alimentos", "Acessórios", "Uniformes", "Equipamentos", "Suplementos", "Geral"]
   const allCategories = Array.from(new Set([
     ...defaultCategories,
@@ -83,6 +88,7 @@ export default function InventoryPage() {
   const [newProduct, setNewProduct] = useState({ 
     name: "", 
     category: "Geral", 
+    subcategory: "",
     min_quantity: 5, 
     quantity: 0, 
     cost_price: 0, 
@@ -90,6 +96,31 @@ export default function InventoryPage() {
     sku: "", 
     ncm: "" 
   })
+
+  const allSubcategoriesForNew = useMemo(() => {
+    const cat = newProduct.category
+    const fromProducts = [...new Set(
+      products
+        .filter(p => p.category === cat && p.subcategory)
+        .map(p => String(p.subcategory).trim())
+        .filter(Boolean)
+    )]
+    const custom = customSubcategoriesByCategory[cat] || []
+    return Array.from(new Set([...fromProducts, ...custom])).sort((a, b) => a.localeCompare(b, "pt-BR"))
+  }, [newProduct.category, products, customSubcategoriesByCategory])
+
+  const allSubcategoriesForEdit = useMemo(() => {
+    const cat = editingProduct?.category
+    if (!cat) return []
+    const fromProducts = [...new Set(
+      products
+        .filter(p => p.category === cat && p.subcategory)
+        .map(p => String(p.subcategory).trim())
+        .filter(Boolean)
+    )]
+    const custom = customSubcategoriesByCategory[cat] || []
+    return Array.from(new Set([...fromProducts, ...custom])).sort((a, b) => a.localeCompare(b, "pt-BR"))
+  }, [editingProduct?.category, products, customSubcategoriesByCategory])
   const [catalogSearchQuery, setCatalogSearchQuery] = useState("")
   const [catalogResults, setCatalogResults] = useState<CatalogSearchResult[]>([])
   const [catalogSearching, setCatalogSearching] = useState(false)
@@ -145,6 +176,90 @@ export default function InventoryPage() {
     return `${language === 'en' ? '$' : 'R$'} ${price.toFixed(2)}`
   }
 
+  const roundMoney = (n: number) => (Number.isFinite(n) ? Math.round(n * 100) / 100 : 0)
+
+  /** Rascunho local para permitir vírgula decimal e digitação sem “pular” o valor. */
+  const [newProductMoneyDrafts, setNewProductMoneyDrafts] = useState({
+    cost: null as string | null,
+    markup: null as string | null,
+    selling: null as string | null,
+    profit: null as string | null,
+  })
+
+  const [editProductMoneyDrafts, setEditProductMoneyDrafts] = useState({
+    cost: null as string | null,
+    markup: null as string | null,
+    selling: null as string | null,
+    profit: null as string | null,
+  })
+
+  /** Markup % sobre o custo (quando custo > 0). */
+  const markupFromCostSelling = (cost: number, selling: number) =>
+    cost > 0 ? roundMoney(((selling - cost) / cost) * 100) : 0
+  const profitFromCostSelling = (cost: number, selling: number) =>
+    roundMoney(selling - cost)
+
+  const handleNewProductCostChange = (raw: string) => {
+    const cost = parseMoneyInput(raw)
+    setNewProduct(prev => ({ ...prev, cost_price: cost }))
+  }
+
+  /** Referência: markup % — receita = custo × (1 + markup/100). */
+  const handleNewProductMarkupChange = (raw: string) => {
+    const markupPct = parseMoneyInput(raw)
+    setNewProduct(prev => {
+      const cost = prev.cost_price
+      const selling = roundMoney(cost * (1 + markupPct / 100))
+      return { ...prev, selling_price: selling }
+    })
+  }
+
+  /** Referência: receita (preço de venda) — lucro e markup derivam do custo. */
+  const handleNewProductSellingChange = (raw: string) => {
+    const selling = parseMoneyInput(raw)
+    setNewProduct(prev => ({ ...prev, selling_price: selling }))
+  }
+
+  /** Referência: lucro unitário — receita = custo + lucro. */
+  const handleNewProductProfitChange = (raw: string) => {
+    const profit = parseMoneyInput(raw)
+    setNewProduct(prev => {
+      const cost = prev.cost_price
+      const selling = roundMoney(cost + profit)
+      return { ...prev, selling_price: selling }
+    })
+  }
+
+  const handleEditProductCostChange = (raw: string) => {
+    const cost = parseMoneyInput(raw)
+    setEditingProduct(prev => prev ? { ...prev, cost_price: cost } : null)
+  }
+
+  const handleEditProductMarkupChange = (raw: string) => {
+    const markupPct = parseMoneyInput(raw)
+    setEditingProduct(prev => {
+      if (!prev) return null
+      const cost = prev.cost_price
+      const selling = roundMoney(cost * (1 + markupPct / 100))
+      return { ...prev, selling_price: selling }
+    })
+  }
+
+  const handleEditProductSellingChange = (raw: string) => {
+    const selling = parseMoneyInput(raw)
+    setEditingProduct(prev => prev ? { ...prev, selling_price: selling } : null)
+  }
+
+  const handleEditProductProfitChange = (raw: string) => {
+    const profit = parseMoneyInput(raw)
+    setEditingProduct(prev => {
+      if (!prev) return null
+      const cost = prev.cost_price
+      const selling = roundMoney(cost + profit)
+      return { ...prev, selling_price: selling }
+    })
+  }
+
   const handleCreateProduct = async () => {
     if (!studioId) {
       toast({ title: "Erro", description: "Nenhum estúdio selecionado. Faça login novamente.", variant: "destructive" })
@@ -187,13 +302,15 @@ export default function InventoryPage() {
 
   const handleEditClick = (product: Product) => {
     setEditingProduct(product)
+    setEditProductMoneyDrafts({ cost: null, markup: null, selling: null, profit: null })
     setIsEditProductOpen(true)
   }
 
   const handleSaveEdit = async () => {
     if (!editingProduct) return
     try {
-      await updateProduct(editingProduct.id, editingProduct, studioId!)
+      const sub = editingProduct.subcategory?.toString?.().trim?.()
+      await updateProduct(editingProduct.id, { ...editingProduct, subcategory: sub || null }, studioId!)
       toast({ title: "Produto atualizado!" })
       setIsEditProductOpen(false)
       fetchData()
@@ -249,6 +366,7 @@ export default function InventoryPage() {
         setNewProduct({
           name: fromCatalog?.name ?? "",
           category: fromCatalog?.category ?? "Geral",
+          subcategory: "",
           min_quantity: 5,
           quantity: 0,
           cost_price: 0,
@@ -256,6 +374,7 @@ export default function InventoryPage() {
           sku: decodedText,
           ncm: "",
         })
+        setNewProductMoneyDrafts({ cost: null, markup: null, selling: null, profit: null })
         setIsNewProductOpen(true)
       }
     } catch (err: any) {
@@ -310,8 +429,10 @@ export default function InventoryPage() {
       sku: item.sku,
       name: item.name,
       category: item.category,
+      subcategory: "",
       selling_price: item.suggested_price ?? prev.selling_price,
     }))
+    setNewProductMoneyDrafts({ cost: null, markup: null, selling: null, profit: null })
     setCatalogSearchQuery("")
     setCatalogResults([])
     setShowCatalogResults(false)
@@ -321,6 +442,7 @@ export default function InventoryPage() {
     setNewProduct({
       name: "",
       category: "Geral",
+      subcategory: "",
       min_quantity: 5,
       quantity: 0,
       cost_price: 0,
@@ -331,6 +453,7 @@ export default function InventoryPage() {
     setCatalogSearchQuery("")
     setCatalogResults([])
     setShowCatalogResults(false)
+    setNewProductMoneyDrafts({ cost: null, markup: null, selling: null, profit: null })
   }
 
   const handleNcmSearch = async (query: string) => {
@@ -345,10 +468,14 @@ export default function InventoryPage() {
     }
   }
 
-  const filteredProducts = products.filter(p => 
-    p.name.toLowerCase().includes(searchInput.toLowerCase()) || 
-    (p.sku && p.sku.includes(searchInput))
-  )
+  const filteredProducts = products.filter(p => {
+    const q = searchInput.toLowerCase()
+    return (
+      p.name.toLowerCase().includes(q) ||
+      (p.sku && p.sku.includes(searchInput)) ||
+      (p.subcategory && String(p.subcategory).toLowerCase().includes(q))
+    )
+  })
 
   return (
     <ModuleGuard module="inventory" showFullError>
@@ -452,9 +579,11 @@ export default function InventoryPage() {
                           </div>
                           <div>
                             <p className="font-medium">{product.name}</p>
-                            <div className="flex items-center gap-2 mt-0.5">
+                            <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                               <Badge variant="secondary" className="text-[10px] h-4 px-1 py-0 font-normal bg-muted text-muted-foreground">
-                                {product.category}
+                                {product.subcategory
+                                  ? `${product.category} — ${product.subcategory}`
+                                  : product.category}
                               </Badge>
                               {product.sku && (
                                 <p className="text-[10px] text-muted-foreground">
@@ -558,7 +687,12 @@ export default function InventoryPage() {
         if (!open) resetNewProductForm()
       }}>
         <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader><DialogTitle>Cadastrar Novo Produto</DialogTitle></DialogHeader>
+          <DialogHeader>
+            <DialogTitle>Cadastrar Novo Produto</DialogTitle>
+            <DialogDescription>
+              Inclua SKU, categoria e preços. A categoria e a subcategoria podem ser criadas aqui.
+            </DialogDescription>
+          </DialogHeader>
           <div className="grid gap-4 py-4">
             {/* Busca por nome - preenche automaticamente SKU, nome, categoria e preço */}
             <div className="grid gap-2">
@@ -610,42 +744,153 @@ export default function InventoryPage() {
             </div>
             <div className="grid gap-2">
               <Label>Tipo de Produto (Categoria)</Label>
-              <Select 
-                value={newProduct.category} 
-                onValueChange={val => {
-                  if (val === "ADD_NEW") {
-                    const name = prompt("Digite o nome do novo tipo de produto:");
-                    if (name) {
-                      setCustomCategories(prev => [...prev, name]);
-                      setNewProduct(prev => ({ ...prev, category: name }));
-                    }
-                  } else {
-                    setNewProduct({...newProduct, category: val});
-                  }
+              <EntityPicker
+                value={newProduct.category}
+                options={allCategories}
+                placeholder="Selecione o tipo..."
+                onChange={(v) => setNewProduct((prev) => ({ ...prev, category: v, subcategory: "" }))}
+                onCreateSubmit={(n) => {
+                  setCustomCategories((prev) => [...prev, n])
+                  setNewProduct((prev) => ({ ...prev, category: n, subcategory: "" }))
                 }}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione o tipo..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {allCategories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                  ))}
-                  <SelectItem value="ADD_NEW" className="text-primary font-medium focus:bg-primary/10">
-                    <Plus className="w-3 h-3 mr-2 inline" /> Criar novo tipo...
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+                createNewLabel="Criar novo tipo..."
+                createInputPlaceholder="Ex.: Bebidas, Snacks…"
+              />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label>Preço Venda</Label>
-                <Input type="number" step="0.01" value={newProduct.selling_price} onChange={e => setNewProduct({...newProduct, selling_price: parseFloat(e.target.value)})} />
+            <div className="grid gap-2">
+              <Label>Subcategoria</Label>
+              <p className="text-xs text-muted-foreground">Opcional. Ex.: Bebidas — Red Bull</p>
+              <EntityPicker
+                value={newProduct.subcategory?.trim() ? newProduct.subcategory : ""}
+                options={allSubcategoriesForNew}
+                allowEmpty
+                emptyLabel="Sem subcategoria"
+                placeholder="Nenhuma — ex.: Red Bull"
+                onChange={(v) => setNewProduct((prev) => ({ ...prev, subcategory: v }))}
+                onCreateSubmit={(n) => {
+                  setCustomSubcategoriesByCategory((prev) => ({
+                    ...prev,
+                    [newProduct.category]: Array.from(new Set([...(prev[newProduct.category] || []), n])),
+                  }))
+                  setNewProduct((prev) => ({ ...prev, subcategory: n }))
+                }}
+                createNewLabel="Nova subcategoria..."
+                createInputPlaceholder="Ex.: Red Bull, Água…"
+              />
+            </div>
+            <div className="grid gap-2 rounded-lg border bg-muted/30 p-3">
+              <p className="text-xs text-muted-foreground">
+                Precificação: qualquer campo pode ser a referência — ao editar custo, a receita (preço) mantém-se; ao editar markup, lucro ou receita, os demais recalculam. Use vírgula ou ponto nos valores (ex.: 12,50 ou 1.234,56).
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <Label>Custo (base)</Label>
+                  <Input
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
+                    placeholder="0,00"
+                    value={newProductMoneyDrafts.cost ?? formatMoneyBr(newProduct.cost_price)}
+                    onFocus={() =>
+                      setNewProductMoneyDrafts(d => ({
+                        ...d,
+                        cost: formatMoneyBr(newProduct.cost_price),
+                      }))
+                    }
+                    onChange={e => {
+                      const raw = e.target.value
+                      setNewProductMoneyDrafts(d => ({ ...d, cost: raw }))
+                      handleNewProductCostChange(raw)
+                    }}
+                    onBlur={() => setNewProductMoneyDrafts(d => ({ ...d, cost: null }))}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Markup (%)</Label>
+                  <Input
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
+                    placeholder="0"
+                    value={
+                      newProductMoneyDrafts.markup ??
+                      formatMoneyBr(markupFromCostSelling(newProduct.cost_price, newProduct.selling_price))
+                    }
+                    onFocus={() =>
+                      setNewProductMoneyDrafts(d => ({
+                        ...d,
+                        markup: formatMoneyBr(
+                          markupFromCostSelling(newProduct.cost_price, newProduct.selling_price)
+                        ),
+                      }))
+                    }
+                    onChange={e => {
+                      const raw = e.target.value
+                      setNewProductMoneyDrafts(d => ({ ...d, markup: raw }))
+                      handleNewProductMarkupChange(raw)
+                    }}
+                    onBlur={() => setNewProductMoneyDrafts(d => ({ ...d, markup: null }))}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Receita (preço de venda)</Label>
+                  <Input
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
+                    placeholder="0,00"
+                    value={newProductMoneyDrafts.selling ?? formatMoneyBr(newProduct.selling_price)}
+                    onFocus={() =>
+                      setNewProductMoneyDrafts(d => ({
+                        ...d,
+                        selling: formatMoneyBr(newProduct.selling_price),
+                      }))
+                    }
+                    onChange={e => {
+                      const raw = e.target.value
+                      setNewProductMoneyDrafts(d => ({ ...d, selling: raw }))
+                      handleNewProductSellingChange(raw)
+                    }}
+                    onBlur={() => setNewProductMoneyDrafts(d => ({ ...d, selling: null }))}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label>Lucro (unitário)</Label>
+                  <Input
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
+                    placeholder="0,00"
+                    value={
+                      newProductMoneyDrafts.profit ??
+                      formatMoneyBr(profitFromCostSelling(newProduct.cost_price, newProduct.selling_price))
+                    }
+                    onFocus={() =>
+                      setNewProductMoneyDrafts(d => ({
+                        ...d,
+                        profit: formatMoneyBr(
+                          profitFromCostSelling(newProduct.cost_price, newProduct.selling_price)
+                        ),
+                      }))
+                    }
+                    onChange={e => {
+                      const raw = e.target.value
+                      setNewProductMoneyDrafts(d => ({ ...d, profit: raw }))
+                      handleNewProductProfitChange(raw)
+                    }}
+                    onBlur={() => setNewProductMoneyDrafts(d => ({ ...d, profit: null }))}
+                  />
+                </div>
               </div>
-              <div className="grid gap-2">
-                <Label>Estoque Inicial</Label>
-                <Input type="number" value={newProduct.quantity} onChange={e => setNewProduct({...newProduct, quantity: parseInt(e.target.value)})} />
-              </div>
+            </div>
+            <div className="grid gap-2">
+              <Label>Estoque Inicial</Label>
+              <Input
+                type="number"
+                min="0"
+                value={newProduct.quantity}
+                onChange={e => setNewProduct({ ...newProduct, quantity: parseInt(e.target.value, 10) || 0 })}
+              />
             </div>
           </div>
           <DialogFooter><Button type="button" onClick={handleCreateProduct} className="w-full">Salvar</Button></DialogFooter>
@@ -654,7 +899,10 @@ export default function InventoryPage() {
 
       <Dialog open={isTransactionOpen} onOpenChange={setIsTransactionOpen}>
         <DialogContent>
-          <DialogHeader><DialogTitle>Movimentação</DialogTitle></DialogHeader>
+          <DialogHeader>
+            <DialogTitle>Movimentação</DialogTitle>
+            <DialogDescription>Registre entrada, saída ou ajuste de quantidade.</DialogDescription>
+          </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <Label>Quantidade</Label>
@@ -670,56 +918,187 @@ export default function InventoryPage() {
       </Dialog>
 
       <Dialog open={isEditProductOpen} onOpenChange={setIsEditProductOpen}>
-        <DialogContent>
-          <DialogHeader><DialogTitle>Editar</DialogTitle></DialogHeader>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Editar produto</DialogTitle>
+            <DialogDescription>Altere categoria, subcategoria, preço ou quantidade.</DialogDescription>
+          </DialogHeader>
           {editingProduct && (
             <div className="grid gap-4 py-4">
+              <div className="grid gap-2">
+                <Label>Código de Barras (SKU)</Label>
+                <div className="flex gap-2">
+                  <Input value={editingProduct.sku || ''} onChange={e => setEditingProduct({...editingProduct, sku: e.target.value})} placeholder="Ou escaneie" />
+                  <Button type="button" variant="outline" size="icon" onClick={() => setIsScannerOpen(true)}><Camera className="w-4 h-4" /></Button>
+                </div>
+              </div>
               <div className="grid gap-2">
                 <Label>Nome</Label>
                 <Input value={editingProduct.name} onChange={e => setEditingProduct({...editingProduct, name: e.target.value})} />
               </div>
               <div className="grid gap-2">
                 <Label>Tipo de Produto (Categoria)</Label>
-                <Select 
-                  value={editingProduct.category} 
-                  onValueChange={val => {
-                    if (val === "ADD_NEW") {
-                      const name = prompt("Digite o nome do novo tipo de produto:");
-                      if (name) {
-                        setCustomCategories(prev => [...prev, name]);
-                        setEditingProduct(prev => prev ? ({ ...prev, category: name }) : null);
-                      }
-                    } else {
-                      setEditingProduct(prev => prev ? ({ ...prev, category: val }) : null);
-                    }
+                <EntityPicker
+                  value={editingProduct.category}
+                  options={allCategories}
+                  placeholder="Selecione o tipo..."
+                  onChange={(v) =>
+                    setEditingProduct((prev) => (prev ? { ...prev, category: v, subcategory: "" } : null))
+                  }
+                  onCreateSubmit={(n) => {
+                    setCustomCategories((prev) => [...prev, n])
+                    setEditingProduct((prev) => (prev ? { ...prev, category: n, subcategory: "" } : null))
                   }}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione o tipo..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {allCategories.map(cat => (
-                      <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                    ))}
-                    <SelectItem value="ADD_NEW" className="text-primary font-medium focus:bg-primary/10">
-                      <Plus className="w-3 h-3 mr-2 inline" /> Criar novo tipo...
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                  createNewLabel="Criar novo tipo..."
+                  createInputPlaceholder="Ex.: Bebidas, Snacks…"
+                />
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="grid gap-2">
-                  <Label>Preço Venda</Label>
-                  <Input type="number" step="0.01" value={editingProduct.selling_price} onChange={e => setEditingProduct({...editingProduct, selling_price: parseFloat(e.target.value)})} />
+              <div className="grid gap-2">
+                <Label>Subcategoria</Label>
+                <p className="text-xs text-muted-foreground">Opcional. Ex.: Bebidas — Red Bull</p>
+                <EntityPicker
+                  value={
+                    editingProduct.subcategory && String(editingProduct.subcategory).trim()
+                      ? String(editingProduct.subcategory)
+                      : ""
+                  }
+                  options={allSubcategoriesForEdit}
+                  allowEmpty
+                  emptyLabel="Sem subcategoria"
+                  placeholder="Nenhuma — ex.: Red Bull"
+                  onChange={(v) =>
+                    setEditingProduct((prev) => (prev ? { ...prev, subcategory: v } : null))
+                  }
+                  onCreateSubmit={(n) => {
+                    if (!editingProduct) return
+                    const cat = editingProduct.category
+                    setCustomSubcategoriesByCategory((prev) => ({
+                      ...prev,
+                      [cat]: Array.from(new Set([...(prev[cat] || []), n])),
+                    }))
+                    setEditingProduct((prev) => (prev ? { ...prev, subcategory: n } : null))
+                  }}
+                  createNewLabel="Nova subcategoria..."
+                  createInputPlaceholder="Ex.: Red Bull, Água…"
+                />
+              </div>
+              <div className="grid gap-2 rounded-lg border bg-muted/30 p-3">
+                <p className="text-xs text-muted-foreground">
+                  Precificação: qualquer campo pode ser a referência — ao editar custo, a receita (preço) mantém-se; ao editar markup, lucro ou receita, os demais recalculam. Use vírgula ou ponto nos valores (ex.: 12,50 ou 1.234,56).
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-2">
+                    <Label>Custo (base)</Label>
+                    <Input
+                      type="text"
+                      inputMode="decimal"
+                      autoComplete="off"
+                      placeholder="0,00"
+                      value={editProductMoneyDrafts.cost ?? formatMoneyBr(editingProduct.cost_price || 0)}
+                      onFocus={() =>
+                        setEditProductMoneyDrafts(d => ({
+                          ...d,
+                          cost: formatMoneyBr(editingProduct.cost_price || 0),
+                        }))
+                      }
+                      onChange={e => {
+                        const raw = e.target.value
+                        setEditProductMoneyDrafts(d => ({ ...d, cost: raw }))
+                        handleEditProductCostChange(raw)
+                      }}
+                      onBlur={() => setEditProductMoneyDrafts(d => ({ ...d, cost: null }))}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Markup (%)</Label>
+                    <Input
+                      type="text"
+                      inputMode="decimal"
+                      autoComplete="off"
+                      placeholder="0"
+                      value={
+                        editProductMoneyDrafts.markup ??
+                        formatMoneyBr(markupFromCostSelling(editingProduct.cost_price || 0, editingProduct.selling_price || 0))
+                      }
+                      onFocus={() =>
+                        setEditProductMoneyDrafts(d => ({
+                          ...d,
+                          markup: formatMoneyBr(
+                            markupFromCostSelling(editingProduct.cost_price || 0, editingProduct.selling_price || 0)
+                          ),
+                        }))
+                      }
+                      onChange={e => {
+                        const raw = e.target.value
+                        setEditProductMoneyDrafts(d => ({ ...d, markup: raw }))
+                        handleEditProductMarkupChange(raw)
+                      }}
+                      onBlur={() => setEditProductMoneyDrafts(d => ({ ...d, markup: null }))}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Receita (preço de venda)</Label>
+                    <Input
+                      type="text"
+                      inputMode="decimal"
+                      autoComplete="off"
+                      placeholder="0,00"
+                      value={editProductMoneyDrafts.selling ?? formatMoneyBr(editingProduct.selling_price || 0)}
+                      onFocus={() =>
+                        setEditProductMoneyDrafts(d => ({
+                          ...d,
+                          selling: formatMoneyBr(editingProduct.selling_price || 0),
+                        }))
+                      }
+                      onChange={e => {
+                        const raw = e.target.value
+                        setEditProductMoneyDrafts(d => ({ ...d, selling: raw }))
+                        handleEditProductSellingChange(raw)
+                      }}
+                      onBlur={() => setEditProductMoneyDrafts(d => ({ ...d, selling: null }))}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Lucro (unitário)</Label>
+                    <Input
+                      type="text"
+                      inputMode="decimal"
+                      autoComplete="off"
+                      placeholder="0,00"
+                      value={
+                        editProductMoneyDrafts.profit ??
+                        formatMoneyBr(profitFromCostSelling(editingProduct.cost_price || 0, editingProduct.selling_price || 0))
+                      }
+                      onFocus={() =>
+                        setEditProductMoneyDrafts(d => ({
+                          ...d,
+                          profit: formatMoneyBr(
+                            profitFromCostSelling(editingProduct.cost_price || 0, editingProduct.selling_price || 0)
+                          ),
+                        }))
+                      }
+                      onChange={e => {
+                        const raw = e.target.value
+                        setEditProductMoneyDrafts(d => ({ ...d, profit: raw }))
+                        handleEditProductProfitChange(raw)
+                      }}
+                      onBlur={() => setEditProductMoneyDrafts(d => ({ ...d, profit: null }))}
+                    />
+                  </div>
                 </div>
-                <div className="grid gap-2">
-                  <Label>Estoque</Label>
-                  <Input type="number" value={editingProduct.quantity} onChange={e => setEditingProduct({...editingProduct, quantity: parseInt(e.target.value)})} />
-                </div>
+              </div>
+              <div className="grid gap-2">
+                <Label>Estoque Inicial</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  value={editingProduct.quantity || 0}
+                  onChange={e => setEditingProduct({ ...editingProduct, quantity: parseInt(e.target.value, 10) || 0 })}
+                />
               </div>
             </div>
           )}
-          <DialogFooter><Button type="button" onClick={handleSaveEdit}>Salvar</Button></DialogFooter>
+          <DialogFooter><Button type="button" onClick={handleSaveEdit} className="w-full">Salvar</Button></DialogFooter>
         </DialogContent>
       </Dialog>
 

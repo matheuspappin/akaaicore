@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Wallet, Loader2, ArrowDownToLine, Clock, CheckCircle2, CreditCard } from "lucide-react"
+import { Wallet, Loader2, ArrowDownToLine, Clock, CheckCircle2, CreditCard, Link2, ExternalLink } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { Label } from "@/components/ui/label"
 import {
@@ -37,6 +37,11 @@ export default function TeacherPagamentosPage() {
   const [withdrawAmount, setWithdrawAmount] = useState("")
   const [savingPix, setSavingPix] = useState(false)
   const [withdrawing, setWithdrawing] = useState(false)
+  const [stripeStatus, setStripeStatus] = useState<{
+    stripe_account_id: string | null
+    payouts_enabled: boolean
+  } | null>(null)
+  const [stripeLinkLoading, setStripeLinkLoading] = useState(false)
   const { toast } = useToast()
 
   const load = useCallback(async () => {
@@ -46,14 +51,24 @@ export default function TeacherPagamentosPage() {
     if (!sid) { setLoading(false); return }
 
     try {
-      const [balanceRes, paymentsRes, pixRes] = await Promise.all([
+      const [balanceRes, paymentsRes, pixRes, stripeRes] = await Promise.all([
         fetch("/api/dance-studio/teacher-payments/balance", { credentials: "include" }),
         fetch(`/api/dance-studio/teacher-payments?studioId=${sid}&mine=true`, { credentials: "include" }),
         fetch("/api/dance-studio/teacher-payout-settings", { credentials: "include" }),
+        fetch("/api/dance-studio/teacher-stripe-connect", { credentials: "include" }),
       ])
       const balanceData = await balanceRes.json()
       const paymentsData = await paymentsRes.json()
       const pixData = await pixRes.json()
+      const stripeData = await stripeRes.json().catch(() => ({}))
+      if (stripeRes.ok && stripeData && !stripeData.error) {
+        setStripeStatus({
+          stripe_account_id: stripeData.stripe_account_id,
+          payouts_enabled: !!stripeData.payouts_enabled,
+        })
+      } else {
+        setStripeStatus(null)
+      }
 
       setBalance({
         pending: balanceData.pending || 0,
@@ -96,6 +111,26 @@ export default function TeacherPagamentosPage() {
       toast({ title: "Erro ao salvar", description: e.message, variant: "destructive" })
     } finally {
       setSavingPix(false)
+    }
+  }
+
+  const handleStripeOnboarding = async () => {
+    setStripeLinkLoading(true)
+    try {
+      const returnUrl = `${window.location.origin}/solutions/estudio-de-danca/teacher/pagamentos`
+      const res = await fetch("/api/dance-studio/teacher-stripe-connect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ returnUrl }),
+        credentials: "include",
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Erro ao criar link")
+      if (data.url) window.location.href = data.url
+    } catch (e: any) {
+      toast({ title: "Stripe", description: e.message, variant: "destructive" })
+    } finally {
+      setStripeLinkLoading(false)
     }
   }
 
@@ -155,8 +190,38 @@ export default function TeacherPagamentosPage() {
           <Wallet className="w-6 h-6 text-pink-500" />
           Meus Pagamentos
         </h1>
-        <p className="text-slate-500 text-sm mt-1">Saldo, chave PIX e saques</p>
+        <p className="text-slate-500 text-sm mt-1">Saldo, chave PIX, Stripe Connect e saques</p>
       </div>
+
+      <Card className="border-violet-200 dark:border-violet-500/30">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Link2 className="w-5 h-5 text-violet-500" />
+            Receber por Stripe (Connect)
+          </CardTitle>
+          <CardDescription>
+            Cadastre sua conta Stripe para o estúdio poder repassar honorários via transferência (quando habilitado). O PIX manual continua disponível.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap items-center gap-3">
+          {stripeStatus?.stripe_account_id ? (
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              <Badge variant="outline" className={stripeStatus.payouts_enabled ? "border-emerald-400 text-emerald-700" : "border-amber-400 text-amber-800"}>
+                {stripeStatus.payouts_enabled ? "Connect ativo" : "Complete o cadastro no Stripe"}
+              </Badge>
+              <Button variant="outline" size="sm" onClick={handleStripeOnboarding} disabled={stripeLinkLoading}>
+                {stripeLinkLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ExternalLink className="w-4 h-4 mr-1" />}
+                Atualizar dados Stripe
+              </Button>
+            </div>
+          ) : (
+            <Button onClick={handleStripeOnboarding} disabled={stripeLinkLoading} className="bg-violet-600 hover:bg-violet-700">
+              {stripeLinkLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Link2 className="w-4 h-4 mr-2" />}
+              Conectar conta Stripe
+            </Button>
+          )}
+        </CardContent>
+      </Card>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Card className="border-amber-200 dark:border-amber-600/30">

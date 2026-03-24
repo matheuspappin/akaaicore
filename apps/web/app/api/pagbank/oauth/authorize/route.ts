@@ -1,0 +1,24 @@
+// apps/web/app/api/pagbank/oauth/authorize/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(req: NextRequest) {
+  const PAGBANK_CLIENT_ID = process.env.PAGBANK_CLIENT_ID; // Seu Client ID do PagBank
+  const REDIRECT_URI = `https://akaaicore.com/api/pagbank/oauth/callback`; // URL de callback fixa para produção
+
+  if (!PAGBANK_CLIENT_ID) {
+    return NextResponse.json({ message: 'PAGBANK_CLIENT_ID não configurado.' }, { status: 500 });
+  }
+
+  const PAGBANK_AUTH_URL = process.env.NODE_ENV === 'production'
+    ? 'https://connect.pagseguro.uol.com.br/oauth2/authorize'
+    : 'https://connect.sandbox.pagseguro.uol.com.br/oauth2/authorize';
+
+  const authorizeUrl = new URL(PAGBANK_AUTH_URL); // URL de autorização oficial do PagBank
+  authorizeUrl.searchParams.append('client_id', PAGBANK_CLIENT_ID);
+  authorizeUrl.searchParams.append('response_type', 'code');
+  authorizeUrl.searchParams.append('scope', 'pix.write pix.read'); // Espaço é o delimitador padrão para múltiplos escopos
+  authorizeUrl.searchParams.append('redirect_uri', REDIRECT_URI);
+  // authorizeUrl.searchParams.append('state', '...'); // Recomendado adicionar um state único por sessão para segurança
+
+  return NextResponse.redirect(authorizeUrl.toString());
+}

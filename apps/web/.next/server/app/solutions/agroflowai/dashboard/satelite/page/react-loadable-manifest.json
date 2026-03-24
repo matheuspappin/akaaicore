@@ -2,16 +2,16 @@
   "914028": {
     "id": 914028,
     "files": [
-      "static/chunks/81bc9938f1faa581.js",
-      "static/chunks/6e2428bf68ab369f.js"
+      "static/chunks/76a2a547ef59277f.js",
+      "static/chunks/0ac188ff23481078.js"
     ]
   },
   "839350": {
     "id": 839350,
     "files": [
-      "static/chunks/5505cc02d1e61dff.js",
-      "static/chunks/9e297cefc3e22b61.js",
-      "static/chunks/3a0b9240fcd2cc1e.css"
+      "static/chunks/42a44defd857b1c8.js",
+      "static/chunks/32a20563f3962069.js",
+      "static/chunks/665d3dce25e85bcf.css"
     ]
   }
 }

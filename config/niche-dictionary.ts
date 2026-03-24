@@ -6,7 +6,7 @@ export const nicheDictionary = {
       client: 'Aluno',
       provider: 'Professor',
       service: 'Aula',
-      establishment: 'Escola',
+      establishment: 'Estúdio',
       category: 'Modalidade'
     },
     dentist: {

@@ -40,6 +40,7 @@ export default function PagamentosProfessoresPage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [releasing, setReleasing] = useState(false)
   const [markingPaid, setMarkingPaid] = useState<string | null>(null)
+  const [markingStripe, setMarkingStripe] = useState<string | null>(null)
   const [showConfig, setShowConfig] = useState(false)
   const { toast } = useToast()
 
@@ -128,6 +129,30 @@ export default function PagamentosProfessoresPage() {
       toast({ title: "Erro ao liberar", description: e.message, variant: "destructive" })
     } finally {
       setReleasing(false)
+    }
+  }
+
+  const handleStripePayout = async (withdrawalId: string) => {
+    if (!studioId) return
+    setMarkingStripe(withdrawalId)
+    try {
+      const res = await fetch("/api/dance-studio/teacher-withdrawals/execute-stripe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ studioId, withdrawalId }),
+        credentials: "include",
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Erro na transferência Stripe")
+      toast({
+        title: "Transferência Stripe enviada",
+        description: data.transferId ? `ID: ${data.transferId}` : "Professor receberá no saldo Connect.",
+      })
+      load()
+    } catch (e: any) {
+      toast({ title: "Erro Stripe", description: e.message, variant: "destructive" })
+    } finally {
+      setMarkingStripe(null)
     }
   }
 
@@ -401,7 +426,10 @@ export default function PagamentosProfessoresPage() {
             <CardHeader>
               <CardTitle>Saques solicitados</CardTitle>
               <CardDescription>
-                Após transferir o valor via PIX para o professor, clique em &quot;Lançar pagamento&quot; para marcar como pago.
+                <span className="block">
+                  PIX manual: após transferir, use &quot;Lançar pagamento&quot;. Stripe: professor precisa ter Connect em &quot;Meus Pagamentos&quot; e a plataforma precisa de saldo +{" "}
+                  <code className="text-xs bg-slate-100 dark:bg-slate-800 px-1 rounded">STRIPE_TEACHER_TRANSFERS_ENABLED=true</code>.
+                </span>
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -423,21 +451,41 @@ export default function PagamentosProfessoresPage() {
                           {(w.professionals as any)?.name || "—"}
                         </p>
                         <p className="text-xs text-slate-500">
-                          PIX {w.pix_key_type}: {w.pix_key} · {formatDate(w.created_at)}
+                          {w.payout_method === "stripe_transfer" && w.stripe_transfer_id
+                            ? `Stripe · ${w.stripe_transfer_id}`
+                            : `PIX ${w.pix_key_type}: ${w.pix_key}`}{" "}
+                          · {formatDate(w.created_at)}
                         </p>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 flex-wrap justify-end">
                         <span className="font-black">{formatMoney(w.amount)}</span>
                         {w.status === "pending" && (
-                          <Button
-                            size="sm"
-                            className="bg-emerald-600 hover:bg-emerald-700"
-                            onClick={() => handleMarkAsPaid(w.id)}
-                            disabled={markingPaid === w.id}
-                          >
-                            {markingPaid === w.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Banknote className="w-4 h-4 mr-1" />}
-                            Lançar pagamento
-                          </Button>
+                          <>
+                            {(w.professionals as { stripe_account_id?: string })?.stripe_account_id && (
+                              <Button
+                                size="sm"
+                                variant="secondary"
+                                className="font-bold"
+                                onClick={() => handleStripePayout(w.id)}
+                                disabled={markingStripe === w.id}
+                              >
+                                {markingStripe === w.id ? (
+                                  <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                  "Pagar via Stripe"
+                                )}
+                              </Button>
+                            )}
+                            <Button
+                              size="sm"
+                              className="bg-emerald-600 hover:bg-emerald-700"
+                              onClick={() => handleMarkAsPaid(w.id)}
+                              disabled={markingPaid === w.id}
+                            >
+                              {markingPaid === w.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Banknote className="w-4 h-4 mr-1" />}
+                              Lançar pagamento
+                            </Button>
+                          </>
                         )}
                         {w.status === "completed" && (
                           <Badge className="bg-emerald-100 text-emerald-700">Pago</Badge>

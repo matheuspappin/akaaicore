@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "debugId": "75b9bed2-7c56-365c-0f68-437b6c817c28",
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["../../../../../../apps/web/app/seller/os/page.tsx"],"sourcesContent":["export default function SellerOSPage() {\n  return (\n    <div className=\"flex flex-col items-center justify-center min-h-screen py-2\">\n      <h1 className=\"text-4xl font-bold text-center\">Minhas Ordens de Serviço</h1>\n      <p className=\"text-lg text-center mt-4\">Crie e gerencie suas ordens de serviço.</p>\n    </div>\n  )\n}"],"names":[],"mappings":"0ZAAe,SAAS,IACtB,MACE,CAAA,EAAA,EAAA,IAAA,EAAC,MAAA,CAAI,UAAU,wEACb,CAAA,EAAA,EAAA,GAAA,EAAC,KAAA,CAAG,UAAU,0CAAiC,6BAC/C,CAAA,EAAA,EAAA,GAAA,EAAC,IAAA,CAAE,UAAU,oCAA2B,8CAG9C"}}]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "debugId": "77361ec3-4529-32da-1f86-e355004a19ff",
+  "sections": [
+    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"file":"turbopack:///[project]/node_modules/.pnpm/@opentelemetry+resources@2.6.0_@opentelemetry+api@1.9.0/node_modules/@opentelemetry/resources/build/esm/detectors/platform/node/machine-id/getMachineId-unsupported.js","sources":["file:///C:/gemini-cli/workflow%20pro%20builder/node_modules/.pnpm/%40opentelemetry%2Bresources%402.6.0_%40opentelemetry%2Bapi%401.9.0/node_modules/%40opentelemetry/resources/src/detectors/platform/node/machine-id/getMachineId-unsupported.ts"],"sourcesContent":["/*\n * Copyright The OpenTelemetry Authors\n * SPDX-License-Identifier: Apache-2.0\n */\n\nimport { diag } from '@opentelemetry/api';\n\nexport async function getMachineId(): Promise<string | undefined> {\n  diag.debug('could not read machine-id: unsupported platform');\n  return undefined;\n}\n"],"names":[],"mappings":"AAAA;;;GAGG;;;;AAEH,OAAO,EAAE,IAAI,EAAE,MAAM,oBAAoB,CAAC;;AAEnC,KAAK,UAAU,YAAY;IAChC,qPAAI,CAAC,KAAK,CAAC,iDAAiD,CAAC,CAAC;IAC9D,OAAO,SAAS,CAAC;AACnB,CAAC"}}]
+}

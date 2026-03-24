@@ -1,4 +1,20 @@
 {
-  "node": {},
+  "node": {
+    "40b1ea7e8f673b93bd3484c251e333e858d317785a": {
+      "workers": {
+        "app/solutions/estudio-de-danca/dashboard/configuracoes/page": {
+          "moduleId": "[project]/apps/web/.next-internal/server/app/solutions/estudio-de-danca/dashboard/configuracoes/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/studio-stripe-connect.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getStudioStripeConnectStatus",
+          "filename": "apps/web/lib/actions/studio-stripe-connect.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/estudio-de-danca/dashboard/configuracoes/page": "action-browser"
+      },
+      "exportedName": "getStudioStripeConnectStatus",
+      "filename": "apps/web/lib/actions/studio-stripe-connect.ts"
+    }
+  },
   "edge": {}
 }

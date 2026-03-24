@@ -30,6 +30,21 @@
       "exportedName": "getGlobalSystemStats",
       "filename": "apps/web/lib/actions/super-admin.ts"
     },
+    "406747a2d7253704485b35ccfc0e61d31e15ac193a": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 157187,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "rsc"
+      },
+      "exportedName": "updateStudioPlanToFreeForever",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
     "60463b6d398c93082188986ed49f8a8ad8c07b7a08": {
       "workers": {
         "app/admin/users/page": {

@@ -18,11 +18,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$action
 ;
 ;
 ;
+;
 }),
 "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
+    "408c991e56a05b5ea564fd565b67765358cac8a453",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$actions$2f$super$2d$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["updateStudioPlanToFreeForever"],
     "40ec1a58628ad226fdf72e063839edaf2176d33c4a",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$actions$2f$super$2d$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["checkSuperAdminDetailed"],
     "40f9b728afc5928faaad0ddac666a6a49e0f297e55",

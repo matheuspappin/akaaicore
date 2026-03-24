@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, Settings, ExternalLink, Loader2, Trash2, Link as LinkIcon, Info } from "lucide-react"
-import { getTenantsList, getOrCreateStudioInvite, deleteStudio } from "@/lib/actions/super-admin"
+import { getTenantsList, getOrCreateStudioInvite, deleteStudio, updateStudioPlanToFreeForever } from "@/lib/actions/super-admin"
 import { nicheDictionary } from "@/config/niche-dictionary"
 import { MODULE_DEFINITIONS } from "@/config/modules"
 import { supabase } from "@/lib/supabase"
@@ -48,10 +48,10 @@ export default function TenantsPage() {
   const { toast } = useToast()
 
   useEffect(() => {
-    loadTenants()
+    fetchTenants()
   }, [])
 
-  async function loadTenants() {
+  async function fetchTenants() {
     try {
       const { data: { session } } = await supabase.auth.getSession()
       const { tenants } = await getTenantsList(1, 50, session?.access_token)
@@ -94,6 +94,38 @@ export default function TenantsPage() {
     }
   }
 
+  const confirmPlanChange = async () => {
+    if (!tenantDetails) return
+    
+    // Fechar o modal de detalhes primeiro para não sobrepor
+    setIsDetailsModalOpen(false)
+    
+    try {
+      const result = await updateStudioPlanToFreeForever(tenantDetails.id)
+      
+      if (result.success) {
+        toast({
+          title: "Plano atualizado com sucesso!",
+          description: `A empresa '${tenantDetails.name}' agora está no plano Free Forever.`,
+          variant: "default",
+          className: "bg-green-500 text-white border-none",
+        })
+        fetchTenants()
+      } else {
+        throw new Error(result.error)
+      }
+    } catch (error: any) {
+      console.error('Erro ao atualizar plano:', error)
+      toast({
+        title: "Erro ao atualizar plano",
+        description: error.message || "Ocorreu um erro inesperado.",
+        variant: "destructive",
+      })
+      // Reabrir o modal em caso de erro
+      setIsDetailsModalOpen(true)
+    }
+  }
+
   const handleDeleteClick = (tenant: any) => {
     setTenantToDelete(tenant)
     setIsDeleteDialogOpen(true)
@@ -109,7 +141,7 @@ export default function TenantsPage() {
         title: "Empresa Excluída",
         description: `A empresa '${tenantToDelete.name}' foi excluída permanentemente.`
       })
-      loadTenants() // Recarregar a lista de tenants
+      fetchTenants() // Recarregar a lista de tenants
     } catch (error) {
       console.error('Erro ao deletar tenant:', error)
       toast({
@@ -214,7 +246,7 @@ export default function TenantsPage() {
                         </TableCell>
                         <TableCell>
                            <Badge variant="outline" className="text-xs font-normal bg-slate-100 dark:bg-slate-800">
-                            {planName}
+                            {tenant.plan === 'free-forever' ? 'Free Forever' : planName}
                           </Badge>
                         </TableCell>
                         <TableCell>
@@ -234,8 +266,20 @@ export default function TenantsPage() {
                           <div className="flex justify-end gap-2">
                             <Button 
                               size="sm" 
-                              variant="ghost"
+                              variant="outline" 
                               className="w-8 h-8 p-0"
+                              onClick={() => {
+                                setTenantDetails(tenant)
+                                setIsDetailsModalOpen(true)
+                              }}
+                              title="Editar Empresa / Configurações"
+                            >
+                              <Settings className="w-4 h-4 text-slate-500" />
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant="ghost"
+                              className="w-8 h-8 p-0 hidden"
                               onClick={() => {
                                 setTenantDetails(tenant)
                                 setIsDetailsModalOpen(true)
@@ -305,7 +349,19 @@ export default function TenantsPage() {
       <Dialog open={isDetailsModalOpen} onOpenChange={setIsDetailsModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Informações Adicionais</DialogTitle>
+            <DialogTitle className="flex justify-between items-center">
+              <span>Detalhes / Configurações</span>
+              {tenantDetails?.plan !== 'free-forever' && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="mr-4 border-green-500 text-green-600 hover:bg-green-50 hover:text-green-700 dark:border-green-600 dark:text-green-500 dark:hover:bg-green-950/50"
+                  onClick={confirmPlanChange}
+                >
+                  Mudar para Free Forever
+                </Button>
+              )}
+            </DialogTitle>
             <DialogDescription>
               Detalhes técnicos de <span className="font-semibold text-foreground">{tenantDetails?.name}</span>
             </DialogDescription>
@@ -316,13 +372,33 @@ export default function TenantsPage() {
                 <span className="text-right font-bold text-sm text-slate-500">Plano Atual:</span>
                 <div className="col-span-3">
                   <Badge variant="outline" className="text-sm font-normal bg-slate-100 dark:bg-slate-800">
-                    {plans.find(p => p.id === tenantDetails?.plan)?.name || 'Gratuito (Legacy)'}
+                    {tenantDetails?.plan === 'free-forever' ? 'Free Forever' : (plans.find(p => p.id === tenantDetails?.plan)?.name || 'Gratuito (Legacy)')}
                   </Badge>
                 </div>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-bold text-sm text-slate-500">ID do Sistema:</span>
-                <div className="col-span-3 font-mono text-xs text-muted-foreground break-all">{tenantDetails?.id}</div>
+                <div className="col-span-3 flex items-center gap-2">
+                  <span className="font-mono text-xs text-muted-foreground break-all">{tenantDetails?.id}</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0"
+                    onClick={() => {
+                      if (tenantDetails?.id) {
+                        navigator.clipboard.writeText(tenantDetails.id)
+                        toast({
+                          title: "ID copiado!",
+                          description: "O ID da empresa foi copiado para a área de transferência.",
+                          variant: "default",
+                        })
+                      }
+                    }}
+                    title="Copiar ID"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  </Button>
+                </div>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-bold text-sm text-slate-500">Slug (URL):</span>

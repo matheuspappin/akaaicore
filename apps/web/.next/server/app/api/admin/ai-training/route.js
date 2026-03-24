@@ -1,10 +1,10 @@
 var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/admin/ai-training/route.js")
-R.c("server/chunks/[root-of-the-server]__3c3c86d5._.js")
-R.c("server/chunks/node_modules_next_92aaecbe._.js")
-R.c("server/chunks/node_modules_decdbaeb._.js")
-R.c("server/chunks/node_modules_@supabase_supabase-js_dist_index_mjs_669a44bf._.js")
-R.c("server/chunks/[root-of-the-server]__ba39dfbb._.js")
-R.c("server/chunks/node_modules_next_dist_23bfe24c._.js")
+R.c("server/chunks/[root-of-the-server]__fed1c57d._.js")
+R.c("server/chunks/8f1fe_next_d60fb0e8._.js")
+R.c("server/chunks/node_modules__pnpm_604390a4._.js")
+R.c("server/chunks/25b93_@supabase_supabase-js_dist_index_mjs_f7a11afc._.js")
+R.c("server/chunks/[root-of-the-server]__e6eea66b._.js")
+R.c("server/chunks/8f1fe_next_dist_ee3dac23._.js")
 R.c("server/chunks/apps_web__next-internal_server_app_api_admin_ai-training_route_actions_1e0f71eb.js")
-R.m(568556)
-module.exports=R.m(568556).exports
+R.m(13609)
+module.exports=R.m(13609).exports

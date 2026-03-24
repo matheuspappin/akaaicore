@@ -103,6 +103,7 @@ export function VerticalizationPlansCard({
     plan_id: "",
     name: "",
     price: 0,
+    price_annual: undefined,
     description: "",
     max_students: 10,
     max_teachers: 1,
@@ -110,7 +111,10 @@ export function VerticalizationPlansCard({
     is_popular: false,
     status: "active",
     trial_days: 14,
+    stripe_price_id: "",
+    stripe_price_id_annual: "",
   })
+  const [stripeLookupLoading, setStripeLookupLoading] = useState<"monthly" | "annual" | null>(null)
 
   const loadPlans = async (vid: string) => {
     setLoading(true)
@@ -154,6 +158,7 @@ export function VerticalizationPlansCard({
       plan_id: "",
       name: "",
       price: 0,
+      price_annual: undefined,
       description: "",
       max_students: 10,
       max_teachers: 1,
@@ -163,6 +168,8 @@ export function VerticalizationPlansCard({
       is_popular: false,
       status: "active",
       trial_days: 14,
+      stripe_price_id: "",
+      stripe_price_id_annual: "",
     })
     setDialogOpen(true)
   }
@@ -179,6 +186,7 @@ export function VerticalizationPlansCard({
       plan_id: plan.plan_id,
       name: plan.name,
       price: Number(plan.price),
+      price_annual: plan.price_annual != null ? Number(plan.price_annual) : undefined,
       description: plan.description || "",
       max_students: plan.max_students ?? 10,
       max_teachers: plan.max_teachers ?? 1,
@@ -186,8 +194,49 @@ export function VerticalizationPlansCard({
       is_popular: plan.is_popular ?? false,
       status: plan.status ?? "active",
       trial_days: plan.trial_days ?? 14,
+      stripe_price_id: plan.stripe_price_id || "",
+      stripe_price_id_annual: plan.stripe_price_id_annual || "",
     })
     setDialogOpen(true)
+  }
+
+  const lookupStripePrice = async (which: "monthly" | "annual") => {
+    const raw =
+      which === "monthly" ? form.stripe_price_id?.trim() : form.stripe_price_id_annual?.trim()
+    if (!raw) {
+      toast.error(which === "monthly" ? "Cole o Price ID mensal primeiro" : "Cole o Price ID anual primeiro")
+      return
+    }
+    setStripeLookupLoading(which)
+    try {
+      const res = await fetch("/api/admin/stripe/lookup-price", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ priceId: raw }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Falha ao consultar Stripe")
+      if (which === "monthly") {
+        setForm((p) => ({ ...p, price: data.unitAmount }))
+        toast.success(
+          data.productName
+            ? `Mensal: R$ ${data.unitAmount.toFixed(2)} (${data.productName})`
+            : `Mensal: R$ ${data.unitAmount.toFixed(2)}`
+        )
+      } else {
+        setForm((p) => ({ ...p, price_annual: data.unitAmount }))
+        toast.success(
+          data.productName
+            ? `Anual: R$ ${data.unitAmount.toFixed(2)} (${data.productName})`
+            : `Anual: R$ ${data.unitAmount.toFixed(2)}`
+        )
+      }
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : "Erro ao buscar preço")
+    } finally {
+      setStripeLookupLoading(null)
+    }
   }
 
   const handleSave = async () => {
@@ -209,6 +258,7 @@ export function VerticalizationPlansCard({
           {
             name: form.name,
             price: form.price,
+            price_annual: form.price_annual,
             description: form.description,
             max_students: form.max_students,
             max_teachers: form.max_teachers,
@@ -216,6 +266,8 @@ export function VerticalizationPlansCard({
             is_popular: form.is_popular,
             status: form.status,
             trial_days: form.trial_days,
+            stripe_price_id: form.stripe_price_id || null,
+            stripe_price_id_annual: form.stripe_price_id_annual || null,
           },
           session?.access_token
         )
@@ -230,7 +282,8 @@ export function VerticalizationPlansCard({
           {
             plan_id: form.plan_id || form.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""),
             name: form.name,
-            price: form.price,
+            price: form.price!,
+            price_annual: form.price_annual,
             description: form.description,
             max_students: form.max_students,
             max_teachers: form.max_teachers,
@@ -238,6 +291,8 @@ export function VerticalizationPlansCard({
             is_popular: form.is_popular,
             status: form.status,
             trial_days: form.trial_days,
+            stripe_price_id: form.stripe_price_id || null,
+            stripe_price_id_annual: form.stripe_price_id_annual || null,
           },
           session?.access_token
         )
@@ -368,6 +423,12 @@ export function VerticalizationPlansCard({
                         R$ {Number(plan.price).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                         <span className="text-xs font-normal text-slate-500">/mês</span>
                       </p>
+                      {(plan.stripe_price_id || plan.stripe_price_id_annual) && (
+                        <p className="text-[10px] text-slate-500 mt-1 font-mono">
+                          Stripe:{" "}
+                          {[plan.stripe_price_id, plan.stripe_price_id_annual].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
                     </div>
                     <Badge
                       variant={plan.status === "active" ? "default" : "secondary"}
@@ -490,12 +551,91 @@ export function VerticalizationPlansCard({
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-300">Destaque (Popular)</Label>
-                <div className="flex items-center h-10">
-                  <Switch
-                    checked={form.is_popular ?? false}
-                    onCheckedChange={(v) => setForm((p) => ({ ...p, is_popular: v }))}
+                <Label className="text-slate-300">Preço anual (R$/ano)</Label>
+                <Input
+                  type="number"
+                  value={form.price_annual ?? ""}
+                  onChange={(e) =>
+                    setForm((p) => ({
+                      ...p,
+                      price_annual: e.target.value === "" ? undefined : parseFloat(e.target.value) || 0,
+                    }))
+                  }
+                  className="bg-slate-950 border-slate-700 text-white"
+                  placeholder="Opcional — exibido no toggle anual"
+                />
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <Label className="text-slate-300">Destaque (Popular)</Label>
+              <Switch
+                checked={form.is_popular ?? false}
+                onCheckedChange={(v) => setForm((p) => ({ ...p, is_popular: v }))}
+              />
+            </div>
+            <div className="rounded-lg border border-slate-800 bg-slate-950/40 p-3 space-y-3">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Stripe (opcional)</p>
+              <p className="text-[11px] text-slate-500 leading-snug">
+                Crie tarifas fixas no{" "}
+                <a
+                  href="https://dashboard.stripe.com/products"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-violet-400 hover:underline"
+                >
+                  Catálogo Stripe
+                </a>
+                , copie o Price ID (<code className="text-slate-400">price_…</code>) e cole abaixo. O checkout usará esse
+                preço; clique em &quot;Buscar&quot; para espelhar o valor nos campos acima.
+              </p>
+              <div className="space-y-2">
+                <Label className="text-slate-300 text-xs">Price ID mensal</Label>
+                <div className="flex gap-2">
+                  <Input
+                    value={form.stripe_price_id || ""}
+                    onChange={(e) => setForm((p) => ({ ...p, stripe_price_id: e.target.value }))}
+                    className="bg-slate-950 border-slate-700 text-white font-mono text-xs"
+                    placeholder="price_xxxxxxxx"
                   />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="shrink-0 border-slate-600 text-slate-300"
+                    disabled={stripeLookupLoading !== null}
+                    onClick={() => lookupStripePrice("monthly")}
+                  >
+                    {stripeLookupLoading === "monthly" ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      "Buscar"
+                    )}
+                  </Button>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-slate-300 text-xs">Price ID anual</Label>
+                <div className="flex gap-2">
+                  <Input
+                    value={form.stripe_price_id_annual || ""}
+                    onChange={(e) => setForm((p) => ({ ...p, stripe_price_id_annual: e.target.value }))}
+                    className="bg-slate-950 border-slate-700 text-white font-mono text-xs"
+                    placeholder="price_xxxxxxxx"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="shrink-0 border-slate-600 text-slate-300"
+                    disabled={stripeLookupLoading !== null}
+                    onClick={() => lookupStripePrice("annual")}
+                  >
+                    {stripeLookupLoading === "annual" ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      "Buscar"
+                    )}
+                  </Button>
                 </div>
               </div>
             </div>

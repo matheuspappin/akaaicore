@@ -1,0 +1,5 @@
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="b9abd651-ff26-6ceb-ccc6-e294f4f2ec22")}catch(e){}}();
+module.exports=[233405,(e,i,r)=>{i.exports=e.x("child_process",()=>require("child_process"))},753299,e=>{"use strict";var i=e.i(233405);let r=e.i(224361).promisify(i.exec);e.s(["execAsync",0,r])},620781,e=>{"use strict";var i=e.i(605365),r=e.i(753299),t=e.i(843170);async function c(){let e="%windir%\\System32\\REG.exe";"ia32"===i.arch&&"PROCESSOR_ARCHITEW6432"in i.env&&(e="%windir%\\sysnative\\cmd.exe /c "+e);try{let i=(await (0,r.execAsync)(`${e} QUERY HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography /v MachineGuid`)).stdout.split("REG_SZ");if(2===i.length)return i[1].trim()}catch(e){t.diag.debug(`error reading machine id: ${e}`)}}e.s(["getMachineId",()=>c])}];
+
+//# debugId=b9abd651-ff26-6ceb-ccc6-e294f4f2ec22
+//# sourceMappingURL=%5Broot-of-the-server%5D__9eb36431._.js.map

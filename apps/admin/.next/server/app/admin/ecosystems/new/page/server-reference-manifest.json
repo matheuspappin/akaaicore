@@ -1,5 +1,20 @@
 {
   "node": {
+    "401962dda622a282bb80d5e8d9ba253a89ae32db3b": {
+      "workers": {
+        "app/admin/ecosystems/new/page": {
+          "moduleId": 567260,
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/ecosystems/new/page": "rsc"
+      },
+      "exportedName": "updateStudioPlanToFreeForever",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
     "4047c07eb989e19d604a802defdf59ff94c719d7a3": {
       "workers": {
         "app/admin/ecosystems/new/page": {

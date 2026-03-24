@@ -1,5 +1,0 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="c3d1c9fb-472c-f466-9562-1d4ca72da94d")}catch(e){}}();
-module.exports=[193695,(a,b,c)=>{b.exports=a.x("next/dist/shared/lib/no-fallback-error.external.js",()=>require("next/dist/shared/lib/no-fallback-error.external.js"))},244665,a=>{a.n(a.i(128992))},125415,a=>{a.n(a.i(83141))},474856,a=>{a.n(a.i(379962))},13718,a=>{a.n(a.i(685523))},118198,a=>{a.n(a.i(545518))},262212,a=>{a.n(a.i(866114))},420509,a=>{a.n(a.i(606946))},150419,a=>{"use strict";var b=a.i(907997);function c(){return(0,b.jsxs)("div",{className:"flex flex-col items-center justify-center min-h-screen py-2",children:[(0,b.jsx)("h1",{className:"text-4xl font-bold text-center",children:"Minhas Ordens de Serviço"}),(0,b.jsx)("p",{className:"text-lg text-center mt-4",children:"Crie e gerencie suas ordens de serviço."})]})}a.s(["default",()=>c])}];
-
-//# debugId=c3d1c9fb-472c-f466-9562-1d4ca72da94d
-//# sourceMappingURL=%5Broot-of-the-server%5D__6c7c67dc._.js.map

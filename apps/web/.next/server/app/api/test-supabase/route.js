@@ -1,10 +1,10 @@
 var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/test-supabase/route.js")
-R.c("server/chunks/[root-of-the-server]__249af2b9._.js")
-R.c("server/chunks/node_modules_next_92aaecbe._.js")
-R.c("server/chunks/node_modules_decdbaeb._.js")
-R.c("server/chunks/node_modules_@supabase_supabase-js_dist_index_mjs_669a44bf._.js")
-R.c("server/chunks/[root-of-the-server]__ba39dfbb._.js")
-R.c("server/chunks/node_modules_next_dist_23bfe24c._.js")
+R.c("server/chunks/[root-of-the-server]__7f7f0cff._.js")
+R.c("server/chunks/8f1fe_next_d60fb0e8._.js")
+R.c("server/chunks/node_modules__pnpm_604390a4._.js")
+R.c("server/chunks/25b93_@supabase_supabase-js_dist_index_mjs_f7a11afc._.js")
+R.c("server/chunks/[root-of-the-server]__e6eea66b._.js")
+R.c("server/chunks/8f1fe_next_dist_ee3dac23._.js")
 R.c("server/chunks/apps_web__next-internal_server_app_api_test-supabase_route_actions_c743a72b.js")
-R.m(822181)
-module.exports=R.m(822181).exports
+R.m(301401)
+module.exports=R.m(301401).exports

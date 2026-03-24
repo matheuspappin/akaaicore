@@ -1,5 +1,20 @@
 {
   "node": {
+    "408c991e56a05b5ea564fd565b67765358cac8a453": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/apps/admin/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateStudioPlanToFreeForever",
+          "filename": "apps/web/lib/actions/super-admin.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "rsc"
+      },
+      "exportedName": "updateStudioPlanToFreeForever",
+      "filename": "apps/web/lib/actions/super-admin.ts"
+    },
     "40ec1a58628ad226fdf72e063839edaf2176d33c4a": {
       "workers": {
         "app/admin/page": {

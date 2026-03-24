@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     if (!access.authorized) return access.response
     const { data, error } = await supabaseAdmin
       .from('teacher_withdrawals')
-      .select('*, professionals(id, name, email)')
+      .select('*, professionals(id, name, email, stripe_account_id)')
       .eq('studio_id', studioId)
       .order('created_at', { ascending: false })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })

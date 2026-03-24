@@ -3,11 +3,13 @@
 import { createClient } from '@/lib/supabase/server'
 import { guardModule } from '@/lib/modules-server'
 import logger from '@/lib/logger'
+import { revalidatePath } from 'next/cache'
 
 export interface Product {
   id: string
   name: string
   category: string
+  subcategory?: string | null
   quantity: number
   min_quantity: number
   cost_price: number
@@ -98,11 +100,9 @@ export async function createProduct(productData: any, studioId: string) {
     const newQuantity = existingProduct.quantity + (productData.quantity || 0)
     const updatedProduct = await updateProduct(existingProduct.id, {
       quantity: newQuantity,
-      // Pode adicionar lógica para recalcular cost_price e selling_price se necessário
-      // Por exemplo, uma média ponderada ou manter o existente
-      // Para simplicidade, vamos manter os preços existentes ou atualizá-los se forem passados explicitamente
       cost_price: productData.cost_price || existingProduct.cost_price,
       selling_price: productData.selling_price || existingProduct.selling_price,
+      status: 'active' // Garante que seja reativado caso estivesse arquivado
     }, studioId)
 
     // Registrar transação de entrada para o estoque adicionado
@@ -115,6 +115,7 @@ export async function createProduct(productData: any, studioId: string) {
       productData.cost_price // Usar o custo do novo lote
     )
 
+    revalidatePath('/dashboard/estoque')
     return updatedProduct
   } else {
     // Se não existe, cria um novo produto (apenas campos válidos para a tabela)
@@ -134,6 +135,8 @@ export async function createProduct(productData: any, studioId: string) {
     if (productData.ncm?.trim()) insertData.ncm = productData.ncm.trim()
     if (productData.description?.trim()) insertData.description = productData.description.trim()
     if (productData.image_url?.trim()) insertData.image_url = productData.image_url.trim()
+    const sub = productData.subcategory?.toString?.()?.trim?.()
+    if (sub) insertData.subcategory = sub
 
     const { data, error } = await supabase
       .from('products')
@@ -159,6 +162,7 @@ export async function createProduct(productData: any, studioId: string) {
       )
     }
 
+    revalidatePath('/dashboard/estoque')
     return data
   }
 }
@@ -178,6 +182,8 @@ export async function updateProduct(productId: string, updates: Partial<Product>
     .single()
 
   if (error) throw error
+
+  revalidatePath('/dashboard/estoque')
   return data
 }
 
@@ -197,6 +203,8 @@ export async function deleteProduct(productId: string, studioId: string) {
     logger.error('Erro ao arquivar produto:', error)
     throw error
   }
+  
+  revalidatePath('/dashboard/estoque')
   return true
 }
 
@@ -251,18 +259,25 @@ export async function registerTransaction(
   }
 
   // 3. Atualizar Produto
-  const { error: updateError } = await supabase
+  const { data: updatedProduct, error: updateError } = await supabase
     .from('products')
     .update({ 
       quantity: newQuantity,
-      cost_price: newCostPrice 
+      cost_price: newCostPrice,
+      status: 'active' // Garante que o produto seja desativado/arquivado seja reativado
     })
     .eq('id', productId)
+    .eq('studio_id', studioId)
+    .select()
+    .single()
 
-  if (updateError) throw updateError
+  if (updateError) {
+    logger.error('Erro ao atualizar produto:', updateError)
+    throw updateError
+  }
 
   // 4. Criar Log de Transação (Audit Trail)
-  const transactionPrice = unitPrice !== undefined ? unitPrice : (type === 'in' ? product.cost_price : product.selling_price)
+  const transactionPrice = unitPrice !== undefined ? unitPrice : (type === 'in' ? (product.cost_price || 0) : (product.selling_price || 0))
 
   const txInsert: Record<string, unknown> = {
     studio_id: studioId,
@@ -282,6 +297,7 @@ export async function registerTransaction(
 
   if (logError) logger.error('Erro ao logar transação:', logError)
 
+  revalidatePath('/dashboard/estoque')
   return true
 }
 

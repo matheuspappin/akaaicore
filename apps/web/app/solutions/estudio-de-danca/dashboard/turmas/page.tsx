@@ -60,6 +60,74 @@ interface ScheduleItem {
   end_time: string
 }
 
+/** Normaliza valor da BD (ex.: 08:00:00) para HH:MM em 24h. */
+function toTimeInput24(v: string | undefined | null): string {
+  if (!v) return "08:00"
+  const m = String(v).trim().match(/^(\d{1,2}):(\d{2})/)
+  if (!m) return "08:00"
+  const h = Math.min(23, Math.max(0, parseInt(m[1], 10)))
+  const min = Math.min(59, Math.max(0, parseInt(m[2], 10)))
+  return `${String(h).padStart(2, "0")}:${String(min).padStart(2, "0")}`
+}
+
+function formatTimeInputAsTyping(raw: string): string {
+  const digits = raw.replace(/\D/g, "").slice(0, 4)
+  if (digits.length === 0) return ""
+  if (digits.length <= 2) return digits
+  return `${digits.slice(0, 2)}:${digits.slice(2)}`
+}
+
+function normalizeTimeFromInput(s: string): string {
+  let digits = s.replace(/\D/g, "")
+  if (digits.length === 0) return "00:00"
+  if (digits.length <= 2) {
+    const h = Math.min(23, Math.max(0, parseInt(digits, 10) || 0))
+    return `${String(h).padStart(2, "0")}:00`
+  }
+  if (digits.length === 3) digits = `${digits}0`
+  const padded = digits.slice(0, 4).padEnd(4, "0")
+  let h = parseInt(padded.slice(0, 2), 10)
+  let m = parseInt(padded.slice(2, 4), 10)
+  h = Math.min(23, Math.max(0, h))
+  m = Math.min(59, Math.max(0, m))
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`
+}
+
+function normalizeScheduleItemTimes(items: ScheduleItem[]): ScheduleItem[] {
+  return items.map((i) => ({
+    ...i,
+    start_time: normalizeTimeFromInput(i.start_time),
+    end_time: normalizeTimeFromInput(i.end_time),
+  }))
+}
+
+/** Evita o picker nativo em AM/PM; entrada sempre em 24 horas (HH:MM). */
+function TimeInput24({
+  value,
+  onCommit,
+  className,
+}: {
+  value: string
+  onCommit: (v: string) => void
+  className?: string
+}) {
+  return (
+    <Input
+      type="text"
+      inputMode="numeric"
+      autoComplete="off"
+      placeholder="00:00"
+      title="Horário em 24 horas (HH:MM)"
+      aria-label="Horário em 24 horas"
+      value={value}
+      onChange={(e) => onCommit(formatTimeInputAsTyping(e.target.value))}
+      onBlur={() => onCommit(normalizeTimeFromInput(value))}
+      className={cn("tabular-nums", className)}
+      maxLength={5}
+    />
+  )
+}
+
 // ─── Calendário Semanal ──────────────────────────────────────────────────────
 function WeekCalendar({ turmas }: { turmas: any[] }) {
   // Determina intervalo de horas a partir dos horários existentes
@@ -264,6 +332,7 @@ export default function TurmasPage() {
     if (!newForm.name.trim() || !studioId) return
     setIsSaving(true)
     try {
+      const schedulePayload = normalizeScheduleItemTimes(newForm.scheduleItems)
       const res = await fetch("/api/dance-studio/classes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -273,13 +342,13 @@ export default function TurmasPage() {
           dance_style: newForm.dance_style,
           level: newForm.level,
           teacher_id: newForm.teacherId || null,
-          schedule: newForm.scheduleItems,
+          schedule: schedulePayload,
         }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Erro ao criar turma")
-      const scheduleSummary = newForm.scheduleItems.length > 0
-        ? newForm.scheduleItems.map(s => `${DB_DAY_LABELS[s.day_of_week]} ${s.start_time}`).join(", ")
+      const scheduleSummary = schedulePayload.length > 0
+        ? schedulePayload.map(s => `${DB_DAY_LABELS[s.day_of_week]} ${s.start_time}`).join(", ")
         : "Sem horário"
       const teacherName =
         teachers.find(t => t.id === newForm.teacherId)?.name || "Não definido"
@@ -317,8 +386,8 @@ export default function TurmasPage() {
     setSelectedTurma(turma)
     const scheduleItems: ScheduleItem[] = (turma.schedule || []).map((s: any) => ({
       day_of_week: s.day_of_week ?? 1,
-      start_time: s.start_time ?? "08:00",
-      end_time: s.end_time ?? "09:00",
+      start_time: toTimeInput24(s.start_time ?? "08:00"),
+      end_time: toTimeInput24(s.end_time ?? "09:00"),
     }))
     setEditForm({
       name: turma.name ?? "",
@@ -360,6 +429,7 @@ export default function TurmasPage() {
     if (!selectedTurma || !studioId) return
     setIsSaving(true)
     try {
+      const schedulePayload = normalizeScheduleItemTimes(editForm.scheduleItems)
       const res = await fetch("/api/dance-studio/classes", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -370,15 +440,15 @@ export default function TurmasPage() {
           dance_style: editForm.dance_style || null,
           level: editForm.level || null,
           teacher_id: editForm.teacherId || null,
-          schedule: editForm.scheduleItems,
+          schedule: schedulePayload,
           max_students: editForm.max_students,
         }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Erro ao atualizar turma")
       const teacherName = teachers.find(t => t.id === editForm.teacherId)?.name || "Não definido"
-      const scheduleSummary = editForm.scheduleItems.length > 0
-        ? editForm.scheduleItems.map(s => `${DB_DAY_LABELS[s.day_of_week]} ${s.start_time}`).join(", ")
+      const scheduleSummary = schedulePayload.length > 0
+        ? schedulePayload.map(s => `${DB_DAY_LABELS[s.day_of_week]} ${s.start_time}`).join(", ")
         : "Sem horário"
       setTurmas(prev => prev.map(t => t.id === selectedTurma.id
         ? { ...t, ...data, teacherName, scheduleSummary, max_students: editForm.max_students }
@@ -655,18 +725,16 @@ export default function TurmasPage() {
                           ))}
                         </SelectContent>
                       </Select>
-                      <Input
-                        type="time"
+                      <TimeInput24
                         value={item.start_time}
-                        onChange={(e) => updateScheduleItem(idx, "start_time", e.target.value)}
-                        className="h-8 w-24 text-xs font-bold rounded-lg"
+                        onCommit={(v) => updateScheduleItem(idx, "start_time", v)}
+                        className="h-8 w-[5.5rem] text-xs font-bold rounded-lg"
                       />
                       <span className="text-xs text-slate-400 font-bold">até</span>
-                      <Input
-                        type="time"
+                      <TimeInput24
                         value={item.end_time}
-                        onChange={(e) => updateScheduleItem(idx, "end_time", e.target.value)}
-                        className="h-8 w-24 text-xs font-bold rounded-lg"
+                        onCommit={(v) => updateScheduleItem(idx, "end_time", v)}
+                        className="h-8 w-[5.5rem] text-xs font-bold rounded-lg"
                       />
                       <button
                         onClick={() => removeScheduleItem(idx)}
@@ -822,18 +890,16 @@ export default function TurmasPage() {
                                 ))}
                               </SelectContent>
                             </Select>
-                            <Input
-                              type="time"
+                            <TimeInput24
                               value={item.start_time}
-                              onChange={(e) => updateEditScheduleItem(idx, "start_time", e.target.value)}
-                              className="h-8 w-24 text-xs font-bold rounded-lg"
+                              onCommit={(v) => updateEditScheduleItem(idx, "start_time", v)}
+                              className="h-8 w-[5.5rem] text-xs font-bold rounded-lg"
                             />
                             <span className="text-xs text-slate-400 font-bold">até</span>
-                            <Input
-                              type="time"
+                            <TimeInput24
                               value={item.end_time}
-                              onChange={(e) => updateEditScheduleItem(idx, "end_time", e.target.value)}
-                              className="h-8 w-24 text-xs font-bold rounded-lg"
+                              onCommit={(v) => updateEditScheduleItem(idx, "end_time", v)}
+                              className="h-8 w-[5.5rem] text-xs font-bold rounded-lg"
                             />
                             <button
                               onClick={() => removeEditScheduleItem(idx)}

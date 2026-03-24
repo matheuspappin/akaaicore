@@ -1,10 +1,12 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="30bb74c5-be99-abe4-6dba-eb23c836e2bd")}catch(e){}}();
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="40c94d22-dee8-d21b-614a-0b3963990beb")}catch(e){}}();
 module.exports = [
 "[project]/apps/web/.next-internal/server/app/admin/studios/page/actions.js { ACTIONS_MODULE0 => \"[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript) <locals>", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$actions$2f$super$2d$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/apps/web/lib/actions/super-admin.ts [app-rsc] (ecmascript)");
+;
+;
 ;
 ;
 ;
@@ -28,6 +30,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$action
 __turbopack_context__.s([
     "40326e7b4237be2e4c05c2be81110d3ce092e81a29",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$actions$2f$super$2d$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["checkSuperAdminDetailed"],
+    "4049d92b4bb003a0216d1afb6fc275e1d15e28a9cf",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$actions$2f$super$2d$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["updateStudioPlanToFreeForever"],
     "40946ae18354ff50f5e2a1be48aa44bbfa95d9c471",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$actions$2f$super$2d$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getGlobalSystemStats"],
     "603dade155aabcc4760e1ce9c41b19c23e3c5d3e07",
@@ -58,5 +62,5 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$web$2f$lib$2f$action
 }),
 ];
 
-//# debugId=30bb74c5-be99-abe4-6dba-eb23c836e2bd
+//# debugId=40c94d22-dee8-d21b-614a-0b3963990beb
 //# sourceMappingURL=apps_web__next-internal_server_app_admin_studios_page_actions_87c4a0e2.js.map

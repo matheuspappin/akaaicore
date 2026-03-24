@@ -8,6 +8,7 @@ export interface Product {
   id: string
   name: string
   category: string
+  subcategory?: string | null
   quantity: number
   min_quantity: number
   cost_price: number
@@ -134,6 +135,8 @@ export async function createProduct(productData: any, studioId: string) {
     if (productData.ncm?.trim()) insertData.ncm = productData.ncm.trim()
     if (productData.description?.trim()) insertData.description = productData.description.trim()
     if (productData.image_url?.trim()) insertData.image_url = productData.image_url.trim()
+    const sub = productData.subcategory?.toString?.()?.trim?.()
+    if (sub) insertData.subcategory = sub
 
     const { data, error } = await supabase
       .from('products')

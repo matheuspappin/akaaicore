@@ -1,5 +1,0 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="4543a3ba-ac42-97d5-3665-021ad49f7843")}catch(e){}}();
-module.exports=[233405,(e,i,r)=>{i.exports=e.x("child_process",()=>require("child_process"))},943959,e=>{"use strict";var i=e.i(233405);let r=e.i(224361).promisify(i.exec);e.s(["execAsync",0,r])},205725,e=>{"use strict";var i=e.i(943959),r=e.i(404065);async function t(){try{let e=(await (0,i.execAsync)('ioreg -rd1 -c "IOPlatformExpertDevice"')).stdout.split("\n").find(e=>e.includes("IOPlatformUUID"));if(!e)return;let r=e.split('" = "');if(2===r.length)return r[1].slice(0,-1)}catch(e){r.diag.debug(`error reading machine id: ${e}`)}}e.s(["getMachineId",()=>t])}];
-
-//# debugId=4543a3ba-ac42-97d5-3665-021ad49f7843
-//# sourceMappingURL=%5Broot-of-the-server%5D__c934a8c4._.js.map

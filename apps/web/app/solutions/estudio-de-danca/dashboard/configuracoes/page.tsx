@@ -138,6 +138,8 @@ export default function DanceConfiguracoesPage() {
   const [stripeStatus, setStripeStatus] = useState<"connected" | "disconnected" | "connecting">("disconnected")
   const [stripeConnectStatus, setStripeConnectStatus] = useState<{ stripe_account_id: string | null; charges_enabled: boolean } | null>(null)
   const [stripeConnectLoading, setStripeConnectLoading] = useState(false)
+  const [pagbankStatus, setPagbankStatus] = useState<"connected" | "disconnected" | "connecting">("disconnected")
+  const [pagbankLoading, setPagbankLoading] = useState(false)
 
   // misc
   const [copied, setCopied] = useState(false)
@@ -238,11 +240,12 @@ export default function DanceConfiguracoesPage() {
 
   const loadIntegrations = async (sId: string) => {
     setStripeConnectLoading(true)
+    setPagbankLoading(true)
     try {
-      const { data } = await supabase.from("studio_api_keys").select("*").eq("studio_id", sId)
-      if (data) {
-        const wa = data.find((k: any) => k.service_name === "whatsapp")
-        const stripe = data.find((k: any) => k.service_name === "stripe")
+      const { data: keys } = await supabase.from("studio_api_keys").select("*").eq("studio_id", sId)
+      if (keys) {
+        const wa = keys.find((k: any) => k.service_name === "whatsapp")
+        const stripe = keys.find((k: any) => k.service_name === "stripe")
         if (wa) {
           setWaSettings({ apiKey: wa.api_key || "", instanceId: wa.instance_id || "", apiUrl: wa.settings?.api_url || "" })
           setWaStatus(wa.status === "active" ? "connected" : "disconnected")
@@ -252,12 +255,62 @@ export default function DanceConfiguracoesPage() {
           setStripeStatus("connected")
         }
       }
+
+      // Verifica Stripe Connect
       const connectStatus = await getStudioStripeConnectStatus(sId)
       setStripeConnectStatus(connectStatus)
+
+      // Verifica PagBank
+      const { data: studioData } = await supabase.from("studios").select("pagbank_access_token").eq("id", sId).single()
+      if (studioData?.pagbank_access_token) {
+        setPagbankStatus("connected")
+      } else {
+        setPagbankStatus("disconnected")
+      }
     } finally {
       setStripeConnectLoading(false)
+      setPagbankLoading(false)
     }
   }
+
+  // ─── integrações handlers ───────────────────────────────────────────────────
+  const handleConnectPagbank = () => {
+    setPagbankLoading(true)
+    window.location.href = "/api/pagbank/oauth/authorize"
+  }
+
+  const handleDisconnectPagbank = async () => {
+    if (!confirm("Deseja realmente desconectar sua conta PagBank?")) return
+    setPagbankLoading(true)
+    try {
+      const { error } = await supabase.from("studios").update({
+        pagbank_access_token: null,
+        pagbank_refresh_token: null,
+        pagbank_token_expires_at: null,
+        pagbank_client_id: null,
+        pagbank_client_secret: null,
+      }).eq("id", studioId)
+
+      if (error) throw error
+      setPagbankStatus("disconnected")
+      toast({ title: "PagBank desconectado!", description: "Sua conta foi desconectada com sucesso." })
+    } catch (e: any) {
+      toast({ title: "Erro ao desconectar", description: e.message, variant: "destructive" })
+    } finally {
+      setPagbankLoading(false)
+    }
+  }
+
+  // Effect para capturar retorno do OAuth
+  useEffect(() => {
+    const status = searchParams.get("status")
+    const message = searchParams.get("message")
+    if (status === "success") {
+      toast({ title: "Conectado!", description: message || "Conta PagBank vinculada com sucesso." })
+    } else if (status === "error") {
+      toast({ title: "Erro na conexão", description: message || "Não foi possível vincular sua conta PagBank.", variant: "destructive" })
+    }
+  }, [searchParams])
 
   // ─── saves ──────────────────────────────────────────────────────────────────
   const saveProfile = async () => {
@@ -1026,6 +1079,43 @@ export default function DanceConfiguracoesPage() {
                 )}
               </div>
               <p className="text-xs text-slate-400">Para parear o QR Code, vá em <strong>Sidebar → WhatsApp</strong> após salvar as chaves.</p>
+            </CardContent>
+          </Card>
+
+          {/* PagBank Connect */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between text-base">
+                <div className="flex items-center gap-2"><QrCode className="w-4 h-4 text-emerald-500" /> PagBank (Pix Direto)</div>
+                <div className="flex items-center gap-1.5 text-xs">
+                  {pagbankLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin text-emerald-500" />
+                  ) : pagbankStatus === "connected" ? (
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <XCircle className="w-4 h-4 text-slate-400" />
+                  )}
+                  <span className="font-bold text-slate-500">
+                    {pagbankLoading ? "Carregando..." : pagbankStatus === "connected" ? "Conectado" : "Não conectado"}
+                  </span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Habilite o recebimento de pagamentos via Pix diretamente na sua conta PagBank com taxas competitivas e liquidação imediata.
+              </p>
+              {pagbankStatus === "connected" ? (
+                <Button variant="outline" className="w-full text-red-500 hover:text-red-600 border-red-200 hover:border-red-300" onClick={handleDisconnectPagbank} disabled={pagbankLoading}>
+                  {pagbankLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Unlink className="w-4 h-4 mr-2" />}
+                  Desconectar PagBank
+                </Button>
+              ) : (
+                <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white" onClick={handleConnectPagbank} disabled={pagbankLoading || !studioId}>
+                  {pagbankLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <QrCode className="w-4 h-4 mr-2" />}
+                  Conectar conta PagBank
+                </Button>
+              )}
             </CardContent>
           </Card>
 
