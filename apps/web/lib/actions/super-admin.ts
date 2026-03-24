@@ -126,7 +126,7 @@ export async function updateStudioPlanToFreeForever(studioId: string) {
 /**
  * Busca estatísticas globais do sistema para o Dashboard
  */
-export async function getGlobalSystemStats(accessToken?: string) {
+export async function getGlobalSystemStats(accessToken?: string) { // Added for Git detection
   const { isAdmin, authClient, adminClient } = await checkSuperAdminDetailed(accessToken)
   
   if (!isAdmin) {

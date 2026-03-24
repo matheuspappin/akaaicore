@@ -13,7 +13,7 @@ import { nicheDictionary } from "@/config/niche-dictionary"
 import { MODULE_DEFINITIONS } from "@/config/modules"
 import { supabase } from "@/lib/supabase"
 import { RegistrationLinkModal } from "@/components/admin/registration-link-modal"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast" // Added for Git detection
 import {
   AlertDialog,
   AlertDialogAction,
