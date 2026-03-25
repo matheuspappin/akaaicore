@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
   const authorizeUrl = new URL(PAGBANK_AUTH_URL); // URL de autorização oficial do PagBank
   authorizeUrl.searchParams.append('client_id', PAGBANK_CLIENT_ID);
   authorizeUrl.searchParams.append('response_type', 'code');
-  authorizeUrl.searchParams.append('scope', 'pix.write pix.read'); // Espaço é o delimitador padrão para múltiplos escopos
+  authorizeUrl.searchParams.append('scope', 'payments.read payments.create accounts.read'); // Scopes oficiais do PagBank Connect
   authorizeUrl.searchParams.append('redirect_uri', REDIRECT_URI);
   authorizeUrl.searchParams.append('state', state); // Importante para segurança e para recuperar o contexto se necessário
 
