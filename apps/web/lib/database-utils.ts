@@ -847,7 +847,6 @@ async function getDashboardStatsRaw(studioId: string) {
       .eq('studio_id', studioId)
       .eq('status', 'active')
 
-    const now = new Date()
     let kids = 0, teens = 0, adults = 0
 
     studentAges?.forEach(s => {
