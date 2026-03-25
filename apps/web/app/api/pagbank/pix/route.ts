@@ -44,7 +44,9 @@ export async function POST(req: NextRequest) {
       notification_urls: body.notification_urls || ['https://meusite.com/notificacoes'],
     };
 
-    const pagBankResponse = await createPagBankPixOrder(orderRequest);
+    // TODO: Obter o tenantId de forma segura (por exemplo, do usuário autenticado ou cabeçalhos da requisição)
+    const tenantId = 'default-tenant-id'; // Substitua por lógica real para obter o tenantId
+    const pagBankResponse = await createPagBankPixOrder(orderRequest, tenantId);
 
     return NextResponse.json(pagBankResponse);
   } catch (error) {
