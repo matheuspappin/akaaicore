@@ -14,12 +14,14 @@ export async function GET(req: NextRequest) {
     ? 'https://connect.pagseguro.uol.com.br/oauth2/authorize'
     : 'https://connect.sandbox.pagseguro.uol.com.br/oauth2/authorize';
 
+  const state = req.nextUrl.searchParams.get('studio_id') || 'akaai_hub'; // Passamos o studio_id no state se houver, ou um fixo
+  
   const authorizeUrl = new URL(PAGBANK_AUTH_URL); // URL de autorização oficial do PagBank
   authorizeUrl.searchParams.append('client_id', PAGBANK_CLIENT_ID);
   authorizeUrl.searchParams.append('response_type', 'code');
   authorizeUrl.searchParams.append('scope', 'pix.write pix.read'); // Espaço é o delimitador padrão para múltiplos escopos
   authorizeUrl.searchParams.append('redirect_uri', REDIRECT_URI);
-  // authorizeUrl.searchParams.append('state', '...'); // Recomendado adicionar um state único por sessão para segurança
+  authorizeUrl.searchParams.append('state', state); // Importante para segurança e para recuperar o contexto se necessário
 
   return NextResponse.redirect(authorizeUrl.toString());
 }

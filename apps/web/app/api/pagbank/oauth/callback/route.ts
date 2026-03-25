@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   const error = req.nextUrl.searchParams.get('error');
   const errorDescription = req.nextUrl.searchParams.get('error_description');
 
-    const REDIRECT_DASHBOARD = new URL('/solutions/estudio-de-danca/dashboard/configuracoes?tab=integracoes', 'https://akaaicore.com');
+    const REDIRECT_DASHBOARD = new URL('/solutions/estudio-de-danca/dashboard/settings/payment', req.nextUrl.origin);
 
   if (error) {
     console.error('Erro no callback OAuth do PagBank:', error, errorDescription);

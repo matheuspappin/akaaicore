@@ -10,17 +10,29 @@ export async function POST(req: NextRequest) {
     // Valide os dados do corpo da requisição aqui
     // Por exemplo, usando um schema Zod ou similar
 
+    const studioId = body.studioId || body.tenantId; // Aceita ambos, preferindo studioId
+    if (!studioId) {
+      return NextResponse.json({ error: 'studioId é obrigatório' }, { status: 400 });
+    }
+
+    const origin = req.nextUrl.origin;
+    const NOTIFICATION_URL = `${origin}/api/webhooks/pagbank`;
+
+    const studentId = body.studentId || body.customerId;
+    const type = body.type || 'payment'; // 'package' ou 'payment'
+    const invoiceId = body.invoiceId || body.id || '0';
+
     const orderRequest = {
-      reference_id: body.reference_id || `order-${Date.now()}`,
+      reference_id: body.reference_id || `pb_order_${studioId}_${studentId || 'anon'}_${type}_${invoiceId}_${Date.now()}`,
       customer: {
-        name: body.customer.name || 'Nome do Cliente',
-        email: body.customer.email || 'cliente.avulso@exemplo.com', // Usando um email genérico em caso de não fornecimento
+        name: body.customer?.name || 'Nome do Cliente',
+        email: body.customer?.email || 'cliente.avulso@exemplo.com', // Usando um email genérico em caso de não fornecimento
         tax_id: customerTaxId,
         phones: [
           {
-            country: body.customer.phones?.[0]?.country || '55',
-            area: body.customer.phones?.[0]?.area || '11',
-            number: body.customer.phones?.[0]?.number || '999999999',
+            country: body.customer?.phones?.[0]?.country || '55',
+            area: body.customer?.phones?.[0]?.area || '11',
+            number: body.customer?.phones?.[0]?.number || '999999999',
             type: 'MOBILE' as const,
           },
         ],
@@ -41,11 +53,10 @@ export async function POST(req: NextRequest) {
         },
       ],
       shipping: body.shipping,
-      notification_urls: body.notification_urls || ['https://meusite.com/notificacoes'],
+      notification_urls: body.notification_urls || [NOTIFICATION_URL],
     };
 
-    // TODO: Obter o tenantId de forma segura (por exemplo, do usuário autenticado ou cabeçalhos da requisição)
-    const tenantId = 'default-tenant-id'; // Substitua por lógica real para obter o tenantId
+    const tenantId = studioId; 
     const pagBankResponse = await createPagBankPixOrder({ orderRequest, tenantId });
 
     return NextResponse.json(pagBankResponse);

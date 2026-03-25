@@ -32,6 +32,7 @@
     "migrate:125": "node scripts/apply-migration.js 125_system_modules_annual.sql"
   },
   "devDependencies": {
+    "next": "16.0.10",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
