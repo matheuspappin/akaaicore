@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { GraduationCap, Plus, Search, Phone, Mail, Copy, Check, Loader2, Link2, RefreshCw, CheckCheck, ExternalLink, Share2 } from "lucide-react"
+import { GraduationCap, Plus, Search, Phone, Mail, Copy, Check, Loader2, Link2, RefreshCw, CheckCheck, ExternalLink, Share2, Edit2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import {
   Dialog,
@@ -15,6 +15,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 
 function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
@@ -91,7 +98,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-pink-600">
+          <DialogTitle className="flex items-center gap-2 text-[#e40014]">
             <Share2 className="w-5 h-5" /> Convidar Professor
           </DialogTitle>
           <DialogDescription>
@@ -100,45 +107,45 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
         </DialogHeader>
         {loading ? (
           <div className="flex items-center justify-center py-6">
-            <Loader2 className="w-6 h-6 animate-spin text-pink-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-[#e40014]" />
           </div>
         ) : (
           <div className="space-y-4 pt-1">
             {/* Código */}
-            <div className="rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 p-4">
+            <div className="rounded-xl bg-black dark:bg-black border border-white/10 dark:border-white/10 p-4">
               <div className="flex items-center justify-between mb-1">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Código de Convite</p>
+                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Código de Convite</p>
                 <Button size="icon" variant="ghost" className="h-7 w-7 rounded-lg" onClick={handleRegenerate} disabled={regenerating} title="Gerar novo código">
-                  <RefreshCw className={`w-3.5 h-3.5 text-slate-400 ${regenerating ? "animate-spin" : ""}`} />
+                  <RefreshCw className={`w-3.5 h-3.5 text-zinc-400 ${regenerating ? "animate-spin" : ""}`} />
                 </Button>
               </div>
               <div className="flex items-center gap-3">
-                <p className="font-mono text-2xl font-black text-slate-900 dark:text-white tracking-[0.3em] flex-1">
+                <p className="font-mono text-2xl font-black text-white dark:text-white tracking-[0.3em] flex-1">
                   {code || "—"}
                 </p>
-                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-emerald-50 border-emerald-300 text-emerald-600" : ""}`} onClick={handleCopyCode}>
+                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-red- border-red- text-red-" : ""}`} onClick={handleCopyCode}>
                   {copiedCode ? <><CheckCheck className="w-3.5 h-3.5 mr-1.5" />Copiado</> : <><Copy className="w-3.5 h-3.5 mr-1.5" />Copiar</>}
                 </Button>
               </div>
-              <p className="text-[11px] text-slate-400 mt-2">Para professores que já têm conta: acesse <strong>Meu Perfil → Estúdio Vinculado</strong>.</p>
+              <p className="text-[11px] text-zinc-400 mt-2">Para professores que já têm conta: acesse <strong>Meu Perfil → Estúdio Vinculado</strong>.</p>
             </div>
 
             {/* Divisor */}
             <div className="flex items-center gap-2">
-              <div className="flex-1 border-t border-slate-200 dark:border-white/10" />
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">ou</span>
-              <div className="flex-1 border-t border-slate-200 dark:border-white/10" />
+              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
+              <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">ou</span>
+              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
             </div>
 
             {/* Link direto */}
-            <div className="rounded-xl bg-pink-50 dark:bg-pink-600/10 border border-pink-200 dark:border-pink-500/20 p-4 space-y-3">
+            <div className="rounded-xl bg-[#e40014] dark:bg-[#e40014] border border-[#e40014] dark:border-[#e40014] p-4 space-y-3">
               <div>
-                <p className="text-[10px] font-black text-pink-600 uppercase tracking-widest mb-1">Link de Cadastro Direto ✨ Recomendado</p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">O professor clica, cria a conta e já entra vinculado ao estúdio automaticamente.</p>
+                <p className="text-[10px] font-black text-[#e40014] uppercase tracking-widest mb-1">Link de Cadastro Direto ✨ Recomendado</p>
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">O professor clica, cria a conta e já entra vinculado ao estúdio automaticamente.</p>
               </div>
               <div className="flex gap-2">
                 <Button
-                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-emerald-600 hover:bg-emerald-700" : "bg-pink-600 hover:bg-pink-700"} text-white`}
+                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-red- hover:bg-red-" : "bg-[#e40014] hover:bg-[#e40014]"} text-white`}
                   onClick={handleCopyLink}
                 >
                   {copiedLink ? <><CheckCheck className="w-4 h-4 mr-2" />Link Copiado!</> : <><ExternalLink className="w-4 h-4 mr-2" />Copiar Link</>}
@@ -169,7 +176,9 @@ export default function ProfessoresPage() {
   const [studioId, setStudioId] = useState<string | null>(null)
   const [isInviteOpen, setIsInviteOpen] = useState(false)
   const [isNewDialogOpen, setIsNewDialogOpen] = useState(false)
-  const [newForm, setNewForm] = useState({ name: "", email: "", phone: "" })
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+  const [newForm, setNewForm] = useState({ name: "", email: "", phone: "", contract_type: "per_class", fixed_salary: "" })
+  const [editForm, setEditForm] = useState({ id: "", name: "", email: "", phone: "", contract_type: "per_class", fixed_salary: "" })
   const [isSaving, setIsSaving] = useState(false)
   const { toast } = useToast()
 
@@ -200,16 +209,52 @@ export default function ProfessoresPage() {
       const res = await fetch('/api/dance-studio/teachers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studioId, name: newForm.name, email: newForm.email, phone: newForm.phone }),
+        body: JSON.stringify({ 
+          studioId, 
+          name: newForm.name, 
+          email: newForm.email, 
+          phone: newForm.phone,
+          contract_type: newForm.contract_type,
+          fixed_salary: newForm.fixed_salary ? Number(newForm.fixed_salary.replace(',', '.')) : 0
+        }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Erro ao cadastrar professor')
       setProfessores(prev => [data, ...prev])
-      setNewForm({ name: "", email: "", phone: "" })
+      setNewForm({ name: "", email: "", phone: "", contract_type: "per_class", fixed_salary: "" })
       setIsNewDialogOpen(false)
       toast({ title: "Professor cadastrado!", description: `${data.name} foi adicionado.` })
     } catch (err: any) {
       toast({ title: "Erro ao cadastrar professor", description: err.message, variant: "destructive" })
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleEditProfessor = async () => {
+    if (!editForm.name.trim() || !editForm.id || !studioId) return
+    setIsSaving(true)
+    try {
+      const res = await fetch('/api/dance-studio/teachers', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          studioId, 
+          id: editForm.id,
+          name: editForm.name, 
+          email: editForm.email, 
+          phone: editForm.phone,
+          contract_type: editForm.contract_type,
+          fixed_salary: editForm.fixed_salary ? Number(String(editForm.fixed_salary).replace(',', '.')) : 0
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Erro ao atualizar professor')
+      setProfessores(prev => prev.map(p => p.id === data.id ? data : p))
+      setIsEditDialogOpen(false)
+      toast({ title: "Professor atualizado!", description: "Dados salvos com sucesso." })
+    } catch (err: any) {
+      toast({ title: "Erro ao atualizar professor", description: err.message, variant: "destructive" })
     } finally {
       setIsSaving(false)
     }
@@ -225,24 +270,24 @@ export default function ProfessoresPage() {
       <InviteCodeDialog open={isInviteOpen} onOpenChange={setIsInviteOpen} />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <GraduationCap className="w-6 h-6 text-pink-500" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <GraduationCap className="w-6 h-6 text-[#e40014]" />
             Professores
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Equipe docente do estúdio</p>
+          <p className="text-zinc-500 text-sm mt-1">Equipe docente do estúdio</p>
         </div>
         <div className="flex gap-2">
           <Button
             variant="outline"
             onClick={() => setIsInviteOpen(true)}
-            className="font-bold rounded-xl border-pink-200 text-pink-600 hover:bg-pink-50"
+            className="font-bold rounded-xl border-[#e40014] text-[#e40014] hover:bg-[#e40014]"
           >
             <Link2 className="w-4 h-4 mr-2" />
             Convidar
           </Button>
           <Button
             onClick={() => setIsNewDialogOpen(true)}
-            className="bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl shadow-lg shadow-pink-600/20"
+            className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl shadow-lg shadow-red-600/20"
           >
             <Plus className="w-4 h-4 mr-2" />
             Novo Professor
@@ -251,30 +296,30 @@ export default function ProfessoresPage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar professor..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 h-11 rounded-xl"
+          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 h-11 rounded-xl"
         />
       </div>
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
-            <GraduationCap className="w-16 h-16 text-slate-300 dark:text-slate-700 mb-4" />
-            <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 mb-2">
+            <GraduationCap className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
+            <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
               {search ? "Nenhum professor encontrado" : "Nenhum professor cadastrado"}
             </h3>
-            <p className="text-slate-400 text-sm mb-6">
+            <p className="text-zinc-400 text-sm mb-6">
               Convide professores pelo código de acesso do estúdio.
             </p>
-            <Button onClick={() => setIsInviteOpen(true)} className="bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl">
+            <Button onClick={() => setIsInviteOpen(true)} className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl">
               <Link2 className="w-4 h-4 mr-2" /> Ver Código de Convite
             </Button>
           </CardContent>
@@ -282,31 +327,57 @@ export default function ProfessoresPage() {
       ) : (
         <div className="grid gap-3">
           {filtered.map((prof) => (
-            <Card key={prof.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 hover:shadow-md transition-shadow">
+            <Card key={prof.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
               <CardContent className="p-4 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-pink-600/10 flex items-center justify-center font-black text-pink-600 text-lg flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-[#e40014] flex items-center justify-center font-black text-[#e40014] text-lg flex-shrink-0">
                     {prof.name?.[0]?.toUpperCase() || "P"}
                   </div>
                   <div>
-                    <p className="font-bold text-slate-900 dark:text-white">{prof.name}</p>
+                    <p className="font-bold text-white dark:text-white">{prof.name}</p>
                     <div className="flex items-center gap-3 mt-1 flex-wrap">
                       {prof.email && (
-                        <span className="flex items-center gap-1 text-xs text-slate-500">
+                        <span className="flex items-center gap-1 text-xs text-zinc-500">
                           <Mail className="w-3 h-3" /> {prof.email}
                         </span>
                       )}
                       {prof.phone && (
-                        <span className="flex items-center gap-1 text-xs text-slate-500">
+                        <span className="flex items-center gap-1 text-xs text-zinc-500">
                           <Phone className="w-3 h-3" /> {prof.phone}
                         </span>
                       )}
                     </div>
                   </div>
                 </div>
-                <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-600/20 dark:text-pink-400 border-0 text-xs font-bold flex-shrink-0">
-                  Professor
-                </Badge>
+                <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                  <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-xs font-bold w-fit">
+                    Professor
+                  </Badge>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline" className="text-[10px] w-fit">
+                      {prof.contract_type === 'clt' ? 'CLT' : prof.contract_type === 'fixed' ? 'Fixo' : 'Por Aula'}
+                      {(prof.contract_type === 'clt' || prof.contract_type === 'fixed') && prof.fixed_salary ? ` (R$ ${Number(prof.fixed_salary).toFixed(2).replace('.', ',')})` : ''}
+                    </Badge>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-6 w-6 text-zinc-400 hover:text-[#e40014]"
+                      onClick={() => {
+                        setEditForm({
+                          id: prof.id,
+                          name: prof.name || "",
+                          email: prof.email || "",
+                          phone: prof.phone || "",
+                          contract_type: prof.contract_type || "per_class",
+                          fixed_salary: prof.fixed_salary ? String(prof.fixed_salary) : ""
+                        })
+                        setIsEditDialogOpen(true)
+                      }}
+                    >
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -349,6 +420,32 @@ export default function ProfessoresPage() {
                 onChange={(e) => setNewForm(f => ({ ...f, phone: e.target.value }))}
               />
             </div>
+            <div>
+              <Label>Tipo de Contrato</Label>
+              <Select value={newForm.contract_type} onValueChange={(v) => setNewForm(f => ({ ...f, contract_type: v }))}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="per_class">Por Aula Ministrada</SelectItem>
+                  <SelectItem value="clt">CLT (Carteira Assinada)</SelectItem>
+                  <SelectItem value="fixed">Fixo (PJ/Autônomo)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {newForm.contract_type !== 'per_class' && (
+              <div>
+                <Label>Salário Fixo Mensal (R$)</Label>
+                <Input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder="0.00"
+                  value={newForm.fixed_salary}
+                  onChange={(e) => setNewForm(f => ({ ...f, fixed_salary: e.target.value }))}
+                />
+              </div>
+            )}
             <div className="flex gap-2 pt-2">
               <Button variant="outline" className="flex-1" onClick={() => setIsNewDialogOpen(false)}>
                 Cancelar
@@ -356,10 +453,88 @@ export default function ProfessoresPage() {
               <Button
                 onClick={handleCreateProfessor}
                 disabled={isSaving || !newForm.name.trim()}
-                className="flex-1 bg-pink-600 hover:bg-pink-700 text-white font-bold"
+                className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                 Cadastrar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+      {/* Diálogo Editar Professor */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Editar Professor</DialogTitle>
+            <DialogDescription>Atualize os dados e o contrato do professor.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="editProfName">Nome *</Label>
+              <Input
+                id="editProfName"
+                placeholder="Nome completo"
+                value={editForm.name}
+                onChange={(e) => setEditForm(f => ({ ...f, name: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="editProfEmail">E-mail</Label>
+              <Input
+                id="editProfEmail"
+                type="email"
+                placeholder="email@exemplo.com"
+                value={editForm.email}
+                onChange={(e) => setEditForm(f => ({ ...f, email: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="editProfPhone">Telefone</Label>
+              <Input
+                id="editProfPhone"
+                placeholder="(00) 00000-0000"
+                value={editForm.phone}
+                onChange={(e) => setEditForm(f => ({ ...f, phone: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label>Tipo de Contrato</Label>
+              <Select value={editForm.contract_type} onValueChange={(v) => setEditForm(f => ({ ...f, contract_type: v }))}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="per_class">Por Aula Ministrada</SelectItem>
+                  <SelectItem value="clt">CLT (Carteira Assinada)</SelectItem>
+                  <SelectItem value="fixed">Fixo (PJ/Autônomo)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {editForm.contract_type !== 'per_class' && (
+              <div>
+                <Label>Salário Fixo Mensal (R$)</Label>
+                <Input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder="0.00"
+                  value={editForm.fixed_salary}
+                  onChange={(e) => setEditForm(f => ({ ...f, fixed_salary: e.target.value }))}
+                />
+              </div>
+            )}
+            <div className="flex gap-2 pt-2">
+              <Button variant="outline" className="flex-1" onClick={() => setIsEditDialogOpen(false)}>
+                Cancelar
+              </Button>
+              <Button
+                onClick={handleEditProfessor}
+                disabled={isSaving || !editForm.name.trim()}
+                className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
+              >
+                {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Check className="w-4 h-4 mr-2" />}
+                Salvar
               </Button>
             </div>
           </div>

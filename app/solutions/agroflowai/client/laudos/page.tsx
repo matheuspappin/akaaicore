@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 const statusConfig: Record<string, { label: string; color: string; bg: string; icon: any }> = {
-  draft:    { label: "Rascunho",   color: "text-slate-400",   bg: "bg-slate-400/10",   icon: Clock },
+  draft:    { label: "Rascunho",   color: "text-zinc-400",   bg: "bg-zinc-400/10",   icon: Clock },
   review:   { label: "Em Revisão", color: "text-amber-400",   bg: "bg-amber-400/10",   icon: AlertTriangle },
   approved: { label: "Aprovado",   color: "text-blue-400",    bg: "bg-blue-400/10",    icon: CheckCircle2 },
   issued:   { label: "Emitido",    color: "text-emerald-400", bg: "bg-emerald-400/10", icon: CheckCircle2 },
@@ -42,16 +42,16 @@ export default function ClientLaudosPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-black text-white tracking-tight">Meus Laudos</h1>
-        <p className="text-slate-400 mt-1">Laudos técnicos e relatórios ambientais da sua propriedade</p>
+        <p className="text-zinc-400 mt-1">Laudos técnicos e relatórios ambientais da sua propriedade</p>
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
         <Input
           placeholder="Buscar laudos..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+          className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
         />
       </div>
 
@@ -60,10 +60,10 @@ export default function ClientLaudosPage() {
           <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <FileText className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">
+            <p className="text-zinc-400 font-semibold text-lg">
               {search ? "Nenhum laudo encontrado" : "Você não possui laudos ainda"}
             </p>
             <p className="text-slate-600 text-sm mt-1">Os laudos técnicos da sua propriedade aparecerão aqui</p>
@@ -75,7 +75,7 @@ export default function ClientLaudosPage() {
             const st = statusConfig[laudo.status] || statusConfig.draft
             const StatusIcon = st.icon
             return (
-              <Card key={laudo.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={laudo.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className="w-11 h-11 rounded-xl bg-violet-600/20 flex items-center justify-center flex-shrink-0">
@@ -83,14 +83,14 @@ export default function ClientLaudosPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                        <span className="text-xs font-black text-slate-500 font-mono">{laudo.code}</span>
+                        <span className="text-xs font-black text-zinc-500 font-mono">{laudo.code}</span>
                         <Badge className={cn("text-[10px] font-bold border-0", st.color, st.bg)}>
                           <StatusIcon className="w-2.5 h-2.5 mr-1" />
                           {st.label}
                         </Badge>
                       </div>
                       <p className="font-bold text-white mb-1 text-sm">{laudo.title}</p>
-                      <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+                      <div className="flex flex-wrap gap-3 text-xs text-zinc-500">
                         {laudo.property && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{laudo.property}</span>}
                         {laudo.engineer && <span className="flex items-center gap-1"><User className="w-3 h-3" />{laudo.engineer}</span>}
                         {laudo.date && <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{laudo.date}</span>}

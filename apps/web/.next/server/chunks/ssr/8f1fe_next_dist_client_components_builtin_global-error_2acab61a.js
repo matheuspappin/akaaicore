@@ -1,5 +1,0 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="28d77632-afe2-23c9-d3bd-17c5657a6ee3")}catch(e){}}();
-module.exports=[99875,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(996236);a.n(d("[project]/node_modules/.pnpm/next@16.0.10_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@19.2.0_react@19.2.0/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},563034,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(996236);a.n(d("[project]/node_modules/.pnpm/next@16.0.10_@babel+core@7.29.0_@opentelemetry+api@1.9.0_react-dom@19.2.0_react@19.2.0/node_modules/next/dist/client/components/builtin/global-error.js"))},124112,a=>{"use strict";a.i(99875);var b=a.i(563034);a.n(b)}];
-
-//# debugId=28d77632-afe2-23c9-d3bd-17c5657a6ee3
-//# sourceMappingURL=8f1fe_next_dist_client_components_builtin_global-error_2acab61a.js.map

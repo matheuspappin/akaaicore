@@ -198,7 +198,7 @@ export default function LeadsPage() {
             <TrendingUp className="w-6 h-6 text-red-600" />
             Leads / CRM
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             {mockLeads.length} leads · R$ {totalPotencial.toLocaleString("pt-BR")} potencial
           </p>
         </div>
@@ -217,19 +217,19 @@ export default function LeadsPage() {
                 "rounded-xl p-3 text-center transition-all border-2",
                 etapaFiltro === et.key
                   ? "border-red-600 bg-red-50 dark:bg-red-600/10"
-                  : "border-transparent bg-white dark:bg-slate-900/50 hover:border-slate-200"
+                  : "border-transparent bg-white dark:bg-zinc-950/50 hover:border-slate-200"
               )}
             >
               <div className={cn("w-2 h-2 rounded-full mx-auto mb-2", et.color)} />
               <p className="text-lg font-black text-slate-900 dark:text-white">{count}</p>
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wide leading-tight">{et.label}</p>
+              <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wide leading-tight">{et.label}</p>
             </button>
           )
         })}
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por empresa ou contato..."
           value={search}
@@ -242,7 +242,7 @@ export default function LeadsPage() {
         {filtered.map((lead) => {
           const etapa = etapas.find(e => e.key === lead.etapa)!
           return (
-            <Card key={lead.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={lead.id} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -256,8 +256,8 @@ export default function LeadsPage() {
                           {etapa.label}
                         </Badge>
                       </div>
-                      <p className="text-xs text-slate-500">{lead.contato} · {lead.origem}</p>
-                      <div className="flex items-center gap-3 mt-1 text-xs text-slate-400">
+                      <p className="text-xs text-zinc-500">{lead.contato} · {lead.origem}</p>
+                      <div className="flex items-center gap-3 mt-1 text-xs text-zinc-400">
                         <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{lead.telefone}</span>
                         <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" />R$ {lead.valor.toLocaleString("pt-BR")}</span>
                         <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{lead.criado}</span>

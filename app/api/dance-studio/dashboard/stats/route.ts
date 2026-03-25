@@ -45,6 +45,9 @@ export async function GET(request: NextRequest) {
       teachersRes,
       classesRes,
       paymentsRes,
+      erpOrdersRes,
+      packagesRes,
+      settingsRes,
     ] = await Promise.all([
       supabase
         .from('students')
@@ -70,15 +73,46 @@ export async function GET(request: NextRequest) {
 
       supabase
         .from('payments')
-        .select('amount, status, payment_date, due_date')
+        .select('amount, status, payment_date, due_date, credits_used')
         .eq('studio_id', studioId),
+
+      supabase
+        .from('erp_orders')
+        .select('total_amount, status, created_at')
+        .eq('studio_id', studioId)
+        .in('status', ['finished', 'paid']),
+
+      supabase
+        .from('lesson_packages')
+        .select('price, lessons_count')
+        .eq('studio_id', studioId)
+        .eq('is_active', true),
+
+      supabase
+        .from('studio_settings')
+        .select('setting_value')
+        .eq('studio_id', studioId)
+        .eq('setting_key', 'pdv_credit_reais_per_unit')
+        .maybeSingle(),
     ])
+
+    // Cálculo da taxa de conversão de créditos (Equivalente em R$)
+    let conversionRate = 70
+    if (settingsRes.data?.setting_value) {
+      conversionRate = parseFloat(settingsRes.data.setting_value)
+    } else {
+      const packages = packagesRes.data || []
+      if (packages.length > 0) {
+        const rates = packages.map((p: any) => (Number(p.price) || 0) / Math.max(1, Number(p.lessons_count) || 1))
+        conversionRate = Math.min(...rates)
+      }
+    }
 
     const studentsCount = studentsRes.count ?? 0
     const teachersCount = teachersRes.count ?? 0
     const classes = classesRes.data ?? []
 
-    // Faturamento: pagamentos paid do mês atual
+    // Faturamento Mensalidades: pagamentos paid do mês atual (incluindo valor equivalente de créditos)
     const payments = paymentsRes.data ?? []
     const monthPaid = payments.filter(
       (p: any) =>
@@ -86,7 +120,18 @@ export async function GET(request: NextRequest) {
         ((p.payment_date && p.payment_date.startsWith(currentMonth)) ||
           (p.due_date && p.due_date.startsWith(currentMonth)))
     )
-    const faturamento = monthPaid.reduce((s: number, p: any) => s + Number(p.amount || 0), 0)
+    const faturamentoMensalidades = monthPaid.reduce((s: number, p: any) => {
+      const amount = Number(p.amount || 0)
+      const creditValue = (Number(p.credits_used) || 0) * conversionRate
+      return s + amount + (amount === 0 ? creditValue : 0)
+    }, 0)
+
+    // Faturamento ERP (PDV/Marketplace): pedidos finished do mês atual
+    const erpOrders = erpOrdersRes.data ?? []
+    const monthERP = erpOrders.filter((o: any) => o.created_at && o.created_at.startsWith(currentMonth))
+    const faturamentoERP = monthERP.reduce((s: number, o: any) => s + Number(o.total_amount || 0), 0)
+
+    const faturamento = faturamentoMensalidades + faturamentoERP
 
     // Mês anterior para crescimento
     const prevMonthPaid = payments.filter(
@@ -95,7 +140,17 @@ export async function GET(request: NextRequest) {
         ((p.payment_date && p.payment_date.startsWith(prevMonth)) ||
           (p.due_date && p.due_date.startsWith(prevMonth)))
     )
-    const faturamentoAnterior = prevMonthPaid.reduce((s: number, p: any) => s + Number(p.amount || 0), 0)
+    const faturamentoMensalidadesAnterior = prevMonthPaid.reduce((s: number, p: any) => {
+      const amount = Number(p.amount || 0)
+      const creditValue = (Number(p.credits_used) || 0) * conversionRate
+      return s + amount + (amount === 0 ? creditValue : 0)
+    }, 0)
+
+    const prevMonthERP = erpOrders.filter((o: any) => o.created_at && o.created_at.startsWith(prevMonth))
+    const faturamentoERPAnterior = prevMonthERP.reduce((s: number, o: any) => s + Number(o.total_amount || 0), 0)
+
+    const faturamentoAnterior = faturamentoMensalidadesAnterior + faturamentoERPAnterior
+
     const growthPercent =
       faturamentoAnterior > 0
         ? Math.round(((faturamento - faturamentoAnterior) / faturamentoAnterior) * 100)

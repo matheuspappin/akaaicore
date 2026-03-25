@@ -68,10 +68,10 @@ export default function ClientPerfilPage() {
     <div className="space-y-6 max-w-xl">
       <div>
         <h1 className="text-3xl font-black text-white tracking-tight">Meu Perfil</h1>
-        <p className="text-slate-400 mt-1">Gerencie seus dados pessoais e segurança</p>
+        <p className="text-zinc-400 mt-1">Gerencie seus dados pessoais e segurança</p>
       </div>
 
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-zinc-950/50 border-zinc-800">
         <CardHeader>
           <CardTitle className="text-white text-base flex items-center gap-2">
             <User className="w-4 h-4 text-emerald-400" /> Dados Pessoais
@@ -80,25 +80,25 @@ export default function ClientPerfilPage() {
         <CardContent>
           <form onSubmit={handleSaveProfile} className="space-y-4">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nome Completo</label>
+              <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome Completo</label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                <Input value={name} onChange={e => setName(e.target.value)} placeholder="Seu nome" className="pl-10 bg-slate-800 border-slate-700 text-white rounded-xl" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Input value={name} onChange={e => setName(e.target.value)} placeholder="Seu nome" className="pl-10 bg-zinc-900 border-slate-700 text-white rounded-xl" />
               </div>
             </div>
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email</label>
+              <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                <Input value={email} disabled className="pl-10 bg-slate-800/50 border-slate-700 text-slate-500 rounded-xl cursor-not-allowed" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Input value={email} disabled className="pl-10 bg-zinc-900/50 border-slate-700 text-zinc-500 rounded-xl cursor-not-allowed" />
               </div>
               <p className="text-xs text-slate-600">Email não pode ser alterado</p>
             </div>
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Telefone / WhatsApp</label>
+              <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Telefone / WhatsApp</label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                <Input value={phone} onChange={e => setPhone(e.target.value)} placeholder="(00) 00000-0000" className="pl-10 bg-slate-800 border-slate-700 text-white rounded-xl" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Input value={phone} onChange={e => setPhone(e.target.value)} placeholder="(00) 00000-0000" className="pl-10 bg-zinc-900 border-slate-700 text-white rounded-xl" />
               </div>
             </div>
             <Button type="submit" disabled={saving} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl">
@@ -108,7 +108,7 @@ export default function ClientPerfilPage() {
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-zinc-950/50 border-zinc-800">
         <CardHeader>
           <CardTitle className="text-white text-base flex items-center gap-2">
             <Lock className="w-4 h-4 text-violet-400" /> Alterar Senha
@@ -117,8 +117,8 @@ export default function ClientPerfilPage() {
         <CardContent>
           <form onSubmit={handleChangePassword} className="space-y-4">
             <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nova Senha</label>
-              <Input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Mínimo 6 caracteres" className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+              <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nova Senha</label>
+              <Input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Mínimo 6 caracteres" className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
             </div>
             <Button type="submit" disabled={savingPass} className="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl">
               {savingPass ? <Loader2 className="w-4 h-4 animate-spin" /> : "Alterar Senha"}

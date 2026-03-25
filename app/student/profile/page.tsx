@@ -184,7 +184,7 @@ export default function StudentProfile() {
   if (isLoading) return null
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-20">
       <div className="sticky top-0 bg-background/95 backdrop-blur z-50 border-b">
         <div className="container flex h-16 items-center px-4 gap-4">
           <Button type="button" variant="ghost" size="icon" onClick={() => window.location.href='/student'}>
@@ -237,14 +237,14 @@ export default function StudentProfile() {
                 </Button>
               </div>
               <div className="flex items-center gap-2 text-sm font-medium">
-                <Phone className="w-4 h-4 text-slate-400" />
+                <Phone className="w-4 h-4 text-zinc-400" />
                 <span>{student?.phone || "Não informado"}</span>
               </div>
             </div>
             <div className="space-y-1">
               <Label className="text-[10px] text-muted-foreground uppercase">Data de Nascimento</Label>
               <div className="flex items-center gap-2 text-sm font-medium">
-                <Calendar className="w-4 h-4 text-slate-400" />
+                <Calendar className="w-4 h-4 text-zinc-400" />
                 <span>{student?.birth_date ? new Date(student.birth_date).toLocaleDateString('pt-BR') : "Não informada"}</span>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function StudentProfile() {
                 </Button>
               </div>
               <div className="flex items-center gap-2 text-sm font-medium">
-                <MapPin className="w-4 h-4 text-slate-400" />
+                <MapPin className="w-4 h-4 text-zinc-400" />
                 <span className="line-clamp-2">{student?.address || "Não informado"}</span>
               </div>
             </div>
@@ -274,23 +274,23 @@ export default function StudentProfile() {
         {/* Segurança e Configurações */}
         <div className="space-y-3">
           <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground px-1">Configurações</h3>
-          <Button variant="ghost" className="w-full justify-between bg-white dark:bg-slate-900 h-14 px-4 hover:bg-slate-50 border-none shadow-sm">
+          <Button variant="ghost" className="w-full justify-between bg-white dark:bg-zinc-950 h-14 px-4 hover:bg-slate-50 border-none shadow-sm">
             <div className="flex items-center gap-3">
               <Shield className="w-5 h-5 text-indigo-500" />
               <span className="text-sm font-bold">Privacidade e Segurança</span>
             </div>
             <ChevronRight className="w-4 h-4 text-slate-300" />
           </Button>
-          <Button variant="ghost" className="w-full justify-between bg-white dark:bg-slate-900 h-14 px-4 hover:bg-slate-50 border-none shadow-sm">
+          <Button variant="ghost" className="w-full justify-between bg-white dark:bg-zinc-950 h-14 px-4 hover:bg-slate-50 border-none shadow-sm">
             <div className="flex items-center gap-3">
-              <Settings className="w-5 h-5 text-slate-500" />
+              <Settings className="w-5 h-5 text-zinc-500" />
               <span className="text-sm font-bold">Preferências do App</span>
             </div>
             <ChevronRight className="w-4 h-4 text-slate-300" />
           </Button>
           <Button 
             variant="ghost" 
-            className="w-full justify-between bg-white dark:bg-slate-900 h-14 px-4 hover:bg-red-50 text-red-600 border-none shadow-sm"
+            className="w-full justify-between bg-white dark:bg-zinc-950 h-14 px-4 hover:bg-red-50 text-red-600 border-none shadow-sm"
             onClick={handleLogout}
           >
             <div className="flex items-center gap-3">
@@ -302,7 +302,7 @@ export default function StudentProfile() {
       </main>
 
       {/* Tab Bar Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t flex items-center justify-around h-16 px-4 z-50">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-950 border-t flex items-center justify-around h-16 px-4 z-50">
         <Button type="button" variant="ghost" className="flex flex-col gap-1 text-muted-foreground" onClick={() => window.location.href='/student'}>
           <LayoutDashboardIcon className="w-5 h-5" />
           <span className="text-[10px]">Início</span>

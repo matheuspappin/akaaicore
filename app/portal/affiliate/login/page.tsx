@@ -199,7 +199,7 @@ function AffiliateLoginContent() {
               </form>
               
               <div className="mt-6 text-center">
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-zinc-500">
                   Não é afiliado ainda?{" "}
                   <Link href="/portal/affiliate/register" className="font-bold text-primary hover:underline">
                     Criar uma conta

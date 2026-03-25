@@ -191,27 +191,27 @@ export default function StudentPerfilPage() {
   return (
     <div className="space-y-6 max-w-xl pb-20 md:pb-0">
       <div>
-        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-          <UserCircle className="w-6 h-6 text-violet-600" />
+        <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+          <UserCircle className="w-6 h-6 text-[#e40014]" />
           Meu Perfil
         </h1>
-        <p className="text-slate-500 text-sm mt-1">Seus dados pessoais</p>
+        <p className="text-zinc-500 text-sm mt-1">Seus dados pessoais</p>
       </div>
 
       {/* Avatar + Info */}
       <div className="flex items-center gap-4">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-violet-600/20">
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-500 to-purple-600 flex items-center justify-center text-white text-3xl font-black shadow-lg shadow-red-600/20">
           {form.name?.[0]?.toUpperCase() || "A"}
         </div>
         <div>
-          <p className="font-black text-slate-900 dark:text-white text-lg">{form.name || "Aluno"}</p>
-          <p className="text-sm text-slate-500">{form.email}</p>
+          <p className="font-black text-white dark:text-white text-lg">{form.name || "Aluno"}</p>
+          <p className="text-sm text-zinc-500">{form.email}</p>
           <div className="flex items-center gap-2 mt-1 flex-wrap">
-            <span className="inline-block px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-600/20 text-violet-700 dark:text-violet-400 text-[10px] font-black uppercase tracking-widest">
+            <span className="inline-block px-2 py-0.5 rounded-full bg-[#e40014] dark:bg-[#e40014] text-[#e40014] dark:text-[#e40014] text-[10px] font-black uppercase tracking-widest">
               Aluno
             </span>
             {vinculo.linked && vinculo.studio && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-pink-100 dark:bg-pink-600/20 text-pink-700 dark:text-pink-400 text-[10px] font-black uppercase tracking-widest">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#e40014] dark:bg-[#e40014] text-[#e40014] dark:text-[#e40014] text-[10px] font-black uppercase tracking-widest">
                 <Building2 className="w-3 h-3" />
                 {vinculo.studio.name}
               </span>
@@ -221,51 +221,51 @@ export default function StudentPerfilPage() {
       </div>
 
       {/* Vínculo com Estúdio */}
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+      <Card className="bg-white/5 dark:bg-black/50 shadow-sm border border-white/10 dark:border-white/10">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-violet-600" />
+              <Building2 className="w-4 h-4 text-[#e40014]" />
               Estúdio Vinculado
             </CardTitle>
             <Button
               variant="ghost"
               size="icon"
-              className="w-8 h-8 text-slate-400 hover:text-slate-700"
+              className="w-8 h-8 text-zinc-400 hover:text-zinc-400"
               onClick={loadVinculo}
               disabled={loadingVinculo}
             >
               <RefreshCw className={cn("w-3.5 h-3.5", loadingVinculo && "animate-spin")} />
             </Button>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
             Vincule-se a um estúdio para acessar turmas e aulas
           </p>
         </CardHeader>
         <CardContent>
           {loadingVinculo ? (
             <div className="flex items-center justify-center py-6">
-              <Loader2 className="w-5 h-5 animate-spin text-violet-600" />
+              <Loader2 className="w-5 h-5 animate-spin text-[#e40014]" />
             </div>
           ) : vinculo.linked && vinculo.studio ? (
             <div className="space-y-4">
-              <div className="flex items-start gap-3 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-600/10 border border-emerald-200 dark:border-emerald-600/20">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-600/20 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-emerald-600" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-red- dark:bg-[#e40014] border border-red- dark:border-[#e40014]">
+                <div className="w-10 h-10 rounded-xl bg-red- dark:bg-[#e40014] flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-red-" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-emerald-800 dark:text-emerald-400 text-sm">Vinculado com sucesso</p>
-                  <p className="text-emerald-700 dark:text-emerald-300 font-black text-base mt-0.5 truncate">
+                  <p className="font-bold text-red- dark:text-red- text-sm">Vinculado com sucesso</p>
+                  <p className="text-red- dark:text-red- font-black text-base mt-0.5 truncate">
                     {vinculo.studio.name}
                   </p>
-                  <p className="text-emerald-600/70 text-xs mt-1">
+                  <p className="text-[#e40014] text-xs mt-1">
                     Você tem acesso às turmas e aulas deste estúdio
                   </p>
                 </div>
               </div>
               <Button
                 variant="outline"
-                className="w-full text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 font-bold rounded-xl"
+                className="w-full text-[#e40014] border-[#e40014] hover:bg-[#e40014] hover:border-[#e40014] font-bold rounded-xl"
                 onClick={handleDesvincular}
                 disabled={desvinculando}
               >
@@ -279,22 +279,22 @@ export default function StudentPerfilPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="flex items-start gap-3 p-4 rounded-xl bg-amber-50 dark:bg-amber-600/10 border border-amber-200 dark:border-amber-600/20">
-                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-red- dark:bg-[#e40014] border border-red- dark:border-[#e40014]">
+                <AlertCircle className="w-5 h-5 text-red- flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-amber-800 dark:text-amber-400 text-sm">Nenhum estúdio vinculado</p>
-                  <p className="text-amber-700/80 dark:text-amber-300/80 text-xs mt-0.5">
+                  <p className="font-bold text-red- dark:text-red- text-sm">Nenhum estúdio vinculado</p>
+                  <p className="text-[#e40014] dark:text-[#e40014] text-xs mt-0.5">
                     Solicite o código de aluno ao administrador do estúdio e insira abaixo.
                   </p>
                 </div>
               </div>
               <div>
-                <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">
                   Código de Convite (Aluno)
                 </Label>
                 <div className="flex gap-2 mt-1.5">
                   <div className="relative flex-1">
-                    <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                     <Input
                       className="pl-9 font-mono uppercase tracking-widest"
                       value={inviteCode}
@@ -304,7 +304,7 @@ export default function StudentPerfilPage() {
                     />
                   </div>
                   <Button
-                    className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl px-5"
+                    className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl px-5"
                     onClick={handleVincular}
                     disabled={vinculando || !inviteCode.trim()}
                   >
@@ -315,12 +315,12 @@ export default function StudentPerfilPage() {
                     )}
                   </Button>
                 </div>
-                <p className="text-xs text-slate-400 mt-1.5">
+                <p className="text-xs text-zinc-400 mt-1.5">
                   O código é fornecido pelo administrador do estúdio no painel DanceFlow.
                 </p>
               </div>
               <Button
-                className="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl"
+                className="w-full bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl"
                 onClick={handleVincular}
                 disabled={vinculando || !inviteCode.trim()}
               >
@@ -337,44 +337,44 @@ export default function StudentPerfilPage() {
       </Card>
 
       {/* Form de Perfil */}
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
         <CardHeader>
-          <CardTitle className="text-base font-bold text-slate-900 dark:text-white">Dados Pessoais</CardTitle>
+          <CardTitle className="text-base font-bold text-white dark:text-white">Dados Pessoais</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Nome Completo</Label>
+            <Label className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">Nome Completo</Label>
             <Input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/10 rounded-xl h-11"
+              className="bg-black dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11"
             />
           </div>
           <div className="space-y-2">
-            <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1">
+            <Label className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1">
               <Mail className="w-3 h-3" /> E-mail
             </Label>
             <Input
               value={form.email}
               disabled
-              className="bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 rounded-xl h-11 opacity-60 cursor-not-allowed"
+              className="bg-slate-100 dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11 opacity-60 cursor-not-allowed"
             />
           </div>
           <div className="space-y-2">
-            <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1">
+            <Label className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1">
               <Phone className="w-3 h-3" /> WhatsApp
             </Label>
             <Input
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder="(00) 00000-0000"
-              className="bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/10 rounded-xl h-11"
+              className="bg-black dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11"
             />
           </div>
           <Button
             onClick={handleSave}
             disabled={saving}
-            className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl w-full h-11"
+            className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl w-full h-11"
           >
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             {saving ? "Salvando..." : "Salvar Alterações"}

@@ -131,7 +131,7 @@ export function BarcodeScanner({ onScanSuccess, isOpen, onClose }: BarcodeScanne
         
         <div className="flex flex-col items-center justify-center min-h-[300px] p-4 bg-muted/20 rounded-lg relative overflow-hidden">
           {error ? (
-            <div className="text-center text-red-500">
+            <div className="text-center text-[#e40014]">
               <p>{error}</p>
               <Button variant="outline" className="mt-4" onClick={() => { setError(null); startScanner(); }}>
                 <RefreshCw className="w-4 h-4 mr-2" /> Tentar Novamente
@@ -141,7 +141,7 @@ export function BarcodeScanner({ onScanSuccess, isOpen, onClose }: BarcodeScanne
             <>
               <div id="reader" className="w-full h-full rounded-lg overflow-hidden"></div>
               {/* Linha de Scanner Visual */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[2px] bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)] animate-pulse z-10 pointer-events-none"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[2px] bg-[#e40014] shadow-[0_0_8px_rgba(239,68,68,0.8)] animate-pulse z-10 pointer-events-none"></div>
             </>
           )}
           <p className="text-xs text-muted-foreground mt-4 text-center px-4">

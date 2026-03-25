@@ -90,7 +90,7 @@ export default function TecnicosPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Técnicos de Campo</h1>
-          <p className="text-slate-400 mt-1">Gerencie os técnicos ambientais que atuam em campo</p>
+          <p className="text-zinc-400 mt-1">Gerencie os técnicos ambientais que atuam em campo</p>
         </div>
         <Button
           onClick={handleCopyInvite}
@@ -102,12 +102,12 @@ export default function TecnicosPage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
         <Input
           placeholder="Buscar técnicos..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+          className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
         />
       </div>
 
@@ -117,10 +117,10 @@ export default function TecnicosPage() {
           { label: "Ativos", value: String(tecnicos.filter(t => t.status === "active").length), color: "text-emerald-400" },
           { label: "Em Campo Hoje", value: "0", color: "text-orange-400" },
         ].map(s => (
-          <Card key={s.label} className="bg-slate-900/50 border-slate-800">
+          <Card key={s.label} className="bg-zinc-950/50 border-zinc-800">
             <CardContent className="p-4">
               <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{s.label}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -131,10 +131,10 @@ export default function TecnicosPage() {
           <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <Wrench className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">
+            <p className="text-zinc-400 font-semibold text-lg">
               {search ? "Nenhum técnico encontrado" : "Nenhum técnico cadastrado ainda"}
             </p>
             <p className="text-slate-600 text-sm mt-2">
@@ -145,7 +145,7 @@ export default function TecnicosPage() {
       ) : (
         <div className="space-y-3">
           {filtered.map((tec) => (
-            <Card key={tec.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+            <Card key={tec.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
                   <div className="w-11 h-11 rounded-xl bg-blue-600/20 flex items-center justify-center flex-shrink-0">
@@ -156,12 +156,12 @@ export default function TecnicosPage() {
                       <p className="font-bold text-white truncate">{tec.name}</p>
                       <Badge className={cn(
                         "text-[10px] font-bold border-0 flex-shrink-0",
-                        tec.status === "active" ? "text-emerald-400 bg-emerald-400/10" : "text-slate-400 bg-slate-400/10"
+                        tec.status === "active" ? "text-emerald-400 bg-emerald-400/10" : "text-zinc-400 bg-zinc-400/10"
                       )}>
                         {tec.status === "active" ? "Ativo" : "Inativo"}
                       </Badge>
                     </div>
-                    <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+                    <div className="flex flex-wrap gap-3 text-xs text-zinc-500">
                       {tec.email && <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{tec.email}</span>}
                       {tec.phone && <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{tec.phone}</span>}
                       {tec.region && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{tec.region}</span>}
@@ -170,7 +170,7 @@ export default function TecnicosPage() {
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
                     <div className="text-right hidden sm:block">
-                      <p className="text-xs text-slate-500">OS</p>
+                      <p className="text-xs text-zinc-500">OS</p>
                       <p className="font-black text-white">{tec.total_os || 0}</p>
                     </div>
                     <ChevronRight className="w-4 h-4 text-slate-600" />

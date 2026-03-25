@@ -105,17 +105,17 @@ function ReciboDialog({
         </DialogHeader>
         <div className="space-y-4">
           {/* Código da venda */}
-          <div className="text-center py-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-            <p className="text-xs text-slate-400 uppercase tracking-widest font-bold mb-1">Código da Venda</p>
+          <div className="text-center py-3 bg-slate-50 dark:bg-zinc-900/50 rounded-xl">
+            <p className="text-xs text-zinc-400 uppercase tracking-widest font-bold mb-1">Código da Venda</p>
             <p className="text-2xl font-black text-slate-900 dark:text-white tracking-wider">{sale.tracking_code}</p>
           </div>
 
           {/* Cliente */}
           {customer && (
-            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400">
               <User className="w-4 h-4" />
               <span>{customer.name}</span>
-              {customer.phone && <span className="text-slate-400">· {customer.phone}</span>}
+              {customer.phone && <span className="text-zinc-400">· {customer.phone}</span>}
             </div>
           )}
 
@@ -147,7 +147,7 @@ function ReciboDialog({
               <span>Total</span>
               <span>{formatCurrency(sale.total_amount)}</span>
             </div>
-            <div className="flex justify-between text-slate-500">
+            <div className="flex justify-between text-zinc-500">
               <span>Forma de pagamento</span>
               <span className="font-bold">{payLabels[sale.payment_method] ?? sale.payment_method}</span>
             </div>
@@ -221,9 +221,9 @@ function HistoricoVendas({ studioId }: { studioId: string }) {
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-white/10">
+        <Card className="bg-slate-50 dark:bg-zinc-900/50 border-slate-200 dark:border-white/10">
           <CardContent className="p-4">
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-wide mb-1">Ticket Médio</p>
+            <p className="text-xs text-zinc-500 font-bold uppercase tracking-wide mb-1">Ticket Médio</p>
             <p className="text-2xl font-black text-slate-700 dark:text-slate-300">
               {sales.length > 0 ? formatCurrency(totalHoje / Math.max(1, sales.filter((s) => new Date(s.created_at).toDateString() === new Date().toDateString()).length)) : formatCurrency(0)}
             </p>
@@ -233,12 +233,12 @@ function HistoricoVendas({ studioId }: { studioId: string }) {
 
       {/* Lista de vendas */}
       {loading ? (
-        <div className="flex items-center justify-center py-12 text-slate-400">
+        <div className="flex items-center justify-center py-12 text-zinc-400">
           <Loader2 className="w-5 h-5 animate-spin mr-2" />
           <span className="text-sm">Carregando histórico...</span>
         </div>
       ) : sales.length === 0 ? (
-        <div className="text-center py-12 text-slate-400">
+        <div className="text-center py-12 text-zinc-400">
           <History className="w-10 h-10 mx-auto mb-2 opacity-20" />
           <p className="text-sm font-medium">Nenhuma venda realizada ainda</p>
         </div>
@@ -247,7 +247,7 @@ function HistoricoVendas({ studioId }: { studioId: string }) {
           {sales.map((sale) => {
             const PayIcon = payIcons[sale.payment_method] ?? Banknote
             return (
-              <Card key={sale.id} className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10">
+              <Card key={sale.id} className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
@@ -260,10 +260,10 @@ function HistoricoVendas({ studioId }: { studioId: string }) {
                             {sale.tracking_code}
                           </span>
                           {sale.customer && (
-                            <span className="text-sm text-slate-600 dark:text-slate-400">{sale.customer.name}</span>
+                            <span className="text-sm text-slate-600 dark:text-zinc-400">{sale.customer.name}</span>
                           )}
                         </div>
-                        <p className="text-xs text-slate-400 mt-0.5">
+                        <p className="text-xs text-zinc-400 mt-0.5">
                           {new Date(sale.created_at).toLocaleString('pt-BR', {
                             day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
                           })}
@@ -325,22 +325,22 @@ function LembretesVendas({ studioId }: { studioId: string }) {
           <Bell className="w-5 h-5 text-amber-500" />
           Lembretes de Vendas
         </h2>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
           Lembretes de pagamento e follow-up enviados via WhatsApp
         </p>
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center py-12 text-slate-400">
+        <div className="flex items-center justify-center py-12 text-zinc-400">
           <Loader2 className="w-5 h-5 animate-spin mr-2" />
           <span className="text-sm">Carregando lembretes...</span>
         </div>
       ) : reminders.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10">
+        <Card className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10">
           <CardContent className="py-16 text-center">
             <Bell className="w-12 h-12 mx-auto mb-3 text-slate-300 dark:text-slate-600" />
-            <p className="font-medium text-slate-600 dark:text-slate-400">Nenhum lembrete agendado</p>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="font-medium text-slate-600 dark:text-zinc-400">Nenhum lembrete agendado</p>
+            <p className="text-sm text-zinc-500 mt-1">
               Ao finalizar vendas com "Pagar depois" e cliente selecionado, você pode marcar para enviar lembrete em 1 dia.
             </p>
           </CardContent>
@@ -360,7 +360,7 @@ function LembretesVendas({ studioId }: { studioId: string }) {
                         <p className="font-bold text-slate-900 dark:text-white">
                           {(r as any).students?.name || 'Cliente'} · {(r as any).service_orders?.tracking_code || '—'}
                         </p>
-                        <p className="text-xs text-slate-500 mt-0.5">
+                        <p className="text-xs text-zinc-500 mt-0.5">
                           {typeLabels[r.reminder_type] || r.reminder_type} — Envio: {formatDate(r.scheduled_at)}
                         </p>
                       </div>
@@ -380,13 +380,13 @@ function LembretesVendas({ studioId }: { studioId: string }) {
               </h3>
               <div className="space-y-2">
                 {sent.slice(0, 20).map((r) => (
-                  <Card key={r.id} className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10">
+                  <Card key={r.id} className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10">
                     <CardContent className="p-4 flex items-center justify-between gap-3">
                       <div>
                         <p className="font-bold text-slate-900 dark:text-white">
                           {(r as any).students?.name || 'Cliente'} · {(r as any).service_orders?.tracking_code || '—'}
                         </p>
-                        <p className="text-xs text-slate-500 mt-0.5">
+                        <p className="text-xs text-zinc-500 mt-0.5">
                           {typeLabels[r.reminder_type] || r.reminder_type} — Enviado em {formatDate(r.sent_at)}
                         </p>
                       </div>
@@ -584,7 +584,7 @@ export default function PDVPage() {
             <ShoppingCart className="w-6 h-6 text-red-600" />
             PDV — Ponto de Venda
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Venda rápida de produtos e serviços contra incêndio
           </p>
         </div>
@@ -611,14 +611,14 @@ export default function PDVPage() {
             <div className="space-y-4">
 
               {/* Busca de cliente */}
-              <Card className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10">
+              <Card className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-1">
-                    <User className="w-4 h-4 text-slate-400" />
+                    <User className="w-4 h-4 text-zinc-400" />
                     <Label className="text-sm font-bold">Cliente</Label>
                     {selectedCustomer && (
                       <button onClick={() => { setSelectedCustomer(null); setCustomerSearch("") }}
-                        className="ml-auto text-slate-400 hover:text-red-600 transition-colors">
+                        className="ml-auto text-zinc-400 hover:text-red-600 transition-colors">
                         <X className="w-4 h-4" />
                       </button>
                     )}
@@ -639,7 +639,7 @@ export default function PDVPage() {
                     </div>
                   ) : (
                     <div className="relative">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                       <Input
                         placeholder="Buscar cliente por nome ou telefone..."
                         className="pl-9"
@@ -648,7 +648,7 @@ export default function PDVPage() {
                         onFocus={() => setShowCustomerDropdown(true)}
                       />
                       {showCustomerDropdown && customers.length > 0 && (
-                        <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl shadow-xl overflow-hidden">
+                        <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-white dark:bg-zinc-950 border border-slate-200 dark:border-white/10 rounded-xl shadow-xl overflow-hidden">
                           {customers.map((c) => (
                             <button
                               key={c.id}
@@ -659,8 +659,8 @@ export default function PDVPage() {
                                 {c.name.charAt(0)}
                               </div>
                               <div>
-                                <p className="text-sm font-bold text-slate-800 dark:text-slate-200">{c.name}</p>
-                                {c.phone && <p className="text-xs text-slate-400">{c.phone}</p>}
+                                <p className="text-sm font-bold text-zinc-800 dark:text-slate-200">{c.name}</p>
+                                {c.phone && <p className="text-xs text-zinc-400">{c.phone}</p>}
                               </div>
                             </button>
                           ))}
@@ -672,11 +672,11 @@ export default function PDVPage() {
               </Card>
 
               {/* Catálogo */}
-              <Card className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10">
+              <Card className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10">
                 <CardContent className="p-4">
                   {/* Busca do catálogo */}
                   <div className="relative mb-3">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                     <Input
                       placeholder="Buscar produto ou serviço..."
                       className="pl-9"
@@ -693,7 +693,7 @@ export default function PDVPage() {
                         "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-all",
                         catalogTab === "produto"
                           ? "bg-red-600 text-white"
-                          : "text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
+                          : "text-zinc-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
                       )}
                     >
                       <Package className="w-3.5 h-3.5" />
@@ -705,7 +705,7 @@ export default function PDVPage() {
                         "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-all",
                         catalogTab === "servico"
                           ? "bg-red-600 text-white"
-                          : "text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
+                          : "text-zinc-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
                       )}
                     >
                       <Wrench className="w-3.5 h-3.5" />
@@ -714,7 +714,7 @@ export default function PDVPage() {
                   </div>
 
                   {catalogLoading ? (
-                    <div className="flex items-center justify-center py-10 text-slate-400">
+                    <div className="flex items-center justify-center py-10 text-zinc-400">
                       <Loader2 className="w-5 h-5 animate-spin mr-2" />
                       <span className="text-sm">Carregando catálogo...</span>
                     </div>
@@ -724,7 +724,7 @@ export default function PDVPage() {
                         <button
                           key={`${item.item_type}-${item.id}`}
                           onClick={() => addToCart(item)}
-                          className="group flex flex-col gap-1 p-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 hover:border-red-300 dark:hover:border-red-600/50 hover:shadow-md transition-all text-left"
+                          className="group flex flex-col gap-1 p-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950/50 hover:border-red-300 dark:hover:border-red-600/50 hover:shadow-md transition-all text-left"
                         >
                           <div className={cn(
                             "w-8 h-8 rounded-lg flex items-center justify-center mb-1",
@@ -737,10 +737,10 @@ export default function PDVPage() {
                               : <Wrench className="w-4 h-4 text-orange-600" />
                             }
                           </div>
-                          <p className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight line-clamp-2">
+                          <p className="text-xs font-bold text-zinc-800 dark:text-slate-200 leading-tight line-clamp-2">
                             {item.name}
                           </p>
-                          <p className="text-xs text-slate-400">{item.category}</p>
+                          <p className="text-xs text-zinc-400">{item.category}</p>
                           <p className="text-sm font-black text-red-600 mt-auto">
                             {formatCurrency(item.price)}
                           </p>
@@ -752,7 +752,7 @@ export default function PDVPage() {
                         </button>
                       ))}
                       {(catalogTab === "produto" ? catalog.products : catalog.services).length === 0 && (
-                        <div className="col-span-3 text-center py-8 text-slate-400">
+                        <div className="col-span-3 text-center py-8 text-zinc-400">
                           <Package className="w-8 h-8 mx-auto mb-2 opacity-20" />
                           <p className="text-sm">Nenhum item encontrado</p>
                         </div>
@@ -765,7 +765,7 @@ export default function PDVPage() {
 
             {/* Coluna direita: Carrinho ───────────────────────────────────── */}
             <div className="space-y-4">
-              <Card className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10 sticky top-4">
+              <Card className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10 sticky top-4">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center justify-between text-base">
                     <span className="flex items-center gap-2">
@@ -782,7 +782,7 @@ export default function PDVPage() {
                 <CardContent className="space-y-4">
                   {/* Itens do carrinho */}
                   {cart.length === 0 ? (
-                    <div className="text-center py-8 text-slate-400">
+                    <div className="text-center py-8 text-zinc-400">
                       <ShoppingCart className="w-10 h-10 mx-auto mb-2 opacity-20" />
                       <p className="text-sm font-medium">Carrinho vazio</p>
                       <p className="text-xs mt-1">Clique nos itens do catálogo para adicionar</p>
@@ -792,7 +792,7 @@ export default function PDVPage() {
                       {cart.map((item) => (
                         <div
                           key={`${item.item_type}-${item.id}`}
-                          className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50"
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-zinc-900/50"
                         >
                           <div className={cn(
                             "w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0",
@@ -803,9 +803,9 @@ export default function PDVPage() {
                               : <Wrench className="w-3.5 h-3.5 text-orange-600" />}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">{item.name}</p>
+                            <p className="text-xs font-bold text-zinc-800 dark:text-slate-200 truncate">{item.name}</p>
                             <div className="flex items-center gap-1 mt-0.5">
-                              <span className="text-xs text-slate-400">R$</span>
+                              <span className="text-xs text-zinc-400">R$</span>
                               <input
                                 type="number"
                                 className="text-xs font-bold text-slate-700 dark:text-slate-300 w-14 bg-transparent border-b border-dashed border-slate-300 dark:border-white/20 focus:outline-none focus:border-red-400"
@@ -855,7 +855,7 @@ export default function PDVPage() {
 
                       {/* Desconto */}
                       <div className="space-y-2">
-                        <Label className="text-xs font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1">
+                        <Label className="text-xs font-bold text-slate-600 dark:text-zinc-400 flex items-center gap-1">
                           <Tag className="w-3.5 h-3.5" />Desconto
                         </Label>
                         <div className="flex gap-2">
@@ -866,7 +866,7 @@ export default function PDVPage() {
                                 "px-2.5 py-1.5 font-bold transition-colors",
                                 discountType === "valor"
                                   ? "bg-red-600 text-white"
-                                  : "text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5"
+                                  : "text-zinc-500 hover:bg-slate-50 dark:hover:bg-white/5"
                               )}
                             >R$</button>
                             <button
@@ -875,7 +875,7 @@ export default function PDVPage() {
                                 "px-2.5 py-1.5 font-bold transition-colors",
                                 discountType === "percent"
                                   ? "bg-red-600 text-white"
-                                  : "text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5"
+                                  : "text-zinc-500 hover:bg-slate-50 dark:hover:bg-white/5"
                               )}
                             >%</button>
                           </div>
@@ -899,7 +899,7 @@ export default function PDVPage() {
 
                       {/* Totais */}
                       <div className="space-y-1.5 text-sm">
-                        <div className="flex justify-between text-slate-500">
+                        <div className="flex justify-between text-zinc-500">
                           <span>Subtotal</span>
                           <span>{formatCurrency(subtotal)}</span>
                         </div>
@@ -917,7 +917,7 @@ export default function PDVPage() {
 
                       {/* Formas de pagamento */}
                       <div className="space-y-2">
-                        <Label className="text-xs font-bold text-slate-600 dark:text-slate-400">
+                        <Label className="text-xs font-bold text-slate-600 dark:text-zinc-400">
                           Forma de Pagamento
                         </Label>
                         <div className="grid grid-cols-3 gap-1.5">
@@ -929,7 +929,7 @@ export default function PDVPage() {
                                 "flex flex-col items-center gap-1 p-2 rounded-xl border text-xs font-bold transition-all",
                                 payMethod === pm.key
                                   ? "border-red-600 bg-red-50 dark:bg-red-600/10 text-red-700 dark:text-red-400"
-                                  : "border-slate-200 dark:border-white/10 text-slate-500 hover:border-slate-300"
+                                  : "border-slate-200 dark:border-white/10 text-zinc-500 hover:border-slate-300"
                               )}
                             >
                               <pm.icon className="w-4 h-4" />
@@ -957,7 +957,7 @@ export default function PDVPage() {
                       {/* Valor pago (para calcular troco no dinheiro) - ocultar quando Pagar depois */}
                       {payMethod === "dinheiro" && (
                         <div className="space-y-1">
-                          <Label className="text-xs font-bold text-slate-600 dark:text-slate-400">
+                          <Label className="text-xs font-bold text-slate-600 dark:text-zinc-400">
                             Valor recebido
                           </Label>
                           <Input

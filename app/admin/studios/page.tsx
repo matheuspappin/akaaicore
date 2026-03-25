@@ -135,7 +135,7 @@ export default function TenantsPage() {
   )
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black">
       <AdminHeader title="Gestão de Tenants" />
       
       <div className="p-8 max-w-[1600px] mx-auto w-full space-y-6">
@@ -213,7 +213,7 @@ export default function TenantsPage() {
                           <span className="text-sm text-muted-foreground">{studioEmail}</span>
                         </TableCell>
                         <TableCell>
-                           <Badge variant="outline" className="text-xs font-normal bg-slate-100 dark:bg-slate-800">
+                           <Badge variant="outline" className="text-xs font-normal bg-slate-100 dark:bg-zinc-900">
                             {planName}
                           </Badge>
                         </TableCell>
@@ -242,7 +242,7 @@ export default function TenantsPage() {
                               }}
                               title="Detalhes e Informações Adicionais"
                             >
-                              <Info className="w-4 h-4 text-slate-500" />
+                              <Info className="w-4 h-4 text-zinc-500" />
                             </Button>
                             <Button 
                               size="sm" 
@@ -313,28 +313,28 @@ export default function TenantsPage() {
           {tenantDetails && (
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-right font-bold text-sm text-slate-500">Plano Atual:</span>
+                <span className="text-right font-bold text-sm text-zinc-500">Plano Atual:</span>
                 <div className="col-span-3">
-                  <Badge variant="outline" className="text-sm font-normal bg-slate-100 dark:bg-slate-800">
+                  <Badge variant="outline" className="text-sm font-normal bg-slate-100 dark:bg-zinc-900">
                     {plans.find(p => p.id === tenantDetails?.plan)?.name || 'Gratuito (Legacy)'}
                   </Badge>
                 </div>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-right font-bold text-sm text-slate-500">ID do Sistema:</span>
+                <span className="text-right font-bold text-sm text-zinc-500">ID do Sistema:</span>
                 <div className="col-span-3 font-mono text-xs text-muted-foreground break-all">{tenantDetails?.id}</div>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-right font-bold text-sm text-slate-500">Slug (URL):</span>
+                <span className="text-right font-bold text-sm text-zinc-500">Slug (URL):</span>
                 <div className="col-span-3 font-mono text-sm">{tenantDetails?.slug}</div>
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-right font-bold text-sm text-slate-500">Cadastro:</span>
+                <span className="text-right font-bold text-sm text-zinc-500">Cadastro:</span>
                 <div className="col-span-3 text-sm">{new Date(tenantDetails?.created_at).toLocaleString('pt-BR')}</div>
               </div>
               
               <div className="grid grid-cols-4 items-start gap-4">
-                <span className="text-right font-bold text-sm text-slate-500 pt-2">Módulos:</span>
+                <span className="text-right font-bold text-sm text-zinc-500 pt-2">Módulos:</span>
                 <div className="col-span-3 pt-1">
                   {(() => {
                     const settings = Array.isArray(tenantDetails?.organization_settings) ? tenantDetails.organization_settings[0] : tenantDetails.organization_settings
@@ -366,7 +366,7 @@ export default function TenantsPage() {
                             Personalizado
                           </Badge>
                         ) : (
-                          <Badge variant="outline" className="w-fit text-slate-500">
+                          <Badge variant="outline" className="w-fit text-zinc-500">
                             Padrão do Plano
                           </Badge>
                         )}
@@ -393,8 +393,8 @@ export default function TenantsPage() {
               </div>
 
                <div className="grid grid-cols-4 items-start gap-4">
-                <span className="text-right font-bold text-sm text-slate-500 pt-2">Configurações:</span>
-                <div className="col-span-3 bg-slate-50 dark:bg-slate-900 p-3 rounded-md text-xs font-mono max-h-60 overflow-y-auto border border-slate-100 dark:border-slate-800">
+                <span className="text-right font-bold text-sm text-zinc-500 pt-2">Configurações:</span>
+                <div className="col-span-3 bg-slate-50 dark:bg-zinc-950 p-3 rounded-md text-xs font-mono max-h-60 overflow-y-auto border border-slate-100 dark:border-zinc-800">
                   <pre className="whitespace-pre-wrap break-all">
                     {JSON.stringify(Array.isArray(tenantDetails?.organization_settings) ? tenantDetails?.organization_settings[0] : tenantDetails?.organization_settings, null, 2)}
                   </pre>

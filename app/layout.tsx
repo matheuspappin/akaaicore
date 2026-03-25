@@ -1,14 +1,14 @@
 import React from "react"
 import type { Metadata, Viewport } from 'next'
-import { Inter, Geist_Mono } from 'next/font/google'
+import { Sora, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster as SonnerToaster } from 'sonner'
 import { OrganizationProvider } from '@/components/providers/organization-provider'
 import './globals.css'
 
-const _inter = Inter({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const sora = Sora({ subsets: ["latin"], variable: "--font-sans" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
   title: 'AKAAI CORE - Engine of Excellence',
@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning className="dark">
-      <body className="font-sans antialiased tracking-tight">
+      <body className={`${sora.variable} ${geistMono.variable} font-sans antialiased tracking-tight`}>
         <OrganizationProvider>
           {children}
           <SonnerToaster position="top-right" richColors />

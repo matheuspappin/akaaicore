@@ -218,7 +218,7 @@ export default function FinanceiroPage() {
             <DollarSign className="w-6 h-6 text-red-600" />
             Financeiro
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Fevereiro 2026
           </p>
         </div>
@@ -267,13 +267,13 @@ export default function FinanceiroPage() {
             border: "border-l-amber-600",
           },
         ].map((kpi) => (
-          <Card key={kpi.label} className={cn("border-l-4 bg-white dark:bg-slate-900/50 shadow-sm", kpi.border)}>
+          <Card key={kpi.label} className={cn("border-l-4 bg-white dark:bg-zinc-950/50 shadow-sm", kpi.border)}>
             <CardContent className="p-5">
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", kpi.bg)}>
                 <kpi.icon className={cn("w-5 h-5", kpi.color)} />
               </div>
               <p className={cn("text-2xl font-black", kpi.color)}>{kpi.value}</p>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">{kpi.label}</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-1">{kpi.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -295,15 +295,15 @@ export default function FinanceiroPage() {
       </div>
 
       {/* Tabela */}
-      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950/50 shadow-sm">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-slate-100 dark:border-white/5">
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Descrição</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Cliente</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Valor</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hidden sm:table-cell">Vencimento</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Status</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Descrição</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 hidden md:table-cell">Cliente</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Valor</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 hidden sm:table-cell">Vencimento</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Status</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -321,7 +321,7 @@ export default function FinanceiroPage() {
                       <span className="font-bold text-slate-900 dark:text-white text-xs leading-tight">{l.descricao}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-slate-500 text-xs hidden md:table-cell">
+                  <td className="px-4 py-3 text-zinc-500 text-xs hidden md:table-cell">
                     <div className="flex items-center gap-1.5">
                       <Building2 className="w-3.5 h-3.5" />{l.cliente}
                     </div>
@@ -331,7 +331,7 @@ export default function FinanceiroPage() {
                       {l.tipo === "despesa" ? "−" : "+"} R$ {l.valor.toLocaleString("pt-BR")}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-slate-500 text-xs hidden sm:table-cell">{l.vencimento}</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs hidden sm:table-cell">{l.vencimento}</td>
                   <td className="px-4 py-3">
                     <Badge className={cn("text-xs font-bold border-0", st.className)}>{st.label}</Badge>
                   </td>

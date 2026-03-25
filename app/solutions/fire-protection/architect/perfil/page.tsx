@@ -143,7 +143,7 @@ export default function ArchitectPerfilPage() {
           <UserCircle className="w-6 h-6 text-violet-600" />
           Meu Perfil
         </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
           Suas informações como arquiteto parceiro
         </p>
       </div>
@@ -175,19 +175,19 @@ export default function ArchitectPerfilPage() {
           { label: "Aguardando", value: stats.pending, color: "text-amber-600", bg: "bg-amber-50 dark:bg-amber-900/10", icon: Clock },
           { label: "Em Andamento", value: stats.active, color: "text-violet-600", bg: "bg-violet-50 dark:bg-violet-900/10", icon: Flame },
           { label: "Concluídos", value: stats.finished, color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-900/10", icon: CheckCircle2 },
-          { label: "Total", value: stats.total, color: "text-slate-700 dark:text-slate-200", bg: "bg-slate-100 dark:bg-slate-800", icon: FolderKanban },
+          { label: "Total", value: stats.total, color: "text-slate-700 dark:text-slate-200", bg: "bg-slate-100 dark:bg-zinc-900", icon: FolderKanban },
         ].map(s => (
           <Card key={s.label} className="border-none shadow-sm">
             <CardContent className={cn("p-4 text-center", s.bg)}>
               <s.icon className={cn("w-5 h-5 mx-auto mb-1", s.color)} />
               <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs text-slate-500 font-medium mt-0.5">{s.label}</p>
+              <p className="text-xs text-zinc-500 font-medium mt-0.5">{s.label}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base font-bold">
             <Building2 className="w-4 h-4 text-violet-600" />
@@ -198,7 +198,7 @@ export default function ArchitectPerfilPage() {
         <CardContent className="space-y-6">
           <div className="space-y-3">
             {loadingCompanies ? (
-              <div className="flex items-center justify-center py-6 text-slate-400">
+              <div className="flex items-center justify-center py-6 text-zinc-400">
                 <Loader2 className="w-5 h-5 animate-spin mr-2" />
                 Carregando empresas...
               </div>
@@ -207,7 +207,7 @@ export default function ArchitectPerfilPage() {
                 {companies.map((company) => (
                   <div
                     key={company.id}
-                    className="flex flex-col p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-violet-500/50 transition-colors"
+                    className="flex flex-col p-4 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-xl hover:border-violet-500/50 transition-colors"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="w-9 h-9 bg-violet-100 dark:bg-violet-900/20 rounded-lg flex items-center justify-center text-violet-600">
@@ -220,8 +220,8 @@ export default function ArchitectPerfilPage() {
                     <h4 className="font-bold text-slate-900 dark:text-white truncate text-sm">
                       {company.studio?.name || company.studio?.slug || "Empresa sem nome"}
                     </h4>
-                    <p className="text-xs text-slate-500 capitalize">{company.role || "Arquiteto"}</p>
-                    <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-400 flex items-center gap-1">
+                    <p className="text-xs text-zinc-500 capitalize">{company.role || "Arquiteto"}</p>
+                    <div className="mt-3 pt-3 border-t border-slate-200 dark:border-zinc-800 text-xs text-zinc-400 flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3" />
                       Vinculado em {new Date(company.created_at).toLocaleDateString()}
                     </div>
@@ -229,15 +229,15 @@ export default function ArchitectPerfilPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-6 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
+              <div className="text-center py-6 border-2 border-dashed border-slate-200 dark:border-zinc-800 rounded-xl">
                 <Building2 className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                <p className="text-slate-500 font-medium text-sm">Nenhuma empresa vinculada</p>
-                <p className="text-xs text-slate-400 mt-0.5">Use o campo abaixo para se vincular via convite.</p>
+                <p className="text-zinc-500 font-medium text-sm">Nenhuma empresa vinculada</p>
+                <p className="text-xs text-zinc-400 mt-0.5">Use o campo abaixo para se vincular via convite.</p>
               </div>
             )}
           </div>
 
-          <div className="border-t border-slate-200 dark:border-slate-800" />
+          <div className="border-t border-slate-200 dark:border-zinc-800" />
 
           <div className="space-y-3">
             <div className="flex items-center gap-2">
@@ -246,7 +246,7 @@ export default function ArchitectPerfilPage() {
               </div>
               <div>
                 <p className="font-bold text-sm text-slate-900 dark:text-white">Vincular Nova Empresa</p>
-                <p className="text-xs text-slate-500">Cole o link ou o código de convite recebido pela empresa</p>
+                <p className="text-xs text-zinc-500">Cole o link ou o código de convite recebido pela empresa</p>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
@@ -277,16 +277,16 @@ export default function ArchitectPerfilPage() {
         </CardContent>
       </Card>
 
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-bold">Editar Informações</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">Nome completo</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">Nome completo</Label>
               <div className="relative mt-1.5">
-                <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.name}
@@ -296,9 +296,9 @@ export default function ArchitectPerfilPage() {
               </div>
             </div>
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">CAU / Registro Profissional</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">CAU / Registro Profissional</Label>
               <div className="relative mt-1.5">
-                <Ruler className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Ruler className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.cau}
@@ -308,9 +308,9 @@ export default function ArchitectPerfilPage() {
               </div>
             </div>
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">Telefone / WhatsApp</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">Telefone / WhatsApp</Label>
               <div className="relative mt-1.5">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.phone}
@@ -321,9 +321,9 @@ export default function ArchitectPerfilPage() {
               </div>
             </div>
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">E-mail</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">E-mail</Label>
               <div className="relative mt-1.5">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.email}
@@ -331,7 +331,7 @@ export default function ArchitectPerfilPage() {
                   readOnly
                 />
               </div>
-              <p className="text-xs text-slate-400 mt-1">O e-mail não pode ser alterado aqui.</p>
+              <p className="text-xs text-zinc-400 mt-1">O e-mail não pode ser alterado aqui.</p>
             </div>
             <Button
               type="submit"

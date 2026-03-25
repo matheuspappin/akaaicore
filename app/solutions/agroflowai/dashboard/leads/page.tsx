@@ -209,7 +209,7 @@ export default function LeadsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Leads / CRM</h1>
-          <p className="text-slate-400 mt-1">Pipeline de captação de novos clientes</p>
+          <p className="text-zinc-400 mt-1">Pipeline de captação de novos clientes</p>
         </div>
         <Button
           onClick={() => setShowForm(true)}
@@ -225,11 +225,11 @@ export default function LeadsPage() {
         {pipeline.map(p => {
           const st = statusConfig[p.status]
           return (
-            <Card key={p.status} className="bg-slate-900/50 border-slate-800">
+            <Card key={p.status} className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="p-4">
                 <Badge className={cn("text-[10px] font-bold border-0 mb-2", st.color, st.bg)}>{st.label}</Badge>
                 <p className={cn("text-2xl font-black", st.color)}>{p.count}</p>
-                <p className="text-xs text-slate-500 font-bold">
+                <p className="text-xs text-zinc-500 font-bold">
                   R$ {p.value.toLocaleString("pt-BR")}
                 </p>
               </CardContent>
@@ -241,18 +241,18 @@ export default function LeadsPage() {
       {/* Search & Filter */}
       <div className="space-y-3">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
           <Input
             placeholder="Buscar leads..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+            className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
           />
         </div>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setFilterStatus("all")}
-            className={cn("px-3 py-1.5 rounded-xl text-xs font-bold transition-all", filterStatus === "all" ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-slate-700")}
+            className={cn("px-3 py-1.5 rounded-xl text-xs font-bold transition-all", filterStatus === "all" ? "bg-indigo-600 text-white" : "bg-zinc-900 text-zinc-400 hover:bg-slate-700")}
           >
             Todos ({leads.length})
           </button>
@@ -260,7 +260,7 @@ export default function LeadsPage() {
             <button
               key={s}
               onClick={() => setFilterStatus(s)}
-              className={cn("px-3 py-1.5 rounded-xl text-xs font-bold transition-all", filterStatus === s ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-slate-700")}
+              className={cn("px-3 py-1.5 rounded-xl text-xs font-bold transition-all", filterStatus === s ? "bg-indigo-600 text-white" : "bg-zinc-900 text-zinc-400 hover:bg-slate-700")}
             >
               {statusConfig[s].label} ({leads.filter(l => l.status === s).length})
             </button>
@@ -271,52 +271,52 @@ export default function LeadsPage() {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <Card className="w-full max-w-lg bg-slate-900 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <Card className="w-full max-w-lg bg-zinc-950 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-white flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-indigo-400" />
                 Novo Lead
               </CardTitle>
-              <button onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white">
+              <button onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nome *</label>
-                  <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nome do prospect" required className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome *</label>
+                  <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nome do prospect" required className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">E-mail</label>
-                    <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="email@..." className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">E-mail</label>
+                    <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="email@..." className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Telefone</label>
-                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })} placeholder="(00) 00000-0000" className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Telefone</label>
+                    <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })} placeholder="(00) 00000-0000" className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Região</label>
-                    <Input value={form.region} onChange={(e) => setForm({ ...form, region: e.target.value })} placeholder="Cidade, UF" className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Região</label>
+                    <Input value={form.region} onChange={(e) => setForm({ ...form, region: e.target.value })} placeholder="Cidade, UF" className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Valor Estimado</label>
-                    <Input type="number" value={form.estimated_value} onChange={(e) => setForm({ ...form, estimated_value: e.target.value })} placeholder="R$ 0" className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Valor Estimado</label>
+                    <Input type="number" value={form.estimated_value} onChange={(e) => setForm({ ...form, estimated_value: e.target.value })} placeholder="R$ 0" className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Interesse / Serviço</label>
-                  <Input value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })} placeholder="Ex: Regularização CAR, Laudo..." className="bg-slate-800 border-slate-700 text-white rounded-xl" />
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Interesse / Serviço</label>
+                  <Input value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })} placeholder="Ex: Regularização CAR, Laudo..." className="bg-zinc-900 border-slate-700 text-white rounded-xl" />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Observações</label>
-                  <textarea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} placeholder="Notas sobre o lead..." rows={2} className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/30" />
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Observações</label>
+                  <textarea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} placeholder="Notas sobre o lead..." rows={2} className="w-full bg-zinc-900 border border-slate-700 text-white rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/30" />
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-slate-400">Cancelar</Button>
+                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-zinc-400">Cancelar</Button>
                   <Button type="submit" disabled={saving} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold">
                     {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : "Salvar Lead"}
                   </Button>
@@ -329,10 +329,10 @@ export default function LeadsPage() {
 
       {/* Leads List */}
       {filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <TrendingUp className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">Nenhum lead encontrado</p>
+            <p className="text-zinc-400 font-semibold text-lg">Nenhum lead encontrado</p>
           </CardContent>
         </Card>
       ) : (
@@ -342,7 +342,7 @@ export default function LeadsPage() {
             const currentIdx = STAGE_ORDER.indexOf(lead.status)
             const nextStatus = STAGE_ORDER[currentIdx + 1] as LeadStatus | undefined
             return (
-              <Card key={lead.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={lead.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-4">
                     <div className="w-11 h-11 rounded-xl bg-indigo-600/20 flex items-center justify-center flex-shrink-0">
@@ -353,7 +353,7 @@ export default function LeadsPage() {
                         <p className="font-bold text-white">{lead.name}</p>
                         <Badge className={cn("text-[10px] font-bold border-0", st.color, st.bg)}>{st.label}</Badge>
                       </div>
-                      <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+                      <div className="flex flex-wrap gap-3 text-xs text-zinc-500">
                         {lead.email && <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{lead.email}</span>}
                         {lead.phone && <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{lead.phone}</span>}
                         {lead.region && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{lead.region}</span>}

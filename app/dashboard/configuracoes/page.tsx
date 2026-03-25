@@ -2087,7 +2087,7 @@ function SettingsContent() {
                 <div className={cn(
                   "p-6 border-2 rounded-xl transition-colors",
                   usage.plan === 'gratuito' 
-                    ? "border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-slate-800/60" 
+                    ? "border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-zinc-900/60" 
                     : "border-primary/50 bg-primary/5 dark:bg-primary/10"
                 )}>
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
@@ -2110,7 +2110,7 @@ function SettingsContent() {
                         <p className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
                           {!usageLoaded ? '—' : `R$ ${Number(getCurrentPlanLimits().price || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
                         </p>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">/mês</p>
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">/mês</p>
                       </div>
                       {searchParams.get("session_id") && (
                         <Button 
@@ -2133,7 +2133,7 @@ function SettingsContent() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-200 dark:border-slate-600">
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-slate-600 dark:text-slate-400 font-medium">{vocabulary.client}s Ativos</span>
+                        <span className="text-slate-600 dark:text-zinc-400 font-medium">{vocabulary.client}s Ativos</span>
                         <span className="font-bold text-slate-900 dark:text-white">{usage.students} / {getCurrentPlanLimits().max_students >= 1000 ? 'Ilimitado' : getCurrentPlanLimits().max_students}</span>
                       </div>
                       <div className="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
@@ -2151,7 +2151,7 @@ function SettingsContent() {
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-slate-600 dark:text-slate-400 font-medium">Profissionais Ativos</span>
+                        <span className="text-slate-600 dark:text-zinc-400 font-medium">Profissionais Ativos</span>
                         <span className="font-bold text-slate-900 dark:text-white">{usage.teachers} / {getCurrentPlanLimits().max_teachers >= 1000 ? 'Ilimitado' : getCurrentPlanLimits().max_teachers}</span>
                       </div>
                       <div className="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
@@ -2169,7 +2169,7 @@ function SettingsContent() {
                   </div>
 
                   <div className="pt-4">
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">Recursos do plano</p>
+                    <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">Recursos do plano</p>
                     <div className="flex flex-wrap gap-2">
                       {[
                         { key: 'whatsapp', label: 'WhatsApp', has: getCurrentPlanLimits().has_whatsapp },
@@ -2190,7 +2190,7 @@ function SettingsContent() {
                             "gap-1.5 px-3 py-1 font-medium",
                             has 
                               ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30" 
-                              : "bg-slate-200/80 dark:bg-slate-700/80 text-slate-500 dark:text-slate-400 border-slate-300/50 dark:border-slate-600"
+                              : "bg-slate-200/80 dark:bg-slate-700/80 text-zinc-500 dark:text-zinc-400 border-slate-300/50 dark:border-slate-600"
                           )}
                         >
                           {has ? <CheckCircle className="w-3.5 h-3.5" /> : <Lock className="w-3 h-3 opacity-70" />}

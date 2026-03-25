@@ -58,7 +58,7 @@ export function InternalLinkForm({ role }: { role: InternalRole }) {
           className="mt-2 font-mono uppercase"
           disabled={loading}
         />
-        <p className="mt-1 text-xs text-slate-500">
+        <p className="mt-1 text-xs text-zinc-500">
           Solicite o código ao administrador da empresa para se vincular como {roleLabels[role].toLowerCase()}.
         </p>
       </div>

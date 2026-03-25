@@ -83,11 +83,11 @@ export default function AffiliateDashboard() {
               <CardTitle className="text-sm font-medium">
                 Estúdios Ativos
               </CardTitle>
-              <Building2 className="h-4 w-4 text-slate-500" />
+              <Building2 className="h-4 w-4 text-zinc-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                 +0% em relação ao mês passado
               </p>
             </CardContent>
@@ -97,11 +97,11 @@ export default function AffiliateDashboard() {
               <CardTitle className="text-sm font-medium">
                 Membros Totais
               </CardTitle>
-              <Users className="h-4 w-4 text-slate-500" />
+              <Users className="h-4 w-4 text-zinc-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0</div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                 Somando todos os estúdios
               </p>
             </CardContent>
@@ -115,7 +115,7 @@ export default function AffiliateDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-emerald-600">R$ 0,00</div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                 Disponível para saque
               </p>
             </CardContent>
@@ -129,7 +129,7 @@ export default function AffiliateDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">0%</div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                 Leads vs. Vendas
               </p>
             </CardContent>
@@ -147,11 +147,11 @@ export default function AffiliateDashboard() {
           <CardContent>
             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
               <div className="bg-slate-100 p-4 rounded-full">
-                <Building2 className="w-8 h-8 text-slate-400" />
+                <Building2 className="w-8 h-8 text-zinc-400" />
               </div>
               <div>
                 <h3 className="text-lg font-medium">Nenhuma empresa encontrada</h3>
-                <p className="text-sm text-slate-500 max-w-sm mx-auto mt-1">
+                <p className="text-sm text-zinc-500 max-w-sm mx-auto mt-1">
                   voce ainda nao tem empresas vinculadas a sua conta de afiliado
                 </p>
               </div>

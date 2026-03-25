@@ -162,7 +162,7 @@ function OSDetailDialog({
   const checkStatusColor = (status: string) => {
     if (status === "completed") return "text-emerald-600 bg-emerald-50"
     if (status === "failed") return "text-rose-600 bg-rose-50"
-    return "text-slate-500 bg-slate-50"
+    return "text-zinc-500 bg-slate-50"
   }
 
   const checkStatusIcon = (status: string) => {
@@ -178,7 +178,7 @@ function OSDetailDialog({
           <DialogTitle className="flex items-center gap-2">
             {isVistoria ? <Calendar className="w-5 h-5 text-red-600" /> : <Wrench className="w-5 h-5 text-orange-600" />}
             {os.title}
-            <span className="text-xs font-mono text-slate-400">#{os.tracking_code}</span>
+            <span className="text-xs font-mono text-zinc-400">#{os.tracking_code}</span>
           </DialogTitle>
           <DialogDescription>
             {isVistoria ? "Vistoria de segurança contra incêndio" : "Ordem de serviço técnico"}
@@ -188,14 +188,14 @@ function OSDetailDialog({
         <div className="space-y-4">
           {/* Cliente / Endereço */}
           {os.customer && (
-            <Card className="bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-700">
+            <Card className="bg-slate-50 dark:bg-zinc-950/50 border-slate-200 dark:border-slate-700">
               <CardContent className="p-4 space-y-2">
-                <div className="flex items-center gap-2 font-bold text-slate-800 dark:text-slate-200">
+                <div className="flex items-center gap-2 font-bold text-zinc-800 dark:text-slate-200">
                   <Building2 className="w-4 h-4 text-red-600" />
                   {os.customer.name}
                 </div>
                 {os.customer.address && (
-                  <div className="flex items-start gap-2 text-sm text-slate-500">
+                  <div className="flex items-start gap-2 text-sm text-zinc-500">
                     <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
                     {os.customer.address}
                   </div>
@@ -212,7 +212,7 @@ function OSDetailDialog({
 
           {/* Agendamento */}
           {os.scheduled_at && (
-            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400">
               <Clock className="w-4 h-4 text-red-600" />
               <span>Agendada para: <strong>{formatDate(os.scheduled_at)}</strong></span>
             </div>
@@ -221,7 +221,7 @@ function OSDetailDialog({
           {/* Descrição */}
           {os.description && (
             <div>
-              <p className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-1">Descrição</p>
+              <p className="text-xs font-bold uppercase text-zinc-400 tracking-wider mb-1">Descrição</p>
               <p className="text-sm text-slate-700 dark:text-slate-300">{os.description}</p>
             </div>
           )}
@@ -258,7 +258,7 @@ function OSDetailDialog({
                       "w-full flex items-center gap-3 p-3 rounded-xl border transition-all text-left",
                       item.status === "completed" ? "border-emerald-200 bg-emerald-50 dark:bg-emerald-900/10" :
                       item.status === "failed" ? "border-rose-200 bg-rose-50 dark:bg-rose-900/10" :
-                      "border-slate-200 bg-white dark:bg-slate-900 hover:bg-slate-50"
+                      "border-slate-200 bg-white dark:bg-zinc-950 hover:bg-slate-50"
                     )}
                   >
                     {checkStatusIcon(item.status)}
@@ -282,14 +282,14 @@ function OSDetailDialog({
                   </button>
                 )}
               </div>
-              <p className="text-xs text-slate-400 mt-2">Toque para alternar: ⬜ Pendente → ✓ Conforme → ✗ Não conforme</p>
+              <p className="text-xs text-zinc-400 mt-2">Toque para alternar: ⬜ Pendente → ✓ Conforme → ✗ Não conforme</p>
             </div>
           )}
 
           {/* Observações */}
           {canAct && (
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">
                 {isVistoria ? "Laudo / Observações da Vistoria" : "Observações do Serviço"}
               </Label>
               <Textarea
@@ -305,8 +305,8 @@ function OSDetailDialog({
           {/* Se já finalizado, mostrar observações */}
           {!canAct && os.observations && (
             <div>
-              <p className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-1">Laudo / Observações</p>
-              <p className="text-sm text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 p-3 rounded-xl">{os.observations}</p>
+              <p className="text-xs font-bold uppercase text-zinc-400 tracking-wider mb-1">Laudo / Observações</p>
+              <p className="text-sm text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-zinc-950 p-3 rounded-xl">{os.observations}</p>
             </div>
           )}
         </div>
@@ -395,7 +395,7 @@ export default function TechnicianOSPage() {
             <ClipboardList className="w-6 h-6 text-orange-600" />
             Minhas OS
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
             {pendentes.length} pendentes · {andamento.length} em andamento
           </p>
         </div>
@@ -414,7 +414,7 @@ export default function TechnicianOSPage() {
           <Card key={s.label} className="border-none shadow-sm">
             <CardContent className={cn("p-4 text-center", s.bg)}>
               <p className={cn("text-3xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs text-slate-500 font-medium mt-1">{s.label}</p>
+              <p className="text-xs text-zinc-500 font-medium mt-1">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -422,7 +422,7 @@ export default function TechnicianOSPage() {
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por código, cliente ou tipo..."
           value={search}
@@ -451,7 +451,7 @@ export default function TechnicianOSPage() {
           (["pendentes", "andamento", "concluidas"] as const).map(tab => (
             <TabsContent key={tab} value={tab} className="space-y-3 mt-4">
               {tabData[tab].length === 0 ? (
-                <div className="text-center py-12 text-slate-400">
+                <div className="text-center py-12 text-zinc-400">
                   <ClipboardList className="w-12 h-12 mx-auto mb-3 opacity-20" />
                   <p className="font-medium">Nenhuma OS aqui</p>
                 </div>
@@ -464,7 +464,7 @@ export default function TechnicianOSPage() {
                     <Card
                       key={os.id}
                       className={cn(
-                        "border-l-4 bg-white dark:bg-slate-900/50 shadow-sm hover:shadow-md cursor-pointer transition-shadow",
+                        "border-l-4 bg-white dark:bg-zinc-950/50 shadow-sm hover:shadow-md cursor-pointer transition-shadow",
                         border
                       )}
                       onClick={() => setSelected(os)}
@@ -488,12 +488,12 @@ export default function TechnicianOSPage() {
                             </div>
                             <h3 className="font-bold text-slate-900 dark:text-white text-sm">{os.title}</h3>
                             {os.customer && (
-                              <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-1">
+                              <p className="text-xs text-zinc-500 mt-0.5 flex items-center gap-1">
                                 <Building2 className="w-3.5 h-3.5" />{os.customer.name}
                               </p>
                             )}
                             {os.scheduled_at && (
-                              <p className="text-xs text-slate-400 mt-0.5 flex items-center gap-1">
+                              <p className="text-xs text-zinc-400 mt-0.5 flex items-center gap-1">
                                 <Clock className="w-3.5 h-3.5" />{formatDate(os.scheduled_at)}
                               </p>
                             )}

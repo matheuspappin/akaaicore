@@ -45,7 +45,7 @@ interface Asset {
 }
 
 function getExpirationStatus(date?: string): { label: string; color: string; icon: React.ComponentType<{ className?: string }> } {
-  if (!date) return { label: "Sem validade", color: "text-slate-500", icon: Info }
+  if (!date) return { label: "Sem validade", color: "text-zinc-500", icon: Info }
   const exp = new Date(date)
   const now = new Date()
   const in30 = new Date(now)
@@ -159,7 +159,7 @@ export default function TechnicianScannerPage() {
           <QrCode className="w-6 h-6 text-orange-600" />
           Scanner de Extintores
         </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
           {mode === "vistoria" && "Vistoria no local — validação técnica"}
           {mode === "retirada" && "Retirar para recarga — nosso extintor ou do cliente"}
           {mode === "entrega" && "Entregar após recarga — confirma entrega"}
@@ -182,10 +182,10 @@ export default function TechnicianScannerPage() {
       </Tabs>
 
       {/* Scanner visual */}
-      <Card className="bg-gradient-to-br from-slate-900 to-slate-800 border-none overflow-hidden">
+      <Card className="bg-gradient-to-br from-slate-900 to-zinc-800 border-none overflow-hidden">
         <CardContent className="p-8 flex flex-col items-center gap-4">
           <div className="relative">
-            <div className="w-48 h-48 border-4 border-orange-500/60 rounded-2xl flex items-center justify-center bg-slate-950/50">
+            <div className="w-48 h-48 border-4 border-orange-500/60 rounded-2xl flex items-center justify-center bg-black/50">
               <QrCode className="w-16 h-16 text-orange-500/40" />
               {/* Corner decorations */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-orange-500 rounded-tl-xl" />
@@ -220,7 +220,7 @@ export default function TechnicianScannerPage() {
       />
 
       {/* Busca manual */}
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-bold flex items-center gap-2">
             <Search className="w-4 h-4 text-orange-600" />
@@ -229,7 +229,7 @@ export default function TechnicianScannerPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div>
-            <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+            <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">
               Código do extintor ou QR Code
             </Label>
             <div className="flex gap-2 mt-1.5">
@@ -266,8 +266,8 @@ export default function TechnicianScannerPage() {
             )}
             <div className="flex-1">
               <p className="font-black text-lg">{actionResult.title}</p>
-              <p className="text-sm text-slate-600 dark:text-slate-400">{actionResult.message}</p>
-              {actionResult.details && <p className="text-xs text-slate-500 mt-1">{actionResult.details}</p>}
+              <p className="text-sm text-slate-600 dark:text-zinc-400">{actionResult.message}</p>
+              {actionResult.details && <p className="text-xs text-zinc-500 mt-1">{actionResult.details}</p>}
             </div>
             <Button variant="ghost" size="icon" onClick={() => { setActionResult(null); setManualCode("") }}>
               <RefreshCw className="w-5 h-5" />
@@ -304,7 +304,7 @@ export default function TechnicianScannerPage() {
                 </div>
                 <div>
                   <h3 className="font-black text-slate-900 dark:text-white">{asset.name}</h3>
-                  {asset.type && <p className="text-sm text-slate-500">{asset.type}</p>}
+                  {asset.type && <p className="text-sm text-zinc-500">{asset.type}</p>}
                 </div>
               </div>
               <Badge className={cn(
@@ -320,14 +320,14 @@ export default function TechnicianScannerPage() {
 
             <div className="grid grid-cols-1 gap-2 text-sm">
               {asset.location && (
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                  <MapPin className="w-4 h-4 flex-shrink-0 text-slate-400" />
+                <div className="flex items-center gap-2 text-slate-600 dark:text-zinc-400">
+                  <MapPin className="w-4 h-4 flex-shrink-0 text-zinc-400" />
                   <span>{asset.location}</span>
                 </div>
               )}
               {asset.customer?.name && (
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
-                  <Building2 className="w-4 h-4 flex-shrink-0 text-slate-400" />
+                <div className="flex items-center gap-2 text-slate-600 dark:text-zinc-400">
+                  <Building2 className="w-4 h-4 flex-shrink-0 text-zinc-400" />
                   <span>{asset.customer.name}</span>
                 </div>
               )}
@@ -340,7 +340,7 @@ export default function TechnicianScannerPage() {
                 </div>
               )}
               {asset.last_inspection_at && (
-                <div className="flex items-center gap-2 text-slate-500">
+                <div className="flex items-center gap-2 text-zinc-500">
                   <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
                   <span>
                     Última vistoria: {new Date(asset.last_inspection_at).toLocaleDateString("pt-BR")}
@@ -369,10 +369,10 @@ export default function TechnicianScannerPage() {
 
       {/* Instruções */}
       {!asset && !notFound && !actionResult && (
-        <Card className="bg-slate-50 dark:bg-slate-900/30 border-dashed">
+        <Card className="bg-slate-50 dark:bg-zinc-950/30 border-dashed">
           <CardContent className="p-5">
-            <p className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-3">Como usar</p>
-            <div className="space-y-2 text-sm text-slate-500">
+            <p className="text-xs font-bold uppercase text-zinc-400 tracking-wider mb-3">Como usar</p>
+            <div className="space-y-2 text-sm text-zinc-500">
               <div className="flex items-start gap-2">
                 <span className="w-5 h-5 rounded-full bg-orange-100 text-orange-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
                 <span>Localize o QR Code colado no extintor</span>

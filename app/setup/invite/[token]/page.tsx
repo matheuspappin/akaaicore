@@ -274,10 +274,10 @@ export default function InvitePage() {
   // ─── Tela de loading ────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black">
         <div className="text-center">
           <Loader2 className="animate-spin w-10 h-10 text-violet-600 mx-auto mb-4" />
-          <p className="text-sm text-slate-500 animate-pulse font-medium">Validando seu convite...</p>
+          <p className="text-sm text-zinc-500 animate-pulse font-medium">Validando seu convite...</p>
         </div>
       </div>
     )
@@ -286,20 +286,20 @@ export default function InvitePage() {
   // ─── Convite inválido/expirado ──────────────────────────────────────────────
   if (inviteStatus === 'invalid' || inviteStatus === 'expired') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black p-4">
         <Card className="w-full max-w-md text-center border-destructive/20 shadow-xl">
           <CardHeader>
             <div className="mx-auto w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mb-4">
               <Wrench className="w-8 h-8 text-destructive" />
             </div>
             <CardTitle className="text-2xl font-black text-slate-900 dark:text-white">Convite Inválido</CardTitle>
-            <CardDescription className="text-slate-500 font-medium">
+            <CardDescription className="text-zinc-500 font-medium">
               Este link de convite expirou, já foi utilizado ou nunca existiu.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/login">
-              <Button className="w-full h-12 text-lg font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl">
+              <Button className="w-full h-12 text-lg font-bold bg-zinc-950 hover:bg-zinc-900 text-white rounded-xl">
                 Voltar para o Login <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
@@ -323,11 +323,11 @@ export default function InvitePage() {
   // ─── FLUXO: Convite de Ecossistema ──────────────────────────────────────────
   if (isEcosystem) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4 relative">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black p-4 relative">
         <div className="absolute top-4 right-4 z-50">
           <LanguageSwitcher showIcon />
         </div>
-        <Card className="w-full max-w-md shadow-2xl border-none rounded-2xl overflow-hidden bg-white dark:bg-slate-900">
+        <Card className="w-full max-w-md shadow-2xl border-none rounded-2xl overflow-hidden bg-white dark:bg-zinc-950">
           <div className={cn("h-2 w-full", theme.stripColor)} />
           <CardHeader className="text-center space-y-4 pt-8">
             <div className={cn("mx-auto w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner", theme.accentLight)}>
@@ -337,7 +337,7 @@ export default function InvitePage() {
               <CardTitle className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
                 Seu sistema está pronto!
               </CardTitle>
-              <CardDescription className="text-slate-500 font-medium text-base px-2">
+              <CardDescription className="text-zinc-500 font-medium text-base px-2">
                 Foi criado um sistema exclusivo para:
                 <br />
                 <strong className="text-slate-900 dark:text-slate-100 text-lg block mt-1 underline decoration-violet-500/30 underline-offset-4">
@@ -373,12 +373,12 @@ export default function InvitePage() {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 border border-slate-100 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-800/50 shadow-sm">
+                <div className="flex items-center gap-4 p-4 border border-slate-100 dark:border-zinc-800 rounded-xl bg-slate-50 dark:bg-zinc-900/50 shadow-sm">
                   <div className={cn("w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg", theme.accent)}>
                     <User className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Logado como</p>
+                    <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider">Logado como</p>
                     <p className="text-sm font-bold text-slate-900 dark:text-white truncate">{currentUser.email}</p>
                   </div>
                 </div>
@@ -404,7 +404,7 @@ export default function InvitePage() {
                   )}
                 </Button>
 
-                <p className="text-[10px] text-center text-slate-400 px-4">
+                <p className="text-[10px] text-center text-zinc-400 px-4">
                   Ao clicar em ativar, você assume a propriedade e gestão deste sistema.
                 </p>
               </div>
@@ -423,11 +423,11 @@ export default function InvitePage() {
     : Building2
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4 relative">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black p-4 relative">
       <div className="absolute top-4 right-4 z-50">
         <LanguageSwitcher showIcon />
       </div>
-      <Card className="w-full max-w-md shadow-2xl border-none rounded-2xl overflow-hidden bg-white dark:bg-slate-900">
+      <Card className="w-full max-w-md shadow-2xl border-none rounded-2xl overflow-hidden bg-white dark:bg-zinc-950">
         <div className={cn("h-2 w-full", theme.stripColor)} />
         <CardHeader className="text-center space-y-4 pt-8">
           <div className={cn("mx-auto w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner", theme.accentLight)}>
@@ -437,7 +437,7 @@ export default function InvitePage() {
             <CardTitle className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
               Convite Especial
             </CardTitle>
-            <CardDescription className="text-slate-500 font-medium text-base px-2">
+            <CardDescription className="text-zinc-500 font-medium text-base px-2">
               Você foi convidado para atuar como{' '}
               <span className={cn("font-bold", theme.accentText)}>{roleLabel}</span>
               {nicheTheme === 'dance' ? ' no estúdio' : ' na empresa'}:
@@ -483,18 +483,18 @@ export default function InvitePage() {
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 border border-slate-100 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-800/50 shadow-sm">
+              <div className="flex items-center gap-4 p-4 border border-slate-100 dark:border-zinc-800 rounded-xl bg-slate-50 dark:bg-zinc-900/50 shadow-sm">
                 <div className={cn("w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg", theme.accent)}>
                   <User className="w-6 h-6" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Logado como</p>
+                  <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider">Logado como</p>
                   <p className="text-sm font-bold text-slate-900 dark:text-white truncate">{currentUser.email}</p>
                 </div>
               </div>
 
               {inviteData.createdByUser?.name && (
-                <div className="flex items-center gap-3 px-4 py-2 text-xs text-slate-400 font-medium justify-center">
+                <div className="flex items-center gap-3 px-4 py-2 text-xs text-zinc-400 font-medium justify-center">
                   <Mail className="w-3 h-3" />
                   Convidado por {inviteData.createdByUser.name}
                 </div>
@@ -520,7 +520,7 @@ export default function InvitePage() {
                 )}
               </Button>
 
-              <p className="text-[10px] text-center text-slate-400 px-4">
+              <p className="text-[10px] text-center text-zinc-400 px-4">
                 Ao aceitar, você concorda em vincular seu perfil a {nicheTheme === 'dance' ? 'este estúdio' : 'esta empresa'}.
               </p>
             </div>

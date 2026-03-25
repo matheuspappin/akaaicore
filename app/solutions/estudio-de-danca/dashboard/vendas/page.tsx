@@ -229,7 +229,7 @@ function POSContent() {
         <div className="flex-1 p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
           
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border shadow-sm flex gap-4">
+            <div className="bg-white/5 dark:bg-black p-4 rounded-xl border shadow-sm flex gap-4">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input 
@@ -284,14 +284,14 @@ function POSContent() {
                       os.customer?.name?.toLowerCase().includes(osSearchInput.toLowerCase())
                     )
                     .map(os => (
-                      <Card key={os.id} className="hover:border-indigo-500 cursor-pointer border-l-4 border-l-indigo-500 transition-all" onClick={() => addOSToCart(os)}>
+                      <Card key={os.id} className="hover:border-red- cursor-pointer border-l-4 border-l-red- transition-all" onClick={() => addOSToCart(os)}>
                         <CardContent className="p-4 flex justify-between items-center">
                           <div className="flex-1 min-w-0">
                             <p className="font-bold text-sm truncate">OS #{os.tracking_code}</p>
                             <p className="text-xs text-muted-foreground truncate">{os.customer?.name || 'Cliente Avulso'}</p>
                           </div>
                           <div className="text-right ml-4">
-                            <p className="text-indigo-600 font-bold">{formatPrice(os.total_amount)}</p>
+                            <p className="text-red- font-bold">{formatPrice(os.total_amount)}</p>
                             <Badge variant="outline" className="text-[10px] capitalize">{os.status.replace('_', ' ')}</Badge>
                           </div>
                         </CardContent>
@@ -324,7 +324,7 @@ function POSContent() {
                     <p className="font-medium text-sm truncate">{item.product.name}</p>
                     <p className="text-xs text-muted-foreground">{formatPrice(item.product.selling_price)} x {item.quantity}</p>
                   </div>
-                  <Button type="button" variant="ghost" size="icon" className="text-red-500" onClick={() => setCart(cart.filter(i => i.product.id !== item.product.id))}>
+                  <Button type="button" variant="ghost" size="icon" className="text-[#e40014]" onClick={() => setCart(cart.filter(i => i.product.id !== item.product.id))}>
                     <Trash2 className="w-4 h-4" />
                   </Button>
                 </div>

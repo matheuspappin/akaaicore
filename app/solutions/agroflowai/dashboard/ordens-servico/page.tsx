@@ -207,7 +207,7 @@ export default function OrdensServicoPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Ordens de Serviço</h1>
-          <p className="text-slate-400 mt-1">Gerencie laudos, vistorias e serviços ambientais</p>
+          <p className="text-zinc-400 mt-1">Gerencie laudos, vistorias e serviços ambientais</p>
         </div>
         <Button
           onClick={() => setShowForm(true)}
@@ -233,7 +233,7 @@ export default function OrdensServicoPage() {
               "px-4 py-2 rounded-xl text-sm font-bold transition-all",
               filterStatus === f.key
                 ? "bg-emerald-600 text-white"
-                : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+                : "bg-zinc-900 text-zinc-400 hover:bg-slate-700 hover:text-white"
             )}
           >
             {f.label}
@@ -243,51 +243,51 @@ export default function OrdensServicoPage() {
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
         <Input
           placeholder="Buscar por cliente, código ou propriedade..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+          className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
         />
       </div>
 
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <Card className="w-full max-w-lg bg-slate-900 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <CardHeader className="flex flex-row items-center justify-between sticky top-0 bg-slate-900 z-10">
+          <Card className="w-full max-w-lg bg-zinc-950 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <CardHeader className="flex flex-row items-center justify-between sticky top-0 bg-zinc-950 z-10">
               <CardTitle className="text-white flex items-center gap-2">
                 <ClipboardList className="w-5 h-5 text-emerald-400" />
                 Nova Ordem de Serviço
               </CardTitle>
-              <button type="button" onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white">
+              <button type="button" onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Cliente / Propriedade *</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Cliente / Propriedade *</label>
                   <Input
                     value={form.client_name}
                     onChange={(e) => setForm({ ...form, client_name: e.target.value })}
                     placeholder="Nome do cliente ou fazenda"
                     required
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Setor / Área (opcional)</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Setor / Área (opcional)</label>
                   <Input
                     value={form.property_name}
                     onChange={(e) => setForm({ ...form, property_name: e.target.value })}
                     placeholder="Ex: Setor A, Gleba Norte..."
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Tipo de Serviço *</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Tipo de Serviço *</label>
                   <div className="grid grid-cols-2 gap-2">
                     {(Object.entries(typeLabels) as [OSType, string][]).map(([key, label]) => (
                       <button
@@ -298,7 +298,7 @@ export default function OrdensServicoPage() {
                           "py-2.5 px-3 rounded-xl text-xs font-bold text-left border transition-all",
                           form.type === key
                             ? "border-emerald-500 bg-emerald-600/20 text-emerald-400"
-                            : "border-slate-700 bg-slate-800 text-slate-500 hover:border-slate-600"
+                            : "border-slate-700 bg-zinc-900 text-zinc-500 hover:border-slate-600"
                         )}
                       >
                         {label}
@@ -308,36 +308,36 @@ export default function OrdensServicoPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Data Prevista</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Data Prevista</label>
                     <Input
                       type="date"
                       value={form.scheduled_date}
                       onChange={(e) => setForm({ ...form, scheduled_date: e.target.value })}
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Responsável</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Responsável</label>
                     <Input
                       value={form.assigned_to}
                       onChange={(e) => setForm({ ...form, assigned_to: e.target.value })}
                       placeholder="Nome do engenheiro/técnico"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Descrição</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Descrição</label>
                   <textarea
                     value={form.description}
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
                     placeholder="Detalhes do serviço..."
                     rows={3}
-                    className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                    className="w-full bg-zinc-900 border border-slate-700 text-white rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
                   />
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-slate-400">
+                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-zinc-400">
                     Cancelar
                   </Button>
                   <Button type="submit" disabled={saving} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold">
@@ -355,10 +355,10 @@ export default function OrdensServicoPage() {
         {(["pending", "in_progress", "completed", "cancelled"] as OSStatus[]).map(s => {
           const st = statusConfig[s]
           return (
-            <Card key={s} className={cn("bg-slate-900/50 border-l-4 border-slate-800", st.border)}>
+            <Card key={s} className={cn("bg-zinc-950/50 border-l-4 border-zinc-800", st.border)}>
               <CardContent className="p-4">
                 <p className={cn("text-2xl font-black", st.color)}>{counts[s]}</p>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{st.label}</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{st.label}</p>
               </CardContent>
             </Card>
           )
@@ -371,10 +371,10 @@ export default function OrdensServicoPage() {
           <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <ClipboardList className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">
+            <p className="text-zinc-400 font-semibold text-lg">
               {search ? "Nenhuma OS encontrada" : "Nenhuma OS cadastrada ainda"}
             </p>
           </CardContent>
@@ -387,22 +387,22 @@ export default function OrdensServicoPage() {
             const isUpdating = updatingId === os.id
             const osComments = comments[os.id] || []
             return (
-              <Card key={os.id} className={cn("bg-slate-900/50 border-l-4 border-slate-800 transition-colors", st.border)}>
+              <Card key={os.id} className={cn("bg-zinc-950/50 border-l-4 border-zinc-800 transition-colors", st.border)}>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                        <span className="text-xs font-black text-slate-500 font-mono">{os.code}</span>
+                        <span className="text-xs font-black text-zinc-500 font-mono">{os.code}</span>
                         <Badge className={cn("text-[10px] font-bold border-0", st.color, st.bg)}>{st.label}</Badge>
                         <Badge className="text-[10px] font-bold border-0 text-violet-400 bg-violet-400/10">{typeLabels[os.type as OSType] || os.type}</Badge>
                         {osComments.length > 0 && (
-                          <Badge className="text-[10px] font-bold border-0 text-slate-400 bg-slate-400/10">
+                          <Badge className="text-[10px] font-bold border-0 text-zinc-400 bg-zinc-400/10">
                             <MessageSquare className="w-2.5 h-2.5 mr-1" />{osComments.length}
                           </Badge>
                         )}
                       </div>
                       <p className="font-bold text-white truncate">{os.client_name}</p>
-                      <div className="flex flex-wrap gap-3 mt-1 text-xs text-slate-500">
+                      <div className="flex flex-wrap gap-3 mt-1 text-xs text-zinc-500">
                         {os.property_name && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{os.property_name}</span>}
                         {os.scheduled_date && <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{os.scheduled_date}</span>}
                         {os.assigned_to && <span className="flex items-center gap-1"><User className="w-3 h-3" />{os.assigned_to}</span>}
@@ -412,7 +412,7 @@ export default function OrdensServicoPage() {
                     {/* Status Action Buttons */}
                     <div className="flex items-center gap-1.5 flex-shrink-0">
                       {isUpdating ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+                        <Loader2 className="w-4 h-4 animate-spin text-zinc-400" />
                       ) : (
                         <>
                           {os.status === "pending" && (
@@ -451,7 +451,7 @@ export default function OrdensServicoPage() {
                           setExpandedId(next)
                           if (next) loadComments(next)
                         }}
-                        className="p-1.5 text-slate-500 hover:text-white transition-colors"
+                        className="p-1.5 text-zinc-500 hover:text-white transition-colors"
                       >
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </button>
@@ -460,17 +460,17 @@ export default function OrdensServicoPage() {
 
                   {/* Expanded: description + comments */}
                   {isExpanded && (
-                    <div className="mt-4 pt-4 border-t border-slate-800 space-y-4">
+                    <div className="mt-4 pt-4 border-t border-zinc-800 space-y-4">
                       {os.description && (
                         <div>
-                          <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Descrição</p>
+                          <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Descrição</p>
                           <p className="text-sm text-slate-300">{os.description}</p>
                         </div>
                       )}
 
                       {/* Comments */}
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 flex items-center gap-1.5">
+                        <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 flex items-center gap-1.5">
                           <MessageSquare className="w-3 h-3" /> Histórico / Comentários
                         </p>
                         {loadingComments === os.id ? (
@@ -484,12 +484,12 @@ export default function OrdensServicoPage() {
                                 <div className="w-6 h-6 rounded-full bg-emerald-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                                   <span className="text-emerald-400 text-[10px] font-black">{c.author.charAt(0).toUpperCase()}</span>
                                 </div>
-                                <div className="flex-1 bg-slate-800/60 rounded-xl p-2.5">
+                                <div className="flex-1 bg-zinc-900/60 rounded-xl p-2.5">
                                   <div className="flex items-center gap-2 mb-1">
                                     <span className="text-xs font-bold text-slate-300">{c.author}</span>
                                     <span className="text-[10px] text-slate-600">{c.date}</span>
                                   </div>
-                                  <p className="text-xs text-slate-400">{c.text}</p>
+                                  <p className="text-xs text-zinc-400">{c.text}</p>
                                 </div>
                               </div>
                             ))}
@@ -500,7 +500,7 @@ export default function OrdensServicoPage() {
                             value={commentText}
                             onChange={e => setCommentText(e.target.value)}
                             placeholder="Adicionar atualização ou comentário..."
-                            className="bg-slate-800 border-slate-700 text-white rounded-xl text-sm h-9"
+                            className="bg-zinc-900 border-slate-700 text-white rounded-xl text-sm h-9"
                             onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendComment(os.id) } }}
                           />
                           <Button

@@ -35,12 +35,12 @@ export default function FireClientPerfilPage() {
         <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
           Meu Perfil
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+        <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
           Seus dados cadastrais
         </p>
       </div>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <User className="w-5 h-5 text-red-600" />
@@ -51,33 +51,33 @@ export default function FireClientPerfilPage() {
           {student ? (
             <>
               <div className="flex items-center gap-3">
-                <User className="w-5 h-5 text-slate-400" />
+                <User className="w-5 h-5 text-zinc-400" />
                 <div>
-                  <p className="text-sm text-slate-500">Nome</p>
+                  <p className="text-sm text-zinc-500">Nome</p>
                   <p className="font-medium text-slate-900 dark:text-white">{student.name}</p>
                 </div>
               </div>
               {student.email && (
                 <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-slate-400" />
+                  <Mail className="w-5 h-5 text-zinc-400" />
                   <div>
-                    <p className="text-sm text-slate-500">E-mail</p>
+                    <p className="text-sm text-zinc-500">E-mail</p>
                     <p className="font-medium text-slate-900 dark:text-white">{student.email}</p>
                   </div>
                 </div>
               )}
               {student.phone && (
                 <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-slate-400" />
+                  <Phone className="w-5 h-5 text-zinc-400" />
                   <div>
-                    <p className="text-sm text-slate-500">Telefone</p>
+                    <p className="text-sm text-zinc-500">Telefone</p>
                     <p className="font-medium text-slate-900 dark:text-white">{student.phone}</p>
                   </div>
                 </div>
               )}
             </>
           ) : (
-            <p className="text-slate-500">Carregando dados...</p>
+            <p className="text-zinc-500">Carregando dados...</p>
           )}
         </CardContent>
       </Card>

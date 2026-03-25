@@ -272,7 +272,7 @@ export function VerticalizationPlansCard({
 
   return (
     <>
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-zinc-950/50 border-zinc-800">
         <CardHeader>
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
@@ -296,7 +296,7 @@ export function VerticalizationPlansCard({
               </Button>
               {planosUrl && (
                 <Link href={planosUrl} target="_blank">
-                  <Button variant="outline" size="sm" className="border-slate-700 text-slate-400 hover:text-white gap-2">
+                  <Button variant="outline" size="sm" className="border-slate-700 text-zinc-400 hover:text-white gap-2">
                     <ExternalLink className="w-3.5 h-3.5" />
                     Ver Página de Planos
                   </Button>
@@ -311,15 +311,15 @@ export function VerticalizationPlansCard({
               <div className={cn("w-14 h-14 rounded-2xl border flex items-center justify-center", iconBg)}>
                 <CreditCard className={cn("w-6 h-6", iconColor)} />
               </div>
-              <p className="text-slate-500 text-sm font-semibold">Verticalização não encontrada</p>
+              <p className="text-zinc-500 text-sm font-semibold">Verticalização não encontrada</p>
               <p className="text-slate-700 text-xs max-w-sm">
-                A verticalização &quot;{verticalizationSlug}&quot; não existe na tabela <code className="text-slate-500 bg-slate-800 px-1 rounded">verticalizations</code>. Execute as migrations 74 (agroflowai) ou 67 (fire-protection) no Supabase.
+                A verticalização &quot;{verticalizationSlug}&quot; não existe na tabela <code className="text-zinc-500 bg-zinc-900 px-1 rounded">verticalizations</code>. Execute as migrations 74 (agroflowai) ou 67 (fire-protection) no Supabase.
               </p>
               <Button
                 size="sm"
                 variant="outline"
                 onClick={() => window.location.reload()}
-                className="mt-1 gap-2 border-slate-700 text-slate-400"
+                className="mt-1 gap-2 border-slate-700 text-zinc-400"
               >
                 Recarregar
               </Button>
@@ -333,7 +333,7 @@ export function VerticalizationPlansCard({
               <div className={cn("w-14 h-14 rounded-2xl border flex items-center justify-center", iconBg)}>
                 <DollarSign className={cn("w-6 h-6", iconColor)} />
               </div>
-              <p className="text-slate-500 text-sm font-semibold">Nenhum plano configurado</p>
+              <p className="text-zinc-500 text-sm font-semibold">Nenhum plano configurado</p>
               <p className="text-slate-700 text-xs max-w-sm">
                 Crie planos para que os tenants desta vertical possam assinar e gerenciar suas assinaturas.
               </p>
@@ -350,8 +350,8 @@ export function VerticalizationPlansCard({
                   className={cn(
                     "p-4 rounded-xl border transition-all",
                     plan.status === "active"
-                      ? "border-slate-700 bg-slate-800/30 hover:border-slate-600"
-                      : "border-slate-800 bg-slate-900/30 opacity-70"
+                      ? "border-slate-700 bg-zinc-900/30 hover:border-slate-600"
+                      : "border-zinc-800 bg-zinc-950/30 opacity-70"
                   )}
                 >
                   <div className="flex items-start justify-between mb-3">
@@ -366,7 +366,7 @@ export function VerticalizationPlansCard({
                       </div>
                       <p className="text-2xl font-black text-emerald-400 mt-1">
                         R$ {Number(plan.price).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                        <span className="text-xs font-normal text-slate-500">/mês</span>
+                        <span className="text-xs font-normal text-zinc-500">/mês</span>
                       </p>
                     </div>
                     <Badge
@@ -377,14 +377,14 @@ export function VerticalizationPlansCard({
                     </Badge>
                   </div>
                   {plan.description && (
-                    <p className="text-slate-500 text-xs mb-3 line-clamp-2">{plan.description}</p>
+                    <p className="text-zinc-500 text-xs mb-3 line-clamp-2">{plan.description}</p>
                   )}
                   <div className="flex flex-wrap gap-1 mb-4">
                     {Object.entries(plan.modules || {})
                       .filter(([k, v]) => v && getModuleKeysForVerticalization(verticalizationSlug).includes(k as ModuleKey))
                       .slice(0, 5)
                       .map(([k]) => (
-                        <Badge key={k} variant="outline" className="text-[10px] bg-slate-800/50 border-slate-700 text-slate-400">
+                        <Badge key={k} variant="outline" className="text-[10px] bg-zinc-900/50 border-slate-700 text-zinc-400">
                           {MODULE_DEFINITIONS[k as ModuleKey]?.label || k}
                         </Badge>
                       ))}
@@ -394,7 +394,7 @@ export function VerticalizationPlansCard({
                       variant="outline"
                       size="sm"
                       onClick={() => { setPreviewPlan(plan); setPreviewSelectedModule("dashboard") }}
-                      className="flex-1 gap-1 text-xs border-slate-700 text-slate-400 hover:text-white hover:border-violet-500/50 hover:text-violet-400"
+                      className="flex-1 gap-1 text-xs border-slate-700 text-zinc-400 hover:text-white hover:border-violet-500/50 hover:text-violet-400"
                     >
                       <Eye className="w-3 h-3" /> Preview
                     </Button>
@@ -402,7 +402,7 @@ export function VerticalizationPlansCard({
                       variant="outline"
                       size="sm"
                       onClick={() => openEdit(plan)}
-                      className="flex-1 gap-1 text-xs border-slate-700 text-slate-400 hover:text-white"
+                      className="flex-1 gap-1 text-xs border-slate-700 text-zinc-400 hover:text-white"
                     >
                       <Edit className="w-3 h-3" /> Editar
                     </Button>
@@ -412,7 +412,7 @@ export function VerticalizationPlansCard({
                           variant="ghost"
                           size="sm"
                           disabled={deletingId === plan.id}
-                          className="w-8 h-8 p-0 text-slate-400 hover:text-red-400"
+                          className="w-8 h-8 p-0 text-zinc-400 hover:text-red-400"
                         >
                           {deletingId === plan.id ? (
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -448,12 +448,12 @@ export function VerticalizationPlansCard({
       </Card>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto bg-slate-900 border-slate-800">
+        <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto bg-zinc-950 border-zinc-800">
           <DialogHeader>
             <DialogTitle className="text-white">
               {editingPlan ? "Editar Plano" : "Novo Plano"}
             </DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogDescription className="text-zinc-400">
               Configure o plano de assinatura para {verticalizationName}
             </DialogDescription>
           </DialogHeader>
@@ -464,7 +464,7 @@ export function VerticalizationPlansCard({
                 <Input
                   value={form.name}
                   onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-                  className="bg-slate-950 border-slate-700 text-white"
+                  className="bg-black border-slate-700 text-white"
                   placeholder="Ex: Básico"
                 />
               </div>
@@ -473,7 +473,7 @@ export function VerticalizationPlansCard({
                 <Input
                   value={form.plan_id}
                   onChange={(e) => setForm((p) => ({ ...p, plan_id: e.target.value }))}
-                  className="bg-slate-950 border-slate-700 text-white font-mono text-sm"
+                  className="bg-black border-slate-700 text-white font-mono text-sm"
                   placeholder="Ex: basico"
                   disabled={!!editingPlan}
                 />
@@ -486,7 +486,7 @@ export function VerticalizationPlansCard({
                   type="number"
                   value={form.price || ""}
                   onChange={(e) => setForm((p) => ({ ...p, price: parseFloat(e.target.value) || 0 }))}
-                  className="bg-slate-950 border-slate-700 text-white"
+                  className="bg-black border-slate-700 text-white"
                 />
               </div>
               <div className="space-y-2">
@@ -504,7 +504,7 @@ export function VerticalizationPlansCard({
               <Input
                 value={form.description || ""}
                 onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
-                className="bg-slate-950 border-slate-700 text-white"
+                className="bg-black border-slate-700 text-white"
                 placeholder="Breve descrição do plano"
               />
             </div>
@@ -515,7 +515,7 @@ export function VerticalizationPlansCard({
                   type="number"
                   value={form.max_students ?? ""}
                   onChange={(e) => setForm((p) => ({ ...p, max_students: parseInt(e.target.value) || 10 }))}
-                  className="bg-slate-950 border-slate-700 text-white"
+                  className="bg-black border-slate-700 text-white"
                 />
               </div>
               <div className="space-y-2">
@@ -524,19 +524,19 @@ export function VerticalizationPlansCard({
                   type="number"
                   value={form.max_teachers ?? ""}
                   onChange={(e) => setForm((p) => ({ ...p, max_teachers: parseInt(e.target.value) || 1 }))}
-                  className="bg-slate-950 border-slate-700 text-white"
+                  className="bg-black border-slate-700 text-white"
                 />
               </div>
             </div>
             <div className="space-y-2">
               <Label className="text-slate-300">Módulos inclusos</Label>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                 Baseado no nav desta vertical — apenas módulos disponíveis neste nicho.
               </p>
-              <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto p-2 rounded-lg bg-slate-950/50 border border-slate-800">
+              <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto p-2 rounded-lg bg-black/50 border border-zinc-800">
                 {getModulesForVerticalization(verticalizationSlug).map(({ key, label }) => (
                   <div key={key} className="flex items-center justify-between gap-2">
-                    <span className="text-sm text-slate-400">{label}</span>
+                    <span className="text-sm text-zinc-400">{label}</span>
                     <Switch
                       checked={(form.modules || {})[key] ?? false}
                       onCheckedChange={(v) =>
@@ -552,7 +552,7 @@ export function VerticalizationPlansCard({
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)} className="border-slate-700 text-slate-400">
+            <Button variant="outline" onClick={() => setDialogOpen(false)} className="border-slate-700 text-zinc-400">
               Cancelar
             </Button>
             <Button onClick={handleSave} disabled={saving} className={cn("font-bold", iconBg, "text-white")}>
@@ -565,14 +565,14 @@ export function VerticalizationPlansCard({
 
       {/* Modal de Preview do Dashboard */}
       <Dialog open={!!previewPlan} onOpenChange={(open) => !open && setPreviewPlan(null)}>
-        <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-hidden bg-slate-950 border-slate-800 p-0 flex flex-col">
-          <div className="flex-shrink-0 border-b border-slate-800 px-6 py-4">
+        <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-hidden bg-black border-zinc-800 p-0 flex flex-col">
+          <div className="flex-shrink-0 border-b border-zinc-800 px-6 py-4">
             <DialogHeader>
               <DialogTitle className="text-white flex items-center gap-2">
                 <Eye className="w-5 h-5 text-violet-400" />
                 Preview do Dashboard — {previewPlan?.name}
               </DialogTitle>
-              <DialogDescription className="text-slate-400">
+              <DialogDescription className="text-zinc-400">
                 Menu e módulos inclusos neste plano. Clique nos itens para navegar.
               </DialogDescription>
             </DialogHeader>
@@ -580,14 +580,14 @@ export function VerticalizationPlansCard({
           {previewPlan && (
             <div className="flex flex-1 min-h-0 overflow-hidden">
               {/* Sidebar - apenas módulos do plano, baseado no nav desta vertical */}
-              <aside className="w-52 flex-shrink-0 border-r border-slate-800 bg-slate-900/50 overflow-y-auto">
+              <aside className="w-52 flex-shrink-0 border-r border-zinc-800 bg-zinc-950/50 overflow-y-auto">
                 <nav className="p-3 space-y-0.5">
                   {(verticalizationSlug === "fire-protection"
                     ? getFilteredFireProtectionNav(previewPlan.modules)
                     : getFilteredDanceStudioNav(previewPlan.modules)
                   ).map((group) => (
                     <div key={group.label} className="mb-3">
-                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 py-1.5">
+                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-3 py-1.5">
                         {group.label}
                       </p>
                       {group.items.map((item) => {
@@ -602,7 +602,7 @@ export function VerticalizationPlansCard({
                               "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors",
                               isActive
                                 ? "bg-violet-600/20 text-violet-400 border border-violet-500/30"
-                                : "text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent"
+                                : "text-zinc-400 hover:bg-zinc-900/80 hover:text-white border border-transparent"
                             )}
                           >
                             <Icon className="w-4 h-4 flex-shrink-0" />
@@ -616,12 +616,12 @@ export function VerticalizationPlansCard({
               </aside>
 
               {/* Conteúdo principal - mock por módulo */}
-              <main className="flex-1 overflow-y-auto p-6 bg-slate-900/30">
+              <main className="flex-1 overflow-y-auto p-6 bg-zinc-950/30">
                 {previewSelectedModule === "dashboard" && (
                   <div className="space-y-4">
                     <div>
                       <h2 className="text-lg font-black text-white">Olá, Admin 👋</h2>
-                      <p className="text-slate-500 text-sm">
+                      <p className="text-zinc-500 text-sm">
                         Painel de Controle — {verticalizationSlug === "fire-protection" ? "Fire Control" : "Estúdio de Dança"}
                       </p>
                     </div>
@@ -658,18 +658,18 @@ export function VerticalizationPlansCard({
                             { icon: DollarSign, label: "Faturamento", value: "R$ 0", color: "text-emerald-400" },
                           ]
                       ).map((s) => (
-                        <div key={s.label} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700">
+                        <div key={s.label} className="p-3 rounded-lg bg-zinc-900/50 border border-slate-700">
                           <s.icon className={cn("w-4 h-4 mb-1", s.color)} />
                           <p className={cn("text-lg font-black", s.color)}>{s.value}</p>
-                          <p className="text-[10px] text-slate-500 font-bold uppercase">{s.label}</p>
+                          <p className="text-[10px] text-zinc-500 font-bold uppercase">{s.label}</p>
                         </div>
                       ))}
                     </div>
                     {verticalizationSlug !== "fire-protection" && (
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4">
-                          <p className="text-[10px] font-bold text-slate-500 uppercase mb-2">Turmas de Hoje</p>
-                          <div className="h-16 rounded-lg bg-slate-900/50 border border-dashed border-slate-700 flex items-center justify-center">
+                        <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-4">
+                          <p className="text-[10px] font-bold text-zinc-500 uppercase mb-2">Turmas de Hoje</p>
+                          <div className="h-16 rounded-lg bg-zinc-950/50 border border-dashed border-slate-700 flex items-center justify-center">
                             <Calendar className="w-6 h-6 text-slate-600" />
                           </div>
                         </div>
@@ -694,15 +694,15 @@ export function VerticalizationPlansCard({
                       )}{" "}
                       {previewSelectedModule === "clientes" ? "Clientes / Edificações" : "Alunos"}
                     </h2>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       {previewSelectedModule === "clientes"
                         ? "Gestão de clientes e edificações cadastradas."
                         : "Gestão de alunos matriculados no estúdio."}
                     </p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
                       <div className="space-y-3">
                         {[1, 2, 3].map((i) => (
-                          <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-slate-900/50 border border-slate-700">
+                          <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-zinc-950/50 border border-slate-700">
                             <div className={cn(
                               "w-10 h-10 rounded-full flex items-center justify-center font-bold",
                               previewSelectedModule === "clientes" ? "bg-red-600/20 text-red-400" : "bg-violet-600/20 text-violet-400"
@@ -713,7 +713,7 @@ export function VerticalizationPlansCard({
                               <p className="font-semibold text-white">
                                 {previewSelectedModule === "clientes" ? `Edificação ${i}` : `Aluno ${i}`}
                               </p>
-                              <p className="text-xs text-slate-500">
+                              <p className="text-xs text-zinc-500">
                                 {previewSelectedModule === "clientes" ? `cliente${i}@empresa.com` : `aluno${i}@email.com`}
                               </p>
                             </div>
@@ -729,12 +729,12 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Calendar className="w-5 h-5 text-indigo-400" /> Turmas & Aulas
                     </h2>
-                    <p className="text-slate-500 text-sm">Criação e agendamento de turmas.</p>
+                    <p className="text-zinc-500 text-sm">Criação e agendamento de turmas.</p>
                     <div className="grid grid-cols-2 gap-3">
                       {["Ballet Infantil", "Forró Iniciante", "Jazz Avançado"].map((name, i) => (
-                        <div key={i} className="p-4 rounded-xl border border-slate-700 bg-slate-800/50">
+                        <div key={i} className="p-4 rounded-xl border border-slate-700 bg-zinc-900/50">
                           <p className="font-bold text-white">{name}</p>
-                          <p className="text-xs text-slate-500 mt-1">Seg/Qua 19h • 12 alunos</p>
+                          <p className="text-xs text-zinc-500 mt-1">Seg/Qua 19h • 12 alunos</p>
                         </div>
                       ))}
                     </div>
@@ -745,12 +745,12 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <GraduationCap className="w-5 h-5 text-pink-400" /> Professores
                     </h2>
-                    <p className="text-slate-500 text-sm">Equipe docente do estúdio.</p>
+                    <p className="text-zinc-500 text-sm">Equipe docente do estúdio.</p>
                     <div className="flex flex-wrap gap-2">
                       {["Maria Silva", "João Santos", "Ana Costa"].map((name, i) => (
-                        <div key={i} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700">
+                        <div key={i} className="p-3 rounded-lg bg-zinc-900/50 border border-slate-700">
                           <p className="font-semibold text-white">{name}</p>
-                          <p className="text-xs text-slate-500">3 turmas</p>
+                          <p className="text-xs text-zinc-500">3 turmas</p>
                         </div>
                       ))}
                     </div>
@@ -761,19 +761,19 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <DollarSign className="w-5 h-5 text-emerald-400" /> Financeiro
                     </h2>
-                    <p className="text-slate-500 text-sm">Cobranças, mensalidades e despesas.</p>
+                    <p className="text-zinc-500 text-sm">Cobranças, mensalidades e despesas.</p>
                     <div className="grid grid-cols-3 gap-3">
-                      <div className="p-4 rounded-xl border border-slate-700 bg-slate-800/50">
-                        <p className="text-xs text-slate-500">Recebido (mês)</p>
+                      <div className="p-4 rounded-xl border border-slate-700 bg-zinc-900/50">
+                        <p className="text-xs text-zinc-500">Recebido (mês)</p>
                         <p className="text-xl font-black text-emerald-400">R$ 0</p>
                       </div>
-                      <div className="p-4 rounded-xl border border-slate-700 bg-slate-800/50">
-                        <p className="text-xs text-slate-500">Pendente</p>
+                      <div className="p-4 rounded-xl border border-slate-700 bg-zinc-900/50">
+                        <p className="text-xs text-zinc-500">Pendente</p>
                         <p className="text-xl font-black text-amber-400">R$ 0</p>
                       </div>
-                      <div className="p-4 rounded-xl border border-slate-700 bg-slate-800/50">
-                        <p className="text-xs text-slate-500">Despesas</p>
-                        <p className="text-xl font-black text-slate-400">R$ 0</p>
+                      <div className="p-4 rounded-xl border border-slate-700 bg-zinc-900/50">
+                        <p className="text-xs text-zinc-500">Despesas</p>
+                        <p className="text-xl font-black text-zinc-400">R$ 0</p>
                       </div>
                     </div>
                   </div>
@@ -783,10 +783,10 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <QrCode className="w-5 h-5 text-cyan-400" /> Scanner QR
                     </h2>
-                    <p className="text-slate-500 text-sm">Controle de presença via QR Code.</p>
-                    <div className="rounded-xl border-2 border-dashed border-slate-600 bg-slate-800/30 p-12 flex flex-col items-center justify-center">
+                    <p className="text-zinc-500 text-sm">Controle de presença via QR Code.</p>
+                    <div className="rounded-xl border-2 border-dashed border-slate-600 bg-zinc-900/30 p-12 flex flex-col items-center justify-center">
                       <QrCode className="w-16 h-16 text-slate-600 mb-4" />
-                      <p className="text-slate-500 text-sm font-medium">Área de escaneamento</p>
+                      <p className="text-zinc-500 text-sm font-medium">Área de escaneamento</p>
                       <p className="text-xs text-slate-600 mt-1">Aponte a câmera para o QR do aluno</p>
                     </div>
                   </div>
@@ -796,13 +796,13 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-lime-400" /> Leads / CRM
                     </h2>
-                    <p className="text-slate-500 text-sm">Funil de vendas e captação de alunos.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                    <p className="text-zinc-500 text-sm">Funil de vendas e captação de alunos.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
                       <div className="flex gap-4 overflow-x-auto pb-2">
                         {["Novos", "Contato", "Interesse", "Matriculados"].map((stage, i) => (
-                          <div key={i} className="min-w-[120px] p-3 rounded-lg bg-slate-900/50 border border-slate-700 text-center">
+                          <div key={i} className="min-w-[120px] p-3 rounded-lg bg-zinc-950/50 border border-slate-700 text-center">
                             <p className="text-2xl font-black text-white">0</p>
-                            <p className="text-xs text-slate-500">{stage}</p>
+                            <p className="text-xs text-zinc-500">{stage}</p>
                           </div>
                         ))}
                       </div>
@@ -814,15 +814,15 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <ClipboardList className="w-5 h-5 text-orange-400" /> Ordens de Serviço
                     </h2>
-                    <p className="text-slate-500 text-sm">Controle de OS, vistorias e manutenções.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                    <p className="text-zinc-500 text-sm">Controle de OS, vistorias e manutenções.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
                       <div className="space-y-3">
                         {["OS #001 — Vistoria", "OS #002 — Manutenção", "OS #003 — Instalação"].map((item, i) => (
-                          <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-slate-900/50 border border-slate-700">
+                          <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-zinc-950/50 border border-slate-700">
                             <ClipboardList className="w-5 h-5 text-orange-400" />
                             <div>
                               <p className="font-semibold text-white">{item}</p>
-                              <p className="text-xs text-slate-500">Em andamento</p>
+                              <p className="text-xs text-zinc-500">Em andamento</p>
                             </div>
                             <span className="ml-auto text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-400">Pendente</span>
                           </div>
@@ -836,13 +836,13 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Package className="w-5 h-5 text-red-400" /> Extintores
                     </h2>
-                    <p className="text-slate-500 text-sm">Controle de estoque e validades de extintores.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                    <p className="text-zinc-500 text-sm">Controle de estoque e validades de extintores.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
                       <div className="grid grid-cols-2 gap-3">
                         {["Extintor ABC 6kg", "Extintor CO2 4kg", "Extintor PQS 4kg"].map((item, i) => (
-                          <div key={i} className="p-4 rounded-xl border border-slate-700 bg-slate-900/50">
+                          <div key={i} className="p-4 rounded-xl border border-slate-700 bg-zinc-950/50">
                             <p className="font-bold text-white">{item}</p>
-                            <p className="text-xs text-slate-500 mt-1">Validade: 12/2025</p>
+                            <p className="text-xs text-zinc-500 mt-1">Validade: 12/2025</p>
                           </div>
                         ))}
                       </div>
@@ -854,15 +854,15 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Calendar className="w-5 h-5 text-amber-400" /> Vistorias
                     </h2>
-                    <p className="text-slate-500 text-sm">Agendamento e controle de vistorias.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                    <p className="text-zinc-500 text-sm">Agendamento e controle de vistorias.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
                       <div className="space-y-2">
                         {[1, 2, 3].map((i) => (
-                          <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-slate-900/50 border border-slate-700">
+                          <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-zinc-950/50 border border-slate-700">
                             <Calendar className="w-5 h-5 text-amber-400" />
                             <div>
                               <p className="font-semibold text-white">Vistoria #{i} — Edificação</p>
-                              <p className="text-xs text-slate-500">Agendada para 15/03</p>
+                              <p className="text-xs text-zinc-500">Agendada para 15/03</p>
                             </div>
                           </div>
                         ))}
@@ -875,12 +875,12 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Trophy className="w-5 h-5 text-amber-400" /> Gamificação
                     </h2>
-                    <p className="text-slate-500 text-sm">Rankings, conquistas e engajamento.</p>
+                    <p className="text-zinc-500 text-sm">Rankings, conquistas e engajamento.</p>
                     <div className="rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-600/10 to-yellow-600/10 p-6">
                       <p className="text-sm font-bold text-amber-400 mb-3">Ranking Geral</p>
                       <div className="space-y-2">
                         {[1, 2, 3].map((pos) => (
-                          <div key={pos} className="flex items-center gap-3 p-2 rounded-lg bg-slate-900/50">
+                          <div key={pos} className="flex items-center gap-3 p-2 rounded-lg bg-zinc-950/50">
                             <span className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-xs font-black text-amber-400">{pos}</span>
                             <span className="text-white font-medium">Aluno {pos}</span>
                             <span className="ml-auto text-amber-400 font-bold">{100 - pos * 20} pts</span>
@@ -895,12 +895,12 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <ShoppingCart className="w-5 h-5 text-amber-400" /> PDV (Ponto de Venda)
                     </h2>
-                    <p className="text-slate-500 text-sm">Venda de produtos e pacotes.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
-                      <p className="text-sm text-slate-400 mb-4">Carrinho vazio</p>
+                    <p className="text-zinc-500 text-sm">Venda de produtos e pacotes.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
+                      <p className="text-sm text-zinc-400 mb-4">Carrinho vazio</p>
                       <div className="grid grid-cols-4 gap-2">
                         {["Pacote 8 aulas", "Mensalidade", "Aula avulsa"].map((p, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-slate-900/50 border border-slate-700 text-center text-xs">
+                          <div key={i} className="p-3 rounded-lg bg-zinc-950/50 border border-slate-700 text-center text-xs">
                             {p}
                           </div>
                         ))}
@@ -913,10 +913,10 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Phone className="w-5 h-5 text-green-400" /> WhatsApp
                     </h2>
-                    <p className="text-slate-500 text-sm">Integração e envio de mensagens.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-8 text-center">
+                    <p className="text-zinc-500 text-sm">Integração e envio de mensagens.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-8 text-center">
                       <MessageSquare className="w-12 h-12 text-slate-600 mx-auto mb-2" />
-                      <p className="text-slate-400 text-sm">Conecte sua conta WhatsApp</p>
+                      <p className="text-zinc-400 text-sm">Conecte sua conta WhatsApp</p>
                     </div>
                   </div>
                 )}
@@ -925,10 +925,10 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-purple-400" /> Chat IA
                     </h2>
-                    <p className="text-slate-500 text-sm">Assistente virtual inteligente.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-8 text-center">
+                    <p className="text-zinc-500 text-sm">Assistente virtual inteligente.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-8 text-center">
                       <MessageSquare className="w-12 h-12 text-slate-600 mx-auto mb-2" />
-                      <p className="text-slate-400 text-sm">Chat com IA ativado</p>
+                      <p className="text-zinc-400 text-sm">Chat com IA ativado</p>
                     </div>
                   </div>
                 )}
@@ -937,9 +937,9 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Receipt className="w-5 h-5 text-amber-400" /> Emissor Fiscal (NF-e)
                     </h2>
-                    <p className="text-slate-500 text-sm">Emissão de Notas Fiscais Eletrônicas via SEFAZ.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
-                      <p className="text-slate-400 text-sm">Certificado A1 • Integração direta com SEFAZ</p>
+                    <p className="text-zinc-500 text-sm">Emissão de Notas Fiscais Eletrônicas via SEFAZ.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
+                      <p className="text-zinc-400 text-sm">Certificado A1 • Integração direta com SEFAZ</p>
                     </div>
                   </div>
                 )}
@@ -948,10 +948,10 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Layers className="w-5 h-5 text-sky-400" /> ERP
                     </h2>
-                    <p className="text-slate-500 text-sm">Gestão empresarial completa.</p>
+                    <p className="text-zinc-500 text-sm">Gestão empresarial completa.</p>
                     <div className="grid grid-cols-2 gap-3">
                       {["Pedidos", "Estoque", "Fornecedores", "Relatórios"].map((m, i) => (
-                        <div key={i} className="p-4 rounded-xl border border-slate-700 bg-slate-800/50">
+                        <div key={i} className="p-4 rounded-xl border border-slate-700 bg-zinc-900/50">
                           <p className="font-semibold text-white">{m}</p>
                         </div>
                       ))}
@@ -963,9 +963,9 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Package className="w-5 h-5 text-indigo-400" /> Estoque
                     </h2>
-                    <p className="text-slate-500 text-sm">Controle de produtos e suprimentos.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
-                      <p className="text-slate-400 text-sm">Lista de produtos (mock)</p>
+                    <p className="text-zinc-500 text-sm">Controle de produtos e suprimentos.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
+                      <p className="text-zinc-400 text-sm">Lista de produtos (mock)</p>
                     </div>
                   </div>
                 )}
@@ -974,10 +974,10 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Store className="w-5 h-5 text-rose-400" /> Marketplace
                     </h2>
-                    <p className="text-slate-500 text-sm">Loja virtual integrada.</p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-8 text-center">
+                    <p className="text-zinc-500 text-sm">Loja virtual integrada.</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-8 text-center">
                       <Store className="w-12 h-12 text-slate-600 mx-auto mb-2" />
-                      <p className="text-slate-400 text-sm">Vitrine de produtos</p>
+                      <p className="text-zinc-400 text-sm">Vitrine de produtos</p>
                     </div>
                   </div>
                 )}
@@ -986,15 +986,15 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <CreditCard className="w-5 h-5 text-violet-400" /> Planos e Preços
                     </h2>
-                    <p className="text-slate-500 text-sm">Assinatura e upgrade do plano.</p>
+                    <p className="text-zinc-500 text-sm">Assinatura e upgrade do plano.</p>
                   </div>
                 )}
                 {previewSelectedModule === "configuracoes" && (
                   <div className="space-y-4">
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
-                      <Settings className="w-5 h-5 text-slate-400" /> Configurações
+                      <Settings className="w-5 h-5 text-zinc-400" /> Configurações
                     </h2>
-                    <p className="text-slate-500 text-sm">Dados do estúdio, módulos e preferências.</p>
+                    <p className="text-zinc-500 text-sm">Dados do estúdio, módulos e preferências.</p>
                   </div>
                 )}
                 {previewSelectedModule === "pagamentos-professores" && (
@@ -1002,7 +1002,7 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <Wallet className="w-5 h-5 text-emerald-400" /> Pagamentos Professores
                     </h2>
-                    <p className="text-slate-500 text-sm">Controle de pagamentos aos professores.</p>
+                    <p className="text-zinc-500 text-sm">Controle de pagamentos aos professores.</p>
                   </div>
                 )}
                 {previewSelectedModule === "relatorios" && (
@@ -1010,7 +1010,7 @@ export function VerticalizationPlansCard({
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <BarChart3 className="w-5 h-5 text-indigo-400" /> Relatórios
                     </h2>
-                    <p className="text-slate-500 text-sm">Relatórios e análises.</p>
+                    <p className="text-zinc-500 text-sm">Relatórios e análises.</p>
                   </div>
                 )}
                 {["tecnicos", "engenheiros", "arquitetos", "portal-vendedor"].includes(previewSelectedModule) && (
@@ -1022,14 +1022,14 @@ export function VerticalizationPlansCard({
                       {previewSelectedModule === "arquitetos" && "Arquitetos"}
                       {previewSelectedModule === "portal-vendedor" && "Portal do Vendedor"}
                     </h2>
-                    <p className="text-slate-500 text-sm">
+                    <p className="text-zinc-500 text-sm">
                       {previewSelectedModule === "tecnicos" && "Equipe de técnicos cadastrados."}
                       {previewSelectedModule === "engenheiros" && "Engenheiros responsáveis."}
                       {previewSelectedModule === "arquitetos" && "Arquitetos parceiros."}
                       {previewSelectedModule === "portal-vendedor" && "Portal do vendedor."}
                     </p>
-                    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
-                      <p className="text-slate-400 text-sm">Lista de profissionais (mock)</p>
+                    <div className="rounded-xl border border-slate-700 bg-zinc-900/50 p-6">
+                      <p className="text-zinc-400 text-sm">Lista de profissionais (mock)</p>
                     </div>
                   </div>
                 )}

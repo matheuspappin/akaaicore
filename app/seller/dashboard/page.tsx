@@ -18,7 +18,7 @@ export default function SellerDashboardPage() {
     return (
       <div className="p-6 max-w-md mx-auto space-y-6">
         <h1 className="text-2xl font-black text-slate-900 dark:text-white">Portal do Vendedor</h1>
-        <p className="text-slate-500 dark:text-slate-400">
+        <p className="text-zinc-500 dark:text-zinc-400">
           Para acessar o portal, vincule-se à empresa usando o código de convite fornecido pelo administrador.
         </p>
         <InternalLinkForm role="seller" />

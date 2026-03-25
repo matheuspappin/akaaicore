@@ -1,3 +1,4 @@
+// apps/web/app/solutions/estudio-de-danca/dashboard/configuracoes/page.tsx
 "use client"
 
 import { useState, useEffect } from "react"
@@ -9,7 +10,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import {
   Select,
@@ -22,12 +22,10 @@ import { useToast } from "@/hooks/use-toast"
 import { checkPasswordStrength, MIN_STRONG_PASSWORD_SCORE } from "@/lib/password-utils"
 import { PasswordStrengthMeter } from "@/components/ui/password-strength-meter"
 import {
-  User, Building2, Bell, Shield, CreditCard, Palette, MessageSquare,
+  User, Building2, Bell, Shield, Palette, MessageSquare,
   Save, Loader2, Phone, Copy, Check, QrCode, Link2, Trophy,
-  Package, Settings, Users, GraduationCap, ExternalLink, Music,
-  Zap, CheckCircle, XCircle, Unlink,
+  GraduationCap, ExternalLink, Music, Zap, CheckCircle, XCircle, Unlink
 } from "lucide-react"
-import { getStudioStripeConnectStatus } from "@/lib/actions/studio-stripe-connect"
 
 // ─── tipos ────────────────────────────────────────────────────────────────────
 interface StudioSettings {
@@ -56,7 +54,6 @@ const TABS = [
   { id: "notificacoes",  label: "Notificações",       icon: Bell },
   { id: "aparencia",     label: "Aparência",          icon: Palette },
   { id: "seguranca",     label: "Segurança",          icon: Shield },
-  { id: "creditos",      label: "Créditos / Sessões", icon: Package },
   { id: "gamificacao",   label: "Gamificação",        icon: Trophy },
   { id: "integracoes",   label: "Integrações",        icon: Zap },
 ]
@@ -100,17 +97,6 @@ export default function DanceConfiguracoesPage() {
   // plano
   const [usage, setUsage] = useState({ students: 0, teachers: 0, plan: "gratuito" })
 
-  // créditos
-  const [creditPackages, setCreditPackages] = useState<any[]>([])
-  const [loadingCredits, setLoadingCredits] = useState(false)
-  const [newPkg, setNewPkg] = useState({
-    name: "",
-    lessons_count: 10,
-    price: 99,
-    validity_days: 90,
-    billing_type: "one_time" as "one_time" | "monthly",
-  })
-
   // gamificação
   const DEFAULT_ACHIEVEMENTS = [
     { id: "frequencia_perfeita", label: "Frequência Perfeita", desc: "Nunca faltou em um mês", points: 100, icon: "Star" },
@@ -133,13 +119,7 @@ export default function DanceConfiguracoesPage() {
 
   // integrações
   const [waSettings, setWaSettings] = useState({ apiKey: "", instanceId: "", apiUrl: "" })
-  const [stripeSettings, setStripeSettings] = useState({ publicKey: "", secretKey: "" })
   const [waStatus, setWaStatus] = useState<"connected" | "disconnected" | "connecting" | "error">("disconnected")
-  const [stripeStatus, setStripeStatus] = useState<"connected" | "disconnected" | "connecting">("disconnected")
-  const [stripeConnectStatus, setStripeConnectStatus] = useState<{ stripe_account_id: string | null; charges_enabled: boolean } | null>(null)
-  const [stripeConnectLoading, setStripeConnectLoading] = useState(false)
-  const [pagbankStatus, setPagbankStatus] = useState<"connected" | "disconnected" | "connecting">("disconnected")
-  const [pagbankLoading, setPagbankLoading] = useState(false)
 
   // misc
   const [copied, setCopied] = useState(false)
@@ -162,7 +142,6 @@ export default function DanceConfiguracoesPage() {
     if (sId) {
       loadStudio(sId)
       loadUsage(sId)
-      loadCredits(sId)
       loadGamification(sId)
       loadIntegrations(sId)
     }
@@ -200,25 +179,6 @@ export default function DanceConfiguracoesPage() {
     setUsage({ students: students || 0, teachers: teachers || 0, plan: st?.plan || "gratuito" })
   }
 
-  const loadCredits = async (sId: string) => {
-    setLoadingCredits(true)
-    try {
-      const res = await fetch(`/api/dance-studio/packages?studioId=${encodeURIComponent(sId)}`)
-      const json = await res.json()
-      if (!res.ok) {
-        toast({ title: "Erro ao carregar pacotes", description: json.error || "Falha ao buscar pacotes de créditos.", variant: "destructive" })
-        setCreditPackages([])
-      } else {
-        setCreditPackages(json.packages || [])
-      }
-    } catch (e: any) {
-      toast({ title: "Erro ao carregar pacotes", description: e.message, variant: "destructive" })
-      setCreditPackages([])
-    } finally {
-      setLoadingCredits(false)
-    }
-  }
-
   const loadGamification = async (sId: string) => {
     const { data } = await supabase.from("studio_settings").select("*").eq("studio_id", sId)
     if (!data) return
@@ -239,80 +199,19 @@ export default function DanceConfiguracoesPage() {
   }
 
   const loadIntegrations = async (sId: string) => {
-    setStripeConnectLoading(true)
-    setPagbankLoading(true)
     try {
       const { data: keys } = await supabase.from("studio_api_keys").select("*").eq("studio_id", sId)
       if (keys) {
         const wa = keys.find((k: any) => k.service_name === "whatsapp")
-        const stripe = keys.find((k: any) => k.service_name === "stripe")
         if (wa) {
           setWaSettings({ apiKey: wa.api_key || "", instanceId: wa.instance_id || "", apiUrl: wa.settings?.api_url || "" })
           setWaStatus(wa.status === "active" ? "connected" : "disconnected")
         }
-        if (stripe) {
-          setStripeSettings({ publicKey: stripe.settings?.public_key || "", secretKey: stripe.api_key || "" })
-          setStripeStatus("connected")
-        }
       }
-
-      // Verifica Stripe Connect
-      const connectStatus = await getStudioStripeConnectStatus(sId)
-      setStripeConnectStatus(connectStatus)
-
-      // Verifica PagBank
-      const { data: studioData } = await supabase.from("studios").select("pagbank_access_token").eq("id", sId).single()
-      if (studioData?.pagbank_access_token) {
-        setPagbankStatus("connected")
-      } else {
-        setPagbankStatus("disconnected")
-      }
-    } finally {
-      setStripeConnectLoading(false)
-      setPagbankLoading(false)
-    }
+    } catch {}
   }
 
-  // ─── integrações handlers ───────────────────────────────────────────────────
-  const handleConnectPagbank = () => {
-    setPagbankLoading(true)
-    window.location.href = "/api/pagbank/oauth/authorize"
-  }
-
-  const handleDisconnectPagbank = async () => {
-    if (!confirm("Deseja realmente desconectar sua conta PagBank?")) return
-    setPagbankLoading(true)
-    try {
-      const { error } = await supabase.from("studios").update({
-        pagbank_access_token: null,
-        pagbank_refresh_token: null,
-        pagbank_token_expires_at: null,
-        pagbank_client_id: null,
-        pagbank_client_secret: null,
-      }).eq("id", studioId)
-
-      if (error) throw error
-      setPagbankStatus("disconnected")
-      toast({ title: "PagBank desconectado!", description: "Sua conta foi desconectada com sucesso." })
-    } catch (e: any) {
-      toast({ title: "Erro ao desconectar", description: e.message, variant: "destructive" })
-    } finally {
-      setPagbankLoading(false)
-    }
-  }
-
-  // Effect para capturar retorno do OAuth
-  useEffect(() => {
-    const status = searchParams.get("status")
-    const message = searchParams.get("message")
-    if (status === "success") {
-      toast({ title: "Conectado!", description: message || "Conta PagBank vinculada com sucesso." })
-    } else if (status === "error") {
-      toast({ title: "Erro na conexão", description: message || "Não foi possível vincular sua conta PagBank.", variant: "destructive" })
-    }
-  }, [searchParams])
-
-  // ─── saves ──────────────────────────────────────────────────────────────────
+  // ─── handlers ─────────────────────────────────────────────────────────────
   const saveProfile = async () => {
     setSaving(true)
     try {
@@ -384,52 +283,7 @@ export default function DanceConfiguracoesPage() {
     } finally { setChangingPw(false) }
   }
 
-  const addCreditPackage = async () => {
-    if (!studioId) {
-      toast({ title: "Estúdio não identificado", description: "Recarregue a página e tente novamente logado como administrador do estúdio.", variant: "destructive" })
-      return
-    }
-    try {
-      const res = await fetch("/api/dance-studio/packages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ studioId, ...newPkg }),
-      })
-      const json = await res.json()
-      if (!res.ok) {
-        toast({ title: "Erro ao criar pacote", description: json.error || "Não foi possível criar o pacote.", variant: "destructive" })
-        return
-      }
-      toast({ title: "Pacote criado!" })
-      setNewPkg({ name: "", lessons_count: 10, price: 99, validity_days: 90, billing_type: "one_time" })
-      loadCredits(studioId)
-    } catch (e: any) {
-      toast({ title: "Erro ao criar pacote", description: e.message, variant: "destructive" })
-    }
-  }
-
-  const deleteCreditPackage = async (id: string) => {
-    if (!confirm("Excluir este pacote?")) return
-    if (!studioId) return
-    try {
-      const res = await fetch("/api/dance-studio/packages", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, studioId }),
-      })
-      const json = await res.json().catch(() => ({}))
-      if (!res.ok) {
-        toast({ title: "Erro ao excluir pacote", description: (json as any).error || "Não foi possível excluir o pacote.", variant: "destructive" })
-        return
-      }
-      loadCredits(studioId)
-    } catch (e: any) {
-      toast({ title: "Erro ao excluir pacote", description: e.message, variant: "destructive" })
-    }
-  }
-
   const saveWhatsApp = async () => {
-    setWaStatus("connecting")
     try {
       await supabase.from("studio_api_keys").upsert(
         { studio_id: studioId, service_name: "whatsapp", api_key: waSettings.apiKey, instance_id: waSettings.instanceId, status: "active", settings: { api_url: waSettings.apiUrl }, updated_at: new Date().toISOString() },
@@ -439,21 +293,6 @@ export default function DanceConfiguracoesPage() {
       toast({ title: "WhatsApp configurado!" })
     } catch (e: any) {
       setWaStatus("error")
-      toast({ title: "Erro", description: e.message, variant: "destructive" })
-    }
-  }
-
-  const saveStripe = async () => {
-    setStripeStatus("connecting")
-    try {
-      await supabase.from("studio_api_keys").upsert(
-        { studio_id: studioId, service_name: "stripe", api_key: stripeSettings.secretKey, status: "active", settings: { public_key: stripeSettings.publicKey }, updated_at: new Date().toISOString() },
-        { onConflict: "studio_id, service_name" }
-      )
-      setStripeStatus("connected")
-      toast({ title: "Stripe configurado!" })
-    } catch (e: any) {
-      setStripeStatus("connecting")
       toast({ title: "Erro", description: e.message, variant: "destructive" })
     }
   }
@@ -813,98 +652,6 @@ export default function DanceConfiguracoesPage() {
         </div>
       )}
 
-      {/* ── CRÉDITOS / SESSÕES ────────────────────────────────────────────────── */}
-      {activeTab === "creditos" && (
-        <div className="space-y-4 max-w-2xl">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Package className="w-4 h-4 text-violet-500" /> Pacotes de Créditos / Sessões</CardTitle>
-              <CardDescription>Configure os pacotes que os alunos podem comprar</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {loadingCredits ? (
-                <div className="py-8 flex justify-center"><Loader2 className="w-5 h-5 animate-spin text-violet-500" /></div>
-              ) : creditPackages.length === 0 ? (
-                <p className="text-center text-sm text-slate-500 py-6">Nenhum pacote cadastrado ainda.</p>
-              ) : (
-                <div className="space-y-2 mb-4">
-                  {creditPackages.map(pkg => (
-                    <div key={pkg.id} className="flex items-center justify-between p-3 rounded-xl border bg-white dark:bg-white/5">
-                      <div>
-                        <p className="font-bold text-sm">{pkg.name || `Pacote ${pkg.lessons_count} aulas`}</p>
-                        <p className="text-xs text-slate-500">
-                          {pkg.lessons_count} sessões · válido por {pkg.validity_days || 90} dias
-                          {pkg.billing_type === "monthly" ? " · cobrança mensal (Stripe)" : " · pagamento avulso"}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <p className="font-black text-violet-600">R$ {Number(pkg.price).toFixed(2)}</p>
-                        <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 h-7 px-2 text-xs" onClick={() => deleteCreditPackage(pkg.id)}>
-                          Remover
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="border-t pt-4 mt-2">
-                <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Novo Pacote</p>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-1 col-span-2">
-                    <Label className="text-xs">Nome do Pacote</Label>
-                    <Input placeholder="Ex: Pacote Mensal" value={newPkg.name} onChange={e => setNewPkg(p => ({ ...p, name: e.target.value }))} />
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Número de Créditos</Label>
-                    <Input
-                      type="number"
-                      min={1}
-                      value={newPkg.lessons_count}
-                      onChange={e => setNewPkg(p => ({ ...p, lessons_count: parseInt(e.target.value) || 1 }))}
-                    />
-                    <p className="text-[10px] text-slate-400">
-                      Cada aula consome 1 crédito. Esses créditos também podem ser usados como forma de pagamento no PDV.
-                    </p>
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Preço (R$)</Label>
-                    <Input type="number" min={0} step={0.01} value={newPkg.price} onChange={e => setNewPkg(p => ({ ...p, price: parseFloat(e.target.value) || 0 }))} />
-                  </div>
-                  <div className="space-y-1">
-                    <Label className="text-xs">Validade (dias)</Label>
-                    <Input type="number" min={1} value={newPkg.validity_days} onChange={e => setNewPkg(p => ({ ...p, validity_days: parseInt(e.target.value) || 30 }))} />
-                  </div>
-                  <div className="space-y-1 col-span-2">
-                    <Label className="text-xs">Forma de cobrança (Stripe)</Label>
-                    <Select
-                      value={newPkg.billing_type}
-                      onValueChange={v => setNewPkg(p => ({ ...p, billing_type: v as "one_time" | "monthly" }))}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Tipo" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="one_time">Avulso — pagamento único</SelectItem>
-                        <SelectItem value="monthly">Mensal — assinatura recorrente</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <p className="text-[10px] text-slate-400">
-                      Avulso usa checkout em modo pagamento; mensal usa subscrição mensal no Stripe (renovações creditam créditos automaticamente).
-                    </p>
-                  </div>
-                  <div className="flex items-end">
-                    <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={addCreditPackage} disabled={!newPkg.lessons_count || !newPkg.price}>
-                      Adicionar Pacote
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
       {/* ── GAMIFICAÇÃO ───────────────────────────────────────────────────────── */}
       {activeTab === "gamificacao" && (
         <div className="space-y-4 max-w-xl">
@@ -1079,113 +826,6 @@ export default function DanceConfiguracoesPage() {
                 )}
               </div>
               <p className="text-xs text-slate-400">Para parear o QR Code, vá em <strong>Sidebar → WhatsApp</strong> após salvar as chaves.</p>
-            </CardContent>
-          </Card>
-
-          {/* PagBank Connect */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between text-base">
-                <div className="flex items-center gap-2"><QrCode className="w-4 h-4 text-emerald-500" /> PagBank (Pix Direto)</div>
-                <div className="flex items-center gap-1.5 text-xs">
-                  {pagbankLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin text-emerald-500" />
-                  ) : pagbankStatus === "connected" ? (
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                  ) : (
-                    <XCircle className="w-4 h-4 text-slate-400" />
-                  )}
-                  <span className="font-bold text-slate-500">
-                    {pagbankLoading ? "Carregando..." : pagbankStatus === "connected" ? "Conectado" : "Não conectado"}
-                  </span>
-                </div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-slate-600 dark:text-slate-400">
-                Habilite o recebimento de pagamentos via Pix diretamente na sua conta PagBank com taxas competitivas e liquidação imediata.
-              </p>
-              {pagbankStatus === "connected" ? (
-                <Button variant="outline" className="w-full text-red-500 hover:text-red-600 border-red-200 hover:border-red-300" onClick={handleDisconnectPagbank} disabled={pagbankLoading}>
-                  {pagbankLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Unlink className="w-4 h-4 mr-2" />}
-                  Desconectar PagBank
-                </Button>
-              ) : (
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white" onClick={handleConnectPagbank} disabled={pagbankLoading || !studioId}>
-                  {pagbankLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <QrCode className="w-4 h-4 mr-2" />}
-                  Conectar conta PagBank
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Stripe Connect */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between text-base">
-                <div className="flex items-center gap-2"><CreditCard className="w-4 h-4 text-violet-500" /> Stripe (Pagamentos)</div>
-                <div className="flex items-center gap-1.5 text-xs">
-                  {stripeConnectLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin text-violet-500" />
-                  ) : stripeConnectStatus?.charges_enabled ? (
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                  ) : stripeConnectStatus?.stripe_account_id ? (
-                    <Loader2 className="w-4 h-4 text-amber-500" />
-                  ) : (
-                    <XCircle className="w-4 h-4 text-slate-400" />
-                  )}
-                  <span className="font-bold text-slate-500">
-                    {stripeConnectLoading ? "Carregando..." : stripeConnectStatus?.charges_enabled ? "Conectado" : stripeConnectStatus?.stripe_account_id ? "Onboarding pendente" : "Não conectado"}
-                  </span>
-                </div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {stripeConnectStatus?.charges_enabled ? (
-                <>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">Sua conta Stripe está conectada. Os pagamentos de pacotes, mensalidades e loja serão recebidos diretamente na sua conta.</p>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a href="https://dashboard.stripe.com" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" /> Abrir painel Stripe
-                    </a>
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    {stripeConnectStatus?.stripe_account_id
-                      ? "Conclua o cadastro no Stripe para habilitar os pagamentos."
-                      : "Conecte sua conta Stripe para receber pagamentos de pacotes, mensalidades e loja diretamente."}
-                  </p>
-                  <Button
-                    className="w-full bg-violet-600 hover:bg-violet-700"
-                    disabled={!studioId || stripeConnectLoading}
-                    onClick={async () => {
-                      if (!studioId) return
-                      setStripeConnectLoading(true)
-                      try {
-                        const returnUrl = typeof window !== "undefined" ? `${window.location.origin}/solutions/estudio-de-danca/dashboard/configuracoes?tab=integracoes` : ""
-                        const res = await fetch("/api/dance-studio/stripe-connect", {
-                          method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({ studioId, returnUrl }),
-                        })
-                        const json = await res.json()
-                        if (!res.ok) throw new Error(json.error || "Erro ao conectar Stripe")
-                        if (json.url) window.location.href = json.url
-                        else toast({ title: "Erro", description: "URL não retornada", variant: "destructive" })
-                      } catch (e: any) {
-                        toast({ title: "Erro", description: e.message, variant: "destructive" })
-                      } finally {
-                        setStripeConnectLoading(false)
-                      }
-                    }}
-                  >
-                    {stripeConnectLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
-                    {stripeConnectStatus?.stripe_account_id ? "Continuar onboarding" : "Conectar Stripe"}
-                  </Button>
-                </>
-              )}
             </CardContent>
           </Card>
         </div>

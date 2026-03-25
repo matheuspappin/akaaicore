@@ -62,7 +62,7 @@ export default function FireEngineerLayout({ children }: { children: React.React
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-red-600" />
       </div>
     )
@@ -124,11 +124,11 @@ export default function FireEngineerLayout({ children }: { children: React.React
   )
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950">
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:flex flex-col fixed top-0 left-0 h-full bg-slate-950 border-r border-white/10 z-50 transition-all duration-300",
+          "hidden md:flex flex-col fixed top-0 left-0 h-full bg-black border-r border-white/10 z-50 transition-all duration-300",
           collapsed ? "w-[72px]" : "w-64"
         )}
       >
@@ -136,7 +136,7 @@ export default function FireEngineerLayout({ children }: { children: React.React
       </aside>
 
       {/* Mobile header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-slate-950 border-b border-white/10 flex items-center justify-between px-4 z-40">
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-black border-b border-white/10 flex items-center justify-between px-4 z-40">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center">
             <HardHat className="w-4 h-4 text-white" />
@@ -149,7 +149,7 @@ export default function FireEngineerLayout({ children }: { children: React.React
       </div>
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="p-0 bg-slate-950 border-r border-white/10 w-72">
+        <SheetContent side="left" className="p-0 bg-black border-r border-white/10 w-72">
           <SidebarContent isMobile />
         </SheetContent>
       </Sheet>

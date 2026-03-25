@@ -54,7 +54,7 @@ function ForgotPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2">
@@ -83,11 +83,11 @@ function ForgotPasswordContent() {
                   <MailCheck className="w-8 h-8 text-emerald-600" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-sm text-slate-600 dark:text-zinc-400">
                     O link de redefinição foi enviado para: <br />
                     <span className="font-bold text-slate-900 dark:text-white">{email}</span>
                   </p>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-zinc-400">
                     Não recebeu? Verifique sua pasta de spam.
                   </p>
                 </div>
@@ -113,7 +113,7 @@ function ForgotPasswordContent() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="bg-slate-50 dark:bg-slate-800 border-none h-12"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none h-12"
                   />
                 </div>
 
@@ -134,7 +134,7 @@ function ForgotPasswordContent() {
 
                 <Link 
                   href={returnTo} 
-                  className="flex items-center justify-center gap-2 text-sm text-slate-400 hover:text-indigo-600 transition-colors py-2"
+                  className="flex items-center justify-center gap-2 text-sm text-zinc-400 hover:text-indigo-600 transition-colors py-2"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Voltar para o login
@@ -151,7 +151,7 @@ function ForgotPasswordContent() {
 export default function ForgotPasswordPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
       </div>
     }>

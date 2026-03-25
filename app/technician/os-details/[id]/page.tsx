@@ -139,7 +139,7 @@ export default function TechnicianServiceOrderDetailsPage() {
         {/* Left Column: Info & Milestones */}
         <div className="lg:col-span-2 space-y-6">
           <Card className="border-none shadow-sm overflow-hidden">
-            <CardHeader className="bg-slate-50 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800">
+            <CardHeader className="bg-slate-50 dark:bg-zinc-950 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex justify-between items-center">
                 <CardTitle className="text-lg">Informações Gerais</CardTitle>
                 {getStatusBadge(order.status)}
@@ -149,7 +149,7 @@ export default function TechnicianServiceOrderDetailsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <UserIcon className="w-4 h-4 text-slate-400 mt-1" />
+                    <UserIcon className="w-4 h-4 text-zinc-400 mt-1" />
                     <div>
                       <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Cliente / Condomínio</p>
                       <p className="text-sm font-bold">{order.customer?.name}</p>
@@ -176,7 +176,7 @@ export default function TechnicianServiceOrderDetailsPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <Calendar className="w-4 h-4 text-slate-400 mt-1" />
+                    <Calendar className="w-4 h-4 text-zinc-400 mt-1" />
                     <div>
                       <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Data de Abertura</p>
                       <p className="text-sm font-bold">
@@ -185,7 +185,7 @@ export default function TechnicianServiceOrderDetailsPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Info className="w-4 h-4 text-slate-400 mt-1" />
+                    <Info className="w-4 h-4 text-zinc-400 mt-1" />
                     <div>
                       <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Descrição / Escopo</p>
                       <p className="text-sm font-medium">{order.description || "Nenhuma descrição fornecida."}</p>
@@ -283,15 +283,15 @@ export default function TechnicianServiceOrderDetailsPage() {
             </CardHeader>
             <CardContent className="space-y-3">
                 {order.documents?.length === 0 ? (
-                    <div className="text-center py-8 bg-slate-50 dark:bg-slate-900 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
+                    <div className="text-center py-8 bg-slate-50 dark:bg-zinc-950 rounded-xl border border-dashed border-slate-200 dark:border-zinc-800">
                         <FileText className="w-8 h-8 text-slate-300 mx-auto mb-2" />
                         <p className="text-xs text-muted-foreground">Nenhum documento anexado.</p>
                     </div>
                 ) : (
                     order.documents?.map((doc: any) => (
-                        <div key={doc.id} className="flex items-center justify-between p-3 border rounded-xl bg-white dark:bg-slate-900 shadow-sm">
+                        <div key={doc.id} className="flex items-center justify-between p-3 border rounded-xl bg-white dark:bg-zinc-950 shadow-sm">
                             <div className="flex items-center gap-3 overflow-hidden">
-                                <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-zinc-900 flex items-center justify-center shrink-0">
                                     <FileText className="w-4 h-4 text-rose-500" />
                                 </div>
                                 <div className="overflow-hidden">

@@ -19,28 +19,28 @@ export default function DashboardError({
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-6">
-      <Card className="max-w-md w-full border-rose-200 dark:border-rose-800/50 bg-rose-50/50 dark:bg-rose-900/5">
+      <Card className="max-w-md w-full border-red- dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]">
         <CardContent className="p-8 text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center mx-auto">
-            <AlertCircle className="w-8 h-8 text-rose-600 dark:text-rose-400" />
+          <div className="w-16 h-16 rounded-full bg-red- dark:bg-[#e40014] flex items-center justify-center mx-auto">
+            <AlertCircle className="w-8 h-8 text-red- dark:text-red-" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-900 dark:text-white">
+            <h1 className="text-xl font-bold text-white dark:text-white">
               Algo deu errado
             </h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-1">
               Ocorreu um erro ao carregar o painel. Tente novamente.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
               onClick={reset}
-              className="bg-violet-600 hover:bg-violet-700 text-white font-bold"
+              className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Tentar novamente
             </Button>
-            <Button asChild variant="outline" className="border-slate-200 dark:border-slate-700">
+            <Button asChild variant="outline" className="border-white/10 dark:border-slate-700">
               <Link href="/solutions/estudio-de-danca/dashboard">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Voltar ao dashboard

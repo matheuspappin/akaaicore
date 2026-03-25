@@ -138,7 +138,7 @@ export default function NewEcosystemPage() {
 
   if (inviteUrl) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-slate-950">
+      <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black">
         <AdminHeader title="Sistema Criado" />
         <div className="p-8 max-w-2xl mx-auto w-full">
           <Card className="border-emerald-500/50 bg-emerald-500/5">
@@ -155,7 +155,7 @@ export default function NewEcosystemPage() {
               <div className="space-y-2">
                 <Label>Link de Resgate</Label>
                 <div className="flex gap-2">
-                  <Input value={inviteUrl} readOnly className="bg-white dark:bg-slate-900 font-mono" />
+                  <Input value={inviteUrl} readOnly className="bg-white dark:bg-zinc-950 font-mono" />
                   <Button onClick={copyToClipboard} variant="outline">
                     <Copy className="w-4 h-4" />
                   </Button>
@@ -177,7 +177,7 @@ export default function NewEcosystemPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black">
       <AdminHeader title="Novo Ecossistema" />
       
       <div className="p-8 max-w-[1200px] mx-auto w-full">

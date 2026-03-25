@@ -88,7 +88,7 @@ export default function FireArchitectDashboard() {
           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Bem-vindo, {user?.user_metadata?.name || "Arquiteto"}
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
             Portal do Arquiteto — Projetos PPCI & Acompanhamento de Progresso
           </p>
         </div>
@@ -102,9 +102,9 @@ export default function FireArchitectDashboard() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {statCards.map((stat) => (
-          <Card key={stat.label} className="border-none shadow-md bg-white dark:bg-slate-900/50">
+          <Card key={stat.label} className="border-none shadow-md bg-white dark:bg-zinc-950/50">
             <CardHeader className="pb-1">
-              <CardTitle className="text-xs font-bold text-slate-500 uppercase tracking-wider">{stat.label}</CardTitle>
+              <CardTitle className="text-xs font-bold text-zinc-500 uppercase tracking-wider">{stat.label}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className={cn("text-4xl font-black", stat.color)}>{stat.value}</div>
@@ -127,13 +127,13 @@ export default function FireArchitectDashboard() {
         </div>
 
         {projects.length === 0 ? (
-          <Card className="border-dashed border-2 bg-slate-50 dark:bg-slate-900/20">
+          <Card className="border-dashed border-2 bg-slate-50 dark:bg-zinc-950/20">
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-16 h-16 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
-                <Ruler className="w-8 h-8 text-slate-400" />
+              <div className="w-16 h-16 bg-slate-200 dark:bg-zinc-900 rounded-full flex items-center justify-center mb-4">
+                <Ruler className="w-8 h-8 text-zinc-400" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white">Nenhum projeto encontrado</h3>
-              <p className="text-slate-500 max-w-md mt-2">Você ainda não tem projetos atribuídos. Aguarde novas atribuições das empresas parceiras.</p>
+              <p className="text-zinc-500 max-w-md mt-2">Você ainda não tem projetos atribuídos. Aguarde novas atribuições das empresas parceiras.</p>
             </CardContent>
           </Card>
         ) : (
@@ -161,12 +161,12 @@ export default function FireArchitectDashboard() {
                           </div>
                           <div className="flex items-center gap-3 mt-0.5 flex-wrap">
                             {project.studio?.name && (
-                              <p className="text-xs text-slate-400 flex items-center gap-1">
+                              <p className="text-xs text-zinc-400 flex items-center gap-1">
                                 <Building2 className="w-3 h-3" /> {project.studio.name}
                               </p>
                             )}
                             {project.opened_at && (
-                              <p className="text-xs text-slate-400 flex items-center gap-1">
+                              <p className="text-xs text-zinc-400 flex items-center gap-1">
                                 <Calendar className="w-3 h-3" />
                                 {format(new Date(project.opened_at), "dd/MM/yyyy", { locale: ptBR })}
                               </p>
@@ -178,7 +178,7 @@ export default function FireArchitectDashboard() {
                         <div className={cn("px-2 py-0.5 rounded-full text-xs font-bold", statusColors[project.status] || "bg-gray-100 text-gray-700")}>
                           {statusLabels[project.status] || project.status}
                         </div>
-                        <ChevronRight className="w-4 h-4 text-slate-400" />
+                        <ChevronRight className="w-4 h-4 text-zinc-400" />
                       </div>
                     </CardContent>
                   </Card>

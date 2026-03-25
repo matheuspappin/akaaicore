@@ -173,16 +173,16 @@ export default function SatelitePage() {
             <Satellite className="w-8 h-8 text-blue-400" />
             Monitor Satelital
           </h1>
-          <p className="text-slate-400 mt-1 flex items-center gap-2">
+          <p className="text-zinc-400 mt-1 flex items-center gap-2">
             MapBiomas, INPE DETER/PRODES, NDVI e alertas em tempo real
             {loading ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-slate-500" />
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-zinc-500" />
             ) : isRealData ? (
               <span className="flex items-center gap-1 text-xs text-emerald-400 font-bold">
                 <Wifi className="w-3 h-3" /> Dados reais ativos
               </span>
             ) : (
-              <span className="flex items-center gap-1 text-xs text-slate-500">
+              <span className="flex items-center gap-1 text-xs text-zinc-500">
                 <WifiOff className="w-3 h-3" /> Modo demonstração
               </span>
             )}
@@ -192,7 +192,7 @@ export default function SatelitePage() {
           onClick={handleRefresh}
           disabled={refreshing || !studioId}
           variant="outline"
-          className="border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 font-bold rounded-xl"
+          className="border-slate-700 text-zinc-400 hover:text-white hover:border-zinc-500 font-bold rounded-xl"
         >
           <RefreshCw className={cn("w-4 h-4 mr-2", refreshing && "animate-spin")} />
           {refreshing ? "Atualizando..." : "Atualizar Dados"}
@@ -201,9 +201,9 @@ export default function SatelitePage() {
 
       {/* Status das fontes */}
       {sources && (
-        <Card className="bg-slate-900/30 border-slate-800/50">
+        <Card className="bg-zinc-950/30 border-zinc-800/50">
           <CardContent className="p-4">
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Status das Integrações</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">Status das Integrações</p>
             <div className="flex flex-wrap gap-3">
               {[
                 { label: "INPE DETER", active: sources.deter, hint: undefined },
@@ -216,7 +216,7 @@ export default function SatelitePage() {
                   key={s.label}
                   className={cn(
                     "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold",
-                    s.active ? "bg-emerald-400/10 text-emerald-400" : "bg-slate-800 text-slate-500"
+                    s.active ? "bg-emerald-400/10 text-emerald-400" : "bg-zinc-900 text-zinc-500"
                   )}
                   title={s.hint}
                 >
@@ -238,13 +238,13 @@ export default function SatelitePage() {
           { icon: TreePine, label: "Propriedades Monit.", value: String(ndviData.length), color: "text-emerald-400", bg: "bg-emerald-400/10" },
           { icon: Globe, label: "Área Total (ha)", value: totalAreaHa.toLocaleString("pt-BR"), color: "text-teal-400", bg: "bg-teal-400/10" },
         ].map(s => (
-          <Card key={s.label} className="bg-slate-900/50 border-slate-800">
+          <Card key={s.label} className="bg-zinc-950/50 border-zinc-800">
             <CardContent className="p-4">
               <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center mb-2", s.bg)}>
                 <s.icon className={cn("w-4 h-4", s.color)} />
               </div>
               <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{s.label}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -253,7 +253,7 @@ export default function SatelitePage() {
       {/* Data Sources */}
       <Card className="bg-gradient-to-r from-slate-900 to-slate-900/50 border border-blue-500/20">
         <CardContent className="p-5">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Fontes de Dados Integradas</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">Fontes de Dados Integradas</p>
           <div className="flex flex-wrap gap-3">
             {[
               { label: "INPE DETER", desc: "Alertas em tempo real", color: "text-red-400", bg: "bg-red-400/10" },
@@ -265,7 +265,7 @@ export default function SatelitePage() {
             ].map(src => (
               <div key={src.label} className={cn("px-4 py-2.5 rounded-xl border border-transparent", src.bg)}>
                 <p className={cn("text-sm font-black", src.color)}>{src.label}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{src.desc}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{src.desc}</p>
               </div>
             ))}
           </div>
@@ -288,12 +288,12 @@ export default function SatelitePage() {
               "px-4 py-2 rounded-xl text-sm font-bold transition-all",
               activeTab === t.key
                 ? "bg-blue-600 text-white"
-                : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+                : "bg-zinc-900 text-zinc-400 hover:bg-slate-700 hover:text-white"
             )}
           >
             {t.label}
             {'count' in t && t.count !== undefined && (
-              <span className={cn("ml-2 text-xs px-1.5 py-0.5 rounded-full", activeTab === t.key ? "bg-white/20" : "bg-slate-700 text-slate-400")}>
+              <span className={cn("ml-2 text-xs px-1.5 py-0.5 rounded-full", activeTab === t.key ? "bg-white/20" : "bg-slate-700 text-zinc-400")}>
                 {t.count}
               </span>
             )}
@@ -305,13 +305,13 @@ export default function SatelitePage() {
       {loading && (
         <div className="space-y-3">
           {[1, 2, 3].map(i => (
-            <Card key={i} className="bg-slate-900/50 border-slate-800">
+            <Card key={i} className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="p-4">
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-slate-800 animate-pulse" />
+                  <div className="w-10 h-10 rounded-xl bg-zinc-900 animate-pulse" />
                   <div className="flex-1 space-y-2">
-                    <div className="h-4 bg-slate-800 rounded animate-pulse w-1/3" />
-                    <div className="h-3 bg-slate-800 rounded animate-pulse w-2/3" />
+                    <div className="h-4 bg-zinc-900 rounded animate-pulse w-1/3" />
+                    <div className="h-3 bg-zinc-900 rounded animate-pulse w-2/3" />
                   </div>
                 </div>
               </CardContent>
@@ -355,10 +355,10 @@ export default function SatelitePage() {
       {!loading && activeTab === "alerts" && (
         <div className="space-y-3">
           {alerts.length === 0 ? (
-            <Card className="bg-slate-900/50 border-slate-800">
+            <Card className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="p-8 text-center">
                 <Satellite className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                <p className="text-slate-400 font-bold">Nenhum alerta ativo no momento</p>
+                <p className="text-zinc-400 font-bold">Nenhum alerta ativo no momento</p>
                 <p className="text-slate-600 text-sm mt-1">As propriedades monitoradas estão sem ocorrências</p>
               </CardContent>
             </Card>
@@ -367,7 +367,7 @@ export default function SatelitePage() {
               const ac = alertConfig[alert.severity]
               const AlertIcon = alertTypeIcon[alert.type]
               return (
-                <Card key={alert.id} className={cn("bg-slate-900/50 border-l-4 border-slate-800", ac.border)}>
+                <Card key={alert.id} className={cn("bg-zinc-950/50 border-l-4 border-zinc-800", ac.border)}>
                   <CardContent className="p-4">
                     <div className="flex items-start gap-4">
                       <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5", ac.bg)}>
@@ -376,11 +376,11 @@ export default function SatelitePage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <Badge className={cn("text-[10px] font-bold border-0", ac.color, ac.bg)}>{ac.label}</Badge>
-                          <Badge className="text-[10px] font-bold border-0 text-slate-400 bg-slate-400/10">{alertTypeLabel[alert.type]}</Badge>
-                          <span className="text-xs text-slate-500 ml-auto">{alert.date}</span>
+                          <Badge className="text-[10px] font-bold border-0 text-zinc-400 bg-zinc-400/10">{alertTypeLabel[alert.type]}</Badge>
+                          <span className="text-xs text-zinc-500 ml-auto">{alert.date}</span>
                         </div>
                         <p className="font-bold text-white">{alert.property}</p>
-                        <p className="text-sm text-slate-400 mt-1">{alert.description}</p>
+                        <p className="text-sm text-zinc-400 mt-1">{alert.description}</p>
                         <div className="flex items-center gap-3 mt-2 text-xs text-slate-600">
                           <span className="flex items-center gap-1"><Globe className="w-3 h-3" />Fonte: {alert.source}</span>
                           {alert.area_ha && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{alert.area_ha} ha afetados</span>}
@@ -393,7 +393,7 @@ export default function SatelitePage() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Button size="sm" variant="ghost" className="text-slate-500 hover:text-white flex-shrink-0" title="Ver no mapa NASA FIRMS">
+                          <Button size="sm" variant="ghost" className="text-zinc-500 hover:text-white flex-shrink-0" title="Ver no mapa NASA FIRMS">
                             <Eye className="w-4 h-4" />
                           </Button>
                         </a>
@@ -411,10 +411,10 @@ export default function SatelitePage() {
       {!loading && activeTab === "properties" && (
         <div className="space-y-3">
           {ndviData.length === 0 ? (
-            <Card className="bg-slate-900/50 border-slate-800">
+            <Card className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="p-8 text-center">
                 <Leaf className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                <p className="text-slate-400 font-bold">Nenhuma propriedade cadastrada</p>
+                <p className="text-zinc-400 font-bold">Nenhuma propriedade cadastrada</p>
                 <p className="text-slate-600 text-sm mt-1">Cadastre propriedades para monitoramento via satélite</p>
               </CardContent>
             </Card>
@@ -424,7 +424,7 @@ export default function SatelitePage() {
               const ndviPositive = ndviDiff >= 0
 
               return (
-                <Card key={prop.property_id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+                <Card key={prop.property_id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                   <CardContent className="p-5">
                     <div className="flex items-start gap-4">
                       <div className="w-11 h-11 rounded-xl bg-emerald-600/20 flex items-center justify-center flex-shrink-0">
@@ -443,17 +443,17 @@ export default function SatelitePage() {
                             <Badge className="text-[10px] font-bold border-0 text-blue-400 bg-blue-400/10">Sentinel Hub</Badge>
                           )}
                           {prop.source === 'unavailable' && !prop.ndvi_current && (
-                            <Badge className="text-[10px] font-bold border-0 text-slate-500 bg-slate-800">sem coordenadas</Badge>
+                            <Badge className="text-[10px] font-bold border-0 text-zinc-500 bg-zinc-900">sem coordenadas</Badge>
                           )}
                         </div>
-                        <div className="flex flex-wrap gap-4 text-xs text-slate-500">
+                        <div className="flex flex-wrap gap-4 text-xs text-zinc-500">
                           {prop.city && <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{prop.city}, {prop.state}</span>}
                           <span className="flex items-center gap-1"><Globe className="w-3 h-3" />{prop.area_ha.toLocaleString("pt-BR")} ha</span>
                           <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />Atualizado: {prop.last_update}</span>
                         </div>
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <p className="text-xs text-slate-500 mb-1">NDVI Atual</p>
+                        <p className="text-xs text-zinc-500 mb-1">NDVI Atual</p>
                         <p className={cn("text-2xl font-black",
                           (prop.ndvi_current ?? 0) >= 0.7 ? "text-emerald-400"
                             : (prop.ndvi_current ?? 0) >= 0.5 ? "text-amber-400"
@@ -486,17 +486,17 @@ export default function SatelitePage() {
                 <BarChart3 className="w-5 h-5 text-emerald-400" />
                 Análise NDVI por Propriedade
               </h2>
-              <p className="text-slate-500 text-sm mt-0.5">
+              <p className="text-zinc-500 text-sm mt-0.5">
                 {bdcAvailable ? "Dados via Brazil Data Cube / INPE" : "Clique em 'Processar via Satélite' para obter dados reais"}
               </p>
             </div>
           </div>
 
           {ndviData.length === 0 ? (
-            <Card className="bg-slate-900/50 border-slate-800">
+            <Card className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="p-8 text-center">
                 <BarChart3 className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                <p className="text-slate-400 font-bold">Nenhuma propriedade cadastrada</p>
+                <p className="text-zinc-400 font-bold">Nenhuma propriedade cadastrada</p>
               </CardContent>
             </Card>
           ) : (
@@ -505,7 +505,7 @@ export default function SatelitePage() {
                 <div className="flex items-center gap-2">
                   <Leaf className="w-4 h-4 text-emerald-400" />
                   <h3 className="font-black text-white">{prop.property_name}</h3>
-                  {prop.city && <span className="text-xs text-slate-500">{prop.city}, {prop.state}</span>}
+                  {prop.city && <span className="text-xs text-zinc-500">{prop.city}, {prop.state}</span>}
                 </div>
                 {studioId && (
                   <NDVIChart
@@ -520,16 +520,16 @@ export default function SatelitePage() {
             ))
           )}
 
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardContent className="p-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Legenda NDVI</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">Legenda NDVI</p>
               <div className="flex flex-wrap gap-3">
                 {[
                   { color: "bg-emerald-500", label: "≥ 0.70 — Vegetação densa/saudável" },
                   { color: "bg-amber-500", label: "0.50 – 0.69 — Vegetação moderada" },
                   { color: "bg-red-500", label: "< 0.30 — Risco crítico / desmatamento" },
                 ].map(l => (
-                  <div key={l.label} className="flex items-center gap-2 text-xs text-slate-400">
+                  <div key={l.label} className="flex items-center gap-2 text-xs text-zinc-400">
                     <div className={cn("w-3 h-3 rounded-full flex-shrink-0", l.color)} />
                     {l.label}
                   </div>
@@ -551,7 +551,7 @@ export default function SatelitePage() {
                   <Layers className="w-4 h-4" />
                   Como ativar cada integração
                 </p>
-                <div className="space-y-3 text-xs text-slate-400">
+                <div className="space-y-3 text-xs text-zinc-400">
                   <div className="flex items-start gap-2">
                     <span className={cn("font-bold flex-shrink-0", sources.deter ? "text-emerald-400" : "text-amber-400")}>
                       {sources.deter ? "✓" : "→"}
@@ -575,7 +575,7 @@ export default function SatelitePage() {
                       <span>
                         <strong className="text-white">NASA FIRMS (focos de calor)</strong> — Obtenha uma MAP_KEY gratuita em{" "}
                         <a href="https://firms.modaps.eosdis.nasa.gov/api/area/" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">firms.modaps.eosdis.nasa.gov</a>
-                        {" "}e adicione <code className="bg-slate-800 px-1 rounded">NASA_FIRMS_API_KEY=chave</code> no .env.local
+                        {" "}e adicione <code className="bg-zinc-900 px-1 rounded">NASA_FIRMS_API_KEY=chave</code> no .env.local
                       </span>
                     </div>
                   )}
@@ -583,9 +583,9 @@ export default function SatelitePage() {
                     <div className="flex items-start gap-2">
                       <span className="text-slate-600 font-bold flex-shrink-0">→</span>
                       <span className="text-slate-600">
-                        <strong className="text-slate-500">Sentinel Hub (opcional)</strong> — Para NDVI de maior resolução, crie conta em{" "}
-                        <a href="https://www.sentinel-hub.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 underline">sentinel-hub.com</a>
-                        {" "}e adicione <code className="bg-slate-900 px-1 rounded">SENTINEL_HUB_CLIENT_ID</code> e <code className="bg-slate-900 px-1 rounded">SENTINEL_HUB_CLIENT_SECRET</code>
+                        <strong className="text-zinc-500">Sentinel Hub (opcional)</strong> — Para NDVI de maior resolução, crie conta em{" "}
+                        <a href="https://www.sentinel-hub.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 underline">sentinel-hub.com</a>
+                        {" "}e adicione <code className="bg-zinc-950 px-1 rounded">SENTINEL_HUB_CLIENT_ID</code> e <code className="bg-zinc-950 px-1 rounded">SENTINEL_HUB_CLIENT_SECRET</code>
                       </span>
                     </div>
                   )}
@@ -605,7 +605,7 @@ export default function SatelitePage() {
               { title: "TerraClass", desc: "Uso da terra no Cerrado e Amazônia (EMBRAPA/INPE)", url: "https://www.terraclass.gov.br", color: "text-teal-400", bg: "bg-teal-400/10", badge: "Bioma" },
               { title: "Google Earth Engine", desc: "Análise geoespacial e processamento de imagens de satélite", url: "https://earthengine.google.com", color: "text-indigo-400", bg: "bg-indigo-400/10", badge: "Geoespacial" },
             ].map(tool => (
-              <Card key={tool.title} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={tool.title} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0", tool.bg)}>
@@ -616,7 +616,7 @@ export default function SatelitePage() {
                         <p className="font-bold text-white">{tool.title}</p>
                         <Badge className={cn("text-[10px] font-bold border-0", tool.color, tool.bg)}>{tool.badge}</Badge>
                       </div>
-                      <p className="text-xs text-slate-500 mb-3">{tool.desc}</p>
+                      <p className="text-xs text-zinc-500 mb-3">{tool.desc}</p>
                       <a href={tool.url} target="_blank" rel="noopener noreferrer">
                         <Button size="sm" className={cn("w-full h-8 font-bold rounded-xl text-xs", tool.bg, "hover:opacity-80", tool.color, "border border-transparent")}>
                           Acessar plataforma →

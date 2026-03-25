@@ -147,11 +147,11 @@ export default function ChatPage() {
     <ModuleGuard module="ai_chat" showFullError>
     <div className="space-y-4 h-[calc(100vh-8rem)] flex flex-col">
       <div>
-        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-          <MessageSquare className="w-6 h-6 text-violet-600" />
+        <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+          <MessageSquare className="w-6 h-6 text-[#e40014]" />
           Chat IA
         </h1>
-        <p className="text-slate-500 text-sm mt-1">Assistente inteligente para seu estúdio</p>
+        <p className="text-zinc-500 text-sm mt-1">Assistente inteligente para seu estúdio</p>
       </div>
 
       {/* Sugestões rápidas */}
@@ -160,7 +160,7 @@ export default function ChatPage() {
           <button
             key={s}
             onClick={() => send(s)}
-            className="px-3 py-1.5 rounded-full text-xs font-bold bg-violet-100 text-violet-700 dark:bg-violet-600/20 dark:text-violet-400 hover:bg-violet-200 dark:hover:bg-violet-600/30 transition-colors"
+            className="px-3 py-1.5 rounded-full text-xs font-bold bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors"
           >
             {s}
           </button>
@@ -168,7 +168,7 @@ export default function ChatPage() {
       </div>
 
       {/* Chat */}
-      <Card className="flex-1 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden">
+      <Card className="flex-1 bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.map((msg) => (
             <div
@@ -177,17 +177,17 @@ export default function ChatPage() {
             >
               <div className={cn(
                 "w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0",
-                msg.role === "assistant" ? "bg-violet-600 text-white" : "bg-slate-200 dark:bg-slate-700"
+                msg.role === "assistant" ? "bg-[#e40014] text-white" : "bg-slate-200 dark:bg-slate-700"
               )}>
-                {msg.role === "assistant" ? <Bot className="w-4 h-4" /> : <Music className="w-4 h-4 text-slate-600 dark:text-slate-300" />}
+                {msg.role === "assistant" ? <Bot className="w-4 h-4" /> : <Music className="w-4 h-4 text-zinc-400 dark:text-slate-300" />}
               </div>
               <div className={cn("flex flex-col gap-1", msg.role === "user" && "items-end")}>
                 <div
                   className={cn(
                     "max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed",
                     msg.role === "assistant"
-                      ? "bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-200 rounded-tl-sm"
-                      : "bg-violet-600 text-white rounded-tr-sm"
+                      ? "bg-slate-100 dark:bg-white/5/10 text-zinc-800 dark:text-slate-200 rounded-tl-sm"
+                      : "bg-[#e40014] text-white rounded-tr-sm"
                   )}
                 >
                   {msg.content}
@@ -203,7 +203,7 @@ export default function ChatPage() {
                     </button>
                     <button
                       onClick={() => setFeedbackModal({ msg, prevUserMsg: msg.replyTo! })}
-                      className="p-1.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 text-red-600"
+                      className="p-1.5 rounded-lg hover:bg-[#e40014] dark:hover:bg-[#e40014] text-[#e40014]"
                       title="Resposta incorreta"
                     >
                       <ThumbsDown className="w-4 h-4" />
@@ -215,11 +215,11 @@ export default function ChatPage() {
           ))}
           {loading && (
             <div className="flex gap-3">
-              <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-[#e40014] flex items-center justify-center">
                 <Bot className="w-4 h-4 text-white" />
               </div>
-              <div className="bg-slate-100 dark:bg-white/10 px-4 py-3 rounded-2xl rounded-tl-sm">
-                <Loader2 className="w-4 h-4 animate-spin text-violet-600" />
+              <div className="bg-slate-100 dark:bg-white/5/10 px-4 py-3 rounded-2xl rounded-tl-sm">
+                <Loader2 className="w-4 h-4 animate-spin text-[#e40014]" />
               </div>
             </div>
           )}
@@ -235,13 +235,13 @@ export default function ChatPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Pergunte algo sobre seu estúdio..."
-              className="flex-1 bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/10 rounded-xl h-11"
+              className="flex-1 bg-black dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11"
               disabled={loading}
             />
             <Button
               type="submit"
               disabled={!input.trim() || loading}
-              className="bg-violet-600 hover:bg-violet-700 text-white rounded-xl h-11 px-4"
+              className="bg-[#e40014] hover:bg-[#e40014] text-white rounded-xl h-11 px-4"
             >
               <Send className="w-4 h-4" />
             </Button>

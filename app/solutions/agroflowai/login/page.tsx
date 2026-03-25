@@ -120,7 +120,7 @@ function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex relative font-sans">
+    <div className="min-h-screen bg-black flex relative font-sans">
       <button
         type="button"
         onClick={() => router.push("/solutions/agroflowai")}
@@ -187,7 +187,7 @@ function LoginContent() {
       </div>
 
       {/* Right Side — Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-slate-950 relative overflow-hidden">
+      <div className="flex-1 flex items-center justify-center p-8 bg-black relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
         <div className="relative w-full max-w-md">
           <div className="lg:hidden mb-12 text-center">
@@ -201,24 +201,24 @@ function LoginContent() {
             </Link>
           </div>
 
-          <Card className="relative overflow-hidden bg-slate-900/80 backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-black/50">
+          <Card className="relative overflow-hidden bg-zinc-950/80 backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-black/50">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-px bg-gradient-to-r from-transparent via-emerald-500/60 to-transparent" />
             <CardHeader className="text-center space-y-1 pt-8">
               <CardTitle className="text-2xl font-bold text-white tracking-tight">Acessar sistema</CardTitle>
-              <CardDescription className="text-slate-500 text-sm">
+              <CardDescription className="text-zinc-500 text-sm">
                 Selecione seu perfil e faça login
               </CardDescription>
             </CardHeader>
             <CardContent className="px-6 pb-8">
               {/* Seletor de Perfil */}
               <div className="mb-6">
-                <Label className="text-[11px] font-medium text-slate-500 uppercase tracking-wider block mb-2">Perfil de acesso</Label>
+                <Label className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider block mb-2">Perfil de acesso</Label>
                 <div className="relative">
                   <button
                     type="button"
                     onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                     className={cn(
-                      "w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border bg-slate-800/50 transition-all duration-200",
+                      "w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border bg-zinc-900/50 transition-all duration-200",
                       profileDropdownOpen
                         ? "border-emerald-500/40 ring-2 ring-emerald-500/20"
                         : "border-white/5 hover:border-white/10"
@@ -232,19 +232,19 @@ function LoginContent() {
                         role === 'finance' && "bg-teal-500/20 text-teal-400",
                         role === 'engineer' && "bg-blue-500/20 text-blue-400",
                         role === 'teacher' && "bg-orange-500/20 text-orange-400",
-                        role === 'student' && "bg-slate-500/20 text-slate-400"
+                        role === 'student' && "bg-zinc-500/20 text-zinc-400"
                       )}>
                         <currentProfile.icon className="w-4 h-4" />
                       </div>
                       <span className="text-white font-medium">{currentProfile.label}</span>
                     </div>
-                    <ChevronDown className={cn("w-4 h-4 text-slate-500 transition-transform", profileDropdownOpen && "rotate-180")} />
+                    <ChevronDown className={cn("w-4 h-4 text-zinc-500 transition-transform", profileDropdownOpen && "rotate-180")} />
                   </button>
 
                   {profileDropdownOpen && (
                     <>
                       <div className="fixed inset-0 z-40" onClick={() => setProfileDropdownOpen(false)} aria-hidden />
-                      <div className="absolute top-full left-0 right-0 mt-1 py-1 rounded-xl border border-white/10 bg-slate-900/95 backdrop-blur-xl shadow-xl shadow-black/50 z-50 overflow-hidden">
+                      <div className="absolute top-full left-0 right-0 mt-1 py-1 rounded-xl border border-white/10 bg-zinc-950/95 backdrop-blur-xl shadow-xl shadow-black/50 z-50 overflow-hidden">
                         {profiles.map((p) => (
                           <button
                             key={p.id}
@@ -252,14 +252,14 @@ function LoginContent() {
                             onClick={() => { setRole(p.id); setProfileDropdownOpen(false) }}
                             className={cn(
                               "w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors",
-                              role === p.id ? "bg-emerald-500/10 text-emerald-400" : "text-slate-400 hover:bg-white/5 hover:text-white"
+                              role === p.id ? "bg-emerald-500/10 text-emerald-400" : "text-zinc-400 hover:bg-white/5 hover:text-white"
                             )}
                           >
                             <p.icon className="w-4 h-4 shrink-0 opacity-70" />
                             <div className="flex flex-col items-start">
                               <span className="font-medium text-sm">{p.label}</span>
                               {p.description && (
-                                <span className="text-[10px] text-slate-500 mt-0.5">{p.description}</span>
+                                <span className="text-[10px] text-zinc-500 mt-0.5">{p.description}</span>
                               )}
                             </div>
                           </button>
@@ -272,7 +272,7 @@ function LoginContent() {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">E-mail</Label>
+                  <Label htmlFor="email" className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">E-mail</Label>
                   <Input
                     id="email"
                     type="email"
@@ -280,13 +280,13 @@ function LoginContent() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="bg-slate-800/50 border-white/5 text-white h-11 rounded-xl placeholder:text-slate-500 focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+                    className="bg-zinc-900/50 border-white/5 text-white h-11 rounded-xl placeholder:text-zinc-500 focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/20 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password" className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Senha</Label>
+                    <Label htmlFor="password" className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Senha</Label>
                     <Link href="/forgot-password?returnTo=/solutions/agroflowai/login" className="text-xs text-emerald-500/80 hover:text-emerald-400 transition-colors">
                       Esqueceu?
                     </Link>
@@ -299,12 +299,12 @@ function LoginContent() {
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       required
-                      className="bg-slate-800/50 border-white/5 text-white h-11 pr-12 rounded-xl placeholder:text-slate-500 focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+                      className="bg-zinc-900/50 border-white/5 text-white h-11 pr-12 rounded-xl placeholder:text-zinc-500 focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/20 transition-all"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors p-1"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -325,7 +325,7 @@ function LoginContent() {
               </form>
 
               <div className="mt-6 pt-5 border-t border-white/5 space-y-4">
-                <p className="text-center text-sm text-slate-500">
+                <p className="text-center text-sm text-zinc-500">
                   Não possui conta?{" "}
                   <Link href="/solutions/agroflowai/register" className="text-emerald-500 hover:text-emerald-400 font-medium transition-colors">
                     Criar conta grátis
@@ -340,7 +340,7 @@ function LoginContent() {
                 </Link>
                 <Link
                   href="/solutions/agroflowai"
-                  className="flex items-center justify-center gap-2 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+                  className="flex items-center justify-center gap-2 text-xs text-zinc-500 hover:text-slate-300 transition-colors"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   Voltar ao site
@@ -366,7 +366,7 @@ function LoginContent() {
 export default function AgroFlowAILoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
       </div>
     }>

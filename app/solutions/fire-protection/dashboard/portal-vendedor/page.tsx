@@ -55,7 +55,7 @@ const osStatusMap: Record<string, { label: string; className: string; icon: any 
   open:         { label: "Aberta",       className: "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400",     icon: Clock },
   in_progress:  { label: "Em Andamento", className: "bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-400",         icon: Wrench },
   finished:     { label: "Concluída",    className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400", icon: CheckCircle },
-  cancelled:    { label: "Cancelada",    className: "bg-slate-100 text-slate-500 dark:bg-slate-700/50 dark:text-slate-400",      icon: XCircle },
+  cancelled:    { label: "Cancelada",    className: "bg-slate-100 text-zinc-500 dark:bg-slate-700/50 dark:text-zinc-400",      icon: XCircle },
   waiting_parts:{ label: "Aguard. Peças",className: "bg-purple-100 text-purple-700 dark:bg-purple-600/20 dark:text-purple-400",  icon: Clock },
 }
 
@@ -122,14 +122,14 @@ function ClienteDetailDialog({
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
+            <Loader2 className="w-6 h-6 animate-spin text-zinc-400" />
           </div>
         ) : detail ? (
           <div className="space-y-4">
             {/* Info do cliente */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'OS Abertas', value: detail.osAbertas, icon: ClipboardList, color: detail.osAbertas > 0 ? 'text-amber-600' : 'text-slate-400', bg: detail.osAbertas > 0 ? 'bg-amber-50 dark:bg-amber-600/10' : 'bg-slate-50 dark:bg-slate-800/50' },
+                { label: 'OS Abertas', value: detail.osAbertas, icon: ClipboardList, color: detail.osAbertas > 0 ? 'text-amber-600' : 'text-zinc-400', bg: detail.osAbertas > 0 ? 'bg-amber-50 dark:bg-amber-600/10' : 'bg-slate-50 dark:bg-zinc-900/50' },
                 { label: 'Total Comprado', value: formatCurrency(detail.totalGasto), icon: DollarSign, color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-600/10' },
                 { label: 'Total OS', value: detail.os.length, icon: ClipboardList, color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-600/10' },
                 { label: 'Compras PDV', value: detail.vendas.length, icon: ShoppingCart, color: 'text-purple-600', bg: 'bg-purple-50 dark:bg-purple-600/10' },
@@ -137,13 +137,13 @@ function ClienteDetailDialog({
                 <div key={stat.label} className={cn("p-3 rounded-xl", stat.bg)}>
                   <stat.icon className={cn("w-4 h-4 mb-1", stat.color)} />
                   <p className={cn("text-xl font-black", stat.color)}>{stat.value}</p>
-                  <p className="text-xs text-slate-500 font-medium">{stat.label}</p>
+                  <p className="text-xs text-zinc-500 font-medium">{stat.label}</p>
                 </div>
               ))}
             </div>
 
             {/* Contato */}
-            <div className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+            <div className="space-y-1 text-sm text-slate-600 dark:text-zinc-400">
               {customer.phone && (
                 <p className="flex items-center gap-2"><Phone className="w-4 h-4" />{customer.phone}</p>
               )}
@@ -158,20 +158,20 @@ function ClienteDetailDialog({
             {/* OS recentes */}
             {detail.os.length > 0 && (
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Ordens de Serviço</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">Ordens de Serviço</p>
                 <div className="space-y-2">
                   {detail.os.slice(0, 5).map((os) => {
                     const st = osStatusMap[os.status] ?? osStatusMap.open
                     return (
-                      <div key={os.id} className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                      <div key={os.id} className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-zinc-900/50">
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-black text-red-600">{os.tracking_code}</span>
                             <Badge className={cn("text-[10px] font-bold border-0", st.className)}>{st.label}</Badge>
                           </div>
-                          <p className="text-xs text-slate-500 mt-0.5">{os.title}</p>
+                          <p className="text-xs text-zinc-500 mt-0.5">{os.title}</p>
                         </div>
-                        <span className="text-xs text-slate-400">{formatDate(os.scheduled_at ?? os.created_at)}</span>
+                        <span className="text-xs text-zinc-400">{formatDate(os.scheduled_at ?? os.created_at)}</span>
                       </div>
                     )
                   })}
@@ -258,7 +258,7 @@ export default function PortalVendedorPage() {
             <UserCheck className="w-6 h-6 text-red-600" />
             Portal do Vendedor
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Seus clientes, ordens de serviço e vendas em um único lugar
           </p>
         </div>
@@ -282,13 +282,13 @@ export default function PortalVendedorPage() {
           { label: 'Vendas Hoje', value: stats.vendasHoje, icon: ShoppingCart, color: 'text-emerald-600', bg: 'bg-emerald-500/10' },
           { label: 'Receita Total', value: formatCurrency(stats.receitaTotal), icon: DollarSign, color: 'text-purple-600', bg: 'bg-purple-500/10' },
         ].map((s) => (
-          <Card key={s.label} className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10 shadow-sm">
+          <Card key={s.label} className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10 shadow-sm">
             <CardContent className="p-4">
               <div className={cn("w-9 h-9 rounded-lg flex items-center justify-center mb-2", s.bg)}>
                 <s.icon className={cn("w-4 h-4", s.color)} />
               </div>
               <p className={cn("text-xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs text-slate-500 font-medium">{s.label}</p>
+              <p className="text-xs text-zinc-500 font-medium">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -327,12 +327,12 @@ export default function PortalVendedorPage() {
               "flex items-center gap-3 p-4 rounded-xl border cursor-pointer hover:shadow-md transition-all",
               item.bg
             )}>
-              <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900/50 flex items-center justify-center shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-white dark:bg-zinc-950/50 flex items-center justify-center shadow-sm">
                 <item.icon className={cn("w-5 h-5", item.color)} />
               </div>
               <div>
                 <p className={cn("text-sm font-black", item.color)}>{item.label}</p>
-                <p className="text-xs text-slate-500">{item.desc}</p>
+                <p className="text-xs text-zinc-500">{item.desc}</p>
               </div>
               <ChevronRight className={cn("w-4 h-4 ml-auto", item.color)} />
             </div>
@@ -343,14 +343,14 @@ export default function PortalVendedorPage() {
       {/* Lista de clientes */}
       <div>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-base font-black text-slate-800 dark:text-slate-200 flex items-center gap-2">
+          <h2 className="text-base font-black text-zinc-800 dark:text-slate-200 flex items-center gap-2">
             <Building2 className="w-4 h-4 text-red-600" />
             Meus Clientes
           </h2>
         </div>
 
         <div className="relative mb-4">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <Input
             placeholder="Buscar cliente por nome, telefone ou e-mail..."
             value={search}
@@ -360,12 +360,12 @@ export default function PortalVendedorPage() {
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center py-16 text-slate-400">
+          <div className="flex items-center justify-center py-16 text-zinc-400">
             <Loader2 className="w-6 h-6 animate-spin mr-2" />
             <span className="text-sm">Carregando clientes...</span>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-16 text-slate-400">
+          <div className="text-center py-16 text-zinc-400">
             <Building2 className="w-12 h-12 mx-auto mb-3 opacity-20" />
             <p className="font-medium">
               {customers.length === 0 ? "Nenhum cliente cadastrado" : "Nenhum cliente encontrado"}
@@ -379,7 +379,7 @@ export default function PortalVendedorPage() {
             {filtered.map((customer) => (
               <Card
                 key={customer.id}
-                className="bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
                 onClick={() => setSelectedCustomer(customer)}
               >
                 <CardContent className="p-4">
@@ -390,12 +390,12 @@ export default function PortalVendedorPage() {
                     <div className="flex-1 min-w-0">
                       <p className="font-bold text-slate-900 dark:text-white truncate">{customer.name}</p>
                       {customer.phone && (
-                        <p className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
+                        <p className="text-xs text-zinc-500 flex items-center gap-1 mt-0.5">
                           <Phone className="w-3 h-3" />{customer.phone}
                         </p>
                       )}
                       {customer.address && (
-                        <p className="text-xs text-slate-400 truncate mt-0.5">{customer.address}</p>
+                        <p className="text-xs text-zinc-400 truncate mt-0.5">{customer.address}</p>
                       )}
                     </div>
                     <ChevronRight className="w-4 h-4 text-slate-300 dark:text-white/20 flex-shrink-0 mt-1" />

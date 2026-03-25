@@ -230,7 +230,7 @@ function RegisterContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex relative font-sans">
+    <div className="min-h-screen bg-black flex relative font-sans">
       <div className="absolute top-4 right-4 z-50">
         <LanguageSwitcher />
       </div>
@@ -358,7 +358,7 @@ function RegisterContent() {
                    <motion.div 
                      key={i} 
                      whileHover={{ y: -5, zIndex: 10 }}
-                     className="w-10 h-10 rounded-full bg-slate-800 border-2 border-emerald-500 flex items-center justify-center text-xs font-black shadow-xl"
+                     className="w-10 h-10 rounded-full bg-zinc-900 border-2 border-emerald-500 flex items-center justify-center text-xs font-black shadow-xl"
                    >
                      U{i}
                    </motion.div>
@@ -392,14 +392,14 @@ function RegisterContent() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="flex-1 flex items-center justify-center p-6 md:p-8 overflow-y-auto bg-slate-950">
+      <div className="flex-1 flex items-center justify-center p-6 md:p-8 overflow-y-auto bg-black">
         <div className="w-full max-w-xl my-8 md:my-12">
-          <Card className="text-card-foreground flex flex-col gap-6 rounded-2xl border border-white/10 py-6 px-6 md:px-8 bg-slate-900 shadow-2xl shadow-black/50">
+          <Card className="text-card-foreground flex flex-col gap-6 rounded-2xl border border-white/10 py-6 px-6 md:px-8 bg-zinc-950 shadow-2xl shadow-black/50">
             <CardHeader className="text-center pb-0 px-0">
               <CardTitle className="text-2xl md:text-3xl font-black text-white tracking-tight">
                 Criar Nova Conta
               </CardTitle>
-              <CardDescription className="text-slate-400 font-medium text-sm mt-1">
+              <CardDescription className="text-zinc-400 font-medium text-sm mt-1">
                 Escolha seu perfil e comece agora mesmo
               </CardDescription>
             </CardHeader>
@@ -431,12 +431,12 @@ function RegisterContent() {
                         "flex flex-col items-center justify-center gap-1.5 p-4 rounded-xl border-2 transition-all duration-200 min-h-[88px]",
                         role === r.id 
                           ? "border-emerald-600 bg-emerald-600/15 shadow-lg shadow-emerald-600/20 text-white" 
-                          : "border-white/5 bg-slate-800/50 text-slate-500 hover:border-white/15 hover:text-slate-300 hover:bg-slate-800"
+                          : "border-white/5 bg-zinc-900/50 text-zinc-500 hover:border-white/15 hover:text-slate-300 hover:bg-zinc-900"
                       )}
                     >
-                      <r.icon className={cn("w-5 h-5", role === r.id ? "text-emerald-500" : "text-slate-500")} />
+                      <r.icon className={cn("w-5 h-5", role === r.id ? "text-emerald-500" : "text-zinc-500")} />
                       <span className="text-xs font-bold uppercase tracking-wider">{r.label}</span>
-                      <span className={cn("text-[10px] opacity-70 hidden sm:block", role === r.id ? "text-emerald-400/80" : "text-slate-500")}>{r.desc}</span>
+                      <span className={cn("text-[10px] opacity-70 hidden sm:block", role === r.id ? "text-emerald-400/80" : "text-zinc-500")}>{r.desc}</span>
                     </motion.button>
                   ))}
                 </div>
@@ -451,7 +451,7 @@ function RegisterContent() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      className="bg-slate-800/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
+                      className="bg-zinc-900/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
                     />
                   </div>
 
@@ -460,8 +460,8 @@ function RegisterContent() {
                       <span>{role === 'admin' ? 'Documento (CPF/CNPJ)' : 'CPF'}</span>
                       {role === 'admin' && (
                         <div className="flex gap-2">
-                          <button type="button" onClick={() => setTaxIdType('cpf')} className={cn("px-2 py-0.5 rounded text-[9px] font-black", taxIdType === 'cpf' ? "bg-emerald-600 text-white" : "bg-slate-800 text-slate-500")}>CPF</button>
-                          <button type="button" onClick={() => setTaxIdType('cnpj')} className={cn("px-2 py-0.5 rounded text-[9px] font-black", taxIdType === 'cnpj' ? "bg-emerald-600 text-white" : "bg-slate-800 text-slate-500")}>CNPJ</button>
+                          <button type="button" onClick={() => setTaxIdType('cpf')} className={cn("px-2 py-0.5 rounded text-[9px] font-black", taxIdType === 'cpf' ? "bg-emerald-600 text-white" : "bg-zinc-900 text-zinc-500")}>CPF</button>
+                          <button type="button" onClick={() => setTaxIdType('cnpj')} className={cn("px-2 py-0.5 rounded text-[9px] font-black", taxIdType === 'cnpj' ? "bg-emerald-600 text-white" : "bg-zinc-900 text-zinc-500")}>CNPJ</button>
                         </div>
                       )}
                     </Label>
@@ -470,7 +470,7 @@ function RegisterContent() {
                       value={formData.taxId}
                       onChange={handleTaxIdChange}
                       required
-                      className="bg-slate-800/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
+                      className="bg-zinc-900/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
                     />
                   </div>
 
@@ -493,7 +493,7 @@ function RegisterContent() {
                           }
                         }}
                         required
-                        className="bg-slate-800/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50 flex-1"
+                        className="bg-zinc-900/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50 flex-1"
                         disabled={codeSent && !isEmailVerified}
                       />
                       {!codeSent ? (
@@ -518,7 +518,7 @@ function RegisterContent() {
                             maxLength={6}
                             value={verificationCode}
                             onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                            className="bg-slate-800/50 border-white/5 text-white h-12 w-32 text-center text-lg tracking-[0.5em] font-mono rounded-xl"
+                            className="bg-zinc-900/50 border-white/5 text-white h-12 w-32 text-center text-lg tracking-[0.5em] font-mono rounded-xl"
                           />
                           <Button
                             type="button"
@@ -535,7 +535,7 @@ function RegisterContent() {
                           type="button"
                           onClick={() => handleSendCode()}
                           disabled={isSendingCode}
-                          className="text-xs text-slate-500 hover:text-slate-300 underline"
+                          className="text-xs text-zinc-500 hover:text-slate-300 underline"
                         >
                           {isSendingCode ? "Enviando..." : "Reenviar código"}
                         </button>
@@ -550,7 +550,7 @@ function RegisterContent() {
                       value={formData.phone}
                       onChange={handlePhoneChange}
                       required
-                      className="bg-slate-800/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
+                      className="bg-zinc-900/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
                     />
                   </div>
 
@@ -562,7 +562,7 @@ function RegisterContent() {
                         value={formData.studioName}
                         onChange={(e) => setFormData({ ...formData, studioName: e.target.value })}
                         required
-                        className="bg-slate-800/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
+                        className="bg-zinc-900/50 border-white/5 text-white h-12 rounded-xl focus:border-emerald-500/50"
                       />
                     </div>
                   )}
@@ -577,7 +577,7 @@ function RegisterContent() {
                         </div>
                         <div>
                           <p className="text-sm font-black text-white">14 dias de acesso completo e gratuito.</p>
-                          <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                          <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">
                             Após o teste, um especialista entrará em contato para montar seu plano sob medida.
                           </p>
                         </div>
@@ -603,7 +603,7 @@ function RegisterContent() {
                                 "p-3 rounded-xl border-2 text-xs font-bold transition-all text-left",
                                 qualification.propertiesCount === opt.id
                                   ? "border-emerald-600 bg-emerald-600/15 text-white"
-                                  : "border-white/5 bg-slate-800/50 text-slate-500 hover:border-white/15 hover:text-slate-300"
+                                  : "border-white/5 bg-zinc-900/50 text-zinc-500 hover:border-white/15 hover:text-slate-300"
                               )}
                             >
                               {qualification.propertiesCount === opt.id && <Check className="w-3 h-3 inline mr-1.5 text-emerald-500" />}
@@ -633,7 +633,7 @@ function RegisterContent() {
                                 "flex items-center gap-3 p-3 rounded-xl border-2 text-xs font-bold transition-all text-left",
                                 qualification.services.includes(id)
                                   ? "border-emerald-600 bg-emerald-600/15 text-white"
-                                  : "border-white/5 bg-slate-800/50 text-slate-500 hover:border-white/15 hover:text-slate-300"
+                                  : "border-white/5 bg-zinc-900/50 text-zinc-500 hover:border-white/15 hover:text-slate-300"
                               )}
                             >
                               <Icon className={cn("w-4 h-4 shrink-0", qualification.services.includes(id) ? "text-emerald-500" : "text-slate-600")} />
@@ -664,7 +664,7 @@ function RegisterContent() {
                                 "p-3 rounded-xl border-2 text-xs font-bold transition-all text-left",
                                 qualification.referralSource === opt.id
                                   ? "border-emerald-600 bg-emerald-600/15 text-white"
-                                  : "border-white/5 bg-slate-800/50 text-slate-500 hover:border-white/15 hover:text-slate-300"
+                                  : "border-white/5 bg-zinc-900/50 text-zinc-500 hover:border-white/15 hover:text-slate-300"
                               )}
                             >
                               {qualification.referralSource === opt.id && <Check className="w-3 h-3 inline mr-1.5 text-emerald-500" />}
@@ -686,9 +686,9 @@ function RegisterContent() {
                         value={formData.password}
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         required
-                        className="bg-slate-800/50 border-white/5 text-white h-12 pr-12 rounded-xl"
+                        className="bg-zinc-900/50 border-white/5 text-white h-12 pr-12 rounded-xl"
                       />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors">
+                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors">
                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                       </button>
                     </div>
@@ -702,7 +702,7 @@ function RegisterContent() {
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                       required
-                      className="bg-slate-800/50 border-white/5 text-white h-12 rounded-xl"
+                      className="bg-zinc-900/50 border-white/5 text-white h-12 rounded-xl"
                     />
                   </div>
                 </div>
@@ -725,7 +725,7 @@ function RegisterContent() {
               </form>
 
               <div className="mt-8 text-center">
-                <p className="text-sm text-slate-400 font-medium">
+                <p className="text-sm text-zinc-400 font-medium">
                   Já tem uma conta?{" "}
                   <Link href="/solutions/agroflowai/login" className="text-emerald-500 hover:text-emerald-400 font-bold underline underline-offset-4">
                     Acesse o Login
@@ -735,7 +735,7 @@ function RegisterContent() {
             </CardContent>
           </Card>
           
-          <p className="text-center text-[10px] text-slate-500 mt-8 px-8 leading-relaxed uppercase tracking-widest">
+          <p className="text-center text-[10px] text-zinc-500 mt-8 px-8 leading-relaxed uppercase tracking-widest">
             Ao clicar em finalizar, você concorda com nossos <Link href="#" className="text-slate-300 underline">Termos de Uso</Link> e <Link href="#" className="text-slate-300 underline">Políticas de Privacidade</Link>.
           </p>
         </div>
@@ -746,7 +746,7 @@ function RegisterContent() {
 
 export default function RegisterPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-emerald-600" /></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-emerald-600" /></div>}>
       <RegisterContent />
     </Suspense>
   )

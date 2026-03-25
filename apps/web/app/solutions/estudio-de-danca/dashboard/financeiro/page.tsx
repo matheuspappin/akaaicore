@@ -112,6 +112,7 @@ interface FinanceData {
   payments: Payment[]
   expenses: Expense[]
   professionalFinances: ProfessionalFinance[]
+  conversionRate?: number
   stats: {
     totalReceita: number
     totalDespesas: number
@@ -459,7 +460,7 @@ export default function FinanceiroPage() {
 
   // ─── Render ────────────────────────────────────────────────────────────────
 
-  const { payments, expenses, professionalFinances, stats, chartData } = data
+  const { payments, expenses, professionalFinances, stats, chartData, conversionRate } = data
   const pendingPayments = payments.filter(p => p.status === "pending" || p.status === "overdue")
   const pendingExpenses = expenses.filter(e => e.status === "pending")
 
@@ -659,7 +660,16 @@ export default function FinanceiroPage() {
                         <TableCell className="text-slate-600 dark:text-slate-400 text-sm">{p.description}</TableCell>
                         <TableCell className="font-mono text-xs text-slate-500">{fmtDate(p.due_date)}</TableCell>
                         <TableCell className={cn("font-black", p.status === "paid" ? "text-emerald-600" : "text-slate-900 dark:text-white")}>
-                          R$ {fmt(Number(p.amount))}
+                          {p.credits_used && Number(p.amount) === 0 ? (
+                            <div className="flex flex-col">
+                              <span className="text-indigo-600 dark:text-indigo-400">{p.credits_used} crédito{p.credits_used !== 1 ? "s" : ""}</span>
+                              {conversionRate && (
+                                <span className="text-[10px] text-slate-500 font-medium">(R$ {fmt(p.credits_used * conversionRate)})</span>
+                              )}
+                            </div>
+                          ) : (
+                            <>R$ {fmt(Number(p.amount))}</>
+                          )}
                         </TableCell>
                         <TableCell className="pr-6">
                           <Badge className={cn("text-xs border-0 font-bold flex items-center gap-1 w-fit", st.className)}>
@@ -752,7 +762,12 @@ export default function FinanceiroPage() {
                           <TableCell className="font-mono text-xs text-slate-500">{fmtDate(p.due_date)}</TableCell>
                           <TableCell className="font-black text-slate-900 dark:text-white">
                             {p.credits_used ? (
-                              <span className="text-indigo-600 dark:text-indigo-400">{p.credits_used} crédito{p.credits_used !== 1 ? "s" : ""}</span>
+                              <div className="flex flex-col">
+                                <span className="text-indigo-600 dark:text-indigo-400">{p.credits_used} crédito{p.credits_used !== 1 ? "s" : ""}</span>
+                                {conversionRate && (
+                                  <span className="text-[10px] text-slate-500 font-medium">(R$ {fmt(p.credits_used * conversionRate)})</span>
+                                )}
+                              </div>
                             ) : (
                               <>R$ {fmt(Number(p.amount))}</>
                             )}

@@ -22,7 +22,7 @@ export function PasswordStrengthMeter({ password }: PasswordStrengthMeterProps) 
       )}
       <span className={cn(
         "transition-colors",
-        met ? "text-emerald-600 dark:text-emerald-400 font-medium" : "text-slate-400"
+        met ? "text-emerald-600 dark:text-emerald-400 font-medium" : "text-zinc-400"
       )}>
         {label}
       </span>
@@ -34,12 +34,12 @@ export function PasswordStrengthMeter({ password }: PasswordStrengthMeterProps) 
       {/* Barra de Progresso */}
       <div className="space-y-1.5">
         <div className="flex justify-between items-center px-0.5">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Força da Senha</span>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Força da Senha</span>
           <span className={cn("text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full text-white", strength.color)}>
             {strength.label}
           </span>
         </div>
-        <div className="flex gap-1 h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div className="flex gap-1 h-1.5 w-full bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden">
           {[0, 1, 2, 3].map((step) => (
             <div 
               key={step}
@@ -53,7 +53,7 @@ export function PasswordStrengthMeter({ password }: PasswordStrengthMeterProps) 
       </div>
 
       {/* Requisitos */}
-      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 p-3 rounded-xl bg-slate-50 dark:bg-zinc-950/50 border border-slate-100 dark:border-zinc-800">
         <RequirementItem met={strength.requirements.length} label="Mínimo 8 caracteres" />
         <RequirementItem met={strength.requirements.upper} label="Letra maiúscula" />
         <RequirementItem met={strength.requirements.lower} label="Letra minúscula" />

@@ -2,14 +2,20 @@ import { createClient as createSupabaseClient, type SupabaseClient } from '@supa
 import { createBrowserClient } from '@supabase/ssr'
 import logger from '../logger'
 
+// Esta função agora apenas retorna os valores das variáveis de ambiente
+// sem fallbacks para 'placeholder-key', forçando a existência delas.
 function getSupabaseConfig() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-  const url = supabaseUrl || 'https://placeholder.supabase.co'
-  const key = supabaseAnonKey || 'placeholder-key'
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
     const msg = 'Supabase não configurado. Adicione NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY no arquivo .env.local na raiz do projeto e reinicie o servidor de desenvolvimento.'
+    // Em produção, vamos lançar um erro fatal para garantir que as chaves existam no servidor.
+    // No navegador, a lógica abaixo no getOrCreateSupabase tratará o erro.
+    if (process.env.NODE_ENV === 'production' && typeof window === 'undefined') {
+        throw new Error(msg);
+    }
+    // Em desenvolvimento, ou no navegador, apenas logamos o erro.
     if (typeof window !== 'undefined') {
       logger.error('⚠️ ' + msg)
     } else {
@@ -17,7 +23,7 @@ function getSupabaseConfig() {
     }
   }
 
-  return { url, key }
+  return { url: supabaseUrl, key: supabaseAnonKey } // Retorna os valores diretamente, pode ser undefined
 }
 
 // Cliente Singleton com lazy init para evitar "supabaseKey is required" quando env ainda não carregou
@@ -25,16 +31,33 @@ let _supabase: SupabaseClient | null = null
 
 function getOrCreateSupabase(): SupabaseClient {
   if (_supabase) return _supabase
-  const { url, key } = getSupabaseConfig()
-  _supabase = typeof window !== 'undefined'
-    ? createBrowserClient(url, key, {
-        auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
-        }
-      })
-    : createSupabaseClient(url, key)
+
+  if (typeof window !== 'undefined') {
+    // No lado do cliente (navegador), use createBrowserClient diretamente.
+    // Exigimos que as variáveis de ambiente estejam definidas.
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+        throw new Error('As variáveis de ambiente NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY são obrigatórias para inicializar o cliente Supabase no navegador.');
+    }
+
+    _supabase = createBrowserClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    })
+  } else {
+    // No lado do servidor, ainda podemos usar createSupabaseClient.
+    // Aqui, getSupabaseConfig é chamado para obter as chaves.
+    const { url, key } = getSupabaseConfig();
+    if (!url || !key) {
+        throw new Error('As variáveis de ambiente NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY são obrigatórias para inicializar o cliente Supabase no servidor.');
+    }
+    _supabase = createSupabaseClient(url, key);
+  }
   return _supabase
 }
 
@@ -46,20 +69,40 @@ export const supabase = new Proxy({} as SupabaseClient, {
   }
 })
 
-/**
- * Cliente Supabase com privilégios de Admin (Service Role)
- * USE COM CAUTELA - IGNORA RLS
- */
-export const supabaseAdmin = createSupabaseClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || '',
-  {
+let _supabaseAdmin: SupabaseClient | null = null;
+
+function getOrCreateSupabaseAdmin(): SupabaseClient {
+  if (_supabaseAdmin) return _supabaseAdmin;
+  
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-key';
+  
+  _supabaseAdmin = createSupabaseClient(url, key, {
     auth: {
       persistSession: false,
       autoRefreshToken: false
     }
+  });
+  
+  return _supabaseAdmin;
+}
+
+/**
+ * Cliente Supabase com privilégios de Admin (Service Role)
+ * USE COM CAUTELA - IGNORA RLS
+ * Instanciado via Proxy para evitar erro "supabaseKey is required" durante module evaluation no lado do cliente.
+ */
+export const supabaseAdmin = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    if (typeof window !== 'undefined') {
+      console.warn('⚠️ Tentativa de usar supabaseAdmin no lado do cliente (navegador). Isso não é suportado e as credenciais não estarão disponíveis.');
+      return undefined;
+    }
+    const client = getOrCreateSupabaseAdmin()
+    const value = (client as unknown as Record<string, unknown>)[prop as string]
+    return typeof value === 'function' ? value.bind(client) : value
   }
-)
+})
 
 /**
  * Cria um cliente Supabase com a configuração correta

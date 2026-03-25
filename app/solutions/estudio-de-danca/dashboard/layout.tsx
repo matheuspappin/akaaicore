@@ -35,23 +35,23 @@ function DanceSidebar({
   return (
     <aside
       className={cn(
-        "hidden md:flex flex-col fixed top-0 left-0 h-full bg-slate-950 border-r border-white/10 z-50 transition-all duration-300",
+        "hidden md:flex flex-col fixed top-0 left-0 h-full bg-black border-r border-white/10 z-50 transition-all duration-300",
         collapsed ? "w-[72px]" : "w-64"
       )}
     >
       <div className="flex items-center justify-between p-4 border-b border-white/10">
         {!collapsed && (
           <Link href="/solutions/estudio-de-danca" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center">
               <Music className="w-4 h-4 text-white" />
             </div>
             <span className="font-black text-white tracking-tighter text-sm">
-              Dance<span className="text-violet-400">Flow</span>
+              Dance<span className="text-[#e40014]">Flow</span>
             </span>
           </Link>
         )}
         {collapsed && (
-          <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center mx-auto">
+          <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center mx-auto">
             <Music className="w-4 h-4 text-white" />
           </div>
         )}
@@ -83,8 +83,8 @@ function DanceSidebar({
                     className={cn(
                       "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all",
                       isActive
-                        ? "bg-violet-600 text-white shadow-lg shadow-violet-600/20"
-                        : "text-white/50 hover:text-white hover:bg-white/5",
+                        ? "bg-[#e40014] text-white shadow-lg shadow-red-600/20"
+                        : "text-white/50 hover:text-white hover:bg-white/5/5",
                       collapsed && "justify-center"
                     )}
                     title={collapsed ? item.label : undefined}
@@ -103,7 +103,7 @@ function DanceSidebar({
         <button
           onClick={handleLogout}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-violet-400 hover:bg-violet-600/10 transition-all w-full",
+            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-[#e40014] hover:bg-[#e40014] transition-all w-full",
             collapsed && "justify-center"
           )}
           title={collapsed ? "Sair" : undefined}
@@ -118,19 +118,19 @@ function DanceSidebar({
 
 function DanceMobileHeader({ onOpen, onLogout }: { onOpen: () => void; onLogout: () => void }) {
   return (
-    <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-slate-950 border-b border-white/10 flex items-center justify-between px-4 z-40">
+    <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-black border-b border-white/10 flex items-center justify-between px-4 z-40">
       <Link href="/solutions/estudio-de-danca" className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center">
           <Music className="w-4 h-4 text-white" />
         </div>
         <span className="font-black text-white tracking-tighter text-sm">
-          Dance<span className="text-violet-400">Flow</span>
+          Dance<span className="text-[#e40014]">Flow</span>
         </span>
       </Link>
       <div className="flex items-center gap-1">
         <button
           onClick={onLogout}
-          className="text-white/50 hover:text-violet-400 p-2 rounded-lg hover:bg-violet-600/10 transition-all"
+          className="text-white/50 hover:text-[#e40014] p-2 rounded-lg hover:bg-[#e40014] transition-all"
           title="Sair"
         >
           <LogOut className="w-5 h-5" />
@@ -229,8 +229,8 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     )
   }
@@ -238,17 +238,23 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
   if (!authorized) return null
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <DanceSidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} navGroups={navGroups} />
+    <div className="min-h-screen bg-black text-white relative selection:bg-white/5/20">
+      {/* Background radial gradient similar to AKAAI CORE */}
+      <div 
+        className="fixed inset-0 z-0 pointer-events-none" 
+        style={{ background: 'radial-gradient(70% 50% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 55%)' }}
+      />
+      <div className="relative z-10">
+        <DanceSidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} navGroups={navGroups} />
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="p-0 bg-slate-950 border-r border-white/10 w-72">
+        <SheetContent side="left" className="p-0 bg-black border-r border-white/10 w-72">
           <div className="flex items-center gap-2 p-4 border-b border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center">
               <Music className="w-4 h-4 text-white" />
             </div>
             <span className="font-black text-white tracking-tighter text-sm">
-              Dance<span className="text-violet-400">Flow</span>
+              Dance<span className="text-[#e40014]">Flow</span>
             </span>
           </div>
           <nav className="p-2 overflow-y-auto max-h-[calc(100vh-80px)]">
@@ -264,7 +270,7 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-white hover:bg-white/5/5 transition-all"
                         onClick={() => setMobileOpen(false)}
                       >
                         <Icon className="w-4 h-4" />
@@ -291,6 +297,7 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
           {children}
         </div>
       </main>
+      </div>
     </div>
   )
 }

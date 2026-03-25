@@ -110,7 +110,7 @@ export default function ClientPropriedadesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Minhas Propriedades</h1>
-          <p className="text-slate-400 mt-1">Gerencie as áreas rurais cadastradas</p>
+          <p className="text-zinc-400 mt-1">Gerencie as áreas rurais cadastradas</p>
         </div>
         <Button
           onClick={() => setShowForm(true)}
@@ -128,10 +128,10 @@ export default function ClientPropriedadesPage() {
             { label: "Regularizadas", value: String(properties.filter(p => p.car_status === "regularizado").length), color: "text-teal-400" },
             { label: "Área Total (ha)", value: totalArea > 0 ? totalArea.toLocaleString("pt-BR", { maximumFractionDigits: 1 }) : "—", color: "text-blue-400" },
           ].map(s => (
-            <Card key={s.label} className="bg-slate-900/50 border-slate-800">
+            <Card key={s.label} className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="p-4">
                 <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{s.label}</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{s.label}</p>
               </CardContent>
             </Card>
           ))}
@@ -141,12 +141,12 @@ export default function ClientPropriedadesPage() {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <Card className="w-full max-w-md bg-slate-900 border-slate-700 shadow-2xl">
+          <Card className="w-full max-w-md bg-zinc-950 border-slate-700 shadow-2xl">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-white text-base flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-emerald-400" /> Nova Propriedade
               </CardTitle>
-              <button onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white">
+              <button onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white">
                 <X className="w-4 h-4" />
               </button>
             </CardHeader>
@@ -154,17 +154,17 @@ export default function ClientPropriedadesPage() {
               <form onSubmit={handleAdd} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1 col-span-full">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nome da Propriedade *</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome da Propriedade *</label>
                     <Input
                       value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })}
                       placeholder="Ex: Fazenda Boa Vista"
                       required
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Área (ha)</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Área (ha)</label>
                     <Input
                       type="number"
                       step="0.01"
@@ -172,40 +172,40 @@ export default function ClientPropriedadesPage() {
                       value={form.total_area_ha}
                       onChange={e => setForm({ ...form, total_area_ha: e.target.value })}
                       placeholder="Ex: 350.5"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Estado</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Estado</label>
                     <Input
                       value={form.state}
                       onChange={e => setForm({ ...form, state: e.target.value.toUpperCase().slice(0, 2) })}
                       placeholder="SP"
                       maxLength={2}
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl uppercase"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl uppercase"
                     />
                   </div>
                   <div className="space-y-1 col-span-full">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Município</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Município</label>
                     <Input
                       value={form.city}
                       onChange={e => setForm({ ...form, city: e.target.value })}
                       placeholder="Ex: Ribeirão Preto"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1 col-span-full">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Código CAR (se houver)</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Código CAR (se houver)</label>
                     <Input
                       value={form.car_number}
                       onChange={e => setForm({ ...form, car_number: e.target.value })}
                       placeholder="SP-3543402-..."
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl font-mono text-sm"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl font-mono text-sm"
                     />
                   </div>
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-slate-400">
+                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-zinc-400">
                     Cancelar
                   </Button>
                   <Button type="submit" disabled={saving} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold">
@@ -224,10 +224,10 @@ export default function ClientPropriedadesPage() {
           <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
         </div>
       ) : properties.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <TreePine className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">Nenhuma propriedade cadastrada</p>
+            <p className="text-zinc-400 font-semibold text-lg">Nenhuma propriedade cadastrada</p>
             <p className="text-slate-600 text-sm mt-1">Adicione suas propriedades rurais para acompanhar o compliance</p>
             <Button onClick={() => setShowForm(true)} className="mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl">
               <Plus className="w-4 h-4 mr-2" /> Adicionar Propriedade
@@ -240,7 +240,7 @@ export default function ClientPropriedadesPage() {
             const st = statusLabels[prop.car_status] || statusLabels.pendente
             const StatusIcon = st.icon
             return (
-              <Card key={prop.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={prop.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex items-center gap-3">
@@ -250,7 +250,7 @@ export default function ClientPropriedadesPage() {
                       <div>
                         <p className="font-bold text-white text-sm">{prop.name}</p>
                         {(prop.city || prop.state) && (
-                          <p className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
+                          <p className="text-xs text-zinc-500 flex items-center gap-1 mt-0.5">
                             <MapPin className="w-3 h-3" />
                             {[prop.city, prop.state].filter(Boolean).join(", ")}
                           </p>
@@ -261,7 +261,7 @@ export default function ClientPropriedadesPage() {
                       {st.label}
                     </Badge>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-500">
+                  <div className="grid grid-cols-2 gap-2 text-xs text-zinc-500">
                     {prop.total_area_ha && (
                       <span className="flex items-center gap-1.5">
                         <Ruler className="w-3 h-3 text-teal-400" />

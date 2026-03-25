@@ -290,35 +290,35 @@ export default function AdminPlansPage() {
       <div className="p-8 space-y-8 max-w-7xl mx-auto w-full">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                 <CreditCard className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Receita Recorrente</p>
+                <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Receita Recorrente</p>
                 <div className="text-2xl font-bold">R$ {stats?.mrr?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500">
                 <Users className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Assinantes Ativos</p>
+                <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Assinantes Ativos</p>
                 <div className="text-2xl font-bold">{stats?.activeSubscribers}</div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500">
                 <TrendingUp className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Taxa de Conversão</p>
+                <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Taxa de Conversão</p>
                 <div className="text-2xl font-bold">{stats?.conversionRate?.toFixed(1)}%</div>
               </div>
             </CardContent>
@@ -329,7 +329,7 @@ export default function AdminPlansPage() {
           <div className="flex justify-between items-center mb-6">
             <div className="space-y-1">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Gerenciar Planos</h2>
-              <p className="text-slate-500">Configure as ofertas e preços para os seus clientes</p>
+              <p className="text-zinc-500">Configure as ofertas e preços para os seus clientes</p>
             </div>
             <div className="flex items-center gap-4">
               <TabsList>
@@ -350,10 +350,10 @@ export default function AdminPlansPage() {
               {loading ? (
                 <div className="col-span-full py-20 text-center">
                   <Loader2 className="w-10 h-10 animate-spin mx-auto text-indigo-600 mb-4" />
-                  <p className="text-slate-500 font-medium">Carregando planos do sistema...</p>
+                  <p className="text-zinc-500 font-medium">Carregando planos do sistema...</p>
                 </div>
               ) : plans.map((plan) => (
-                <Card key={plan.id} className={`relative overflow-hidden border-none shadow-xl ${plan.is_popular ? 'ring-2 ring-indigo-500 scale-105 z-10' : 'bg-white dark:bg-slate-900'}`}>
+                <Card key={plan.id} className={`relative overflow-hidden border-none shadow-xl ${plan.is_popular ? 'ring-2 ring-indigo-500 scale-105 z-10' : 'bg-white dark:bg-zinc-950'}`}>
                   {plan.is_popular && (
                     <div className="absolute top-0 right-0 bg-indigo-500 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-bl-lg">
                       Mais Popular
@@ -373,7 +373,7 @@ export default function AdminPlansPage() {
                       ) : (
                         <>
                           <span className="text-3xl font-bold">R$ {Number(plan.price).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
-                          <span className="text-slate-400 text-sm ml-1">/mês</span>
+                          <span className="text-zinc-400 text-sm ml-1">/mês</span>
                         </>
                       )}
                     </div>
@@ -383,7 +383,7 @@ export default function AdminPlansPage() {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="space-y-3">
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Módulos Inclusos:</p>
+                      <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Módulos Inclusos:</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {Object.entries(getPlanActiveModules(plan)).map(([key, enabled]) => {
                           if (!enabled) return null;
@@ -392,7 +392,7 @@ export default function AdminPlansPage() {
                             <Badge 
                               key={key} 
                               variant="secondary" 
-                              className="bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 border-none"
+                              className="bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-zinc-900 dark:text-slate-300 dark:hover:bg-slate-700 border-none"
                             >
                               {moduleDef?.label || key}
                             </Badge>
@@ -402,7 +402,7 @@ export default function AdminPlansPage() {
                     </div>
 
                     <div className="space-y-3">
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">O que inclui:</p>
+                      <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">O que inclui:</p>
                       {(plan.features || []).map((feature: string, i: number) => (
                         <div key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                           <div className="w-4 h-4 rounded-full bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
@@ -413,7 +413,7 @@ export default function AdminPlansPage() {
                       ))}
                     </div>
 
-                    <div className="flex gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <div className="flex gap-2 pt-4 border-t border-slate-100 dark:border-zinc-800">
                       <Button 
                         variant="outline" 
                         onClick={() => handleEdit(plan)}
@@ -435,7 +435,7 @@ export default function AdminPlansPage() {
                       <Button 
                         variant="ghost" 
                         onClick={() => handleDelete(plan.id)}
-                        className="w-8 h-8 p-0 text-slate-400 hover:text-red-600 hover:bg-red-50"
+                        className="w-8 h-8 p-0 text-zinc-400 hover:text-red-600 hover:bg-red-50"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </Button>
@@ -449,7 +449,7 @@ export default function AdminPlansPage() {
           <TabsContent value="modules" className="mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {modules.map((module) => (
-                <Card key={module.id} className="border-none shadow-md bg-white dark:bg-slate-900">
+                <Card key={module.id} className="border-none shadow-md bg-white dark:bg-zinc-950">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between mb-2">
                       <Badge variant={module.active ? 'default' : 'secondary'} className={module.active ? 'bg-emerald-500' : ''}>
@@ -468,11 +468,11 @@ export default function AdminPlansPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor={`price-${module.id}`} className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      <Label htmlFor={`price-${module.id}`} className="text-xs font-bold uppercase tracking-widest text-zinc-400">
                         Preço Mensal (R$)
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 font-bold">R$</span>
                         <Input 
                           id={`price-${module.id}`}
                           type="number"
@@ -491,11 +491,11 @@ export default function AdminPlansPage() {
                     {Number(module.price) > 0 && (
                       <>
                         <div className="space-y-2">
-                          <Label htmlFor={`price-annual-${module.id}`} className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                          <Label htmlFor={`price-annual-${module.id}`} className="text-xs font-bold uppercase tracking-widest text-zinc-400">
                             Preço Anual (R$) — opcional
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 font-bold">R$</span>
                             <Input 
                               id={`price-annual-${module.id}`}
                               type="number"
@@ -516,7 +516,7 @@ export default function AdminPlansPage() {
                           </div>
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor={`annual-discount-${module.id}`} className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                          <Label htmlFor={`annual-discount-${module.id}`} className="text-xs font-bold uppercase tracking-widest text-zinc-400">
                             Desconto Anual (%)
                           </Label>
                           <Input 
@@ -532,7 +532,7 @@ export default function AdminPlansPage() {
                             onBlur={(e) => handleModuleUpdate(module.id, { annual_discount_percent: parseInt(e.target.value) || 17 })}
                             className="font-bold"
                           />
-                          <p className="text-xs text-slate-500">
+                          <p className="text-xs text-zinc-500">
                             Ex: 17% ≈ 2 meses grátis. Se Preço Anual vazio, usa: mensal × 12 × (1 - desconto/100)
                           </p>
                         </div>
@@ -546,10 +546,10 @@ export default function AdminPlansPage() {
                       </>
                     )}
                     <div className="pt-2">
-                      <p className="text-xs text-slate-500 mb-2">Recursos:</p>
+                      <p className="text-xs text-zinc-500 mb-2">Recursos:</p>
                       <div className="flex flex-wrap gap-1">
                         {module.features?.map((f: string, i: number) => (
-                          <Badge key={i} variant="outline" className="text-[10px] bg-slate-50 dark:bg-slate-800">
+                          <Badge key={i} variant="outline" className="text-[10px] bg-slate-50 dark:bg-zinc-900">
                             {f}
                           </Badge>
                         ))}
@@ -595,37 +595,37 @@ export default function AdminPlansPage() {
             <div className="grid gap-6 py-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="plan_id" className="text-xs font-bold uppercase tracking-widest text-slate-400">ID do Plano (Slug)</Label>
+                  <Label htmlFor="plan_id" className="text-xs font-bold uppercase tracking-widest text-zinc-400">ID do Plano (Slug)</Label>
                   <Input 
                     id="plan_id" 
                     value={editingPlan.id} 
                     onChange={(e) => setEditingPlan({ ...editingPlan, id: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
                     disabled={!!editingPlan.created_at}
                     placeholder="ex: pro-plus"
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-400">Nome do Plano</Label>
+                  <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Nome do Plano</Label>
                   <Input 
                     id="name" 
                     value={editingPlan.name} 
                     onChange={(e) => setEditingPlan({ ...editingPlan, name: e.target.value })}
                     placeholder="ex: Pro+"
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="price" className="text-xs font-bold uppercase tracking-widest text-slate-400">Preço Mensal (R$)</Label>
+                  <Label htmlFor="price" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Preço Mensal (R$)</Label>
                   <Input 
                     id="price" 
                     type="number"
                     value={editingPlan.price} 
                     onChange={(e) => setEditingPlan({ ...editingPlan, price: parseFloat(e.target.value) })}
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
                 <div className="flex items-center gap-2 mt-6">
@@ -639,54 +639,54 @@ export default function AdminPlansPage() {
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="description" className="text-xs font-bold uppercase tracking-widest text-slate-400">Descrição Curta</Label>
+                <Label htmlFor="description" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Descrição Curta</Label>
                 <Input 
                   id="description" 
                   value={editingPlan.description} 
                   onChange={(e) => setEditingPlan({ ...editingPlan, description: e.target.value })}
                   placeholder="ex: O melhor custo-benefício para estúdios médios"
-                  className="bg-slate-50 dark:bg-slate-800 border-none"
+                  className="bg-slate-50 dark:bg-zinc-900 border-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="max_students" className="text-xs font-bold uppercase tracking-widest text-slate-400">Limite de Clientes</Label>
+                  <Label htmlFor="max_students" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Limite de Clientes</Label>
                   <Input 
                     id="max_students" 
                     type="number"
                     value={editingPlan.max_students} 
                     onChange={(e) => setEditingPlan({ ...editingPlan, max_students: parseInt(e.target.value) })}
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="max_teachers" className="text-xs font-bold uppercase tracking-widest text-slate-400">Limite de Profissionais</Label>
+                  <Label htmlFor="max_teachers" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Limite de Profissionais</Label>
                   <Input 
                     id="max_teachers" 
                     type="number"
                     value={editingPlan.max_teachers} 
                     onChange={(e) => setEditingPlan({ ...editingPlan, max_teachers: parseInt(e.target.value) })}
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="trial_days" className="text-xs font-bold uppercase tracking-widest text-slate-400">Dias de Teste</Label>
+                  <Label htmlFor="trial_days" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Dias de Teste</Label>
                   <Input 
                     id="trial_days" 
                     type="number"
                     value={editingPlan.trial_days || 14} 
                     onChange={(e) => setEditingPlan({ ...editingPlan, trial_days: parseInt(e.target.value) })}
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
               </div>
 
-              <div className="grid gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Módulos Inclusos</p>
+              <div className="grid gap-4 p-4 bg-slate-50 dark:bg-zinc-900/50 rounded-xl border border-slate-100 dark:border-zinc-800">
+                <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Módulos Inclusos</p>
                 <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                   {Object.entries(MODULE_DEFINITIONS).map(([key, config]) => (
                     <div key={key} className="flex items-center justify-between gap-2">
@@ -712,13 +712,13 @@ export default function AdminPlansPage() {
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="features" className="text-xs font-bold uppercase tracking-widest text-slate-400">Recursos (um por linha)</Label>
+                <Label htmlFor="features" className="text-xs font-bold uppercase tracking-widest text-zinc-400">Recursos (um por linha)</Label>
                 <Textarea 
                   id="features" 
                   value={editingPlan.features_text} 
                   onChange={(e) => setEditingPlan({ ...editingPlan, features_text: e.target.value })}
                   placeholder="Até 100 clientes&#10;Até 5 profissionais&#10;WhatsApp Ilimitado"
-                  className="bg-slate-50 dark:bg-slate-800 border-none min-h-[120px]"
+                  className="bg-slate-50 dark:bg-zinc-900 border-none min-h-[120px]"
                 />
               </div>
             </div>

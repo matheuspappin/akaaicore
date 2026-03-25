@@ -98,28 +98,28 @@ function ProjectCard({
               </div>
 
               {project.studio && (
-                <p className="text-sm text-slate-500 flex items-center gap-1 mt-0.5">
+                <p className="text-sm text-zinc-500 flex items-center gap-1 mt-0.5">
                   <Building2 className="w-3 h-3 flex-shrink-0" />
                   {project.studio.name}
                 </p>
               )}
 
               {project.description && (
-                <p className="text-sm text-slate-500 mt-1 line-clamp-1">{project.description}</p>
+                <p className="text-sm text-zinc-500 mt-1 line-clamp-1">{project.description}</p>
               )}
 
               <div className="flex items-center gap-4 mt-2 flex-wrap">
                 {project.opened_at && (
-                  <span className="text-xs text-slate-400 flex items-center gap-1">
+                  <span className="text-xs text-zinc-400 flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {format(new Date(project.opened_at), "dd/MM/yyyy", { locale: ptBR })}
                   </span>
                 )}
                 {project.tracking_code && (
-                  <span className="text-xs font-mono text-slate-400">#{project.tracking_code}</span>
+                  <span className="text-xs font-mono text-zinc-400">#{project.tracking_code}</span>
                 )}
                 {progress !== null && (
-                  <span className="text-xs text-slate-400 flex items-center gap-1">
+                  <span className="text-xs text-zinc-400 flex items-center gap-1">
                     <BarChart3 className="w-3 h-3" />
                     {progress}% concluído ({project.completed_milestones_count}/{project.milestones_count} etapas)
                   </span>
@@ -127,7 +127,7 @@ function ProjectCard({
               </div>
 
               {progress !== null && (
-                <div className="mt-2 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden w-full max-w-xs">
+                <div className="mt-2 h-1.5 bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden w-full max-w-xs">
                   <div
                     className="h-full bg-red-600 rounded-full transition-all"
                     style={{ width: `${progress}%` }}
@@ -161,7 +161,7 @@ function ProjectCard({
             )}
             {!isPending && (
               <Link href={`${BASE_PATH}/${project.id}`}>
-                <Button size="sm" variant="ghost" className="text-slate-400 hover:text-red-600">
+                <Button size="sm" variant="ghost" className="text-zinc-400 hover:text-red-600">
                   <ChevronRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -263,7 +263,7 @@ export default function FireEngineerProjectsPage() {
             </div>
             <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Projetos PPCI</h1>
           </div>
-          <p className="text-slate-500 mt-1 ml-10">Gerencie seus projetos de proteção e combate a incêndio</p>
+          <p className="text-zinc-500 mt-1 ml-10">Gerencie seus projetos de proteção e combate a incêndio</p>
         </div>
       </div>
 
@@ -272,11 +272,11 @@ export default function FireEngineerProjectsPage() {
           { label: "Aguardando Aceite", value: pending.length, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-900/10", border: "border-amber-200 dark:border-amber-800" },
           { label: "Em Andamento",      value: active.length,  color: "text-red-600",   bg: "bg-red-50 dark:bg-red-900/10",     border: "border-red-200 dark:border-red-800" },
           { label: "Concluídos",        value: done.filter(p => p.status === "finished").length, color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-900/10", border: "border-emerald-200 dark:border-emerald-800" },
-          { label: "Total",             value: projects.length, color: "text-slate-700 dark:text-slate-200", bg: "bg-slate-50 dark:bg-slate-800", border: "border-slate-200 dark:border-slate-700" },
+          { label: "Total",             value: projects.length, color: "text-slate-700 dark:text-slate-200", bg: "bg-slate-50 dark:bg-zinc-900", border: "border-slate-200 dark:border-slate-700" },
         ].map((stat) => (
           <Card key={stat.label} className={cn("border", stat.border, stat.bg)}>
             <CardContent className="p-4">
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">{stat.label}</p>
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">{stat.label}</p>
               <p className={cn("text-3xl font-black mt-1", stat.color)}>{stat.value}</p>
             </CardContent>
           </Card>
@@ -284,7 +284,7 @@ export default function FireEngineerProjectsPage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por título, código de rastreio..."
           className="pl-9"
@@ -328,13 +328,13 @@ export default function FireEngineerProjectsPage() {
           ["pending", "active", "done"].map((tab) => (
             <TabsContent key={tab} value={tab} className="space-y-3 mt-4">
               {tabProjects[tab].length === 0 ? (
-                <Card className="border-dashed border-2 bg-slate-50 dark:bg-slate-900/20">
+                <Card className="border-dashed border-2 bg-slate-50 dark:bg-zinc-950/20">
                   <CardContent className="flex flex-col items-center justify-center py-12 text-center">
                     <div className="w-14 h-14 rounded-full bg-red-100 dark:bg-red-900/20 flex items-center justify-center mb-3">
                       <Flame className="w-7 h-7 text-red-400" />
                     </div>
                     <h3 className="font-bold text-slate-700 dark:text-slate-300">Nenhum projeto aqui</h3>
-                    <p className="text-slate-500 text-sm mt-1">
+                    <p className="text-zinc-500 text-sm mt-1">
                       {tab === "pending"
                         ? "Nenhum projeto PPCI aguardando seu aceite no momento."
                         : tab === "active"
@@ -385,19 +385,19 @@ export default function FireEngineerProjectsPage() {
           </DialogHeader>
 
           {acceptTarget && (
-            <div className="rounded-xl bg-slate-50 dark:bg-slate-900 p-4 space-y-2 text-sm border border-red-100 dark:border-red-900/30">
+            <div className="rounded-xl bg-slate-50 dark:bg-zinc-950 p-4 space-y-2 text-sm border border-red-100 dark:border-red-900/30">
               <p className="font-bold text-slate-900 dark:text-white">
                 {acceptTarget.title || `Projeto #${acceptTarget.id.slice(0, 8)}`}
               </p>
               {acceptTarget.studio && (
-                <p className="text-slate-500 flex items-center gap-1">
+                <p className="text-zinc-500 flex items-center gap-1">
                   <Building2 className="w-3.5 h-3.5" />
                   {acceptTarget.studio.name}
                 </p>
               )}
               <Badge className="bg-red-100 text-red-700 text-xs">Projeto PPCI</Badge>
               {acceptTarget.description && (
-                <p className="text-slate-500 text-xs">{acceptTarget.description}</p>
+                <p className="text-zinc-500 text-xs">{acceptTarget.description}</p>
               )}
             </div>
           )}
@@ -433,10 +433,10 @@ export default function FireEngineerProjectsPage() {
 
           <div className="space-y-3">
             {rejectTarget && (
-              <div className="rounded-xl bg-slate-50 dark:bg-slate-900 p-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+              <div className="rounded-xl bg-slate-50 dark:bg-zinc-950 p-3 text-sm font-medium text-slate-700 dark:text-slate-300">
                 {rejectTarget.title || `Projeto #${rejectTarget.id.slice(0, 8)}`}
                 {rejectTarget.studio && (
-                  <span className="text-slate-400"> — {rejectTarget.studio.name}</span>
+                  <span className="text-zinc-400"> — {rejectTarget.studio.name}</span>
                 )}
               </div>
             )}

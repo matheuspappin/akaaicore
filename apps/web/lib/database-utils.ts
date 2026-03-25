@@ -508,22 +508,97 @@ async function getDashboardStatsRaw(studioId: string) {
       .eq('studio_id', studioId)
       .eq('status', 'active')
 
-    // Receita mensal (último mês)
+    // Receitas e Crescimento (Consolidado: Mensalidades + PDV + Marketplace)
+    const now = new Date()
+    const currentMonthStr = now.toISOString().slice(0, 7) // YYYY-MM
+    
     const lastMonth = new Date()
     lastMonth.setMonth(lastMonth.getMonth() - 1)
     const lastMonthStr = lastMonth.toISOString().slice(0, 7) // YYYY-MM
 
-    const { data: monthlyRevenue } = await supabase
+    // 1. Buscar Mensalidades (tabela payments)
+    const { data: paymentsCurrent } = await supabase
       .from('payments')
-      .select('amount')
+      .select('amount, credits_used')
+      .eq('studio_id', studioId)
+      .eq('status', 'paid')
+      .like('reference_month', `${currentMonthStr}%`)
+
+    const { data: paymentsLast } = await supabase
+      .from('payments')
+      .select('amount, credits_used')
       .eq('studio_id', studioId)
       .eq('status', 'paid')
       .like('reference_month', `${lastMonthStr}%`)
 
-    const revenue = monthlyRevenue?.reduce((sum, p) => sum + parseFloat(p.amount), 0) || 0
+    // 2. Buscar Vendas (tabela erp_orders - PDV e Marketplace)
+    const { data: erpOrdersCurrent } = await supabase
+      .from('erp_orders')
+      .select('total_amount')
+      .eq('studio_id', studioId)
+      .in('status', ['finished', 'paid'])
+      .gte('created_at', `${currentMonthStr}-01`)
+
+    const { data: erpOrdersLast } = await supabase
+      .from('erp_orders')
+      .select('total_amount')
+      .eq('studio_id', studioId)
+      .in('status', ['finished', 'paid'])
+      .gte('created_at', `${lastMonthStr}-01`)
+      .lt('created_at', `${currentMonthStr}-01`)
+
+    // Consolidar Totais
+    const { data: packages } = await supabase
+      .from('lesson_packages')
+      .select('price, lessons_count')
+      .eq('studio_id', studioId)
+      .eq('is_active', true)
+
+    // 3. Taxa de conversão de créditos
+    let conversionRate = 70
+    const { data: setting } = await supabase
+      .from('studio_settings')
+      .select('setting_value')
+      .eq('studio_id', studioId)
+      .eq('setting_key', 'pdv_credit_reais_per_unit')
+      .maybeSingle()
+    
+    if (setting?.setting_value) {
+      conversionRate = parseFloat(setting.setting_value)
+    } else {
+      const { data: packages } = await supabase
+        .from('lesson_packages')
+        .select('price, lessons_count')
+        .eq('studio_id', studioId)
+        .eq('is_active', true)
+      
+      if (packages?.length) {
+        const rates = packages.map(p => (Number(p.price) || 0) / Math.max(1, Number(p.lessons_count) || 1))
+        conversionRate = Math.min(...rates)
+      }
+    }
+
+    const revenuePaymentsCurrent = paymentsCurrent?.reduce((sum, p) => {
+      const amount = parseFloat(p.amount) || 0
+      const creditValue = (Number(p.credits_used) || 0) * conversionRate
+      return sum + amount + (amount === 0 ? creditValue : 0)
+    }, 0) || 0
+    const revenueERPCurrent = erpOrdersCurrent?.reduce((sum, p) => sum + parseFloat(p.total_amount), 0) || 0
+    const totalRevenueCurrent = revenuePaymentsCurrent + revenueERPCurrent
+
+    const revenuePaymentsLast = paymentsLast?.reduce((sum, p) => {
+      const amount = parseFloat(p.amount) || 0
+      const creditValue = (Number(p.credits_used) || 0) * conversionRate
+      return sum + amount + (amount === 0 ? creditValue : 0)
+    }, 0) || 0
+    const revenueERPLast = erpOrdersLast?.reduce((sum, p) => sum + parseFloat(p.total_amount), 0) || 0
+    const totalRevenueLast = revenuePaymentsLast + revenueERPLast
+
+    const revenueGrowthValue = totalRevenueLast ? Math.round(((totalRevenueCurrent / totalRevenueLast) - 1) * 100) : (totalRevenueCurrent ? 100 : 0)
+    const revenueGrowth = revenueGrowthValue > 0 ? `+${revenueGrowthValue}%` : `${revenueGrowthValue}%`
 
     // Inadimplência (Total vencido e não pago)
-    const todayStr = new Date().toISOString().split('T')[0]
+    const todayStr = now.toISOString().split('T')[0]
     const { data: overduePayments } = await supabase
       .from('payments')
       .select('amount')
@@ -539,6 +614,7 @@ async function getDashboardStatsRaw(studioId: string) {
       .select(`
         id,
         amount,
+        credits_used,
         payment_date,
         due_date,
         status,
@@ -550,15 +626,22 @@ async function getDashboardStatsRaw(studioId: string) {
       .order('created_at', { ascending: false })
       .limit(10)
 
-    const formattedTransactions = recentTransactions?.map(t => ({
-      id: t.id,
-      description: t.description || 'Venda/Pagamento',
-      amount: parseFloat(t.amount),
-      date: t.payment_date || t.due_date,
-      status: t.status,
-      method: t.payment_method,
-      student: (t.student as any)?.name || 'Cliente Avulso'
-    })) || []
+    const formattedTransactions = recentTransactions?.map(t => {
+      const amount = parseFloat(t.amount)
+      const creditValue = (Number(t.credits_used) || 0) * conversionRate
+      const finalAmount = amount === 0 && creditValue > 0 ? creditValue : amount
+
+      return {
+        id: t.id,
+        description: t.description || 'Venda/Pagamento',
+        amount: finalAmount,
+        credits_used: t.credits_used,
+        date: t.payment_date || t.due_date,
+        status: t.status,
+        method: t.payment_method,
+        student: (t.student as any)?.name || 'Cliente Avulso'
+      }
+    }) || []
 
     // --- NOVOS DADOS PARA GRÁFICOS ---
     
@@ -567,15 +650,23 @@ async function getDashboardStatsRaw(studioId: string) {
     sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5)
     sixMonthsAgo.setDate(1) // Início do mês
     
-    // 1. Buscar Receita Real
+    // 1. Buscar Receita Real (Mensalidades)
     const { data: recentRevenue } = await supabase
       .from('payments')
-      .select('amount, payment_date')
+      .select('amount, credits_used, payment_date')
       .eq('studio_id', studioId)
       .eq('status', 'paid')
       .gte('payment_date', sixMonthsAgo.toISOString().split('T')[0])
 
-    // 2. Buscar Despesas Reais
+    // 2. Buscar Receita Real (PDV/Marketplace - ERP Orders)
+    const { data: recentERPRevenue } = await supabase
+      .from('erp_orders')
+      .select('total_amount, created_at')
+      .eq('studio_id', studioId)
+      .in('status', ['finished', 'paid'])
+      .gte('created_at', sixMonthsAgo.toISOString().split('T')[0])
+
+    // 3. Buscar Despesas Reais
     const { data: recentExpenses } = await supabase
       .from('expenses')
       .select('amount, due_date, status')
@@ -599,7 +690,17 @@ async function getDashboardStatsRaw(studioId: string) {
       const d = new Date(p.payment_date)
       const monthName = months[d.getMonth()]
       if (dataByMonth[monthName]) {
-        dataByMonth[monthName].receita += parseFloat(p.amount)
+        const amount = parseFloat(p.amount) || 0
+        const creditValue = (Number(p.credits_used) || 0) * conversionRate
+        dataByMonth[monthName].receita += amount + (amount === 0 ? creditValue : 0)
+      }
+    })
+
+    recentERPRevenue?.forEach(o => {
+      const d = new Date(o.created_at)
+      const monthName = months[d.getMonth()]
+      if (dataByMonth[monthName]) {
+        dataByMonth[monthName].receita += parseFloat(o.total_amount)
       }
     })
 
@@ -793,28 +894,16 @@ async function getDashboardStatsRaw(studioId: string) {
 
     const studentGrowth = studentsLastMonth ? Math.round(((studentsThisMonth || 0) / studentsLastMonth) * 100) : (studentsThisMonth ? 100 : 0)
 
-    // Receita este mês vs mês passado
-    const { data: revenueLastMonth } = await supabase
-      .from('payments')
-      .select('amount')
-      .eq('studio_id', studioId)
-      .eq('status', 'paid')
-      .gte('payment_date', lastMonthStart.toISOString().split('T')[0])
-      .lt('payment_date', lastMonthEnd.toISOString().split('T')[0])
-
-    const revLastMonth = revenueLastMonth?.reduce((sum, p) => sum + parseFloat(p.amount), 0) || 0
-    const revenueGrowth = revLastMonth ? Math.round(((revenue / revLastMonth) - 1) * 100) : (revenue ? 100 : 0)
-
     return {
       activeStudents: activeStudents || 0,
       activeProfessionals: activeProfessionals || 0,
       activeClasses: activeClasses || 0,
-      monthlyRevenue: revenue,
+      monthlyRevenue: totalRevenueCurrent,
       totalOverdue: totalOverdue,
-      totalRevenue: revenue,
+      totalRevenue: totalRevenueCurrent,
       inadimplencia: totalOverdue,
       studentGrowth: studentGrowth > 0 ? `+${studentGrowth}%` : `${studentGrowth}%`,
-      revenueGrowth: revenueGrowth > 0 ? `+${revenueGrowth}%` : `${revenueGrowth}%`,
+      revenueGrowth: revenueGrowth,
       chartRevenueData,
       chartClassesData,
       evasionAlerts,

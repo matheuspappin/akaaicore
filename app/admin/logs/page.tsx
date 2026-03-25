@@ -224,25 +224,25 @@ export default function AdminLogsPage() {
       
       <div className="p-8 space-y-6 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="bg-white dark:bg-slate-900 border-none shadow-sm">
+          <Card className="bg-white dark:bg-zinc-950 border-none shadow-sm">
             <CardHeader className="p-4 pb-2">
-              <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-widest">Erros (24h)</CardTitle>
+              <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Erros (24h)</CardTitle>
             </CardHeader>
             <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold text-red-500">{metrics.errors24h}</div>
             </CardContent>
           </Card>
-          <Card className="bg-white dark:bg-slate-900 border-none shadow-sm">
+          <Card className="bg-white dark:bg-zinc-950 border-none shadow-sm">
             <CardHeader className="p-4 pb-2">
-              <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-widest">Alertas (24h)</CardTitle>
+              <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Alertas (24h)</CardTitle>
             </CardHeader>
             <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold text-amber-500">{metrics.warnings24h}</div>
             </CardContent>
           </Card>
-          <Card className="bg-white dark:bg-slate-900 border-none shadow-sm">
+          <Card className="bg-white dark:bg-zinc-950 border-none shadow-sm">
             <CardHeader className="p-4 pb-2">
-              <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-widest">Status</CardTitle>
+              <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Status</CardTitle>
             </CardHeader>
             <CardContent className="p-4 pt-0">
               <div className={`text-2xl font-bold ${dbStatus ? 'text-emerald-500' : 'text-red-500'}`}>
@@ -250,9 +250,9 @@ export default function AdminLogsPage() {
               </div>
             </CardContent>
           </Card>
-          <Card className="bg-white dark:bg-slate-900 border-none shadow-sm">
+          <Card className="bg-white dark:bg-zinc-950 border-none shadow-sm">
             <CardHeader className="p-4 pb-2">
-              <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-widest">Eventos (24h)</CardTitle>
+              <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Eventos (24h)</CardTitle>
             </CardHeader>
             <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold text-indigo-500">{metrics.events24h}</div>
@@ -344,8 +344,8 @@ export default function AdminLogsPage() {
           </div>
         </div>
 
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
-          <CardHeader className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950 overflow-hidden">
+          <CardHeader className="bg-slate-50 dark:bg-zinc-900/50 border-b border-slate-100 dark:border-zinc-800">
             <div className="flex items-center gap-2">
               <Terminal className="w-5 h-5 text-indigo-600" />
               <CardTitle className="text-lg">Visualizador de Eventos em Tempo Real</CardTitle>
@@ -354,7 +354,7 @@ export default function AdminLogsPage() {
           <CardContent className="p-0">
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                <TableRow className="bg-slate-50/50 dark:bg-zinc-900/30">
                   <TableHead className="w-[180px] pl-6">Data/Hora</TableHead>
                   <TableHead className="w-[100px]">Tipo</TableHead>
                   <TableHead className="w-[150px]">Origem</TableHead>
@@ -365,20 +365,20 @@ export default function AdminLogsPage() {
               <TableBody className="font-mono text-xs">
                 {isLoading && logs.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="py-12 text-center text-slate-400">
+                    <TableCell colSpan={5} className="py-12 text-center text-zinc-400">
                       Carregando...
                     </TableCell>
                   </TableRow>
                 ) : filteredLogs.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="py-12 text-center text-slate-400">
+                    <TableCell colSpan={5} className="py-12 text-center text-zinc-400">
                       Nenhum log registrado. Ative o tempo real para capturar eventos do banco.
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredLogs.map((log) => (
-                    <TableRow key={log.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors border-b border-slate-100 dark:border-slate-800">
-                      <TableCell className="pl-6 text-slate-500">
+                    <TableRow key={log.id} className="hover:bg-slate-50 dark:hover:bg-zinc-900/30 transition-colors border-b border-slate-100 dark:border-zinc-800">
+                      <TableCell className="pl-6 text-zinc-500">
                         <div className="flex items-center gap-2">
                           <Clock className="w-3 h-3" />
                           {new Date(log.timestamp).toLocaleString('pt-BR')}
@@ -397,7 +397,7 @@ export default function AdminLogsPage() {
                         {log.message}
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest bg-slate-50 dark:bg-slate-800">
+                        <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-widest bg-slate-50 dark:bg-zinc-900">
                           {log.studio}
                         </Badge>
                       </TableCell>
@@ -410,26 +410,26 @@ export default function AdminLogsPage() {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2">
-                <Server className={`w-4 h-4 ${health ? 'text-emerald-500' : 'text-slate-400'}`} />
+                <Server className={`w-4 h-4 ${health ? 'text-emerald-500' : 'text-zinc-400'}`} />
                 <CardTitle className="text-sm">API Gateway</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-zinc-400">
                   Status: {health ? 'Operacional' : 'Verificando...'}
                 </span>
                 <span className="text-xs font-bold text-emerald-500">LATENCY: {apiLatency}</span>
               </div>
-              <div className="mt-2 h-1 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="mt-2 h-1 w-full bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden">
                 <div className="h-full bg-emerald-500 w-full" />
               </div>
             </CardContent>
           </Card>
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2">
                 <Database className={`w-4 h-4 ${dbStatus ? 'text-emerald-500' : 'text-red-500'}`} />
@@ -438,14 +438,14 @@ export default function AdminLogsPage() {
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-zinc-400">
                   Status: {dbStatus ? 'Operacional' : health?.database?.message || '—'}
                 </span>
                 <span className={`text-xs font-bold ${dbStatus ? 'text-emerald-500' : 'text-red-500'}`}>
                   {dbLatency ? `LATENCY: ${dbLatency}` : '—'}
                 </span>
               </div>
-              <div className="mt-2 h-1 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="mt-2 h-1 w-full bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden">
                 <div className={`h-full w-full ${dbStatus ? 'bg-emerald-500' : 'bg-red-500'}`} />
               </div>
             </CardContent>

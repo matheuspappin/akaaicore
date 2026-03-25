@@ -116,7 +116,7 @@ export default function WhatsAppPage() {
             <Phone className="w-6 h-6 text-green-600" />
             WhatsApp
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Comunicação e automações via WhatsApp
           </p>
         </div>
@@ -127,7 +127,7 @@ export default function WhatsAppPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+      <div className="flex gap-1 bg-slate-100 dark:bg-zinc-900 rounded-xl p-1">
         {[
           { key: "conversas", label: "Conversas", icon: MessageSquare },
           { key: "automacoes", label: "Automações", icon: Zap },
@@ -139,8 +139,8 @@ export default function WhatsAppPage() {
             className={cn(
               "flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-bold transition-all",
               activeTab === tab.key
-                ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm"
-                : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                ? "bg-white dark:bg-zinc-950 text-slate-900 dark:text-white shadow-sm"
+                : "text-zinc-500 hover:text-slate-700 dark:hover:text-slate-300"
             )}
           >
             <tab.icon className="w-4 h-4" />
@@ -152,7 +152,7 @@ export default function WhatsAppPage() {
       {/* Conversas */}
       {activeTab === "conversas" && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[500px]">
-          <div className="md:col-span-1 bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+          <div className="md:col-span-1 bg-white dark:bg-zinc-950/50 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
             <div className="p-3 border-b border-slate-100 dark:border-white/5">
               <Input placeholder="Buscar conversa..." className="text-sm" />
             </div>
@@ -168,9 +168,9 @@ export default function WhatsAppPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-1">
                       <span className="text-sm font-bold text-slate-900 dark:text-white truncate">{conv.nome}</span>
-                      <span className="text-[10px] text-slate-400 flex-shrink-0">{conv.horario}</span>
+                      <span className="text-[10px] text-zinc-400 flex-shrink-0">{conv.horario}</span>
                     </div>
-                    <p className="text-xs text-slate-500 truncate">{conv.ultimaMensagem}</p>
+                    <p className="text-xs text-zinc-500 truncate">{conv.ultimaMensagem}</p>
                   </div>
                   {conv.naoLidas > 0 && (
                     <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
@@ -181,7 +181,7 @@ export default function WhatsAppPage() {
               ))}
             </div>
           </div>
-          <div className="md:col-span-2 bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-white/10 flex flex-col">
+          <div className="md:col-span-2 bg-white dark:bg-zinc-950/50 rounded-xl border border-slate-200 dark:border-white/10 flex flex-col">
             <div className="p-4 border-b border-slate-100 dark:border-white/5 flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-black text-sm">J</div>
               <div>
@@ -193,13 +193,13 @@ export default function WhatsAppPage() {
               <div className="flex justify-start">
                 <div className="bg-slate-100 dark:bg-white/10 rounded-xl rounded-tl-none px-4 py-2 max-w-xs">
                   <p className="text-sm text-slate-700 dark:text-slate-200">Bom dia! Quando vem o técnico para a recarga dos extintores?</p>
-                  <p className="text-[10px] text-slate-400 mt-1 text-right">10:30</p>
+                  <p className="text-[10px] text-zinc-400 mt-1 text-right">10:30</p>
                 </div>
               </div>
               <div className="flex justify-start">
                 <div className="bg-slate-100 dark:bg-white/10 rounded-xl rounded-tl-none px-4 py-2 max-w-xs">
                   <p className="text-sm text-slate-700 dark:text-slate-200">Quando vem o técnico para a recarga?</p>
-                  <p className="text-[10px] text-slate-400 mt-1 text-right">10:32</p>
+                  <p className="text-[10px] text-zinc-400 mt-1 text-right">10:32</p>
                 </div>
               </div>
               <div className="flex justify-end">
@@ -230,14 +230,14 @@ export default function WhatsAppPage() {
       {activeTab === "automacoes" && (
         <div className="space-y-3">
           {automacoes.map((aut) => (
-            <Card key={aut.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+            <Card key={aut.id} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
               <CardContent className="p-5 flex items-center gap-4">
                 <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", aut.bg)}>
                   <aut.icone className={cn("w-5 h-5", aut.color)} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-slate-900 dark:text-white">{aut.titulo}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{aut.descricao}</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">{aut.descricao}</p>
                 </div>
                 <Switch
                   checked={automacaoState[aut.id]}
@@ -256,7 +256,7 @@ export default function WhatsAppPage() {
       {/* Disparo em Massa */}
       {activeTab === "disparos" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+          <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Send className="w-5 h-5 text-green-600" />
@@ -281,7 +281,7 @@ export default function WhatsAppPage() {
                   className="mt-1"
                   rows={5}
                 />
-                <p className="text-xs text-slate-400 mt-1">Use {"{nome}"} para personalizar</p>
+                <p className="text-xs text-zinc-400 mt-1">Use {"{nome}"} para personalizar</p>
               </div>
               <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-bold">
                 <Send className="w-4 h-4 mr-2" />
@@ -290,7 +290,7 @@ export default function WhatsAppPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+          <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
                 <Clock className="w-5 h-5 text-blue-600" />
@@ -306,7 +306,7 @@ export default function WhatsAppPage() {
                 <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-white/5">
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white">{h.titulo}</p>
-                    <p className="text-xs text-slate-500">{h.data} · {h.enviados} enviados</p>
+                    <p className="text-xs text-zinc-500">{h.data} · {h.enviados} enviados</p>
                   </div>
                   <Badge className="bg-emerald-100 text-emerald-700 border-0 font-bold">{h.taxa}</Badge>
                 </div>

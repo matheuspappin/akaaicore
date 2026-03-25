@@ -328,7 +328,7 @@ export default function SupportView() {
                 </SheetHeader>
               </div>
               
-              <ScrollArea className="flex-1 p-6 bg-slate-50 dark:bg-slate-900/50">
+              <ScrollArea className="flex-1 p-6 bg-slate-50 dark:bg-zinc-950/50">
                 <div className="space-y-4">
                   {messages.map((msg) => {
                     // Logic to determine if message is from user (me) or support
@@ -361,7 +361,7 @@ export default function SupportView() {
                       <div key={msg.id} className={`flex flex-col gap-1 ${isSupport ? 'items-start' : 'items-end'}`}>
                          <div className={`p-3 rounded-lg max-w-[85%] text-sm ${
                            isSupport
-                             ? 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-tl-none'
+                             ? 'bg-white dark:bg-zinc-900 border border-slate-200 dark:border-slate-700 rounded-tl-none'
                              : 'bg-indigo-600 text-white rounded-tr-none' 
                          }`}>
                            {msg.message}

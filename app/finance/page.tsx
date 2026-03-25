@@ -114,7 +114,7 @@ export default function FinanceDashboardPage() {
             <DollarSign className="w-6 h-6 text-emerald-600" />
             Portal Financeiro
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Visão geral e indicadores financeiros
           </p>
         </div>
@@ -130,14 +130,14 @@ export default function FinanceDashboardPage() {
         {kpis.map((kpi) => (
           <Card
             key={kpi.label}
-            className={cn("border-l-4 bg-white dark:bg-slate-900/50 shadow-sm", kpi.border)}
+            className={cn("border-l-4 bg-white dark:bg-zinc-950/50 shadow-sm", kpi.border)}
           >
             <CardContent className="p-5">
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", kpi.bg)}>
                 <kpi.icon className={cn("w-5 h-5", kpi.color)} />
               </div>
               <p className={cn("text-2xl font-black", kpi.color)}>{kpi.value}</p>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-1">
                 {kpi.label}
               </p>
             </CardContent>
@@ -145,12 +145,12 @@ export default function FinanceDashboardPage() {
         ))}
       </div>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardContent className="p-6">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
             Bem-vindo ao Portal Financeiro
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm">
+          <p className="text-slate-600 dark:text-zinc-400 text-sm">
             Use o menu lateral para acessar <strong>Lançamentos</strong>, <strong>Inadimplência</strong> e{" "}
             <strong>Relatórios</strong>. Você tem acesso apenas às funções financeiras, sem visibilidade
             sobre configurações gerais ou outros módulos do sistema.

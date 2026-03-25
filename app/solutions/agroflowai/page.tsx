@@ -87,7 +87,7 @@ function Navbar() {
   return (
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-500",
-      scrolled ? "bg-slate-950/90 backdrop-blur-xl border-b border-white/10 py-3" : "bg-transparent py-5"
+      scrolled ? "bg-black/90 backdrop-blur-xl border-b border-white/10 py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-white hover:opacity-80 transition-opacity">
@@ -132,7 +132,7 @@ function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden overflow-hidden bg-slate-900/95 backdrop-blur-xl border-b border-white/10"
+            className="lg:hidden overflow-hidden bg-zinc-950/95 backdrop-blur-xl border-b border-white/10"
           >
             <div className="px-6 py-6 flex flex-col gap-3">
               {navItems.map((item) => (
@@ -171,7 +171,7 @@ function HeroSection() {
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden bg-slate-950 text-white">
+    <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden bg-black text-white">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(16,185,129,0.15)_0%,transparent_60%)]" />
@@ -215,7 +215,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-lg md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-12 leading-relaxed"
           >
             Laudos, CAR, licenciamentos e monitoramento de desmatamento por satélite.{" "}
             <span className="text-white font-semibold">Tudo em uma plataforma integrada</span>{" "}
@@ -252,7 +252,7 @@ function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500"
+            className="flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-500"
           >
             {[
               { icon: Shield, text: "Dados 100% seguros" },
@@ -279,9 +279,9 @@ function HeroSection() {
             {/* Glow effect */}
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-emerald-600/20 rounded-3xl blur-2xl" />
             {/* Browser chrome */}
-            <div className="relative rounded-2xl border border-white/10 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] bg-slate-900">
+            <div className="relative rounded-2xl border border-white/10 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] bg-zinc-950">
               {/* Browser bar */}
-              <div className="flex items-center gap-3 px-4 py-3 bg-slate-800/80 border-b border-white/5">
+              <div className="flex items-center gap-3 px-4 py-3 bg-zinc-900/80 border-b border-white/5">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/70" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
@@ -289,13 +289,13 @@ function HeroSection() {
                 </div>
                 <div className="flex-1 h-6 rounded-md bg-slate-700/50 flex items-center px-3 gap-2">
                   <Lock className="w-3 h-3 text-emerald-400" />
-                  <span className="text-xs text-slate-400 font-mono">app.agroflowai.com.br/dashboard</span>
+                  <span className="text-xs text-zinc-400 font-mono">app.agroflowai.com.br/dashboard</span>
                 </div>
               </div>
               {/* Mini dashboard */}
-              <div className="grid grid-cols-12 min-h-[400px] bg-slate-900">
+              <div className="grid grid-cols-12 min-h-[400px] bg-zinc-950">
                 {/* Sidebar */}
-                <div className="col-span-2 bg-slate-950 border-r border-white/5 p-3 flex flex-col gap-1">
+                <div className="col-span-2 bg-black border-r border-white/5 p-3 flex flex-col gap-1">
                   <div className="flex items-center gap-2 px-2 py-2 mb-3">
                     <div className="w-6 h-6 rounded bg-emerald-600 flex items-center justify-center">
                       <Leaf className="w-3 h-3 text-white" />
@@ -312,7 +312,7 @@ function HeroSection() {
                   ].map((item) => (
                     <div key={item.label} className={cn(
                       "flex items-center gap-2 px-2 py-1.5 rounded-lg",
-                      item.active ? "bg-emerald-600/20 text-emerald-400" : "text-slate-500"
+                      item.active ? "bg-emerald-600/20 text-emerald-400" : "text-zinc-500"
                     )}>
                       <item.icon className="w-3.5 h-3.5 flex-shrink-0" />
                       <span className="text-[10px] font-medium hidden sm:block">{item.label}</span>
@@ -329,17 +329,17 @@ function HeroSection() {
                       { label: "Laudos/Mês", value: "89", icon: FileText, color: "text-violet-400", border: "border-l-violet-500" },
                       { label: "Faturamento", value: "R$ 48k", icon: DollarSign, color: "text-pink-400", border: "border-l-pink-500" },
                     ].map((stat) => (
-                      <div key={stat.label} className={cn("p-2.5 rounded-lg bg-slate-800/60 border-l-2", stat.border)}>
+                      <div key={stat.label} className={cn("p-2.5 rounded-lg bg-zinc-900/60 border-l-2", stat.border)}>
                         <stat.icon className={cn("w-3 h-3 mb-1", stat.color)} />
                         <p className={cn("text-base font-black", stat.color)}>{stat.value}</p>
-                        <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wide">{stat.label}</p>
+                        <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-wide">{stat.label}</p>
                       </div>
                     ))}
                   </div>
                   {/* Content grid */}
                   <div className="grid grid-cols-5 gap-2">
-                    <div className="col-span-3 rounded-lg bg-slate-800/60 p-3">
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">OS Recentes</p>
+                    <div className="col-span-3 rounded-lg bg-zinc-900/60 p-3">
+                      <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2">OS Recentes</p>
                       {[
                         { client: "Fazenda Boa Vista", type: "Laudo CAR", status: "Em Andamento", color: "text-blue-400" },
                         { client: "Sítio São João", type: "Vistoria NDVI", status: "Pendente", color: "text-amber-400" },
@@ -352,7 +352,7 @@ function HeroSection() {
                             </div>
                             <div>
                               <p className="text-[10px] font-bold text-slate-300">{os.client}</p>
-                              <p className="text-[9px] text-slate-500">{os.type}</p>
+                              <p className="text-[9px] text-zinc-500">{os.type}</p>
                             </div>
                           </div>
                           <span className={cn("text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-current/10", os.color)}>
@@ -373,7 +373,7 @@ function HeroSection() {
                       <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-3">
                         <AlertTriangle className="w-4 h-4 text-amber-400 mb-1.5" />
                         <p className="text-[10px] font-bold text-amber-300">2 Alertas Ativos</p>
-                        <p className="text-[9px] text-slate-500">Compliance CAR pendente</p>
+                        <p className="text-[9px] text-zinc-500">Compliance CAR pendente</p>
                       </div>
                     </div>
                   </div>
@@ -398,7 +398,7 @@ function StatsSection() {
   ]
 
   return (
-    <section className="py-20 bg-slate-900 border-y border-white/5">
+    <section className="py-20 bg-zinc-950 border-y border-white/5">
       <div className="container mx-auto px-6">
         <motion.div
           variants={staggerContainer}
@@ -415,7 +415,7 @@ function StatsSection() {
               <p className="text-4xl md:text-5xl font-black text-white mb-2">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
+              <p className="text-sm text-zinc-500 font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -491,7 +491,7 @@ function FeaturesSection() {
   ]
 
   return (
-    <section id="features" className="py-28 bg-slate-950 text-white overflow-hidden">
+    <section id="features" className="py-28 bg-black text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -507,7 +507,7 @@ function FeaturesSection() {
             Tudo que sua consultoria<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">precisa para crescer</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
             Uma plataforma completa que substitui planilhas, e-mails e sistemas dispersos. Do campo ao escritório, tudo conectado.
           </p>
         </motion.div>
@@ -531,10 +531,10 @@ function FeaturesSection() {
                 <feature.icon className={cn("w-7 h-7", feature.iconColor)} />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-5">{feature.desc}</p>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-5">{feature.desc}</p>
               <div className="flex flex-wrap gap-2">
                 {feature.tags.map((tag) => (
-                  <span key={tag} className="px-2.5 py-1 rounded-full text-xs font-bold bg-white/5 text-slate-400 border border-white/5">
+                  <span key={tag} className="px-2.5 py-1 rounded-full text-xs font-bold bg-white/5 text-zinc-400 border border-white/5">
                     {tag}
                   </span>
                 ))}
@@ -564,15 +564,15 @@ function DashboardSection() {
               { label: "OS Abertas", value: "37", icon: ClipboardList, color: "text-amber-400", border: "border-l-amber-500" },
               { label: "Laudos/Mês", value: "89", icon: FileText, color: "text-violet-400", border: "border-l-violet-500" },
             ].map((s) => (
-              <div key={s.label} className={cn("p-4 rounded-xl bg-slate-800/60 border-l-2", s.border)}>
+              <div key={s.label} className={cn("p-4 rounded-xl bg-zinc-900/60 border-l-2", s.border)}>
                 <s.icon className={cn("w-4 h-4 mb-2", s.color)} />
                 <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-                <p className="text-[11px] text-slate-500 font-bold uppercase tracking-wide mt-1">{s.label}</p>
+                <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wide mt-1">{s.label}</p>
               </div>
             ))}
           </div>
-          <div className="rounded-xl bg-slate-800/60 p-4">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Ordens de Serviço Recentes</p>
+          <div className="rounded-xl bg-zinc-900/60 p-4">
+            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3">Ordens de Serviço Recentes</p>
             {[
               { client: "Fazenda Boa Vista", type: "Laudo CAR", status: "Em Andamento", status_color: "text-blue-400 bg-blue-400/10" },
               { client: "Sítio São João", type: "Vistoria NDVI", status: "Pendente", status_color: "text-amber-400 bg-amber-400/10" },
@@ -586,7 +586,7 @@ function DashboardSection() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-white">{os.client}</p>
-                    <p className="text-xs text-slate-500">{os.type}</p>
+                    <p className="text-xs text-zinc-500">{os.type}</p>
                   </div>
                 </div>
                 <span className={cn("text-xs font-bold px-2.5 py-1 rounded-full", os.status_color)}>{os.status}</span>
@@ -601,8 +601,8 @@ function DashboardSection() {
       icon: Satellite,
       content: (
         <div className="space-y-4">
-          <div className="rounded-xl overflow-hidden border border-emerald-500/20 bg-slate-800/60">
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 h-48 relative flex items-center justify-center">
+          <div className="rounded-xl overflow-hidden border border-emerald-500/20 bg-zinc-900/60">
+            <div className="bg-gradient-to-br from-zinc-800 to-slate-900 h-48 relative flex items-center justify-center">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15),transparent_70%)]" />
               <div className="absolute inset-0 opacity-20" style={{
                 backgroundImage: `radial-gradient(circle, rgba(16,185,129,0.4) 1px, transparent 1px)`,
@@ -611,7 +611,7 @@ function DashboardSection() {
               <div className="relative text-center">
                 <Satellite className="w-12 h-12 text-emerald-400 mx-auto mb-2 animate-pulse" />
                 <p className="text-sm font-bold text-emerald-400">Mapa Satelital</p>
-                <p className="text-xs text-slate-400">Propriedade: Fazenda Boa Vista — 1.240 ha</p>
+                <p className="text-xs text-zinc-400">Propriedade: Fazenda Boa Vista — 1.240 ha</p>
               </div>
               <div className="absolute top-3 right-3 flex flex-col gap-2">
                 {["NDVI", "DETER", "Híbrido"].map((layer) => (
@@ -628,13 +628,13 @@ function DashboardSection() {
                 <div key={m.label} className="text-center">
                   <p className={cn("text-xl font-black", m.color)}>{m.value}</p>
                   <p className="text-[10px] font-bold text-white">{m.label}</p>
-                  <p className="text-[10px] text-slate-500">{m.sub}</p>
+                  <p className="text-[10px] text-zinc-500">{m.sub}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="rounded-xl bg-slate-800/60 p-4">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Alertas Recentes</p>
+          <div className="rounded-xl bg-zinc-900/60 p-4">
+            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3">Alertas Recentes</p>
             {[
               { prop: "Fazenda Santa Clara", alert: "Atividade no buffer do CAR", severity: "Crítico", color: "text-red-400 bg-red-400/10" },
               { prop: "Sítio Recanto Verde", alert: "Variação NDVI acima do normal", severity: "Atenção", color: "text-amber-400 bg-amber-400/10" },
@@ -643,7 +643,7 @@ function DashboardSection() {
                 <AlertTriangle className={cn("w-4 h-4 mt-0.5 flex-shrink-0", a.color.split(" ")[0])} />
                 <div>
                   <p className="text-sm font-bold text-white">{a.prop}</p>
-                  <p className="text-xs text-slate-500">{a.alert}</p>
+                  <p className="text-xs text-zinc-500">{a.alert}</p>
                 </div>
                 <span className={cn("ml-auto text-xs font-bold px-2 py-0.5 rounded-full flex-shrink-0", a.color)}>{a.severity}</span>
               </div>
@@ -664,10 +664,10 @@ function DashboardSection() {
           {[
             { code: "LT-2026-089", title: "Laudo de Conformidade CAR", client: "Fazenda Boa Vista", engineer: "Eng. Carlos Mendes", status: "Emitido", status_color: "text-emerald-400 bg-emerald-400/10" },
             { code: "LT-2026-088", title: "Avaliação NDVI Semestral", client: "Sítio Recanto", engineer: "Eng. Ana Silva", status: "Em Revisão", status_color: "text-amber-400 bg-amber-400/10" },
-            { code: "LT-2026-087", title: "Laudo de Supressão Vegetal", client: "Agropec. Horizonte", engineer: "Eng. Carlos Mendes", status: "Rascunho", status_color: "text-slate-400 bg-slate-400/10" },
+            { code: "LT-2026-087", title: "Laudo de Supressão Vegetal", client: "Agropec. Horizonte", engineer: "Eng. Carlos Mendes", status: "Rascunho", status_color: "text-zinc-400 bg-zinc-400/10" },
             { code: "LT-2026-086", title: "Relatório de Impacto Ambiental", client: "Rancho São Pedro", engineer: "Eng. Maria Costa", status: "Emitido", status_color: "text-emerald-400 bg-emerald-400/10" },
           ].map((l) => (
-            <div key={l.code} className="rounded-xl bg-slate-800/60 p-4 hover:bg-slate-800 transition-colors">
+            <div key={l.code} className="rounded-xl bg-zinc-900/60 p-4 hover:bg-zinc-900 transition-colors">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
                   <div className="w-9 h-9 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
@@ -675,7 +675,7 @@ function DashboardSection() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-white">{l.title}</p>
-                    <p className="text-xs text-slate-500">{l.code} · {l.client}</p>
+                    <p className="text-xs text-zinc-500">{l.code} · {l.client}</p>
                     <p className="text-xs text-slate-600 mt-0.5">{l.engineer}</p>
                   </div>
                 </div>
@@ -698,17 +698,17 @@ function DashboardSection() {
               { label: "OS Faturadas", value: "36", trend: "de 37", up: true, color: "text-blue-400" },
               { label: "Inadimplência", value: "R$ 2.100", trend: "-8%", up: false, color: "text-pink-400" },
             ].map((k) => (
-              <div key={k.label} className="rounded-xl bg-slate-800/60 p-4">
+              <div key={k.label} className="rounded-xl bg-zinc-900/60 p-4">
                 <p className={cn("text-xl font-black", k.color)}>{k.value}</p>
-                <p className="text-xs text-slate-400 font-bold mt-1">{k.label}</p>
+                <p className="text-xs text-zinc-400 font-bold mt-1">{k.label}</p>
                 <div className={cn("flex items-center gap-1 mt-1 text-xs font-bold", k.up ? "text-emerald-400" : "text-red-400")}>
                   <TrendingUp className="w-3 h-3" /> {k.trend}
                 </div>
               </div>
             ))}
           </div>
-          <div className="rounded-xl bg-slate-800/60 p-4">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Cobranças Recentes</p>
+          <div className="rounded-xl bg-zinc-900/60 p-4">
+            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3">Cobranças Recentes</p>
             {[
               { client: "Fazenda Boa Vista", value: "R$ 3.800", status: "Pago", status_color: "text-emerald-400 bg-emerald-400/10" },
               { client: "Agropec. Horizonte", value: "R$ 5.200", status: "Pago", status_color: "text-emerald-400 bg-emerald-400/10" },
@@ -717,7 +717,7 @@ function DashboardSection() {
               <div key={c.client} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
                 <div>
                   <p className="text-sm font-bold text-white">{c.client}</p>
-                  <p className="text-xs text-slate-500">{c.value}</p>
+                  <p className="text-xs text-zinc-500">{c.value}</p>
                 </div>
                 <span className={cn("text-xs font-bold px-2.5 py-1 rounded-full", c.status_color)}>{c.status}</span>
               </div>
@@ -729,7 +729,7 @@ function DashboardSection() {
   ]
 
   return (
-    <section id="dashboard" className="py-28 bg-slate-900 text-white overflow-hidden">
+    <section id="dashboard" className="py-28 bg-zinc-950 text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -745,7 +745,7 @@ function DashboardSection() {
             Controle total na palma<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">da sua mão</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
             Visualize métricas, OS, laudos e alertas satelitais em um painel centralizado. Tome decisões baseadas em dados reais.
           </p>
         </motion.div>
@@ -753,9 +753,9 @@ function DashboardSection() {
         <div className="max-w-5xl mx-auto">
           <div className="relative">
             <div className="absolute -inset-8 bg-gradient-to-r from-emerald-600/10 via-teal-600/10 to-emerald-600/10 rounded-[40px] blur-3xl" />
-            <div className="relative rounded-3xl border border-white/10 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] bg-slate-900">
+            <div className="relative rounded-3xl border border-white/10 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] bg-zinc-950">
               {/* Browser chrome */}
-              <div className="flex items-center gap-3 px-5 py-4 bg-slate-800/80 border-b border-white/5">
+              <div className="flex items-center gap-3 px-5 py-4 bg-zinc-900/80 border-b border-white/5">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
@@ -763,7 +763,7 @@ function DashboardSection() {
                 </div>
                 <div className="flex-1 h-7 rounded-md bg-slate-700/50 flex items-center px-4 gap-2">
                   <Lock className="w-3 h-3 text-emerald-400" />
-                  <span className="text-xs text-slate-400 font-mono">agroflowai.com.br/dashboard</span>
+                  <span className="text-xs text-zinc-400 font-mono">agroflowai.com.br/dashboard</span>
                 </div>
                 <div className="flex gap-2">
                   {tabs.map((tab, i) => (
@@ -775,7 +775,7 @@ function DashboardSection() {
                         "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
                         activeTab === i
                           ? "bg-emerald-600 text-white"
-                          : "text-slate-400 hover:text-white hover:bg-white/5"
+                          : "text-zinc-400 hover:text-white hover:bg-white/5"
                       )}
                     >
                       <tab.icon className="w-3 h-3" />
@@ -786,9 +786,9 @@ function DashboardSection() {
               </div>
 
               {/* Dashboard content */}
-              <div className="grid grid-cols-12 min-h-[520px] bg-slate-950">
+              <div className="grid grid-cols-12 min-h-[520px] bg-black">
                 {/* Sidebar */}
-                <div className="col-span-2 bg-slate-950 border-r border-white/5 p-4 flex flex-col gap-1">
+                <div className="col-span-2 bg-black border-r border-white/5 p-4 flex flex-col gap-1">
                   <div className="flex items-center gap-2 px-2 py-2 mb-4">
                     <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                       <Leaf className="w-4 h-4 text-white" />
@@ -811,7 +811,7 @@ function DashboardSection() {
                       onClick={() => item.idx !== undefined && setActiveTab(item.idx)}
                       className={cn(
                         "flex items-center gap-2 px-2 py-2 rounded-lg w-full text-left transition-colors",
-                        activeTab === item.idx ? "bg-emerald-600/20 text-emerald-400" : "text-slate-500 hover:text-slate-300 hover:bg-white/5"
+                        activeTab === item.idx ? "bg-emerald-600/20 text-emerald-400" : "text-zinc-500 hover:text-slate-300 hover:bg-white/5"
                       )}
                     >
                       <item.icon className="w-4 h-4 flex-shrink-0" />
@@ -825,15 +825,15 @@ function DashboardSection() {
                   <div className="flex items-center justify-between mb-5">
                     <div>
                       <h2 className="text-base font-black text-white">{tabs[activeTab].label}</h2>
-                      <p className="text-xs text-slate-500">Última atualização: há 2 minutos</p>
+                      <p className="text-xs text-zinc-500">Última atualização: há 2 minutos</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                         <CircleDot className="w-2.5 h-2.5 text-emerald-400 animate-pulse" />
                         <span className="text-xs font-bold text-emerald-400">Ao vivo</span>
                       </div>
-                      <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center">
-                        <Bell className="w-3.5 h-3.5 text-slate-400" />
+                      <div className="w-7 h-7 rounded-lg bg-zinc-900 flex items-center justify-center">
+                        <Bell className="w-3.5 h-3.5 text-zinc-400" />
                       </div>
                     </div>
                   </div>
@@ -893,7 +893,7 @@ function HowItWorksSection() {
   ]
 
   return (
-    <section className="py-28 bg-slate-950 text-white overflow-hidden">
+    <section className="py-28 bg-black text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -928,12 +928,12 @@ function HowItWorksSection() {
                   <div className={cn("w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-lg", step.color)}>
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center">
-                    <span className="text-[9px] font-black text-slate-400">{step.step}</span>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-zinc-950 border-2 border-slate-700 flex items-center justify-center">
+                    <span className="text-[9px] font-black text-zinc-400">{step.step}</span>
                   </div>
                 </div>
                 <h3 className="text-base font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{step.desc}</p>
+                <p className="text-sm text-zinc-400 leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -956,7 +956,7 @@ function SatelliteSection() {
   ]
 
   return (
-    <section id="satellite" className="py-28 bg-slate-900 text-white overflow-hidden">
+    <section id="satellite" className="py-28 bg-zinc-950 text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
           <motion.div
@@ -972,7 +972,7 @@ function SatelliteSection() {
               Olho do espaço<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">nas suas propriedades</span>
             </h2>
-            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+            <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
               Integração direta com INPE, MapBiomas e imagens multiespectrais de alta resolução. Detecte qualquer alteração nas propriedades dos seus clientes antes mesmo deles perceberem.
             </p>
 
@@ -989,7 +989,7 @@ function SatelliteSection() {
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm font-bold text-white">{f.title}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{f.desc}</p>
+                    <p className="text-xs text-zinc-500 mt-0.5">{f.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -1012,9 +1012,9 @@ function SatelliteSection() {
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-teal-600/20 rounded-3xl blur-2xl" />
-              <div className="relative rounded-3xl border border-blue-500/20 overflow-hidden bg-slate-900">
+              <div className="relative rounded-3xl border border-blue-500/20 overflow-hidden bg-zinc-950">
                 {/* Satellite map visual */}
-                <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 h-72 relative flex items-center justify-center overflow-hidden">
+                <div className="bg-gradient-to-br from-zinc-800 via-slate-900 to-zinc-800 h-72 relative flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0" style={{
                     backgroundImage: `
                       radial-gradient(circle at 30% 40%, rgba(16,185,129,0.25) 0%, transparent 50%),
@@ -1042,7 +1042,7 @@ function SatelliteSection() {
                       <Satellite className="w-14 h-14 text-blue-400 mx-auto mb-3" />
                     </motion.div>
                     <p className="text-sm font-bold text-blue-300">Monitoramento em Tempo Real</p>
-                    <p className="text-xs text-slate-400 mt-1">Fazenda Boa Vista · 1.240 ha</p>
+                    <p className="text-xs text-zinc-400 mt-1">Fazenda Boa Vista · 1.240 ha</p>
                   </div>
 
                   {/* Legend */}
@@ -1070,7 +1070,7 @@ function SatelliteSection() {
                     <div key={m.label} className="text-center">
                       <p className={cn("text-2xl font-black", m.color)}>{m.value}</p>
                       <p className="text-xs font-bold text-white mt-0.5">{m.label}</p>
-                      <p className="text-xs text-slate-500">{m.sub}</p>
+                      <p className="text-xs text-zinc-500">{m.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -1122,7 +1122,7 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section id="testimonials" className="py-28 bg-slate-950 text-white overflow-hidden">
+    <section id="testimonials" className="py-28 bg-black text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1137,7 +1137,7 @@ function TestimonialsSection() {
             Quem usa,{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">aprova</span>
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-lg">
+          <p className="text-zinc-400 max-w-xl mx-auto text-lg">
             Consultorias e engenheiros de todo o Brasil já transformaram seus negócios com o AgroFlowAI.
           </p>
         </motion.div>
@@ -1151,7 +1151,7 @@ function TestimonialsSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
               whileHover={{ y: -3 }}
-              className="p-7 rounded-3xl border border-white/5 bg-slate-900/50 hover:bg-slate-900 transition-all duration-300"
+              className="p-7 rounded-3xl border border-white/5 bg-zinc-950/50 hover:bg-zinc-950 transition-all duration-300"
             >
               <div className="flex gap-1 mb-5">
                 {Array.from({ length: t.stars }).map((_, j) => (
@@ -1165,7 +1165,7 @@ function TestimonialsSection() {
                 </div>
                 <div>
                   <p className="font-bold text-white text-sm">{t.name}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{t.role}</p>
+                  <p className="text-xs text-zinc-500 mt-0.5">{t.role}</p>
                 </div>
               </div>
             </motion.div>
@@ -1187,7 +1187,7 @@ function PricingSection() {
   ]
 
   return (
-    <section id="pricing" className="py-28 bg-slate-900 text-white overflow-hidden">
+    <section id="pricing" className="py-28 bg-zinc-950 text-white overflow-hidden">
       <div className="container mx-auto px-6 text-center max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1202,7 +1202,7 @@ function PricingSection() {
             Instalado pelo<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">nosso time especialista</span>
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-lg">
+          <p className="text-zinc-400 max-w-xl mx-auto text-lg">
             O AgroFlowAI é implantado com suporte especializado. Entre em contato para que nossa equipe conheça sua consultoria e configure a solução ideal.
           </p>
         </motion.div>
@@ -1215,12 +1215,12 @@ function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex items-start gap-4 bg-slate-800/50 rounded-2xl p-6 border border-white/5 text-left"
+              className="flex items-start gap-4 bg-zinc-900/50 rounded-2xl p-6 border border-white/5 text-left"
             >
               <span className="text-3xl">{h.icon}</span>
               <div>
                 <p className="font-bold text-white mb-1">{h.label}</p>
-                <p className="text-slate-400 text-sm">{h.desc}</p>
+                <p className="text-zinc-400 text-sm">{h.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -1233,7 +1233,7 @@ function PricingSection() {
           className="bg-gradient-to-br from-emerald-950/80 to-teal-950/80 border border-emerald-500/30 rounded-3xl p-10 shadow-[0_20px_60px_-15px_rgba(16,185,129,0.2)]"
         >
           <h3 className="text-2xl font-black text-white mb-3">Pronto para digitalizar sua consultoria?</h3>
-          <p className="text-slate-400 mb-8">
+          <p className="text-zinc-400 mb-8">
             Fale com nosso time e receba uma demonstração exclusiva do AgroFlowAI para sua consultoria ambiental.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1292,7 +1292,7 @@ function FAQSection() {
   ]
 
   return (
-    <section className="py-28 bg-slate-950 text-white">
+    <section className="py-28 bg-black text-white">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1303,7 +1303,7 @@ function FAQSection() {
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">
             Perguntas <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">frequentes</span>
           </h2>
-          <p className="text-slate-400">Tem outra dúvida? <a href="mailto:contato@agroflowai.com.br" className="text-emerald-400 hover:underline">Fale conosco</a></p>
+          <p className="text-zinc-400">Tem outra dúvida? <a href="mailto:contato@agroflowai.com.br" className="text-emerald-400 hover:underline">Fale conosco</a></p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto space-y-3">
@@ -1314,7 +1314,7 @@ function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="border border-white/5 rounded-2xl overflow-hidden bg-slate-900/30"
+              className="border border-white/5 rounded-2xl overflow-hidden bg-zinc-950/30"
             >
               <button
                 type="button"
@@ -1327,7 +1327,7 @@ function FAQSection() {
                   transition={{ duration: 0.25 }}
                   className="flex-shrink-0"
                 >
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
+                  <ChevronDown className="w-4 h-4 text-zinc-400" />
                 </motion.div>
               </button>
               <AnimatePresence>
@@ -1340,7 +1340,7 @@ function FAQSection() {
                     className="overflow-hidden"
                   >
                     <div className="px-7 pb-5">
-                      <p className="text-slate-400 text-sm leading-relaxed">{faq.a}</p>
+                      <p className="text-zinc-400 text-sm leading-relaxed">{faq.a}</p>
                     </div>
                   </motion.div>
                 )}
@@ -1357,7 +1357,7 @@ function FAQSection() {
 
 function CTASection() {
   return (
-    <section className="py-28 bg-slate-900 text-white overflow-hidden">
+    <section className="py-28 bg-zinc-950 text-white overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -1375,7 +1375,7 @@ function CTASection() {
               Pronto para transformar<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">sua consultoria?</span>
             </h2>
-            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">
               Junte-se a centenas de consultorias ambientais que já digitalizam seus processos e atendem mais clientes com menos esforço.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1385,13 +1385,13 @@ function CTASection() {
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="flex items-center gap-2 text-sm text-zinc-400">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                 14 dias grátis · Sem cartão de crédito
               </div>
             </div>
 
-            <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-8 text-sm text-slate-500">
+            <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-8 text-sm text-zinc-500">
               {[
                 { icon: Phone, text: "(11) 9 9999-9999" },
                 { icon: Mail, text: "contato@agroflowai.com.br" },
@@ -1421,7 +1421,7 @@ function Footer() {
   }
 
   return (
-    <footer className="bg-slate-950 text-slate-500 border-t border-white/5">
+    <footer className="bg-black text-zinc-500 border-t border-white/5">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
           <div className="col-span-2 md:col-span-1">
@@ -1447,7 +1447,7 @@ function Footer() {
 
           {Object.entries(links).map(([category, items]) => (
             <div key={category}>
-              <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">{category}</p>
+              <p className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-4">{category}</p>
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item}>
@@ -1480,7 +1480,7 @@ export default function AgroFlowAILandingPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-black font-sans overflow-x-hidden">
       <Navbar />
       <HeroSection />
       <StatsSection />

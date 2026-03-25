@@ -221,41 +221,41 @@ export default function DanceFlowScannerPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-2xl font-bold tracking-tight text-white dark:text-white">
             {SCANNER_TEXTS.gate}
           </h1>
-          <p className="text-sm text-slate-500">Valide a entrada dos alunos via QR Code</p>
+          <p className="text-sm text-zinc-500">Valide a entrada dos alunos via QR Code</p>
         </div>
       </div>
 
-      <Card className="border-none shadow-xl overflow-hidden bg-white dark:bg-slate-900">
+      <Card className="border-none shadow-xl overflow-hidden bg-white/5 dark:bg-black">
         <CardHeader className="text-center pb-2">
-          <CardTitle className="flex items-center justify-center gap-2 text-violet-600">
+          <CardTitle className="flex items-center justify-center gap-2 text-[#e40014]">
             <QrCodeIcon className="w-6 h-6" />
             {SCANNER_TEXTS.validateEntry}
           </CardTitle>
           <CardDescription>{SCANNER_TEXTS.scanDesc}</CardDescription>
         </CardHeader>
         <CardContent className="p-6 flex flex-col items-center gap-6">
-          <div className="w-full aspect-square max-w-md rounded-3xl bg-slate-100 dark:bg-slate-800 border-4 border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center relative overflow-hidden">
+          <div className="w-full aspect-square max-w-md rounded-3xl bg-slate-100 dark:bg-zinc-950 border-4 border-dashed border-white/10 dark:border-slate-700 flex flex-col items-center justify-center relative overflow-hidden">
             {!isScanning ? (
               <div className="text-center p-6 flex flex-col items-center">
                 <Camera className="w-20 h-20 text-slate-300 mb-4" />
                 {cameraError && (
-                  <div className="bg-rose-50 dark:bg-rose-950/30 text-rose-600 p-3 rounded-lg text-xs font-medium mb-4 text-left flex gap-2 items-start">
+                  <div className="bg-red- dark:bg-[#e40014] text-red- p-3 rounded-lg text-xs font-medium mb-4 text-left flex gap-2 items-start">
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                     <p>{cameraError}</p>
                   </div>
                 )}
                 <Button
-                  className="bg-violet-600 hover:bg-violet-700 font-bold px-10 h-14 text-lg"
+                  className="bg-[#e40014] hover:bg-[#e40014] font-bold px-10 h-14 text-lg"
                   onClick={startScanner}
                 >
                   {SCANNER_TEXTS.openCamera}
                 </Button>
                 <Button
                   variant="ghost"
-                  className="text-slate-400 text-xs mt-2"
+                  className="text-zinc-400 text-xs mt-2"
                   onClick={() => manualCode && processScan(manualCode)}
                 >
                   {SCANNER_TEXTS.simulate}
@@ -272,7 +272,7 @@ export default function DanceFlowScannerPage() {
                 </p>
                 <Button
                   variant="ghost"
-                  className="absolute bottom-4 z-10 text-white hover:bg-white/10 bg-black/40 border border-white/20"
+                  className="absolute bottom-4 z-10 text-white hover:bg-white/5/10 bg-black/40 border border-white/20"
                   onClick={stopScanner}
                 >
                   {SCANNER_TEXTS.closeCamera}
@@ -283,7 +283,7 @@ export default function DanceFlowScannerPage() {
 
           {loading && (
             <div className="flex flex-col items-center gap-2 py-4">
-              <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+              <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
               <p className="text-sm font-medium animate-pulse">{SCANNER_TEXTS.validating}</p>
             </div>
           )}
@@ -292,18 +292,18 @@ export default function DanceFlowScannerPage() {
             <div
               className={`w-full p-4 rounded-2xl border flex items-center gap-4 ${
                 lastResult.type === "success"
-                  ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200"
+                  ? "bg-red- dark:bg-[#e40014] border-red-"
                   : lastResult.type === "warning"
-                    ? "bg-amber-50 dark:bg-amber-950/30 border-amber-200"
-                    : "bg-rose-50 dark:bg-rose-950/30 border-rose-200"
+                    ? "bg-red- dark:bg-[#e40014] border-red-"
+                    : "bg-red- dark:bg-[#e40014] border-red-"
               }`}
             >
               {lastResult.type === "success" ? (
-                <CheckCircle2 className="w-8 h-8 text-emerald-500 shrink-0" />
+                <CheckCircle2 className="w-8 h-8 text-red- shrink-0" />
               ) : lastResult.type === "warning" ? (
-                <AlertCircle className="w-8 h-8 text-amber-500 shrink-0" />
+                <AlertCircle className="w-8 h-8 text-red- shrink-0" />
               ) : (
-                <XCircle className="w-8 h-8 text-rose-500 shrink-0" />
+                <XCircle className="w-8 h-8 text-red- shrink-0" />
               )}
               <div className="flex-1">
                 <p className="font-black text-[10px] uppercase tracking-widest">
@@ -335,20 +335,20 @@ export default function DanceFlowScannerPage() {
           )}
 
           {!isScanning && !loading && !lastResult && (
-            <div className="w-full space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-              <p className="text-[10px] text-center uppercase tracking-widest font-bold text-slate-400">
+            <div className="w-full space-y-3 pt-4 border-t border-slate-100 dark:border-zinc-800">
+              <p className="text-[10px] text-center uppercase tracking-widest font-bold text-zinc-400">
                 {SCANNER_TEXTS.manualCode}
               </p>
               <div className="flex gap-2">
                 <Input
                   placeholder={SCANNER_TEXTS.manualPlaceholder}
-                  className="h-12 text-sm font-mono bg-slate-50 dark:bg-slate-800"
+                  className="h-12 text-sm font-mono bg-black dark:bg-zinc-950"
                   value={manualCode}
                   onChange={(e) => setManualCode(e.target.value)}
                 />
                 <Button
                   size="lg"
-                  className="h-12 px-6 bg-violet-600 hover:bg-violet-700"
+                  className="h-12 px-6 bg-[#e40014] hover:bg-[#e40014]"
                   onClick={() => processScan(manualCode)}
                 >
                   {SCANNER_TEXTS.validate}
@@ -359,10 +359,10 @@ export default function DanceFlowScannerPage() {
         </CardContent>
       </Card>
 
-      <Card className="border-none shadow-sm bg-violet-50 dark:bg-violet-950/20">
+      <Card className="border-none shadow-sm bg-[#e40014] dark:bg-[#e40014]">
         <CardContent className="p-4 flex gap-3 text-left">
-          <AlertCircle className="w-5 h-5 text-violet-600 shrink-0 mt-0.5" />
-          <p className="text-xs text-violet-800 dark:text-violet-200 leading-relaxed">
+          <AlertCircle className="w-5 h-5 text-[#e40014] shrink-0 mt-0.5" />
+          <p className="text-xs text-red- dark:text-[#e40014] leading-relaxed">
             {SCANNER_TEXTS.autoCheck}
           </p>
         </CardContent>

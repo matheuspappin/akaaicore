@@ -19,7 +19,7 @@ import {
 import QRCode from "react-qr-code"
 
 const DAY_NAMES = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
-const COLORS = ["border-l-pink-500", "border-l-violet-500", "border-l-indigo-500", "border-l-emerald-500"]
+const COLORS = ["border-l-red-500", "border-l-red-500", "border-l-red-", "border-l-red-"]
 
 export default function StudentHome() {
   const { toast } = useToast()
@@ -313,14 +313,14 @@ export default function StudentHome() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-violet-600 to-pink-600 rounded-2xl p-6 text-white relative">
-        <p className="text-violet-200 text-sm font-bold uppercase tracking-widest mb-1">Bem-vindo de volta</p>
+      <div className="bg-gradient-to-br from-red-600 to-red-600 rounded-2xl p-6 text-white relative">
+        <p className="text-[#e40014] text-sm font-bold uppercase tracking-widest mb-1">Bem-vindo de volta</p>
         <h1 className="text-2xl font-black tracking-tight">Olá, {firstName}! 👋</h1>
-        <p className="text-violet-100/80 text-sm mt-2">Veja seu resumo de hoje</p>
+        <p className="text-[#e40014] text-sm mt-2">Veja seu resumo de hoje</p>
         <button
           onClick={handleRefresh}
           disabled={loading}
-          className="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all"
+          className="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/5/20 hover:bg-white/5/30 flex items-center justify-center transition-all"
           title="Atualizar"
         >
           <RefreshCw className={cn("w-4 h-4 text-white", loading && "animate-spin")} />
@@ -330,30 +330,30 @@ export default function StudentHome() {
       {/* Resumo rápido */}
       {loading ? (
         <div className="flex justify-center py-6">
-          <Loader2 className="w-6 h-6 animate-spin text-violet-600" />
+          <Loader2 className="w-6 h-6 animate-spin text-[#e40014]" />
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-3">
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
             <CardContent className="p-4 text-center">
-              <div className="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-600/20 flex items-center justify-center mx-auto mb-2">
-                <Star className="w-5 h-5 text-violet-600" />
+              <div className="w-10 h-10 rounded-xl bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center mx-auto mb-2">
+                <Star className="w-5 h-5 text-[#e40014]" />
               </div>
-              <p className="text-2xl font-black text-violet-600">
+              <p className="text-2xl font-black text-[#e40014]">
                 {frequencia ? `${frequencia.percent}%` : '—'}
               </p>
-              <p className="text-xs font-bold uppercase text-slate-400 mt-0.5">Frequência</p>
+              <p className="text-xs font-bold uppercase text-zinc-400 mt-0.5">Frequência</p>
             </CardContent>
           </Card>
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
             <CardContent className="p-4 text-center">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-600/20 flex items-center justify-center mx-auto mb-2">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+              <div className="w-10 h-10 rounded-xl bg-red- dark:bg-[#e40014] flex items-center justify-center mx-auto mb-2">
+                <CheckCircle2 className="w-5 h-5 text-red-" />
               </div>
-              <p className="text-2xl font-black text-emerald-600">
+              <p className="text-2xl font-black text-red-">
                 {frequencia ? frequencia.totalMes : '—'}
               </p>
-              <p className="text-xs font-bold uppercase text-slate-400 mt-0.5">Aulas no mês</p>
+              <p className="text-xs font-bold uppercase text-zinc-400 mt-0.5">Aulas no mês</p>
             </CardContent>
           </Card>
         </div>
@@ -364,23 +364,23 @@ export default function StudentHome() {
         <Card className={cn(
           "border",
           financeiro.vencido > 0
-            ? "border-rose-200 dark:border-rose-600/20 bg-rose-50 dark:bg-rose-600/5"
-            : "border-amber-200 dark:border-amber-600/20 bg-amber-50 dark:bg-amber-600/5"
+            ? "border-red- dark:border-[#e40014] bg-red- dark:bg-[#e40014]"
+            : "border-red- dark:border-[#e40014] bg-red- dark:bg-[#e40014]"
         )}>
           <CardContent className="p-4 flex items-center gap-4">
             <div className={cn(
               "w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0",
               financeiro.vencido > 0
-                ? "bg-rose-100 dark:bg-rose-600/20"
-                : "bg-amber-100 dark:bg-amber-600/20"
+                ? "bg-red- dark:bg-[#e40014]"
+                : "bg-red- dark:bg-[#e40014]"
             )}>
-              <AlertCircle className={cn("w-5 h-5", financeiro.vencido > 0 ? "text-rose-600" : "text-amber-600")} />
+              <AlertCircle className={cn("w-5 h-5", financeiro.vencido > 0 ? "text-red-" : "text-red-")} />
             </div>
             <div className="flex-1">
-              <p className="font-bold text-slate-900 dark:text-white text-sm">
+              <p className="font-bold text-white dark:text-white text-sm">
                 {financeiro.vencido > 0 ? 'Mensalidade Vencida' : 'Mensalidade Pendente'}
               </p>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <p className="text-xs text-zinc-500 mt-0.5">
                 R$ {(financeiro.vencido > 0 ? financeiro.vencido : financeiro.pendente)
                   .toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
               </p>
@@ -388,7 +388,7 @@ export default function StudentHome() {
             <Link href="/solutions/estudio-de-danca/student/financeiro">
               <Button type="button" size="sm" className={cn(
                 "font-bold rounded-xl text-white text-xs",
-                financeiro.vencido > 0 ? "bg-rose-500 hover:bg-rose-600" : "bg-amber-500 hover:bg-amber-600"
+                financeiro.vencido > 0 ? "bg-red- hover:bg-red-" : "bg-red- hover:bg-red-"
               )}>
                 Pagar
               </Button>
@@ -399,12 +399,12 @@ export default function StudentHome() {
 
       {/* Check-in de Hoje — QR Code para validação pelo professor/admin */}
       {!loading && nextClass && (
-        <Card className="overflow-hidden border-none shadow-md bg-gradient-to-br from-violet-600 to-pink-600 text-white">
+        <Card className="overflow-hidden border-none shadow-md bg-gradient-to-br from-red-600 to-red-600 text-white">
           <CardContent className="p-0">
             <div className="p-5 space-y-4">
               <div className="flex justify-between items-start">
                 <div>
-                  <Badge className="bg-white/20 text-white border-none uppercase mb-2">CHECK-IN</Badge>
+                  <Badge className="bg-white/5/20 text-white border-none uppercase mb-2">CHECK-IN</Badge>
                   <h3 className="text-xl font-bold">{nextClass.name}</h3>
                 </div>
               </div>
@@ -425,13 +425,13 @@ export default function StudentHome() {
                     : 'CRÉDITOS INSUFICIENTES ⚠️'}
               </span>
               {attendanceRecord?.status === 'present' ? (
-                <Badge className="bg-emerald-500 text-white border-none">VALIDADO</Badge>
+                <Badge className="bg-red- text-white border-none">VALIDADO</Badge>
               ) : studentCredits?.remaining_credits > 0 ? (
                 <Button
                   type="button"
                   size="sm"
                   variant="secondary"
-                  className="bg-white text-violet-600 hover:bg-white/90 gap-1 text-xs font-bold"
+                  className="bg-white/5 text-[#e40014] hover:bg-white/5/90 gap-1 text-xs font-bold"
                   onClick={() => handleConfirmAttendance()}
                   disabled={isReserving}
                 >
@@ -439,7 +439,7 @@ export default function StudentHome() {
                   Ver QR Check-in
                 </Button>
               ) : (
-                <Button type="button" size="sm" variant="secondary" className="bg-rose-500/80 hover:bg-rose-600 text-white gap-1 text-xs font-bold" asChild>
+                <Button type="button" size="sm" variant="secondary" className="bg-[#e40014] hover:bg-red- text-white gap-1 text-xs font-bold" asChild>
                   <Link href="/solutions/estudio-de-danca/student/financeiro">
                     <CreditCard className="w-3 h-3" /> Comprar Créditos
                   </Link>
@@ -452,10 +452,10 @@ export default function StudentHome() {
 
       {/* Reservar aula (classes de hoje/amanhã) */}
       {!loading && studentCredits?.remaining_credits > 0 && availableToday.length > 0 && (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="p-4">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2 text-sm mb-4">
-              <PlayCircle className="w-4 h-4 text-violet-600" />
+            <h3 className="font-bold text-white dark:text-white flex items-center gap-2 text-sm mb-4">
+              <PlayCircle className="w-4 h-4 text-[#e40014]" />
               Reservar Aula
             </h3>
             <div className="space-y-3">
@@ -464,19 +464,19 @@ export default function StudentHome() {
                 const isPresent = attForClass?.status === 'present'
                 const hasReservation = attForClass && attForClass.status !== 'present'
                 return (
-                  <div key={cls.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
+                  <div key={cls.id} className="flex items-center justify-between p-3 rounded-xl bg-black dark:bg-white/5/5 border border-slate-100 dark:border-white/5">
                     <div>
-                      <p className="font-bold text-slate-800 dark:text-white text-sm">{cls.name}</p>
-                      <p className="text-[10px] text-slate-500 uppercase">{cls.display_day} às {cls.display_time}</p>
+                      <p className="font-bold text-zinc-800 dark:text-white text-sm">{cls.name}</p>
+                      <p className="text-[10px] text-zinc-500 uppercase">{cls.display_day} às {cls.display_time}</p>
                     </div>
                     {isPresent ? (
-                      <Badge className="bg-emerald-100 text-emerald-700 border-0">Validado</Badge>
+                      <Badge className="bg-red- text-red- border-0">Validado</Badge>
                     ) : hasReservation ? (
                       <Button
                         type="button"
                         size="sm"
                         variant="ghost"
-                        className="h-8 text-xs font-bold text-violet-600 hover:text-violet-700 hover:bg-violet-50 px-3"
+                        className="h-8 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] px-3"
                         onClick={() => {
                           setActiveAttendanceId(attForClass.id)
                           setQrDialogClass(cls)
@@ -490,7 +490,7 @@ export default function StudentHome() {
                         type="button"
                         size="sm"
                         variant="ghost"
-                        className="h-8 text-xs font-bold text-violet-600 hover:text-violet-700 hover:bg-violet-50 px-3"
+                        className="h-8 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] px-3"
                         onClick={() => handleConfirmAttendance(cls)}
                         disabled={isReserving}
                       >
@@ -506,38 +506,38 @@ export default function StudentHome() {
       )}
 
       {/* Próximas aulas */}
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
         <CardContent className="p-4">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2 text-sm">
-              <Calendar className="w-4 h-4 text-violet-600" />
+            <h3 className="font-bold text-white dark:text-white flex items-center gap-2 text-sm">
+              <Calendar className="w-4 h-4 text-[#e40014]" />
               Próximas Aulas
             </h3>
-            <Button type="button" variant="ghost" size="sm" className="text-violet-600 text-xs font-bold h-7" asChild>
+            <Button type="button" variant="ghost" size="sm" className="text-[#e40014] text-xs font-bold h-7" asChild>
               <Link href="/solutions/estudio-de-danca/student/turmas">
                 Ver todas <ArrowRight className="w-3 h-3 ml-1" />
               </Link>
             </Button>
           </div>
           {loading ? (
-            <div className="flex justify-center py-6"><Loader2 className="w-5 h-5 animate-spin text-violet-600" /></div>
+            <div className="flex justify-center py-6"><Loader2 className="w-5 h-5 animate-spin text-[#e40014]" /></div>
           ) : proximasAulas.length === 0 ? (
-            <div className="text-center py-6 text-slate-400">
+            <div className="text-center py-6 text-zinc-400">
               <Music className="w-8 h-8 mx-auto mb-2 opacity-30" />
               <p className="text-sm">Nenhuma turma matriculada</p>
             </div>
           ) : (
             <div className="space-y-3">
               {proximasAulas.map((aula, i) => (
-                <div key={i} className={cn("p-3 rounded-xl bg-slate-50 dark:bg-white/5 border-l-4", aula.color)}>
+                <div key={i} className={cn("p-3 rounded-xl bg-black dark:bg-white/5/5 border-l-4", aula.color)}>
                   <div className="flex items-center justify-between">
-                    <p className="font-bold text-slate-800 dark:text-white text-sm">{aula.name}</p>
-                    <div className="flex items-center gap-1 text-xs text-slate-500">
+                    <p className="font-bold text-zinc-800 dark:text-white text-sm">{aula.name}</p>
+                    <div className="flex items-center gap-1 text-xs text-zinc-500">
                       <Clock className="w-3 h-3" />
                       {aula.time}
                     </div>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">{aula.day} • {aula.teacher}</p>
+                  <p className="text-xs text-zinc-500 mt-1">{aula.day} • {aula.teacher}</p>
                 </div>
               ))}
             </div>
@@ -547,21 +547,21 @@ export default function StudentHome() {
 
       {/* Turmas matriculadas (resumo) */}
       {!loading && turmas.length > 0 && (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="p-4">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2 text-sm mb-4">
-              <Music className="w-4 h-4 text-pink-500" />
+            <h3 className="font-bold text-white dark:text-white flex items-center gap-2 text-sm mb-4">
+              <Music className="w-4 h-4 text-[#e40014]" />
               Minhas Turmas
             </h3>
             <div className="space-y-2">
               {turmas.slice(0, 3).map((t: any) => (
-                <div key={t.id} className="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-white/5">
+                <div key={t.id} className="flex items-center justify-between p-2 rounded-lg bg-black dark:bg-white/5/5">
                   <div>
-                    <p className="font-bold text-sm text-slate-800 dark:text-white">{t.name}</p>
-                    <p className="text-xs text-slate-500">{t.scheduleSummary}</p>
+                    <p className="font-bold text-sm text-zinc-800 dark:text-white">{t.name}</p>
+                    <p className="text-xs text-zinc-500">{t.scheduleSummary}</p>
                   </div>
                   {t.dance_style && (
-                    <Badge className="bg-violet-100 text-violet-700 dark:bg-violet-600/20 dark:text-violet-400 border-0 text-[10px] font-bold">
+                    <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-[10px] font-bold">
                       {t.dance_style}
                     </Badge>
                   )}
@@ -582,7 +582,7 @@ export default function StudentHome() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center justify-center py-6 gap-6">
-            <div className="bg-white p-4 rounded-3xl shadow-xl border-4 border-violet-50 dark:border-violet-900/30">
+            <div className="bg-white/5 p-4 rounded-3xl shadow-xl border-4 border-[#e40014] dark:border-[#e40014]">
               {activeAttendanceId || attendanceRecord?.id ? (
                 <div className="flex flex-col items-center gap-4">
                   <QRCode
@@ -591,21 +591,21 @@ export default function StudentHome() {
                     level="H"
                     viewBox="0 0 256 256"
                   />
-                  <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-800 w-full text-center">
-                    <p className="text-[10px] text-slate-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
-                    <p className="font-mono text-lg font-black text-violet-600 tracking-widest">
+                  <div className="bg-black dark:bg-black px-4 py-2 rounded-lg border border-slate-100 dark:border-zinc-800 w-full text-center">
+                    <p className="text-[10px] text-zinc-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
+                    <p className="font-mono text-lg font-black text-[#e40014] tracking-widest">
                       DF-{(activeAttendanceId || attendanceRecord?.id)?.toString().slice(-8).toUpperCase()}
                     </p>
                   </div>
                 </div>
               ) : (
-                <div className="w-56 h-56 flex flex-col items-center justify-center text-center p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
-                  <Loader2 className="w-8 h-8 animate-spin text-violet-600 mb-2" />
-                  <p className="text-xs text-slate-500 font-medium">Gerando Código Seguro...</p>
+                <div className="w-56 h-56 flex flex-col items-center justify-center text-center p-4 bg-black dark:bg-black rounded-xl">
+                  <Loader2 className="w-8 h-8 animate-spin text-[#e40014] mb-2" />
+                  <p className="text-xs text-zinc-500 font-medium">Gerando Código Seguro...</p>
                 </div>
               )}
             </div>
-            <p className="font-bold text-lg text-slate-900 dark:text-white">{qrDialogClass?.name || nextClass?.name}</p>
+            <p className="font-bold text-lg text-white dark:text-white">{qrDialogClass?.name || nextClass?.name}</p>
           </div>
         </DialogContent>
       </Dialog>

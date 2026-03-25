@@ -262,15 +262,15 @@ export default function MapaSatelite({ properties = [], hotspots = [], className
   return (
     <div className={cn("flex flex-col gap-0 rounded-xl overflow-hidden border border-slate-700", className)}>
       {/* Toolbar */}
-      <div className="bg-slate-900 border-b border-slate-700 px-4 py-2.5 flex items-center gap-3 flex-wrap">
-        <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Camada base</span>
+      <div className="bg-zinc-950 border-b border-slate-700 px-4 py-2.5 flex items-center gap-3 flex-wrap">
+        <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">Camada base</span>
         {LAYERS.map(l => (
           <button
             key={l.id}
             onClick={() => setActiveLayer(l.id as any)}
             className={cn(
               "text-xs font-bold px-3 py-1 rounded-lg transition-all",
-              activeLayer === l.id ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-400 hover:text-white"
+              activeLayer === l.id ? "bg-blue-600 text-white" : "bg-zinc-900 text-zinc-400 hover:text-white"
             )}
           >
             {l.label}
@@ -278,7 +278,7 @@ export default function MapaSatelite({ properties = [], hotspots = [], className
         ))}
 
         <div className="ml-auto flex items-center gap-3 flex-wrap">
-          <label className="flex items-center gap-1.5 text-xs font-bold text-slate-400 cursor-pointer select-none">
+          <label className="flex items-center gap-1.5 text-xs font-bold text-zinc-400 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={showDeter}
@@ -301,7 +301,7 @@ export default function MapaSatelite({ properties = [], hotspots = [], className
             <span className="text-red-400">DETER</span>
           </label>
 
-          <label className="flex items-center gap-1.5 text-xs font-bold text-slate-400 cursor-pointer select-none">
+          <label className="flex items-center gap-1.5 text-xs font-bold text-zinc-400 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={showFirms}
@@ -311,7 +311,7 @@ export default function MapaSatelite({ properties = [], hotspots = [], className
             <span className="text-amber-400">Focos NASA</span>
           </label>
 
-          <label className="flex items-center gap-1.5 text-xs font-bold text-slate-400 cursor-pointer select-none">
+          <label className="flex items-center gap-1.5 text-xs font-bold text-zinc-400 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={showProperties}
@@ -324,7 +324,7 @@ export default function MapaSatelite({ properties = [], hotspots = [], className
       </div>
 
       {/* Legenda */}
-      <div className="bg-slate-950/80 border-b border-slate-800 px-4 py-2 flex items-center gap-4 flex-wrap">
+      <div className="bg-black/80 border-b border-zinc-800 px-4 py-2 flex items-center gap-4 flex-wrap">
         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Legenda NDVI</span>
         {[
           { color: "#10b981", label: "≥ 0.70 Saudável" },
@@ -334,19 +334,19 @@ export default function MapaSatelite({ properties = [], hotspots = [], className
         ].map(l => (
           <div key={l.label} className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full border border-white/20" style={{ background: l.color }} />
-            <span className="text-[10px] text-slate-500">{l.label}</span>
+            <span className="text-[10px] text-zinc-500">{l.label}</span>
           </div>
         ))}
         <div className="flex items-center gap-1.5 ml-2">
           <div className="w-2.5 h-2.5 rotate-45 border border-red-400/50 bg-red-500" />
-          <span className="text-[10px] text-slate-500">Foco de calor</span>
+          <span className="text-[10px] text-zinc-500">Foco de calor</span>
         </div>
       </div>
 
       {/* Mapa */}
       {!mounted ? (
-        <div className="h-[520px] bg-slate-900 flex items-center justify-center">
-          <div className="text-slate-500 text-sm animate-pulse">Carregando mapa...</div>
+        <div className="h-[520px] bg-zinc-950 flex items-center justify-center">
+          <div className="text-zinc-500 text-sm animate-pulse">Carregando mapa...</div>
         </div>
       ) : (
         <div ref={mapRef} className="h-[520px] w-full z-0" />

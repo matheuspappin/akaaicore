@@ -1,5 +1,0 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="a8a15ed1-3e09-d4f7-77a5-efaf40dcc859")}catch(e){}}();
-module.exports=[193695,(a,b,c)=>{b.exports=a.x("next/dist/shared/lib/no-fallback-error.external.js",()=>require("next/dist/shared/lib/no-fallback-error.external.js"))},244665,a=>{a.n(a.i(128992))},125415,a=>{a.n(a.i(83141))},825430,a=>{a.n(a.i(550809))},290826,a=>{a.n(a.i(256040))},30443,a=>{a.n(a.i(908581))},76044,a=>{a.n(a.i(124112))},420509,a=>{a.n(a.i(606946))},488970,a=>{"use strict";var b=a.i(178816);function c(){return(0,b.jsxs)("div",{className:"flex flex-col items-center justify-center min-h-screen py-2",children:[(0,b.jsx)("h1",{className:"text-4xl font-bold text-center",children:"Suporte"}),(0,b.jsx)("p",{className:"text-lg text-center mt-4",children:"Entre em contato com o suporte aqui."})]})}a.s(["default",()=>c])}];
-
-//# debugId=a8a15ed1-3e09-d4f7-77a5-efaf40dcc859
-//# sourceMappingURL=%5Broot-of-the-server%5D__5cd06c1e._.js.map

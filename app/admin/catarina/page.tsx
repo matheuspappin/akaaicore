@@ -312,7 +312,7 @@ export default function AdminCatarinaPage() {
             </Card>
 
             <Dialog open={!!feedbackModal} onOpenChange={(open) => !open && setFeedbackModal(null)}>
-              <DialogContent className="bg-slate-900 border-white/10 text-white">
+              <DialogContent className="bg-zinc-950 border-white/10 text-white">
                 <DialogHeader>
                   <DialogTitle>Corrigir resposta</DialogTitle>
                   <DialogDescription className="text-white/60">
@@ -331,7 +331,7 @@ export default function AdminCatarinaPage() {
                         placeholder="Como a Catarina deveria ter respondido..."
                         value={correctedAnswer}
                         onChange={(e) => setCorrectedAnswer(e.target.value)}
-                        className="min-h-[120px] bg-slate-800 border-white/10 text-white"
+                        className="min-h-[120px] bg-zinc-900 border-white/10 text-white"
                       />
                     </div>
                   </div>

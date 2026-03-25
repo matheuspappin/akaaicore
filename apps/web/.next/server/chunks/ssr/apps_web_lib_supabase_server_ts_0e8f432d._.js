@@ -1,5 +1,0 @@
-;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="7acff9a2-c483-bff9-8133-3d9ec31243db")}catch(e){}}();
-module.exports=[880159,a=>{"use strict";a.i(713451);var b=a.i(618974),c=a.i(14200);async function d(){let a=await (0,c.cookies)();return(0,b.createServerClient)("https://drgibkczwshwjjsdauoj.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRyZ2lia2N6d3Nod2pqc2RhdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMzU4MDQsImV4cCI6MjA4NTkxMTgwNH0.THix7zl_jOYnwJx4nGdPA5xA6KNItS2lNgows8hu_HU",{cookies:{get:b=>a.get(b)?.value,set(b,c,d){try{a.set({name:b,value:c,...d})}catch(a){}},remove(b,c){try{a.set({name:b,value:"",...c})}catch(a){}}}})}a.s(["createClient",()=>d])}];
-
-//# debugId=7acff9a2-c483-bff9-8133-3d9ec31243db
-//# sourceMappingURL=apps_web_lib_supabase_server_ts_0e8f432d._.js.map

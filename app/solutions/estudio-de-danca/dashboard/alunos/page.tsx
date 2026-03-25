@@ -103,7 +103,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-violet-600">
+          <DialogTitle className="flex items-center gap-2 text-[#e40014]">
             <Share2 className="w-5 h-5" /> Convidar Aluno
           </DialogTitle>
           <DialogDescription>
@@ -112,45 +112,45 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
         </DialogHeader>
         {loading ? (
           <div className="flex items-center justify-center py-6">
-            <Loader2 className="w-6 h-6 animate-spin text-violet-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-[#e40014]" />
           </div>
         ) : (
           <div className="space-y-4 pt-1">
             {/* Código */}
-            <div className="rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 p-4">
+            <div className="rounded-xl bg-black dark:bg-black border border-white/10 dark:border-white/10 p-4">
               <div className="flex items-center justify-between mb-1">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Código de Convite</p>
+                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Código de Convite</p>
                 <Button size="icon" variant="ghost" className="h-7 w-7 rounded-lg" onClick={handleRegenerate} disabled={regenerating} title="Gerar novo código">
-                  <RefreshCw className={`w-3.5 h-3.5 text-slate-400 ${regenerating ? "animate-spin" : ""}`} />
+                  <RefreshCw className={`w-3.5 h-3.5 text-zinc-400 ${regenerating ? "animate-spin" : ""}`} />
                 </Button>
               </div>
               <div className="flex items-center gap-3">
-                <p className="font-mono text-2xl font-black text-slate-900 dark:text-white tracking-[0.3em] flex-1">
+                <p className="font-mono text-2xl font-black text-white dark:text-white tracking-[0.3em] flex-1">
                   {code || "—"}
                 </p>
-                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-emerald-50 border-emerald-300 text-emerald-600" : ""}`} onClick={handleCopyCode}>
+                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-red- border-red- text-red-" : ""}`} onClick={handleCopyCode}>
                   {copiedCode ? <><CheckCheck className="w-3.5 h-3.5 mr-1.5" />Copiado</> : <><Copy className="w-3.5 h-3.5 mr-1.5" />Copiar</>}
                 </Button>
               </div>
-              <p className="text-[11px] text-slate-400 mt-2">Para alunos que já têm conta: acesse <strong>Meu Perfil → Estúdio Vinculado</strong>.</p>
+              <p className="text-[11px] text-zinc-400 mt-2">Para alunos que já têm conta: acesse <strong>Meu Perfil → Estúdio Vinculado</strong>.</p>
             </div>
 
             {/* Divisor */}
             <div className="flex items-center gap-2">
-              <div className="flex-1 border-t border-slate-200 dark:border-white/10" />
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">ou</span>
-              <div className="flex-1 border-t border-slate-200 dark:border-white/10" />
+              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
+              <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">ou</span>
+              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
             </div>
 
             {/* Link direto */}
-            <div className="rounded-xl bg-violet-50 dark:bg-violet-600/10 border border-violet-200 dark:border-violet-500/20 p-4 space-y-3">
+            <div className="rounded-xl bg-[#e40014] dark:bg-[#e40014] border border-[#e40014] dark:border-[#e40014] p-4 space-y-3">
               <div>
-                <p className="text-[10px] font-black text-violet-600 uppercase tracking-widest mb-1">Link de Cadastro Direto ✨ Recomendado</p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">O aluno clica, cria a conta e já entra vinculado ao estúdio automaticamente.</p>
+                <p className="text-[10px] font-black text-[#e40014] uppercase tracking-widest mb-1">Link de Cadastro Direto ✨ Recomendado</p>
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">O aluno clica, cria a conta e já entra vinculado ao estúdio automaticamente.</p>
               </div>
               <div className="flex gap-2">
                 <Button
-                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-emerald-600 hover:bg-emerald-700" : "bg-violet-600 hover:bg-violet-700"} text-white`}
+                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-red- hover:bg-red-" : "bg-[#e40014] hover:bg-[#e40014]"} text-white`}
                   onClick={handleCopyLink}
                 >
                   {copiedLink ? <><CheckCheck className="w-4 h-4 mr-2" />Link Copiado!</> : <><ExternalLink className="w-4 h-4 mr-2" />Copiar Link</>}
@@ -293,14 +293,14 @@ export default function AlunosPage() {
 
     if (isExpired && credits > 0) {
       return (
-        <Badge variant="outline" className="bg-amber-100 text-amber-700 border-amber-200">
+        <Badge variant="outline" className="bg-red- text-red- border-red-">
           <AlertTriangle className="w-3 h-3 mr-1" /> Congelado
         </Badge>
       );
     }
 
     if (credits > 0) {
-      return <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-200"><CheckCircle className="w-3 h-3 mr-1" />Ativo</Badge>
+      return <Badge className="bg-red- text-red- hover:bg-red-"><CheckCircle className="w-3 h-3 mr-1" />Ativo</Badge>
     } else {
       return <Badge variant="secondary">Sem créditos</Badge>
     }
@@ -425,24 +425,24 @@ export default function AlunosPage() {
       <InviteCodeDialog open={isInviteOpen} onOpenChange={setIsInviteOpen} />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Users className="w-6 h-6 text-violet-600" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <Users className="w-6 h-6 text-[#e40014]" />
             Alunos
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Gerencie todos os alunos matriculados</p>
+          <p className="text-zinc-500 text-sm mt-1">Gerencie todos os alunos matriculados</p>
         </div>
         <div className="flex gap-2">
           <Button
             variant="outline"
             onClick={() => setIsInviteOpen(true)}
-            className="font-bold rounded-xl border-violet-200 text-violet-600 hover:bg-violet-50"
+            className="font-bold rounded-xl border-[#e40014] text-[#e40014] hover:bg-[#e40014]"
           >
             <Link2 className="w-4 h-4 mr-2" />
             Convidar
           </Button>
           <Button
             onClick={() => setIsNewDialogOpen(true)}
-            className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl shadow-lg shadow-violet-600/20"
+            className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl shadow-lg shadow-red-600/20"
           >
             <Plus className="w-4 h-4 mr-2" />
             Novo Aluno
@@ -452,27 +452,27 @@ export default function AlunosPage() {
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar aluno por nome ou e-mail..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 h-11 rounded-xl"
+          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 h-11 rounded-xl"
         />
       </div>
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
-            <Users className="w-16 h-16 text-slate-300 dark:text-slate-700 mb-4" />
-            <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 mb-2">
+            <Users className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
+            <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
               {search ? "Nenhum aluno encontrado" : "Nenhum aluno cadastrado"}
             </h3>
-            <p className="text-slate-400 text-sm mb-6 max-w-sm">
+            <p className="text-zinc-400 text-sm mb-6 max-w-sm">
               {search
                 ? "Tente buscar por outro nome ou e-mail."
                 : "Matricule alunos diretamente ou compartilhe o código de convite do estúdio."}
@@ -481,7 +481,7 @@ export default function AlunosPage() {
               <div className="flex gap-3 flex-wrap justify-center">
                 <Button
                   onClick={() => setIsNewDialogOpen(true)}
-                  className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl"
+                  className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Matricular Primeiro Aluno
@@ -489,7 +489,7 @@ export default function AlunosPage() {
                 <Button
                   variant="outline"
                   onClick={() => setIsInviteOpen(true)}
-                  className="border-violet-200 text-violet-600 hover:bg-violet-50 font-bold rounded-xl"
+                  className="border-[#e40014] text-[#e40014] hover:bg-[#e40014] font-bold rounded-xl"
                 >
                   <Link2 className="w-4 h-4 mr-2" />
                   Ver Código de Convite
@@ -501,30 +501,30 @@ export default function AlunosPage() {
       ) : (
         <div className="grid gap-3">
           {filtered.map((aluno, idx) => (
-            <Card key={aluno.id ?? `aluno-${idx}`} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 hover:shadow-md transition-shadow">
+            <Card key={aluno.id ?? `aluno-${idx}`} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
               <CardContent className="p-4 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-violet-600/10 flex items-center justify-center font-black text-violet-600 text-lg flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-[#e40014] flex items-center justify-center font-black text-[#e40014] text-lg flex-shrink-0">
                     {aluno.name?.[0]?.toUpperCase() || "A"}
                   </div>
                     <div>
-                    <p className="font-bold text-slate-900 dark:text-white">{aluno.name}</p>
+                    <p className="font-bold text-white dark:text-white">{aluno.name}</p>
                     <div className="flex items-center gap-3 mt-1 flex-wrap">
-                      <span className="flex items-center gap-1 text-xs font-medium text-violet-600 dark:text-violet-400">
+                      <span className="flex items-center gap-1 text-xs font-medium text-[#e40014] dark:text-[#e40014]">
                         <BookOpen className="w-3 h-3" /> {(aluno.classesAttended ?? 0)} {(aluno.classesAttended ?? 0) === 1 ? "aula" : "aulas"}
                       </span>
                       {(aluno.phone || aluno.phone_1) && (
-                        <span className="flex items-center gap-1 text-xs text-slate-500">
+                        <span className="flex items-center gap-1 text-xs text-zinc-500">
                           <Phone className="w-3 h-3" /> {aluno.phone || aluno.phone_1}
                         </span>
                       )}
                       {aluno.email && (
-                        <span className="flex items-center gap-1 text-xs text-slate-500">
+                        <span className="flex items-center gap-1 text-xs text-zinc-500">
                           <Mail className="w-3 h-3" /> {aluno.email}
                         </span>
                       )}
                       {aluno.source && (
-                        <Badge variant="outline" className="text-[10px] font-normal text-slate-500 border-slate-200">
+                        <Badge variant="outline" className="text-[10px] font-normal text-zinc-500 border-white/10">
                           {aluno.source}
                         </Badge>
                       )}
@@ -544,7 +544,7 @@ export default function AlunosPage() {
                 <div className="flex items-center gap-2 flex-shrink-0">
                   {businessModel === 'CREDIT' && (
                     <div className="flex items-center gap-2 mr-2">
-                      <Badge variant="outline" className="bg-indigo-50 text-indigo-700 font-bold">
+                      <Badge variant="outline" className="bg-red- text-red- font-bold">
                         {aluno.credits ?? 0} créditos
                       </Badge>
                       {getStatusBadge(aluno.credits, aluno.expiryDate)}
@@ -554,8 +554,8 @@ export default function AlunosPage() {
                     className={cn(
                       "text-xs font-bold border-0",
                       aluno.status === 'active' || !aluno.status
-                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400"
-                        : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                        ? "bg-red- text-red- dark:bg-[#e40014] dark:text-red-"
+                        : "bg-slate-100 text-zinc-500 dark:bg-zinc-950 dark:text-zinc-400"
                     )}
                   >
                     {aluno.status === 'active' || !aluno.status ? (
@@ -644,7 +644,7 @@ export default function AlunosPage() {
               <Button
                 onClick={handleCreateStudent}
                 disabled={isSaving || !newForm.name.trim()}
-                className="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold"
+                className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                 Matricular
@@ -662,7 +662,7 @@ export default function AlunosPage() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Pencil className="w-5 h-5 text-violet-600" />
+              <Pencil className="w-5 h-5 text-[#e40014]" />
               Editar Aluno
             </DialogTitle>
             <DialogDescription>
@@ -672,7 +672,7 @@ export default function AlunosPage() {
           <div className="space-y-6">
             {/* Dados do aluno */}
             <div className="space-y-4">
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Dados pessoais</p>
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Dados pessoais</p>
               <div>
                 <Label htmlFor="editName">Nome *</Label>
                 <Input
@@ -718,7 +718,7 @@ export default function AlunosPage() {
 
             {/* Detalhes CRM — Etiquetas, Fonte, Idioma, Status assinante, Última atividade */}
             <Collapsible defaultOpen={!!(editForm.source || editForm.tags?.length || editForm.last_activity_description)}>
-              <CollapsibleTrigger className="flex items-center gap-2 w-full py-2 text-left text-xs font-bold text-slate-500 uppercase tracking-wider hover:text-slate-700">
+              <CollapsibleTrigger className="flex items-center gap-2 w-full py-2 text-left text-xs font-bold text-zinc-500 uppercase tracking-wider hover:text-zinc-400">
                 <Activity className="w-3.5 h-3.5" />
                 Detalhes CRM (Etiquetas, Fonte, Última atividade)
                 <ChevronDown className="w-3.5 h-3.5 ml-auto" />
@@ -819,7 +819,7 @@ export default function AlunosPage() {
                   />
                 </div>
                 {editStudent?.created_at && (
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-zinc-500">
                     Criado às: {new Date(editStudent.created_at).toLocaleString('pt-BR')}
                   </p>
                 )}
@@ -827,12 +827,12 @@ export default function AlunosPage() {
             </Collapsible>
 
             {/* Créditos manuais (ajuste pontual - não depende da automação) */}
-            <div className="space-y-4 rounded-xl border border-slate-200 dark:border-white/10 p-4 bg-slate-50/50 dark:bg-slate-900/30">
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
+            <div className="space-y-4 rounded-xl border border-white/10 dark:border-white/10 p-4 bg-black/50 dark:bg-black/30">
+                <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider flex items-center gap-2">
                   <Coins className="w-3.5 h-3.5" />
                   Créditos manuais (ajuste pontual)
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-zinc-500">
                   Saldo atual: <strong>{studentCredits?.remaining ?? 0}</strong> créditos
                 </p>
                 <div>
@@ -850,7 +850,7 @@ export default function AlunosPage() {
                   <Button
                     onClick={() => handleAdjustCredits('add')}
                     disabled={isAdjusting || adjustAmount <= 0}
-                    className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+                    className="flex-1 bg-red- hover:bg-red-"
                   >
                     {isAdjusting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                     Adicionar
@@ -874,7 +874,7 @@ export default function AlunosPage() {
               <Button
                 onClick={handleUpdateStudent}
                 disabled={isSaving || !editForm.name?.trim()}
-                className="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold"
+                className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <CheckCircle className="w-4 h-4 mr-2" />}
                 Salvar dados

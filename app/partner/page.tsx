@@ -17,8 +17,8 @@ export default function PartnerDashboard() {
   // Aqui listaria os sistemas criados por ele
   
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-slate-950">
-      <header className="h-16 bg-white dark:bg-slate-900 border-b flex items-center px-8 justify-between">
+    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black">
+      <header className="h-16 bg-white dark:bg-zinc-950 border-b flex items-center px-8 justify-between">
         <div className="font-bold text-lg">Partner Portal</div>
         <Button size="sm">Novo Sistema</Button>
       </header>

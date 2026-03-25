@@ -188,7 +188,7 @@ export default function ClientesPage() {
             <Building2 className="w-6 h-6 text-red-600" />
             Clientes / Edificações
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             {mockClientes.length} edificações cadastradas
           </p>
         </div>
@@ -198,7 +198,7 @@ export default function ClientesPage() {
       {/* Filtros */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <Input
             placeholder="Buscar por nome, CNPJ ou cidade..."
             value={search}
@@ -226,7 +226,7 @@ export default function ClientesPage() {
         {filtered.map((cliente) => {
           const st = statusMap[cliente.status as keyof typeof statusMap]
           return (
-            <Card key={cliente.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={cliente.id} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
@@ -237,7 +237,7 @@ export default function ClientesPage() {
                       <h3 className="font-bold text-slate-900 dark:text-white text-sm leading-tight">
                         {cliente.nome}
                       </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">{cliente.cnpj}</p>
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400">{cliente.cnpj}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -261,7 +261,7 @@ export default function ClientesPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
+                <div className="mt-4 space-y-1.5 text-xs text-zinc-500 dark:text-zinc-400">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>{cliente.endereco} — {cliente.cidade}</span>
@@ -278,27 +278,27 @@ export default function ClientesPage() {
 
                 <div className="mt-4 pt-4 border-t border-slate-100 dark:border-white/5 grid grid-cols-3 gap-2 text-center">
                   <div>
-                    <div className="flex items-center justify-center gap-1 text-slate-400 mb-1">
+                    <div className="flex items-center justify-center gap-1 text-zinc-400 mb-1">
                       <FireExtinguisher className="w-3 h-3" />
                     </div>
                     <p className="text-base font-black text-slate-900 dark:text-white">{cliente.totalExtintores}</p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">Extintores</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-wide">Extintores</p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-center gap-1 text-slate-400 mb-1">
+                    <div className="flex items-center justify-center gap-1 text-zinc-400 mb-1">
                       <ClipboardList className="w-3 h-3" />
                     </div>
                     <p className={cn("text-base font-black", cliente.osAbertas > 0 ? "text-red-600" : "text-slate-900 dark:text-white")}>
                       {cliente.osAbertas}
                     </p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">OS Abertas</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-wide">OS Abertas</p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-center gap-1 text-slate-400 mb-1">
+                    <div className="flex items-center justify-center gap-1 text-zinc-400 mb-1">
                       <Calendar className="w-3 h-3" />
                     </div>
                     <p className="text-xs font-bold text-slate-900 dark:text-white">{cliente.proximaVistoria}</p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">Próx. Vistoria</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-wide">Próx. Vistoria</p>
                   </div>
                 </div>
               </CardContent>
@@ -308,7 +308,7 @@ export default function ClientesPage() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-16 text-slate-400">
+        <div className="text-center py-16 text-zinc-400">
           <Building2 className="w-12 h-12 mx-auto mb-3 opacity-20" />
           <p className="font-medium">Nenhum cliente encontrado</p>
         </div>

@@ -31,7 +31,7 @@ interface Laudo {
 }
 
 const statusConfig: Record<LaudoStatus, { label: string; color: string; bg: string; icon: any }> = {
-  draft: { label: "Rascunho", color: "text-slate-400", bg: "bg-slate-400/10", icon: Clock },
+  draft: { label: "Rascunho", color: "text-zinc-400", bg: "bg-zinc-400/10", icon: Clock },
   review: { label: "Em Revisão", color: "text-amber-400", bg: "bg-amber-400/10", icon: AlertTriangle },
   approved: { label: "Aprovado", color: "text-blue-400", bg: "bg-blue-400/10", icon: CheckCircle2 },
   issued: { label: "Emitido", color: "text-emerald-400", bg: "bg-emerald-400/10", icon: CheckCircle2 },
@@ -373,7 +373,7 @@ export default function LaudosPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Laudos Técnicos</h1>
-          <p className="text-slate-400 mt-1">Laudos ambientais, CAR, licenciamentos e regularizações</p>
+          <p className="text-zinc-400 mt-1">Laudos ambientais, CAR, licenciamentos e regularizações</p>
         </div>
         <Button
           onClick={() => setShowForm(true)}
@@ -400,7 +400,7 @@ export default function LaudosPage() {
               "px-4 py-2 rounded-xl text-sm font-bold transition-all",
               filterStatus === f.key
                 ? "bg-violet-600 text-white"
-                : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+                : "bg-zinc-900 text-zinc-400 hover:bg-slate-700 hover:text-white"
             )}
           >
             {f.label}
@@ -409,63 +409,63 @@ export default function LaudosPage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
         <Input
           placeholder="Buscar laudos..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+          className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
         />
       </div>
 
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <Card className="w-full max-w-lg bg-slate-900 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <Card className="w-full max-w-lg bg-zinc-950 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-white flex items-center gap-2">
                 <FileText className="w-5 h-5 text-violet-400" />
                 Novo Laudo Técnico
               </CardTitle>
-              <button onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white">
+              <button onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Título do Laudo *</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Título do Laudo *</label>
                   <Input
                     value={form.title}
                     onChange={(e) => setForm({ ...form, title: e.target.value })}
                     placeholder="Ex: Laudo de Regularização CAR..."
                     required
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Cliente *</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Cliente *</label>
                     <Input
                       value={form.client}
                       onChange={(e) => setForm({ ...form, client: e.target.value })}
                       placeholder="Nome do cliente"
                       required
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Propriedade / Área</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Propriedade / Área</label>
                     <Input
                       value={form.property}
                       onChange={(e) => setForm({ ...form, property: e.target.value })}
                       placeholder="Ex: Fazenda, ha..."
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Tipo de Laudo</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Tipo de Laudo</label>
                   <div className="grid grid-cols-2 gap-2">
                     {(Object.entries(typeLabels) as [LaudoType, string][]).map(([key, label]) => (
                       <button
@@ -476,7 +476,7 @@ export default function LaudosPage() {
                           "py-2.5 px-3 rounded-xl text-xs font-bold text-left border transition-all",
                           form.type === key
                             ? "border-violet-500 bg-violet-600/20 text-violet-400"
-                            : "border-slate-700 bg-slate-800 text-slate-500 hover:border-slate-600"
+                            : "border-slate-700 bg-zinc-900 text-zinc-500 hover:border-slate-600"
                         )}
                       >
                         {label}
@@ -486,26 +486,26 @@ export default function LaudosPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Engenheiro Responsável</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Engenheiro Responsável</label>
                     <Input
                       value={form.engineer}
                       onChange={(e) => setForm({ ...form, engineer: e.target.value })}
                       placeholder="Nome do engenheiro"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nº ART (opcional)</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nº ART (opcional)</label>
                     <Input
                       value={form.art}
                       onChange={(e) => setForm({ ...form, art: e.target.value })}
                       placeholder="ART-2026-..."
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-slate-400">
+                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-zinc-400">
                     Cancelar
                   </Button>
                   <Button type="submit" disabled={saving} className="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold">
@@ -520,10 +520,10 @@ export default function LaudosPage() {
 
       {/* List */}
       {filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <FileText className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">Nenhum laudo encontrado</p>
+            <p className="text-zinc-400 font-semibold text-lg">Nenhum laudo encontrado</p>
           </CardContent>
         </Card>
       ) : (
@@ -532,7 +532,7 @@ export default function LaudosPage() {
             const st = statusConfig[laudo.status]
             const StatusIcon = st.icon
             return (
-              <Card key={laudo.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={laudo.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className="w-11 h-11 rounded-xl bg-violet-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -540,7 +540,7 @@ export default function LaudosPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                        <span className="text-xs font-black text-slate-500 font-mono">{laudo.code}</span>
+                        <span className="text-xs font-black text-zinc-500 font-mono">{laudo.code}</span>
                         <Badge className={cn("text-[10px] font-bold border-0", st.color, st.bg)}>
                           <StatusIcon className="w-2.5 h-2.5 mr-1" />
                           {st.label}
@@ -548,7 +548,7 @@ export default function LaudosPage() {
                         <Badge className="text-[10px] font-bold border-0 text-teal-400 bg-teal-400/10">{typeLabels[laudo.type]}</Badge>
                       </div>
                       <p className="font-bold text-white mb-1">{laudo.title}</p>
-                      <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+                      <div className="flex flex-wrap gap-3 text-xs text-zinc-500">
                         <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{laudo.client}</span>
                         {laudo.property && <span>{laudo.property}</span>}
                         <span className="flex items-center gap-1"><User className="w-3 h-3" />{laudo.engineer}</span>
@@ -560,7 +560,7 @@ export default function LaudosPage() {
                       {/* Advance status button */}
                       {laudo.status !== "issued" && (
                         updatingId === laudo.id ? (
-                          <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+                          <Loader2 className="w-4 h-4 animate-spin text-zinc-400" />
                         ) : (
                           <Button
                             size="sm"
@@ -577,14 +577,14 @@ export default function LaudosPage() {
                         size="sm"
                         variant="ghost"
                         onClick={() => generateLaudoPDF(laudo, studioInfo)}
-                        className="h-8 w-8 p-0 text-slate-500 hover:text-emerald-400 hover:bg-emerald-400/10"
+                        className="h-8 w-8 p-0 text-zinc-500 hover:text-emerald-400 hover:bg-emerald-400/10"
                         title="Gerar PDF do laudo"
                       >
                         <Printer className="w-4 h-4" />
                       </Button>
                       <button
                         onClick={() => setExpandedId(expandedId === laudo.id ? null : laudo.id)}
-                        className="p-1.5 text-slate-500 hover:text-white transition-colors"
+                        className="p-1.5 text-zinc-500 hover:text-white transition-colors"
                       >
                         {expandedId === laudo.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </button>
@@ -593,22 +593,22 @@ export default function LaudosPage() {
 
                   {/* Expanded details */}
                   {expandedId === laudo.id && (
-                    <div className="mt-3 pt-3 border-t border-slate-800 space-y-2 text-xs text-slate-400">
+                    <div className="mt-3 pt-3 border-t border-zinc-800 space-y-2 text-xs text-zinc-400">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">Cliente</span>
+                          <span className="font-bold text-zinc-500 uppercase tracking-wider block mb-1">Cliente</span>
                           <span className="text-slate-300">{laudo.client || "—"}</span>
                         </div>
                         <div>
-                          <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">Propriedade</span>
+                          <span className="font-bold text-zinc-500 uppercase tracking-wider block mb-1">Propriedade</span>
                           <span className="text-slate-300">{laudo.property || "—"}</span>
                         </div>
                         <div>
-                          <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">Engenheiro</span>
+                          <span className="font-bold text-zinc-500 uppercase tracking-wider block mb-1">Engenheiro</span>
                           <span className="text-slate-300">{laudo.engineer || "—"}</span>
                         </div>
                         <div>
-                          <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">ART</span>
+                          <span className="font-bold text-zinc-500 uppercase tracking-wider block mb-1">ART</span>
                           <span className="text-emerald-400 font-bold">{laudo.art || "—"}</span>
                         </div>
                       </div>

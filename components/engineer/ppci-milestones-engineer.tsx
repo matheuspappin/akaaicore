@@ -44,7 +44,7 @@ const STATUS_ICON = {
 
 const STATUS_COLOR = {
   completed: "text-emerald-500",
-  pending: "text-slate-400",
+  pending: "text-zinc-400",
   cancelled: "text-red-400",
 }
 
@@ -110,7 +110,7 @@ export function PPCIMilestonesEngineer({
         </div>
 
         {/* Barra de progresso */}
-        <div className="mt-2 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div className="mt-2 h-2 bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden">
           <div
             className={cn(
               "h-full rounded-full transition-all duration-500",
@@ -141,7 +141,7 @@ export function PPCIMilestonesEngineer({
                 "rounded-xl border transition-all",
                 milestone.status === "completed"
                   ? "bg-emerald-50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-800"
-                  : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700"
+                  : "bg-white dark:bg-zinc-950 border-slate-200 dark:border-slate-700"
               )}
             >
               <div className="flex items-center gap-3 p-3">
@@ -166,15 +166,15 @@ export function PPCIMilestonesEngineer({
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-slate-400 flex-shrink-0">
+                    <span className="text-xs font-bold text-zinc-400 flex-shrink-0">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <span
                       className={cn(
                         "text-sm font-semibold truncate",
                         milestone.status === "completed"
-                          ? "line-through text-slate-400"
-                          : "text-slate-800 dark:text-slate-200"
+                          ? "line-through text-zinc-400"
+                          : "text-zinc-800 dark:text-slate-200"
                       )}
                     >
                       {milestone.title}
@@ -190,7 +190,7 @@ export function PPCIMilestonesEngineer({
                 {/* Expand Toggle (if has description) */}
                 {milestone.description && (
                   <button
-                    className="text-slate-400 hover:text-slate-600 transition-colors p-1"
+                    className="text-zinc-400 hover:text-slate-600 transition-colors p-1"
                     onClick={() => setExpandedId(isExpanded ? null : milestone.id)}
                   >
                     {isExpanded ? (
@@ -205,7 +205,7 @@ export function PPCIMilestonesEngineer({
               {/* Description (expandable) */}
               {isExpanded && milestone.description && (
                 <div className="px-4 pb-3">
-                  <p className="text-xs text-slate-500 border-t border-slate-100 dark:border-slate-700 pt-2">
+                  <p className="text-xs text-zinc-500 border-t border-slate-100 dark:border-slate-700 pt-2">
                     {milestone.description}
                   </p>
                 </div>
@@ -215,7 +215,7 @@ export function PPCIMilestonesEngineer({
         })}
 
         {items.length === 0 && (
-          <div className="text-center py-6 text-slate-400 text-sm">
+          <div className="text-center py-6 text-zinc-400 text-sm">
             Nenhuma etapa definida para este projeto.
           </div>
         )}

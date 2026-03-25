@@ -143,7 +143,7 @@ export default function TeacherPagamentosPage() {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     )
   }
@@ -151,42 +151,42 @@ export default function TeacherPagamentosPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-          <Wallet className="w-6 h-6 text-pink-500" />
+        <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+          <Wallet className="w-6 h-6 text-[#e40014]" />
           Meus Pagamentos
         </h1>
-        <p className="text-slate-500 text-sm mt-1">Saldo, chave PIX e saques</p>
+        <p className="text-zinc-500 text-sm mt-1">Saldo, chave PIX e saques</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card className="border-amber-200 dark:border-amber-600/30">
+        <Card className="border-red- dark:border-[#e40014]">
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-amber-600">
+            <div className="flex items-center gap-2 text-red-">
               <Clock className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Congelado</span>
             </div>
             <p className="text-2xl font-black mt-1">{formatMoney(balance.pending)}</p>
-            <p className="text-xs text-slate-500 mt-0.5">Aguardando liberação do estúdio</p>
+            <p className="text-xs text-zinc-500 mt-0.5">Aguardando liberação do estúdio</p>
           </CardContent>
         </Card>
-        <Card className="border-emerald-200 dark:border-emerald-600/30">
+        <Card className="border-red- dark:border-[#e40014]">
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-emerald-600">
+            <div className="flex items-center gap-2 text-red-">
               <ArrowDownToLine className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Disponível</span>
             </div>
             <p className="text-2xl font-black mt-1">{formatMoney(balance.availableToWithdraw)}</p>
-            <p className="text-xs text-slate-500 mt-0.5">Pode sacar via PIX</p>
+            <p className="text-xs text-zinc-500 mt-0.5">Pode sacar via PIX</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-slate-500">
+            <div className="flex items-center gap-2 text-zinc-500">
               <CheckCircle2 className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Sacado</span>
             </div>
             <p className="text-2xl font-black mt-1">{formatMoney(balance.withdrawn)}</p>
-            <p className="text-xs text-slate-500 mt-0.5">Já recebido</p>
+            <p className="text-xs text-zinc-500 mt-0.5">Já recebido</p>
           </CardContent>
         </Card>
       </div>
@@ -224,7 +224,7 @@ export default function TeacherPagamentosPage() {
               />
             </div>
           </div>
-          <Button onClick={handleSavePix} disabled={savingPix} className="bg-pink-600 hover:bg-pink-700">
+          <Button onClick={handleSavePix} disabled={savingPix} className="bg-[#e40014] hover:bg-[#e40014]">
             {savingPix ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
             Salvar Chave PIX
           </Button>
@@ -232,7 +232,7 @@ export default function TeacherPagamentosPage() {
       </Card>
 
       {balance.availableToWithdraw > 0 && (
-        <Card className="border-emerald-200 dark:border-emerald-600/30">
+        <Card className="border-red- dark:border-[#e40014]">
           <CardHeader>
             <CardTitle>Solicitar Saque</CardTitle>
             <CardDescription>
@@ -258,7 +258,7 @@ export default function TeacherPagamentosPage() {
             <Button
               onClick={handleWithdraw}
               disabled={withdrawing || !pixSettings?.pix_key || !withdrawAmount}
-              className="bg-emerald-600 hover:bg-emerald-700 self-end"
+              className="bg-red- hover:bg-red- self-end"
             >
               {withdrawing ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <ArrowDownToLine className="w-4 h-4 mr-2" />}
               Sacar
@@ -274,7 +274,7 @@ export default function TeacherPagamentosPage() {
         </CardHeader>
         <CardContent>
           {entries.length === 0 ? (
-            <p className="text-slate-500 text-center py-8">Nenhum lançamento ainda. As aulas que você ministrar gerarão pagamentos automaticamente.</p>
+            <p className="text-zinc-500 text-center py-8">Nenhum lançamento ainda. As aulas que você ministrar gerarão pagamentos automaticamente.</p>
           ) : (
             <div className="space-y-2">
               {entries.map((e: any) => (
@@ -282,23 +282,23 @@ export default function TeacherPagamentosPage() {
                   key={e.id}
                   className={cn(
                     "flex items-center justify-between p-3 rounded-xl border",
-                    e.status === "pending" && "border-amber-200 dark:border-amber-600/30",
-                    e.status === "released" && "border-emerald-200 dark:border-emerald-600/30",
-                    e.status === "withdrawn" && "border-slate-200 dark:border-white/10"
+                    e.status === "pending" && "border-red- dark:border-[#e40014]",
+                    e.status === "released" && "border-red- dark:border-[#e40014]",
+                    e.status === "withdrawn" && "border-white/10 dark:border-white/10"
                   )}
                 >
                   <div>
-                    <p className="font-bold text-slate-900 dark:text-white">{e.class_name || "Aula"}</p>
-                    <p className="text-xs text-slate-500">{formatDate(e.scheduled_date)}</p>
+                    <p className="font-bold text-white dark:text-white">{e.class_name || "Aula"}</p>
+                    <p className="text-xs text-zinc-500">{formatDate(e.scheduled_date)}</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="font-black">{formatMoney(e.amount)}</span>
                     <Badge
                       variant="outline"
                       className={cn(
-                        e.status === "pending" && "border-amber-300 text-amber-700",
-                        e.status === "released" && "border-emerald-300 text-emerald-700",
-                        e.status === "withdrawn" && "border-slate-300 text-slate-600"
+                        e.status === "pending" && "border-red- text-red-",
+                        e.status === "released" && "border-red- text-red-",
+                        e.status === "withdrawn" && "border-slate-300 text-zinc-400"
                       )}
                     >
                       {e.status === "pending" && "Congelado"}

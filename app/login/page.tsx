@@ -236,7 +236,7 @@ function LoginContent() {
                         role === 'finance' && "bg-emerald-500/20 text-emerald-400",
                         role === 'teacher' && "bg-blue-500/20 text-blue-400",
                         role === 'engineer' && "bg-violet-500/20 text-violet-400",
-                        role === 'student' && "bg-slate-500/20 text-slate-400"
+                        role === 'student' && "bg-zinc-500/20 text-zinc-400"
                       )}>
                         <currentProfile.icon className="w-4 h-4" />
                       </div>

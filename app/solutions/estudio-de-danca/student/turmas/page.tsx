@@ -25,11 +25,11 @@ const LEVEL_LABELS: Record<string, string> = {
   advanced: 'Avançado',
 }
 const COLORS = [
-  "from-pink-500 to-rose-500",
-  "from-violet-500 to-purple-500",
-  "from-indigo-500 to-blue-500",
-  "from-emerald-500 to-teal-500",
-  "from-amber-500 to-orange-500",
+  "from-red-500 to-red-",
+  "from-red-500 to-purple-500",
+  "from-red- to-blue-500",
+  "from-red- to-teal-500",
+  "from-red- to-orange-500",
 ]
 
 export default function StudentTurmasPage() {
@@ -157,11 +157,11 @@ export default function StudentTurmasPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Calendar className="w-6 h-6 text-violet-600" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <Calendar className="w-6 h-6 text-[#e40014]" />
             Minhas Turmas
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Aulas em que você está matriculado</p>
+          <p className="text-zinc-500 text-sm mt-1">Aulas em que você está matriculado</p>
         </div>
         <Button
           variant="ghost"
@@ -177,26 +177,26 @@ export default function StudentTurmasPage() {
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : turmas.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden">
-          <div className="h-1.5 bg-gradient-to-r from-violet-500 to-pink-500" />
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
+          <div className="h-1.5 bg-gradient-to-r from-red-500 to-red-500" />
           <CardContent className="flex flex-col items-center justify-center py-20 text-center px-6">
-            <div className="w-20 h-20 rounded-2xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center mb-4">
-              <Music className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+            <div className="w-20 h-20 rounded-2xl bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center mb-4">
+              <Music className="w-10 h-10 text-[#e40014] dark:text-[#e40014]" />
             </div>
-            <h3 className="text-xl font-black text-slate-800 dark:text-slate-200 mb-2">
+            <h3 className="text-xl font-black text-zinc-800 dark:text-slate-200 mb-2">
               Nenhuma turma encontrada
             </h3>
-            <p className="text-slate-500 text-sm max-w-sm mb-2">
+            <p className="text-zinc-500 text-sm max-w-sm mb-2">
               Você ainda não está matriculado em nenhuma turma. Explore o catálogo, escolha sua aula e apresente o QR Code na portaria para validar sua presença.
             </p>
-            <p className="text-slate-400 text-xs mb-6">
+            <p className="text-zinc-400 text-xs mb-6">
               Após matricular-se, suas turmas aparecerão aqui com horários, professor e botão para gerar o QR de check-in.
             </p>
             <Link href="/solutions/estudio-de-danca/student/turmas/catalogo">
-              <Button className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl gap-2">
+              <Button className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl gap-2">
                 <Sparkles className="w-4 h-4" />
                 Ver Turmas Disponíveis
               </Button>
@@ -207,39 +207,39 @@ export default function StudentTurmasPage() {
         <>
           <div className="space-y-4">
             {turmas.map((turma: any, i: number) => (
-              <Card key={turma.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden">
+              <Card key={turma.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
                 <div className={cn("h-1.5 bg-gradient-to-r", COLORS[i % COLORS.length])} />
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="font-black text-slate-900 dark:text-white text-base">{turma.name}</h3>
+                      <h3 className="font-black text-white dark:text-white text-base">{turma.name}</h3>
                       {turma.dance_style && (
-                        <p className="text-xs text-violet-600 dark:text-violet-400 font-bold mt-0.5">{turma.dance_style}</p>
+                        <p className="text-xs text-[#e40014] dark:text-[#e40014] font-bold mt-0.5">{turma.dance_style}</p>
                       )}
                     </div>
                     {turma.level && (
-                      <Badge className="bg-violet-100 text-violet-700 dark:bg-violet-600/20 dark:text-violet-400 border-0 text-xs font-bold">
+                      <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-xs font-bold">
                         {LEVEL_LABELS[turma.level] || turma.level}
                       </Badge>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                      <GraduationCap className="w-4 h-4 text-violet-500 shrink-0" />
+                    <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                      <GraduationCap className="w-4 h-4 text-[#e40014] shrink-0" />
                       <span>{turma.teacherName || 'Professor não definido'}</span>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mt-1">
                       {(turma.schedule || []).map((s: any, si: number) => (
-                        <div key={si} className="flex items-center gap-1.5 bg-slate-50 dark:bg-white/5 rounded-lg px-3 py-1.5">
-                          <Clock className="w-3.5 h-3.5 text-pink-500" />
-                          <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                        <div key={si} className="flex items-center gap-1.5 bg-black dark:bg-white/5/5 rounded-lg px-3 py-1.5">
+                          <Clock className="w-3.5 h-3.5 text-[#e40014]" />
+                          <span className="text-xs font-bold text-zinc-400 dark:text-slate-300">
                             {DAY_NAMES[s.day_of_week]} às {s.start_time}
                             {s.end_time && ` — ${s.end_time}`}
                           </span>
                           {s.duration_minutes && (
-                            <span className="text-[10px] text-slate-400">({s.duration_minutes}min)</span>
+                            <span className="text-[10px] text-zinc-400">({s.duration_minutes}min)</span>
                           )}
                         </div>
                       ))}
@@ -247,7 +247,7 @@ export default function StudentTurmasPage() {
                   </div>
 
                   {turma.enrolledAt && (
-                    <p className="text-[10px] text-slate-400 mt-3 uppercase tracking-widest font-bold">
+                    <p className="text-[10px] text-zinc-400 mt-3 uppercase tracking-widest font-bold">
                       Matriculado em {new Date(turma.enrolledAt).toLocaleDateString('pt-BR')}
                     </p>
                   )}
@@ -255,7 +255,7 @@ export default function StudentTurmasPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full mt-4 h-10 rounded-xl font-bold text-sm border-violet-200 dark:border-violet-700/50 text-violet-600 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/30"
+                    className="w-full mt-4 h-10 rounded-xl font-bold text-sm border-[#e40014] dark:border-[#e40014] text-[#e40014] dark:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014]"
                     onClick={() => handleShowQr(turma)}
                     disabled={loadingQr === turma.id}
                   >
@@ -275,7 +275,7 @@ export default function StudentTurmasPage() {
           <Link href="/solutions/estudio-de-danca/student/turmas/catalogo">
             <Button
               variant="outline"
-              className="w-full border-dashed border-2 border-violet-200 dark:border-violet-700/40 text-violet-600 dark:text-violet-400 bg-violet-50/50 dark:bg-violet-950/20 hover:bg-violet-50 dark:hover:bg-violet-950/40 h-12 rounded-xl font-bold gap-2 transition-all"
+              className="w-full border-dashed border-2 border-[#e40014] dark:border-[#e40014] text-[#e40014] dark:text-[#e40014] bg-[#e40014] dark:bg-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] h-12 rounded-xl font-bold gap-2 transition-all"
             >
               <Plus className="w-4 h-4" />
               Quero me matricular em outra turma
@@ -300,7 +300,7 @@ export default function StudentTurmasPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center justify-center py-6 gap-6">
-            <div ref={qrContainerRef} className="bg-white p-4 rounded-3xl shadow-xl border-4 border-violet-50 dark:border-violet-900/30">
+            <div ref={qrContainerRef} className="bg-white/5 p-4 rounded-3xl shadow-xl border-4 border-[#e40014] dark:border-[#e40014]">
               {activeAttendanceId ? (
                 <div className="flex flex-col items-center gap-4">
                   <QRCode
@@ -309,9 +309,9 @@ export default function StudentTurmasPage() {
                     level="H"
                     viewBox="0 0 256 256"
                   />
-                  <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-800 w-full text-center">
-                    <p className="text-[10px] text-slate-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
-                    <p className="font-mono text-lg font-black text-violet-600 tracking-widest">
+                  <div className="bg-black dark:bg-black px-4 py-2 rounded-lg border border-slate-100 dark:border-zinc-800 w-full text-center">
+                    <p className="text-[10px] text-zinc-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
+                    <p className="font-mono text-lg font-black text-[#e40014] tracking-widest">
                       DF-{activeAttendanceId.toString().slice(-8).toUpperCase()}
                     </p>
                   </div>
@@ -327,11 +327,11 @@ export default function StudentTurmasPage() {
                 </div>
               ) : (
                 <div className="w-56 h-56 flex items-center justify-center">
-                  <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+                  <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
                 </div>
               )}
             </div>
-            <p className="text-[10px] text-slate-400 text-center">
+            <p className="text-[10px] text-zinc-400 text-center">
               Este QR é único para você. O crédito será descontado quando a presença for validada no scanner.
             </p>
           </div>

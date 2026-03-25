@@ -130,9 +130,9 @@ function BarRow({ label, valor, pct, financeiro }: { label: string; valor: numbe
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between text-xs">
-        <span className="text-slate-600 dark:text-slate-400 font-medium">{label}</span>
+        <span className="text-slate-600 dark:text-zinc-400 font-medium">{label}</span>
         <span className="font-black text-slate-900 dark:text-white">
-          {financeiro ? `R$ ${valor.toLocaleString("pt-BR")}` : valor} <span className="text-slate-400 font-normal">({pct}%)</span>
+          {financeiro ? `R$ ${valor.toLocaleString("pt-BR")}` : valor} <span className="text-zinc-400 font-normal">({pct}%)</span>
         </span>
       </div>
       <div className="h-2 rounded-full bg-slate-100 dark:bg-white/10 overflow-hidden">
@@ -156,7 +156,7 @@ export default function RelatoriosPage() {
             <BarChart3 className="w-6 h-6 text-red-600" />
             Relatórios
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Análise e indicadores do sistema
           </p>
         </div>
@@ -182,13 +182,13 @@ export default function RelatoriosPage() {
       {/* KPIs resumo */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {resumoKPIs.map((kpi) => (
-          <Card key={kpi.label} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+          <Card key={kpi.label} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
             <CardContent className="p-5">
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", kpi.bg)}>
                 <kpi.icone className={cn("w-5 h-5", kpi.color)} />
               </div>
               <p className={cn("text-3xl font-black", kpi.color)}>{kpi.valor}</p>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-0.5">{kpi.label}</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-0.5">{kpi.label}</p>
               <p className="text-xs text-emerald-600 flex items-center gap-0.5 mt-1 font-medium">
                 <ArrowUpRight className="w-3 h-3" />
                 {kpi.tendencia}
@@ -201,7 +201,7 @@ export default function RelatoriosPage() {
       {/* Relatórios detalhados */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {relatoriosDisponiveis.map((rel) => (
-          <Card key={rel.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+          <Card key={rel.id} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
@@ -234,7 +234,7 @@ export default function RelatoriosPage() {
       </div>
 
       {/* Relatórios prontos para baixar */}
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <FileText className="w-5 h-5 text-red-600" />
@@ -252,7 +252,7 @@ export default function RelatoriosPage() {
                 <doc.icone className="w-5 h-5 text-red-600" />
                 <div className="text-left">
                   <p className="text-sm font-bold text-slate-900 dark:text-white">{doc.label}</p>
-                  <p className="text-xs text-slate-400">{doc.sub}</p>
+                  <p className="text-xs text-zinc-400">{doc.sub}</p>
                 </div>
               </Button>
             ))}

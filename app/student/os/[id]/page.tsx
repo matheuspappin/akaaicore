@@ -133,8 +133,8 @@ export default function StudentOSDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-10">
-      <div className="bg-white dark:bg-slate-900 border-b p-4 flex items-center gap-4 sticky top-0 z-10">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-10">
+      <div className="bg-white dark:bg-zinc-950 border-b p-4 flex items-center gap-4 sticky top-0 z-10">
         <Link href="/student/os">
           <Button variant="ghost" size="sm">
             <ChevronLeft className="w-5 h-5" />
@@ -149,7 +149,7 @@ export default function StudentOSDetailPage() {
       <main className="container p-4 space-y-4 max-w-md mx-auto">
         {/* Cabeçalho da OS */}
         <Card className="border-none shadow-sm overflow-hidden">
-          <CardHeader className={`${order.status === 'finished' ? 'bg-emerald-600' : 'bg-slate-900'} text-white p-6 transition-colors duration-500`}>
+          <CardHeader className={`${order.status === 'finished' ? 'bg-emerald-600' : 'bg-zinc-950'} text-white p-6 transition-colors duration-500`}>
             <div className="flex justify-between items-start">
               <div className="space-y-1">
                 <p className={`text-[10px] font-black ${order.status === 'finished' ? 'text-emerald-100' : 'text-indigo-400'} uppercase tracking-widest`}>Código de Rastreio</p>
@@ -229,7 +229,7 @@ export default function StudentOSDetailPage() {
             {order.professional && (
               <div className="space-y-2">
                 <Label className="text-[10px] font-bold uppercase text-muted-foreground tracking-widest">Responsável Técnico</Label>
-                <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100">
+                <div className="flex items-center gap-3 bg-slate-50 dark:bg-zinc-900 p-3 rounded-xl border border-slate-100">
                   <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">
                     {order.professional.name[0]}
                   </div>
@@ -254,7 +254,7 @@ export default function StudentOSDetailPage() {
               {order.items?.map((item: any, idx: number) => (
                 <div key={idx} className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400">
+                    <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-zinc-400">
                       {item.item_type === 'product' ? <Package className="w-4 h-4" /> : <Wrench className="w-4 h-4" />}
                     </div>
                     <div>
@@ -266,7 +266,7 @@ export default function StudentOSDetailPage() {
                 </div>
               ))}
               
-              <div className="p-4 space-y-2 bg-slate-50 dark:bg-slate-800/50">
+              <div className="p-4 space-y-2 bg-slate-50 dark:bg-zinc-900/50">
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>Subtotal</span>
                   <span>R$ {(Number(order.total_products || 0) + Number(order.total_services || 0)).toFixed(2)}</span>
@@ -353,7 +353,7 @@ export default function StudentOSDetailPage() {
             <p className="text-emerald-100 text-sm font-bold opacity-90 tracking-wide leading-tight">Use este código para autorizar a conclusão e entrega do serviço.</p>
           </div>
           
-          <div className="flex flex-col items-center justify-center py-12 gap-10 bg-white dark:bg-slate-950">
+          <div className="flex flex-col items-center justify-center py-12 gap-10 bg-white dark:bg-black">
             <div className="bg-white p-6 rounded-[3rem] shadow-2xl border-[12px] border-emerald-50">
               <QRCode
                 value={`SECURE-AUTH-RETIRADA-CLI-${student?.id?.toString().slice(-12).toUpperCase()}-${order?.id?.slice(-8)}-${new Date().toISOString().slice(0,10)}`}
@@ -364,21 +364,21 @@ export default function StudentOSDetailPage() {
             </div>
 
             <div className="space-y-6 w-full px-12 text-center">
-              <div className="bg-slate-50 dark:bg-slate-900 px-6 py-5 rounded-3xl border border-slate-100 dark:border-slate-800 w-full shadow-inner">
+              <div className="bg-slate-50 dark:bg-zinc-950 px-6 py-5 rounded-3xl border border-slate-100 dark:border-zinc-800 w-full shadow-inner">
                 <p className="text-[11px] text-muted-foreground font-black uppercase mb-2 tracking-[0.3em]">CÓDIGO DE LIBERAÇÃO DIÁRIO</p>
                 <p className="font-mono text-3xl font-black text-emerald-600 tracking-[0.25em]">
                   CLI-{student?.id?.toString().slice(-8).toUpperCase()}
                 </p>
               </div>
               <div className="flex flex-col gap-1 items-center opacity-40">
-                <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest italic">Válido apenas hoje para a OS #{order?.tracking_code || order?.id?.slice(0,8)}</p>
+                <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-widest italic">Válido apenas hoje para a OS #{order?.tracking_code || order?.id?.slice(0,8)}</p>
                 <div className="h-px w-20 bg-slate-200" />
               </div>
             </div>
           </div>
           
-          <div className="p-8 bg-slate-50 dark:bg-slate-900 border-t">
-            <Button variant="ghost" className="w-full font-black text-slate-500 h-14 rounded-2xl tracking-[0.2em] hover:bg-slate-100" onClick={() => setIsClientIDOpen(false)}>
+          <div className="p-8 bg-slate-50 dark:bg-zinc-950 border-t">
+            <Button variant="ghost" className="w-full font-black text-zinc-500 h-14 rounded-2xl tracking-[0.2em] hover:bg-slate-100" onClick={() => setIsClientIDOpen(false)}>
               FECHAR
             </Button>
           </div>

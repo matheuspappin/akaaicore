@@ -42,9 +42,9 @@ const LEVEL_LABELS: Record<string, string> = {
   advanced: 'Avançado',
 }
 const LEVEL_COLORS: Record<string, string> = {
-  beginner: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400',
-  intermediate: 'bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400',
-  advanced: 'bg-rose-100 text-rose-700 dark:bg-rose-600/20 dark:text-rose-400',
+  beginner: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-',
+  intermediate: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-',
+  advanced: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-',
 }
 
 export default function CatalogoTurmasPage() {
@@ -281,11 +281,11 @@ export default function CatalogoTurmasPage() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-violet-600" />
+            <h1 className="text-xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[#e40014]" />
               Catálogo de Turmas
             </h1>
-            <p className="text-slate-500 text-xs mt-0.5">Todas as turmas disponíveis no estúdio</p>
+            <p className="text-zinc-500 text-xs mt-0.5">Todas as turmas disponíveis no estúdio</p>
           </div>
         </div>
         <Button
@@ -304,37 +304,37 @@ export default function CatalogoTurmasPage() {
         <div className={cn(
           "rounded-2xl p-4 flex items-center gap-3 border",
           creditsExpired
-            ? "bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800"
+            ? "bg-red- dark:bg-[#e40014] border-red- dark:border-red-"
             : hasCredits
-              ? "bg-violet-50 dark:bg-violet-950/30 border-violet-200 dark:border-violet-800"
-              : "bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800"
+              ? "bg-[#e40014] dark:bg-[#e40014] border-[#e40014] dark:border-red-"
+              : "bg-red- dark:bg-[#e40014] border-red- dark:border-red-"
         )}>
           {creditsExpired ? (
-            <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
+            <AlertCircle className="w-5 h-5 text-red- shrink-0" />
           ) : hasCredits ? (
-            <CreditCard className="w-5 h-5 text-violet-600 shrink-0" />
+            <CreditCard className="w-5 h-5 text-[#e40014] shrink-0" />
           ) : (
-            <AlertCircle className="w-5 h-5 text-amber-600 shrink-0" />
+            <AlertCircle className="w-5 h-5 text-red- shrink-0" />
           )}
           <div className="flex-1">
             {creditsExpired ? (
-              <p className="text-xs font-bold text-rose-700 dark:text-rose-400">
+              <p className="text-xs font-bold text-red- dark:text-red-">
                 Seus créditos expiraram em {new Date(studentCredits.expiry_date).toLocaleDateString('pt-BR')}. Renove para se matricular.
               </p>
             ) : hasCredits ? (
-              <p className="text-xs font-bold text-violet-700 dark:text-violet-400">
+              <p className="text-xs font-bold text-[#e40014] dark:text-[#e40014]">
                 Você tem <span className="text-base">{studentCredits.remaining_credits}</span> crédito(s) disponível(is)
                 {studentCredits.expiry_date && ` — válidos até ${new Date(studentCredits.expiry_date).toLocaleDateString('pt-BR')}`}
               </p>
             ) : (
-              <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
+              <p className="text-xs font-bold text-red- dark:text-red-">
                 Sem créditos disponíveis. Compre um pacote para se matricular.
               </p>
             )}
           </div>
           {(!hasCredits || creditsExpired) && (
             <Link href="/solutions/estudio-de-danca/student/financeiro">
-              <Button size="sm" className="bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold h-8 px-3 rounded-xl">
+              <Button size="sm" className="bg-[#e40014] hover:bg-[#e40014] text-white text-xs font-bold h-8 px-3 rounded-xl">
                 Comprar
               </Button>
             </Link>
@@ -343,15 +343,15 @@ export default function CatalogoTurmasPage() {
       )}
 
       {!loading && !studentCredits && (
-        <div className="rounded-2xl p-4 flex items-center gap-3 border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30">
-          <AlertCircle className="w-5 h-5 text-amber-600 shrink-0" />
+        <div className="rounded-2xl p-4 flex items-center gap-3 border border-red- dark:border-red- bg-red- dark:bg-[#e40014]">
+          <AlertCircle className="w-5 h-5 text-red- shrink-0" />
           <div className="flex-1">
-            <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
+            <p className="text-xs font-bold text-red- dark:text-red-">
               Você ainda não tem créditos. Compre um pacote para se matricular nas turmas.
             </p>
           </div>
           <Link href="/solutions/estudio-de-danca/student/financeiro">
-            <Button size="sm" className="bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold h-8 px-3 rounded-xl">
+            <Button size="sm" className="bg-[#e40014] hover:bg-[#e40014] text-white text-xs font-bold h-8 px-3 rounded-xl">
               Comprar
             </Button>
           </Link>
@@ -360,10 +360,10 @@ export default function CatalogoTurmasPage() {
 
       {/* Busca */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por nome, estilo ou professor..."
-          className="pl-9 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 rounded-xl h-11"
+          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 rounded-xl h-11"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -372,23 +372,23 @@ export default function CatalogoTurmasPage() {
       {/* Lista */}
       {loading ? (
         <div className="flex justify-center py-16">
-          <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-            <Music className="w-14 h-14 text-slate-300 dark:text-slate-700 mb-4" />
-            <h3 className="font-bold text-slate-700 dark:text-slate-300">
+            <Music className="w-14 h-14 text-slate-300 dark:text-zinc-400 mb-4" />
+            <h3 className="font-bold text-zinc-400 dark:text-slate-300">
               {search ? "Nenhuma turma encontrada" : "Nenhuma turma disponível"}
             </h3>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-zinc-400 text-sm mt-1">
               {search ? "Tente outro termo de busca." : "O estúdio ainda não criou turmas."}
             </p>
           </CardContent>
         </Card>
       ) : (
         <div className="space-y-3">
-          <p className="text-xs text-slate-500 font-bold uppercase tracking-wider px-1">
+          <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider px-1">
             {filtered.length} turma(s) disponível(is)
           </p>
           {filtered.map((cls) => {
@@ -400,60 +400,60 @@ export default function CatalogoTurmasPage() {
               <Card
                 key={cls.id}
                 className={cn(
-                  "bg-white dark:bg-slate-900/50 border overflow-hidden transition-all",
+                  "bg-white/5 dark:bg-black/50 border overflow-hidden transition-all",
                   isEnrolled
-                    ? "border-emerald-200 dark:border-emerald-700/40"
-                    : "border-slate-200 dark:border-white/10 hover:border-violet-300 dark:hover:border-violet-700/50"
+                    ? "border-red- dark:border-[#e40014]"
+                    : "border-white/10 dark:border-white/10 hover:border-[#e40014] dark:hover:border-[#e40014]"
                 )}
               >
                 {/* Barra colorida de status */}
                 <div className={cn(
                   "h-1",
                   isEnrolled
-                    ? "bg-emerald-500"
+                    ? "bg-red-"
                     : cls.isCancelledToday
-                      ? "bg-rose-500"
-                      : "bg-gradient-to-r from-violet-500 to-pink-500"
+                      ? "bg-red-"
+                      : "bg-gradient-to-r from-red-500 to-red-500"
                 )} />
 
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-black text-slate-900 dark:text-white text-base leading-tight">
+                        <h3 className="font-black text-white dark:text-white text-base leading-tight">
                           {cls.name}
                         </h3>
                         {cls.isCancelledToday && (
-                          <Badge className="bg-rose-100 text-rose-700 dark:bg-rose-600/20 dark:text-rose-400 border-0 text-[10px] font-bold animate-pulse">
+                          <Badge className="bg-red- text-red- dark:bg-[#e40014] dark:text-red- border-0 text-[10px] font-bold animate-pulse">
                             CANCELADA HOJE
                           </Badge>
                         )}
                       </div>
                       {cls.dance_style && (
-                        <p className="text-xs text-violet-600 dark:text-violet-400 font-bold mt-0.5">
+                        <p className="text-xs text-[#e40014] dark:text-[#e40014] font-bold mt-0.5">
                           {cls.dance_style}
                         </p>
                       )}
                     </div>
                     {cls.level && (
-                      <Badge className={cn("border-0 text-xs font-bold ml-2 shrink-0", LEVEL_COLORS[cls.level] || "bg-slate-100 text-slate-600")}>
+                      <Badge className={cn("border-0 text-xs font-bold ml-2 shrink-0", LEVEL_COLORS[cls.level] || "bg-slate-100 text-zinc-400")}>
                         {LEVEL_LABELS[cls.level] || cls.level}
                       </Badge>
                     )}
                   </div>
 
                   <div className="space-y-1.5 mb-4">
-                    <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                      <GraduationCap className="w-3.5 h-3.5 text-violet-500 shrink-0" />
+                    <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                      <GraduationCap className="w-3.5 h-3.5 text-[#e40014] shrink-0" />
                       <span>{cls.teacherName}</span>
                     </div>
 
                     {cls.max_students && (
-                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                        <Users className="w-3.5 h-3.5 text-pink-500 shrink-0" />
+                      <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                        <Users className="w-3.5 h-3.5 text-[#e40014] shrink-0" />
                         <span>
                           {cls.enrolledCount}/{cls.max_students} vagas
-                          {isFull && <span className="text-rose-500 font-bold ml-1">· LOTADA</span>}
+                          {isFull && <span className="text-red- font-bold ml-1">· LOTADA</span>}
                         </span>
                       </div>
                     )}
@@ -463,10 +463,10 @@ export default function CatalogoTurmasPage() {
                         {(cls.schedule || []).map((s: any, i: number) => (
                           <div
                             key={i}
-                            className="flex items-center gap-1 bg-slate-50 dark:bg-white/5 rounded-lg px-2.5 py-1"
+                            className="flex items-center gap-1 bg-black dark:bg-white/5/5 rounded-lg px-2.5 py-1"
                           >
-                            <Clock className="w-3 h-3 text-pink-500" />
-                            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                            <Clock className="w-3 h-3 text-[#e40014]" />
+                            <span className="text-[11px] font-bold text-zinc-400 dark:text-slate-300">
                               {DAY_NAMES[s.day_of_week]} às {s.start_time}
                               {s.end_time && ` — ${s.end_time}`}
                             </span>
@@ -478,16 +478,16 @@ export default function CatalogoTurmasPage() {
 
                   {isEnrolled ? (
                     <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl px-4 py-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400">
+                      <div className="flex items-center gap-2 bg-red- dark:bg-[#e40014] rounded-xl px-4 py-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-red- shrink-0" />
+                        <span className="text-sm font-bold text-red- dark:text-red-">
                           Você já está matriculado
                         </span>
                       </div>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full h-9 rounded-xl font-bold text-sm border-violet-200 dark:border-violet-700/50 text-violet-600 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/30"
+                        className="w-full h-9 rounded-xl font-bold text-sm border-[#e40014] dark:border-[#e40014] text-[#e40014] dark:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014]"
                         onClick={() => handleShowQr(cls)}
                         disabled={loadingQr === cls.id}
                       >
@@ -504,8 +504,8 @@ export default function CatalogoTurmasPage() {
                       className={cn(
                         "w-full h-10 rounded-xl font-bold text-sm",
                         canEnroll
-                          ? "bg-violet-600 hover:bg-violet-700 text-white shadow-sm shadow-violet-600/20"
-                          : "bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-slate-500 cursor-not-allowed"
+                          ? "bg-[#e40014] hover:bg-[#e40014] text-white shadow-sm shadow-red-600/20"
+                          : "bg-slate-100 dark:bg-white/5/5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed"
                       )}
                       onClick={() => canEnroll && handleEnroll(cls)}
                       disabled={!canEnroll || joining === cls.id}
@@ -547,7 +547,7 @@ export default function CatalogoTurmasPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center justify-center py-6 gap-6">
-            <div ref={qrContainerRef} className="bg-white p-4 rounded-3xl shadow-xl border-4 border-violet-50 dark:border-violet-900/30">
+            <div ref={qrContainerRef} className="bg-white/5 p-4 rounded-3xl shadow-xl border-4 border-[#e40014] dark:border-[#e40014]">
               {activeAttendanceId ? (
                 <div className="flex flex-col items-center gap-4">
                   <QRCode
@@ -556,9 +556,9 @@ export default function CatalogoTurmasPage() {
                     level="H"
                     viewBox="0 0 256 256"
                   />
-                  <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-800 w-full text-center">
-                    <p className="text-[10px] text-slate-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
-                    <p className="font-mono text-lg font-black text-violet-600 tracking-widest">
+                  <div className="bg-black dark:bg-black px-4 py-2 rounded-lg border border-slate-100 dark:border-zinc-800 w-full text-center">
+                    <p className="text-[10px] text-zinc-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
+                    <p className="font-mono text-lg font-black text-[#e40014] tracking-widest">
                       DF-{activeAttendanceId.toString().slice(-8).toUpperCase()}
                     </p>
                   </div>
@@ -574,11 +574,11 @@ export default function CatalogoTurmasPage() {
                 </div>
               ) : (
                 <div className="w-56 h-56 flex items-center justify-center">
-                  <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+                  <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
                 </div>
               )}
             </div>
-            <p className="text-[10px] text-slate-400 text-center">
+            <p className="text-[10px] text-zinc-400 text-center">
               Este QR é único para você. O crédito será descontado quando a presença for validada no scanner.
             </p>
           </div>

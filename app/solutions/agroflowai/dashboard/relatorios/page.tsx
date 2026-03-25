@@ -148,7 +148,7 @@ export default function RelatoriosPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Relatórios & CAR</h1>
-          <p className="text-slate-400 mt-1">Relatórios operacionais, ambientais e de compliance</p>
+          <p className="text-zinc-400 mt-1">Relatórios operacionais, ambientais e de compliance</p>
         </div>
       </div>
 
@@ -162,7 +162,7 @@ export default function RelatoriosPage() {
           {kpiCards.map(kpi => {
             const Icon = kpi.icon
             return (
-              <Card key={kpi.label} className="bg-slate-900/50 border-slate-800">
+              <Card key={kpi.label} className="bg-zinc-950/50 border-zinc-800">
                 <CardContent className="p-4">
                   <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center mb-2", `${kpi.color.replace('text-', 'bg-')}/10`)}>
                     <Icon className={cn("w-4 h-4", kpi.color)} />
@@ -170,7 +170,7 @@ export default function RelatoriosPage() {
                   <p className="text-xl font-black text-white">
                     {kpi.isString ? kpi.value : (typeof kpi.value === 'number' ? kpi.value : 0)}
                   </p>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-0.5">{kpi.label}</p>
+                  <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mt-0.5">{kpi.label}</p>
                 </CardContent>
               </Card>
             )
@@ -179,13 +179,13 @@ export default function RelatoriosPage() {
       )}
 
       {/* Compliance Status */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-zinc-950/50 border-zinc-800">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5 text-emerald-400" />
             Painel de Compliance Ambiental
           </CardTitle>
-          <CardDescription className="text-slate-500">Status de regularização das propriedades cadastradas</CardDescription>
+          <CardDescription className="text-zinc-500">Status de regularização das propriedades cadastradas</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
@@ -194,12 +194,12 @@ export default function RelatoriosPage() {
               { label: "Em Processo", value: carStatus.em_processo, color: "bg-blue-500" },
               { label: "Pendentes/Irregulares", value: carStatus.pendente, color: "bg-amber-500" },
             ].map(item => (
-              <div key={item.label} className="p-4 rounded-xl bg-slate-800/50">
+              <div key={item.label} className="p-4 rounded-xl bg-zinc-900/50">
                 <p className="text-2xl font-black text-white">
                   {item.value}
-                  <span className="text-sm text-slate-500 font-normal">/{carStatus.total || 1}</span>
+                  <span className="text-sm text-zinc-500 font-normal">/{carStatus.total || 1}</span>
                 </p>
-                <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-0.5">{item.label}</p>
+                <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-0.5">{item.label}</p>
                 <div className="w-full bg-slate-700 rounded-full h-2 mt-2">
                   <div
                     className={cn("h-2 rounded-full transition-all", item.color)}
@@ -211,8 +211,8 @@ export default function RelatoriosPage() {
           </div>
 
           {complianceAlerts.length > 0 && (
-            <div className="pt-4 border-t border-slate-800">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Alertas Ativos de Compliance</p>
+            <div className="pt-4 border-t border-zinc-800">
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">Alertas Ativos de Compliance</p>
               <div className="space-y-2">
                 {complianceAlerts.map((alert, i) => (
                   <div
@@ -227,7 +227,7 @@ export default function RelatoriosPage() {
                     <AlertTriangle className={cn("w-4 h-4 flex-shrink-0", alert.severity === "critical" ? "text-red-400" : "text-amber-400")} />
                     <div>
                       <p className="text-sm font-bold text-white">{alert.property}</p>
-                      <p className="text-xs text-slate-400">{alert.issue}</p>
+                      <p className="text-xs text-zinc-400">{alert.issue}</p>
                     </div>
                   </div>
                 ))}
@@ -236,7 +236,7 @@ export default function RelatoriosPage() {
           )}
 
           {complianceAlerts.length === 0 && carStatus.total > 0 && (
-            <div className="pt-4 border-t border-slate-800 flex items-center gap-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+            <div className="pt-4 border-t border-zinc-800 flex items-center gap-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
               <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
               <p className="text-sm font-bold text-emerald-300">Todas as propriedades estão regularizadas ou em processo!</p>
             </div>
@@ -251,7 +251,7 @@ export default function RelatoriosPage() {
           {REPORTS.map(report => {
             const Icon = report.icon
             return (
-              <Card key={report.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={report.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", report.bg)}>
@@ -260,16 +260,16 @@ export default function RelatoriosPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2 mb-1">
                         <p className="font-bold text-white text-sm">{report.title}</p>
-                        <Badge className="text-[10px] font-bold border-0 text-slate-400 bg-slate-700 flex-shrink-0">
+                        <Badge className="text-[10px] font-bold border-0 text-zinc-400 bg-slate-700 flex-shrink-0">
                           {report.type}
                         </Badge>
                       </div>
-                      <p className="text-xs text-slate-500 mb-3">{report.description}</p>
+                      <p className="text-xs text-zinc-500 mb-3">{report.description}</p>
                     </div>
                   </div>
                   <Button
                     size="sm"
-                    className="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl"
+                    className="w-full bg-zinc-900 hover:bg-slate-700 text-slate-300 font-bold rounded-xl"
                     onClick={() => {}}
                   >
                     <Download className="w-3.5 h-3.5 mr-2" />

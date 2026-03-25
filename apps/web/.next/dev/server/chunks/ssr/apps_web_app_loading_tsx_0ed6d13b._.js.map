@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "debugId": "06d2b4c8-7bab-23d7-1c81-deced5cc2c8a",
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["file:///C:/gemini-cli/workflow%20pro%20builder/apps/web/app/loading.tsx"],"sourcesContent":["export default function Loading() {\r\n  return (\r\n    <div className=\"fixed inset-0 flex flex-col items-center justify-center bg-black\">\r\n      <div className=\"h-10 w-10 animate-spin rounded-full border-2 border-white/30 border-t-white\" />\r\n      <p className=\"mt-4 text-sm text-white/60\">Carregando...</p>\r\n    </div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8ZAAC;QAAI,WAAU;;0BACb,8ZAAC;gBAAI,WAAU;;;;;;0BACf,8ZAAC;gBAAE,WAAU;0BAA6B;;;;;;;;;;;;AAGhD"}}]
-}

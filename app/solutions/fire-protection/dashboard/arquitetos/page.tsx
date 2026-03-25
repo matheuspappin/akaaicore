@@ -104,14 +104,14 @@ export default function ArquitetosPage() {
             <Ruler className="w-6 h-6 text-red-600" />
             Arquitetos
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Arquitetos parceiros vinculados e progresso geral dos projetos
           </p>
         </div>
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por nome ou e-mail..."
           value={search}
@@ -121,11 +121,11 @@ export default function ArquitetosPage() {
       </div>
 
       {architects.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
           <CardContent className="py-12 text-center">
             <Ruler className="w-12 h-12 mx-auto text-slate-300 dark:text-slate-600 mb-4" />
-            <p className="text-slate-500 dark:text-slate-400 font-medium">Nenhum arquiteto vinculado</p>
-            <p className="text-sm text-slate-400 mt-1">
+            <p className="text-zinc-500 dark:text-zinc-400 font-medium">Nenhum arquiteto vinculado</p>
+            <p className="text-sm text-zinc-400 mt-1">
               Convide arquitetos parceiros via links de convite nas Ordens de Serviço (projetos PPCI)
             </p>
           </CardContent>
@@ -137,7 +137,7 @@ export default function ArquitetosPage() {
             return (
               <Card
                 key={arch.id}
-                className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow"
               >
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between gap-4">
@@ -147,7 +147,7 @@ export default function ArquitetosPage() {
                       </div>
                       <div>
                         <h3 className="font-bold text-slate-900 dark:text-white">{arch.name || "Sem nome"}</h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1">
                           <Ruler className="w-3 h-3" />
                           Arquiteto Parceiro
                         </p>
@@ -155,7 +155,7 @@ export default function ArquitetosPage() {
                     </div>
                   </div>
                   {(arch.phone || arch.email) && (
-                    <div className="mt-3 space-y-1 text-xs text-slate-500 dark:text-slate-400">
+                    <div className="mt-3 space-y-1 text-xs text-zinc-500 dark:text-zinc-400">
                       {arch.phone && (
                         <div className="flex items-center gap-2">
                           <Phone className="w-3.5 h-3.5" />
@@ -172,10 +172,10 @@ export default function ArquitetosPage() {
                   )}
                   <div className="mt-4 pt-4 border-t border-slate-100 dark:border-white/5">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wide">Progresso dos Projetos</span>
+                      <span className="text-xs font-bold text-zinc-500 uppercase tracking-wide">Progresso dos Projetos</span>
                       <span className="text-sm font-black text-violet-600">{stats.progress}%</span>
                     </div>
-                    <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-slate-100 dark:bg-zinc-900 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-violet-500 to-purple-600 rounded-full transition-all"
                         style={{ width: `${stats.progress}%` }}
@@ -184,15 +184,15 @@ export default function ArquitetosPage() {
                     <div className="grid grid-cols-3 gap-2 text-center mt-3">
                       <div>
                         <p className="text-base font-black text-slate-900 dark:text-white">{stats.pending + stats.inProgress}</p>
-                        <p className="text-[10px] text-slate-400 uppercase tracking-wide">Ativos</p>
+                        <p className="text-[10px] text-zinc-400 uppercase tracking-wide">Ativos</p>
                       </div>
                       <div>
                         <p className="text-base font-black text-emerald-500">{stats.finished}</p>
-                        <p className="text-[10px] text-slate-400 uppercase tracking-wide">Concluídos</p>
+                        <p className="text-[10px] text-zinc-400 uppercase tracking-wide">Concluídos</p>
                       </div>
                       <div>
                         <p className="text-base font-black text-slate-900 dark:text-white">{stats.total}</p>
-                        <p className="text-[10px] text-slate-400 uppercase tracking-wide">Total</p>
+                        <p className="text-[10px] text-zinc-400 uppercase tracking-wide">Total</p>
                       </div>
                     </div>
                   </div>

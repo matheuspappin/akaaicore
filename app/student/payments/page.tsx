@@ -221,7 +221,7 @@ function StudentPaymentsContent() {
   if (isLoading) return null
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-20">
       <div className="sticky top-0 bg-background/95 backdrop-blur z-50 border-b">
         <div className="container flex h-16 items-center px-4 gap-4">
           <Button type="button" variant="ghost" size="icon" onClick={() => window.location.href='/student'}>
@@ -264,7 +264,7 @@ function StudentPaymentsContent() {
             <h3 className="font-bold text-sm text-muted-foreground uppercase tracking-wider">Comprar Pacote de Créditos</h3>
             <div className="grid grid-cols-1 gap-3">
               {packages.map((pkg) => (
-                <Card key={pkg.id} className="border-2 border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-all cursor-pointer group"
+                <Card key={pkg.id} className="border-2 border-slate-100 dark:border-zinc-800 hover:border-primary/50 transition-all cursor-pointer group"
                   onClick={() => handlePayment({
                     id: pkg.id,
                     amount: pkg.price,
@@ -298,7 +298,7 @@ function StudentPaymentsContent() {
             <h3 className="font-bold text-sm text-muted-foreground uppercase tracking-wider">Uso de Créditos</h3>
             <Card className="border-none shadow-sm">
               <CardContent className="p-0">
-                <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                <div className="divide-y divide-slate-100 dark:divide-zinc-800">
                   {creditUsage.map((usage) => (
                     <div key={usage.id} className="p-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -347,7 +347,7 @@ function StudentPaymentsContent() {
           <h3 className="font-bold text-sm text-muted-foreground uppercase tracking-wider">Histórico de Mensalidades</h3>
           
           {invoices.length === 0 ? (
-            <div className="text-center py-8 text-slate-400 italic text-sm">
+            <div className="text-center py-8 text-zinc-400 italic text-sm">
               Nenhuma fatura encontrada.
             </div>
           ) : invoices.map((invoice) => (
@@ -400,13 +400,13 @@ function StudentPaymentsContent() {
           <Card className="border-none shadow-sm">
             <CardContent className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <CreditCard className="w-5 h-5 text-slate-400" />
+                <CreditCard className="w-5 h-5 text-zinc-400" />
                 <span className="text-sm font-medium">Cartão final **** 4242</span>
               </div>
               <Badge variant="outline" className="text-[10px]">PADRÃO</Badge>
             </CardContent>
           </Card>
-          <Button variant="outline" className="w-full border-dashed border-slate-300 text-slate-500 text-xs">
+          <Button variant="outline" className="w-full border-dashed border-slate-300 text-zinc-500 text-xs">
             + Adicionar novo cartão
           </Button>
         </div>
@@ -431,7 +431,7 @@ function StudentPaymentsContent() {
                 </div>
                 <div className="text-left">
                   <p className="font-bold text-sm text-slate-900">Pagar com PIX</p>
-                  <p className="text-xs text-slate-500">Aprovação instantânea</p>
+                  <p className="text-xs text-zinc-500">Aprovação instantânea</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-indigo-600" />
@@ -446,7 +446,7 @@ function StudentPaymentsContent() {
                 </div>
                 <div className="text-left">
                   <p className="font-bold text-sm text-slate-900">Cartão de Crédito</p>
-                  <p className="text-xs text-slate-500">Checkout Seguro via Stripe</p>
+                  <p className="text-xs text-zinc-500">Checkout Seguro via Stripe</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-emerald-600" />
@@ -459,7 +459,7 @@ function StudentPaymentsContent() {
         </DialogContent>
       </Dialog>
 
-      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t flex items-center justify-around h-16 px-4 z-50">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-950 border-t flex items-center justify-around h-16 px-4 z-50">
         <Button type="button" variant="ghost" className="flex flex-col gap-1 text-muted-foreground" onClick={() => window.location.href='/student'}>
           <LayoutDashboard className="w-5 h-5" />
           <span className="text-[10px]">Início</span>

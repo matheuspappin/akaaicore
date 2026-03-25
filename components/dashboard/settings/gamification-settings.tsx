@@ -94,7 +94,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
         </CardHeader>
         <CardContent className="space-y-6">
           
-          <div className="flex items-center justify-between p-4 border rounded-lg bg-slate-50 dark:bg-slate-900/50">
+          <div className="flex items-center justify-between p-4 border rounded-lg bg-black dark:bg-zinc-950/50">
             <div className="space-y-0.5">
               <Label className="text-base font-semibold">Sistema Ativo</Label>
               <p className="text-sm text-muted-foreground">
@@ -110,7 +110,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4 border p-4 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-full text-indigo-600 dark:text-indigo-400">
+                <div className="p-2 bg-red- dark:bg-[#e40014] rounded-full text-red- dark:text-red-">
                   <Star className="w-4 h-4" />
                 </div>
                 <h3 className="font-semibold">Pontos por Presença</h3>
@@ -132,7 +132,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
 
             <div className="space-y-4 border p-4 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-emerald-600 dark:text-emerald-400">
+                <div className="p-2 bg-red- dark:bg-[#e40014] rounded-full text-red- dark:text-red-">
                   <Users className="w-4 h-4" />
                 </div>
                 <h3 className="font-semibold">Indicação de Amigos</h3>
@@ -154,7 +154,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
 
             <div className="space-y-4 border p-4 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400">
+                <div className="p-2 bg-red- dark:bg-[#e40014] rounded-full text-red- dark:text-red-">
                   <MessageSquare className="w-4 h-4" />
                 </div>
                 <h3 className="font-semibold">Avaliação da Aula</h3>
@@ -178,7 +178,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
           </div>
 
           <div className="flex justify-end pt-4">
-            <Button onClick={handleSave} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
+            <Button onClick={handleSave} disabled={saving} className="bg-red- hover:bg-red-">
               {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Salvar Configurações
             </Button>

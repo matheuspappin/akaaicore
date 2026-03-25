@@ -268,7 +268,7 @@ export default function AdminUsersPage() {
       case 'teacher':
         return <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 gap-1">Profissional</Badge>
       case 'receptionist':
-        return <Badge className="bg-slate-500/10 text-slate-500 border-slate-500/20 gap-1">Recepcionista</Badge>
+        return <Badge className="bg-zinc-500/10 text-zinc-500 border-zinc-500/20 gap-1">Recepcionista</Badge>
       case 'student':
         return <Badge className="bg-violet-500/10 text-violet-500 border-violet-500/20 gap-1">Cliente</Badge>
       default:
@@ -284,10 +284,10 @@ export default function AdminUsersPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center gap-4 w-full md:w-auto">
             <div className="relative w-full md:w-96">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
               <Input 
                 placeholder="Buscar por nome, email ou estúdio..." 
-                className="pl-9 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                className="pl-9 bg-white dark:bg-zinc-950 border-slate-200 dark:border-zinc-800"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -318,13 +318,13 @@ export default function AdminUsersPage() {
             )}
           </div>
           <div className="flex gap-2 w-full md:w-auto">
-            <Button variant="outline" className="gap-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900" onClick={exportToCSV}>
+            <Button variant="outline" className="gap-2 border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-950" onClick={exportToCSV}>
               <Download className="w-4 h-4" /> Exportar
             </Button>
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="gap-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <Button variant="outline" className="gap-2 border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
                   <Filter className="w-4 h-4" /> 
                   {filterRole === 'all' ? 'Filtrar' : 
                    filterRole === 'super_admin' ? 'Super Admin' :
@@ -355,13 +355,13 @@ export default function AdminUsersPage() {
 
         {/* Dialog Novo Usuário */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="sm:max-w-[500px] bg-white dark:bg-slate-900 border-none shadow-2xl">
+          <DialogContent className="sm:max-w-[500px] bg-white dark:bg-zinc-950 border-none shadow-2xl">
             <DialogHeader>
               <DialogTitle className="text-xl font-bold flex items-center gap-2">
                 <Users className="w-5 h-5 text-indigo-600" />
                 Criar Novo Usuário Global
               </DialogTitle>
-              <DialogDescription className="text-slate-500">
+              <DialogDescription className="text-zinc-500">
                 Adicione um novo administrador ou proprietário vinculado a um estúdio específico.
               </DialogDescription>
             </DialogHeader>
@@ -375,7 +375,7 @@ export default function AdminUsersPage() {
                     placeholder="Ex: Rodrigo Oliveira"
                     value={newUser.name}
                     onChange={(e) => setNewUser({...newUser, name: e.target.value})}
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
                 <div className="space-y-2">
@@ -386,25 +386,25 @@ export default function AdminUsersPage() {
                     placeholder="email@exemplo.com"
                     value={newUser.email}
                     onChange={(e) => setNewUser({...newUser, email: e.target.value})}
-                    className="bg-slate-50 dark:bg-slate-800 border-none"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none"
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Senha Temporária</Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 w-4 h-4 text-slate-400 z-10" />
+                    <Lock className="absolute left-3 top-3 w-4 h-4 text-zinc-400 z-10" />
                     <Input 
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Min 8 caracteres + símbolo + maiúscula"
                       value={newUser.password}
                       onChange={(e) => setNewUser({...newUser, password: e.target.value})}
-                      className="bg-slate-50 dark:bg-slate-800 border-none pl-10 pr-10"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none pl-10 pr-10"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 z-10"
+                      className="absolute right-3 top-3 text-zinc-400 hover:text-slate-600 dark:hover:text-slate-200 z-10"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -426,7 +426,7 @@ export default function AdminUsersPage() {
                         setNewUser(updatedUser);
                       }}
                     >
-                      <SelectTrigger className="bg-slate-50 dark:bg-slate-800 border-none">
+                      <SelectTrigger className="bg-slate-50 dark:bg-zinc-900 border-none">
                         <SelectValue placeholder="Selecione" />
                       </SelectTrigger>
                       <SelectContent>
@@ -448,7 +448,7 @@ export default function AdminUsersPage() {
                       disabled={newUser.role === 'super_admin'}
                     >
                       <SelectTrigger className={cn(
-                        "bg-slate-50 dark:bg-slate-800 border-none",
+                        "bg-slate-50 dark:bg-zinc-900 border-none",
                         newUser.role === 'super_admin' && "opacity-50"
                       )}>
                         <SelectValue placeholder={newUser.role === 'super_admin' ? "Global (Nenhum)" : "Selecione"} />
@@ -485,7 +485,7 @@ export default function AdminUsersPage() {
           </DialogContent>
         </Dialog>
 
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
           <CardHeader className="pb-0">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">Todos os Usuários da Plataforma</CardTitle>
@@ -494,7 +494,7 @@ export default function AdminUsersPage() {
           </CardHeader>
           <CardContent className="p-0 pt-6">
             <Table>
-              <TableHeader className="bg-slate-50 dark:bg-slate-800/50">
+              <TableHeader className="bg-slate-50 dark:bg-zinc-900/50">
                 <TableRow>
                   <TableHead className="w-[50px] pl-6">
                     <Checkbox 
@@ -515,18 +515,18 @@ export default function AdminUsersPage() {
               <TableBody>
                 {isLoading ? (
                   <TableRow>
-                    <TableCell colSpan={8} className="h-32 text-center text-slate-400">Carregando usuários...</TableCell>
+                    <TableCell colSpan={8} className="h-32 text-center text-zinc-400">Carregando usuários...</TableCell>
                   </TableRow>
                 ) : filteredUsers.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={8} className="h-32 text-center text-slate-400">Nenhum usuário encontrado.</TableCell>
+                    <TableCell colSpan={8} className="h-32 text-center text-zinc-400">Nenhum usuário encontrado.</TableCell>
                   </TableRow>
                 ) : (
                   filteredUsers.map((user) => (
                     <TableRow 
                       key={user.id} 
                       className={cn(
-                        "hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors",
+                        "hover:bg-slate-50 dark:hover:bg-zinc-900/30 transition-colors",
                         selectedUsers.includes(user.id) && "bg-indigo-50/50 dark:bg-indigo-900/10"
                       )}
                     >
@@ -546,7 +546,7 @@ export default function AdminUsersPage() {
                           </Avatar>
                           <div className="flex flex-col">
                             <span className="font-bold text-slate-900 dark:text-white">{user.name}</span>
-                            <span className="text-xs text-slate-400 flex items-center gap-1">
+                            <span className="text-xs text-zinc-400 flex items-center gap-1">
                               <Mail className="w-3 h-3" /> {user.email}
                             </span>
                           </div>
@@ -569,13 +569,13 @@ export default function AdminUsersPage() {
                             <CheckCircle2 className="w-3.5 h-3.5" /> Ativo
                           </div>
                         ) : (
-                          <div className="flex items-center gap-1.5 text-slate-400 font-bold text-xs uppercase tracking-wider">
+                          <div className="flex items-center gap-1.5 text-zinc-400 font-bold text-xs uppercase tracking-wider">
                             <XCircle className="w-3.5 h-3.5" /> Inativo
                           </div>
                         )}
                       </TableCell>
                       <TableCell>
-                        <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                        <div className="flex items-center gap-1.5 text-xs text-zinc-500">
                           <Clock className="w-3.5 h-3.5" />
                           {new Date(user.lastLogin).toLocaleString('pt-BR')}
                         </div>
@@ -583,7 +583,7 @@ export default function AdminUsersPage() {
                       <TableCell className="text-right pr-6">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="text-slate-400 hover:text-indigo-600">
+                            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-indigo-600">
                               <MoreVertical className="w-4 h-4" />
                             </Button>
                           </DropdownMenuTrigger>

@@ -138,7 +138,7 @@ export default function TechnicianOSExtintoresPage() {
             <Package className="w-6 h-6 text-orange-600" />
             Evolução dos Extintores
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
             {os?.title || "Carregando..."} — {entreguesCount}/{assets.length} entregues
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function TechnicianOSExtintoresPage() {
         </div>
       ) : assets.length === 0 ? (
         <Card className="border-dashed">
-          <CardContent className="py-12 text-center text-slate-500">
+          <CardContent className="py-12 text-center text-zinc-500">
             <Package className="w-12 h-12 mx-auto mb-3 opacity-40" />
             <p className="font-medium">Nenhum extintor vinculado a esta OS</p>
             <p className="text-sm mt-1">
@@ -178,7 +178,7 @@ export default function TechnicianOSExtintoresPage() {
                     <div>
                       <h3 className="font-bold text-slate-900 dark:text-white">{asset.name}</h3>
                       {(asset.agent_type || asset.capacity) && (
-                        <p className="text-xs text-slate-500 mt-0.5">
+                        <p className="text-xs text-zinc-500 mt-0.5">
                           {[asset.agent_type, asset.capacity].filter(Boolean).join(" · ")}
                         </p>
                       )}
@@ -205,7 +205,7 @@ export default function TechnicianOSExtintoresPage() {
 
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div>
-                      <Label className="text-xs font-bold uppercase text-slate-500">Evolução</Label>
+                      <Label className="text-xs font-bold uppercase text-zinc-500">Evolução</Label>
                       <Select
                         value={ev}
                         onValueChange={(v) => handleEvolutionChange(asset.id, v)}
@@ -227,7 +227,7 @@ export default function TechnicianOSExtintoresPage() {
                       </Select>
                     </div>
                     <div>
-                      <Label className="text-xs font-bold uppercase text-slate-500">Local / Empresa</Label>
+                      <Label className="text-xs font-bold uppercase text-zinc-500">Local / Empresa</Label>
                       <div className="flex gap-2 mt-1">
                         <Input
                           value={asset.location || ""}

@@ -146,12 +146,12 @@ export default function FuncionariosFinancePage() {
             <Users className="w-6 h-6 text-emerald-600" />
             Pagamentos aos Funcionários
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Técnicos, engenheiros e demais colaboradores
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Label className="text-sm text-slate-500">Mês</Label>
+          <Label className="text-sm text-zinc-500">Mês</Label>
           <Input
             type="month"
             value={referenceMonth}
@@ -163,10 +163,10 @@ export default function FuncionariosFinancePage() {
 
       <div className="grid gap-4">
         {professionals.length === 0 ? (
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+          <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
             <CardContent className="p-12 text-center">
               <Users className="w-12 h-12 mx-auto text-slate-300 mb-3" />
-              <p className="text-slate-500">Nenhum funcionário com pagamentos ou comissões neste mês.</p>
+              <p className="text-zinc-500">Nenhum funcionário com pagamentos ou comissões neste mês.</p>
             </CardContent>
           </Card>
         ) : (
@@ -178,7 +178,7 @@ export default function FuncionariosFinancePage() {
             return (
               <Card
                 key={prof.id}
-                className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden"
+                className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 overflow-hidden"
               >
                 <div
                   className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-white/5"
@@ -190,7 +190,7 @@ export default function FuncionariosFinancePage() {
                     </div>
                     <div>
                       <p className="font-bold text-slate-900 dark:text-white">{prof.name}</p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-zinc-500">
                         {typeLabels[prof.professional_type] || prof.professional_type}
                       </p>
                     </div>
@@ -218,7 +218,7 @@ export default function FuncionariosFinancePage() {
                       Pagar
                     </Button>
                     <ChevronDown
-                      className={cn("w-5 h-5 text-slate-400 transition-transform", expand && "rotate-180")}
+                      className={cn("w-5 h-5 text-zinc-400 transition-transform", expand && "rotate-180")}
                     />
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default function FuncionariosFinancePage() {
                     <div className="grid md:grid-cols-2 gap-4">
                       {prof.pendingOrders?.length > 0 && (
                         <div>
-                          <p className="text-xs font-bold uppercase text-slate-500 mb-2">OS com comissão pendente</p>
+                          <p className="text-xs font-bold uppercase text-zinc-500 mb-2">OS com comissão pendente</p>
                           <ul className="space-y-1">
                             {prof.pendingOrders.map((o: any) => (
                               <li
@@ -244,7 +244,7 @@ export default function FuncionariosFinancePage() {
                       )}
                       {prof.payments?.length > 0 && (
                         <div>
-                          <p className="text-xs font-bold uppercase text-slate-500 mb-2">Pagamentos realizados</p>
+                          <p className="text-xs font-bold uppercase text-zinc-500 mb-2">Pagamentos realizados</p>
                           <ul className="space-y-1">
                             {prof.payments.map((p: any, i: number) => (
                               <li
@@ -254,7 +254,7 @@ export default function FuncionariosFinancePage() {
                                 <span className="text-emerald-600 font-medium">
                                   R$ {Number(p.amount || 0).toLocaleString("pt-BR")}
                                 </span>
-                                <span className="text-slate-500 text-xs">
+                                <span className="text-zinc-500 text-xs">
                                   {p.paid_at ? new Date(p.paid_at).toLocaleDateString("pt-BR") : ""}
                                 </span>
                               </li>
@@ -294,7 +294,7 @@ export default function FuncionariosFinancePage() {
                     className="mt-1"
                   />
                   {selectedProfessional.pendingCommission > 0 && (
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-zinc-500 mt-1">
                       Comissão pendente: R$ {selectedProfessional.pendingCommission.toLocaleString("pt-BR")}
                     </p>
                   )}

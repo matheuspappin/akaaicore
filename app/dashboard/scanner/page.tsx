@@ -290,7 +290,7 @@ export default function AdminScannerPage() {
 
   return (
     <ModuleGuard module="scanner" showFullError>
-      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950">
+      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-black">
         <Header title={t.scanner.title} />
         
         <main className="flex-1 p-6 max-w-lg mx-auto w-full space-y-6">
@@ -303,7 +303,7 @@ export default function AdminScannerPage() {
             <h2 className="text-2xl font-bold tracking-tight">{t.scanner.gate}</h2>
           </div>
 
-          <Card className="border-none shadow-2xl overflow-hidden bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-2xl overflow-hidden bg-white dark:bg-zinc-950">
             <CardHeader className="text-center pb-2">
               <CardTitle className="text-primary flex items-center justify-center gap-2">
                 <QrCodeIcon className="w-6 h-6" />
@@ -314,7 +314,7 @@ export default function AdminScannerPage() {
             <CardContent className="p-6 flex flex-col items-center gap-6">
               
               {/* Área do Scanner */}
-              <div className="w-full aspect-square rounded-3xl bg-slate-100 dark:bg-slate-800 border-4 border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center relative overflow-hidden group">
+              <div className="w-full aspect-square rounded-3xl bg-slate-100 dark:bg-zinc-900 border-4 border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center relative overflow-hidden group">
                 {!isScanning ? (
                   <div className="text-center p-6 flex flex-col items-center">
                     <Camera className="w-20 h-20 text-slate-300 mb-4" />
@@ -333,7 +333,7 @@ export default function AdminScannerPage() {
                       </Button>
                       <Button 
                         variant="ghost"
-                        className="text-slate-400 text-xs hover:text-primary"
+                        className="text-zinc-400 text-xs hover:text-primary"
                         onClick={handleSimulateScan}
                       >
                         {t.scanner.simulate}
@@ -405,8 +405,8 @@ export default function AdminScannerPage() {
 
               {/* Busca Manual Profissional */}
               {!isScanning && !loading && !lastResult && (
-                <div className="w-full space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-                  <p className="text-[10px] text-center uppercase tracking-widest font-bold text-slate-400">{t.scanner.manualCode}</p>
+                <div className="w-full space-y-3 pt-4 border-t border-slate-100 dark:border-zinc-800">
+                  <p className="text-[10px] text-center uppercase tracking-widest font-bold text-zinc-400">{t.scanner.manualCode}</p>
                   <div className="flex gap-2">
                     <Input 
                       placeholder={t.scanner.manualPlaceholder} 

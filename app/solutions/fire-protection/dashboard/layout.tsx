@@ -86,7 +86,7 @@ function FireSidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: ()
   return (
     <aside
       className={cn(
-        "hidden md:flex flex-col fixed top-0 left-0 h-full bg-slate-950 border-r border-white/10 z-50 transition-all duration-300",
+        "hidden md:flex flex-col fixed top-0 left-0 h-full bg-black border-r border-white/10 z-50 transition-all duration-300",
         collapsed ? "w-[72px]" : "w-64"
       )}
     >
@@ -168,7 +168,7 @@ function FireSidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: ()
 
 function FireMobileHeader({ onOpen, onLogout }: { onOpen: () => void; onLogout: () => void }) {
   return (
-    <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-slate-950 border-b border-white/10 flex items-center justify-between px-4 z-40">
+    <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-black border-b border-white/10 flex items-center justify-between px-4 z-40">
       <Link href="/solutions/fire-protection" className="flex items-center gap-2">
         <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center">
           <FireExtinguisher className="w-4 h-4 text-white" />
@@ -258,7 +258,7 @@ export default function FireDashboardLayout({ children }: { children: React.Reac
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-red-600" />
       </div>
     )
@@ -267,12 +267,12 @@ export default function FireDashboardLayout({ children }: { children: React.Reac
   if (!authorized) return null
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950">
       <FireSidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} />
 
       {/* Mobile drawer */}
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="p-0 bg-slate-950 border-r border-white/10 w-72">
+        <SheetContent side="left" className="p-0 bg-black border-r border-white/10 w-72">
           <div className="flex items-center gap-2 p-4 border-b border-white/10">
             <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center">
               <FireExtinguisher className="w-4 h-4 text-white" />

@@ -81,8 +81,8 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
         accentName: "CORE",
         gradient: null,
         accentText: "text-white",
-        accentBg: "bg-white",
-        accentBgMuted: "bg-white/10",
+        accentBg: "bg-white/5",
+        accentBgMuted: "bg-white/5/10",
         accentShadow: "shadow-white/20",
         accentForeground: "text-black",
         secondaryColor: "text-white/70",
@@ -454,7 +454,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
             )}
             {!collapsed && (
               <span className="text-lg font-black tracking-tighter">
-                {branding.name}<span className={branding.accentText ?? "text-red-600"}>
+                {branding.name}<span className={branding.accentText ?? "text-[#e40014]"}>
                   {branding.accentName}
                 </span>
               </span>
@@ -468,7 +468,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
             {studios.length > 1 ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between px-3 h-10 border-white/10 bg-white/5 hover:bg-white/10 text-white">
+                  <Button variant="outline" className="w-full justify-between px-3 h-10 border-white/10 bg-white/5/5 hover:bg-white/5/10 text-white">
                     <div className="flex items-center gap-2 truncate">
                       <Building className={cn("w-4 h-4 flex-shrink-0", branding.secondaryColor)} />
                       <span className="truncate text-xs font-bold uppercase tracking-widest">{activeStudio?.name || t.sidebar.selectStudio}</span>
@@ -476,24 +476,24 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                     <ChevronDown className="w-4 h-4 opacity-50 flex-shrink-0" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-[200px] bg-slate-900 border-white/10 text-white">
-                  <DropdownMenuLabel className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t.sidebar.switchStudio}</DropdownMenuLabel>
-                  <DropdownMenuSeparator className="bg-white/10" />
+                <DropdownMenuContent align="start" className="w-[200px] bg-zinc-950 border-white/10 text-white">
+                  <DropdownMenuLabel className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">{t.sidebar.switchStudio}</DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-white/5/10" />
                   {studios.map(studio => (
                     <DropdownMenuItem 
                       key={studio.id} 
                       onClick={() => switchStudio(studio.id)}
-                      className={cn("gap-2 cursor-pointer hover:bg-white/5 focus:bg-white/5", studio.id === studioId && `${branding.accentBgMuted ?? "bg-red-600/10"} ${branding.secondaryColor} font-bold`)}
+                      className={cn("gap-2 cursor-pointer hover:bg-white/5/5 focus:bg-white/5/5", studio.id === studioId && `${branding.accentBgMuted ?? "bg-[#e40014]"} ${branding.secondaryColor} font-bold`)}
                     >
                       <Building className="w-3 h-3" />
                       <span className="truncate">{studio.name}</span>
-                      {studio.id === studioId && <div className={cn("ml-auto w-1.5 h-1.5 rounded-full", branding.accentBg ?? "bg-red-600")} />}
+                      {studio.id === studioId && <div className={cn("ml-auto w-1.5 h-1.5 rounded-full", branding.accentBg ?? "bg-[#e40014]")} />}
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div className="flex items-center gap-2 px-3 h-10 rounded-md border border-white/10 bg-white/5 text-slate-400">
+              <div className="flex items-center gap-2 px-3 h-10 rounded-md border border-white/10 bg-white/5/5 text-zinc-400">
                 <Building className={cn("w-4 h-4 flex-shrink-0", branding.secondaryColor)} />
                 <span className="truncate text-xs font-bold uppercase tracking-widest">{studios[0].name}</span>
               </div>
@@ -528,18 +528,18 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                           className={cn(
                             "flex items-center justify-between px-3 py-2.5 rounded-lg transition-all group relative",
                             isActive
-                              ? `${branding.accentBg ?? "bg-red-600"} ${(branding as { accentForeground?: string }).accentForeground ?? "text-white"} shadow-lg ${branding.accentShadow ?? "shadow-red-600/20"} font-bold`
-                              : "text-slate-400 hover:bg-white/5 hover:text-white",
+                              ? `${branding.accentBg ?? "bg-[#e40014]"} ${(branding as { accentForeground?: string }).accentForeground ?? "text-white"} shadow-lg ${branding.accentShadow ?? "shadow-red-600/20"} font-bold`
+                              : "text-zinc-400 hover:bg-white/5/5 hover:text-white",
                             collapsed && "justify-center"
                           )}
                           title={collapsed ? item.label : undefined}
                         >
                           <div className="flex items-center gap-3">
-                            <item.icon className={cn("w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110", isActive ? ((branding as { accentForeground?: string }).accentForeground ?? "text-white") : "text-slate-500", !isActive && (branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-red-500"))} />
+                            <item.icon className={cn("w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110", isActive ? ((branding as { accentForeground?: string }).accentForeground ?? "text-white") : "text-zinc-500", !isActive && (branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-[#e40014]"))} />
                             {!collapsed && <span className="text-sm tracking-tight">{item.label}</span>}
                           </div>
                           {isActive && !collapsed && (
-                            <div className={cn("w-1 h-4 rounded-full", (branding as { accentForeground?: string }).accentForeground === "text-black" ? "bg-black" : "bg-white")} />
+                            <div className={cn("w-1 h-4 rounded-full", (branding as { accentForeground?: string }).accentForeground === "text-black" ? "bg-black" : "bg-white/5")} />
                           )}
                         </Link>
                       )
@@ -561,16 +561,16 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                     className={cn(
                       "flex items-center justify-between px-3 py-2.5 rounded-lg transition-all group relative",
                       isActive
-                        ? `${branding.accentBg ?? "bg-red-600"} ${(branding as { accentForeground?: string }).accentForeground ?? "text-white"} shadow-lg ${branding.accentShadow ?? "shadow-red-600/20"} font-bold`
-                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                        ? `${branding.accentBg ?? "bg-[#e40014]"} ${(branding as { accentForeground?: string }).accentForeground ?? "text-white"} shadow-lg ${branding.accentShadow ?? "shadow-red-600/20"} font-bold`
+                        : "text-zinc-400 hover:bg-white/5/5 hover:text-white"
                     )}
                   >
                     <div className="flex items-center gap-3">
-                      <item.icon className={cn("w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110", isActive ? ((branding as { accentForeground?: string }).accentForeground ?? "text-white") : "text-slate-500", !isActive && (branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-red-500"))} />
+                      <item.icon className={cn("w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110", isActive ? ((branding as { accentForeground?: string }).accentForeground ?? "text-white") : "text-zinc-500", !isActive && (branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-[#e40014]"))} />
                       {!collapsed && <span className="text-sm tracking-tight">{item.label}</span>}
                     </div>
                     {isActive && !collapsed && (
-                      <div className={cn("w-1 h-4 rounded-full", (branding as { accentForeground?: string }).accentForeground === "text-black" ? "bg-black" : "bg-white")} />
+                      <div className={cn("w-1 h-4 rounded-full", (branding as { accentForeground?: string }).accentForeground === "text-black" ? "bg-black" : "bg-white/5")} />
                     )}
                   </Link>
                 </li>
@@ -608,14 +608,14 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                         </div>
 
                         {!collapsed && (
-                          <div className="flex items-center bg-amber-100 dark:bg-amber-900/30 px-1.5 py-0.5 rounded text-[10px] font-bold text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+                          <div className="flex items-center bg-red- dark:bg-[#e40014] px-1.5 py-0.5 rounded text-[10px] font-bold text-red- dark:text-red- border border-red- dark:border-red-">
                             <Lock className="w-2.5 h-2.5 mr-1" />
                             PRO
                           </div>
                         )}
 
                         {collapsed && (
-                          <div className="absolute top-1 right-1 bg-amber-500 rounded-full p-0.5 border border-background">
+                          <div className="absolute top-1 right-1 bg-red- rounded-full p-0.5 border border-background">
                             <Lock className="w-2 h-2 text-white" />
                           </div>
                         )}
@@ -635,10 +635,10 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
           onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
           className={cn(
             "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full group",
-            "text-slate-400 hover:bg-white/5 hover:text-white"
+            "text-zinc-400 hover:bg-white/5/5 hover:text-white"
           )}
         >
-          <Languages className={cn("w-5 h-5 flex-shrink-0 transition-colors", branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-red-500")} />
+          <Languages className={cn("w-5 h-5 flex-shrink-0 transition-colors", branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-[#e40014]")} />
           {!collapsed && (
             <span className="text-xs font-bold uppercase tracking-widest">
               {language === 'pt' ? t.sidebar.english : t.sidebar.portuguese}
@@ -650,8 +650,8 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
           onClick={handleLogout}
           className={cn(
             "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full group",
-            "text-slate-400",
-            branding.secondaryColor === "text-white/70" ? "hover:bg-white/10 hover:text-white" : "hover:bg-red-500/10 hover:text-red-500"
+            "text-zinc-400",
+            branding.secondaryColor === "text-white/70" ? "hover:bg-white/5/10 hover:text-white" : "hover:bg-[#e40014] hover:text-[#e40014]"
           )}
         >
           <LogOut className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />

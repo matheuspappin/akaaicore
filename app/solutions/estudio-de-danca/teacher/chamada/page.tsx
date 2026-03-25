@@ -143,7 +143,7 @@ export default function ChamadaPage() {
   if (loadingTurmas) {
     return (
       <div className="flex justify-center items-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     )
   }
@@ -157,20 +157,20 @@ export default function ChamadaPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <ClipboardList className="w-6 h-6 text-pink-600" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <ClipboardList className="w-6 h-6 text-[#e40014]" />
             Chamada Digital
           </h1>
-          <p className="text-slate-500 text-sm mt-0.5">Registre a frequência dos alunos</p>
+          <p className="text-zinc-500 text-sm mt-0.5">Registre a frequência dos alunos</p>
         </div>
       </div>
 
       {/* Seleção de turma */}
       {turmas.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="text-center py-16">
             <Calendar className="w-12 h-12 mx-auto mb-3 text-slate-300" />
-            <p className="font-bold text-slate-600 dark:text-slate-400">Nenhuma turma encontrada</p>
+            <p className="font-bold text-zinc-400 dark:text-zinc-400">Nenhuma turma encontrada</p>
           </CardContent>
         </Card>
       ) : (
@@ -183,8 +183,8 @@ export default function ChamadaPage() {
                 className={cn(
                   "px-4 py-2 rounded-xl text-sm font-bold transition-all border",
                   selectedTurma?.id === t.id
-                    ? "bg-pink-600 text-white border-pink-600 shadow-lg shadow-pink-600/20"
-                    : "bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:border-pink-300"
+                    ? "bg-[#e40014] text-white border-[#e40014] shadow-lg shadow-red-600/20"
+                    : "bg-white/5 dark:bg-black/50 border-white/10 dark:border-white/10 text-zinc-400 dark:text-zinc-400 hover:border-red-"
                 )}
               >
                 {t.name}
@@ -197,14 +197,14 @@ export default function ChamadaPage() {
             ))}
           </div>
 
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
             <CardHeader className="pb-3 flex flex-row items-center justify-between">
-              <CardTitle className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Users className="w-4 h-4 text-pink-600" />
+              <CardTitle className="text-base font-bold text-white dark:text-white flex items-center gap-2">
+                <Users className="w-4 h-4 text-[#e40014]" />
                 {selectedTurma?.name ?? '—'}
               </CardTitle>
               <div className="flex items-center gap-2">
-                <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-600/20 dark:text-pink-400 border-0 font-black">
+                <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 font-black">
                   {loadingStudents ? '…' : `${presentCount}/${students.length} presentes`}
                 </Badge>
                 <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => selectedTurma && loadStudents(selectedTurma.id)}>
@@ -215,10 +215,10 @@ export default function ChamadaPage() {
             <CardContent className="space-y-2">
               {loadingStudents ? (
                 <div className="flex justify-center py-10">
-                  <Loader2 className="w-6 h-6 animate-spin text-pink-600" />
+                  <Loader2 className="w-6 h-6 animate-spin text-[#e40014]" />
                 </div>
               ) : students.length === 0 ? (
-                <div className="text-center py-10 text-slate-400">
+                <div className="text-center py-10 text-zinc-400">
                   <Users className="w-10 h-10 mx-auto mb-2 opacity-30" />
                   <p className="text-sm font-medium">Nenhum aluno matriculado nesta turma</p>
                 </div>
@@ -233,24 +233,24 @@ export default function ChamadaPage() {
                         className={cn(
                           "w-full flex items-center justify-between p-3 rounded-xl border-2 transition-all",
                           isPresent
-                            ? "border-emerald-300 bg-emerald-50 dark:border-emerald-500/30 dark:bg-emerald-600/10"
-                            : "border-rose-200 bg-rose-50 dark:border-rose-500/30 dark:bg-rose-600/10"
+                            ? "border-red- bg-red- dark:border-[#e40014] dark:bg-[#e40014]"
+                            : "border-red- bg-red- dark:border-[#e40014] dark:bg-[#e40014]"
                         )}
                       >
                         <div className="flex items-center gap-3">
                           <div className={cn(
                             "w-9 h-9 rounded-full flex items-center justify-center font-black text-sm text-white",
-                            isPresent ? "bg-emerald-500" : "bg-slate-300 dark:bg-slate-600"
+                            isPresent ? "bg-red-" : "bg-slate-300 dark:bg-slate-600"
                           )}>
                             {student.name[0]?.toUpperCase()}
                           </div>
-                          <span className={cn("font-bold text-sm", isPresent ? "text-slate-800 dark:text-white" : "text-slate-400 dark:text-slate-500")}>
+                          <span className={cn("font-bold text-sm", isPresent ? "text-zinc-800 dark:text-white" : "text-zinc-400 dark:text-zinc-500")}>
                             {student.name}
                           </span>
                         </div>
                         {isPresent
-                          ? <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                          : <XCircle className="w-5 h-5 text-rose-400" />
+                          ? <CheckCircle2 className="w-5 h-5 text-red-" />
+                          : <XCircle className="w-5 h-5 text-red-" />
                         }
                       </button>
                     )
@@ -263,8 +263,8 @@ export default function ChamadaPage() {
                       className={cn(
                         "w-full font-bold rounded-xl h-12",
                         saved
-                          ? "bg-emerald-600 hover:bg-emerald-700"
-                          : "bg-pink-600 hover:bg-pink-700"
+                          ? "bg-red- hover:bg-red-"
+                          : "bg-[#e40014] hover:bg-[#e40014]"
                       )}
                     >
                       {saving

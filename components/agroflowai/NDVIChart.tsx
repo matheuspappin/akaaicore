@@ -55,8 +55,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null
   const v = payload[0]?.value
   return (
-    <div className="bg-slate-900 border border-slate-700 rounded-xl p-3 shadow-xl">
-      <p className="text-xs text-slate-400 mb-1">{formatDate(label)}</p>
+    <div className="bg-zinc-950 border border-slate-700 rounded-xl p-3 shadow-xl">
+      <p className="text-xs text-zinc-400 mb-1">{formatDate(label)}</p>
       <p className="font-black text-lg" style={{ color: ndviColor(v) }}>
         NDVI {v?.toFixed(3)}
       </p>
@@ -145,7 +145,7 @@ export default function NDVIChart({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Gráfico NDVI */}
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <div>
@@ -157,13 +157,13 @@ export default function NDVIChart({
                     </Badge>
                   )}
                 </CardTitle>
-                <CardDescription className="text-slate-500 text-xs">
+                <CardDescription className="text-zinc-500 text-xs">
                   Índice de Vegetação — últimas cenas disponíveis
                 </CardDescription>
               </div>
               {ndviMean !== null && (
                 <div className="text-right">
-                  <p className="text-xs text-slate-500">Média atual</p>
+                  <p className="text-xs text-zinc-500">Média atual</p>
                   <p className="text-2xl font-black" style={{ color }}>
                     {ndviMean.toFixed(3)}
                   </p>
@@ -175,7 +175,7 @@ export default function NDVIChart({
             {chartData.length === 0 ? (
               <div className="h-48 flex flex-col items-center justify-center gap-3">
                 <Satellite className="w-8 h-8 text-slate-600" />
-                <p className="text-slate-500 text-sm">Sem histórico de NDVI processado</p>
+                <p className="text-zinc-500 text-sm">Sem histórico de NDVI processado</p>
                 <Button
                   onClick={handleProcess}
                   disabled={loading}
@@ -238,7 +238,7 @@ export default function NDVIChart({
                     disabled={loading}
                     size="sm"
                     variant="ghost"
-                    className="text-slate-500 hover:text-white text-xs"
+                    className="text-zinc-500 hover:text-white text-xs"
                   >
                     {loading ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <RefreshCw className="w-3 h-3 mr-1" />}
                     {loading ? "Processando..." : "Atualizar"}
@@ -251,10 +251,10 @@ export default function NDVIChart({
         </Card>
 
         {/* Imagem de satélite */}
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-white text-base">Imagem RGB Recortada</CardTitle>
-            <CardDescription className="text-slate-500 text-xs">
+            <CardDescription className="text-zinc-500 text-xs">
               Composição Vermelho-Verde-Azul da área da propriedade
             </CardDescription>
           </CardHeader>
@@ -267,7 +267,7 @@ export default function NDVIChart({
                   className="w-full h-48 object-cover rounded-xl border border-slate-700"
                 />
                 <div className="absolute bottom-2 right-2">
-                  <Badge className="text-[10px] font-bold border-0 text-slate-300 bg-slate-900/80">
+                  <Badge className="text-[10px] font-bold border-0 text-slate-300 bg-zinc-950/80">
                     {collection || "BDC"}
                   </Badge>
                 </div>
@@ -275,7 +275,7 @@ export default function NDVIChart({
             ) : (
               <div className="h-48 flex flex-col items-center justify-center gap-2 border border-dashed border-slate-700 rounded-xl">
                 <ImageOff className="w-8 h-8 text-slate-600" />
-                <p className="text-slate-500 text-sm text-center">
+                <p className="text-zinc-500 text-sm text-center">
                   {loading ? "Gerando imagem..." : "Nenhuma imagem processada"}
                 </p>
                 {loading && <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />}

@@ -453,7 +453,7 @@ export default function WhatsAppPage() {
 
   return (
     <ModuleGuard module="whatsapp" showFullError>
-      <div className="flex flex-col h-screen overflow-hidden bg-slate-50 dark:bg-slate-950">
+      <div className="flex flex-col h-screen overflow-hidden bg-slate-50 dark:bg-black">
         <div className="flex-shrink-0">
           <Header title={t.whatsapp.title} />
         </div>
@@ -461,9 +461,9 @@ export default function WhatsAppPage() {
       
       <div className="flex-1 flex overflow-hidden p-4 gap-4">
         {/* Sidebar de Chats */}
-        <Card className="w-80 flex flex-col border-none shadow-sm overflow-hidden bg-white dark:bg-slate-900 h-full min-h-0">
+        <Card className="w-80 flex flex-col border-none shadow-sm overflow-hidden bg-white dark:bg-zinc-950 h-full min-h-0">
           {/* Status de Conexão */}
-          <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex-shrink-0">
+          <div className="p-3 bg-slate-50 dark:bg-zinc-900/50 border-b border-slate-100 dark:border-zinc-800 flex-shrink-0">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {connectionStatus === 'connected' ? (
@@ -483,7 +483,7 @@ export default function WhatsAppPage() {
                   <Button 
                     variant="ghost" 
                     size="sm" 
-                    className="h-7 w-7 text-slate-400 hover:text-red-500 hover:bg-red-50"
+                    className="h-7 w-7 text-zinc-400 hover:text-red-500 hover:bg-red-50"
                     onClick={handleLogout}
                     disabled={isDisconnecting}
                     title={t.whatsapp.disconnectTitle}
@@ -494,7 +494,7 @@ export default function WhatsAppPage() {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="h-7 w-7 text-slate-400 hover:text-indigo-600"
+                  className="h-7 w-7 text-zinc-400 hover:text-indigo-600"
                   onClick={() => setIsSettingsModalOpen(true)}
                   title={t.whatsapp.apiSettings}
                 >
@@ -520,18 +520,18 @@ export default function WhatsAppPage() {
             </div>
           </div>
 
-          <div className="p-4 border-b border-slate-100 dark:border-slate-800 space-y-4 flex-shrink-0">
+          <div className="p-4 border-b border-slate-100 dark:border-zinc-800 space-y-4 flex-shrink-0">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-lg">{t.whatsapp.chats}</h3>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400">
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-zinc-400">
                 <Filter className="w-4 h-4" />
               </Button>
             </div>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
               <Input 
                 placeholder={t.whatsapp.searchPlaceholder} 
-                className="pl-9 bg-slate-50 dark:bg-slate-800 border-none h-9 text-sm"
+                className="pl-9 bg-slate-50 dark:bg-zinc-900 border-none h-9 text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -539,14 +539,14 @@ export default function WhatsAppPage() {
           </div>
 
           <ScrollArea className="flex-1 h-full min-h-0" type="always">
-            <div className="divide-y divide-slate-50 dark:divide-slate-800/50">
+            <div className="divide-y divide-slate-50 dark:divide-zinc-800/50">
               {isLoading ? (
-                <div className="p-8 text-center text-slate-400">
+                <div className="p-8 text-center text-zinc-400">
                   <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2" />
                   {t.common.loading}
                 </div>
               ) : chats.length === 0 ? (
-                <div className="p-8 text-center text-slate-400 text-sm italic">
+                <div className="p-8 text-center text-zinc-400 text-sm italic">
                   {t.whatsapp.noChats}
                 </div>
               ) : (
@@ -554,9 +554,9 @@ export default function WhatsAppPage() {
                   <div 
                     key={chat.id}
                     onClick={() => handleSelectChat(chat)}
-                    className={`p-4 flex items-center gap-3 cursor-pointer transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 ${selectedChat?.id === chat.id ? 'bg-indigo-50/50 dark:bg-indigo-900/20 border-l-4 border-indigo-600' : 'border-l-4 border-transparent'}`}
+                    className={`p-4 flex items-center gap-3 cursor-pointer transition-colors hover:bg-slate-50 dark:hover:bg-zinc-900/50 ${selectedChat?.id === chat.id ? 'bg-indigo-50/50 dark:bg-indigo-900/20 border-l-4 border-indigo-600' : 'border-l-4 border-transparent'}`}
                   >
-                    <Avatar className="h-12 w-12 border border-slate-100 dark:border-slate-800">
+                    <Avatar className="h-12 w-12 border border-slate-100 dark:border-zinc-800">
                       <AvatarFallback className={chat.contact_type === 'admin' ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-600'}>
                         {chat.contact_name?.[0]?.toUpperCase() || <User className="w-5 h-5" />}
                       </AvatarFallback>
@@ -564,10 +564,10 @@ export default function WhatsAppPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start mb-0.5">
                         <span className="font-bold text-sm truncate pr-2">{chat.contact_name || chat.remote_jid.split('@')[0]}</span>
-                        <span className="text-[10px] text-slate-400 whitespace-nowrap">{new Date(chat.updated_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
+                        <span className="text-[10px] text-zinc-400 whitespace-nowrap">{new Date(chat.updated_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <p className="text-xs text-slate-500 truncate max-w-[140px]">{chat.last_message || 'Nenhuma mensagem'}</p>
+                        <p className="text-xs text-zinc-500 truncate max-w-[140px]">{chat.last_message || 'Nenhuma mensagem'}</p>
                         {getContactBadge(chat.contact_type)}
                       </div>
                     </div>
@@ -579,14 +579,14 @@ export default function WhatsAppPage() {
         </Card>
 
         {/* Área do Chat */}
-        <Card className="flex-1 flex flex-col border-none shadow-sm overflow-hidden bg-white dark:bg-slate-900 relative h-full min-h-0">
+        <Card className="flex-1 flex flex-col border-none shadow-sm overflow-hidden bg-white dark:bg-zinc-950 relative h-full min-h-0">
           {selectedChat ? (
             <>
               {/* Header do Chat */}
-              <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-white/95 dark:bg-slate-900/95 backdrop-blur-md z-10 sticky top-0 flex-shrink-0">
+              <div className="p-4 border-b border-slate-100 dark:border-zinc-800 flex items-center justify-between bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md z-10 sticky top-0 flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <Avatar 
-                    className="h-10 w-10 border border-slate-100 dark:border-slate-800 cursor-pointer hover:ring-2 hover:ring-indigo-500 transition-all"
+                    className="h-10 w-10 border border-slate-100 dark:border-zinc-800 cursor-pointer hover:ring-2 hover:ring-indigo-500 transition-all"
                     onClick={() => setIsEditModalOpen(true)}
                   >
                     <AvatarFallback className={selectedChat.contact_type === 'admin' ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-600'}>
@@ -604,14 +604,14 @@ export default function WhatsAppPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Button type="button" variant="ghost" size="icon" className="text-slate-400 hover:text-red-500 hover:bg-red-50" onClick={deleteChat} title={t.whatsapp.deleteLocalHistory}><Trash2 className="w-4 h-4" /></Button>
-                  <Button type="button" variant="ghost" size="icon" className="text-slate-400"><Phone className="w-4 h-4" /></Button>
-                  <Button type="button" variant="ghost" size="icon" className="text-slate-400"><MoreVertical className="w-4 h-4" /></Button>
+                  <Button type="button" variant="ghost" size="icon" className="text-zinc-400 hover:text-red-500 hover:bg-red-50" onClick={deleteChat} title={t.whatsapp.deleteLocalHistory}><Trash2 className="w-4 h-4" /></Button>
+                  <Button type="button" variant="ghost" size="icon" className="text-zinc-400"><Phone className="w-4 h-4" /></Button>
+                  <Button type="button" variant="ghost" size="icon" className="text-zinc-400"><MoreVertical className="w-4 h-4" /></Button>
                 </div>
               </div>
 
               {/* Mensagens */}
-              <ScrollArea className="flex-1 p-6 bg-slate-50/50 dark:bg-slate-950/30 relative h-full min-h-0" viewportRef={scrollRef} type="always">
+              <ScrollArea className="flex-1 p-6 bg-slate-50/50 dark:bg-black/30 relative h-full min-h-0" viewportRef={scrollRef} type="always">
                 <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
                      style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/cubes.png")' }} />
                 
@@ -623,7 +623,7 @@ export default function WhatsAppPage() {
                       <div key={msg.id}>
                         {isNewDay && (
                           <div className="flex justify-center my-6">
-                            <span className="bg-slate-200/50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest border border-slate-200/50 dark:border-slate-700/50">
+                            <span className="bg-slate-200/50 dark:bg-zinc-900/50 text-zinc-500 dark:text-zinc-400 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest border border-slate-200/50 dark:border-slate-700/50">
                               {new Date(msg.timestamp).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' })}
                             </span>
                           </div>
@@ -631,14 +631,14 @@ export default function WhatsAppPage() {
                         <div className={`flex ${msg.from_me ? 'justify-end' : 'justify-start'}`}>
                           <div className={`max-w-[75%] group relative ${msg.from_me ? 'order-2' : 'order-1'}`}>
                             {!msg.from_me && (
-                              <span className="text-[10px] text-slate-400 ml-3 mb-1.5 block font-medium">
+                              <span className="text-[10px] text-zinc-400 ml-3 mb-1.5 block font-medium">
                                 {msg.sender_name || 'Contato'}
                               </span>
                             )}
                             <div className={`p-3.5 rounded-2xl text-[13px] shadow-sm transition-all hover:shadow-md ${
                               msg.from_me 
                                 ? 'bg-indigo-600 text-white rounded-tr-none' 
-                                : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tl-none border border-slate-100 dark:border-slate-700'
+                                : 'bg-white dark:bg-zinc-900 text-zinc-800 dark:text-slate-200 rounded-tl-none border border-slate-100 dark:border-slate-700'
                             }`}>
                               {msg.is_ai && !msg.from_me && (
                                 <div className="flex items-center gap-1.5 mb-2 pb-2 border-b border-slate-100 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 font-bold text-[9px] uppercase tracking-[0.15em]">
@@ -660,13 +660,13 @@ export default function WhatsAppPage() {
               </ScrollArea>
 
               {/* Input de Mensagem */}
-              <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_-4px_20px_-2px_rgba(0,0,0,0.05)] flex-shrink-0">
+              <div className="p-4 border-t border-slate-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-[0_-4px_20px_-2px_rgba(0,0,0,0.05)] flex-shrink-0">
                 <form onSubmit={handleSendMessage} className="flex gap-3 items-end">
                   <div className="flex gap-1 mb-1.5">
-                    <Button type="button" variant="ghost" size="icon" className="h-9 w-9 text-slate-400 hover:text-indigo-600 rounded-full">
+                    <Button type="button" variant="ghost" size="icon" className="h-9 w-9 text-zinc-400 hover:text-indigo-600 rounded-full">
                       <Smile className="w-5 h-5" />
                     </Button>
-                    <Button type="button" variant="ghost" size="icon" className="h-9 w-9 text-slate-400 hover:text-indigo-600 rounded-full">
+                    <Button type="button" variant="ghost" size="icon" className="h-9 w-9 text-zinc-400 hover:text-indigo-600 rounded-full">
                       <Paperclip className="w-5 h-5" />
                     </Button>
                   </div>
@@ -674,7 +674,7 @@ export default function WhatsAppPage() {
                   <div className="relative flex-1">
                     <textarea 
                       placeholder={t.whatsapp.typeMessage} 
-                      className="w-full bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-2xl py-3 px-4 text-sm resize-none min-h-[44px] max-h-[120px] transition-all"
+                      className="w-full bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-2xl py-3 px-4 text-sm resize-none min-h-[44px] max-h-[120px] transition-all"
                       value={newMessage}
                       rows={1}
                       onKeyDown={(e) => {
@@ -693,7 +693,7 @@ export default function WhatsAppPage() {
 
                   <div className="flex gap-2 mb-0.5">
                     {!newMessage.trim() ? (
-                      <Button type="button" variant="ghost" size="icon" className="h-11 w-11 text-slate-400 hover:text-indigo-600 rounded-full bg-slate-50 dark:bg-slate-800">
+                      <Button type="button" variant="ghost" size="icon" className="h-11 w-11 text-zinc-400 hover:text-indigo-600 rounded-full bg-slate-50 dark:bg-zinc-900">
                         <Mic className="w-5 h-5" />
                       </Button>
                     ) : (
@@ -704,7 +704,7 @@ export default function WhatsAppPage() {
                   </div>
                 </form>
                 <div className="flex items-center justify-between mt-3 px-2">
-                  <div className="text-[9px] text-slate-400 flex items-center gap-1 font-medium uppercase tracking-tighter">
+                  <div className="text-[9px] text-zinc-400 flex items-center gap-1 font-medium uppercase tracking-tighter">
                     <div className="w-1 h-1 rounded-full bg-emerald-500" /> {t.whatsapp.activeIA}
                   </div>
                   <Badge variant="outline" className="text-[9px] h-4 font-bold border-indigo-100 text-indigo-600 bg-indigo-50/30">
@@ -714,12 +714,12 @@ export default function WhatsAppPage() {
               </div>
             </>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-slate-400 p-8 text-center">
+            <div className="flex-1 flex flex-col items-center justify-center text-zinc-400 p-8 text-center">
               <div className="w-20 h-20 rounded-full bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center mb-4">
                 <MessageSquare className="w-10 h-10 text-indigo-600" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Central WhatsApp</h3>
-              <p className="max-w-xs text-sm text-slate-500">{t.whatsapp.selectChat.replace('{clients}', vocabulary.clients.toLowerCase())}</p>
+              <p className="max-w-xs text-sm text-zinc-500">{t.whatsapp.selectChat.replace('{clients}', vocabulary.clients.toLowerCase())}</p>
             </div>
           )}
         </Card>
@@ -738,7 +738,7 @@ export default function WhatsAppPage() {
             </DialogDescription>
           </DialogHeader>
           
-          <div className="flex flex-col items-center justify-center p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-700 relative overflow-hidden">
+          <div className="flex flex-col items-center justify-center p-6 bg-slate-50 dark:bg-zinc-900/50 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-700 relative overflow-hidden">
             {qrCode ? (
               <div className="bg-white p-4 rounded-xl shadow-inner relative z-10">
                 <img src={qrCode} alt="WhatsApp QR Code" className="w-64 h-64" />
@@ -747,22 +747,22 @@ export default function WhatsAppPage() {
             ) : (
               <div className="w-64 h-64 flex flex-col items-center justify-center space-y-4">
                 <RefreshCw className="w-10 h-10 text-indigo-600 animate-spin" />
-                <p className="text-xs font-bold text-slate-400 animate-pulse">{t.whatsapp.connecting}</p>
+                <p className="text-xs font-bold text-zinc-400 animate-pulse">{t.whatsapp.connecting}</p>
               </div>
             )}
             
             <div className="mt-8 grid grid-cols-1 gap-3 w-full">
-              <div className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+              <div className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-zinc-900 shadow-sm border border-slate-100 dark:border-slate-700">
                 <div className="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-[10px]">1</div>
-                <p className="text-[11px] text-slate-600 dark:text-slate-400" dangerouslySetInnerHTML={{ __html: t.whatsapp.step1 }} />
+                <p className="text-[11px] text-slate-600 dark:text-zinc-400" dangerouslySetInnerHTML={{ __html: t.whatsapp.step1 }} />
               </div>
-              <div className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+              <div className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-zinc-900 shadow-sm border border-slate-100 dark:border-slate-700">
                 <div className="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-[10px]">2</div>
-                <p className="text-[11px] text-slate-600 dark:text-slate-400" dangerouslySetInnerHTML={{ __html: t.whatsapp.step2 }} />
+                <p className="text-[11px] text-slate-600 dark:text-zinc-400" dangerouslySetInnerHTML={{ __html: t.whatsapp.step2 }} />
               </div>
-              <div className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+              <div className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-zinc-900 shadow-sm border border-slate-100 dark:border-slate-700">
                 <div className="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-[10px]">3</div>
-                <p className="text-[11px] text-slate-600 dark:text-slate-400" dangerouslySetInnerHTML={{ __html: t.whatsapp.step3 }} />
+                <p className="text-[11px] text-slate-600 dark:text-zinc-400" dangerouslySetInnerHTML={{ __html: t.whatsapp.step3 }} />
               </div>
             </div>
           </div>
@@ -778,7 +778,7 @@ export default function WhatsAppPage() {
               </div>
             </div>
 
-            <p className="text-[9px] text-center text-slate-400 uppercase tracking-widest font-bold">
+            <p className="text-[9px] text-center text-zinc-400 uppercase tracking-widest font-bold">
               {t.whatsapp.qrCodeExpired}
             </p>
           </div>
@@ -797,19 +797,19 @@ export default function WhatsAppPage() {
           
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.whatsapp.contactName}</Label>
+              <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-zinc-400">{t.whatsapp.contactName}</Label>
               <Input 
                 id="name" 
                 value={editName} 
                 onChange={(e) => setEditName(e.target.value)}
                 placeholder="Ex: Maria Silva"
-                className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="type" className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.whatsapp.profileType}</Label>
+              <Label htmlFor="type" className="text-xs font-bold uppercase tracking-widest text-zinc-400">{t.whatsapp.profileType}</Label>
               <Select value={editType} onValueChange={setEditType}>
-                <SelectTrigger className="bg-slate-50 dark:bg-slate-800 border-none focus:ring-indigo-500">
+                <SelectTrigger className="bg-slate-50 dark:bg-zinc-900 border-none focus:ring-indigo-500">
                   <SelectValue placeholder="Selecione o tipo" />
                 </SelectTrigger>
                   <SelectContent>
@@ -841,36 +841,36 @@ export default function WhatsAppPage() {
           
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="api_url" className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.whatsapp.apiUrl}</Label>
+              <Label htmlFor="api_url" className="text-xs font-bold uppercase tracking-widest text-zinc-400">{t.whatsapp.apiUrl}</Label>
               <Input 
                 id="api_url" 
                 value={apiSettings.api_url} 
                 onChange={(e) => setApiSettings({...apiSettings, api_url: e.target.value})}
                 placeholder="https://sua-api.com"
-                className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="api_key" className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.whatsapp.apiKey}</Label>
+              <Label htmlFor="api_key" className="text-xs font-bold uppercase tracking-widest text-zinc-400">{t.whatsapp.apiKey}</Label>
               <Input 
                 id="api_key" 
                 type="password"
                 value={apiSettings.api_key} 
                 onChange={(e) => setApiSettings({...apiSettings, api_key: e.target.value})}
                 placeholder="Sua Global API Key"
-                className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="instance_id" className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.whatsapp.instanceId}</Label>
+              <Label htmlFor="instance_id" className="text-xs font-bold uppercase tracking-widest text-zinc-400">{t.whatsapp.instanceId}</Label>
               <Input 
                 id="instance_id" 
                 value={apiSettings.instance_id} 
                 onChange={(e) => setApiSettings({...apiSettings, instance_id: e.target.value})}
                 placeholder="df_meu-studio"
-                className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
               />
-              <p className="text-[10px] text-slate-400 italic">{t.whatsapp.instanceIdDesc.replace('{establishment}', vocabulary.establishment.toLowerCase())}</p>
+              <p className="text-[10px] text-zinc-400 italic">{t.whatsapp.instanceIdDesc.replace('{establishment}', vocabulary.establishment.toLowerCase())}</p>
             </div>
           </div>
 

@@ -203,7 +203,7 @@ export const DANCE_STUDIO_NAV_GROUPS: DanceStudioNavGroup[] = [
         id: "pagamentos",
         href: "/solutions/estudio-de-danca/dashboard/settings/payment",
         label: "Pagamentos",
-        icon: CreditCard,
+        icon: DollarSign,
       },
     ],
   },

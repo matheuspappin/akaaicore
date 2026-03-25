@@ -165,14 +165,14 @@ export default function ClassCatalog() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black">
         <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-20">
       <div className="sticky top-0 bg-background/95 backdrop-blur z-50 border-b">
         <div className="container flex h-16 items-center px-4 gap-4">
           <Button variant="ghost" size="icon" onClick={() => window.location.href='/student/classes'}>
@@ -184,10 +184,10 @@ export default function ClassCatalog() {
       
       <main className="container p-4 space-y-6 max-w-md mx-auto">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <Input 
             placeholder="Buscar por estilo ou nome..."
-            className="pl-9 bg-white dark:bg-slate-900 border-slate-200"
+            className="pl-9 bg-white dark:bg-zinc-950 border-slate-200"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -201,7 +201,7 @@ export default function ClassCatalog() {
             </div>
           ) : filteredClasses.map((cls) => (
             <Card key={cls.id} className="border-none shadow-sm overflow-hidden group hover:shadow-md transition-all">
-              <CardHeader className="pb-3 bg-white dark:bg-slate-900 border-b border-slate-50 dark:border-slate-800">
+              <CardHeader className="pb-3 bg-white dark:bg-zinc-950 border-b border-slate-50 dark:border-zinc-800">
                 <div className="flex justify-between items-start">
                   <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 uppercase text-[9px] font-bold">
                     {cls.dance_style}
@@ -217,13 +217,13 @@ export default function ClassCatalog() {
                   <User className="w-3 h-3" /> {cls.teachers?.name || vocabulary.provider}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-4 bg-white dark:bg-slate-900">
+              <CardContent className="p-4 bg-white dark:bg-zinc-950">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{Array.isArray(cls.schedule) && cls.schedule[0] ? `${cls.schedule[0].day} às ${cls.schedule[0].time}` : 'Sob consulta'}</span>
                   </div>
-                  <div className="text-[10px] font-medium text-slate-500">
+                  <div className="text-[10px] font-medium text-zinc-500">
                     {cls.current_students || 0}/{cls.max_students} vagas • {cls.credit_cost || 1} CRÉDITOS
                   </div>
                 </div>

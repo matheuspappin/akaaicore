@@ -216,7 +216,7 @@ export default function StudioStudentRegister() {
   return (
     <div className={cn(
       "min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-500", 
-      isFire ? "bg-slate-950" : "bg-slate-50 dark:bg-slate-950"
+      isFire ? "bg-black" : "bg-slate-50 dark:bg-black"
     )}>
       {isFire && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
@@ -261,11 +261,11 @@ export default function StudioStudentRegister() {
 
         <Card className={cn(
           "border-none shadow-xl",
-          isFire ? "bg-slate-900/80 backdrop-blur-xl text-white border border-white/5" : "bg-white dark:bg-slate-900"
+          isFire ? "bg-zinc-950/80 backdrop-blur-xl text-white border border-white/5" : "bg-white dark:bg-zinc-950"
         )}>
           <CardHeader>
             <CardTitle className={isFire ? "text-white" : ""}>Cadastro</CardTitle>
-            <CardDescription className={isFire ? "text-slate-400" : ""}>Junte-se ao nosso {vocabulary.establishment.toLowerCase()}</CardDescription>
+            <CardDescription className={isFire ? "text-zinc-400" : ""}>Junte-se ao nosso {vocabulary.establishment.toLowerCase()}</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -277,7 +277,7 @@ export default function StudioStudentRegister() {
                   value={formData.name || ""}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className={isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : ""}
+                  className={isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : ""}
                 />
               </div>
               <div className="space-y-2 md:col-span-2">
@@ -300,7 +300,7 @@ export default function StudioStudentRegister() {
                       }
                     }}
                     required
-                    className={cn("flex-1", isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : "")}
+                    className={cn("flex-1", isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : "")}
                     disabled={codeSent && !isEmailVerified}
                   />
                   {!codeSent ? (
@@ -325,7 +325,7 @@ export default function StudioStudentRegister() {
                         maxLength={6}
                         value={verificationCode}
                         onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                        className={cn("w-32 text-center text-lg tracking-[0.5em] font-mono", isFire ? "bg-slate-800 border-white/10 text-white" : "")}
+                        className={cn("w-32 text-center text-lg tracking-[0.5em] font-mono", isFire ? "bg-zinc-900 border-white/10 text-white" : "")}
                       />
                       <Button
                         type="button"
@@ -358,7 +358,7 @@ export default function StudioStudentRegister() {
                     value={formData.birthDate || ""}
                     onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
                     required
-                    className={isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : ""}
+                    className={isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : ""}
                   />
                 </div>
               </div>
@@ -371,7 +371,7 @@ export default function StudioStudentRegister() {
                     value={formData.phone || ""}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     required
-                    className={isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : ""}
+                    className={isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : ""}
                   />
                 </div>
                 <div className="space-y-2">
@@ -382,7 +382,7 @@ export default function StudioStudentRegister() {
                     value={formData.taxId || ""}
                     onChange={(e) => setFormData({ ...formData, taxId: e.target.value })}
                     required
-                    className={isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : ""}
+                    className={isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : ""}
                   />
                 </div>
               </div>
@@ -394,7 +394,7 @@ export default function StudioStudentRegister() {
                   value={formData.address || ""}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                   required
-                  className={isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : ""}
+                  className={isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : ""}
                 />
               </div>
               <div className="space-y-2">
@@ -408,12 +408,12 @@ export default function StudioStudentRegister() {
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     required
                     minLength={6}
-                    className={isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : ""}
+                    className={isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : ""}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -432,7 +432,7 @@ export default function StudioStudentRegister() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className={cn("text-sm", isFire ? "text-slate-400" : "text-slate-500")}>
+              <p className={cn("text-sm", isFire ? "text-zinc-400" : "text-zinc-500")}>
                 Já tem cadastro?{" "}
                 <Link 
                   href={`/s/${studio.slug}/login`} 
@@ -449,7 +449,7 @@ export default function StudioStudentRegister() {
           onClick={() => router.push(isFire ? "/solutions/fire-protection/login" : "/login")}
           className={cn(
             "w-full text-center text-xs flex items-center justify-center gap-1 transition-colors",
-            isFire ? "text-slate-500 hover:text-white" : "text-slate-400 hover:text-slate-600"
+            isFire ? "text-zinc-500 hover:text-white" : "text-zinc-400 hover:text-slate-600"
           )}
         >
           <ArrowLeft className="w-3 h-3" /> {isFire ? "Voltar para FireControl" : "Voltar para login geral"}

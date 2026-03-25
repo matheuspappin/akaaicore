@@ -51,7 +51,7 @@ const AVAILABLE_MODULES = [
   { id: 'leads', label: 'Leads (CRM)', icon: TrendingUp, description: 'Gestão de leads e funil', color: 'text-lime-400', bg: 'bg-lime-500/10' },
   { id: 'gamification', label: 'Gamificação', icon: Star, description: 'Pontos, medalhas e engajamento', color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
   { id: 'marketplace', label: 'Marketplace', icon: Globe, description: 'Loja online e marketplace', color: 'text-teal-400', bg: 'bg-teal-500/10' },
-  { id: 'erp', label: 'ERP', icon: BarChart3, description: 'Gestão empresarial avançada', color: 'text-slate-400', bg: 'bg-slate-500/10' },
+  { id: 'erp', label: 'ERP', icon: BarChart3, description: 'Gestão empresarial avançada', color: 'text-zinc-400', bg: 'bg-zinc-500/10' },
   { id: 'multi_unit', label: 'Multi-unidade', icon: Building2, description: 'Múltiplas unidades e filiais', color: 'text-indigo-300', bg: 'bg-indigo-400/10' },
 ]
 
@@ -164,7 +164,7 @@ export default function NewEcosystemForVerticalPage() {
   // ─── Loading ───────────────────────────────────────────────────────────────
   if (loadingVertical) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-950">
+      <div className="flex flex-col min-h-screen bg-black">
         <AdminHeader title="Carregando..." />
         <div className="flex items-center justify-center flex-1">
           <Loader2 className="w-10 h-10 text-indigo-400 animate-spin" />
@@ -176,14 +176,14 @@ export default function NewEcosystemForVerticalPage() {
   // ─── Not found ─────────────────────────────────────────────────────────────
   if (notFound || !vertical) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-950">
+      <div className="flex flex-col min-h-screen bg-black">
         <AdminHeader title="Verticalização não encontrada" />
         <div className="flex items-center justify-center flex-1">
           <div className="text-center space-y-4">
             <AlertTriangle className="w-12 h-12 text-amber-400 mx-auto" />
-            <p className="text-slate-400">Verticalização não encontrada.</p>
+            <p className="text-zinc-400">Verticalização não encontrada.</p>
             <Link href="/admin/verticalizations">
-              <Button variant="outline" className="border-slate-700 text-slate-400 hover:text-white">
+              <Button variant="outline" className="border-slate-700 text-zinc-400 hover:text-white">
                 <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
               </Button>
             </Link>
@@ -200,7 +200,7 @@ export default function NewEcosystemForVerticalPage() {
   // ─── Sucesso ───────────────────────────────────────────────────────────────
   if (inviteUrl) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-slate-950">
+      <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black">
         <AdminHeader title="Sistema Criado" />
         <div className="p-8 max-w-2xl mx-auto w-full space-y-4">
           <Card className="border-emerald-500/30 bg-emerald-500/5">
@@ -209,7 +209,7 @@ export default function NewEcosystemForVerticalPage() {
                 <Check className="w-6 h-6 text-emerald-500" />
               </div>
               <CardTitle className="text-2xl text-white">Pronto para ativação!</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardDescription className="text-zinc-400">
                 O sistema <strong className="text-white">{createdName}</strong> foi configurado dentro de{" "}
                 <span className={cn("font-semibold", vertical.icon_color)}>{vertical.name}</span>.
                 Envie o link abaixo ao cliente.
@@ -219,8 +219,8 @@ export default function NewEcosystemForVerticalPage() {
               <div className="space-y-2">
                 <Label className="text-slate-300">Link de Resgate</Label>
                 <div className="flex gap-2">
-                  <Input value={inviteUrl} readOnly className="bg-slate-900 border-slate-700 text-slate-300 font-mono text-xs" />
-                  <Button onClick={copyToClipboard} variant="outline" className="border-slate-700 text-slate-400 hover:text-white flex-shrink-0">
+                  <Input value={inviteUrl} readOnly className="bg-zinc-950 border-slate-700 text-slate-300 font-mono text-xs" />
+                  <Button onClick={copyToClipboard} variant="outline" className="border-slate-700 text-zinc-400 hover:text-white flex-shrink-0">
                     <Copy className="w-4 h-4" />
                   </Button>
                 </div>
@@ -228,7 +228,7 @@ export default function NewEcosystemForVerticalPage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   variant="outline"
-                  className="border-slate-700 text-slate-400 hover:text-white flex-1"
+                  className="border-slate-700 text-zinc-400 hover:text-white flex-1"
                   onClick={() => {
                     setInviteUrl(null)
                     setCreatedName('')
@@ -239,7 +239,7 @@ export default function NewEcosystemForVerticalPage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-slate-700 text-slate-400 hover:text-white flex-1"
+                  className="border-slate-700 text-zinc-400 hover:text-white flex-1"
                   onClick={() => router.push(`/admin/verticalizations/${slug}`)}
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
@@ -261,7 +261,7 @@ export default function NewEcosystemForVerticalPage() {
 
   // ─── Formulário principal ──────────────────────────────────────────────────
   return (
-    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-black">
       <AdminHeader title={`Novo Sistema — ${vertical.name}`} />
 
       <div className="p-8 max-w-[1200px] mx-auto w-full space-y-6">
@@ -270,14 +270,14 @@ export default function NewEcosystemForVerticalPage() {
         <div className="flex items-center gap-2 text-sm">
           <Link
             href="/admin/verticalizations"
-            className="text-slate-500 hover:text-slate-300 transition-colors flex items-center gap-1"
+            className="text-zinc-500 hover:text-slate-300 transition-colors flex items-center gap-1"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Verticalizações
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-700" />
           <Link
             href={`/admin/verticalizations/${slug}`}
-            className="text-slate-500 hover:text-slate-300 transition-colors flex items-center gap-1.5"
+            className="text-zinc-500 hover:text-slate-300 transition-colors flex items-center gap-1.5"
           >
             <IconComponent className={cn("w-3.5 h-3.5", vertical.icon_color)} />
             {vertical.name}
@@ -287,7 +287,7 @@ export default function NewEcosystemForVerticalPage() {
         </div>
 
         {/* Banner da Verticalização */}
-        <div className={cn("rounded-2xl border p-5 flex items-center gap-5", vertical.icon_bg.replace('bg-', 'border-').replace('/10', '/20'), "bg-slate-900/60")}>
+        <div className={cn("rounded-2xl border p-5 flex items-center gap-5", vertical.icon_bg.replace('bg-', 'border-').replace('/10', '/20'), "bg-zinc-950/60")}>
           <div className={cn("w-14 h-14 rounded-xl border flex items-center justify-center flex-shrink-0", vertical.icon_bg)}>
             <IconComponent className={cn("w-7 h-7", vertical.icon_color)} />
           </div>
@@ -298,7 +298,7 @@ export default function NewEcosystemForVerticalPage() {
                 Nicho fixo
               </Badge>
             </div>
-            <p className="text-slate-500 text-xs">
+            <p className="text-zinc-500 text-xs">
               Criando sistema para o nicho{" "}
               <code className={cn("font-mono font-bold", vertical.icon_color)}>{vertical.niche}</code>
               {niche && (
@@ -322,10 +322,10 @@ export default function NewEcosystemForVerticalPage() {
           <div className="lg:col-span-2 space-y-6">
 
             {/* Dados do Sistema */}
-            <Card className="bg-slate-900/50 border-slate-800">
+            <Card className="bg-zinc-950/50 border-zinc-800">
               <CardHeader>
                 <CardTitle className="text-slate-200 flex items-center gap-2">
-                  <Building2 className="w-5 h-5 text-slate-400" />
+                  <Building2 className="w-5 h-5 text-zinc-400" />
                   Dados do Sistema
                 </CardTitle>
                 <CardDescription className="text-slate-600">
@@ -341,7 +341,7 @@ export default function NewEcosystemForVerticalPage() {
                     placeholder={`Ex: ${niche?.establishment || 'Empresa'} Central`}
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="bg-slate-950 border-slate-700 text-white focus:border-indigo-500"
+                    className="bg-black border-slate-700 text-white focus:border-indigo-500"
                     required
                   />
                 </div>
@@ -352,7 +352,7 @@ export default function NewEcosystemForVerticalPage() {
                     type="email"
                     value={formData.clientEmail}
                     onChange={e => setFormData({ ...formData, clientEmail: e.target.value })}
-                    className="bg-slate-950 border-slate-700 text-white focus:border-indigo-500"
+                    className="bg-black border-slate-700 text-white focus:border-indigo-500"
                   />
                   <p className="text-xs text-slate-600">
                     Apenas para registro — o link de ativação será gerado independentemente.
@@ -375,10 +375,10 @@ export default function NewEcosystemForVerticalPage() {
                           'flex flex-col text-left p-3.5 rounded-xl border transition-all',
                           formData.businessModel === opt.value
                             ? 'border-indigo-500/50 bg-indigo-500/10'
-                            : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'
+                            : 'border-zinc-800 bg-zinc-950/40 hover:border-slate-700'
                         )}
                       >
-                        <span className={cn('text-sm font-bold', formData.businessModel === opt.value ? 'text-indigo-300' : 'text-slate-400')}>
+                        <span className={cn('text-sm font-bold', formData.businessModel === opt.value ? 'text-indigo-300' : 'text-zinc-400')}>
                           {opt.label}
                         </span>
                         <span className="text-xs text-slate-600 mt-0.5">{opt.desc}</span>
@@ -390,7 +390,7 @@ export default function NewEcosystemForVerticalPage() {
             </Card>
 
             {/* Módulos */}
-            <Card className="bg-slate-900/50 border-slate-800">
+            <Card className="bg-zinc-950/50 border-zinc-800">
               <CardHeader>
                 <div className="flex items-center justify-between gap-4 flex-wrap">
                   <div>
@@ -406,7 +406,7 @@ export default function NewEcosystemForVerticalPage() {
                     variant="outline"
                     size="sm"
                     onClick={handleResetModules}
-                    className="border-slate-700 text-slate-500 hover:text-white text-xs flex-shrink-0"
+                    className="border-slate-700 text-zinc-500 hover:text-white text-xs flex-shrink-0"
                   >
                     Restaurar padrão
                   </Button>
@@ -424,14 +424,14 @@ export default function NewEcosystemForVerticalPage() {
                           'flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all select-none',
                           enabled
                             ? 'border-indigo-500/30 bg-indigo-500/5 hover:bg-indigo-500/10'
-                            : 'border-slate-800 bg-slate-900/30 hover:border-slate-700'
+                            : 'border-zinc-800 bg-zinc-950/30 hover:border-slate-700'
                         )}
                       >
-                        <div className={cn('w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0', enabled ? mod.bg : 'bg-slate-800')}>
+                        <div className={cn('w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0', enabled ? mod.bg : 'bg-zinc-900')}>
                           <mod.icon className={cn('w-4 h-4', enabled ? mod.color : 'text-slate-600')} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className={cn('text-sm font-semibold truncate', enabled ? 'text-white' : 'text-slate-500')}>
+                          <p className={cn('text-sm font-semibold truncate', enabled ? 'text-white' : 'text-zinc-500')}>
                             {mod.label}
                           </p>
                           <p className="text-[10px] text-slate-600 truncate">{mod.description}</p>
@@ -451,7 +451,7 @@ export default function NewEcosystemForVerticalPage() {
 
             {/* Vocabulário do nicho */}
             {niche && (
-              <Card className={cn("border", vertical.icon_bg.replace('/10', '/20'), "bg-slate-900/30")}>
+              <Card className={cn("border", vertical.icon_bg.replace('/10', '/20'), "bg-zinc-950/30")}>
                 <CardHeader className="pb-3">
                   <CardTitle className={cn("text-sm flex items-center gap-2", vertical.icon_color)}>
                     <Building2 className="w-4 h-4" />
@@ -466,7 +466,7 @@ export default function NewEcosystemForVerticalPage() {
                       { label: 'Profissional', value: niche.provider },
                       { label: 'Serviço', value: niche.service },
                     ].map(item => (
-                      <div key={item.label} className="p-3 rounded-xl bg-slate-800/50">
+                      <div key={item.label} className="p-3 rounded-xl bg-zinc-900/50">
                         <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", vertical.icon_color)}>
                           {item.label}
                         </p>

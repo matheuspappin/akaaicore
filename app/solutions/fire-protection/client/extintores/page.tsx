@@ -47,19 +47,19 @@ export default function FireClientExtintoresPage() {
         <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
           Meus Extintores
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+        <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
           Lista dos seus equipamentos cadastrados
         </p>
       </div>
 
       {assets.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
           <CardContent className="py-16 text-center">
             <Package className="w-16 h-16 mx-auto mb-4 text-slate-300 dark:text-slate-600" />
-            <p className="font-medium text-slate-600 dark:text-slate-400">
+            <p className="font-medium text-slate-600 dark:text-zinc-400">
               Nenhum extintor cadastrado
             </p>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-zinc-500 mt-1">
               Seus extintores aparecerão aqui quando forem registrados pela empresa.
             </p>
           </CardContent>
@@ -72,7 +72,7 @@ export default function FireClientExtintoresPage() {
               <Card
                 key={a.id}
                 className={cn(
-                  "border-l-4 bg-white dark:bg-slate-900/50",
+                  "border-l-4 bg-white dark:bg-zinc-950/50",
                   status.variant === "destructive" && "border-l-rose-500",
                   status.variant === "secondary" && "border-l-amber-500",
                   status.variant === "default" && "border-l-emerald-500"
@@ -87,7 +87,7 @@ export default function FireClientExtintoresPage() {
                     <Badge variant={status.variant}>{status.label}</Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-0 space-y-1 text-sm text-slate-500">
+                <CardContent className="pt-0 space-y-1 text-sm text-zinc-500">
                   {a.type && <p>Tipo: {a.type}</p>}
                   {a.location && <p>Local: {a.location}</p>}
                   {a.expiration_date && (

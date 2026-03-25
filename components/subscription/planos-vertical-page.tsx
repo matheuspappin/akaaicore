@@ -280,7 +280,7 @@ export function PlanosVerticalPage({
     Math.abs(Number(latestPaidInvoice.amount) - Number(limits.price || 0)) > 1
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950">
       <div className="flex items-center gap-3 mb-6 px-1">
         <Link
           href={configUrl}
@@ -293,7 +293,7 @@ export function PlanosVerticalPage({
         </div>
         <div>
           <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Planos e Preços</h1>
-          <p className="text-xs text-slate-500">Gerencie sua assinatura e acompanhe seus limites</p>
+          <p className="text-xs text-zinc-500">Gerencie sua assinatura e acompanhe seus limites</p>
         </div>
       </div>
 
@@ -308,7 +308,7 @@ export function PlanosVerticalPage({
               className={cn(
                 "p-6 border-2 rounded-xl transition-colors",
                 usage.plan === "gratuito" || ["starter", "free"].includes(usage.plan?.toLowerCase?.())
-                  ? "border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-slate-800/60"
+                  ? "border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-zinc-900/60"
                   : "border-primary/50 bg-primary/5 dark:bg-primary/10"
               )}
             >
@@ -326,7 +326,7 @@ export function PlanosVerticalPage({
                     <p className={cn("text-3xl font-bold", themeColor)}>
                       {!usageLoaded ? "—" : `R$ ${Number(limits.price || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                     </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">/mês</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">/mês</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2 items-end">
                     {searchParams.get("session_id") && (
@@ -370,7 +370,7 @@ export function PlanosVerticalPage({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-200 dark:border-slate-600">
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-slate-600 dark:text-slate-400 font-medium">Clientes Ativos</span>
+                    <span className="text-slate-600 dark:text-zinc-400 font-medium">Clientes Ativos</span>
                     <span className="font-bold text-slate-900 dark:text-white">
                       {usage.students} / {(limits.max_students ?? 10) >= 1000 ? "Ilimitado" : limits.max_students ?? 10}
                     </span>
@@ -394,7 +394,7 @@ export function PlanosVerticalPage({
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-slate-600 dark:text-slate-400 font-medium">Profissionais Ativos</span>
+                    <span className="text-slate-600 dark:text-zinc-400 font-medium">Profissionais Ativos</span>
                     <span className="font-bold text-slate-900 dark:text-white">
                       {usage.teachers} / {(limits.max_teachers ?? 1) >= 1000 ? "Ilimitado" : limits.max_teachers ?? 1}
                     </span>
@@ -506,12 +506,12 @@ export function PlanosVerticalPage({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-6">
             {loadingPlans ? (
               <div className="col-span-full py-10 text-center">
-                <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-slate-500" />
-                <p className="text-sm text-slate-500">Carregando planos...</p>
+                <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-zinc-500" />
+                <p className="text-sm text-zinc-500">Carregando planos...</p>
               </div>
             ) : plans.length === 0 ? (
               <div className="col-span-full py-10 text-center">
-                <p className="text-slate-500">Nenhum plano disponível no momento.</p>
+                <p className="text-zinc-500">Nenhum plano disponível no momento.</p>
               </div>
             ) : (
               plans.map((plan: any) => (
@@ -521,7 +521,7 @@ export function PlanosVerticalPage({
                     "cursor-pointer transition-all border-2",
                     selectedNewPlan === plan.id
                       ? `${themeBg} border-current ring-2 ring-current/20`
-                      : "border-border hover:border-slate-400",
+                      : "border-border hover:border-zinc-400",
                     usage.plan === plan.plan_id && "opacity-60 cursor-default"
                   )}
                   onClick={() => usage.plan !== plan.plan_id && setSelectedNewPlan(plan.id)}
@@ -535,7 +535,7 @@ export function PlanosVerticalPage({
                             ? Number(plan.price_annual).toFixed(0)
                             : Number(plan.price).toFixed(0)}
                         </span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-zinc-500">
                           {billingInterval === "yearly" ? "/ano" : "/mês"}
                         </span>
                       </div>
@@ -563,7 +563,7 @@ export function PlanosVerticalPage({
                               {enabled ? (
                                 <CheckCircle className="w-3 h-3 text-emerald-500" />
                               ) : (
-                                <XCircle className="w-3 h-3 text-slate-400" />
+                                <XCircle className="w-3 h-3 text-zinc-400" />
                               )}
                               {label}
                             </li>

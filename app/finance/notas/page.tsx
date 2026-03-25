@@ -160,7 +160,7 @@ export default function NotasPage() {
             <FileText className="w-6 h-6 text-emerald-600" />
             Notas Fiscais
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Emitir NF-e em lote para vendas pagas
           </p>
         </div>
@@ -200,18 +200,18 @@ export default function NotasPage() {
       </Card>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+        <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
           <CardContent className="p-6">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
               <FileText className="w-5 h-5 text-amber-600" />
               Pendentes de emissão ({pending.length})
             </h2>
-            <p className="text-sm text-slate-500 mb-4">
+            <p className="text-sm text-zinc-500 mb-4">
               Vendas pagas (PDV) que ainda não têm nota fiscal. Selecione várias e emita em lote.
             </p>
 
             {pending.length === 0 ? (
-              <p className="text-slate-500 text-sm py-8 text-center">Nenhum item pendente</p>
+              <p className="text-zinc-500 text-sm py-8 text-center">Nenhum item pendente</p>
             ) : (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 pb-2 border-b">
@@ -219,7 +219,7 @@ export default function NotasPage() {
                     checked={selected.size === pending.length}
                     onCheckedChange={selectAll}
                   />
-                  <span className="text-xs font-bold text-slate-500">Selecionar todas</span>
+                  <span className="text-xs font-bold text-zinc-500">Selecionar todas</span>
                 </div>
                 <div className="max-h-[320px] overflow-y-auto space-y-2 pr-1">
                   {pending.map((item) => (
@@ -238,7 +238,7 @@ export default function NotasPage() {
                         <p className="font-bold text-slate-900 dark:text-white text-sm truncate">
                           {item.title || item.tracking_code || item.id.slice(0, 8)}
                         </p>
-                        <p className="text-xs text-slate-500">{customerName(item.customer)} • {formatDate(item.created_at)}</p>
+                        <p className="text-xs text-zinc-500">{customerName(item.customer)} • {formatDate(item.created_at)}</p>
                       </div>
                       <span className="font-black text-emerald-600 text-sm">{formatCurrency(Number(item.total_amount))}</span>
                     </div>
@@ -249,7 +249,7 @@ export default function NotasPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+        <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
           <CardContent className="p-6">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-600" />
@@ -257,7 +257,7 @@ export default function NotasPage() {
             </h2>
 
             {emitted.length === 0 ? (
-              <p className="text-slate-500 text-sm py-8 text-center">Nenhuma nota emitida ainda</p>
+              <p className="text-zinc-500 text-sm py-8 text-center">Nenhuma nota emitida ainda</p>
             ) : (
               <div className="max-h-[400px] overflow-y-auto space-y-2 pr-1">
                 {emitted.map((note) => (
@@ -269,7 +269,7 @@ export default function NotasPage() {
                       <p className="font-bold text-slate-900 dark:text-white text-sm">
                         {note.invoice_number || `#${note.id.slice(0, 8)}`}
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-zinc-500">
                         {note.customer_data?.name || "—"} • {formatDate(note.created_at)}
                       </p>
                     </div>

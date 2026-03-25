@@ -65,7 +65,7 @@ export default function SubscriptionExpiredPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center p-4">
       <Card className="max-w-md w-full border-none shadow-2xl overflow-hidden">
         <div className="h-2 bg-red-500 w-full" />
         <CardHeader className="text-center pt-8">
@@ -73,12 +73,12 @@ export default function SubscriptionExpiredPage() {
             <ShieldAlert className="w-10 h-10 text-red-600" />
           </div>
           <CardTitle className="text-2xl font-black text-slate-900 dark:text-white">Assinatura Expirada</CardTitle>
-          <CardDescription className="text-slate-500">
+          <CardDescription className="text-zinc-500">
             O acesso ao painel do seu estúdio foi temporariamente suspenso por falta de pagamento ou fim do período de teste.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 pb-8">
-          <div className="bg-slate-100 dark:bg-slate-900 rounded-xl p-4 space-y-3">
+          <div className="bg-slate-100 dark:bg-zinc-950 rounded-xl p-4 space-y-3">
             <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
               Para recuperar o acesso e manter seus dados salvos, escolha uma opção:
             </p>
@@ -104,10 +104,10 @@ export default function SubscriptionExpiredPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="text-[10px] text-center text-slate-400 uppercase tracking-widest font-bold">Ou</p>
+            <p className="text-[10px] text-center text-zinc-400 uppercase tracking-widest font-bold">Ou</p>
             <button
               onClick={handleLogout}
-              className="text-sm text-slate-500 hover:text-red-600 flex items-center justify-center gap-2 transition-colors"
+              className="text-sm text-zinc-500 hover:text-red-600 flex items-center justify-center gap-2 transition-colors"
             >
               <LogOut className="w-4 h-4" /> Sair da conta
             </button>

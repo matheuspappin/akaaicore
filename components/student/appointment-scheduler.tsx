@@ -236,7 +236,7 @@ export function AppointmentScheduler({ student, vocabulary }: AppointmentSchedul
             </div>
 
             <div className="flex gap-2 pt-4">
-              <Button variant="ghost" className="flex-1 font-bold text-slate-500" onClick={() => setStep(1)}>
+              <Button variant="ghost" className="flex-1 font-bold text-zinc-500" onClick={() => setStep(1)}>
                 Voltar
               </Button>
               <Button 
@@ -257,11 +257,11 @@ export function AppointmentScheduler({ student, vocabulary }: AppointmentSchedul
             </div>
             <div>
               <h3 className="text-xl font-black text-slate-900">Agendado com sucesso!</h3>
-              <p className="text-sm text-slate-500 mt-2 px-6">
+              <p className="text-sm text-zinc-500 mt-2 px-6">
                 Seu horário para <b>{services.find(s => s.id === selectedService)?.name}</b> foi reservado para o dia <b>{format(selectedDate!, "dd/MM")}</b> às <b>{selectedTime}</b>.
               </p>
             </div>
-            <Button className="w-full mt-6 bg-slate-900 text-white font-bold h-12 rounded-xl" onClick={resetForm}>
+            <Button className="w-full mt-6 bg-zinc-950 text-white font-bold h-12 rounded-xl" onClick={resetForm}>
               Fechar
             </Button>
           </div>

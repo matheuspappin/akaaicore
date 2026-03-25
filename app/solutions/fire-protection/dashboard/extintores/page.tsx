@@ -294,10 +294,10 @@ function QRCodeDialog({ asset, open, onOpenChange }: { asset: Asset; open: boole
           <div id="qr-print-area" className="bg-white p-4 rounded-xl">
             <QRCode value={qrValue} size={200} style={{ height: "auto", maxWidth: "100%", width: "100%" }} />
           </div>
-          <p className="text-xs text-slate-500 text-center">
-            Código: <code className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{qrValue}</code>
+          <p className="text-xs text-zinc-500 text-center">
+            Código: <code className="bg-slate-100 dark:bg-zinc-900 px-2 py-0.5 rounded">{qrValue}</code>
           </p>
-          <p className="text-xs text-slate-400 text-center">
+          <p className="text-xs text-zinc-400 text-center">
             Imprima e cole no extintor. O técnico escaneia este QR para registrar vistorias.
           </p>
           <Button onClick={handlePrint} className="w-full bg-red-600 hover:bg-red-700" size="lg">
@@ -379,7 +379,7 @@ export default function ExtintoresPage() {
             <FireExtinguisher className="w-6 h-6 text-red-600" />
             Extintores
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             {loading ? "Carregando..." : `${assets.length} extintores cadastrados`}
           </p>
         </div>
@@ -416,7 +416,7 @@ export default function ExtintoresPage() {
 
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <Input
             placeholder="Buscar por ID, tipo, cliente ou localização..."
             value={search}
@@ -444,16 +444,16 @@ export default function ExtintoresPage() {
           <Loader2 className="w-8 h-8 animate-spin text-red-600" />
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50">
+        <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950/50">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-slate-100 dark:border-white/5">
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">ID</th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Tipo</th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Cliente</th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hidden lg:table-cell">Localização</th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Próx. Recarga</th>
-                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Status</th>
+                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">ID</th>
+                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Tipo</th>
+                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 hidden md:table-cell">Cliente</th>
+                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 hidden lg:table-cell">Localização</th>
+                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Próx. Recarga</th>
+                <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Status</th>
                 <th className="px-4 py-3"></th>
               </tr>
             </thead>
@@ -467,13 +467,13 @@ export default function ExtintoresPage() {
                       <span className="text-xs font-black text-red-600 bg-red-50 dark:bg-red-600/10 px-2 py-0.5 rounded-lg">{displayId(ext)}</span>
                     </td>
                     <td className="px-4 py-3 font-bold text-slate-900 dark:text-white">{displayTipo(ext)}</td>
-                    <td className="px-4 py-3 text-slate-500 hidden md:table-cell">
+                    <td className="px-4 py-3 text-zinc-500 hidden md:table-cell">
                       <div className="flex items-center gap-1.5">
                         <Building2 className="w-3.5 h-3.5" />
                         {ext.customer?.name || "—"}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-slate-500 hidden lg:table-cell">{ext.location || "—"}</td>
+                    <td className="px-4 py-3 text-zinc-500 hidden lg:table-cell">{ext.location || "—"}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
                         <Calendar className="w-3.5 h-3.5" />
@@ -508,7 +508,7 @@ export default function ExtintoresPage() {
             </tbody>
           </table>
           {filtered.length === 0 && (
-            <div className="text-center py-16 text-slate-400">
+            <div className="text-center py-16 text-zinc-400">
               <FireExtinguisher className="w-12 h-12 mx-auto mb-3 opacity-20" />
               <p className="font-medium">Nenhum extintor encontrado</p>
               <p className="text-xs mt-1">Cadastre o primeiro extintor para gerar QR codes.</p>

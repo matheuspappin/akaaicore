@@ -54,7 +54,7 @@ const statusMap: Record<string, { label: string; icon: any; className: string }>
   in_progress: { label: "Em Andamento", icon: Wrench,       className: "bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-400" },
   waiting_parts: { label: "Aguard. Peças", icon: Clock,     className: "bg-purple-100 text-purple-700 dark:bg-purple-600/20 dark:text-purple-400" },
   finished:    { label: "Concluída",    icon: CheckCircle,  className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" },
-  cancelled:   { label: "Cancelada",   icon: XCircle,      className: "bg-slate-100 text-slate-500 dark:bg-slate-600/20 dark:text-slate-400" },
+  cancelled:   { label: "Cancelada",   icon: XCircle,      className: "bg-slate-100 text-zinc-500 dark:bg-slate-600/20 dark:text-zinc-400" },
 }
 
 const prioridadeMap: Record<string, string> = {
@@ -266,10 +266,10 @@ function FinalizarOSDialog({
           </DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-2">
-          <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 text-sm">
+          <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/50 text-sm">
             <p className="font-bold text-slate-700 dark:text-slate-300">{os.title}</p>
             {os.customer && (
-              <p className="text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-1">
+              <p className="text-zinc-500 dark:text-zinc-400 flex items-center gap-1 mt-1">
                 <Building2 className="w-3.5 h-3.5" />{os.customer.name}
               </p>
             )}
@@ -394,7 +394,7 @@ function GerarQRMassaDialog({
             QR Codes em Massa
           </DialogTitle>
         </DialogHeader>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-zinc-500">
           Gere adesivos QR para os extintores desta OS. O técnico escaneia para registrar retirada e entrega.
         </p>
         {created.length === 0 ? (
@@ -455,12 +455,12 @@ function GerarQRMassaDialog({
           </div>
         ) : (
           <div className="space-y-4">
-            <div id="bulk-qr-print-area" className="flex flex-wrap gap-3 max-h-[300px] overflow-y-auto p-2 bg-slate-50 dark:bg-slate-900/50 rounded-xl">
+            <div id="bulk-qr-print-area" className="flex flex-wrap gap-3 max-h-[300px] overflow-y-auto p-2 bg-slate-50 dark:bg-zinc-950/50 rounded-xl">
               {created.map((a) => (
                 <div key={a.id} className="text-center p-2 border rounded-lg bg-white">
                   <div className="text-[10px] font-bold mb-1">{a.name}</div>
                   <QRCode value={a.qr_code} size={100} />
-                  <div className="text-[9px] text-slate-500 mt-1 truncate w-[100px]">{a.qr_code}</div>
+                  <div className="text-[9px] text-zinc-500 mt-1 truncate w-[100px]">{a.qr_code}</div>
                 </div>
               ))}
             </div>
@@ -538,7 +538,7 @@ export default function OSPage() {
             <ClipboardList className="w-6 h-6 text-red-600" />
             Ordens de Serviço
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             {counts.open} abertas · {counts.in_progress} em andamento
           </p>
         </div>
@@ -556,7 +556,7 @@ export default function OSPage() {
           { key: "open",        label: "Abertas",      icon: Clock,        color: "text-amber-500",  bg: "bg-amber-500/10" },
           { key: "in_progress", label: "Em Andamento", icon: Wrench,       color: "text-blue-500",   bg: "bg-blue-500/10" },
           { key: "finished",    label: "Concluídas",   icon: CheckCircle,  color: "text-emerald-500",bg: "bg-emerald-500/10" },
-          { key: "cancelled",   label: "Canceladas",   icon: XCircle,      color: "text-slate-500",  bg: "bg-slate-500/10" },
+          { key: "cancelled",   label: "Canceladas",   icon: XCircle,      color: "text-zinc-500",  bg: "bg-zinc-500/10" },
         ].map((s) => (
           <Card
             key={s.key}
@@ -565,7 +565,7 @@ export default function OSPage() {
               "cursor-pointer transition-all border shadow-sm",
               filtro === s.key
                 ? "border-red-600 bg-red-50 dark:bg-red-600/10"
-                : "bg-white dark:bg-slate-900/50 border-slate-200 dark:border-white/10"
+                : "bg-white dark:bg-zinc-950/50 border-slate-200 dark:border-white/10"
             )}
           >
             <CardContent className="p-4">
@@ -575,7 +575,7 @@ export default function OSPage() {
               <p className="text-2xl font-black text-slate-900 dark:text-white">
                 {counts[s.key as keyof typeof counts]}
               </p>
-              <p className="text-xs text-slate-500 font-medium">{s.label}</p>
+              <p className="text-xs text-zinc-500 font-medium">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -583,7 +583,7 @@ export default function OSPage() {
 
       {/* Busca */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por número, cliente ou tipo de serviço..."
           value={search}
@@ -594,7 +594,7 @@ export default function OSPage() {
 
       {/* Loading */}
       {loading && (
-        <div className="flex items-center justify-center py-16 text-slate-400">
+        <div className="flex items-center justify-center py-16 text-zinc-400">
           <Loader2 className="w-6 h-6 animate-spin mr-2" />
           <span className="text-sm">Carregando ordens de serviço...</span>
         </div>
@@ -610,7 +610,7 @@ export default function OSPage() {
               <Card
                 key={os.id}
                 className={cn(
-                  "bg-white dark:bg-slate-900/50 shadow-sm border-l-4 hover:shadow-md transition-shadow",
+                  "bg-white dark:bg-zinc-950/50 shadow-sm border-l-4 hover:shadow-md transition-shadow",
                   borda
                 )}
               >
@@ -637,9 +637,9 @@ export default function OSPage() {
                       </div>
                       <h3 className="font-bold text-slate-900 dark:text-white">{os.title}</h3>
                       {os.description && (
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{os.description}</p>
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5 line-clamp-2">{os.description}</p>
                       )}
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-zinc-500 dark:text-zinc-400">
                         {os.customer && (
                           <span className="flex items-center gap-1">
                             <Building2 className="w-3.5 h-3.5" />{os.customer.name}
@@ -694,7 +694,7 @@ export default function OSPage() {
       )}
 
       {!loading && filtered.length === 0 && (
-        <div className="text-center py-16 text-slate-400">
+        <div className="text-center py-16 text-zinc-400">
           <ClipboardList className="w-12 h-12 mx-auto mb-3 opacity-20" />
           <p className="font-medium">
             {osList.length === 0 ? "Nenhuma OS cadastrada" : "Nenhuma OS encontrada com esses filtros"}

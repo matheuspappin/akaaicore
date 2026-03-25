@@ -287,7 +287,7 @@ export default function JoinStudioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
           <div className="mx-auto w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-200">
@@ -309,8 +309,8 @@ export default function JoinStudioPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-8 space-y-6">
-            <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <div className="w-12 h-12 rounded-lg bg-white dark:bg-slate-800 flex items-center justify-center shadow-sm">
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-100 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800">
+              <div className="w-12 h-12 rounded-lg bg-white dark:bg-zinc-900 flex items-center justify-center shadow-sm">
                 <Building2 className="w-6 h-6 text-indigo-600" />
               </div>
               <div>
@@ -319,9 +319,9 @@ export default function JoinStudioPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 opacity-80">
-              <div className="w-12 h-12 rounded-lg bg-white dark:bg-slate-800 flex items-center justify-center shadow-sm">
-                <UserCircle2 className="w-6 h-6 text-slate-400" />
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-100 dark:border-zinc-800 opacity-80">
+              <div className="w-12 h-12 rounded-lg bg-white dark:bg-zinc-900 flex items-center justify-center shadow-sm">
+                <UserCircle2 className="w-6 h-6 text-zinc-400" />
               </div>
               <div>
                 <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Seu Perfil</p>
@@ -345,7 +345,7 @@ export default function JoinStudioPage() {
 
             <button 
               onClick={() => router.push(user?.role === 'student' ? '/student' : '/teacher')}
-              className="w-full text-center text-xs text-slate-400 hover:text-slate-600 transition-colors"
+              className="w-full text-center text-xs text-zinc-400 hover:text-slate-600 transition-colors"
             >
               Agora não, levar para meu painel
             </button>

@@ -91,7 +91,7 @@ export default function EngenheirosPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Engenheiros Ambientais</h1>
-          <p className="text-slate-400 mt-1">Gerencie os engenheiros da sua consultoria</p>
+          <p className="text-zinc-400 mt-1">Gerencie os engenheiros da sua consultoria</p>
         </div>
         <Button
           onClick={handleCopyInvite}
@@ -103,12 +103,12 @@ export default function EngenheirosPage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
         <Input
           placeholder="Buscar por nome, e-mail ou CREA..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+          className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
         />
       </div>
 
@@ -118,10 +118,10 @@ export default function EngenheirosPage() {
           { label: "Ativos", value: String(engenheiros.filter(e => e.status === "active").length), color: "text-emerald-400" },
           { label: "OS este Mês", value: String(engenheiros.reduce((a, e) => a + (e.total_os || 0), 0)), color: "text-blue-400" },
         ].map(s => (
-          <Card key={s.label} className="bg-slate-900/50 border-slate-800">
+          <Card key={s.label} className="bg-zinc-950/50 border-zinc-800">
             <CardContent className="p-4">
               <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{s.label}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -135,7 +135,7 @@ export default function EngenheirosPage() {
           </div>
           <div className="flex-1">
             <p className="font-bold text-white text-sm">Convide Engenheiros via Link</p>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-zinc-400 mt-0.5">
               Compartilhe o link de convite para que engenheiros se cadastrem diretamente na sua consultoria
             </p>
           </div>
@@ -155,10 +155,10 @@ export default function EngenheirosPage() {
           <Loader2 className="w-8 h-8 animate-spin text-teal-500" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <PencilRuler className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">
+            <p className="text-zinc-400 font-semibold text-lg">
               {search ? "Nenhum engenheiro encontrado" : "Nenhum engenheiro cadastrado ainda"}
             </p>
             <p className="text-slate-600 text-sm mt-2">
@@ -169,7 +169,7 @@ export default function EngenheirosPage() {
       ) : (
         <div className="space-y-3">
           {filtered.map((eng) => (
-            <Card key={eng.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+            <Card key={eng.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
                   <div className="w-11 h-11 rounded-xl bg-teal-600/20 flex items-center justify-center flex-shrink-0">
@@ -180,12 +180,12 @@ export default function EngenheirosPage() {
                       <p className="font-bold text-white truncate">{eng.name}</p>
                       <Badge className={cn(
                         "text-[10px] font-bold border-0 flex-shrink-0",
-                        eng.status === "active" ? "text-emerald-400 bg-emerald-400/10" : "text-slate-400 bg-slate-400/10"
+                        eng.status === "active" ? "text-emerald-400 bg-emerald-400/10" : "text-zinc-400 bg-zinc-400/10"
                       )}>
                         {eng.status === "active" ? "Ativo" : "Inativo"}
                       </Badge>
                     </div>
-                    <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+                    <div className="flex flex-wrap gap-3 text-xs text-zinc-500">
                       {eng.email && <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{eng.email}</span>}
                       {eng.phone && <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{eng.phone}</span>}
                       {eng.crea && <span className="flex items-center gap-1"><PencilRuler className="w-3 h-3" />CREA: {eng.crea}</span>}
@@ -194,7 +194,7 @@ export default function EngenheirosPage() {
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
                     <div className="text-right hidden sm:block">
-                      <p className="text-xs text-slate-500">OS</p>
+                      <p className="text-xs text-zinc-500">OS</p>
                       <p className="font-black text-white">{eng.total_os || 0}</p>
                     </div>
                     <ChevronRight className="w-4 h-4 text-slate-600" />

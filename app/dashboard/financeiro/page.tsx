@@ -487,7 +487,7 @@ export default function FinanceiroPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-900 p-2 rounded-2xl shadow-sm border">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-zinc-950 p-2 rounded-2xl shadow-sm border">
             <TabsList className="bg-transparent">
                     <TabsTrigger value="visao-geral" className="data-[state=active]:bg-indigo-50 data-[state=active]:text-indigo-600">{t.finance.overview}</TabsTrigger>
               <TabsTrigger value="despesas" className="data-[state=active]:bg-indigo-50 data-[state=active]:text-indigo-600">{t.finance.outflows}</TabsTrigger>
@@ -547,12 +547,12 @@ export default function FinanceiroPage() {
                           content={({ active, payload, label }) => {
                             if (!active || !payload?.length) return null
                             return (
-                              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 shadow-2xl">
+                              <div className="bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-xl px-4 py-3 shadow-2xl">
                                 <p className="font-bold text-slate-900 dark:text-white mb-2">{label}</p>
                                 {payload.map((entry, index) => (
                                   <div key={index} className="flex items-center gap-2 text-sm">
                                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }} />
-                                    <span className="text-slate-500">{entry.dataKey === "receita" ? t.dashboard.revenue : t.dashboard.expenses}:</span>
+                                    <span className="text-zinc-500">{entry.dataKey === "receita" ? t.dashboard.revenue : t.dashboard.expenses}:</span>
                                     <span className="font-bold" style={{ color: entry.color }}>
                                       {language === 'en' ? '$' : 'R$'} {Number(entry.value).toLocaleString(language === 'en' ? 'en-US' : 'pt-BR')}
                                     </span>
@@ -587,12 +587,12 @@ export default function FinanceiroPage() {
                       <BarChart data={displayExpenses} layout="vertical">
                         <CartesianGrid strokeDasharray="3 3" className="stroke-border" horizontal={false} />
                         <XAxis type="number" className="text-[10px] text-muted-foreground" />
-                        <YAxis dataKey="category" type="category" width={100} className="text-[10px] font-bold text-slate-500 uppercase" />
+                        <YAxis dataKey="category" type="category" width={100} className="text-[10px] font-bold text-zinc-500 uppercase" />
                         <ChartTooltip
                           content={({ active, payload, label }) => {
                             if (!active || !payload?.length) return null
                             return (
-                              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 shadow-2xl font-bold">
+                              <div className="bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-xl px-4 py-3 shadow-2xl font-bold">
                                 <p className="text-slate-900 dark:text-white mb-1 uppercase text-xs">{label}</p>
                                 <p className="text-indigo-600 text-lg">{language === 'en' ? '$' : 'R$'} {Number(payload[0].value).toLocaleString(language === 'en' ? 'en-US' : 'pt-BR')}</p>
                               </div>
@@ -609,7 +609,7 @@ export default function FinanceiroPage() {
 
             {/* Recent Transactions */}
             <Card className="bg-card border-border shadow-sm overflow-hidden">
-              <CardHeader className="border-b border-slate-50 dark:border-slate-800">
+              <CardHeader className="border-b border-slate-50 dark:border-zinc-800">
                 <CardTitle className="text-lg font-bold flex items-center gap-2">
                   <RefreshCw className="w-5 h-5 text-indigo-600" />
                   Transações Recentes
@@ -619,7 +619,7 @@ export default function FinanceiroPage() {
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                    <TableRow className="bg-slate-50/50 dark:bg-zinc-900/30">
                       <TableHead className="pl-6">Data</TableHead>
                       <TableHead>Descrição</TableHead>
                       <TableHead>Cliente</TableHead>
@@ -644,7 +644,7 @@ export default function FinanceiroPage() {
                           <TableCell className="font-medium text-slate-900 dark:text-white">
                             {tx.description}
                           </TableCell>
-                          <TableCell className="text-slate-600 dark:text-slate-400">
+                          <TableCell className="text-slate-600 dark:text-zinc-400">
                             {tx.student}
                           </TableCell>
                           <TableCell className="capitalize text-xs text-muted-foreground">
@@ -673,8 +673,8 @@ export default function FinanceiroPage() {
 
           {/* Despesas Tab */}
           <TabsContent value="despesas" className="space-y-6">
-            <Card className="border-none shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
-              <CardHeader className="border-b border-slate-50 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+            <Card className="border-none shadow-sm bg-white dark:bg-zinc-950 overflow-hidden">
+              <CardHeader className="border-b border-slate-50 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/50">
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="text-lg font-bold">{t.finance.controlOutflows}</CardTitle>
@@ -684,7 +684,7 @@ export default function FinanceiroPage() {
               </CardHeader>
               <CardContent className="p-0">
                 <Table>
-                  <TableHeader className="bg-slate-50/50 dark:bg-slate-800/30">
+                  <TableHeader className="bg-slate-50/50 dark:bg-zinc-900/30">
                     <TableRow>
                       <TableHead className="pl-6">{t.common.description}</TableHead>
                       <TableHead>{t.common.category}</TableHead>
@@ -697,13 +697,13 @@ export default function FinanceiroPage() {
                   <TableBody>
                     {expenses.length === 0 ? (
                       <TableRow>
-                        <TableCell colSpan={6} className="h-40 text-center text-slate-400">
+                        <TableCell colSpan={6} className="h-40 text-center text-zinc-400">
                           {t.finance.noExpenses}
                         </TableCell>
                       </TableRow>
                     ) : (
                       expenses.map((expense) => (
-                        <TableRow key={expense.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                        <TableRow key={expense.id} className="hover:bg-slate-50/50 dark:hover:bg-zinc-900/50 transition-colors">
                           <TableCell className="pl-6 font-bold text-slate-900 dark:text-white">
                             <div className="flex items-center gap-2">
                               {expense.description}
@@ -715,7 +715,7 @@ export default function FinanceiroPage() {
                           <TableCell>
                             <Badge variant="outline" className="font-bold text-[10px] uppercase tracking-wider">{expense.category}</Badge>
                           </TableCell>
-                          <TableCell className="text-slate-500 font-medium font-mono text-sm">
+                          <TableCell className="text-zinc-500 font-medium font-mono text-sm">
                             {new Date(expense.due_date).toLocaleDateString('pt-BR')}
                           </TableCell>
                           <TableCell className="font-black text-red-500">
@@ -731,7 +731,7 @@ export default function FinanceiroPage() {
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
-                                className="h-8 w-8 text-slate-400 hover:text-indigo-600"
+                                className="h-8 w-8 text-zinc-400 hover:text-indigo-600"
                                 onClick={() => {
                                   setEditingExpense(expense)
                                   setNewExpense({
@@ -752,7 +752,7 @@ export default function FinanceiroPage() {
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
-                                className="h-8 w-8 text-slate-400 hover:text-red-600"
+                                className="h-8 w-8 text-zinc-400 hover:text-red-600"
                                 onClick={() => handleDeleteExpense(expense.id)}
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -771,7 +771,7 @@ export default function FinanceiroPage() {
           {/* Mensalidades Tab (Existing UI) */}
           <TabsContent value="mensalidades" className="space-y-6">
             <Card className="bg-card border-border shadow-sm overflow-hidden">
-              <CardHeader className="border-b border-slate-50 dark:border-slate-800">
+              <CardHeader className="border-b border-slate-50 dark:border-zinc-800">
                 <CardTitle className="text-lg font-bold flex items-center gap-2">
                   <Users className="w-5 h-5 text-indigo-600" />
                   {t.finance.overduePayments}
@@ -781,7 +781,7 @@ export default function FinanceiroPage() {
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                    <TableRow className="bg-slate-50/50 dark:bg-zinc-900/30">
                       <TableHead className="pl-6">{vocabulary.client}</TableHead>
                       <TableHead>{t.common.value}</TableHead>
                       <TableHead>{t.finance.dueDate}</TableHead>
@@ -833,7 +833,7 @@ export default function FinanceiroPage() {
 
           {/* Professores Tab */}
           <TabsContent value="professores" className="space-y-6">
-            <div className="flex justify-between items-center bg-white dark:bg-slate-900 p-4 rounded-xl border border-indigo-100 shadow-sm">
+            <div className="flex justify-between items-center bg-white dark:bg-zinc-950 p-4 rounded-xl border border-indigo-100 shadow-sm">
               <div className="flex items-center gap-4">
                 <Select value={selectedMonth} onValueChange={setSelectedMonth}>
                   <SelectTrigger className="w-[140px]">
@@ -899,7 +899,7 @@ export default function FinanceiroPage() {
             </div>
 
             <Card className="bg-card border-border shadow-sm overflow-hidden">
-              <CardHeader className="border-b border-slate-50 dark:border-slate-800">
+              <CardHeader className="border-b border-slate-50 dark:border-zinc-800">
                 <CardTitle className="text-lg font-bold flex items-center gap-2">
                   <GraduationCap className="w-5 h-5 text-indigo-600" />
                   {t.finance.providerTransfers.replace('{provider}', vocabulary.provider)}
@@ -909,7 +909,7 @@ export default function FinanceiroPage() {
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                    <TableRow className="bg-slate-50/50 dark:bg-zinc-900/30">
                       <TableHead className="pl-6">{vocabulary.provider}</TableHead>
                       <TableHead>{t.finance.creditsSessions}</TableHead>
                       <TableHead>{t.finance.rateUsage}</TableHead>
@@ -961,8 +961,8 @@ export default function FinanceiroPage() {
           {/* Pacotes Tab */}
           {businessModel === 'CREDIT' && (
             <TabsContent value="pacotes" className="space-y-6">
-              <Card className="border-none shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
-                <CardHeader className="border-b border-slate-50 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+              <Card className="border-none shadow-sm bg-white dark:bg-zinc-950 overflow-hidden">
+                <CardHeader className="border-b border-slate-50 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/50">
                   <div className="flex items-center justify-between">
                     <div>
                       <CardTitle className="text-lg font-bold">{t.finance.packageManagement}</CardTitle>
@@ -970,7 +970,7 @@ export default function FinanceiroPage() {
                     </div>
                     <Button 
                       variant="outline" 
-                      className="gap-2 bg-white dark:bg-slate-900 shadow-sm"
+                      className="gap-2 bg-white dark:bg-zinc-950 shadow-sm"
                       onClick={() => {
                         setEditingPackage(null)
                         setNewPackage({ name: "", description: "", lessons_count: "", price: "", is_active: true })
@@ -984,7 +984,7 @@ export default function FinanceiroPage() {
                 <CardContent className="p-0">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                      <TableRow className="bg-slate-50/50 dark:bg-zinc-900/30">
                         <TableHead className="pl-6">{t.finance.packageName}</TableHead>
                         <TableHead>{t.finance.credits}</TableHead>
                         <TableHead>{t.finance.price}</TableHead>
@@ -1120,13 +1120,13 @@ export default function FinanceiroPage() {
               />
             </div>
 
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+            <div className="pt-2 border-t border-slate-100 dark:border-zinc-800">
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-zinc-900/50 rounded-xl">
                 <div className="flex items-center gap-2">
                   <Repeat className="w-4 h-4 text-indigo-600" />
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white">{t.finance.recurring}</p>
-                    <p className="text-[10px] text-slate-500">{t.finance.recurringAccount}</p>
+                    <p className="text-[10px] text-zinc-500">{t.finance.recurringAccount}</p>
                   </div>
                 </div>
                 <Switch 

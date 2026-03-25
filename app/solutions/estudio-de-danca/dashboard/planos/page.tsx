@@ -292,20 +292,20 @@ export default function PlanosPage() {
     Math.abs(Number(latestPaidInvoice.amount) - Number(limits.price || 0)) > 1
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-black dark:bg-black">
       <div className="flex items-center gap-3 mb-6 px-1">
         <Link
           href="/solutions/estudio-de-danca/dashboard/configuracoes"
           className="w-9 h-9 rounded-xl bg-slate-200 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors"
         >
-          <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+          <ArrowLeft className="w-5 h-5 text-zinc-400 dark:text-slate-300" />
         </Link>
-        <div className="w-9 h-9 rounded-xl bg-violet-600 flex items-center justify-center shadow-lg shadow-violet-600/20">
+        <div className="w-9 h-9 rounded-xl bg-[#e40014] flex items-center justify-center shadow-lg shadow-red-600/20">
           <CreditCard className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Planos e Preços</h1>
-          <p className="text-xs text-slate-500">Gerencie sua assinatura e acompanhe seus limites</p>
+          <h1 className="text-xl font-black tracking-tight text-white dark:text-white">Planos e Preços</h1>
+          <p className="text-xs text-zinc-500">Gerencie sua assinatura e acompanhe seus limites</p>
         </div>
       </div>
 
@@ -320,16 +320,16 @@ export default function PlanosPage() {
               className={cn(
                 "p-6 border-2 rounded-xl transition-colors",
                 usage.plan === "gratuito" || ["starter", "free"].includes(usage.plan?.toLowerCase?.())
-                  ? "border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-slate-800/60"
+                  ? "border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-zinc-950/60"
                   : "border-primary/50 bg-primary/5 dark:bg-primary/10"
               )}
             >
               <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">
+                  <h3 className="text-xl font-bold text-white dark:text-white uppercase tracking-tight">
                     {!usageLoaded ? "Carregando..." : limits.name}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mt-0.5">
+                  <p className="text-zinc-400 dark:text-slate-300 text-sm mt-0.5">
                     {!usageLoaded ? "—" : ["gratuito", "starter", "free"].includes(usage.plan?.toLowerCase?.())
                       ? "Ideal para começar sua jornada"
                       : usage.plan === "pro"
@@ -341,16 +341,16 @@ export default function PlanosPage() {
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <div className="text-right">
-                    <p className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                    <p className="text-3xl font-bold text-red- dark:text-red-">
                       {!usageLoaded ? "—" : `R$ ${Number(limits.price || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                     </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">/mês</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">/mês</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2 items-end">
                     {searchParams.get("session_id") && (
                       <Button
                         size="sm"
-                        className="h-9 px-4 text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white border-0"
+                        className="h-9 px-4 text-sm font-semibold bg-red- hover:bg-red- text-white border-0"
                         onClick={() => verifyPayment(searchParams.get("session_id")!)}
                         disabled={isVerifyingPayment}
                       >
@@ -368,7 +368,7 @@ export default function PlanosPage() {
                         variant={planPriceMismatch ? "default" : "outline"}
                         className={cn(
                           "h-9 px-4 text-sm font-semibold",
-                          planPriceMismatch && "bg-amber-600 hover:bg-amber-700 text-white border-0"
+                          planPriceMismatch && "bg-red- hover:bg-red- text-white border-0"
                         )}
                         onClick={syncPlanFromInvoice}
                         disabled={isSyncingFromInvoice}
@@ -385,11 +385,11 @@ export default function PlanosPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-200 dark:border-slate-600">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/10 dark:border-slate-600">
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-slate-600 dark:text-slate-400 font-medium">Alunos Ativos</span>
-                    <span className="font-bold text-slate-900 dark:text-white">
+                    <span className="text-zinc-400 dark:text-zinc-400 font-medium">Alunos Ativos</span>
+                    <span className="font-bold text-white dark:text-white">
                       {usage.students} / {(limits.max_students ?? 0) >= 1000 ? "Ilimitado" : limits.max_students ?? 10}
                     </span>
                   </div>
@@ -398,8 +398,8 @@ export default function PlanosPage() {
                       className={cn(
                         "h-full transition-all duration-300 rounded-full",
                         usage.students >= (limits.max_students ?? 10)
-                          ? "bg-red-500"
-                          : "bg-emerald-500 dark:bg-emerald-400"
+                          ? "bg-[#e40014]"
+                          : "bg-red- dark:bg-red-"
                       )}
                       style={{
                         width: `${Math.min(
@@ -412,8 +412,8 @@ export default function PlanosPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-slate-600 dark:text-slate-400 font-medium">Profissionais Ativos</span>
-                    <span className="font-bold text-slate-900 dark:text-white">
+                    <span className="text-zinc-400 dark:text-zinc-400 font-medium">Profissionais Ativos</span>
+                    <span className="font-bold text-white dark:text-white">
                       {usage.teachers} / {(limits.max_teachers ?? 0) >= 1000 ? "Ilimitado" : limits.max_teachers ?? 1}
                     </span>
                   </div>
@@ -422,8 +422,8 @@ export default function PlanosPage() {
                       className={cn(
                         "h-full transition-all duration-300 rounded-full",
                         usage.teachers >= (limits.max_teachers ?? 1)
-                          ? "bg-red-500"
-                          : "bg-emerald-500 dark:bg-emerald-400"
+                          ? "bg-[#e40014]"
+                          : "bg-red- dark:bg-red-"
                       )}
                       style={{
                         width: `${Math.min(
@@ -437,7 +437,7 @@ export default function PlanosPage() {
               </div>
 
               <div className="pt-4">
-                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">
                   Recursos do plano
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -452,8 +452,8 @@ export default function PlanosPage() {
                           className={cn(
                             "gap-1.5 px-3 py-1 font-medium",
                             has
-                              ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30"
-                              : "bg-slate-200/80 dark:bg-slate-700/80 text-slate-500 dark:text-slate-400 border-slate-300/50 dark:border-slate-600"
+                              ? "bg-[#e40014] text-red- dark:text-red- border-[#e40014]"
+                              : "bg-slate-200/80 dark:bg-slate-700/80 text-zinc-500 dark:text-zinc-400 border-slate-300/50 dark:border-slate-600"
                           )}
                         >
                           {has ? <CheckCircle className="w-3.5 h-3.5" /> : <Lock className="w-3 h-3 opacity-70" />}
@@ -467,7 +467,7 @@ export default function PlanosPage() {
 
             <div className="flex flex-wrap gap-3">
               <Button
-                className="bg-indigo-600 hover:bg-indigo-700 font-semibold shadow-md hover:shadow-lg transition-shadow"
+                className="bg-red- hover:bg-red- font-semibold shadow-md hover:shadow-lg transition-shadow"
                 onClick={() => {
                   setSelectedNewPlan(null)
                   setIsPlanModalOpen(true)
@@ -503,7 +503,7 @@ export default function PlanosPage() {
                         variant={invoice.status === "paid" ? "default" : "secondary"}
                         className={
                           invoice.status === "paid"
-                            ? "bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 border-emerald-500/20"
+                            ? "bg-[#e40014] text-red- hover:bg-[#e40014] border-[#e40014]"
                             : ""
                         }
                       >
@@ -553,13 +553,13 @@ export default function PlanosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-6">
             {loadingPlans ? (
               <div className="col-span-full py-10 text-center">
-                <Loader2 className="w-8 h-8 animate-spin mx-auto text-violet-500 mb-2" />
-                <p className="text-sm text-slate-500">Carregando planos...</p>
+                <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#e40014] mb-2" />
+                <p className="text-sm text-zinc-500">Carregando planos...</p>
               </div>
             ) : plans.length === 0 ? (
               <div className="col-span-full py-10 text-center">
-                <p className="text-slate-500 text-sm">Nenhum plano configurado para esta verticalização.</p>
-                <p className="text-slate-600 text-xs mt-1">O administrador pode configurar em Admin → Verticalizações → Estúdio de Dança → Planos e Preços.</p>
+                <p className="text-zinc-500 text-sm">Nenhum plano configurado para esta verticalização.</p>
+                <p className="text-zinc-400 text-xs mt-1">O administrador pode configurar em Admin → Verticalizações → Estúdio de Dança → Planos e Preços.</p>
               </div>
             ) : (
               plans.map((plan) => (
@@ -568,8 +568,8 @@ export default function PlanosPage() {
                   className={cn(
                     "cursor-pointer transition-all border-2",
                     (selectedNewPlan === plan.id || selectedNewPlan === plan.plan_id)
-                      ? "border-violet-600 bg-violet-50 dark:bg-violet-900/10 ring-2 ring-violet-600/20"
-                      : "border-border hover:border-violet-400",
+                      ? "border-[#e40014] bg-[#e40014] dark:bg-[#e40014] ring-2 ring-red-600/20"
+                      : "border-border hover:border-[#e40014]",
                     (usage.plan === plan.plan_id || usage.plan === plan.id) && "opacity-60 cursor-default"
                   )}
                   onClick={() => (usage.plan !== plan.plan_id && usage.plan !== plan.id) && setSelectedNewPlan(plan.plan_id || plan.id)}
@@ -583,23 +583,23 @@ export default function PlanosPage() {
                             ? Number(plan.price_annual).toFixed(0)
                             : Number(plan.price).toFixed(0)}
                         </span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-zinc-500">
                           {billingInterval === "yearly" ? "/ano" : "/mês"}
                         </span>
                       </div>
                       {billingInterval === "yearly" && plan.price_annual && (
-                        <p className="text-[10px] text-emerald-600 dark:text-emerald-400 mt-0.5">
+                        <p className="text-[10px] text-red- dark:text-red- mt-0.5">
                           Economize {plan.annual_discount_percent ?? 17}%
                         </p>
                       )}
                     </div>
                     <ul className="space-y-2 text-xs flex-1">
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="w-3 h-3 text-violet-500" />
+                        <CheckCircle className="w-3 h-3 text-[#e40014]" />
                         Até {(plan.max_students ?? plan.maxStudents) >= 1000 ? "Ilimitados" : plan.max_students ?? plan.maxStudents} alunos
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="w-3 h-3 text-violet-500" />
+                        <CheckCircle className="w-3 h-3 text-[#e40014]" />
                         Até {(plan.max_teachers ?? plan.maxProfessionals) >= 1000 ? "Ilimitados" : plan.max_teachers ?? plan.maxProfessionals} profissionais
                       </li>
                       {getModulesForVerticalization(VERTICALIZATION_SLUG)
@@ -609,9 +609,9 @@ export default function PlanosPage() {
                           return (
                             <li key={key} className="flex items-center gap-2">
                               {enabled ? (
-                                <CheckCircle className="w-3 h-3 text-violet-500" />
+                                <CheckCircle className="w-3 h-3 text-[#e40014]" />
                               ) : (
-                                <XCircle className="w-3 h-3 text-slate-400" />
+                                <XCircle className="w-3 h-3 text-zinc-400" />
                               )}
                               {label}
                             </li>
@@ -625,7 +625,7 @@ export default function PlanosPage() {
                     ) : (
                       <Button
                         variant={(selectedNewPlan === plan.id || selectedNewPlan === plan.plan_id) ? "default" : "outline"}
-                        className="mt-4 w-full text-xs h-8 bg-violet-600 hover:bg-violet-700"
+                        className="mt-4 w-full text-xs h-8 bg-[#e40014] hover:bg-[#e40014]"
                       >
                         {(selectedNewPlan === plan.id || selectedNewPlan === plan.plan_id) ? "Selecionado" : "Selecionar"}
                       </Button>
@@ -644,7 +644,7 @@ export default function PlanosPage() {
               type="button"
               disabled={!selectedNewPlan || selectedNewPlan === usage.plan || isLoading || plans.length === 0}
               onClick={handleCheckout}
-              className="bg-violet-600 hover:bg-violet-700"
+              className="bg-[#e40014] hover:bg-[#e40014]"
             >
               {isLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-2" />

@@ -245,7 +245,7 @@ export default function AgroFlowAIDashboardPage() {
           <h1 className="text-3xl font-black text-white tracking-tight">
             Olá, {user?.user_metadata?.name || "Gestor"} 👋
           </h1>
-          <p className="text-slate-400 font-medium mt-1">
+          <p className="text-zinc-400 font-medium mt-1">
             Painel de Controle — AgroFlowAI
           </p>
         </div>
@@ -271,12 +271,12 @@ export default function AgroFlowAIDashboardPage() {
                 <AlertTriangle className={cn("w-4 h-4 mt-0.5 flex-shrink-0", cfg.color)} />
                 <div className="flex-1 min-w-0">
                   <p className={cn("text-sm font-bold", cfg.color)}>{alert.title}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">{alert.description}</p>
+                  <p className="text-xs text-zinc-400 mt-0.5">{alert.description}</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => setDismissedAlerts(prev => new Set([...prev, alert.id]))}
-                  className="text-slate-600 hover:text-slate-400 flex-shrink-0"
+                  className="text-slate-600 hover:text-zinc-400 flex-shrink-0"
                 >
                   <XCircle className="w-4 h-4" />
                 </button>
@@ -284,7 +284,7 @@ export default function AgroFlowAIDashboardPage() {
             )
           })}
           {alerts.filter(a => !dismissedAlerts.has(a.id)).length > 3 && (
-            <p className="text-xs text-slate-500 text-center font-bold">
+            <p className="text-xs text-zinc-500 text-center font-bold">
               <Bell className="w-3 h-3 inline mr-1" />
               +{alerts.filter(a => !dismissedAlerts.has(a.id)).length - 3} alertas adicionais — veja Relatórios
             </p>
@@ -318,13 +318,13 @@ export default function AgroFlowAIDashboardPage() {
       <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {statCards.map((stat) => (
           <Link key={stat.label} href={stat.href}>
-            <Card className={cn("border-l-4 bg-slate-900/50 shadow-sm hover:shadow-md transition-shadow cursor-pointer border-slate-800", stat.border)}>
+            <Card className={cn("border-l-4 bg-zinc-950/50 shadow-sm hover:shadow-md transition-shadow cursor-pointer border-zinc-800", stat.border)}>
               <CardContent className="p-5">
                 <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", stat.bg)}>
                   <stat.icon className={cn("w-5 h-5", stat.color)} />
                 </div>
                 <p className={cn("text-3xl font-black", stat.color)}>{stat.value}</p>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">{stat.label}</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-1">{stat.label}</p>
               </CardContent>
             </Card>
           </Link>
@@ -334,14 +334,14 @@ export default function AgroFlowAIDashboardPage() {
       {/* Bottom Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Ordens de Serviço Recentes */}
-        <Card className="bg-slate-900/50 shadow-sm border border-slate-800">
+        <Card className="bg-zinc-950/50 shadow-sm border border-zinc-800">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <div>
               <CardTitle className="text-white flex items-center gap-2">
                 <ClipboardList className="w-5 h-5 text-emerald-500" />
                 OS Recentes
               </CardTitle>
-              <CardDescription className="text-slate-500">Ordens de serviço mais recentes</CardDescription>
+              <CardDescription className="text-zinc-500">Ordens de serviço mais recentes</CardDescription>
             </div>
               <Button type="button" variant="ghost" size="sm" className="text-emerald-500 font-bold text-xs hover:bg-emerald-500/10" asChild>
                 <Link href="/solutions/agroflowai/dashboard/ordens-servico">
@@ -355,14 +355,14 @@ export default function AgroFlowAIDashboardPage() {
                 {recentOS.map((os) => {
                   const st = statusConfig[os.status] || statusConfig.pending
                   return (
-                    <div key={os.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                    <div key={os.id} className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/50 hover:bg-zinc-900 transition-colors">
                       <div className="flex items-center gap-3 min-w-0">
                         <div className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center flex-shrink-0">
                           <Leaf className="w-4 h-4 text-emerald-400" />
                         </div>
                         <div className="min-w-0">
                           <p className="text-sm font-bold text-slate-200 truncate">{os.client}</p>
-                          <p className="text-xs text-slate-500">{os.type} · {os.date}</p>
+                          <p className="text-xs text-zinc-500">{os.type} · {os.date}</p>
                         </div>
                       </div>
                       <Badge className={cn("text-[10px] font-bold border-0 ml-2 flex-shrink-0", st.color, st.bg)}>
@@ -373,7 +373,7 @@ export default function AgroFlowAIDashboardPage() {
                 })}
               </div>
             ) : (
-              <div className="text-center py-10 text-slate-500">
+              <div className="text-center py-10 text-zinc-500">
                 <ClipboardList className="w-12 h-12 mx-auto mb-3 opacity-20" />
                 <p className="font-medium">Nenhuma OS cadastrada ainda</p>
                 <Button type="button" className="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl" size="sm" asChild>
@@ -405,14 +405,14 @@ export default function AgroFlowAIDashboardPage() {
           </Card>
 
           {/* Alerta de Compliance */}
-          <Card className="bg-slate-900/50 shadow-sm border border-amber-500/20">
+          <Card className="bg-zinc-950/50 shadow-sm border border-amber-500/20">
             <CardContent className="p-5 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
                 <AlertTriangle className="w-6 h-6 text-amber-500" />
               </div>
               <div className="flex-1">
                 <p className="font-bold text-white">Compliance CAR</p>
-                <p className="text-sm text-slate-500">Regularizações e licenciamentos pendentes</p>
+                <p className="text-sm text-zinc-500">Regularizações e licenciamentos pendentes</p>
               </div>
               <Link href="/solutions/agroflowai/dashboard/laudos" className="ml-auto">
                 <Button type="button" size="sm" variant="outline" className="border-amber-500/30 text-amber-500 hover:bg-amber-500/10 font-bold rounded-xl">
@@ -423,14 +423,14 @@ export default function AgroFlowAIDashboardPage() {
           </Card>
 
           {/* CRM Leads */}
-          <Card className="bg-slate-900/50 shadow-sm border border-indigo-500/20">
+          <Card className="bg-zinc-950/50 shadow-sm border border-indigo-500/20">
             <CardContent className="p-5 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="w-6 h-6 text-indigo-400" />
               </div>
               <div>
                 <p className="font-bold text-white">Captação de Clientes</p>
-                <p className="text-sm text-slate-500">Gerencie leads e novos contratos</p>
+                <p className="text-sm text-zinc-500">Gerencie leads e novos contratos</p>
               </div>
               <Link href="/solutions/agroflowai/dashboard/leads" className="ml-auto">
                 <Button type="button" size="sm" variant="outline" className="border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/10 font-bold rounded-xl">
@@ -442,7 +442,7 @@ export default function AgroFlowAIDashboardPage() {
 
           {/* Links de convite */}
           {studioSlug && (
-            <Card className="bg-slate-900/50 shadow-sm border border-slate-800">
+            <Card className="bg-zinc-950/50 shadow-sm border border-zinc-800">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-bold text-white uppercase tracking-widest">
                   Convites de Acesso
@@ -450,7 +450,7 @@ export default function AgroFlowAIDashboardPage() {
               </CardHeader>
               <CardContent className="space-y-2">
                 {invites.map((inv) => (
-                  <div key={inv.role} className="flex items-center justify-between p-3 rounded-xl bg-slate-800/50">
+                  <div key={inv.role} className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/50">
                     <div className="flex items-center gap-3">
                       <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", inv.bg)}>
                         <inv.icon className={cn("w-4 h-4", inv.color)} />
@@ -461,7 +461,7 @@ export default function AgroFlowAIDashboardPage() {
                       type="button"
                       size="sm"
                       variant="outline"
-                      className="h-7 px-3 text-xs font-bold rounded-lg border-slate-700 text-slate-400"
+                      className="h-7 px-3 text-xs font-bold rounded-lg border-slate-700 text-zinc-400"
                       onClick={() => handleCopyLink(inv.role)}
                     >
                       {copyingRole === inv.role ? (

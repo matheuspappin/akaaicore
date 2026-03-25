@@ -415,14 +415,14 @@ export default function DanceFlowAttendancePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+      <div className="min-h-screen bg-black dark:bg-black flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-black dark:bg-black">
       <Header title="Chamada" />
       
       <div className="container mx-auto px-4 py-6 max-w-6xl">
@@ -436,10 +436,10 @@ export default function DanceFlowAttendancePage() {
           
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h1 className="text-2xl font-bold text-white dark:text-white">
                 Chamada - {classInfo?.name}
               </h1>
-              <p className="text-slate-500 dark:text-slate-400">
+              <p className="text-zinc-500 dark:text-zinc-400">
                 {new Date().toLocaleDateString('pt-BR', { 
                   weekday: 'long', 
                   year: 'numeric', 
@@ -449,7 +449,7 @@ export default function DanceFlowAttendancePage() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Badge className="bg-violet-100 text-violet-700">
+              <Badge className="bg-[#e40014] text-[#e40014]">
                 {students.length === 0
                   ? "Sem alunos na lista"
                   : students.length === 1
@@ -457,7 +457,7 @@ export default function DanceFlowAttendancePage() {
                     : `${students.length} alunos na lista`}
               </Badge>
               {businessModel === 'CREDIT' && (
-                <Badge className="bg-indigo-100 text-indigo-700">
+                <Badge className="bg-red- text-red-">
                   Modelo por créditos
                 </Badge>
               )}
@@ -484,7 +484,7 @@ export default function DanceFlowAttendancePage() {
                     <div key={student.id} className="flex items-center justify-between p-4 border rounded-lg">
                       <div className="flex items-center gap-3">
                         <Avatar className="h-10 w-10">
-                          <AvatarFallback className="bg-violet-100 text-violet-600">
+                          <AvatarFallback className="bg-[#e40014] text-[#e40014]">
                             {student.name?.[0]?.toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
@@ -512,8 +512,8 @@ export default function DanceFlowAttendancePage() {
                           className={cn(
                             "rounded-full",
                             attendance[student.id] === 'present' 
-                              ? "bg-emerald-600 hover:bg-emerald-700" 
-                              : "hover:bg-emerald-50"
+                              ? "bg-red- hover:bg-red-" 
+                              : "hover:bg-red-"
                           )}
                           onClick={() => handleAttendanceChange(student.id, 'present')}
                         >
@@ -526,8 +526,8 @@ export default function DanceFlowAttendancePage() {
                           className={cn(
                             "rounded-full",
                             attendance[student.id] === 'absent' 
-                              ? "bg-rose-600 hover:bg-rose-700" 
-                              : "hover:bg-rose-50"
+                              ? "bg-red- hover:bg-red-" 
+                              : "hover:bg-red-"
                           )}
                           onClick={() => handleAttendanceChange(student.id, 'absent')}
                         >
@@ -570,20 +570,20 @@ export default function DanceFlowAttendancePage() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>Presentes:</span>
-                    <span className="font-bold text-emerald-600">
+                    <span className="font-bold text-red-">
                       {Object.values(attendance).filter(s => s === 'present').length}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Ausentes:</span>
-                    <span className="font-bold text-rose-600">
+                    <span className="font-bold text-red-">
                       {Object.values(attendance).filter(s => s === 'absent').length}
                     </span>
                   </div>
                   {businessModel === 'CREDIT' && (
                     <div className="flex justify-between">
                       <span>Créditos usados:</span>
-                      <span className="font-bold text-indigo-600">
+                      <span className="font-bold text-red-">
                         {Object.values(attendance).filter(s => s === 'present').length}
                       </span>
                     </div>
@@ -593,7 +593,7 @@ export default function DanceFlowAttendancePage() {
                 <Button 
                   onClick={saveAttendance} 
                   disabled={saving}
-                  className="w-full mt-4 bg-violet-600 hover:bg-violet-700"
+                  className="w-full mt-4 bg-[#e40014] hover:bg-[#e40014]"
                 >
                   {saving ? (
                     <>

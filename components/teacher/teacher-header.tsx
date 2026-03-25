@@ -45,7 +45,7 @@ export function TeacherHeader({ teacher }: TeacherHeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-4 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
           <Avatar className="h-10 w-10 border-2 border-indigo-100 shadow-sm">
@@ -61,7 +61,7 @@ export function TeacherHeader({ teacher }: TeacherHeaderProps) {
             </span>
           </div>
           
-          <nav className="hidden md:flex items-center gap-1 ml-4 border-l border-slate-100 dark:border-slate-800 pl-4">
+          <nav className="hidden md:flex items-center gap-1 ml-4 border-l border-slate-100 dark:border-zinc-800 pl-4">
             <Link href="/teacher">
               <Button variant="ghost" size="sm" className="gap-2 h-8 text-xs font-bold text-slate-600">
                 <LayoutDashboard className="h-3.5 w-3.5 text-indigo-600" /> Dashboard
@@ -82,13 +82,13 @@ export function TeacherHeader({ teacher }: TeacherHeaderProps) {
         </div>
 
         <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon" className="h-9 w-9 text-slate-400">
+          <Button variant="ghost" size="icon" className="h-9 w-9 text-zinc-400">
             <Bell className="h-5 w-5" />
           </Button>
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-9 w-9 text-slate-400">
+              <Button variant="ghost" size="icon" className="h-9 w-9 text-zinc-400">
                 <User className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>

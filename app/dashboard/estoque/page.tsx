@@ -491,7 +491,7 @@ export default function InventoryPage() {
       <div className="flex-1 p-6 space-y-6">
         
         {/* TOP BAR */}
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-xl border shadow-sm">
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white dark:bg-zinc-950 p-4 rounded-xl border shadow-sm">
           <div className="flex items-center gap-4 w-full md:w-auto">
              <div className="p-3 bg-primary/10 rounded-full">
                 <Package className="w-6 h-6 text-primary" />

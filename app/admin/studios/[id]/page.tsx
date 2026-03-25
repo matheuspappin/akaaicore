@@ -279,7 +279,7 @@ export default function TenantDetailPage() {
   const vocab = nicheDictionary.pt[niche]
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen bg-slate-50/50 dark:bg-black">
       <AdminHeader title={`Gestão: ${tenant.name}`} />
       
       <div className="p-8 max-w-[1600px] mx-auto w-full space-y-8">
@@ -299,7 +299,7 @@ export default function TenantDetailPage() {
                   const IconName = MODULE_ICONS[id] ?? 'Database'
                   const IconComponent = (Icons[IconName] as React.ComponentType<{ className?: string }>) ?? Database
                   return (
-                    <div key={id} className="flex items-center space-x-3 p-3 rounded-lg bg-slate-50/50 dark:bg-slate-900/50">
+                    <div key={id} className="flex items-center space-x-3 p-3 rounded-lg bg-slate-50/50 dark:bg-zinc-950/50">
                       <IconComponent className="w-5 h-5 text-muted-foreground" />
                       <Switch
                         id={id}
@@ -329,7 +329,7 @@ export default function TenantDetailPage() {
                     <Input
                       value={inviteUrl}
                       readOnly
-                      className="font-mono text-xs bg-slate-50 dark:bg-slate-900"
+                      className="font-mono text-xs bg-slate-50 dark:bg-zinc-950"
                     />
                     <Button
                       variant="outline"

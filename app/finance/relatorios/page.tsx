@@ -39,7 +39,7 @@ export default function RelatoriosPage() {
             <BarChart3 className="w-6 h-6 text-emerald-600" />
             Relatórios
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Análise e histórico financeiro
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function RelatoriosPage() {
         </div>
       </div>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardContent className="p-6">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
             <FileText className="w-5 h-5 text-emerald-600" />
@@ -83,7 +83,7 @@ export default function RelatoriosPage() {
       </Card>
 
       <div className="grid md:grid-cols-2 gap-4">
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+        <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
           <CardContent className="p-6">
             <h2 className="text-base font-bold text-slate-900 dark:text-white mb-3">Relatórios disponíveis</h2>
             <ul className="space-y-2">
@@ -96,13 +96,13 @@ export default function RelatoriosPage() {
             </ul>
           </CardContent>
         </Card>
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+        <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
           <CardContent className="p-6">
             <h2 className="text-base font-bold text-slate-900 dark:text-white mb-3">Resumo do período</h2>
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-slate-500">Total receita:</span><span className="font-bold text-emerald-600">R$ 361.000</span></div>
-              <div className="flex justify-between"><span className="text-slate-500">Total despesa:</span><span className="font-bold text-red-600">R$ 239.000</span></div>
-              <div className="flex justify-between pt-2 border-t"><span className="text-slate-500">Saldo:</span><span className="font-black text-blue-600">R$ 122.000</span></div>
+              <div className="flex justify-between"><span className="text-zinc-500">Total receita:</span><span className="font-bold text-emerald-600">R$ 361.000</span></div>
+              <div className="flex justify-between"><span className="text-zinc-500">Total despesa:</span><span className="font-bold text-red-600">R$ 239.000</span></div>
+              <div className="flex justify-between pt-2 border-t"><span className="text-zinc-500">Saldo:</span><span className="font-black text-blue-600">R$ 122.000</span></div>
             </div>
           </CardContent>
         </Card>

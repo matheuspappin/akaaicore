@@ -128,9 +128,21 @@ export async function getStudioBusinessModel(studioId: string) {
   return await getPaymentRequirement(studioId, supabase);
 }
 
-/** Taxa de conversão R$ → créditos: MIN(price/lessons_count) dos pacotes ativos. Fallback: 70 */
+/** Taxa de conversão R$ → créditos: Prioriza studio_settings, fallback para pacotes. */
 export async function getPdvCreditConversionRate(studioId: string): Promise<number> {
   const supabase = await createClient();
+  
+  // 1. Prioridade: Valor estipulado nas configurações
+  const { data: setting } = await supabase
+    .from('studio_settings')
+    .select('setting_value')
+    .eq('studio_id', studioId)
+    .eq('setting_key', 'pdv_credit_reais_per_unit')
+    .maybeSingle();
+
+  if (setting?.setting_value) return parseFloat(setting.setting_value);
+
+  // 2. Fallback: Menor taxa entre pacotes ativos
   const { data: packages } = await supabase
     .from('lesson_packages')
     .select('price, lessons_count')
@@ -142,14 +154,7 @@ export async function getPdvCreditConversionRate(studioId: string): Promise<numb
     return Math.min(...rates);
   }
 
-  const { data: setting } = await supabase
-    .from('studio_settings')
-    .select('setting_value')
-    .eq('studio_id', studioId)
-    .eq('setting_key', 'pdv_credit_reais_per_unit')
-    .maybeSingle();
-
-  return setting?.setting_value ? parseFloat(setting.setting_value) : 70;
+  return 70;
 }
 
 /** Saldo de créditos do aluno para exibir no PDV */

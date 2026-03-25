@@ -44,7 +44,7 @@ export function AkaiSplash() {
             <Link href="/home">
               <Button
                 size="lg"
-                className="h-14 px-12 text-lg font-black rounded-full"
+                className="h-14 px-12 text-lg font-black rounded-full bg-[#e40014] hover:bg-[#ff6568] text-white transition-colors border-none"
               >
                 Entrar
               </Button>

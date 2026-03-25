@@ -19,7 +19,7 @@ export default function POSPage() {
         {/* Área de Simulação de Venda */}
         <div className="md:col-span-1 p-6 border rounded-lg bg-white dark:bg-zinc-950 shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Carrinho Atual</h2>
-          <div className="h-64 flex items-center justify-center border-2 border-dashed rounded-md bg-slate-50 dark:bg-slate-900 text-muted-foreground">
+          <div className="h-64 flex items-center justify-center border-2 border-dashed rounded-md bg-slate-50 dark:bg-zinc-950 text-muted-foreground">
             Aguardando leitura de produtos...
           </div>
           <p className="mt-4 text-sm text-muted-foreground">

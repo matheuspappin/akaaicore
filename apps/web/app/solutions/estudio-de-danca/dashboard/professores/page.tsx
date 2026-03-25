@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { GraduationCap, Plus, Search, Phone, Mail, Copy, Check, Loader2, Link2, RefreshCw, CheckCheck, ExternalLink, Share2 } from "lucide-react"
+import { GraduationCap, Plus, Search, Phone, Mail, Copy, Check, Loader2, Link2, RefreshCw, CheckCheck, ExternalLink, Share2, Edit2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import {
   Dialog,
@@ -15,6 +15,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 
 function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
@@ -169,7 +176,9 @@ export default function ProfessoresPage() {
   const [studioId, setStudioId] = useState<string | null>(null)
   const [isInviteOpen, setIsInviteOpen] = useState(false)
   const [isNewDialogOpen, setIsNewDialogOpen] = useState(false)
-  const [newForm, setNewForm] = useState({ name: "", email: "", phone: "" })
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+  const [newForm, setNewForm] = useState({ name: "", email: "", phone: "", contract_type: "per_class", fixed_salary: "" })
+  const [editForm, setEditForm] = useState({ id: "", name: "", email: "", phone: "", contract_type: "per_class", fixed_salary: "" })
   const [isSaving, setIsSaving] = useState(false)
   const { toast } = useToast()
 
@@ -200,16 +209,52 @@ export default function ProfessoresPage() {
       const res = await fetch('/api/dance-studio/teachers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studioId, name: newForm.name, email: newForm.email, phone: newForm.phone }),
+        body: JSON.stringify({ 
+          studioId, 
+          name: newForm.name, 
+          email: newForm.email, 
+          phone: newForm.phone,
+          contract_type: newForm.contract_type,
+          fixed_salary: newForm.fixed_salary ? Number(newForm.fixed_salary.replace(',', '.')) : 0
+        }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Erro ao cadastrar professor')
       setProfessores(prev => [data, ...prev])
-      setNewForm({ name: "", email: "", phone: "" })
+      setNewForm({ name: "", email: "", phone: "", contract_type: "per_class", fixed_salary: "" })
       setIsNewDialogOpen(false)
       toast({ title: "Professor cadastrado!", description: `${data.name} foi adicionado.` })
     } catch (err: any) {
       toast({ title: "Erro ao cadastrar professor", description: err.message, variant: "destructive" })
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleEditProfessor = async () => {
+    if (!editForm.name.trim() || !editForm.id || !studioId) return
+    setIsSaving(true)
+    try {
+      const res = await fetch('/api/dance-studio/teachers', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          studioId, 
+          id: editForm.id,
+          name: editForm.name, 
+          email: editForm.email, 
+          phone: editForm.phone,
+          contract_type: editForm.contract_type,
+          fixed_salary: editForm.fixed_salary ? Number(String(editForm.fixed_salary).replace(',', '.')) : 0
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Erro ao atualizar professor')
+      setProfessores(prev => prev.map(p => p.id === data.id ? data : p))
+      setIsEditDialogOpen(false)
+      toast({ title: "Professor atualizado!", description: "Dados salvos com sucesso." })
+    } catch (err: any) {
+      toast({ title: "Erro ao atualizar professor", description: err.message, variant: "destructive" })
     } finally {
       setIsSaving(false)
     }
@@ -304,9 +349,35 @@ export default function ProfessoresPage() {
                     </div>
                   </div>
                 </div>
-                <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-600/20 dark:text-pink-400 border-0 text-xs font-bold flex-shrink-0">
-                  Professor
-                </Badge>
+                <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                  <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-600/20 dark:text-pink-400 border-0 text-xs font-bold w-fit">
+                    Professor
+                  </Badge>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline" className="text-[10px] w-fit">
+                      {prof.contract_type === 'clt' ? 'CLT' : prof.contract_type === 'fixed' ? 'Fixo' : 'Por Aula'}
+                      {(prof.contract_type === 'clt' || prof.contract_type === 'fixed') && prof.fixed_salary ? ` (R$ ${Number(prof.fixed_salary).toFixed(2).replace('.', ',')})` : ''}
+                    </Badge>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-6 w-6 text-slate-400 hover:text-pink-600"
+                      onClick={() => {
+                        setEditForm({
+                          id: prof.id,
+                          name: prof.name || "",
+                          email: prof.email || "",
+                          phone: prof.phone || "",
+                          contract_type: prof.contract_type || "per_class",
+                          fixed_salary: prof.fixed_salary ? String(prof.fixed_salary) : ""
+                        })
+                        setIsEditDialogOpen(true)
+                      }}
+                    >
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </Button>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -349,6 +420,32 @@ export default function ProfessoresPage() {
                 onChange={(e) => setNewForm(f => ({ ...f, phone: e.target.value }))}
               />
             </div>
+            <div>
+              <Label>Tipo de Contrato</Label>
+              <Select value={newForm.contract_type} onValueChange={(v) => setNewForm(f => ({ ...f, contract_type: v }))}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="per_class">Por Aula Ministrada</SelectItem>
+                  <SelectItem value="clt">CLT (Carteira Assinada)</SelectItem>
+                  <SelectItem value="fixed">Fixo (PJ/Autônomo)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {newForm.contract_type !== 'per_class' && (
+              <div>
+                <Label>Salário Fixo Mensal (R$)</Label>
+                <Input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder="0.00"
+                  value={newForm.fixed_salary}
+                  onChange={(e) => setNewForm(f => ({ ...f, fixed_salary: e.target.value }))}
+                />
+              </div>
+            )}
             <div className="flex gap-2 pt-2">
               <Button variant="outline" className="flex-1" onClick={() => setIsNewDialogOpen(false)}>
                 Cancelar
@@ -360,6 +457,84 @@ export default function ProfessoresPage() {
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                 Cadastrar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+      {/* Diálogo Editar Professor */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Editar Professor</DialogTitle>
+            <DialogDescription>Atualize os dados e o contrato do professor.</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="editProfName">Nome *</Label>
+              <Input
+                id="editProfName"
+                placeholder="Nome completo"
+                value={editForm.name}
+                onChange={(e) => setEditForm(f => ({ ...f, name: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="editProfEmail">E-mail</Label>
+              <Input
+                id="editProfEmail"
+                type="email"
+                placeholder="email@exemplo.com"
+                value={editForm.email}
+                onChange={(e) => setEditForm(f => ({ ...f, email: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="editProfPhone">Telefone</Label>
+              <Input
+                id="editProfPhone"
+                placeholder="(00) 00000-0000"
+                value={editForm.phone}
+                onChange={(e) => setEditForm(f => ({ ...f, phone: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label>Tipo de Contrato</Label>
+              <Select value={editForm.contract_type} onValueChange={(v) => setEditForm(f => ({ ...f, contract_type: v }))}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="per_class">Por Aula Ministrada</SelectItem>
+                  <SelectItem value="clt">CLT (Carteira Assinada)</SelectItem>
+                  <SelectItem value="fixed">Fixo (PJ/Autônomo)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {editForm.contract_type !== 'per_class' && (
+              <div>
+                <Label>Salário Fixo Mensal (R$)</Label>
+                <Input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  placeholder="0.00"
+                  value={editForm.fixed_salary}
+                  onChange={(e) => setEditForm(f => ({ ...f, fixed_salary: e.target.value }))}
+                />
+              </div>
+            )}
+            <div className="flex gap-2 pt-2">
+              <Button variant="outline" className="flex-1" onClick={() => setIsEditDialogOpen(false)}>
+                Cancelar
+              </Button>
+              <Button
+                onClick={handleEditProfessor}
+                disabled={isSaving || !editForm.name.trim()}
+                className="flex-1 bg-pink-600 hover:bg-pink-700 text-white font-bold"
+              >
+                {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Check className="w-4 h-4 mr-2" />}
+                Salvar
               </Button>
             </div>
           </div>

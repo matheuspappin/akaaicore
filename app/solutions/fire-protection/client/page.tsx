@@ -164,7 +164,7 @@ export default function FireClientDashboard() {
         <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
           Olá, {data?.student?.name || user?.user_metadata?.name || "Cliente"}
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+        <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
           Acompanhe o status da sua proteção contra incêndio
         </p>
       </div>
@@ -172,20 +172,20 @@ export default function FireClientDashboard() {
       {/* Status Cards */}
       <div className="grid grid-cols-2 gap-4">
         {statusItems.map((item) => (
-          <Card key={item.label} className={cn("border-l-4 bg-white dark:bg-slate-900/50 shadow-sm", item.border)}>
+          <Card key={item.label} className={cn("border-l-4 bg-white dark:bg-zinc-950/50 shadow-sm", item.border)}>
             <CardContent className="p-4">
               <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center mb-2", item.bg)}>
                 <item.icon className={cn("w-4 h-4", item.color)} />
               </div>
               <p className={cn("text-2xl font-black", item.color)}>{item.value}</p>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-0.5 leading-tight">{item.label}</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-0.5 leading-tight">{item.label}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Extintores */}
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
         <CardHeader className="flex flex-row items-center justify-between pb-3">
           <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
             <Package className="w-5 h-5 text-red-600" />
@@ -213,7 +213,7 @@ export default function FireClientDashboard() {
               ))}
             </ul>
           ) : (
-            <div className="text-center py-8 text-slate-400">
+            <div className="text-center py-8 text-zinc-400">
               <Package className="w-12 h-12 mx-auto mb-3 opacity-20" />
               <p className="font-medium">Nenhum extintor cadastrado</p>
               <p className="text-sm mt-1">Seus extintores registrados aparecerão aqui.</p>
@@ -223,7 +223,7 @@ export default function FireClientDashboard() {
       </Card>
 
       {/* Documentos */}
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
         <CardHeader className="flex flex-row items-center justify-between pb-3">
           <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
             <FileText className="w-5 h-5 text-blue-600" />
@@ -236,7 +236,7 @@ export default function FireClientDashboard() {
           </Link>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-8 text-slate-400">
+          <div className="text-center py-8 text-zinc-400">
             <FileText className="w-12 h-12 mx-auto mb-3 opacity-20" />
             <p className="font-medium">Nenhum documento disponível</p>
             <p className="text-sm mt-1">Laudos e relatórios serão exibidos aqui.</p>

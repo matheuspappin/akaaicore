@@ -144,7 +144,7 @@ export function OSDocuments({ orderId, studioId }: OSDocumentsProps) {
         const t = type?.toLowerCase()
         if (['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(t)) return <ImageIcon className="w-4 h-4 text-blue-500" />
         if (t === 'pdf') return <FileText className="w-4 h-4 text-rose-500" />
-        return <File className="w-4 h-4 text-slate-400" />
+        return <File className="w-4 h-4 text-zinc-400" />
     }
 
     if (loading) return <div>Carregando documentos...</div>
@@ -198,16 +198,16 @@ export function OSDocuments({ orderId, studioId }: OSDocumentsProps) {
 
                 <div className="space-y-3 pt-2">
                     {documents.length === 0 && (
-                        <div className="text-center py-8 bg-slate-50 dark:bg-slate-900 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
+                        <div className="text-center py-8 bg-slate-50 dark:bg-zinc-950 rounded-xl border border-dashed border-slate-200 dark:border-zinc-800">
                             <FileText className="w-8 h-8 text-slate-300 mx-auto mb-2" />
                             <p className="text-xs text-muted-foreground">Nenhum documento anexado.</p>
                         </div>
                     )}
                     {documents.map((doc) => (
-                        <div key={doc.id} className="group relative flex flex-col gap-2 p-3 border rounded-xl bg-white dark:bg-slate-900 hover:border-indigo-200 transition-colors shadow-sm">
+                        <div key={doc.id} className="group relative flex flex-col gap-2 p-3 border rounded-xl bg-white dark:bg-zinc-950 hover:border-indigo-200 transition-colors shadow-sm">
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3 overflow-hidden">
-                                    <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                    <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-zinc-900 flex items-center justify-center shrink-0">
                                         {getFileIcon(doc.file_type)}
                                     </div>
                                     <div className="overflow-hidden">
@@ -225,7 +225,7 @@ export function OSDocuments({ orderId, studioId }: OSDocumentsProps) {
 
                                 <div className="flex items-center gap-1">
                                     <a href={doc.file_url} target="_blank" rel="noreferrer">
-                                        <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-indigo-600">
+                                        <Button variant="ghost" size="icon" className="h-8 w-8 text-zinc-400 hover:text-indigo-600">
                                             <Download className="w-4 h-4" />
                                         </Button>
                                     </a>
@@ -236,7 +236,7 @@ export function OSDocuments({ orderId, studioId }: OSDocumentsProps) {
                             </div>
 
                             {/* Signatures Section */}
-                            <div className="mt-2 pt-2 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
+                            <div className="mt-2 pt-2 border-t border-slate-50 dark:border-zinc-800 flex items-center justify-between">
                                 {doc.signed_at ? (
                                     <div className="flex items-center gap-1.5 text-emerald-600">
                                         <CheckCircle2 className="w-3.5 h-3.5" />

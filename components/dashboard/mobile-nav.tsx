@@ -67,7 +67,7 @@ export function MobileNav({ isAffiliate = false, isSeller = false, isFinance = f
               <branding.icon className="w-4 h-4" />
             </div>
           )}
-          {branding.name} <span className={branding.accentText ?? "text-red-600"}>{branding.accentName}</span>
+          {branding.name} <span className={branding.accentText ?? "text-[#e40014]"}>{branding.accentName}</span>
         </div>
 
         {studios.length > 1 ? (

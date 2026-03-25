@@ -73,9 +73,9 @@ export default function FireClientLayout({ children }: { children: React.ReactNo
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-4">
         <Loader2 className="w-10 h-10 animate-spin text-red-500" />
-        <p className="text-slate-400 text-sm font-medium">Carregando...</p>
+        <p className="text-zinc-400 text-sm font-medium">Carregando...</p>
       </div>
     )
   }
@@ -83,9 +83,9 @@ export default function FireClientLayout({ children }: { children: React.ReactNo
   if (!authorized) return null
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 flex flex-col">
       {/* Header - sticky com backdrop blur */}
-      <header className="sticky top-0 z-50 h-16 flex items-center justify-between gap-4 px-4 md:px-6 bg-slate-950/95 dark:bg-slate-950 border-b border-white/10 backdrop-blur-md supports-[backdrop-filter]:bg-slate-950/80">
+      <header className="sticky top-0 z-50 h-16 flex items-center justify-between gap-4 px-4 md:px-6 bg-black/95 dark:bg-black border-b border-white/10 backdrop-blur-md supports-[backdrop-filter]:bg-black/80">
         <Link
           href="/solutions/fire-protection/client"
           className="flex items-center gap-3 group"
@@ -118,7 +118,7 @@ export default function FireClientLayout({ children }: { children: React.ReactNo
       </header>
 
       {/* Desktop: tabs horizontais com estado ativo */}
-      <nav className="hidden md:flex bg-white dark:bg-slate-900/50 border-b border-slate-200 dark:border-white/10 px-4 md:px-6">
+      <nav className="hidden md:flex bg-white dark:bg-zinc-950/50 border-b border-slate-200 dark:border-white/10 px-4 md:px-6">
         <div className="flex gap-1 max-w-4xl w-full">
           {navItems.map((item) => {
             const isActive =
@@ -133,7 +133,7 @@ export default function FireClientLayout({ children }: { children: React.ReactNo
                   "flex items-center gap-2 px-4 py-3.5 text-sm font-bold border-b-2 -mb-px transition-all",
                   isActive
                     ? "text-red-600 border-red-600 dark:text-red-500 dark:border-red-500"
-                    : "text-slate-500 hover:text-red-600 border-transparent hover:border-red-600/50 dark:text-slate-400 dark:hover:text-red-500"
+                    : "text-zinc-500 hover:text-red-600 border-transparent hover:border-red-600/50 dark:text-zinc-400 dark:hover:text-red-500"
                 )}
               >
                 <item.icon className="w-4 h-4" />
@@ -150,7 +150,7 @@ export default function FireClientLayout({ children }: { children: React.ReactNo
       </main>
 
       {/* Mobile: bottom nav com estado ativo e safe area */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 flex bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-white/10 pb-[env(safe-area-inset-bottom)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 flex bg-white dark:bg-black border-t border-slate-200 dark:border-white/10 pb-[env(safe-area-inset-bottom)]">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href ||
@@ -164,7 +164,7 @@ export default function FireClientLayout({ children }: { children: React.ReactNo
                 "flex-1 flex flex-col items-center justify-center gap-1 py-3 transition-colors",
                 isActive
                   ? "text-red-600 dark:text-red-500 bg-red-50/50 dark:bg-red-600/10"
-                  : "text-slate-400 hover:text-red-600 dark:hover:text-red-500"
+                  : "text-zinc-400 hover:text-red-600 dark:hover:text-red-500"
               )}
             >
               <item.icon className={cn("w-5 h-5", isActive && "drop-shadow-sm")} />

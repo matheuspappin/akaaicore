@@ -199,7 +199,7 @@ export default function NewAffiliateEcosystemPage() {
               <div className="space-y-2">
                 <Label>Link de Resgate</Label>
                 <div className="flex gap-2">
-                  <Input value={inviteUrl} readOnly className="bg-white dark:bg-slate-900 font-mono" />
+                  <Input value={inviteUrl} readOnly className="bg-white dark:bg-zinc-950 font-mono" />
                   <Button onClick={copyToClipboard} variant="outline">
                     <Copy className="w-4 h-4" />
                   </Button>

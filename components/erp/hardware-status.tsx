@@ -50,7 +50,7 @@ export function HardwareStatus() {
         <CardContent className="space-y-6">
           
           {/* Status da Impressora */}
-          <div className="flex items-center justify-between p-4 border rounded-lg bg-slate-50 dark:bg-slate-900">
+          <div className="flex items-center justify-between p-4 border rounded-lg bg-slate-50 dark:bg-zinc-950">
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-full ${isConnected ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-500'}`}>
                 <Printer className="h-6 w-6" />
@@ -82,7 +82,7 @@ export function HardwareStatus() {
           </div>
 
           {/* Status do Leitor (Sempre Ativo) */}
-          <div className="flex items-center justify-between p-4 border rounded-lg bg-slate-50 dark:bg-slate-900">
+          <div className="flex items-center justify-between p-4 border rounded-lg bg-slate-50 dark:bg-zinc-950">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-full bg-blue-100 text-blue-600">
                 <ScanBarcode className="h-6 w-6" />

@@ -309,7 +309,7 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* User Profile */}
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
           <CardHeader>
             <div className="flex items-center gap-2">
                 <User className="w-5 h-5 text-indigo-600" />
@@ -324,7 +324,7 @@ export default function AdminSettingsPage() {
                 <Input 
                     value={userData.name}
                     onChange={(e) => handleUserInputChange('name', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                     placeholder="Seu nome"
                 />
               </div>
@@ -334,19 +334,19 @@ export default function AdminSettingsPage() {
                     type="email"
                     value={userData.email}
                     onChange={(e) => handleUserInputChange('email', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                     placeholder="seu@email.com"
                 />
               </div>
             </div>
             
-            <Separator className="bg-slate-100 dark:bg-slate-800" />
+            <Separator className="bg-slate-100 dark:bg-zinc-900" />
             
             <div className="space-y-4">
-              <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+              <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-2">
                 <Lock className="w-4 h-4" /> Alterar Senha
               </h4>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                   Preencha os campos abaixo apenas se desejar alterar sua senha.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -356,7 +356,7 @@ export default function AdminSettingsPage() {
                       type="password"
                       value={passwordData.newPassword}
                       onChange={(e) => handlePasswordInputChange('newPassword', e.target.value)}
-                      className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                       placeholder="••••••••"
                     />
                 </div>
@@ -366,7 +366,7 @@ export default function AdminSettingsPage() {
                       type="password"
                       value={passwordData.confirmPassword}
                       onChange={(e) => handlePasswordInputChange('confirmPassword', e.target.value)}
-                      className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                       placeholder="••••••••"
                     />
                 </div>
@@ -382,7 +382,7 @@ export default function AdminSettingsPage() {
         </Card>
 
         {/* API & Intelligence */}
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
           <CardHeader>
             <div className="flex items-center gap-2">
               <Cpu className="w-5 h-5 text-indigo-600" />
@@ -395,17 +395,17 @@ export default function AdminSettingsPage() {
               <div className="space-y-2">
                 <Label className="flex items-center justify-between text-slate-700 dark:text-slate-300">
                   OpenAI API Key
-                  <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-slate-800" onClick={() => setShowKeys(!showKeys)}>
+                  <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-zinc-900" onClick={() => setShowKeys(!showKeys)}>
                     {showKeys ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
                   </Button>
                 </Label>
                 <div className="relative">
-                  <Key className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                  <Key className="absolute left-3 top-3 w-4 h-4 text-zinc-400" />
                   <Input 
                     type={showKeys ? "text" : "password"} 
                     value={envConfig.OPENAI_API_KEY}
                     onChange={(e) => handleInputChange('OPENAI_API_KEY', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none pl-10 focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none pl-10 focus-visible:ring-indigo-500"
                     placeholder="sk-..."
                   />
                 </div>
@@ -413,27 +413,27 @@ export default function AdminSettingsPage() {
               <div className="space-y-2">
                 <Label className="flex items-center justify-between text-slate-700 dark:text-slate-300">
                   Google Gemini API Key
-                  <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-slate-800" onClick={() => setShowKeys(!showKeys)}>
+                  <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-zinc-900" onClick={() => setShowKeys(!showKeys)}>
                     {showKeys ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
                   </Button>
                 </Label>
                 <div className="relative">
-                  <Cpu className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                  <Cpu className="absolute left-3 top-3 w-4 h-4 text-zinc-400" />
                   <Input 
                     type={showKeys ? "text" : "password"} 
                     value={envConfig.GOOGLE_AI_API_KEY}
                     onChange={(e) => handleInputChange('GOOGLE_AI_API_KEY', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none pl-10 focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none pl-10 focus-visible:ring-indigo-500"
                     placeholder="AIza..."
                   />
                 </div>
               </div>
             </div>
 
-            <Separator className="bg-slate-100 dark:bg-slate-800" />
+            <Separator className="bg-slate-100 dark:bg-zinc-900" />
 
             <div className="space-y-4">
-              <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+              <h4 className="text-sm font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-2">
                 <Mail className="w-4 h-4" /> Configurações de E-mail
               </h4>
               <div className="grid grid-cols-1 gap-4">
@@ -443,17 +443,17 @@ export default function AdminSettingsPage() {
                     type={showKeys ? "text" : "password"}
                     value={envConfig.RESEND_API_KEY}
                     onChange={(e) => handleInputChange('RESEND_API_KEY', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                     placeholder="re_..."
                   />
-                  <p className="text-xs text-slate-500">Domínio verificado no Resend. Se preenchido, usa Resend em vez de SMTP.</p>
+                  <p className="text-xs text-zinc-500">Domínio verificado no Resend. Se preenchido, usa Resend em vez de SMTP.</p>
                 </div>
                 <div className="space-y-2">
                   <Label className="text-slate-700 dark:text-slate-300">E-mail do Remetente</Label>
                   <Input 
                     value={envConfig.EMAIL_SENDER_ADDRESS}
                     onChange={(e) => handleInputChange('EMAIL_SENDER_ADDRESS', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                     placeholder="exemplo@dominio.com"
                   />
                 </div>
@@ -462,7 +462,7 @@ export default function AdminSettingsPage() {
                   <Input 
                     value={envConfig.EMAIL_SENDER_NAME}
                     onChange={(e) => handleInputChange('EMAIL_SENDER_NAME', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                     placeholder="Nome do Seu Estúdio"
                   />
                 </div>
@@ -472,7 +472,7 @@ export default function AdminSettingsPage() {
                     <Input 
                       value={envConfig.EMAIL_SMTP_USER}
                       onChange={(e) => handleInputChange('EMAIL_SMTP_USER', e.target.value)}
-                      className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                       placeholder="resend"
                     />
                   </div>
@@ -482,7 +482,7 @@ export default function AdminSettingsPage() {
                       type={showKeys ? "text" : "password"}
                       value={envConfig.EMAIL_SENDER_PASSWORD}
                       onChange={(e) => handleInputChange('EMAIL_SENDER_PASSWORD', e.target.value)}
-                      className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                       placeholder="SuaSenhaSuperSecreta"
                     />
                   </div>
@@ -493,7 +493,7 @@ export default function AdminSettingsPage() {
                     <Input 
                       value={envConfig.EMAIL_SMTP_HOST}
                       onChange={(e) => handleInputChange('EMAIL_SMTP_HOST', e.target.value)}
-                      className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                       placeholder="smtp.gmail.com"
                     />
                   </div>
@@ -502,7 +502,7 @@ export default function AdminSettingsPage() {
                     <Input 
                       value={envConfig.EMAIL_SMTP_PORT}
                       onChange={(e) => handleInputChange('EMAIL_SMTP_PORT', e.target.value)}
-                      className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                       placeholder="587"
                     />
                   </div>
@@ -513,7 +513,7 @@ export default function AdminSettingsPage() {
         </Card>
 
         {/* Stripe & Payments */}
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
           <CardHeader>
             <div className="flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-indigo-600" />
@@ -526,17 +526,17 @@ export default function AdminSettingsPage() {
               <div className="space-y-2">
                 <Label className="flex items-center justify-between text-slate-700 dark:text-slate-300">
                   Stripe Secret Key (sk_...)
-                  <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-slate-800" onClick={() => setShowKeys(!showKeys)}>
+                  <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-zinc-900" onClick={() => setShowKeys(!showKeys)}>
                     {showKeys ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
                   </Button>
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                  <Lock className="absolute left-3 top-3 w-4 h-4 text-zinc-400" />
                   <Input 
                     type={showKeys ? "text" : "password"} 
                     value={envConfig.STRIPE_SECRET_KEY}
                     onChange={(e) => handleInputChange('STRIPE_SECRET_KEY', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none pl-10 focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none pl-10 focus-visible:ring-indigo-500"
                     placeholder="sk_live_..."
                   />
                 </div>
@@ -544,11 +544,11 @@ export default function AdminSettingsPage() {
               <div className="space-y-2">
                 <Label className="text-slate-700 dark:text-slate-300">Stripe Publishable Key (pk_...)</Label>
                 <div className="relative">
-                  <Globe className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                  <Globe className="absolute left-3 top-3 w-4 h-4 text-zinc-400" />
                   <Input 
                     value={envConfig.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
                     onChange={(e) => handleInputChange('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none pl-10 focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none pl-10 focus-visible:ring-indigo-500"
                     placeholder="pk_live_..."
                   />
                 </div>
@@ -557,28 +557,28 @@ export default function AdminSettingsPage() {
             <div className="space-y-2">
               <Label className="flex items-center justify-between text-slate-700 dark:text-slate-300">
                 Stripe Webhook Secret (whsec_...)
-                <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-slate-800" onClick={() => setShowKeys(!showKeys)}>
+                <Button variant="ghost" size="sm" className="h-6 px-2 hover:bg-slate-100 dark:hover:bg-zinc-900" onClick={() => setShowKeys(!showKeys)}>
                   {showKeys ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
                 </Button>
               </Label>
                 <div className="relative">
-                  <Zap className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                  <Zap className="absolute left-3 top-3 w-4 h-4 text-zinc-400" />
                   <Input 
                     type={showKeys ? "text" : "password"} 
                     value={envConfig.STRIPE_WEBHOOK_SECRET}
                     onChange={(e) => handleInputChange('STRIPE_WEBHOOK_SECRET', e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800 border-none pl-10 focus-visible:ring-indigo-500"
+                    className="bg-slate-50 dark:bg-zinc-900 border-none pl-10 focus-visible:ring-indigo-500"
                     placeholder="whsec_..."
                   />
                 </div>
-                <p className="text-[10px] text-slate-400 flex items-center gap-1 mt-1">
+                <p className="text-[10px] text-zinc-400 flex items-center gap-1 mt-1">
                   <AlertTriangle className="w-3 h-3" /> Necessário para confirmação automática de pagamentos via Webhook.
                 </p>
               </div>
           </CardContent>
         </Card>
 
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
           <CardHeader>
             <div className="flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-indigo-600" />
@@ -590,7 +590,7 @@ export default function AdminSettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label className="text-base font-bold">Habilitar Pagamentos de Afiliados</Label>
-                <p className="text-sm text-slate-500">Ativar ou desativar o sistema de pagamentos para afiliados.</p>
+                <p className="text-sm text-zinc-500">Ativar ou desativar o sistema de pagamentos para afiliados.</p>
               </div>
               <Switch
                 checked={affiliatePayoutsEnabled}
@@ -598,18 +598,18 @@ export default function AdminSettingsPage() {
                 disabled={isAffiliateSettingsSaving}
               />
             </div>
-            <Separator className="bg-slate-100 dark:bg-slate-800" />
+            <Separator className="bg-slate-100 dark:bg-zinc-900" />
             <div className="space-y-2">
               <Label className="text-slate-700 dark:text-slate-300">Valor Mínimo de Pagamento (R$)</Label>
               <Input
                 type="number"
                 value={minPayoutAmount / 100}
                 onChange={(e) => setMinPayoutAmount(parseInt(e.target.value) * 100)}
-                className="bg-slate-50 dark:bg-slate-800 border-none focus-visible:ring-indigo-500"
+                className="bg-slate-50 dark:bg-zinc-900 border-none focus-visible:ring-indigo-500"
                 placeholder="10.00"
                 disabled={isAffiliateSettingsSaving}
               />
-              <p className="text-xs text-slate-500">O valor mínimo (em Reais) que um afiliado deve acumular para receber um pagamento.</p>
+              <p className="text-xs text-zinc-500">O valor mínimo (em Reais) que um afiliado deve acumular para receber um pagamento.</p>
             </div>
           </CardContent>
           <CardFooter>
@@ -621,7 +621,7 @@ export default function AdminSettingsPage() {
         </Card>
 
         {/* Security & Access */}
-        <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+        <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
           <CardHeader>
             <div className="flex items-center gap-2">
               <Lock className="w-5 h-5 text-indigo-600" />
@@ -633,25 +633,25 @@ export default function AdminSettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label className="text-base font-bold">Auto-Registro de Estúdios</Label>
-                <p className="text-sm text-slate-500">Permitir que qualquer pessoa crie uma conta via /register</p>
+                <p className="text-sm text-zinc-500">Permitir que qualquer pessoa crie uma conta via /register</p>
               </div>
               <Switch defaultChecked />
             </div>
-            <Separator className="bg-slate-100 dark:border-slate-800" />
+            <Separator className="bg-slate-100 dark:border-zinc-800" />
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label className="text-base font-bold">Modo de Manutenção</Label>
-                <p className="text-sm text-slate-500 text-red-500">Bloqueia o acesso de todos os estúdios para manutenção programada</p>
+                <p className="text-sm text-zinc-500 text-red-500">Bloqueia o acesso de todos os estúdios para manutenção programada</p>
               </div>
               <Switch />
             </div>
-            <Separator className="bg-slate-100 dark:border-slate-800" />
+            <Separator className="bg-slate-100 dark:border-zinc-800" />
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label className="text-base font-bold text-amber-600 flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4" /> Aprovação Manual de Novos Estúdios
                 </Label>
-                <p className="text-sm text-slate-500">Novos estúdios precisam de aprovação admin para começar a usar</p>
+                <p className="text-sm text-zinc-500">Novos estúdios precisam de aprovação admin para começar a usar</p>
               </div>
               <Switch />
             </div>
@@ -659,13 +659,13 @@ export default function AdminSettingsPage() {
         </Card>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between p-6 bg-slate-900 rounded-2xl border border-slate-800">
+        <div className="flex items-center justify-between p-6 bg-zinc-950 rounded-2xl border border-zinc-800">
           <div>
             <p className="text-white font-bold">Salvar Alterações</p>
-            <p className="text-xs text-slate-400">As mudanças afetam todos os estúdios instantaneamente.</p>
+            <p className="text-xs text-zinc-400">As mudanças afetam todos os estúdios instantaneamente.</p>
           </div>
           <div className="flex gap-3">
-            <Button variant="ghost" className="text-slate-400 hover:text-white">Cancelar</Button>
+            <Button variant="ghost" className="text-zinc-400 hover:text-white">Cancelar</Button>
             <Button 
               className="bg-indigo-600 hover:bg-indigo-700 gap-2 px-8" 
               onClick={handleSave}

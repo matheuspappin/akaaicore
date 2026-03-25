@@ -64,12 +64,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center">
             <Leaf className="w-7 h-7 text-white animate-pulse" />
           </div>
-          <p className="text-slate-400 text-sm font-medium">Carregando portal...</p>
+          <p className="text-zinc-400 text-sm font-medium">Carregando portal...</p>
         </div>
       </div>
     )
@@ -88,7 +88,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             onClick={() => mobile && setMobileOpen(false)}
             className={cn(
               "flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-sm font-semibold",
-              "text-slate-400 hover:text-white hover:bg-white/5"
+              "text-zinc-400 hover:text-white hover:bg-white/5"
             )}
           >
             <Icon className="w-5 h-5 flex-shrink-0" />
@@ -100,9 +100,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   )
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-black text-white">
       {/* Sidebar Desktop */}
-      <aside className="hidden md:flex flex-col fixed top-0 left-0 h-full w-64 bg-slate-950 border-r border-white/10 z-50">
+      <aside className="hidden md:flex flex-col fixed top-0 left-0 h-full w-64 bg-black border-r border-white/10 z-50">
         <div className="p-5 border-b border-white/10">
           <Link href="/solutions/agroflowai/client" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
@@ -112,7 +112,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
               <p className="font-black text-white text-sm tracking-tighter leading-none">
                 Agro<span className="text-emerald-400">Flow</span>AI
               </p>
-              <p className="text-[10px] text-slate-500 font-medium">Portal do Proprietário</p>
+              <p className="text-[10px] text-zinc-500 font-medium">Portal do Proprietário</p>
             </div>
           </Link>
         </div>
@@ -128,13 +128,13 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-white truncate">{userName || "Proprietário"}</p>
-              <p className="text-xs text-slate-500">Cliente / Proprietário Rural</p>
+              <p className="text-xs text-zinc-500">Cliente / Proprietário Rural</p>
             </div>
           </div>
           <Button
             variant="ghost"
             onClick={handleLogout}
-            className="w-full justify-start gap-2 text-slate-400 hover:text-red-400 hover:bg-red-400/10 rounded-xl"
+            className="w-full justify-start gap-2 text-zinc-400 hover:text-red-400 hover:bg-red-400/10 rounded-xl"
           >
             <LogOut className="w-4 h-4" />
             Sair
@@ -143,7 +143,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       </aside>
 
       {/* Mobile Header */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur border-b border-white/10 px-4 h-16 flex items-center justify-between">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur border-b border-white/10 px-4 h-16 flex items-center justify-between">
         <Link href="/solutions/agroflowai/client" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center">
             <Leaf className="w-4 h-4 text-white" />
@@ -152,7 +152,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             Agro<span className="text-emerald-400">Flow</span>AI
           </span>
         </Link>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-slate-400 hover:text-white p-1">
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-zinc-400 hover:text-white p-1">
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </header>
@@ -160,7 +160,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/60" onClick={() => setMobileOpen(false)}>
-          <div className="absolute top-16 left-0 right-0 bg-slate-950 border-b border-white/10 p-4 space-y-1" onClick={e => e.stopPropagation()}>
+          <div className="absolute top-16 left-0 right-0 bg-black border-b border-white/10 p-4 space-y-1" onClick={e => e.stopPropagation()}>
             <NavItems mobile />
             <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-400 hover:bg-red-400/10 w-full">
               <LogOut className="w-5 h-5" />

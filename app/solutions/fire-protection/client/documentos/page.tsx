@@ -79,7 +79,7 @@ function OrdemCard({ ordem }: { ordem: Ordem }) {
 
   return (
     <Card className={cn(
-      "border-l-4 bg-white dark:bg-slate-900/50 shadow-sm",
+      "border-l-4 bg-white dark:bg-zinc-950/50 shadow-sm",
       isVistoria ? "border-l-red-500" : "border-l-blue-500"
     )}>
       <CardContent className="p-4 space-y-3">
@@ -88,7 +88,7 @@ function OrdemCard({ ordem }: { ordem: Ordem }) {
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-2 mb-1">
               {ordem.tracking_code && (
-                <span className="text-xs font-mono font-bold text-slate-400">#{ordem.tracking_code}</span>
+                <span className="text-xs font-mono font-bold text-zinc-400">#{ordem.tracking_code}</span>
               )}
               <Badge className={cn("text-xs border-0 font-bold", st.color)}>
                 <StatusIcon className="w-3 h-3 mr-1" />
@@ -104,7 +104,7 @@ function OrdemCard({ ordem }: { ordem: Ordem }) {
         </div>
 
         {/* Info */}
-        <div className="grid grid-cols-2 gap-2 text-xs text-slate-500">
+        <div className="grid grid-cols-2 gap-2 text-xs text-zinc-500">
           <div className="flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5" />
             {isVistoria ? `Agendada: ${formatDate(ordem.scheduled_at)}` : `Criada: ${formatDate(ordem.created_at)}`}
@@ -125,8 +125,8 @@ function OrdemCard({ ordem }: { ordem: Ordem }) {
 
         {/* Observações / Laudo */}
         {ordem.observations && (
-          <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-3">
-            <p className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-1">Laudo / Observações</p>
+          <div className="bg-slate-50 dark:bg-zinc-900/50 rounded-xl p-3">
+            <p className="text-xs font-bold uppercase text-zinc-400 tracking-wider mb-1">Laudo / Observações</p>
             <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{ordem.observations}</p>
           </div>
         )}
@@ -144,17 +144,17 @@ function OrdemCard({ ordem }: { ordem: Ordem }) {
         {/* Documentos anexos */}
         {docs.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-bold uppercase text-slate-400 tracking-wider">Documentos</p>
+            <p className="text-xs font-bold uppercase text-zinc-400 tracking-wider">Documentos</p>
             {docs.map(doc => (
-              <div key={doc.id} className="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+              <div key={doc.id} className="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-zinc-950">
                 <div className="flex items-center gap-2 flex-1 min-w-0">
-                  <FileText className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  <FileText className="w-4 h-4 text-zinc-400 flex-shrink-0" />
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 truncate">
+                    <p className="text-sm font-semibold text-zinc-800 dark:text-slate-200 truncate">
                       {doc.title || doc.file_name || "Documento"}
                     </p>
                     {doc.description && (
-                      <p className="text-xs text-slate-400 truncate">{doc.description}</p>
+                      <p className="text-xs text-zinc-400 truncate">{doc.description}</p>
                     )}
                   </div>
                 </div>
@@ -208,7 +208,7 @@ export default function FireClientDocumentosPage() {
             <FileText className="w-6 h-6 text-red-600" />
             Documentos & Laudos
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium mt-1 text-sm">
+          <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1 text-sm">
             Laudos, PPCI, certificados e histórico das vistorias
           </p>
         </div>
@@ -252,11 +252,11 @@ export default function FireClientDocumentosPage() {
 
           <TabsContent value="vistorias" className="space-y-3 mt-4">
             {data.vistorias.length === 0 ? (
-              <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+              <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
                 <CardContent className="py-12 text-center">
                   <Calendar className="w-12 h-12 mx-auto mb-3 text-slate-300" />
-                  <p className="font-medium text-slate-500">Nenhuma vistoria registrada</p>
-                  <p className="text-sm text-slate-400 mt-1">As vistorias realizadas aparecerão aqui.</p>
+                  <p className="font-medium text-zinc-500">Nenhuma vistoria registrada</p>
+                  <p className="text-sm text-zinc-400 mt-1">As vistorias realizadas aparecerão aqui.</p>
                 </CardContent>
               </Card>
             ) : (
@@ -266,11 +266,11 @@ export default function FireClientDocumentosPage() {
 
           <TabsContent value="os" className="space-y-3 mt-4">
             {data.os.length === 0 ? (
-              <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+              <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
                 <CardContent className="py-12 text-center">
                   <ClipboardList className="w-12 h-12 mx-auto mb-3 text-slate-300" />
-                  <p className="font-medium text-slate-500">Nenhuma OS registrada</p>
-                  <p className="text-sm text-slate-400 mt-1">Ordens de serviço aparecerão aqui.</p>
+                  <p className="font-medium text-zinc-500">Nenhuma OS registrada</p>
+                  <p className="text-sm text-zinc-400 mt-1">Ordens de serviço aparecerão aqui.</p>
                 </CardContent>
               </Card>
             ) : (
@@ -280,11 +280,11 @@ export default function FireClientDocumentosPage() {
 
           <TabsContent value="laudos" className="space-y-3 mt-4">
             {laudosDisp.length === 0 ? (
-              <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+              <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10">
                 <CardContent className="py-12 text-center">
                   <FileText className="w-12 h-12 mx-auto mb-3 text-slate-300" />
-                  <p className="font-medium text-slate-500">Nenhum laudo disponível</p>
-                  <p className="text-sm text-slate-400 mt-1">Os laudos das vistorias serão exibidos aqui.</p>
+                  <p className="font-medium text-zinc-500">Nenhum laudo disponível</p>
+                  <p className="text-sm text-zinc-400 mt-1">Os laudos das vistorias serão exibidos aqui.</p>
                 </CardContent>
               </Card>
             ) : (

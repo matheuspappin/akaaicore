@@ -111,7 +111,7 @@ export default function NovaVistoriaPage() {
           <CheckCircle className="w-10 h-10 text-emerald-600" />
         </div>
         <h2 className="text-2xl font-black text-slate-900 dark:text-white">Vistoria Agendada!</h2>
-        <p className="text-slate-500 dark:text-slate-400">Redirecionando para a lista de vistorias...</p>
+        <p className="text-zinc-500 dark:text-zinc-400">Redirecionando para a lista de vistorias...</p>
       </div>
     )
   }
@@ -130,14 +130,14 @@ export default function NovaVistoriaPage() {
             <Calendar className="w-6 h-6 text-red-600" />
             Agendar Vistoria
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Preencha os dados para agendar uma nova vistoria
           </p>
         </div>
       </div>
 
       {/* Tipo de Vistoria */}
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader className="pb-4">
           <CardTitle className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-red-600" />
@@ -155,14 +155,14 @@ export default function NovaVistoriaPage() {
                   "flex flex-col items-start gap-1 p-3 rounded-xl border-2 transition-all text-left",
                   form.vistoria_type === tipo.value
                     ? "border-red-600 bg-red-50 dark:bg-red-600/10"
-                    : "border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 hover:border-slate-300 dark:hover:border-white/20"
+                    : "border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950/50 hover:border-slate-300 dark:hover:border-white/20"
                 )}
               >
                 <span className={cn(
                   "text-sm font-bold",
                   form.vistoria_type === tipo.value
                     ? "text-red-700 dark:text-red-400"
-                    : "text-slate-800 dark:text-slate-200"
+                    : "text-zinc-800 dark:text-slate-200"
                 )}>
                   {tipo.value}
                 </span>
@@ -170,7 +170,7 @@ export default function NovaVistoriaPage() {
                   "text-[11px] leading-tight",
                   form.vistoria_type === tipo.value
                     ? "text-red-600/70 dark:text-red-400/70"
-                    : "text-slate-400"
+                    : "text-zinc-400"
                 )}>
                   {tipo.desc}
                 </span>
@@ -181,7 +181,7 @@ export default function NovaVistoriaPage() {
       </Card>
 
       {/* Detalhes */}
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader className="pb-4">
           <CardTitle className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Info className="w-4 h-4 text-red-600" />
@@ -196,9 +196,9 @@ export default function NovaVistoriaPage() {
               Cliente / Edificação
             </Label>
             {loadingData ? (
-              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-slate-800 rounded-md animate-pulse" />
+              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-zinc-900 rounded-md animate-pulse" />
             ) : customers.length === 0 ? (
-              <div className="mt-1.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-white/10 text-sm text-slate-400 text-center">
+              <div className="mt-1.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-white/10 text-sm text-zinc-400 text-center">
                 Nenhum cliente cadastrado.{" "}
                 <Link href="/solutions/fire-protection/dashboard/clientes" className="text-red-600 hover:underline font-bold">
                   Cadastrar cliente
@@ -225,7 +225,7 @@ export default function NovaVistoriaPage() {
               Técnico Responsável
             </Label>
             {loadingData ? (
-              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-slate-800 rounded-md animate-pulse" />
+              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-zinc-900 rounded-md animate-pulse" />
             ) : (
               <Select value={form.professional_id} onValueChange={(v) => setForm({ ...form, professional_id: v })}>
                 <SelectTrigger className="mt-1.5">

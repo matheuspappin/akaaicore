@@ -103,7 +103,7 @@ export function OSCalendar({ studioId }: OSCalendarProps) {
   return (
     <div className="space-y-4">
       {/* Header do Calendário */}
-      <div className="flex items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-xl border shadow-sm">
+      <div className="flex items-center justify-between bg-white dark:bg-zinc-950 p-4 rounded-xl border shadow-sm">
         <div className="flex items-center gap-4">
           <h2 className="text-xl font-bold capitalize">
             {format(currentMonth, 'MMMM yyyy', { locale: dateLocale })}
@@ -126,10 +126,10 @@ export function OSCalendar({ studioId }: OSCalendarProps) {
       </div>
 
       {/* Grid do Calendário */}
-      <div className="bg-white dark:bg-slate-900 rounded-xl border shadow-sm overflow-hidden">
-        <div className="grid grid-cols-7 border-b bg-slate-50 dark:bg-slate-800/50">
+      <div className="bg-white dark:bg-zinc-950 rounded-xl border shadow-sm overflow-hidden">
+        <div className="grid grid-cols-7 border-b bg-slate-50 dark:bg-zinc-900/50">
           {['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'].map((day) => (
-            <div key={day} className="py-2 text-center text-xs font-bold uppercase text-slate-500">
+            <div key={day} className="py-2 text-center text-xs font-bold uppercase text-zinc-500">
               {day}
             </div>
           ))}
@@ -143,11 +143,11 @@ export function OSCalendar({ studioId }: OSCalendarProps) {
             return (
               <div 
                 key={idx} 
-                className={`border-r border-b p-1 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/30 cursor-pointer relative ${!isCurrentMonth ? 'bg-slate-50/50 dark:bg-slate-900/50 opacity-40' : ''}`}
+                className={`border-r border-b p-1 transition-colors hover:bg-slate-50 dark:hover:bg-zinc-900/30 cursor-pointer relative ${!isCurrentMonth ? 'bg-slate-50/50 dark:bg-zinc-950/50 opacity-40' : ''}`}
                 onClick={() => handleDayClick(day, dayOrders)}
               >
                 <div className="flex justify-between items-start mb-1">
-                  <span className={`text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full ${isToday ? 'bg-indigo-600 text-white' : 'text-slate-500'}`}>
+                  <span className={`text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full ${isToday ? 'bg-indigo-600 text-white' : 'text-zinc-500'}`}>
                     {format(day, 'd')}
                   </span>
                   {dayOrders.length > 0 && (
@@ -168,7 +168,7 @@ export function OSCalendar({ studioId }: OSCalendarProps) {
                     </div>
                   ))}
                   {dayOrders.length > 3 && (
-                    <div className="text-[9px] text-center text-slate-400 font-medium">
+                    <div className="text-[9px] text-center text-zinc-400 font-medium">
                       + {dayOrders.length - 3} mais
                     </div>
                   )}

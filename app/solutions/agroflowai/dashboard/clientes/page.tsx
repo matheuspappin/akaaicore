@@ -161,13 +161,13 @@ export default function ClientesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Clientes / Proprietários</h1>
-          <p className="text-slate-400 mt-1">Proprietários rurais atendidos pela consultoria</p>
+          <p className="text-zinc-400 mt-1">Proprietários rurais atendidos pela consultoria</p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <Button
             onClick={handleCopyInvite}
             variant="outline"
-            className="border-slate-700 text-slate-400 hover:text-white rounded-xl font-bold"
+            className="border-slate-700 text-zinc-400 hover:text-white rounded-xl font-bold"
           >
             {copied ? <Check className="w-4 h-4 mr-2 text-emerald-400" /> : <Copy className="w-4 h-4 mr-2" />}
             {copied ? "Copiado!" : "Link de Convite"}
@@ -189,10 +189,10 @@ export default function ClientesPage() {
           { label: "CAR Pendente / Irregular", value: stats.pendente, color: "text-amber-400" },
           { label: "OS em Aberto", value: stats.osAbertas, color: "text-blue-400" },
         ].map(s => (
-          <Card key={s.label} className="bg-slate-900/50 border-slate-800">
+          <Card key={s.label} className="bg-zinc-950/50 border-zinc-800">
             <CardContent className="p-4">
               <p className={cn("text-2xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{s.label}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{s.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -201,16 +201,16 @@ export default function ClientesPage() {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
           <Input
             placeholder="Buscar por nome, e-mail ou propriedade..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500 rounded-xl h-11"
+            className="pl-10 bg-zinc-950/50 border-slate-700 text-white placeholder:text-zinc-500 rounded-xl h-11"
           />
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-slate-500 flex-shrink-0" />
+          <Filter className="w-4 h-4 text-zinc-500 flex-shrink-0" />
           <div className="flex gap-1 flex-wrap">
             {[{ key: "all", label: "Todos" }, ...Object.entries(CAR_STATUS).map(([k, v]) => ({ key: k, label: v.label }))].map(f => (
               <button
@@ -218,7 +218,7 @@ export default function ClientesPage() {
                 onClick={() => setFilterCAR(f.key)}
                 className={cn(
                   "px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap",
-                  filterCAR === f.key ? "bg-emerald-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                  filterCAR === f.key ? "bg-emerald-600 text-white" : "bg-zinc-900 text-zinc-400 hover:bg-slate-700"
                 )}
               >
                 {f.label}
@@ -231,72 +231,72 @@ export default function ClientesPage() {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <Card className="w-full max-w-lg bg-slate-900 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <CardHeader className="flex flex-row items-center justify-between sticky top-0 bg-slate-900 z-10 border-b border-slate-800 pb-4">
+          <Card className="w-full max-w-lg bg-zinc-950 border-slate-700 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <CardHeader className="flex flex-row items-center justify-between sticky top-0 bg-zinc-950 z-10 border-b border-zinc-800 pb-4">
               <CardTitle className="text-white flex items-center gap-2">
                 <Users className="w-5 h-5 text-emerald-400" />
                 {editing ? "Editar Cliente" : "Novo Proprietário Rural"}
               </CardTitle>
-              <button type="button" onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white">
+              <button type="button" onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </CardHeader>
             <CardContent className="pt-5">
               <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nome Completo *</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome Completo *</label>
                   <Input
                     value={form.name}
                     onChange={e => setForm({ ...form, name: e.target.value })}
                     placeholder="João da Silva"
                     required
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">E-mail *</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">E-mail *</label>
                     <Input
                       type="email"
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="email@exemplo.com"
                       required
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Telefone / WhatsApp</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Telefone / WhatsApp</label>
                     <Input
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       placeholder="(00) 00000-0000"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nome da Propriedade</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome da Propriedade</label>
                     <Input
                       value={form.property_name}
                       onChange={e => setForm({ ...form, property_name: e.target.value })}
                       placeholder="Ex: Fazenda Boa Esperança"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Localização</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Localização</label>
                     <Input
                       value={form.property_location}
                       onChange={e => setForm({ ...form, property_location: e.target.value })}
                       placeholder="Cidade, UF"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Status do CAR</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Status do CAR</label>
                   <div className="grid grid-cols-2 gap-2">
                     {(Object.entries(CAR_STATUS) as [keyof typeof CAR_STATUS, (typeof CAR_STATUS)[keyof typeof CAR_STATUS]][]).map(([key, cfg]) => (
                       <button
@@ -307,7 +307,7 @@ export default function ClientesPage() {
                           "py-2 px-3 rounded-xl text-xs font-bold border transition-all text-left",
                           form.car_status === key
                             ? "border-emerald-500 bg-emerald-600/20 text-emerald-400"
-                            : "border-slate-700 bg-slate-800 text-slate-500 hover:border-slate-600"
+                            : "border-slate-700 bg-zinc-900 text-zinc-500 hover:border-slate-600"
                         )}
                       >
                         {cfg.label}
@@ -316,7 +316,7 @@ export default function ClientesPage() {
                   </div>
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-slate-400">
+                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-zinc-400">
                     Cancelar
                   </Button>
                   <Button type="submit" disabled={saving} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold">
@@ -335,10 +335,10 @@ export default function ClientesPage() {
           <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <Users className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold text-lg">
+            <p className="text-zinc-400 font-semibold text-lg">
               {search || filterCAR !== "all" ? "Nenhum cliente encontrado" : "Nenhum cliente cadastrado ainda"}
             </p>
             <p className="text-slate-600 text-sm mt-2">
@@ -359,7 +359,7 @@ export default function ClientesPage() {
             const carCfg = CAR_STATUS[c.car_status] || CAR_STATUS.pendente
             const CarIcon = carCfg.icon
             return (
-              <Card key={c.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+              <Card key={c.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className="w-11 h-11 rounded-xl bg-emerald-600/20 flex items-center justify-center flex-shrink-0">
@@ -377,7 +377,7 @@ export default function ClientesPage() {
                           </Badge>
                         )}
                       </div>
-                      <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+                      <div className="flex flex-wrap gap-3 text-xs text-zinc-500">
                         {c.email && <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{c.email}</span>}
                         {c.phone && <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{c.phone}</span>}
                         {c.property_name && (
@@ -405,7 +405,7 @@ export default function ClientesPage() {
                         size="sm"
                         variant="ghost"
                         onClick={() => openEdit(c)}
-                        className="h-8 w-8 p-0 text-slate-500 hover:text-white hover:bg-slate-700"
+                        className="h-8 w-8 p-0 text-zinc-500 hover:text-white hover:bg-slate-700"
                       >
                         <Pencil className="w-3.5 h-3.5" />
                       </Button>

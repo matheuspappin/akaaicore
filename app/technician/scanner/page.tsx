@@ -139,8 +139,8 @@ export default function TeacherScannerPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950">
-      <div className="bg-white dark:bg-slate-900 border-b p-4 flex items-center gap-4 sticky top-0 z-10">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-black">
+      <div className="bg-white dark:bg-zinc-950 border-b p-4 flex items-center gap-4 sticky top-0 z-10">
             <Link href="/teacher">
               <Button variant="ghost" size="icon">
                 <ArrowLeft className="w-5 h-5" />
@@ -165,7 +165,7 @@ export default function TeacherScannerPage() {
             </TabsList>
         </Tabs>
 
-        <Card className={`border-none shadow-2xl overflow-hidden bg-white dark:bg-slate-900 border-t-4 ${mode === 'pickup' ? 'border-t-amber-500' : 'border-t-emerald-500'}`}>
+        <Card className={`border-none shadow-2xl overflow-hidden bg-white dark:bg-zinc-950 border-t-4 ${mode === 'pickup' ? 'border-t-amber-500' : 'border-t-emerald-500'}`}>
           <CardHeader className="text-center pb-2">
             <CardTitle className="text-primary flex items-center justify-center gap-2">
               <QrCodeIcon className="w-6 h-6" />
@@ -177,7 +177,7 @@ export default function TeacherScannerPage() {
           </CardHeader>
           <CardContent className="p-6 flex flex-col items-center gap-6">
             
-            <div className="w-full aspect-square rounded-3xl bg-slate-100 dark:bg-slate-800 border-4 border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center relative overflow-hidden group">
+            <div className="w-full aspect-square rounded-3xl bg-slate-100 dark:bg-zinc-900 border-4 border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center relative overflow-hidden group">
               {!isScanning ? (
                 <div className="text-center p-6 flex flex-col items-center">
                   <Camera className="w-20 h-20 text-slate-300 mb-4" />

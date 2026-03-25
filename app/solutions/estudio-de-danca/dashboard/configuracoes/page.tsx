@@ -25,7 +25,7 @@ import {
   User, Building2, Bell, Shield, CreditCard, Palette, MessageSquare,
   Save, Loader2, Phone, Copy, Check, QrCode, Link2, Trophy,
   Package, Settings, Users, GraduationCap, ExternalLink, Music,
-  Zap, CheckCircle, XCircle, Unlink,
+  Zap, CheckCircle, XCircle, Unlink, Coins,
 } from "lucide-react"
 
 // ─── tipos ────────────────────────────────────────────────────────────────────
@@ -102,6 +102,7 @@ export default function DanceConfiguracoesPage() {
   // créditos
   const [creditPackages, setCreditPackages] = useState<any[]>([])
   const [loadingCredits, setLoadingCredits] = useState(false)
+  const [pdvCreditValue, setPdvCreditValue] = useState(70)
   const [newPkg, setNewPkg] = useState({ name: "", lessons_count: 10, price: 99, validity_days: 90 })
 
   // gamificação
@@ -165,6 +166,9 @@ export default function DanceConfiguracoesPage() {
     if (!st) return
     const extra: any = {}
     ;(settings || []).forEach((s: any) => { extra[s.setting_key] = s.setting_value })
+    if (extra.pdv_credit_reais_per_unit) {
+      setPdvCreditValue(parseFloat(extra.pdv_credit_reais_per_unit))
+    }
     setStudio(prev => ({
       ...prev,
       id: st.id,
@@ -405,22 +409,22 @@ export default function DanceConfiguracoesPage() {
 
   const statusIcon = (s: "connected" | "disconnected" | "connecting" | "error") => {
     if (s === "connected") return <CheckCircle className="w-4 h-4 text-green-500" />
-    if (s === "error") return <XCircle className="w-4 h-4 text-red-500" />
-    if (s === "connecting") return <Loader2 className="w-4 h-4 animate-spin text-violet-500" />
-    return <XCircle className="w-4 h-4 text-slate-400" />
+    if (s === "error") return <XCircle className="w-4 h-4 text-[#e40014]" />
+    if (s === "connecting") return <Loader2 className="w-4 h-4 animate-spin text-[#e40014]" />
+    return <XCircle className="w-4 h-4 text-zinc-400" />
   }
 
   // ─── render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-black dark:bg-black">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6 px-1">
-        <div className="w-9 h-9 rounded-xl bg-violet-600 flex items-center justify-center shadow-lg shadow-violet-600/20">
+        <div className="w-9 h-9 rounded-xl bg-[#e40014] flex items-center justify-center shadow-lg shadow-red-600/20">
           <Settings className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Configurações</h1>
-          <p className="text-xs text-slate-500">Gerencie seu estúdio e preferências</p>
+          <h1 className="text-xl font-black tracking-tight text-white dark:text-white">Configurações</h1>
+          <p className="text-xs text-zinc-500">Gerencie seu estúdio e preferências</p>
         </div>
       </div>
 
@@ -436,8 +440,8 @@ export default function DanceConfiguracoesPage() {
                 className={cn(
                   "flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all",
                   activeTab === tab.id
-                    ? "bg-violet-600 text-white shadow-md shadow-violet-600/20"
-                    : "text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5 hover:text-slate-700 dark:hover:text-white"
+                    ? "bg-[#e40014] text-white shadow-md shadow-red-600/20"
+                    : "text-zinc-500 dark:text-zinc-400 hover:bg-white/5 dark:hover:bg-white/5/5 hover:text-zinc-400 dark:hover:text-white"
                 )}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -453,21 +457,21 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><User className="w-4 h-4 text-violet-500" /> Informações Pessoais</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><User className="w-4 h-4 text-[#e40014]" /> Informações Pessoais</CardTitle>
               <CardDescription>Gerencie suas informações de acesso e perfil</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Nome</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Nome</Label>
                 <Input value={userForm.name} onChange={e => setUserForm({ ...userForm, name: e.target.value })} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">E-mail</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">E-mail</Label>
                 <Input value={userForm.email} disabled className="opacity-60" />
-                <p className="text-[11px] text-slate-400">O e-mail não pode ser alterado aqui.</p>
+                <p className="text-[11px] text-zinc-400">O e-mail não pode ser alterado aqui.</p>
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Cargo</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Cargo</Label>
                 <Select value={userForm.role} onValueChange={v => setUserForm({ ...userForm, role: v })}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -477,7 +481,7 @@ export default function DanceConfiguracoesPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={saveProfile} disabled={saving}>
+              <Button className="w-full bg-[#e40014] hover:bg-[#e40014]" onClick={saveProfile} disabled={saving}>
                 {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
                 Salvar Perfil
               </Button>
@@ -491,13 +495,13 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Building2 className="w-4 h-4 text-violet-500" /> Dados do Estúdio</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Building2 className="w-4 h-4 text-[#e40014]" /> Dados do Estúdio</CardTitle>
               <CardDescription>Informações públicas e administrativas</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {(["name", "email", "phone", "address", "cnpj"] as const).map(field => (
                 <div key={field} className="space-y-1.5">
-                  <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                  <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">
                     {{ name: "Nome do Estúdio", email: "E-mail", phone: "Telefone / WhatsApp", address: "Endereço", cnpj: "CNPJ" }[field]}
                   </Label>
                   <Input
@@ -508,7 +512,7 @@ export default function DanceConfiguracoesPage() {
                 </div>
               ))}
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Máx. Alunos por Turma</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Máx. Alunos por Turma</Label>
                 <Input
                   type="number" min={1} max={200}
                   value={studio.max_students_per_class}
@@ -516,7 +520,7 @@ export default function DanceConfiguracoesPage() {
                 />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Política de Cancelamento</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Política de Cancelamento</Label>
                 <Textarea
                   rows={3}
                   value={studio.cancellation_policy}
@@ -529,7 +533,7 @@ export default function DanceConfiguracoesPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Music className="w-4 h-4 text-violet-500" /> Modalidades Oferecidas</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Music className="w-4 h-4 text-[#e40014]" /> Modalidades Oferecidas</CardTitle>
               <CardDescription>Selecione as modalidades de dança do seu estúdio</CardDescription>
             </CardHeader>
             <CardContent>
@@ -542,8 +546,8 @@ export default function DanceConfiguracoesPage() {
                     className={cn(
                       "px-3 py-1.5 rounded-full text-xs font-bold border transition-all",
                       studio.modalities.includes(mod)
-                        ? "bg-violet-600 text-white border-violet-600 shadow-sm"
-                        : "bg-white dark:bg-white/5 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10 hover:border-violet-400"
+                        ? "bg-[#e40014] text-white border-[#e40014] shadow-sm"
+                        : "bg-white/5 dark:bg-white/5/5 text-zinc-400 dark:text-slate-300 border-white/10 dark:border-white/10 hover:border-[#e40014]"
                     )}
                   >
                     {mod}
@@ -553,7 +557,7 @@ export default function DanceConfiguracoesPage() {
             </CardContent>
           </Card>
 
-          <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={saveStudio} disabled={saving}>
+          <Button className="w-full bg-[#e40014] hover:bg-[#e40014]" onClick={saveStudio} disabled={saving}>
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             Salvar Dados do Estúdio
           </Button>
@@ -565,8 +569,8 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           {[
             { label: "Portal do Aluno", path: "/solutions/estudio-de-danca/student", icon: Users, color: "text-blue-500", desc: "Acesso de alunos para ver turmas, créditos e check-in" },
-            { label: "Portal do Professor", path: "/solutions/estudio-de-danca/teacher", icon: GraduationCap, color: "text-emerald-500", desc: "Acesso de professores para chamadas e turmas" },
-            { label: "Registro (Novo Admin)", path: "/solutions/estudio-de-danca/register", icon: Building2, color: "text-violet-500", desc: "Página de cadastro de novo estúdio/admin" },
+            { label: "Portal do Professor", path: "/solutions/estudio-de-danca/teacher", icon: GraduationCap, color: "text-red-", desc: "Acesso de professores para chamadas e turmas" },
+            { label: "Registro (Novo Admin)", path: "/solutions/estudio-de-danca/register", icon: Building2, color: "text-[#e40014]", desc: "Página de cadastro de novo estúdio/admin" },
             { label: "Landing Page Pública", path: "/solutions/estudio-de-danca", icon: ExternalLink, color: "text-orange-500", desc: "Página de apresentação pública do sistema" },
           ].map(portal => {
             const Icon = portal.icon
@@ -574,14 +578,14 @@ export default function DanceConfiguracoesPage() {
             return (
               <Card key={portal.path}>
                 <CardContent className="p-4 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5/5 flex items-center justify-center flex-shrink-0">
                     <Icon className={cn("w-5 h-5", portal.color)} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-sm">{portal.label}</p>
-                    <p className="text-xs text-slate-500 mb-2">{portal.desc}</p>
-                    <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                      <code className="flex-1 text-xs font-mono text-slate-600 dark:text-slate-300 truncate">{link}</code>
+                    <p className="text-xs text-zinc-500 mb-2">{portal.desc}</p>
+                    <div className="flex items-center gap-2 p-2 rounded-lg bg-black dark:bg-white/5/5 border border-white/10 dark:border-white/10">
+                      <code className="flex-1 text-xs font-mono text-zinc-400 dark:text-slate-300 truncate">{link}</code>
                       <Button size="icon" variant="ghost" className="h-6 w-6 flex-shrink-0" onClick={() => copyLink(link)}>
                         {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
                       </Button>
@@ -598,23 +602,23 @@ export default function DanceConfiguracoesPage() {
           })}
 
           {studio.slug && (
-            <Card className="border-violet-200 dark:border-violet-800/40 bg-violet-50/50 dark:bg-violet-900/10">
+            <Card className="border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base text-violet-700 dark:text-violet-300">
+                <CardTitle className="flex items-center gap-2 text-base text-[#e40014] dark:text-[#e40014]">
                   <QrCode className="w-4 h-4" /> Link de Convite do Estúdio
                 </CardTitle>
                 <CardDescription>Compartilhe com alunos para se cadastrarem</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-white dark:bg-white/5 border border-violet-200 dark:border-violet-800/40">
-                  <code className="flex-1 text-sm font-mono text-violet-700 dark:text-violet-300 truncate">
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-white/5 dark:bg-white/5/5 border border-[#e40014] dark:border-[#e40014]">
+                  <code className="flex-1 text-sm font-mono text-[#e40014] dark:text-[#e40014] truncate">
                     {origin}/s/{studio.slug}
                   </code>
-                  <Button size="sm" variant="ghost" className="text-violet-600" onClick={() => copyLink(`${origin}/s/${studio.slug}`)}>
+                  <Button size="sm" variant="ghost" className="text-[#e40014]" onClick={() => copyLink(`${origin}/s/${studio.slug}`)}>
                     {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                   </Button>
                 </div>
-                <p className="text-xs text-slate-400 mt-2">Código do estúdio: <strong className="text-violet-500">{studio.slug}</strong></p>
+                <p className="text-xs text-zinc-400 mt-2">Código do estúdio: <strong className="text-[#e40014]">{studio.slug}</strong></p>
               </CardContent>
             </Card>
           )}
@@ -626,7 +630,7 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Bell className="w-4 h-4 text-violet-500" /> Notificações Automáticas</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Bell className="w-4 h-4 text-[#e40014]" /> Notificações Automáticas</CardTitle>
               <CardDescription>Configure quais alertas o sistema envia</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -640,7 +644,7 @@ export default function DanceConfiguracoesPage() {
                 <div key={key} className="flex items-center justify-between py-2 border-b last:border-0">
                   <div>
                     <p className="text-sm font-bold">{label}</p>
-                    <p className="text-xs text-slate-500">{desc}</p>
+                    <p className="text-xs text-zinc-500">{desc}</p>
                   </div>
                   <Switch
                     checked={(notifs as any)[key]}
@@ -650,7 +654,7 @@ export default function DanceConfiguracoesPage() {
               ))}
             </CardContent>
           </Card>
-          <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={async () => {
+          <Button className="w-full bg-[#e40014] hover:bg-[#e40014]" onClick={async () => {
             await supabase.from("studio_settings").upsert(
               { studio_id: studioId, setting_key: "notification_config", setting_value: JSON.stringify(notifs), updated_at: new Date().toISOString() },
               { onConflict: "studio_id, setting_key" }
@@ -667,11 +671,11 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Palette className="w-4 h-4 text-violet-500" /> Tema e Idioma</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Palette className="w-4 h-4 text-[#e40014]" /> Tema e Idioma</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Tema</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Tema</Label>
                 <div className="grid grid-cols-3 gap-2">
                   {(["light", "dark", "system"] as const).map(t => (
                     <button
@@ -679,7 +683,7 @@ export default function DanceConfiguracoesPage() {
                       onClick={() => { setTheme(t); document.documentElement.classList.toggle("dark", t === "dark") }}
                       className={cn(
                         "p-3 rounded-xl border text-sm font-bold transition-all",
-                        theme === t ? "bg-violet-600 text-white border-violet-600" : "bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300"
+                        theme === t ? "bg-[#e40014] text-white border-[#e40014]" : "bg-white/5 dark:bg-white/5/5 border-white/10 dark:border-white/10 text-zinc-400 dark:text-slate-300"
                       )}
                     >
                       {{ light: "☀️ Claro", dark: "🌙 Escuro", system: "💻 Sistema" }[t]}
@@ -688,7 +692,7 @@ export default function DanceConfiguracoesPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Idioma</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Idioma</Label>
                 <div className="grid grid-cols-2 gap-2">
                   {(["pt", "en"] as const).map(l => (
                     <button
@@ -696,7 +700,7 @@ export default function DanceConfiguracoesPage() {
                       onClick={() => setLang(l)}
                       className={cn(
                         "p-3 rounded-xl border text-sm font-bold transition-all",
-                        lang === l ? "bg-violet-600 text-white border-violet-600" : "bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300"
+                        lang === l ? "bg-[#e40014] text-white border-[#e40014]" : "bg-white/5 dark:bg-white/5/5 border-white/10 dark:border-white/10 text-zinc-400 dark:text-slate-300"
                       )}
                     >
                       {{ pt: "🇧🇷 Português", en: "🇺🇸 English" }[l]}
@@ -714,27 +718,27 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Shield className="w-4 h-4 text-violet-500" /> Alterar Senha</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Shield className="w-4 h-4 text-[#e40014]" /> Alterar Senha</CardTitle>
               <CardDescription>Mantenha sua conta segura com uma senha forte</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Senha Atual</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Senha Atual</Label>
                 <Input type="password" value={passwords.current} onChange={e => setPasswords(p => ({ ...p, current: e.target.value }))} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Nova Senha</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Nova Senha</Label>
                 <Input type="password" value={passwords.next} onChange={e => setPasswords(p => ({ ...p, next: e.target.value }))} />
                 {passwords.next && <PasswordStrengthMeter password={passwords.next} />}
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Confirmar Nova Senha</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Confirmar Nova Senha</Label>
                 <Input type="password" value={passwords.confirm} onChange={e => setPasswords(p => ({ ...p, confirm: e.target.value }))} />
                 {passwords.confirm && passwords.confirm !== passwords.next && (
-                  <p className="text-xs text-red-500">As senhas não coincidem</p>
+                  <p className="text-xs text-[#e40014]">As senhas não coincidem</p>
                 )}
               </div>
-              <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={changePassword} disabled={changingPw || !passwords.next}>
+              <Button className="w-full bg-[#e40014] hover:bg-[#e40014]" onClick={changePassword} disabled={changingPw || !passwords.next}>
                 {changingPw ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Shield className="w-4 h-4 mr-2" />}
                 Alterar Senha
               </Button>
@@ -748,25 +752,71 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-2xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Package className="w-4 h-4 text-violet-500" /> Pacotes de Créditos / Sessões</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Coins className="w-4 h-4 text-[#e40014]" /> Valor de Troca (PDV)</CardTitle>
+              <CardDescription>Defina quanto vale 1 crédito ao ser usado como pagamento na loja/balcão</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-end gap-4">
+                <div className="space-y-1.5 flex-1">
+                  <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Valor de 1 Crédito (R$)</Label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-sm">R$</span>
+                    <Input
+                      type="number"
+                      step={0.01}
+                      className="pl-9 font-bold"
+                      value={pdvCreditValue}
+                      onChange={e => setPdvCreditValue(parseFloat(e.target.value) || 0)}
+                    />
+                  </div>
+                </div>
+                <Button
+                  className="bg-[#e40014] hover:bg-[#e40014]"
+                  disabled={saving}
+                  onClick={async () => {
+                    setSaving(true)
+                    try {
+                      await supabase.from("studio_settings").upsert(
+                        { studio_id: studioId, setting_key: "pdv_credit_reais_per_unit", setting_value: String(pdvCreditValue), updated_at: new Date().toISOString() },
+                        { onConflict: "studio_id, setting_key" }
+                      )
+                      toast({ title: "Valor de troca atualizado!" })
+                    } catch (e: any) {
+                      toast({ title: "Erro ao salvar", description: e.message, variant: "destructive" })
+                    } finally { setSaving(false) }
+                  }}
+                >
+                  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
+                  Salvar Valor
+                </Button>
+              </div>
+              <p className="text-[11px] text-zinc-500 leading-relaxed">
+                <strong>Dica:</strong> Se você deixar este campo vazio ou não configurado, o sistema tentará calcular automaticamente a taxa baseada no pacote de menor custo. Estipular um valor fixo aqui garante previsibilidade nas vendas do PDV.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base"><Package className="w-4 h-4 text-[#e40014]" /> Pacotes de Créditos / Sessões</CardTitle>
               <CardDescription>Configure os pacotes que os alunos podem comprar</CardDescription>
             </CardHeader>
             <CardContent>
               {loadingCredits ? (
-                <div className="py-8 flex justify-center"><Loader2 className="w-5 h-5 animate-spin text-violet-500" /></div>
+                <div className="py-8 flex justify-center"><Loader2 className="w-5 h-5 animate-spin text-[#e40014]" /></div>
               ) : creditPackages.length === 0 ? (
-                <p className="text-center text-sm text-slate-500 py-6">Nenhum pacote cadastrado ainda.</p>
+                <p className="text-center text-sm text-zinc-500 py-6">Nenhum pacote cadastrado ainda.</p>
               ) : (
                 <div className="space-y-2 mb-4">
                   {creditPackages.map(pkg => (
-                    <div key={pkg.id} className="flex items-center justify-between p-3 rounded-xl border bg-white dark:bg-white/5">
+                    <div key={pkg.id} className="flex items-center justify-between p-3 rounded-xl border bg-white/5 dark:bg-white/5/5">
                       <div>
                         <p className="font-bold text-sm">{pkg.name || `Pacote ${pkg.lessons_count} aulas`}</p>
-                        <p className="text-xs text-slate-500">{pkg.lessons_count} sessões · válido por {pkg.validity_days || 90} dias</p>
+                        <p className="text-xs text-zinc-500">{pkg.lessons_count} sessões · válido por {pkg.validity_days || 90} dias</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <p className="font-black text-violet-600">R$ {Number(pkg.price).toFixed(2)}</p>
-                        <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 h-7 px-2 text-xs" onClick={() => deleteCreditPackage(pkg.id)}>
+                        <p className="font-black text-[#e40014]">R$ {Number(pkg.price).toFixed(2)}</p>
+                        <Button variant="ghost" size="sm" className="text-[#e40014] hover:text-[#e40014] h-7 px-2 text-xs" onClick={() => deleteCreditPackage(pkg.id)}>
                           Remover
                         </Button>
                       </div>
@@ -776,7 +826,7 @@ export default function DanceConfiguracoesPage() {
               )}
 
               <div className="border-t pt-4 mt-2">
-                <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Novo Pacote</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-zinc-500 mb-3">Novo Pacote</p>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1 col-span-2">
                     <Label className="text-xs">Nome do Pacote</Label>
@@ -790,7 +840,7 @@ export default function DanceConfiguracoesPage() {
                       value={newPkg.lessons_count}
                       onChange={e => setNewPkg(p => ({ ...p, lessons_count: parseInt(e.target.value) || 1 }))}
                     />
-                    <p className="text-[10px] text-slate-400">
+                    <p className="text-[10px] text-zinc-400">
                       Cada aula consome 1 crédito. Esses créditos também podem ser usados como forma de pagamento no PDV.
                     </p>
                   </div>
@@ -803,7 +853,7 @@ export default function DanceConfiguracoesPage() {
                     <Input type="number" min={1} value={newPkg.validity_days} onChange={e => setNewPkg(p => ({ ...p, validity_days: parseInt(e.target.value) || 30 }))} />
                   </div>
                   <div className="flex items-end">
-                    <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={addCreditPackage} disabled={!newPkg.lessons_count || !newPkg.price}>
+                    <Button className="w-full bg-[#e40014] hover:bg-[#e40014]" onClick={addCreditPackage} disabled={!newPkg.lessons_count || !newPkg.price}>
                       Adicionar Pacote
                     </Button>
                   </div>
@@ -819,29 +869,29 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Trophy className="w-4 h-4 text-amber-500" /> Configuração da Gamificação</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Trophy className="w-4 h-4 text-red-" /> Configuração da Gamificação</CardTitle>
               <CardDescription>Configure pontos e recompensas para engajar seus alunos</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-red- dark:bg-[#e40014] border border-red- dark:border-[#e40014]">
                 <div>
                   <p className="font-bold text-sm">Gamificação Ativa</p>
-                  <p className="text-xs text-slate-500">Ativar ranking, pontos e conquistas para alunos</p>
+                  <p className="text-xs text-zinc-500">Ativar ranking, pontos e conquistas para alunos</p>
                 </div>
                 <Switch checked={gamif.enabled} onCheckedChange={v => setGamif(p => ({ ...p, enabled: v }))} />
               </div>
 
               <div className="space-y-3">
-                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Pontuação</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-zinc-500">Pontuação</p>
                 {[
                   { key: "points_per_checkin",  label: "Pontos por Check-in",      desc: "Cada presença confirmada via QR" },
                   { key: "points_per_referral", label: "Pontos por Indicação",     desc: "Quando um aluno indicado se cadastra" },
                   { key: "streak_bonus",        label: "Bônus de Sequência",       desc: "Pontos extras por semana sem faltar" },
                 ].map(({ key, label, desc }) => (
-                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white dark:bg-white/5">
+                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white/5 dark:bg-white/5/5">
                     <div>
                       <p className="text-sm font-bold">{label}</p>
-                      <p className="text-xs text-slate-500">{desc}</p>
+                      <p className="text-xs text-zinc-500">{desc}</p>
                     </div>
                     <Input
                       type="number" min={0} className="w-20 text-center font-bold"
@@ -853,14 +903,14 @@ export default function DanceConfiguracoesPage() {
               </div>
 
               <div className="space-y-3">
-                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Marcos de Conquista (meses)</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-zinc-500">Marcos de Conquista (meses)</p>
                 {[
                   { key: "milestone_3",  label: "🥉 Marco de 3 meses" },
                   { key: "milestone_6",  label: "🥈 Marco de 6 meses" },
                   { key: "milestone_12", label: "🥇 Marco de 1 ano" },
                 ].map(({ key, label }) => (
-                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white dark:bg-white/5">
-                    <p className="text-sm font-bold">{label} <span className="font-normal text-slate-500">(pts)</span></p>
+                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white/5 dark:bg-white/5/5">
+                    <p className="text-sm font-bold">{label} <span className="font-normal text-zinc-500">(pts)</span></p>
                     <Input
                       type="number" min={0} className="w-20 text-center font-bold"
                       value={(gamif as any)[key]}
@@ -871,10 +921,10 @@ export default function DanceConfiguracoesPage() {
               </div>
 
               <div className="space-y-3">
-                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Conquistas Personalizadas</p>
-                <p className="text-xs text-slate-500">Edite nome, descrição e pontos de cada conquista exibida no ranking.</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-zinc-500">Conquistas Personalizadas</p>
+                <p className="text-xs text-zinc-500">Edite nome, descrição e pontos de cada conquista exibida no ranking.</p>
                 {(gamif as any).achievements?.map((ach: any, i: number) => (
-                  <div key={ach.id || i} className="p-3 rounded-xl border bg-white dark:bg-white/5 space-y-2">
+                  <div key={ach.id || i} className="p-3 rounded-xl border bg-white/5 dark:bg-white/5/5 space-y-2">
                     <div className="flex items-center justify-between gap-2">
                       <Input
                         placeholder="Nome da conquista"
@@ -889,7 +939,7 @@ export default function DanceConfiguracoesPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                        className="text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014]"
                         onClick={() => {
                           const next = ((gamif as any).achievements || []).filter((_: any, j: number) => j !== i)
                           setGamif(p => ({ ...p, achievements: next }))
@@ -909,7 +959,7 @@ export default function DanceConfiguracoesPage() {
                       className="text-sm"
                     />
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-slate-500">Pontos:</span>
+                      <span className="text-xs text-zinc-500">Pontos:</span>
                       <Input
                         type="number"
                         min={0}
@@ -938,7 +988,7 @@ export default function DanceConfiguracoesPage() {
               </div>
             </CardContent>
           </Card>
-          <Button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold" onClick={saveGamification} disabled={saving}>
+          <Button className="w-full bg-red- hover:bg-red- text-white font-bold" onClick={saveGamification} disabled={saving}>
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             Salvar Configurações de Gamificação
           </Button>
@@ -952,28 +1002,28 @@ export default function DanceConfiguracoesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-base">
-                <div className="flex items-center gap-2"><MessageSquare className="w-4 h-4 text-emerald-500" /> WhatsApp (Evolution API)</div>
+                <div className="flex items-center gap-2"><MessageSquare className="w-4 h-4 text-red-" /> WhatsApp (Evolution API)</div>
                 <div className="flex items-center gap-1.5 text-xs">
                   {statusIcon(waStatus)}
-                  <span className="font-bold text-slate-500 capitalize">{waStatus === "connected" ? "Conectado" : waStatus === "connecting" ? "Verificando..." : "Desconectado"}</span>
+                  <span className="font-bold text-zinc-500 capitalize">{waStatus === "connected" ? "Conectado" : waStatus === "connecting" ? "Verificando..." : "Desconectado"}</span>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">URL da API</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">URL da API</Label>
                 <Input placeholder="https://api.evolution.example.com" value={waSettings.apiUrl} onChange={e => setWaSettings(p => ({ ...p, apiUrl: e.target.value }))} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Instance ID</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Instance ID</Label>
                 <Input placeholder="meu-studio" value={waSettings.instanceId} onChange={e => setWaSettings(p => ({ ...p, instanceId: e.target.value }))} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">API Key</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">API Key</Label>
                 <Input type="password" value={waSettings.apiKey} onChange={e => setWaSettings(p => ({ ...p, apiKey: e.target.value }))} />
               </div>
               <div className="flex gap-2">
-                <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white" onClick={saveWhatsApp}>
+                <Button className="flex-1 bg-red- hover:bg-red- text-white" onClick={saveWhatsApp}>
                   {waStatus === "connecting" ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Phone className="w-4 h-4 mr-2" />}
                   Salvar e Testar
                 </Button>
@@ -983,11 +1033,11 @@ export default function DanceConfiguracoesPage() {
                     setWaStatus("disconnected")
                     toast({ title: "WhatsApp desconectado" })
                   }}>
-                    <Unlink className="w-4 h-4 text-red-500" />
+                    <Unlink className="w-4 h-4 text-[#e40014]" />
                   </Button>
                 )}
               </div>
-              <p className="text-xs text-slate-400">Para parear o QR Code, vá em <strong>Sidebar → WhatsApp</strong> após salvar as chaves.</p>
+              <p className="text-xs text-zinc-400">Para parear o QR Code, vá em <strong>Sidebar → WhatsApp</strong> após salvar as chaves.</p>
             </CardContent>
           </Card>
 
@@ -995,27 +1045,27 @@ export default function DanceConfiguracoesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-base">
-                <div className="flex items-center gap-2"><CreditCard className="w-4 h-4 text-violet-500" /> Stripe (Pagamentos)</div>
+                <div className="flex items-center gap-2"><CreditCard className="w-4 h-4 text-[#e40014]" /> Stripe (Pagamentos)</div>
                 <div className="flex items-center gap-1.5 text-xs">
                   {statusIcon(stripeStatus as any)}
-                  <span className="font-bold text-slate-500">{stripeStatus === "connected" ? "Configurado" : stripeStatus === "connecting" ? "Salvando..." : "Não configurado"}</span>
+                  <span className="font-bold text-zinc-500">{stripeStatus === "connected" ? "Configurado" : stripeStatus === "connecting" ? "Salvando..." : "Não configurado"}</span>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Chave Pública (pk_live_ / pk_test_)</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Chave Pública (pk_live_ / pk_test_)</Label>
                 <Input placeholder="pk_live_..." value={stripeSettings.publicKey} onChange={e => setStripeSettings(p => ({ ...p, publicKey: e.target.value }))} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wide text-slate-500">Chave Secreta (sk_live_ / sk_test_)</Label>
+                <Label className="text-xs font-bold uppercase tracking-wide text-zinc-500">Chave Secreta (sk_live_ / sk_test_)</Label>
                 <Input type="password" placeholder="sk_live_..." value={stripeSettings.secretKey} onChange={e => setStripeSettings(p => ({ ...p, secretKey: e.target.value }))} />
               </div>
-              <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={saveStripe}>
+              <Button className="w-full bg-[#e40014] hover:bg-[#e40014]" onClick={saveStripe}>
                 {stripeStatus === "connecting" ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CreditCard className="w-4 h-4 mr-2" />}
                 Salvar Chaves Stripe
               </Button>
-              <p className="text-xs text-slate-400">Use chaves de <strong>test</strong> para homologação e <strong>live</strong> para produção.</p>
+              <p className="text-xs text-zinc-400">Use chaves de <strong>test</strong> para homologação e <strong>live</strong> para produção.</p>
             </CardContent>
           </Card>
         </div>

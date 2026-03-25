@@ -37,7 +37,7 @@ const statusLabelOS: Record<string, { label: string; color: string; icon: any }>
 }
 
 const statusLaudoLabel: Record<string, { label: string; color: string }> = {
-  draft: { label: "Rascunho", color: "text-slate-400" },
+  draft: { label: "Rascunho", color: "text-zinc-400" },
   review: { label: "Em Revisão", color: "text-amber-400" },
   approved: { label: "Aprovado", color: "text-blue-400" },
   issued: { label: "Emitido", color: "text-emerald-400" },
@@ -85,9 +85,9 @@ export default function ClientHomePage() {
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-slate-400 text-sm font-medium">{greeting},</p>
+          <p className="text-zinc-400 text-sm font-medium">{greeting},</p>
           <h1 className="text-3xl font-black text-white tracking-tight mt-1">{userName} 👋</h1>
-          <p className="text-slate-500 text-sm mt-1">Portal do Proprietário Rural — AgroFlowAI</p>
+          <p className="text-zinc-500 text-sm mt-1">Portal do Proprietário Rural — AgroFlowAI</p>
         </div>
         <div className="w-14 h-14 rounded-2xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
           <Leaf className="w-7 h-7 text-emerald-400" />
@@ -96,13 +96,13 @@ export default function ClientHomePage() {
 
       {/* Quick Access Cards */}
       <div>
-        <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Acesso Rápido</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">Acesso Rápido</p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {quickCards.map(card => {
             const Icon = card.icon
             return (
               <Link key={card.label} href={card.href}>
-                <Card className="bg-slate-900/50 border-slate-800 hover:border-slate-600 transition-all cursor-pointer group">
+                <Card className="bg-zinc-950/50 border-zinc-800 hover:border-slate-600 transition-all cursor-pointer group">
                   <CardContent className="p-4 flex flex-col items-center text-center gap-2">
                     <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", card.bg)}>
                       <Icon className={cn("w-6 h-6", card.color)} />
@@ -132,16 +132,16 @@ export default function ClientHomePage() {
           {/* Recent OS */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Ordens de Serviço Recentes</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Ordens de Serviço Recentes</p>
               <Link href="/solutions/agroflowai/client/os" className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold">
                 Ver todas →
               </Link>
             </div>
             {os.length === 0 ? (
-              <Card className="bg-slate-900/50 border-slate-800">
+              <Card className="bg-zinc-950/50 border-zinc-800">
                 <CardContent className="py-8 text-center">
                   <ClipboardList className="w-10 h-10 text-slate-700 mx-auto mb-2" />
-                  <p className="text-slate-500 text-sm">Nenhuma OS ainda</p>
+                  <p className="text-zinc-500 text-sm">Nenhuma OS ainda</p>
                 </CardContent>
               </Card>
             ) : (
@@ -150,7 +150,7 @@ export default function ClientHomePage() {
                   const st = statusLabelOS[item.status] || statusLabelOS.pending
                   const Icon = st.icon
                   return (
-                    <Card key={item.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+                    <Card key={item.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                       <CardContent className="p-4 flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-emerald-600/10 flex items-center justify-center flex-shrink-0">
                           <ClipboardList className="w-5 h-5 text-emerald-400" />
@@ -158,9 +158,9 @@ export default function ClientHomePage() {
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold text-white truncate">{item.client_name}</p>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="text-xs font-mono text-slate-500">{item.code}</span>
+                            <span className="text-xs font-mono text-zinc-500">{item.code}</span>
                             {item.scheduled_date && (
-                              <span className="flex items-center gap-1 text-xs text-slate-500">
+                              <span className="flex items-center gap-1 text-xs text-zinc-500">
                                 <Calendar className="w-3 h-3" />
                                 {item.scheduled_date}
                               </span>
@@ -182,16 +182,16 @@ export default function ClientHomePage() {
           {/* Recent Laudos */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Laudos Técnicos Recentes</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Laudos Técnicos Recentes</p>
               <Link href="/solutions/agroflowai/client/laudos" className="text-xs text-violet-400 hover:text-violet-300 font-semibold">
                 Ver todos →
               </Link>
             </div>
             {laudos.length === 0 ? (
-              <Card className="bg-slate-900/50 border-slate-800">
+              <Card className="bg-zinc-950/50 border-zinc-800">
                 <CardContent className="py-8 text-center">
                   <FileText className="w-10 h-10 text-slate-700 mx-auto mb-2" />
-                  <p className="text-slate-500 text-sm">Nenhum laudo ainda</p>
+                  <p className="text-zinc-500 text-sm">Nenhum laudo ainda</p>
                 </CardContent>
               </Card>
             ) : (
@@ -199,7 +199,7 @@ export default function ClientHomePage() {
                 {laudos.map((laudo) => {
                   const st = statusLaudoLabel[laudo.status] || statusLaudoLabel.draft
                   return (
-                    <Card key={laudo.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+                    <Card key={laudo.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
                       <CardContent className="p-4 flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-violet-600/10 flex items-center justify-center flex-shrink-0">
                           <FileText className="w-5 h-5 text-violet-400" />
@@ -207,7 +207,7 @@ export default function ClientHomePage() {
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold text-white truncate">{laudo.title}</p>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="text-xs font-mono text-slate-500">{laudo.code}</span>
+                            <span className="text-xs font-mono text-zinc-500">{laudo.code}</span>
                             {laudo.art && <span className="text-xs text-emerald-400 font-semibold">{laudo.art}</span>}
                           </div>
                         </div>
@@ -230,7 +230,7 @@ export default function ClientHomePage() {
               </div>
               <div>
                 <p className="font-bold text-white text-sm">Status de Compliance Ambiental</p>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs text-zinc-400 mt-0.5">
                   {laudos.filter(l => l.status === "issued").length > 0
                     ? `${laudos.filter(l => l.status === "issued").length} laudo(s) emitido(s) — propriedade regularizada`
                     : "Acompanhe o status de regularização da sua propriedade"}

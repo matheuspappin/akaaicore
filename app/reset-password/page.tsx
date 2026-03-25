@@ -101,7 +101,7 @@ function ResetPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2">
@@ -130,7 +130,7 @@ function ResetPasswordContent() {
                   <CheckCircle2 className="w-8 h-8 text-emerald-600" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-sm text-slate-600 dark:text-zinc-400">
                     Tudo pronto! Você será redirecionado para o login em instantes.
                   </p>
                 </div>
@@ -153,12 +153,12 @@ function ResetPasswordContent() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="bg-slate-50 dark:bg-slate-800 border-none h-12 pr-10"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none h-12 pr-10"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-indigo-600"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -175,7 +175,7 @@ function ResetPasswordContent() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       required
-                      className="bg-slate-50 dark:bg-slate-800 border-none h-12"
+                      className="bg-slate-50 dark:bg-zinc-900 border-none h-12"
                     />
                     <div className="absolute right-3 top-1/2 -translate-y-1/2">
                       <Lock className="w-4 h-4 text-slate-300" />
@@ -209,7 +209,7 @@ function ResetPasswordContent() {
 export default function ResetPasswordPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-black flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
       </div>
     }>

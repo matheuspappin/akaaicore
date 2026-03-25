@@ -174,7 +174,7 @@ export default function ChatIAPage() {
   if (loadingStudio) {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-120px)]">
-        <div className="flex flex-col items-center gap-3 text-slate-500">
+        <div className="flex flex-col items-center gap-3 text-zinc-500">
           <div className="w-8 h-8 border-2 border-emerald-600/30 border-t-emerald-600 rounded-full animate-spin" />
           <p className="text-sm font-medium">Carregando Chat IA...</p>
         </div>
@@ -185,10 +185,10 @@ export default function ChatIAPage() {
   if (!studioId) {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-120px)]">
-        <div className="text-center max-w-md p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-white/10">
+        <div className="text-center max-w-md p-6 rounded-2xl bg-slate-100 dark:bg-zinc-900/50 border border-slate-200 dark:border-white/10">
           <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-3" />
           <p className="font-bold text-slate-900 dark:text-white mb-1">Estúdio não identificado</p>
-          <p className="text-sm text-slate-600 dark:text-slate-400">Você precisa estar vinculado a um estúdio. Entre em contato com o administrador.</p>
+          <p className="text-sm text-slate-600 dark:text-zinc-400">Você precisa estar vinculado a um estúdio. Entre em contato com o administrador.</p>
         </div>
       </div>
     )
@@ -208,7 +208,7 @@ export default function ChatIAPage() {
             <Sparkles className="w-6 h-6 text-emerald-500" />
             Chat IA
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Assistente inteligente para compliance ambiental e agronegócio
           </p>
         </div>
@@ -218,7 +218,7 @@ export default function ChatIAPage() {
         </Badge>
       </div>
 
-      <div className="flex-1 flex flex-col bg-white dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm">
+      <div className="flex-1 flex flex-col bg-white dark:bg-zinc-950/50 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.map((msg) => (
             <div key={msg.id} className={cn("flex", msg.role === "user" ? "justify-end" : "justify-start")}>
@@ -231,13 +231,13 @@ export default function ChatIAPage() {
                 "max-w-[80%] rounded-2xl px-4 py-3",
                 msg.role === "user"
                   ? "bg-emerald-600 text-white rounded-tr-none"
-                  : "bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-100 rounded-tl-none"
+                  : "bg-slate-100 dark:bg-white/10 text-zinc-800 dark:text-slate-100 rounded-tl-none"
               )}>
                 <div
                   className="text-sm leading-relaxed whitespace-pre-line"
                   dangerouslySetInnerHTML={{ __html: formatContent(msg.content) }}
                 />
-                <span className={cn("text-[10px] block mt-2", msg.role === "user" ? "text-emerald-200" : "text-slate-400")}>
+                <span className={cn("text-[10px] block mt-2", msg.role === "user" ? "text-emerald-200" : "text-zinc-400")}>
                   {msg.timestamp}
                 </span>
               </div>
@@ -250,9 +250,9 @@ export default function ChatIAPage() {
               </div>
               <div className="bg-slate-100 dark:bg-white/10 rounded-2xl rounded-tl-none px-4 py-3">
                 <div className="flex gap-1">
-                  <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" />
-                  <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.15s]" />
-                  <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.3s]" />
+                  <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce" />
+                  <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce [animation-delay:0.15s]" />
+                  <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce [animation-delay:0.3s]" />
                 </div>
               </div>
             </div>

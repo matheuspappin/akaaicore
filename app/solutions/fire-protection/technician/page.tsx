@@ -94,7 +94,7 @@ export default function FireTechnicianDashboard() {
           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Olá, {user?.user_metadata?.name?.split(" ")[0] || "Técnico"}!
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
             {today.length > 0
               ? `${today.length} OS/vistoria${today.length > 1 ? "s" : ""} agendada${today.length > 1 ? "s" : ""} para hoje`
               : "Nenhuma OS agendada para hoje"}
@@ -125,13 +125,13 @@ export default function FireTechnicianDashboard() {
           { label: "Concluídas Hoje", value: concluidasHoje, color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-600/10", icon: CheckCircle },
           { label: "Urgentes", value: urgentes, color: "text-rose-600", bg: "bg-rose-50 dark:bg-rose-600/10", icon: AlertTriangle },
         ].map((stat) => (
-          <Card key={stat.label} className="border-none shadow-md bg-white dark:bg-slate-900/50">
+          <Card key={stat.label} className="border-none shadow-md bg-white dark:bg-zinc-950/50">
             <CardContent className="p-5">
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", stat.bg)}>
                 <stat.icon className={cn("w-5 h-5", stat.color)} />
               </div>
               <p className={cn("text-3xl font-black", stat.color)}>{stat.value}</p>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">{stat.label}</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-1">{stat.label}</p>
             </CardContent>
           </Card>
         ))}
@@ -139,7 +139,7 @@ export default function FireTechnicianDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* OS do dia */}
-        <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+        <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
               <ClipboardList className="w-5 h-5 text-orange-600" />
@@ -153,7 +153,7 @@ export default function FireTechnicianDashboard() {
           </CardHeader>
           <CardContent>
             {today.length === 0 ? (
-              <div className="text-center py-8 text-slate-400">
+              <div className="text-center py-8 text-zinc-400">
                 <ClipboardList className="w-10 h-10 mx-auto mb-2 opacity-20" />
                 <p className="font-medium text-sm">Nenhuma OS para hoje</p>
                 <p className="text-xs mt-1">Fique atento às novas atribuições.</p>
@@ -163,7 +163,7 @@ export default function FireTechnicianDashboard() {
                 {today.slice(0, 4).map(os => (
                   <Link href="/solutions/fire-protection/technician/os" key={os.id}>
                     <div className={cn(
-                      "flex items-center gap-3 p-3 rounded-xl border-l-4 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer",
+                      "flex items-center gap-3 p-3 rounded-xl border-l-4 bg-slate-50 dark:bg-zinc-900/50 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer",
                       os.project_type === "vistoria" ? "border-l-red-500" : "border-l-orange-500"
                     )}>
                       <div className={cn(
@@ -176,16 +176,16 @@ export default function FireTechnicianDashboard() {
                         }
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-bold text-slate-800 dark:text-slate-200 text-sm truncate">{os.title}</p>
+                        <p className="font-bold text-zinc-800 dark:text-slate-200 text-sm truncate">{os.title}</p>
                         {os.customer && (
-                          <p className="text-xs text-slate-500 flex items-center gap-1 truncate">
+                          <p className="text-xs text-zinc-500 flex items-center gap-1 truncate">
                             <Building2 className="w-3 h-3 flex-shrink-0" />{os.customer.name}
                           </p>
                         )}
                       </div>
                       <div className="flex flex-col items-end gap-1 flex-shrink-0">
                         {os.scheduled_at && (
-                          <span className="text-xs font-bold text-slate-500">{formatHour(os.scheduled_at)}</span>
+                          <span className="text-xs font-bold text-zinc-500">{formatHour(os.scheduled_at)}</span>
                         )}
                         {os.priority === "urgente" && (
                           <AlertCircle className="w-4 h-4 text-rose-600" />
@@ -200,7 +200,7 @@ export default function FireTechnicianDashboard() {
         </Card>
 
         {/* Próximas vistorias / OS */}
-        <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+        <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
               <Calendar className="w-5 h-5 text-red-600" />
@@ -209,7 +209,7 @@ export default function FireTechnicianDashboard() {
           </CardHeader>
           <CardContent>
             {proximas.length === 0 ? (
-              <div className="text-center py-8 text-slate-400">
+              <div className="text-center py-8 text-zinc-400">
                 <Calendar className="w-10 h-10 mx-auto mb-2 opacity-20" />
                 <p className="font-medium text-sm">Nenhuma OS futura</p>
                 <p className="text-xs mt-1">Atribuições aparecerão aqui.</p>
@@ -218,16 +218,16 @@ export default function FireTechnicianDashboard() {
               <div className="space-y-3">
                 {proximas.slice(0, 4).map(os => (
                   <Link href="/solutions/fire-protection/technician/os" key={os.id}>
-                    <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer gap-3">
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/50 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer gap-3">
                       <div className="flex-1 min-w-0">
-                        <p className="font-bold text-slate-800 dark:text-slate-200 text-sm truncate">{os.title}</p>
+                        <p className="font-bold text-zinc-800 dark:text-slate-200 text-sm truncate">{os.title}</p>
                         {os.customer && (
-                          <p className="text-xs text-slate-500 truncate">{os.customer.name}</p>
+                          <p className="text-xs text-zinc-500 truncate">{os.customer.name}</p>
                         )}
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         {os.scheduled_at && (
-                          <span className="text-xs font-bold text-slate-500 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-lg">
+                          <span className="text-xs font-bold text-zinc-500 bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded-lg">
                             {formatDate(os.scheduled_at)}
                           </span>
                         )}

@@ -54,7 +54,7 @@ const prioridadeConfig = [
     value: "normal",
     label: "Normal",
     desc: "Sem urgência imediata",
-    color: "border-slate-200 bg-white dark:bg-slate-900/50 dark:border-white/10 text-slate-700 dark:text-slate-300",
+    color: "border-slate-200 bg-white dark:bg-zinc-950/50 dark:border-white/10 text-slate-700 dark:text-slate-300",
     selected: "border-slate-600 bg-slate-700 text-white",
     icon: CheckCircle,
   },
@@ -123,7 +123,7 @@ export default function NovaOSPage() {
           <CheckCircle className="w-10 h-10 text-emerald-600" />
         </div>
         <h2 className="text-2xl font-black text-slate-900 dark:text-white">OS Criada!</h2>
-        <p className="text-slate-500 dark:text-slate-400">Redirecionando para a lista de OS...</p>
+        <p className="text-zinc-500 dark:text-zinc-400">Redirecionando para a lista de OS...</p>
       </div>
     )
   }
@@ -142,13 +142,13 @@ export default function NovaOSPage() {
             <ClipboardList className="w-6 h-6 text-red-600" />
             Nova Ordem de Serviço
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Preencha os dados para abrir uma nova OS
           </p>
         </div>
       </div>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader className="pb-4">
           <CardTitle className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Wrench className="w-4 h-4 text-red-600" />
@@ -180,9 +180,9 @@ export default function NovaOSPage() {
               Cliente / Edificação
             </Label>
             {loadingData ? (
-              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-slate-800 rounded-md animate-pulse" />
+              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-zinc-900 rounded-md animate-pulse" />
             ) : customers.length === 0 ? (
-              <div className="mt-1.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-white/10 text-sm text-slate-400 text-center">
+              <div className="mt-1.5 p-3 rounded-xl border border-dashed border-slate-300 dark:border-white/10 text-sm text-zinc-400 text-center">
                 Nenhum cliente cadastrado.{" "}
                 <Link href="/solutions/fire-protection/dashboard/clientes" className="text-red-600 hover:underline font-bold">
                   Cadastrar cliente
@@ -209,7 +209,7 @@ export default function NovaOSPage() {
               Técnico Responsável
             </Label>
             {loadingData ? (
-              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-slate-800 rounded-md animate-pulse" />
+              <div className="mt-1.5 h-10 bg-slate-100 dark:bg-zinc-900 rounded-md animate-pulse" />
             ) : (
               <Select value={form.professional_id} onValueChange={(v) => setForm({ ...form, professional_id: v })}>
                 <SelectTrigger className="mt-1.5">
@@ -255,7 +255,7 @@ export default function NovaOSPage() {
       </Card>
 
       {/* Prioridade */}
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader className="pb-4">
           <CardTitle className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-red-600" />

@@ -496,7 +496,7 @@ export default function StudentDashboard() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black">
         <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
       </div>
     )
@@ -504,12 +504,12 @@ export default function StudentDashboard() {
 
   if (!student?.studio_id) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 text-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-black flex flex-col items-center justify-center p-6 text-center">
         <div className="w-20 h-20 rounded-3xl bg-indigo-600 flex items-center justify-center shadow-xl shadow-indigo-200 mb-6">
           <Sparkles className="w-10 h-10 text-white" />
         </div>
         <h1 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Bem-vindo ao Workflow AI!</h1>
-        <p className="text-slate-500 max-w-xs mb-8 text-sm">
+        <p className="text-zinc-500 max-w-xs mb-8 text-sm">
           Você ainda não está vinculado a nenhum {vocabulary.establishment.toLowerCase()}. <br/><br/>
           Peça o <b>link de convite</b> para seu profissional para começar a acompanhar seus serviços!
         </p>
@@ -532,7 +532,7 @@ export default function StudentDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-20">
       <StudentHeader student={student} />
       
       <main className="container p-4 space-y-6 max-w-md mx-auto">
@@ -713,11 +713,11 @@ export default function StudentDashboard() {
                 const isPaid = order.payment_status === 'paid';
 
                 return (
-                  <Card key={order.id} className={`border-none shadow-md overflow-hidden bg-white dark:bg-slate-900 border-l-4 ${order.status === 'finished' ? 'border-emerald-500' : 'border-slate-300'}`} onClick={() => router.push(`/student/os/${order.id}`)}>
+                  <Card key={order.id} className={`border-none shadow-md overflow-hidden bg-white dark:bg-zinc-950 border-l-4 ${order.status === 'finished' ? 'border-emerald-500' : 'border-slate-300'}`} onClick={() => router.push(`/student/os/${order.id}`)}>
                     <CardContent className="p-4 space-y-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className={`text-[10px] font-black uppercase ${order.status === 'finished' ? 'text-emerald-600' : 'text-slate-500'}`}>OS #{order.tracking_code || order.id.substring(0, 8)}</p>
+                          <p className={`text-[10px] font-black uppercase ${order.status === 'finished' ? 'text-emerald-600' : 'text-zinc-500'}`}>OS #{order.tracking_code || order.id.substring(0, 8)}</p>
                           <h3 className="text-sm font-bold">{order.description || 'Serviço em andamento'}</h3>
                         </div>
                         <div className="flex flex-col items-end gap-1">
@@ -910,10 +910,10 @@ export default function StudentDashboard() {
               </CardContent>
             </Card>
           ) : (
-             <div className="p-4 bg-slate-100 dark:bg-slate-900 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 text-center py-8">
+             <div className="p-4 bg-slate-100 dark:bg-zinc-950 rounded-2xl border-2 border-dashed border-slate-200 dark:border-zinc-800 text-center py-8">
                 <Calendar className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                <p className="text-sm text-slate-500">Você não tem reserva para hoje.</p>
-                <p className="text-[10px] text-slate-400 mt-1 uppercase font-bold">Escolha um {vocabulary.service.toLowerCase()} abaixo para reservar</p>
+                <p className="text-sm text-zinc-500">Você não tem reserva para hoje.</p>
+                <p className="text-[10px] text-zinc-400 mt-1 uppercase font-bold">Escolha um {vocabulary.service.toLowerCase()} abaixo para reservar</p>
              </div>
           )}
         </section>
@@ -931,7 +931,7 @@ export default function StudentDashboard() {
                 <Card key={cls.id} className="border-none shadow-sm hover:shadow-md transition-all overflow-hidden">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center font-bold text-indigo-600 border border-indigo-50">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 dark:bg-zinc-900 flex items-center justify-center font-bold text-indigo-600 border border-indigo-50">
                         {cls.name.substring(0, 2).toUpperCase()}
                       </div>
                       <div>
@@ -970,7 +970,7 @@ export default function StudentDashboard() {
         )}
 
         {/* Tab Bar Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t flex items-center justify-around h-16 px-4 z-50">
+        <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-950 border-t flex items-center justify-around h-16 px-4 z-50">
           <Button type="button" variant="ghost" className="flex flex-col gap-1 text-primary" onClick={() => window.location.href='/student'}>
             <LayoutDashboard className="w-5 h-5" />
             <span className="text-[10px]">Início</span>
@@ -1068,7 +1068,7 @@ export default function StudentDashboard() {
             </DialogHeader>
             <div className="space-y-3 py-4">
               {creditTransactions.length > 0 ? creditTransactions.map((tx) => (
-                <div key={tx.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
+                <div key={tx.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-100 dark:border-zinc-800">
                   <div className="flex items-center gap-3">
                     <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${tx.amount > 0 ? 'bg-emerald-100 text-emerald-600' : 'bg-rose-100 text-rose-600'}`}>
                       {tx.amount > 0 ? <Plus className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
@@ -1136,7 +1136,7 @@ export default function StudentDashboard() {
                 <div 
                   key={pkg.id} 
                   onClick={() => !isBuying && handleBuyCredits(pkg)} 
-                  className={`bg-card text-card-foreground flex flex-col gap-2 rounded-xl p-5 shadow-sm border-2 border-slate-100 dark:border-slate-800 hover:border-indigo-500/50 transition-all cursor-pointer group relative ${isBuying ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  className={`bg-card text-card-foreground flex flex-col gap-2 rounded-xl p-5 shadow-sm border-2 border-slate-100 dark:border-zinc-800 hover:border-indigo-500/50 transition-all cursor-pointer group relative ${isBuying ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -1171,7 +1171,7 @@ export default function StudentDashboard() {
             <p className="text-emerald-100 text-sm font-medium opacity-90">Apresente este código para liberar seu serviço ou retirar produtos.</p>
           </div>
           
-          <div className="flex flex-col items-center justify-center py-10 gap-8 bg-white dark:bg-slate-950">
+          <div className="flex flex-col items-center justify-center py-10 gap-8 bg-white dark:bg-black">
             <div className="bg-white p-6 rounded-[2.5rem] shadow-2xl border-8 border-emerald-50">
               <QRCode
                 value={`SECURE-CLI-${student?.id?.toString().slice(-12).toUpperCase()}-${new Date().toISOString().slice(0,10)}`}
@@ -1182,22 +1182,22 @@ export default function StudentDashboard() {
             </div>
 
             <div className="space-y-4 w-full px-10">
-              <div className="bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-2xl border border-slate-100 dark:border-slate-800 w-full text-center">
+              <div className="bg-slate-50 dark:bg-zinc-950 px-6 py-4 rounded-2xl border border-slate-100 dark:border-zinc-800 w-full text-center">
                 <p className="text-[11px] text-muted-foreground font-black uppercase mb-1 tracking-widest">TOKEN DE SEGURANÇA DIÁRIO</p>
                 <p className="font-mono text-2xl font-black text-emerald-600 tracking-[0.2em]">
                   CLI-{student?.id?.toString().slice(-8).toUpperCase()}
                 </p>
               </div>
               
-              <div className="flex items-center gap-3 justify-center text-slate-400">
+              <div className="flex items-center gap-3 justify-center text-zinc-400">
                 <Shield className="w-4 h-4" />
                 <span className="text-[10px] font-bold uppercase tracking-widest italic">Válido apenas para hoje • akaaicore Guard</span>
               </div>
             </div>
           </div>
             
-            <div className="p-6 bg-slate-50 dark:bg-slate-900 border-t">
-              <Button type="button" variant="ghost" className="w-full font-bold text-slate-500 h-12 rounded-xl" onClick={() => setIsClientIDOpen(false)}>
+            <div className="p-6 bg-slate-50 dark:bg-zinc-950 border-t">
+              <Button type="button" variant="ghost" className="w-full font-bold text-zinc-500 h-12 rounded-xl" onClick={() => setIsClientIDOpen(false)}>
                 FECHAR CARTÃO
               </Button>
             </div>

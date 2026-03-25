@@ -134,7 +134,7 @@ function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex relative font-sans">
+    <div className="min-h-screen bg-black flex relative font-sans">
       {/* Botão de Idioma */}
       <div className="absolute top-4 right-4 z-50">
         <LanguageSwitcher />
@@ -193,7 +193,7 @@ function LoginContent() {
         </div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center p-8 bg-slate-950 relative overflow-hidden">
+      <div className="flex-1 flex items-center justify-center p-8 bg-black relative overflow-hidden">
         {/* Background - gradient mesh atmosférico */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(239,68,68,0.15),transparent)] pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_80%_80%,rgba(249,115,22,0.08),transparent_50%)] pointer-events-none" />
@@ -216,27 +216,27 @@ function LoginContent() {
             </Link>
           </div>
 
-          <Card className="relative overflow-hidden bg-slate-900/90 backdrop-blur-2xl border border-white/[0.06] shadow-2xl shadow-black/60 ring-1 ring-white/[0.04]">
+          <Card className="relative overflow-hidden bg-zinc-950/90 backdrop-blur-2xl border border-white/[0.06] shadow-2xl shadow-black/60 ring-1 ring-white/[0.04]">
             {/* Glow accent superior */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
             {/* Brilho sutil nas bordas */}
             <div className="absolute -inset-px bg-gradient-to-b from-red-500/5 via-transparent to-transparent rounded-[inherit] [mask-image:linear-gradient(black,transparent_70%)] pointer-events-none" />
             <CardHeader className="text-center space-y-1 pt-8">
               <CardTitle className="text-2xl font-bold text-white tracking-tight">Acessar sistema</CardTitle>
-              <CardDescription className="text-slate-500 text-sm">
+              <CardDescription className="text-zinc-500 text-sm">
                 Selecione seu perfil e faça login
               </CardDescription>
             </CardHeader>
             <CardContent className="px-6 pb-8">
               {/* Seletor de Perfil - Dropdown minimalista */}
               <div className="mb-6">
-                <Label className="text-[11px] font-medium text-slate-500 uppercase tracking-wider block mb-2">Perfil de acesso</Label>
+                <Label className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider block mb-2">Perfil de acesso</Label>
                 <div className="relative">
                   <button
                     type="button"
                     onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                     className={cn(
-                      "w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border bg-slate-800/50 transition-all duration-200",
+                      "w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border bg-zinc-900/50 transition-all duration-200",
                       profileDropdownOpen
                         ? "border-red-500/40 ring-2 ring-red-500/20"
                         : "border-white/5 hover:border-white/10"
@@ -251,18 +251,18 @@ function LoginContent() {
                         role === 'teacher' && "bg-blue-500/20 text-blue-400",
                         role === 'engineer' && "bg-violet-500/20 text-violet-400",
                         role === 'architect' && "bg-cyan-500/20 text-cyan-400",
-                        role === 'student' && "bg-slate-500/20 text-slate-400"
+                        role === 'student' && "bg-zinc-500/20 text-zinc-400"
                       )}>
                         <currentProfile.icon className="w-4 h-4" />
                       </div>
                       <span className="text-white font-medium">{currentProfile.label}</span>
                     </div>
-                    <ChevronDown className={cn("w-4 h-4 text-slate-500 transition-transform", profileDropdownOpen && "rotate-180")} />
+                    <ChevronDown className={cn("w-4 h-4 text-zinc-500 transition-transform", profileDropdownOpen && "rotate-180")} />
                   </button>
                   {profileDropdownOpen && (
                     <>
                       <div className="fixed inset-0 z-40" onClick={() => setProfileDropdownOpen(false)} aria-hidden />
-                      <div className="absolute top-full left-0 right-0 mt-1 py-1 rounded-xl border border-white/10 bg-slate-900/95 backdrop-blur-xl shadow-xl shadow-black/50 z-50 overflow-hidden">
+                      <div className="absolute top-full left-0 right-0 mt-1 py-1 rounded-xl border border-white/10 bg-zinc-950/95 backdrop-blur-xl shadow-xl shadow-black/50 z-50 overflow-hidden">
                         {profiles.map((p) => (
                           <button
                             key={p.id}
@@ -270,14 +270,14 @@ function LoginContent() {
                             onClick={() => { setRole(p.id); setProfileDropdownOpen(false) }}
                             className={cn(
                               "w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors",
-                              role === p.id ? "bg-red-500/10 text-red-400" : "text-slate-400 hover:bg-white/5 hover:text-white"
+                              role === p.id ? "bg-red-500/10 text-red-400" : "text-zinc-400 hover:bg-white/5 hover:text-white"
                             )}
                           >
                             <p.icon className="w-4 h-4 shrink-0 opacity-70" />
                             <div className="flex flex-col items-start">
                               <span className="font-medium text-sm">{p.label}</span>
                               {'description' in p && (p as { description?: string }).description && (
-                                <span className="text-[10px] text-slate-500 mt-0.5">{(p as { description?: string }).description}</span>
+                                <span className="text-[10px] text-zinc-500 mt-0.5">{(p as { description?: string }).description}</span>
                               )}
                             </div>
                           </button>
@@ -290,7 +290,7 @@ function LoginContent() {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="identifier" className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">E-mail</Label>
+                  <Label htmlFor="identifier" className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">E-mail</Label>
                   <Input
                     id="identifier"
                     type="email"
@@ -298,13 +298,13 @@ function LoginContent() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="bg-slate-800/50 border-white/5 text-white h-11 rounded-xl placeholder:text-slate-500 focus:border-red-500/40 focus:ring-1 focus:ring-red-500/20 transition-all"
+                    className="bg-zinc-900/50 border-white/5 text-white h-11 rounded-xl placeholder:text-zinc-500 focus:border-red-500/40 focus:ring-1 focus:ring-red-500/20 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password" className="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Senha</Label>
+                    <Label htmlFor="password" className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Senha</Label>
                     <Link href="/forgot-password?returnTo=/solutions/fire-protection/login" title="Esqueceu?" className="text-xs text-red-500/80 hover:text-red-400 transition-colors">
                       Esqueceu?
                     </Link>
@@ -317,12 +317,12 @@ function LoginContent() {
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       required
-                      className="bg-slate-800/50 border-white/5 text-white h-11 pr-12 rounded-xl placeholder:text-slate-500 focus:border-red-500/40 focus:ring-1 focus:ring-red-500/20 transition-all"
+                      className="bg-zinc-900/50 border-white/5 text-white h-11 pr-12 rounded-xl placeholder:text-zinc-500 focus:border-red-500/40 focus:ring-1 focus:ring-red-500/20 transition-all"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors p-1"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -346,7 +346,7 @@ function LoginContent() {
               </form>
 
               <div className="mt-6 pt-5 border-t border-white/5 space-y-4">
-                <p className="text-center text-sm text-slate-500">
+                <p className="text-center text-sm text-zinc-500">
                   Não possui conta?{" "}
                   <Link href="/solutions/fire-protection/register" className="text-red-500 hover:text-red-400 font-medium transition-colors">
                     Criar conta grátis
@@ -361,7 +361,7 @@ function LoginContent() {
                 </Link>
                 <Link
                   href="/solutions/fire-protection"
-                  className="flex items-center justify-center gap-2 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+                  className="flex items-center justify-center gap-2 text-xs text-zinc-500 hover:text-slate-300 transition-colors"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   Voltar ao site
@@ -387,7 +387,7 @@ function LoginContent() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <Loader2 className="w-8 h-8 animate-spin text-red-600" />
       </div>
     }>

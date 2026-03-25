@@ -148,7 +148,7 @@ export default function EmissorFiscalPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-2 border-violet-600 border-t-transparent rounded-full" />
+        <div className="animate-spin w-8 h-8 border-2 border-[#e40014] border-t-transparent rounded-full" />
       </div>
     )
   }
@@ -166,7 +166,7 @@ export default function EmissorFiscalPage() {
 
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold flex items-center gap-2">
-            <Receipt className="h-7 w-7 text-violet-500" />
+            <Receipt className="h-7 w-7 text-[#e40014]" />
             Emissor Fiscal (NF-e)
           </h1>
           <p className="text-muted-foreground">

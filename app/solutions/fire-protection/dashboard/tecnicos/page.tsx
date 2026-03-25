@@ -100,7 +100,7 @@ const mockTecnicos = [
 const statusMap = {
   disponivel: { label: "Disponível", className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" },
   em_campo: { label: "Em Campo", className: "bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-400" },
-  folga: { label: "Folga", className: "bg-slate-100 text-slate-600 dark:bg-slate-600/20 dark:text-slate-400" },
+  folga: { label: "Folga", className: "bg-slate-100 text-slate-600 dark:bg-slate-600/20 dark:text-zinc-400" },
 }
 
 function NovoTecnicoDialog() {
@@ -227,20 +227,20 @@ function InviteCodeCard() {
           <Link2 className="w-4 h-4" />
           Link de Convite para Técnicos
         </CardTitle>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
           Compartilhe este código com técnicos para que se vinculem automaticamente à sua empresa no portal deles.
         </p>
       </CardHeader>
       <CardContent>
         {loading ? (
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
+          <div className="flex items-center gap-2 text-zinc-400 text-sm">
             <Loader2 className="w-4 h-4 animate-spin" />
             Carregando código...
           </div>
         ) : (
           <div className="flex items-center gap-3">
-            <div className="flex-1 bg-white dark:bg-slate-900 border border-orange-200 dark:border-orange-600/30 rounded-xl px-4 py-3">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Código de Convite</p>
+            <div className="flex-1 bg-white dark:bg-zinc-950 border border-orange-200 dark:border-orange-600/30 rounded-xl px-4 py-3">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Código de Convite</p>
               <p className="font-mono text-2xl font-black text-slate-900 dark:text-white tracking-[0.3em]">
                 {inviteCode || "—"}
               </p>
@@ -283,7 +283,7 @@ function InviteCodeCard() {
             </div>
           </div>
         )}
-        <p className="text-xs text-slate-400 mt-3">
+        <p className="text-xs text-zinc-400 mt-3">
           Envie o link (recomendado) ou o código. Quem já tem conta pode acessar <span className="font-bold text-slate-600 dark:text-slate-300">Meu Perfil → Empresa Vinculada</span> e inserir o código.
         </p>
       </CardContent>
@@ -311,7 +311,7 @@ export default function TecnicosPage() {
             <Users className="w-6 h-6 text-red-600" />
             Técnicos
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             {mockTecnicos.length} técnicos cadastrados
           </p>
         </div>
@@ -323,7 +323,7 @@ export default function TecnicosPage() {
 
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <Input
             placeholder="Buscar por nome ou especialidade..."
             value={search}
@@ -350,7 +350,7 @@ export default function TecnicosPage() {
         {filtered.map((tecnico) => {
           const st = statusMap[tecnico.status as keyof typeof statusMap]
           return (
-            <Card key={tecnico.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={tecnico.id} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
@@ -359,7 +359,7 @@ export default function TecnicosPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 dark:text-white">{tecnico.nome}</h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1">
                         <ShieldCheck className="w-3 h-3" />
                         {tecnico.crea}
                       </p>
@@ -384,7 +384,7 @@ export default function TecnicosPage() {
                   </div>
                 </div>
 
-                <div className="mt-3 space-y-1 text-xs text-slate-500 dark:text-slate-400">
+                <div className="mt-3 space-y-1 text-xs text-zinc-500 dark:text-zinc-400">
                   <div className="flex items-center gap-2">
                     <Wrench className="w-3.5 h-3.5" />
                     <span>{tecnico.especialidade}</span>
@@ -406,20 +406,20 @@ export default function TecnicosPage() {
                 <div className="mt-4 pt-4 border-t border-slate-100 dark:border-white/5 grid grid-cols-3 gap-2 text-center">
                   <div>
                     <p className="text-base font-black text-slate-900 dark:text-white">{tecnico.osRealizadas}</p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">OS Realizadas</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-wide">OS Realizadas</p>
                   </div>
                   <div>
                     <p className={cn("text-base font-black", tecnico.osAtivas > 0 ? "text-orange-500" : "text-slate-900 dark:text-white")}>
                       {tecnico.osAtivas}
                     </p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">OS Ativas</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-wide">OS Ativas</p>
                   </div>
                   <div>
                     <p className="text-base font-black text-amber-500 flex items-center justify-center gap-0.5">
                       {tecnico.avaliacao}
                       <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                     </p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wide">Avaliação</p>
+                    <p className="text-[10px] text-zinc-400 uppercase tracking-wide">Avaliação</p>
                   </div>
                 </div>
               </CardContent>

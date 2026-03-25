@@ -49,3 +49,33 @@ export async function GET(request: NextRequest) {
     totals: { pending, released, withdrawn },
   })
 }
+
+// POST: Criar lançamento manual
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const { studioId, professional_id, amount, description } = body
+
+  if (!studioId || !professional_id || !amount) {
+    return NextResponse.json({ error: 'Dados obrigatórios faltando' }, { status: 400 })
+  }
+
+  const access = await checkStudioAccess(request, studioId)
+  if (!access.authorized) return access.response
+
+  const { data, error } = await supabaseAdmin
+    .from('teacher_payment_entries')
+    .insert({
+      studio_id: studioId,
+      professional_id,
+      amount: Number(amount),
+      class_name: description || 'Lançamento Manual (Ex: Salário, Bônus)',
+      scheduled_date: new Date().toISOString().split('T')[0],
+      status: 'pending'
+    })
+    .select()
+    .single()
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  
+  return NextResponse.json(data)
+}

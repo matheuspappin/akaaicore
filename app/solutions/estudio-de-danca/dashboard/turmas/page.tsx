@@ -30,20 +30,20 @@ import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast"
 
 const COLORS = [
-  "from-pink-500 to-rose-500",
-  "from-violet-500 to-purple-500",
-  "from-indigo-500 to-blue-500",
-  "from-emerald-500 to-teal-500",
-  "from-amber-500 to-orange-500",
+  "from-red-500 to-red-",
+  "from-red-500 to-purple-500",
+  "from-red- to-blue-500",
+  "from-red- to-teal-500",
+  "from-red- to-orange-500",
   "from-sky-500 to-cyan-500",
 ]
 
 const CAL_COLORS = [
-  { bg: "bg-pink-100 dark:bg-pink-900/40", text: "text-pink-800 dark:text-pink-200", border: "border-pink-300 dark:border-pink-700" },
-  { bg: "bg-violet-100 dark:bg-violet-900/40", text: "text-violet-800 dark:text-violet-200", border: "border-violet-300 dark:border-violet-700" },
-  { bg: "bg-indigo-100 dark:bg-indigo-900/40", text: "text-indigo-800 dark:text-indigo-200", border: "border-indigo-300 dark:border-indigo-700" },
-  { bg: "bg-emerald-100 dark:bg-emerald-900/40", text: "text-emerald-800 dark:text-emerald-200", border: "border-emerald-300 dark:border-emerald-700" },
-  { bg: "bg-amber-100 dark:bg-amber-900/40", text: "text-amber-800 dark:text-amber-200", border: "border-amber-300 dark:border-amber-700" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-red- dark:text-[#e40014]", border: "border-red- dark:border-[#e40014]" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-red- dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
+  { bg: "bg-red- dark:bg-[#e40014]", text: "text-red- dark:text-red-", border: "border-red- dark:border-red-" },
+  { bg: "bg-red- dark:bg-[#e40014]", text: "text-red- dark:text-red-", border: "border-red- dark:border-red-" },
+  { bg: "bg-red- dark:bg-[#e40014]", text: "text-red- dark:text-red-", border: "border-red- dark:border-red-" },
   { bg: "bg-sky-100 dark:bg-sky-900/40", text: "text-sky-800 dark:text-sky-200", border: "border-sky-300 dark:border-sky-700" },
 ]
 
@@ -99,11 +99,11 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
 
   if (withSchedule.length === 0) {
     return (
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
         <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-          <CalendarDays className="w-12 h-12 text-slate-300 dark:text-slate-700 mb-3" />
-          <p className="font-bold text-slate-600 dark:text-slate-400">Nenhuma turma com horário definido</p>
-          <p className="text-xs text-slate-400 mt-1">Crie turmas com horários para visualizar o calendário.</p>
+          <CalendarDays className="w-12 h-12 text-slate-300 dark:text-zinc-400 mb-3" />
+          <p className="font-bold text-zinc-400 dark:text-zinc-400">Nenhuma turma com horário definido</p>
+          <p className="text-xs text-zinc-400 mt-1">Crie turmas com horários para visualizar o calendário.</p>
         </CardContent>
       </Card>
     )
@@ -125,11 +125,11 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
       </div>
 
       {/* Grade */}
-      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/80 shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-white/10 dark:border-white/10 bg-white/5 dark:bg-black/80 shadow-sm">
         <div className="min-w-[640px]">
           {/* Cabeçalho dias */}
           <div
-            className="grid border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-900 sticky top-0 z-10"
+            className="grid border-b border-white/10 dark:border-white/10 bg-black dark:bg-black sticky top-0 z-10"
             style={{ gridTemplateColumns: "56px repeat(7, 1fr)" }}
           >
             <div className="p-2 border-r border-slate-100 dark:border-white/5" />
@@ -137,7 +137,7 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
               <div
                 key={day}
                 className={cn(
-                  "py-3 text-center text-[11px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400",
+                  "py-3 text-center text-[11px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400",
                   i < 6 && "border-r border-slate-100 dark:border-white/5"
                 )}
               >
@@ -155,7 +155,7 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
             >
               {/* Hora */}
               <div className="px-2 pt-2 border-r border-slate-100 dark:border-white/5 flex items-start justify-end">
-                <span className="text-[11px] font-bold text-slate-400 dark:text-slate-600">
+                <span className="text-[11px] font-bold text-zinc-400 dark:text-zinc-400">
                   {String(hour).padStart(2, "0")}:00
                 </span>
               </div>
@@ -198,7 +198,7 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
       </div>
 
       {withoutSchedule.length > 0 && (
-        <p className="text-xs text-slate-400 text-right">
+        <p className="text-xs text-zinc-400 text-right">
           {withoutSchedule.length} turma{withoutSchedule.length > 1 ? "s" : ""} sem horário definido — visível apenas na visualização em cards.
         </p>
       )}
@@ -401,22 +401,22 @@ export default function TurmasPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Calendar className="w-6 h-6 text-violet-600" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <Calendar className="w-6 h-6 text-[#e40014]" />
             Turmas & Aulas
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Gerencie todas as turmas do estúdio</p>
+          <p className="text-zinc-500 text-sm mt-1">Gerencie todas as turmas do estúdio</p>
         </div>
         <div className="flex items-center gap-2">
           {/* Toggle view */}
-          <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-1 gap-1">
+          <div className="flex items-center bg-slate-100 dark:bg-zinc-950 rounded-xl p-1 gap-1">
             <button
               onClick={() => setView("cards")}
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
                 view === "cards"
-                  ? "bg-white dark:bg-slate-700 text-violet-600 shadow-sm"
-                  : "text-slate-500 hover:text-slate-700 dark:hover:text-white"
+                  ? "bg-white/5 dark:bg-slate-700 text-[#e40014] shadow-sm"
+                  : "text-zinc-500 hover:text-zinc-400 dark:hover:text-white"
               )}
             >
               <LayoutGrid className="w-3.5 h-3.5" /> Cards
@@ -426,8 +426,8 @@ export default function TurmasPage() {
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
                 view === "calendar"
-                  ? "bg-white dark:bg-slate-700 text-violet-600 shadow-sm"
-                  : "text-slate-500 hover:text-slate-700 dark:hover:text-white"
+                  ? "bg-white/5 dark:bg-slate-700 text-[#e40014] shadow-sm"
+                  : "text-zinc-500 hover:text-zinc-400 dark:hover:text-white"
               )}
             >
               <CalendarDays className="w-3.5 h-3.5" /> Calendário
@@ -435,7 +435,7 @@ export default function TurmasPage() {
           </div>
           <Button
             onClick={() => setIsNewDialogOpen(true)}
-            className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl shadow-lg shadow-violet-600/20"
+            className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl shadow-lg shadow-red-600/20"
           >
             <Plus className="w-4 h-4 mr-2" />
             Nova Turma
@@ -451,8 +451,8 @@ export default function TurmasPage() {
             className={cn(
               "px-4 py-1.5 rounded-full text-sm font-bold transition-all",
               !activeStyle
-                ? "bg-violet-600 text-white shadow-lg shadow-violet-600/20"
-                : "bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 dark:hover:text-white"
+                ? "bg-[#e40014] text-white shadow-lg shadow-red-600/20"
+                : "bg-slate-100 dark:bg-zinc-950 text-zinc-500 hover:text-zinc-400 dark:hover:text-white"
             )}
           >
             Todas
@@ -464,8 +464,8 @@ export default function TurmasPage() {
               className={cn(
                 "px-4 py-1.5 rounded-full text-sm font-bold transition-all",
                 activeStyle === s
-                  ? "bg-violet-600 text-white shadow-lg shadow-violet-600/20"
-                  : "bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 dark:hover:text-white"
+                  ? "bg-[#e40014] text-white shadow-lg shadow-red-600/20"
+                  : "bg-slate-100 dark:bg-zinc-950 text-zinc-500 hover:text-zinc-400 dark:hover:text-white"
               )}
             >
               {s}
@@ -476,22 +476,22 @@ export default function TurmasPage() {
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : view === "calendar" ? (
         <WeekCalendar turmas={turmas} />
       ) : filtered.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
-            <Music className="w-16 h-16 text-slate-300 dark:text-slate-700 mb-4" />
-            <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 mb-2">
+            <Music className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
+            <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
               {activeStyle ? `Nenhuma turma de ${activeStyle}` : "Nenhuma turma cadastrada"}
             </h3>
-            <p className="text-slate-400 text-sm mb-6">
+            <p className="text-zinc-400 text-sm mb-6">
               {activeStyle ? "Tente outro filtro ou crie uma nova turma." : "Crie sua primeira turma para começar."}
             </p>
             {!activeStyle && (
-              <Button onClick={() => setIsNewDialogOpen(true)} className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl">
+              <Button onClick={() => setIsNewDialogOpen(true)} className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl">
                 <Plus className="w-4 h-4 mr-2" /> Criar Turma
               </Button>
             )}
@@ -500,37 +500,37 @@ export default function TurmasPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filtered.map((turma, i) => (
-            <Card key={turma.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 hover:shadow-lg transition-all overflow-hidden">
+            <Card key={turma.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-lg transition-all overflow-hidden">
               <div className={cn("h-2 bg-gradient-to-r", COLORS[i % COLORS.length])} />
               <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-black text-slate-900 dark:text-white text-base">{turma.name}</h3>
-                    <p className="text-xs text-slate-500 mt-0.5">{turma.dance_style ?? "—"}</p>
+                    <h3 className="font-black text-white dark:text-white text-base">{turma.name}</h3>
+                    <p className="text-xs text-zinc-500 mt-0.5">{turma.dance_style ?? "—"}</p>
                   </div>
                   {turma.level && (
-                    <Badge className="bg-violet-100 text-violet-700 dark:bg-violet-600/20 dark:text-violet-400 border-0 text-xs font-bold">
+                    <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-xs font-bold">
                       {turma.level}
                     </Badge>
                   )}
                 </div>
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                    <GraduationCap className="w-4 h-4 text-violet-500" />
+                  <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                    <GraduationCap className="w-4 h-4 text-[#e40014]" />
                     <span>{turma.teacherName}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                    <Clock className="w-4 h-4 text-pink-500" />
+                  <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                    <Clock className="w-4 h-4 text-[#e40014]" />
                     <span>{turma.scheduleSummary}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                    <Users className="w-4 h-4 text-indigo-500" />
+                  <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                    <Users className="w-4 h-4 text-red-" />
                     <span>{turma.enrolledCount} {turma.enrolledCount === 1 ? "aluno" : "alunos"}</span>
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
                   <Link href={`/solutions/estudio-de-danca/dashboard/turmas/${turma.id}/chamada`}>
-                    <Button size="sm" variant="outline" className="flex-1 rounded-xl text-xs font-bold border-violet-200 text-violet-600 hover:bg-violet-50">
+                    <Button size="sm" variant="outline" className="flex-1 rounded-xl text-xs font-bold border-[#e40014] text-[#e40014] hover:bg-[#e40014]">
                       Fazer Chamada
                     </Button>
                   </Link>
@@ -598,7 +598,7 @@ export default function TurmasPage() {
             {/* Professor responsável — o professor recebe a turma vinculada e sabe quando são as aulas */}
             <div>
               <Label htmlFor="turmaTeacher" className="flex items-center gap-1.5">
-                <GraduationCap className="w-3.5 h-3.5 text-violet-500" />
+                <GraduationCap className="w-3.5 h-3.5 text-[#e40014]" />
                 Professor responsável
               </Label>
               <Select
@@ -617,7 +617,7 @@ export default function TurmasPage() {
                   ))}
                 </SelectContent>
               </Select>
-              <p className="text-[11px] text-slate-500 mt-1">
+              <p className="text-[11px] text-zinc-500 mt-1">
                 O professor verá esta turma no seu painel e saberá os horários das aulas.
               </p>
             </div>
@@ -625,23 +625,23 @@ export default function TurmasPage() {
             {/* Horários */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <Label className="text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-pink-500" />
+                <Label className="text-sm font-bold text-zinc-400 dark:text-slate-300 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[#e40014]" />
                   Horários da Turma
                 </Label>
-                <Button type="button" size="sm" variant="outline" onClick={addScheduleItem} className="h-7 text-xs font-bold rounded-lg border-violet-200 text-violet-600 hover:bg-violet-50">
+                <Button type="button" size="sm" variant="outline" onClick={addScheduleItem} className="h-7 text-xs font-bold rounded-lg border-[#e40014] text-[#e40014] hover:bg-[#e40014]">
                   <Plus className="w-3 h-3 mr-1" /> Adicionar horário
                 </Button>
               </div>
 
               {newForm.scheduleItems.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-slate-200 dark:border-white/10 p-4 text-center text-xs text-slate-400">
+                <div className="rounded-xl border border-dashed border-white/10 dark:border-white/10 p-4 text-center text-xs text-zinc-400">
                   Sem horários definidos — a turma aparecerá apenas na visão em cards.
                 </div>
               ) : (
                 <div className="space-y-2">
                   {newForm.scheduleItems.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
+                    <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-black dark:bg-white/5/5 border border-slate-100 dark:border-white/10">
                       <Select
                         value={String(item.day_of_week)}
                         onValueChange={(v) => updateScheduleItem(idx, "day_of_week", parseInt(v))}
@@ -661,7 +661,7 @@ export default function TurmasPage() {
                         onChange={(e) => updateScheduleItem(idx, "start_time", e.target.value)}
                         className="h-8 w-24 text-xs font-bold rounded-lg"
                       />
-                      <span className="text-xs text-slate-400 font-bold">até</span>
+                      <span className="text-xs text-zinc-400 font-bold">até</span>
                       <Input
                         type="time"
                         value={item.end_time}
@@ -670,7 +670,7 @@ export default function TurmasPage() {
                       />
                       <button
                         onClick={() => removeScheduleItem(idx)}
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex-shrink-0"
+                        className="w-7 h-7 rounded-lg flex items-center justify-center text-zinc-400 hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-all flex-shrink-0"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -687,7 +687,7 @@ export default function TurmasPage() {
               <Button
                 onClick={handleCreateTurma}
                 disabled={isSaving || !newForm.name.trim()}
-                className="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold"
+                className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                 Criar Turma
@@ -704,12 +704,12 @@ export default function TurmasPage() {
             <DialogTitle className="flex items-center gap-2">
               {isEditMode ? (
                 <>
-                  <Pencil className="w-4 h-4 text-violet-500" />
+                  <Pencil className="w-4 h-4 text-[#e40014]" />
                   Editar Turma
                 </>
               ) : (
                 <>
-                  <Eye className="w-4 h-4 text-violet-500" />
+                  <Eye className="w-4 h-4 text-[#e40014]" />
                   Detalhes da Turma
                 </>
               )}
@@ -773,7 +773,7 @@ export default function TurmasPage() {
                   </div>
                   <div>
                     <Label htmlFor="editTurmaTeacher" className="flex items-center gap-1.5">
-                      <GraduationCap className="w-3.5 h-3.5 text-violet-500" />
+                      <GraduationCap className="w-3.5 h-3.5 text-[#e40014]" />
                       Professor responsável
                     </Label>
                     <Select
@@ -794,21 +794,21 @@ export default function TurmasPage() {
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <Label className="text-sm font-bold flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-pink-500" />
+                        <Clock className="w-3.5 h-3.5 text-[#e40014]" />
                         Horários da Turma
                       </Label>
-                      <Button type="button" size="sm" variant="outline" onClick={addEditScheduleItem} className="h-7 text-xs font-bold rounded-lg border-violet-200 text-violet-600 hover:bg-violet-50">
+                      <Button type="button" size="sm" variant="outline" onClick={addEditScheduleItem} className="h-7 text-xs font-bold rounded-lg border-[#e40014] text-[#e40014] hover:bg-[#e40014]">
                         <Plus className="w-3 h-3 mr-1" /> Adicionar
                       </Button>
                     </div>
                     {editForm.scheduleItems.length === 0 ? (
-                      <div className="rounded-xl border border-dashed border-slate-200 dark:border-white/10 p-4 text-center text-xs text-slate-400">
+                      <div className="rounded-xl border border-dashed border-white/10 dark:border-white/10 p-4 text-center text-xs text-zinc-400">
                         Sem horários definidos
                       </div>
                     ) : (
                       <div className="space-y-2">
                         {editForm.scheduleItems.map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
+                          <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-black dark:bg-white/5/5 border border-slate-100 dark:border-white/10">
                             <Select
                               value={String(item.day_of_week)}
                               onValueChange={(v) => updateEditScheduleItem(idx, "day_of_week", parseInt(v))}
@@ -828,7 +828,7 @@ export default function TurmasPage() {
                               onChange={(e) => updateEditScheduleItem(idx, "start_time", e.target.value)}
                               className="h-8 w-24 text-xs font-bold rounded-lg"
                             />
-                            <span className="text-xs text-slate-400 font-bold">até</span>
+                            <span className="text-xs text-zinc-400 font-bold">até</span>
                             <Input
                               type="time"
                               value={item.end_time}
@@ -837,7 +837,7 @@ export default function TurmasPage() {
                             />
                             <button
                               onClick={() => removeEditScheduleItem(idx)}
-                              className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all flex-shrink-0"
+                              className="w-7 h-7 rounded-lg flex items-center justify-center text-zinc-400 hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-all flex-shrink-0"
                             >
                               <X className="w-3.5 h-3.5" />
                             </button>
@@ -853,7 +853,7 @@ export default function TurmasPage() {
                     <Button
                       onClick={handleSaveTurma}
                       disabled={isSaving || !editForm.name.trim()}
-                      className="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold"
+                      className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
                     >
                       {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                       Salvar
@@ -863,25 +863,25 @@ export default function TurmasPage() {
               ) : (
                 <>
                   <div>
-                    <h3 className="font-black text-slate-900 dark:text-white text-lg">{selectedTurma.name}</h3>
-                    <p className="text-sm text-slate-500 mt-0.5">{selectedTurma.dance_style ?? "—"}</p>
+                    <h3 className="font-black text-white dark:text-white text-lg">{selectedTurma.name}</h3>
+                    <p className="text-sm text-zinc-500 mt-0.5">{selectedTurma.dance_style ?? "—"}</p>
                   </div>
                   {selectedTurma.level && (
-                    <Badge className="bg-violet-100 text-violet-700 dark:bg-violet-600/20 dark:text-violet-400 border-0 text-xs font-bold">
+                    <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-xs font-bold">
                       {selectedTurma.level}
                     </Badge>
                   )}
                   <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                      <GraduationCap className="w-4 h-4 text-violet-500 shrink-0" />
+                    <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                      <GraduationCap className="w-4 h-4 text-[#e40014] shrink-0" />
                       <span>{selectedTurma.teacherName ?? "Não definido"}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                      <Clock className="w-4 h-4 text-pink-500 shrink-0" />
+                    <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                      <Clock className="w-4 h-4 text-[#e40014] shrink-0" />
                       <span>{selectedTurma.scheduleSummary ?? "Sem horário"}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                      <Users className="w-4 h-4 text-indigo-500 shrink-0" />
+                    <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
+                      <Users className="w-4 h-4 text-red- shrink-0" />
                       <span>
                         {selectedTurma.enrolledCount ?? 0} de {selectedTurma.max_students ?? 15} alunos
                       </span>
@@ -897,7 +897,7 @@ export default function TurmasPage() {
                     </Button>
                     <Button
                       onClick={() => setIsEditMode(true)}
-                      className="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold"
+                      className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
                     >
                       <Pencil className="w-4 h-4 mr-2" />
                       Editar

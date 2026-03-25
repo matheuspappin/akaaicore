@@ -40,7 +40,7 @@ export function TeacherMobileNav() {
   ]
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t flex items-center justify-around h-16 px-4 z-50 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-950 border-t flex items-center justify-around h-16 px-4 z-50 md:hidden">
       {navItems.map((item) => (
         <Button
           key={item.href}

@@ -56,8 +56,8 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-pink-500" />
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     )
   }
@@ -68,13 +68,13 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between p-4 border-b border-white/10">
         <Link href="/solutions/estudio-de-danca" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-pink-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center">
             <GraduationCap className="w-4 h-4 text-white" />
           </div>
           {(!collapsed || isMobile) && (
             <div>
               <span className="font-black text-white tracking-tighter text-xs block">DanceFlow</span>
-              <span className="text-[10px] text-pink-400 font-bold uppercase tracking-widest">Professor</span>
+              <span className="text-[10px] text-[#e40014] font-bold uppercase tracking-widest">Professor</span>
             </div>
           )}
         </Link>
@@ -92,8 +92,8 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
             className={cn(
               "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all",
               pathname === item.href
-                ? "bg-pink-600 text-white shadow-lg shadow-pink-600/20"
-                : "text-white/50 hover:text-white hover:bg-white/5",
+                ? "bg-[#e40014] text-white shadow-lg shadow-red-600/20"
+                : "text-white/50 hover:text-white hover:bg-white/5/5",
               collapsed && !isMobile && "justify-center"
             )}
           >
@@ -106,7 +106,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
         <button
           onClick={handleLogout}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-pink-400 hover:bg-pink-600/10 transition-all w-full",
+            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-[#e40014] hover:bg-[#e40014] transition-all w-full",
             collapsed && !isMobile && "justify-center"
           )}
         >
@@ -118,23 +118,23 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
   )
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-black dark:bg-black">
       <aside
         className={cn(
-          "hidden md:flex flex-col fixed top-0 left-0 h-full bg-slate-950 border-r border-white/10 z-50 transition-all duration-300",
+          "hidden md:flex flex-col fixed top-0 left-0 h-full bg-black border-r border-white/10 z-50 transition-all duration-300",
           collapsed ? "w-[72px]" : "w-64"
         )}
       >
         <SidebarContent />
       </aside>
 
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-slate-950 border-b border-white/10 flex items-center justify-between px-4 z-40">
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-black border-b border-white/10 flex items-center justify-between px-4 z-40">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-pink-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center">
             <GraduationCap className="w-4 h-4 text-white" />
           </div>
           <span className="font-black text-white text-sm">
-            DanceFlow <span className="text-pink-400">Professor</span>
+            DanceFlow <span className="text-[#e40014]">Professor</span>
           </span>
         </div>
         <button onClick={() => setMobileOpen(true)} className="text-white/60 hover:text-white p-2">
@@ -143,7 +143,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
       </div>
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="p-0 bg-slate-950 border-r border-white/10 w-72">
+        <SheetContent side="left" className="p-0 bg-black border-r border-white/10 w-72">
           <SidebarContent isMobile />
         </SheetContent>
       </Sheet>

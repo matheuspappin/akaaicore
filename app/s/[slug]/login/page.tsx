@@ -127,7 +127,7 @@ function StudioStudentLoginContent() {
   return (
     <div className={cn(
       "min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-500", 
-      isFire ? "bg-slate-950" : "bg-slate-50 dark:bg-slate-950"
+      isFire ? "bg-black" : "bg-slate-50 dark:bg-black"
     )}>
       {isFire && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
@@ -173,11 +173,11 @@ function StudioStudentLoginContent() {
 
         <Card className={cn(
           "border-none shadow-2xl transition-all", 
-          isFire ? "bg-slate-900/80 backdrop-blur-xl text-white border border-white/5" : "bg-white dark:bg-slate-900"
+          isFire ? "bg-zinc-950/80 backdrop-blur-xl text-white border border-white/5" : "bg-white dark:bg-zinc-950"
         )}>
           <CardHeader className="text-center">
             <CardTitle className={cn("text-2xl font-bold", isFire ? "text-white" : "")}>Entrar</CardTitle>
-            <CardDescription className={isFire ? "text-slate-400 font-medium" : ""}>
+            <CardDescription className={isFire ? "text-zinc-400 font-medium" : ""}>
               {niche === 'fire_protection' 
                 ? `Acesse seus vistorias, laudos e pagamentos` 
                 : `Acesse seus ${vocabulary.service.toLowerCase()}s e pagamentos`}
@@ -194,7 +194,7 @@ function StudioStudentLoginContent() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className={cn(isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : "", "focus:ring-0 focus:ring-offset-0 focus:shadow-none")}
+                  className={cn(isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : "", "focus:ring-0 focus:ring-offset-0 focus:shadow-none")}
                 />
               </div>
               <div className="space-y-2">
@@ -211,12 +211,12 @@ function StudioStudentLoginContent() {
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     required
-                    className={cn(isFire ? "bg-slate-800 border-white/10 text-white focus:border-red-600" : "", "focus:ring-0 focus:ring-offset-0 focus:shadow-none")}
+                    className={cn(isFire ? "bg-zinc-900 border-white/10 text-white focus:border-red-600" : "", "focus:ring-0 focus:ring-offset-0 focus:shadow-none")}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -236,7 +236,7 @@ function StudioStudentLoginContent() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className={cn("text-sm", isFire ? "text-slate-400" : "text-slate-500")}>
+              <p className={cn("text-sm", isFire ? "text-zinc-400" : "text-zinc-500")}>
                 Ainda não tem cadastro?{" "}
                 <Link 
                   href={`/s/${studio.slug}/register${roleParam ? `?role=${roleParam}` : ''}`} 
@@ -253,7 +253,7 @@ function StudioStudentLoginContent() {
           onClick={() => router.push(isFire ? "/solutions/fire-protection/login" : "/login")}
           className={cn(
             "w-full text-center text-xs flex items-center justify-center gap-2 transition-all hover:gap-3", 
-            isFire ? "text-slate-500 hover:text-white" : "text-slate-400 hover:text-slate-600"
+            isFire ? "text-zinc-500 hover:text-white" : "text-zinc-400 hover:text-slate-600"
           )}
         >
           <ArrowLeft className="w-3 h-3" /> {isFire ? "Voltar para FireControl" : "Voltar para login geral"}

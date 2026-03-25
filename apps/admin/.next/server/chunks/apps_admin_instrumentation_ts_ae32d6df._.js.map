@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../../apps/admin/instrumentation.ts"],"sourcesContent":["/**\n * Next.js Instrumentation Hook — Admin app (minimal, sem OpenTelemetry)\n */\nexport async function register() {\n  // Admin app não usa tracing distribuído\n}\n"],"names":[],"mappings":"wCAGO,eAAe,IAEtB"}

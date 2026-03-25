@@ -154,7 +154,7 @@ export default function ConfiguracoesPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-black text-white tracking-tight">Configurações</h1>
-        <p className="text-slate-400 mt-1">Gerencie sua empresa, notificações, módulos e segurança</p>
+        <p className="text-zinc-400 mt-1">Gerencie sua empresa, notificações, módulos e segurança</p>
       </div>
 
       {/* Tabs */}
@@ -169,7 +169,7 @@ export default function ConfiguracoesPage() {
                 "flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all",
                 activeTab === t.key
                   ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/20"
-                  : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+                  : "bg-zinc-900 text-zinc-400 hover:bg-slate-700 hover:text-white"
               )}
             >
               <Icon className="w-4 h-4" />
@@ -181,13 +181,13 @@ export default function ConfiguracoesPage() {
 
       {/* Empresa Tab */}
       {activeTab === "empresa" && (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Building2 className="w-5 h-5 text-emerald-400" />
               Dados da Consultoria Ambiental
             </CardTitle>
-            <CardDescription className="text-slate-500">
+            <CardDescription className="text-zinc-500">
               Informações que aparecem nos laudos e documentos emitidos
             </CardDescription>
           </CardHeader>
@@ -195,76 +195,76 @@ export default function ConfiguracoesPage() {
             <form onSubmit={handleSaveEmpresa} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-2 col-span-full">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nome da Consultoria</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nome da Consultoria</Label>
                   <Input
                     value={empresa.name}
                     onChange={(e) => setEmpresa({ ...empresa, name: e.target.value })}
                     placeholder="Ex: Consultoria Ambiental Verde"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Engenheiro Responsável</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Engenheiro Responsável</Label>
                   <Input
                     value={empresa.responsible_name}
                     onChange={(e) => setEmpresa({ ...empresa, responsible_name: e.target.value })}
                     placeholder="Nome completo"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">CREA</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">CREA</Label>
                   <Input
                     value={empresa.crea_responsible}
                     onChange={(e) => setEmpresa({ ...empresa, crea_responsible: e.target.value })}
                     placeholder="Ex: CREA-SP 000000"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">E-mail Corporativo</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">E-mail Corporativo</Label>
                   <Input
                     type="email"
                     value={empresa.email}
                     onChange={(e) => setEmpresa({ ...empresa, email: e.target.value })}
                     placeholder="contato@consultoria.com"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Telefone / WhatsApp</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Telefone / WhatsApp</Label>
                   <Input
                     value={empresa.phone}
                     onChange={(e) => setEmpresa({ ...empresa, phone: e.target.value })}
                     placeholder="(00) 00000-0000"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">CNPJ</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">CNPJ</Label>
                   <Input
                     value={empresa.cnpj}
                     onChange={(e) => setEmpresa({ ...empresa, cnpj: e.target.value })}
                     placeholder="00.000.000/0001-00"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2 col-span-full">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Endereço</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Endereço</Label>
                   <Input
                     value={empresa.address}
                     onChange={(e) => setEmpresa({ ...empresa, address: e.target.value })}
                     placeholder="Rua, Cidade, Estado, CEP"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2 col-span-full">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Website (opcional)</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Website (opcional)</Label>
                   <Input
                     value={empresa.website}
                     onChange={(e) => setEmpresa({ ...empresa, website: e.target.value })}
                     placeholder="https://suaconsultoria.com"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
               </div>
@@ -291,13 +291,13 @@ export default function ConfiguracoesPage() {
 
       {/* Notificações Tab */}
       {activeTab === "notificacoes" && (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Bell className="w-5 h-5 text-emerald-400" />
               Preferências de Notificações
             </CardTitle>
-            <CardDescription className="text-slate-500">
+            <CardDescription className="text-zinc-500">
               Escolha quais alertas e notificações deseja receber
             </CardDescription>
           </CardHeader>
@@ -311,10 +311,10 @@ export default function ConfiguracoesPage() {
               { key: "email_reports", label: "Relatórios por E-mail", desc: "Relatórios mensais automáticos no e-mail" },
               { key: "whatsapp_alerts", label: "Alertas por WhatsApp", desc: "Notificações críticas via WhatsApp" },
             ].map(item => (
-              <div key={item.key} className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-colors">
+              <div key={item.key} className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/50 hover:bg-zinc-900 transition-colors">
                 <div>
                   <p className="font-bold text-white text-sm">{item.label}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{item.desc}</p>
+                  <p className="text-xs text-zinc-500 mt-0.5">{item.desc}</p>
                 </div>
                 <Switch
                   checked={notifications[item.key as keyof typeof notifications]}
@@ -338,13 +338,13 @@ export default function ConfiguracoesPage() {
 
       {/* Módulos Tab */}
       {activeTab === "modulos" && (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Settings className="w-5 h-5 text-emerald-400" />
               Módulos do Sistema
             </CardTitle>
-            <CardDescription className="text-slate-500">
+            <CardDescription className="text-zinc-500">
               Ative ou desative funcionalidades conforme seu plano
             </CardDescription>
           </CardHeader>
@@ -352,17 +352,17 @@ export default function ConfiguracoesPage() {
             {modulesList.map(mod => {
               const Icon = mod.icon
               return (
-                <div key={mod.key} className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-colors">
+                <div key={mod.key} className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/50 hover:bg-zinc-900 transition-colors">
                   <div className="flex items-center gap-3">
                     <div className={cn(
                       "w-9 h-9 rounded-xl flex items-center justify-center",
                       modules[mod.key as keyof typeof modules] ? "bg-emerald-600/20" : "bg-slate-700"
                     )}>
-                      <Icon className={cn("w-4 h-4", modules[mod.key as keyof typeof modules] ? "text-emerald-400" : "text-slate-500")} />
+                      <Icon className={cn("w-4 h-4", modules[mod.key as keyof typeof modules] ? "text-emerald-400" : "text-zinc-500")} />
                     </div>
                     <div>
                       <p className="font-bold text-white text-sm">{mod.label}</p>
-                      <p className="text-xs text-slate-500">{mod.desc}</p>
+                      <p className="text-xs text-zinc-500">{mod.desc}</p>
                     </div>
                   </div>
                   <Switch
@@ -391,7 +391,7 @@ export default function ConfiguracoesPage() {
       {/* Segurança Tab */}
       {activeTab === "seguranca" && (
         <div className="space-y-4">
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <Shield className="w-5 h-5 text-emerald-400" />
@@ -401,38 +401,38 @@ export default function ConfiguracoesPage() {
             <CardContent>
               <form onSubmit={handleSavePassword} className="space-y-4 max-w-md">
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Senha Atual</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Senha Atual</Label>
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
                       value={password.current}
                       onChange={(e) => setPassword({ ...password, current: e.target.value })}
                       placeholder="••••••••"
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl h-11 pr-12"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11 pr-12"
                     />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white">
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white">
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Nova Senha</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Nova Senha</Label>
                   <Input
                     type={showPassword ? "text" : "password"}
                     value={password.new}
                     onChange={(e) => setPassword({ ...password, new: e.target.value })}
                     placeholder="Mínimo 8 caracteres"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Confirmar Nova Senha</Label>
+                  <Label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Confirmar Nova Senha</Label>
                   <Input
                     type={showPassword ? "text" : "password"}
                     value={password.confirm}
                     onChange={(e) => setPassword({ ...password, confirm: e.target.value })}
                     placeholder="Repita a nova senha"
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl h-11"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl h-11"
                   />
                 </div>
                 <Button type="submit" disabled={loading} className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl">
@@ -443,7 +443,7 @@ export default function ConfiguracoesPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <Shield className="w-5 h-5 text-amber-400" />
@@ -456,12 +456,12 @@ export default function ConfiguracoesPage() {
                 { label: "Sessões Ativas", desc: "Gerencie dispositivos conectados à sua conta", enabled: true },
                 { label: "Histórico de Acesso", desc: "Registro de logins e atividades recentes", enabled: true },
               ].map(item => (
-                <div key={item.label} className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50">
+                <div key={item.label} className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/50">
                   <div>
                     <p className="font-bold text-white text-sm">{item.label}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{item.desc}</p>
+                    <p className="text-xs text-zinc-500 mt-0.5">{item.desc}</p>
                   </div>
-                  <Button size="sm" variant="outline" className="border-slate-700 text-slate-400 hover:text-white rounded-xl">
+                  <Button size="sm" variant="outline" className="border-slate-700 text-zinc-400 hover:text-white rounded-xl">
                     {item.enabled ? "Gerenciar" : "Ativar"}
                   </Button>
                 </div>

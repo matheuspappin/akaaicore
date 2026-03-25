@@ -400,7 +400,7 @@ export default function ChatIAPage() {
   if (loadingStudio) {
     return (
       <div className="flex justify-center items-center h-[calc(100vh-120px)]">
-        <div className="flex flex-col items-center gap-3 text-slate-500">
+        <div className="flex flex-col items-center gap-3 text-zinc-500">
           <div className="w-8 h-8 border-2 border-red-600/30 border-t-red-600 rounded-full animate-spin" />
           <p className="text-sm font-medium">Carregando Chat IA...</p>
         </div>
@@ -416,7 +416,7 @@ export default function ChatIAPage() {
             <Sparkles className="w-6 h-6 text-purple-500" />
             Chat IA
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Assistente inteligente para segurança contra incêndio
           </p>
         </div>
@@ -446,7 +446,7 @@ export default function ChatIAPage() {
               </div>
               <div className="p-2 space-y-1 max-h-[calc(100vh-80px)] overflow-y-auto">
                 {chatSessions.length === 0 ? (
-                  <p className="text-xs text-slate-500 p-2">Nenhuma conversa salva</p>
+                  <p className="text-xs text-zinc-500 p-2">Nenhuma conversa salva</p>
                 ) : (
                   chatSessions.map((session) => (
                     <div
@@ -489,7 +489,7 @@ export default function ChatIAPage() {
 
       <div className="flex-1 flex gap-4 min-h-0">
         {/* Sidebar - Minhas Conversas */}
-        <div className="hidden sm:flex w-48 md:w-56 flex-shrink-0 flex-col bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+        <div className="hidden sm:flex w-48 md:w-56 flex-shrink-0 flex-col bg-white dark:bg-zinc-950/50 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
           <div className="p-3 border-b border-slate-100 dark:border-white/5 flex items-center justify-between">
             <span className="text-sm font-bold flex items-center gap-2">
               <MessageSquare className="w-4 h-4" />
@@ -507,7 +507,7 @@ export default function ChatIAPage() {
           </div>
           <div className="flex-1 overflow-y-auto p-2 space-y-1">
             {chatSessions.length === 0 ? (
-              <p className="text-xs text-slate-500 p-2 text-center">Nenhuma conversa salva</p>
+              <p className="text-xs text-zinc-500 p-2 text-center">Nenhuma conversa salva</p>
             ) : (
               chatSessions.map((session) => (
                 <div
@@ -522,7 +522,7 @@ export default function ChatIAPage() {
                 >
                   <div className="flex-1 min-w-0 pr-2">
                     <p className="text-sm font-medium truncate">{session.title || "Nova Conversa"}</p>
-                    <p className="text-[10px] text-slate-500">
+                    <p className="text-[10px] text-zinc-500">
                       {new Date(session.updated_at).toLocaleDateString("pt-BR", {
                         day: "2-digit",
                         month: "2-digit",
@@ -546,7 +546,7 @@ export default function ChatIAPage() {
         </div>
 
         {/* Área do Chat */}
-        <div className="flex-1 flex flex-col bg-white dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm min-w-0">
+        <div className="flex-1 flex flex-col bg-white dark:bg-zinc-950/50 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm min-w-0">
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((msg) => (
               <div
@@ -563,7 +563,7 @@ export default function ChatIAPage() {
                     "max-w-[80%] rounded-2xl px-4 py-3",
                     msg.role === "user"
                       ? "bg-red-600 text-white rounded-tr-none"
-                      : "bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-slate-100 rounded-tl-none"
+                      : "bg-slate-100 dark:bg-white/10 text-zinc-800 dark:text-slate-100 rounded-tl-none"
                   )}
                 >
                   <div
@@ -574,7 +574,7 @@ export default function ChatIAPage() {
                     <span
                       className={cn(
                         "text-[10px]",
-                        msg.role === "user" ? "text-red-200" : "text-slate-400"
+                        msg.role === "user" ? "text-red-200" : "text-zinc-400"
                       )}
                     >
                       {msg.timestamp}
@@ -583,14 +583,14 @@ export default function ChatIAPage() {
                       <div className="flex gap-1">
                         <button
                           onClick={() => sendFeedback(msg, "positive")}
-                          className="text-slate-400 hover:text-emerald-500 transition-colors"
+                          className="text-zinc-400 hover:text-emerald-500 transition-colors"
                           title="Resposta útil"
                         >
                           <ThumbsUp className="w-3 h-3" />
                         </button>
                         <button
                           onClick={() => setFeedbackModal({ msg })}
-                          className="text-slate-400 hover:text-red-500 transition-colors"
+                          className="text-zinc-400 hover:text-red-500 transition-colors"
                           title="Resposta incorreta"
                         >
                           <ThumbsDown className="w-3 h-3" />
@@ -609,9 +609,9 @@ export default function ChatIAPage() {
                 </div>
                 <div className="bg-slate-100 dark:bg-white/10 rounded-2xl rounded-tl-none px-4 py-3">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" />
-                    <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.15s]" />
-                    <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.3s]" />
+                    <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce" />
+                    <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce [animation-delay:0.15s]" />
+                    <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce [animation-delay:0.3s]" />
                   </div>
                 </div>
               </div>

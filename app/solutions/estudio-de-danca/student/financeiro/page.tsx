@@ -90,15 +90,15 @@ function daysUntil(expiryDate: string | null) {
 }
 
 const usageConfig: Record<UsageEntry['usage_type'], { label: string; icon: any; color: string; sign: string }> = {
-  class_attendance: { label: 'Aula realizada',    icon: Zap,         color: 'bg-violet-100 text-violet-600 dark:bg-violet-600/20', sign: '-' },
-  manual_adjustment:{ label: 'Ajuste manual',      icon: RotateCcw,   color: 'bg-amber-100 text-amber-600 dark:bg-amber-600/20',    sign: '' },
-  refund:           { label: 'Estorno',             icon: TrendingUp,  color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-600/20', sign: '+' },
+  class_attendance: { label: 'Aula realizada',    icon: Zap,         color: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014]', sign: '-' },
+  manual_adjustment:{ label: 'Ajuste manual',      icon: RotateCcw,   color: 'bg-red- text-red- dark:bg-[#e40014]',    sign: '' },
+  refund:           { label: 'Estorno',             icon: TrendingUp,  color: 'bg-red- text-red- dark:bg-[#e40014]', sign: '+' },
 }
 
 const paymentStatusConfig = {
-  paid:    { label: 'Pago',     icon: CheckCircle2, badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400' },
-  pending: { label: 'Pendente', icon: Clock,         badge: 'bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400' },
-  overdue: { label: 'Vencido',  icon: AlertCircle,   badge: 'bg-rose-100 text-rose-700 dark:bg-rose-600/20 dark:text-rose-400' },
+  paid:    { label: 'Pago',     icon: CheckCircle2, badge: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-' },
+  pending: { label: 'Pendente', icon: Clock,         badge: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-' },
+  overdue: { label: 'Vencido',  icon: AlertCircle,   badge: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-' },
 }
 
 // ─── componente ──────────────────────────────────────────────────────────────
@@ -319,7 +319,7 @@ function FinanceiroContent() {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-24">
-        <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     )
   }
@@ -330,11 +330,11 @@ function FinanceiroContent() {
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Wallet className="w-6 h-6 text-violet-600" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <Wallet className="w-6 h-6 text-[#e40014]" />
             Minha Carteira
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Créditos de aula e histórico financeiro</p>
+          <p className="text-zinc-500 text-sm mt-1">Créditos de aula e histórico financeiro</p>
         </div>
         <Button
           variant="ghost" size="icon" className="rounded-xl"
@@ -353,14 +353,14 @@ function FinanceiroContent() {
             <div className={cn(
               'rounded-3xl p-6 text-white relative overflow-hidden',
               expired
-                ? 'bg-gradient-to-br from-slate-600 to-slate-800'
+                ? 'bg-gradient-to-br from-slate-600 to-zinc-800'
                 : credits.remaining_credits <= 2
-                  ? 'bg-gradient-to-br from-rose-500 to-rose-700'
-                  : 'bg-gradient-to-br from-violet-600 via-indigo-600 to-purple-700'
+                  ? 'bg-gradient-to-br from-red- to-red-'
+                  : 'bg-gradient-to-br from-red-600 via-red- to-purple-700'
             )}>
               {/* Decoração de fundo */}
-              <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/4" />
+              <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/5/5 -translate-y-1/2 translate-x-1/4" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-white/5/5 translate-y-1/2 -translate-x-1/4" />
 
               <div className="relative">
                 <div className="flex justify-between items-start mb-5">
@@ -377,15 +377,15 @@ function FinanceiroContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3">
+                  <div className="bg-white/5/20 backdrop-blur-sm rounded-2xl p-3">
                     <CreditCard className="w-6 h-6 text-white" />
                   </div>
                 </div>
 
                 {/* Barra de progresso */}
-                <div className="h-2 bg-white/20 rounded-full overflow-hidden mb-4">
+                <div className="h-2 bg-white/5/20 rounded-full overflow-hidden mb-4">
                   <div
-                    className="h-full bg-white rounded-full transition-all duration-500"
+                    className="h-full bg-white/5 rounded-full transition-all duration-500"
                     style={{ width: `${creditPercent}%` }}
                   />
                 </div>
@@ -394,7 +394,7 @@ function FinanceiroContent() {
                 <div className="flex items-center justify-between">
                   <div>
                     {expired ? (
-                      <p className="text-xs font-bold text-rose-200">
+                      <p className="text-xs font-bold text-red-">
                         ⚠ Créditos expirados em {fmtDate(credits.expiry_date)}
                       </p>
                     ) : credits.expiry_date ? (
@@ -413,7 +413,7 @@ function FinanceiroContent() {
                     )}
                   </div>
                   {credits.remaining_credits <= 2 && !expired && (
-                    <Badge className="bg-white/20 text-white border-none text-[10px] font-bold animate-pulse">
+                    <Badge className="bg-white/5/20 text-white border-none text-[10px] font-bold animate-pulse">
                       QUASE ACABANDO
                     </Badge>
                   )}
@@ -422,10 +422,10 @@ function FinanceiroContent() {
             </div>
           ) : (
             // Aluno sem nenhum crédito ainda
-            <div className="rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 border-2 border-dashed border-slate-300 dark:border-slate-700 text-center">
-              <Wallet className="w-12 h-12 mx-auto text-slate-400 mb-3" />
-              <p className="font-bold text-slate-700 dark:text-slate-300">Carteira vazia</p>
-              <p className="text-xs text-slate-500 mt-1">
+            <div className="rounded-3xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-zinc-800 dark:to-slate-900 p-6 border-2 border-dashed border-slate-300 dark:border-slate-700 text-center">
+              <Wallet className="w-12 h-12 mx-auto text-zinc-400 mb-3" />
+              <p className="font-bold text-zinc-400 dark:text-slate-300">Carteira vazia</p>
+              <p className="text-xs text-zinc-500 mt-1">
                 Adquira um pacote abaixo para começar a usar os créditos.
               </p>
             </div>
@@ -433,11 +433,11 @@ function FinanceiroContent() {
 
           {/* Alertas de créditos baixos / expirados */}
           {credits && expired && (
-            <div className="rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-800 p-4 flex gap-3 items-start">
-              <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+            <div className="rounded-2xl bg-red- dark:bg-[#e40014] border border-red- dark:border-red- p-4 flex gap-3 items-start">
+              <AlertCircle className="w-5 h-5 text-red- shrink-0 mt-0.5" />
               <div>
-                <p className="font-bold text-rose-700 dark:text-rose-400 text-sm">Créditos expirados</p>
-                <p className="text-xs text-rose-600/80 dark:text-rose-500 mt-0.5">
+                <p className="font-bold text-red- dark:text-red- text-sm">Créditos expirados</p>
+                <p className="text-xs text-[#e40014] dark:text-red- mt-0.5">
                   Seus créditos expiraram e foram congelados. Renove comprando um novo pacote abaixo — a validade será renovada automaticamente.
                 </p>
               </div>
@@ -449,7 +449,7 @@ function FinanceiroContent() {
       {/* ── Pagamentos pendentes (MONETARY) ────────────────────────────────── */}
       {businessModel === 'MONETARY' && pendingPayments.length > 0 && (
         <div className="space-y-3">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Pendências</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-zinc-500">Pendências</p>
           {pendingPayments.map((p) => {
             const cfg = paymentStatusConfig[p.status]
             const StatusIcon = cfg.icon
@@ -457,18 +457,18 @@ function FinanceiroContent() {
               <div key={p.id} className={cn(
                 'rounded-2xl p-4 flex items-center gap-3 border',
                 p.status === 'overdue'
-                  ? 'bg-rose-50 dark:bg-rose-950/30 border-rose-200'
-                  : 'bg-amber-50 dark:bg-amber-950/30 border-amber-200'
+                  ? 'bg-red- dark:bg-[#e40014] border-red-'
+                  : 'bg-red- dark:bg-[#e40014] border-red-'
               )}>
                 <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center shrink-0', cfg.badge)}>
                   <StatusIcon className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-slate-900 dark:text-white text-sm truncate">{p.description || 'Mensalidade'}</p>
-                  <p className="text-xs text-slate-500">Vencimento: {fmtDate(p.due_date)}</p>
+                  <p className="font-bold text-white dark:text-white text-sm truncate">{p.description || 'Mensalidade'}</p>
+                  <p className="text-xs text-zinc-500">Vencimento: {fmtDate(p.due_date)}</p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="font-black text-slate-900 dark:text-white">R$ {fmt(p.amount)}</p>
+                  <p className="font-black text-white dark:text-white">R$ {fmt(p.amount)}</p>
                   <Badge className={cn('text-[10px] border-0 font-bold mt-1', cfg.badge)}>{cfg.label}</Badge>
                 </div>
               </div>
@@ -480,17 +480,17 @@ function FinanceiroContent() {
       {/* ── Pacotes de Crédito ────────────────────────────────────────────── */}
       <div className="space-y-4">
         <div className="flex items-center gap-2">
-          <ShoppingBag className="w-4 h-4 text-violet-600" />
-          <p className="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">
+          <ShoppingBag className="w-4 h-4 text-[#e40014]" />
+          <p className="font-bold text-sm text-white dark:text-white uppercase tracking-wider">
             {businessModel === 'CREDIT' ? 'Recarregar Créditos' : 'Adquirir Créditos'}
           </p>
         </div>
 
         {packages.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-slate-200 dark:border-white/10 p-8 text-center">
-            <Sparkles className="w-10 h-10 mx-auto text-slate-300 dark:text-slate-700 mb-3" />
-            <p className="text-sm text-slate-500">Nenhum pacote disponível no momento.</p>
-            <p className="text-xs text-slate-400 mt-1">Entre em contato com o estúdio.</p>
+          <div className="rounded-2xl border border-dashed border-white/10 dark:border-white/10 p-8 text-center">
+            <Sparkles className="w-10 h-10 mx-auto text-slate-300 dark:text-zinc-400 mb-3" />
+            <p className="text-sm text-zinc-500">Nenhum pacote disponível no momento.</p>
+            <p className="text-xs text-zinc-400 mt-1">Entre em contato com o estúdio.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-3">
@@ -504,12 +504,12 @@ function FinanceiroContent() {
                   className={cn(
                     'relative rounded-2xl border-2 overflow-hidden transition-all',
                     isPopular
-                      ? 'border-violet-500 bg-violet-50 dark:bg-violet-950/20 shadow-md shadow-violet-500/10'
-                      : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 hover:border-violet-300 dark:hover:border-violet-700/50'
+                      ? 'border-[#e40014] bg-[#e40014] dark:bg-[#e40014] shadow-md shadow-red-500/10'
+                      : 'border-white/10 dark:border-white/10 bg-white/5 dark:bg-black/50 hover:border-[#e40014] dark:hover:border-[#e40014]'
                   )}
                 >
                   {isPopular && (
-                    <div className="absolute top-0 right-0 bg-violet-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl">
+                    <div className="absolute top-0 right-0 bg-[#e40014] text-white text-[10px] font-black px-3 py-1 rounded-bl-xl">
                       MAIS POPULAR
                     </div>
                   )}
@@ -519,8 +519,8 @@ function FinanceiroContent() {
                     <div className={cn(
                       'w-16 h-16 rounded-2xl flex flex-col items-center justify-center shrink-0 font-black',
                       isPopular
-                        ? 'bg-violet-600 text-white'
-                        : 'bg-violet-100 dark:bg-violet-600/20 text-violet-700 dark:text-violet-400'
+                        ? 'bg-[#e40014] text-white'
+                        : 'bg-[#e40014] dark:bg-[#e40014] text-[#e40014] dark:text-[#e40014]'
                     )}>
                       <span className="text-xl leading-none">{pkg.lessons_count}</span>
                       <span className="text-[9px] uppercase font-bold opacity-80">
@@ -530,18 +530,18 @@ function FinanceiroContent() {
 
                     {/* Info */}
                     <div className="flex-1 min-w-0">
-                      <p className="font-black text-slate-900 dark:text-white text-sm">{pkg.name}</p>
+                      <p className="font-black text-white dark:text-white text-sm">{pkg.name}</p>
                       {pkg.description && (
-                        <p className="text-xs text-slate-500 mt-0.5 truncate">{pkg.description}</p>
+                        <p className="text-xs text-zinc-500 mt-0.5 truncate">{pkg.description}</p>
                       )}
-                      <p className="text-xs text-violet-600 dark:text-violet-400 font-bold mt-1">
+                      <p className="text-xs text-[#e40014] dark:text-[#e40014] font-bold mt-1">
                         ≈ R$ {fmt(pricePerLesson)} por aula
                       </p>
                     </div>
 
                     {/* Preço + Comprar */}
                     <div className="text-right shrink-0 flex flex-col items-end gap-2">
-                      <p className="font-black text-lg text-slate-900 dark:text-white leading-none">
+                      <p className="font-black text-lg text-white dark:text-white leading-none">
                         R$ {fmt(Number(pkg.price))}
                       </p>
                       <Button
@@ -549,8 +549,8 @@ function FinanceiroContent() {
                         className={cn(
                           'h-9 px-4 rounded-xl font-bold text-sm',
                           isPopular
-                            ? 'bg-violet-600 hover:bg-violet-700 text-white shadow-sm shadow-violet-600/25'
-                            : 'bg-slate-900 dark:bg-white hover:bg-slate-700 dark:hover:bg-slate-200 text-white dark:text-slate-900'
+                            ? 'bg-[#e40014] hover:bg-[#e40014] text-white shadow-sm shadow-red-600/25'
+                            : 'bg-black dark:bg-white/5 hover:bg-slate-700 dark:hover:bg-slate-200 text-white dark:text-white'
                         )}
                         onClick={() => handleBuyPackage(pkg)}
                         disabled={!!buying}
@@ -570,7 +570,7 @@ function FinanceiroContent() {
         )}
 
         {/* Nota sobre pagamento */}
-        <p className="text-[11px] text-slate-400 text-center flex items-center justify-center gap-1">
+        <p className="text-[11px] text-zinc-400 text-center flex items-center justify-center gap-1">
           <CreditCard className="w-3 h-3" />
           Pagamento seguro via cartão de crédito. Os créditos são adicionados automaticamente após confirmação.
         </p>
@@ -580,13 +580,13 @@ function FinanceiroContent() {
       {usage.length > 0 && (
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <History className="w-4 h-4 text-slate-500" />
-            <p className="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">
+            <History className="w-4 h-4 text-zinc-500" />
+            <p className="font-bold text-sm text-white dark:text-white uppercase tracking-wider">
               Extrato de Créditos
             </p>
           </div>
 
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
             <CardContent className="p-0">
               <div className="divide-y divide-slate-100 dark:divide-white/5">
                 {visibleUsage.map((entry) => {
@@ -601,14 +601,14 @@ function FinanceiroContent() {
                         <EntryIcon className="w-4 h-4" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-slate-800 dark:text-white truncate">
+                        <p className="text-sm font-bold text-zinc-800 dark:text-white truncate">
                           {entry.notes || cfg.label}
                         </p>
-                        <p className="text-[11px] text-slate-400">{fmtDatetime(entry.created_at)}</p>
+                        <p className="text-[11px] text-zinc-400">{fmtDatetime(entry.created_at)}</p>
                       </div>
                       <div className={cn(
                         'font-black text-base shrink-0',
-                        isGain ? 'text-emerald-600' : isManual ? 'text-amber-600' : 'text-slate-700 dark:text-slate-300'
+                        isGain ? 'text-red-' : isManual ? 'text-red-' : 'text-zinc-400 dark:text-slate-300'
                       )}>
                         {isGain ? '+' : isManual ? '±' : '-'}{entry.credits_used}
                       </div>
@@ -620,7 +620,7 @@ function FinanceiroContent() {
               {usage.length > 5 && (
                 <button
                   onClick={() => setShowAllUsage(v => !v)}
-                  className="w-full py-3 text-xs font-bold text-violet-600 hover:text-violet-700 hover:bg-violet-50 dark:hover:bg-violet-950/20 transition-colors flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-white/5"
+                  className="w-full py-3 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-white/5"
                 >
                   {showAllUsage ? (
                     <><ChevronUp className="w-3.5 h-3.5" /> Mostrar menos</>
@@ -638,13 +638,13 @@ function FinanceiroContent() {
       {payments.length > 0 && (
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-slate-500" />
-            <p className="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider">
+            <Calendar className="w-4 h-4 text-zinc-500" />
+            <p className="font-bold text-sm text-white dark:text-white uppercase tracking-wider">
               Histórico de Pagamentos
             </p>
           </div>
 
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
             <CardContent className="p-0">
               <div className="divide-y divide-slate-100 dark:divide-white/5">
                 {visiblePayments.map((p) => {
@@ -656,10 +656,10 @@ function FinanceiroContent() {
                         <StatusIcon className="w-4 h-4" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-slate-800 dark:text-white truncate">
+                        <p className="text-sm font-bold text-zinc-800 dark:text-white truncate">
                           {p.description || 'Mensalidade'}
                         </p>
-                        <p className="text-[11px] text-slate-400">
+                        <p className="text-[11px] text-zinc-400">
                           {p.status === 'paid' && p.payment_date
                             ? `Pago em ${fmtDate(p.payment_date)}`
                             : `Vencimento: ${fmtDate(p.due_date)}`}
@@ -667,7 +667,7 @@ function FinanceiroContent() {
                         </p>
                       </div>
                       <div className="text-right shrink-0">
-                        <p className="font-black text-slate-900 dark:text-white text-sm">
+                        <p className="font-black text-white dark:text-white text-sm">
                           R$ {fmt(p.amount)}
                         </p>
                         <Badge className={cn('text-[10px] border-0 font-bold mt-1', cfg.badge)}>
@@ -682,7 +682,7 @@ function FinanceiroContent() {
               {payments.length > 5 && (
                 <button
                   onClick={() => setShowAllPayments(v => !v)}
-                  className="w-full py-3 text-xs font-bold text-violet-600 hover:text-violet-700 hover:bg-violet-50 dark:hover:bg-violet-950/20 transition-colors flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-white/5"
+                  className="w-full py-3 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-white/5"
                 >
                   {showAllPayments ? (
                     <><ChevronUp className="w-3.5 h-3.5" /> Mostrar menos</>
@@ -699,9 +699,9 @@ function FinanceiroContent() {
       {/* Empty state completo */}
       {usage.length === 0 && payments.length === 0 && !loading && (
         <div className="text-center py-12">
-          <TrendingDown className="w-12 h-12 mx-auto text-slate-300 dark:text-slate-700 mb-3" />
-          <p className="font-bold text-slate-500 text-sm">Nenhuma movimentação ainda</p>
-          <p className="text-xs text-slate-400 mt-1">Compre um pacote acima para começar.</p>
+          <TrendingDown className="w-12 h-12 mx-auto text-slate-300 dark:text-zinc-400 mb-3" />
+          <p className="font-bold text-zinc-500 text-sm">Nenhuma movimentação ainda</p>
+          <p className="text-xs text-zinc-400 mt-1">Compre um pacote acima para começar.</p>
         </div>
       )}
     </div>
@@ -712,7 +712,7 @@ export default function StudentFinanceiroPage() {
   return (
     <Suspense fallback={
       <div className="flex justify-center items-center py-24">
-        <Loader2 className="w-8 h-8 animate-spin text-violet-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
       </div>
     }>
       <FinanceiroContent />

@@ -68,7 +68,7 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           <GlassCard>
             <div className="flex justify-between items-start mb-2">
-              <div className="p-2 bg-slate-500/20 rounded-lg"><Building2 className="w-5 h-5 text-slate-300"/></div>
+              <div className="p-2 bg-zinc-500/20 rounded-lg"><Building2 className="w-5 h-5 text-slate-300"/></div>
               <span className="text-xs font-bold text-emerald-400 bg-emerald-500/20 px-2 py-1 rounded">+Ativo</span>
             </div>
             <h3 className="text-3xl font-black text-white">{stats?.overview.totalTenants}</h3>

@@ -126,8 +126,8 @@ export default function StudentOSPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
-      <div className="bg-white dark:bg-slate-900 border-b p-4 flex items-center gap-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-20">
+      <div className="bg-white dark:bg-zinc-950 border-b p-4 flex items-center gap-4">
         <Link href="/student">
           <Button variant="ghost" size="sm">
             <ChevronRight className="w-5 h-5 rotate-180" />
@@ -163,7 +163,7 @@ export default function StudentOSPage() {
           </div>
         ) : orders.length > 0 ? (
           orders.map((order) => (
-            <Card key={order.id} className="border-none shadow-sm hover:shadow-md transition-all overflow-hidden bg-white dark:bg-slate-900">
+            <Card key={order.id} className="border-none shadow-sm hover:shadow-md transition-all overflow-hidden bg-white dark:bg-zinc-950">
               <CardHeader className="pb-3 flex flex-row items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">
@@ -204,7 +204,7 @@ export default function StudentOSPage() {
                 </div>
 
                 {order.professional && (
-                  <div className="flex items-center gap-2 text-[11px] text-muted-foreground bg-slate-50 dark:bg-slate-800/50 p-2 rounded-lg">
+                  <div className="flex items-center gap-2 text-[11px] text-muted-foreground bg-slate-50 dark:bg-zinc-900/50 p-2 rounded-lg">
                     <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold">
                       {order.professional.name[0]}
                     </div>
@@ -253,7 +253,7 @@ export default function StudentOSPage() {
       </main>
 
       {/* Tab Bar Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t flex items-center justify-around h-16 px-4 z-50">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-950 border-t flex items-center justify-around h-16 px-4 z-50">
         <Button type="button" variant="ghost" className="flex flex-col gap-1 text-muted-foreground" onClick={() => window.location.href='/student'}>
           <LayoutDashboard className="w-5 h-5" />
           <span className="text-[10px]">Início</span>
@@ -278,7 +278,7 @@ export default function StudentOSPage() {
             <p className="text-emerald-100 text-xs font-bold opacity-90 tracking-wide">Apresente para liberar seu veículo, pet ou produto.</p>
           </div>
           
-          <div className="flex flex-col items-center justify-center py-10 gap-8 bg-white dark:bg-slate-950">
+          <div className="flex flex-col items-center justify-center py-10 gap-8 bg-white dark:bg-black">
             <div className="bg-white p-6 rounded-[2.5rem] shadow-xl border-4 border-emerald-50">
               <QRCode
                 value={`SECURE-AUTH-CLI-${student?.id?.toString().slice(-12).toUpperCase()}-${new Date().toISOString().slice(0,10)}`}
@@ -289,18 +289,18 @@ export default function StudentOSPage() {
             </div>
 
             <div className="space-y-4 w-full px-10 text-center">
-              <div className="bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-2xl border border-slate-100 dark:border-slate-800 w-full">
+              <div className="bg-slate-50 dark:bg-zinc-950 px-6 py-4 rounded-2xl border border-slate-100 dark:border-zinc-800 w-full">
                 <p className="text-[10px] text-muted-foreground font-black uppercase mb-1 tracking-widest">CÓDIGO DE AUTORIZAÇÃO DIÁRIO</p>
                 <p className="font-mono text-2xl font-black text-emerald-600 tracking-[0.2em]">
                   CLI-{student?.id?.toString().slice(-8).toUpperCase()}
                 </p>
               </div>
-              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Expira automaticamente em 24 horas</p>
+              <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-widest italic">Expira automaticamente em 24 horas</p>
             </div>
           </div>
           
-          <div className="p-6 bg-slate-50 dark:bg-slate-900 border-t">
-            <Button type="button" variant="ghost" className="w-full font-black text-slate-500 h-12 rounded-xl tracking-widest" onClick={() => setIsClientIDOpen(false)}>
+          <div className="p-6 bg-slate-50 dark:bg-zinc-950 border-t">
+            <Button type="button" variant="ghost" className="w-full font-black text-zinc-500 h-12 rounded-xl tracking-widest" onClick={() => setIsClientIDOpen(false)}>
               FECHAR CARTÃO
             </Button>
           </div>

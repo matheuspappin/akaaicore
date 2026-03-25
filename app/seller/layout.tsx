@@ -55,7 +55,7 @@ export default function SellerLayout({
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm font-medium text-slate-500 tracking-widest uppercase">Portal do Vendedor...</p>
+          <p className="text-sm font-medium text-zinc-500 tracking-widest uppercase">Portal do Vendedor...</p>
         </div>
       </div>
     )

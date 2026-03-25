@@ -232,7 +232,7 @@ export default function POSPage() {
           
           <div className="lg:col-span-8 space-y-6">
             {/* BUSCA */}
-            <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border shadow-sm flex gap-4">
+            <div className="bg-white dark:bg-zinc-950 p-4 rounded-xl border shadow-sm flex gap-4">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input 

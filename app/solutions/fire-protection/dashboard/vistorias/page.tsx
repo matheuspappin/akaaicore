@@ -57,7 +57,7 @@ const statusMap: Record<string, { label: string; icon: any; className: string }>
   in_progress:  { label: "Em Andamento",icon: Clock,       className: "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400" },
   finished:     { label: "Concluída",   icon: CheckCircle, className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" },
   nao_conforme: { label: "Não Conforme",icon: XCircle,     className: "bg-red-100 text-red-700 dark:bg-red-600/20 dark:text-red-400" },
-  cancelled:    { label: "Cancelada",   icon: XCircle,     className: "bg-slate-100 text-slate-500 dark:bg-slate-600/20 dark:text-slate-400" },
+  cancelled:    { label: "Cancelada",   icon: XCircle,     className: "bg-slate-100 text-zinc-500 dark:bg-slate-600/20 dark:text-zinc-400" },
 }
 
 const TIPOS_VISTORIA = [
@@ -324,15 +324,15 @@ function FinalizarVistoriaDialog({
         </DialogHeader>
 
         {/* Info da vistoria */}
-        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 text-sm space-y-1">
-          <p className="font-bold text-slate-800 dark:text-slate-200">{vistoria.title}</p>
+        <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/50 text-sm space-y-1">
+          <p className="font-bold text-zinc-800 dark:text-slate-200">{vistoria.title}</p>
           {vistoria.customer && (
-            <p className="text-slate-500 flex items-center gap-1">
+            <p className="text-zinc-500 flex items-center gap-1">
               <Building2 className="w-3.5 h-3.5" />{vistoria.customer.name}
             </p>
           )}
           {vistoria.professional && (
-            <p className="text-slate-500 flex items-center gap-1">
+            <p className="text-zinc-500 flex items-center gap-1">
               <Users className="w-3.5 h-3.5" />{vistoria.professional.name}
             </p>
           )}
@@ -357,7 +357,7 @@ function FinalizarVistoriaDialog({
         <div>
           <div className="flex items-center justify-between mb-3">
             <Label className="text-base font-bold">Checklist de Conformidade</Label>
-            <span className="text-sm font-bold text-slate-500">
+            <span className="text-sm font-bold text-zinc-500">
               {concluidos}/{total} itens
             </span>
           </div>
@@ -369,7 +369,7 @@ function FinalizarVistoriaDialog({
                 value={scoreAuto}
                 className={cn("h-2", scoreAuto >= 80 ? "[&>div]:bg-emerald-500" : scoreAuto >= 50 ? "[&>div]:bg-amber-500" : "[&>div]:bg-red-500")}
               />
-              <div className="flex items-center justify-between text-xs text-slate-500">
+              <div className="flex items-center justify-between text-xs text-zinc-500">
                 <span>Conformidade automática</span>
                 <span className={cn(
                   "font-black",
@@ -382,12 +382,12 @@ function FinalizarVistoriaDialog({
           )}
 
           {loadingChecklist ? (
-            <div className="flex items-center justify-center py-6 text-slate-400">
+            <div className="flex items-center justify-center py-6 text-zinc-400">
               <Loader2 className="w-5 h-5 animate-spin mr-2" />
               <span className="text-sm">Carregando checklist...</span>
             </div>
           ) : checklist.length === 0 ? (
-            <p className="text-sm text-slate-400 text-center py-4">Nenhum item de checklist encontrado</p>
+            <p className="text-sm text-zinc-400 text-center py-4">Nenhum item de checklist encontrado</p>
           ) : (
             <div className="space-y-2">
               {checklist.map((item) => (
@@ -398,7 +398,7 @@ function FinalizarVistoriaDialog({
                     "flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all",
                     item.status === "completed"
                       ? "bg-emerald-50 border-emerald-200 dark:bg-emerald-600/10 dark:border-emerald-600/30"
-                      : "bg-white border-slate-200 hover:border-slate-300 dark:bg-slate-900/50 dark:border-white/10"
+                      : "bg-white border-slate-200 hover:border-slate-300 dark:bg-zinc-950/50 dark:border-white/10"
                   )}
                 >
                   <Checkbox
@@ -438,15 +438,15 @@ function FinalizarVistoriaDialog({
               onChange={(e) => setScoreManual(Math.min(100, Math.max(0, Number(e.target.value))))}
               className="w-24"
             />
-            <span className="text-sm text-slate-500">%</span>
+            <span className="text-sm text-zinc-500">%</span>
             {scoreManual !== null && (
-              <Button variant="ghost" size="sm" className="text-xs text-slate-400"
+              <Button variant="ghost" size="sm" className="text-xs text-zinc-400"
                 onClick={() => setScoreManual(null)}>
                 Usar automático ({scoreAuto}%)
               </Button>
             )}
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-zinc-400 mt-1">
             Calculado automaticamente com base nos itens marcados. Pode ser ajustado manualmente.
           </p>
         </div>
@@ -579,7 +579,7 @@ export default function VistoriasPage() {
             <Calendar className="w-6 h-6 text-red-600" />
             Vistorias
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             {counts.open} agendadas · {counts.nao_conforme > 0 ? `${counts.nao_conforme} não conforme` : `${counts.finished} concluídas`}
           </p>
         </div>
@@ -610,7 +610,7 @@ export default function VistoriasPage() {
       {/* Filtros */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <Input
             placeholder="Buscar por número, cliente ou tipo..."
             value={search}
@@ -649,7 +649,7 @@ export default function VistoriasPage() {
 
       {/* Loading */}
       {loading && (
-        <div className="flex items-center justify-center py-16 text-slate-400">
+        <div className="flex items-center justify-center py-16 text-zinc-400">
           <Loader2 className="w-6 h-6 animate-spin mr-2" />
           <span className="text-sm">Carregando vistorias...</span>
         </div>
@@ -666,7 +666,7 @@ export default function VistoriasPage() {
             return (
               <Card
                 key={vst.id}
-                className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow"
               >
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between gap-4">
@@ -681,9 +681,9 @@ export default function VistoriasPage() {
                       </div>
                       <h3 className="font-bold text-slate-900 dark:text-white">{vst.title}</h3>
                       {vst.description && (
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">{vst.description}</p>
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5 line-clamp-2">{vst.description}</p>
                       )}
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-zinc-500 dark:text-zinc-400">
                         {vst.customer && (
                           <span className="flex items-center gap-1">
                             <Building2 className="w-3.5 h-3.5" />{vst.customer.name}
@@ -712,7 +712,7 @@ export default function VistoriasPage() {
                       {/* Mini checklist progress */}
                       {checklistTotal > 0 && vst.status === "in_progress" && (
                         <div className="mt-3 space-y-1">
-                          <div className="flex items-center justify-between text-xs text-slate-500">
+                          <div className="flex items-center justify-between text-xs text-zinc-500">
                             <span>Checklist</span>
                             <span className="font-bold">{checklistConcluidos}/{checklistTotal}</span>
                           </div>
@@ -764,7 +764,7 @@ export default function VistoriasPage() {
       )}
 
       {!loading && filtered.length === 0 && (
-        <div className="text-center py-16 text-slate-400">
+        <div className="text-center py-16 text-zinc-400">
           <Calendar className="w-12 h-12 mx-auto mb-3 opacity-20" />
           <p className="font-medium">
             {vistorias.length === 0 ? "Nenhuma vistoria cadastrada" : "Nenhuma vistoria encontrada com esses filtros"}

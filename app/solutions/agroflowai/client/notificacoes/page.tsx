@@ -110,7 +110,7 @@ export default function ClientNotificacoesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Notificações</h1>
-          <p className="text-slate-400 mt-1">
+          <p className="text-zinc-400 mt-1">
             Alertas e avisos sobre sua propriedade e serviços
             {unreadCount > 0 && (
               <span className="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white text-[10px] font-black">
@@ -124,7 +124,7 @@ export default function ClientNotificacoesPage() {
             onClick={handleMarkAllRead}
             disabled={markingAll}
             variant="outline"
-            className="border-slate-700 text-slate-400 hover:text-white rounded-xl"
+            className="border-slate-700 text-zinc-400 hover:text-white rounded-xl"
           >
             {markingAll ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CheckCheck className="w-4 h-4 mr-2" />}
             Marcar todas como lidas
@@ -137,10 +137,10 @@ export default function ClientNotificacoesPage() {
           <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
         </div>
       ) : notifications.length === 0 ? (
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <Bell className="w-16 h-16 text-slate-700 mb-4" />
-            <p className="text-slate-400 font-semibold">Nenhuma notificação</p>
+            <p className="text-zinc-400 font-semibold">Nenhuma notificação</p>
             <p className="text-slate-600 text-sm mt-1">Você está em dia! Novos alertas aparecerão aqui.</p>
           </CardContent>
         </Card>
@@ -154,7 +154,7 @@ export default function ClientNotificacoesPage() {
                 key={notif.id}
                 className={cn(
                   "border-l-4 transition-colors cursor-pointer",
-                  notif.read ? "bg-slate-900/30 border-slate-800" : "bg-slate-900/60 border-slate-800",
+                  notif.read ? "bg-zinc-950/30 border-zinc-800" : "bg-zinc-950/60 border-zinc-800",
                   cfg.border
                 )}
                 onClick={() => !notif.read && handleMarkRead(notif.id)}
@@ -165,14 +165,14 @@ export default function ClientNotificacoesPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
-                      <p className={cn("font-bold text-sm", notif.read ? "text-slate-400" : "text-white")}>
+                      <p className={cn("font-bold text-sm", notif.read ? "text-zinc-400" : "text-white")}>
                         {notif.title}
                       </p>
                       {!notif.read && (
                         <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 mt-1.5" />
                       )}
                     </div>
-                    <p className="text-xs text-slate-400 mt-1">{notif.body}</p>
+                    <p className="text-xs text-zinc-400 mt-1">{notif.body}</p>
                     <p className="text-xs text-slate-600 mt-1.5">{formatTime(notif.created_at)}</p>
                   </div>
                 </CardContent>

@@ -21,14 +21,14 @@ import { Label } from "@/components/ui/label"
 
 const stageMap: Record<string, { label: string; color: string }> = {
   new:             { label: "Novo",        color: "bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-400" },
-  contacted:       { label: "Contactado",  color: "bg-violet-100 text-violet-700 dark:bg-violet-600/20 dark:text-violet-400" },
+  contacted:       { label: "Contactado",  color: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
   trial_scheduled: { label: "Aula agendada", color: "bg-cyan-100 text-cyan-700 dark:bg-cyan-600/20 dark:text-cyan-400" },
-  trial_done:      { label: "Aula feita",  color: "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400" },
+  trial_done:      { label: "Aula feita",  color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
   negotiating:     { label: "Negociando", color: "bg-orange-100 text-orange-700 dark:bg-orange-600/20 dark:text-orange-400" },
-  interested:      { label: "Interessado", color: "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400" },
-  converted:       { label: "Convertido",  color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" },
-  won:             { label: "Convertido (aluno)", color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" },
-  lost:            { label: "Perdido",    color: "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400" },
+  interested:      { label: "Interessado", color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
+  converted:       { label: "Convertido",  color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
+  won:             { label: "Convertido (aluno)", color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
+  lost:            { label: "Perdido",    color: "bg-slate-100 text-zinc-500 dark:bg-zinc-950 dark:text-zinc-400" },
 }
 
 export default function LeadsPage() {
@@ -160,15 +160,15 @@ export default function LeadsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <TrendingUp className="w-6 h-6 text-indigo-500" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <TrendingUp className="w-6 h-6 text-red-" />
             Clientes (CRM)
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Quem comprou, visitou ou participou — converta em alunos</p>
+          <p className="text-zinc-500 text-sm mt-1">Quem comprou, visitou ou participou — converta em alunos</p>
         </div>
         <Button
           onClick={() => setIsNewDialogOpen(true)}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/20"
+          className="bg-red- hover:bg-red- text-white font-bold rounded-xl shadow-lg shadow-red-/20"
         >
           <Plus className="w-4 h-4 mr-2" />
           Novo Cliente
@@ -180,9 +180,9 @@ export default function LeadsPage() {
         {Object.entries(stageMap).filter(([k]) => k !== 'lost').map(([stage, info]) => {
           const count = leads.filter(l => l.stage === stage || (!l.stage && stage === 'new')).length
           return (
-            <Card key={stage} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+            <Card key={stage} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
               <CardContent className="p-4 text-center">
-                <p className="text-2xl font-black text-slate-900 dark:text-white">{count}</p>
+                <p className="text-2xl font-black text-white dark:text-white">{count}</p>
                 <Badge className={cn("mt-1 text-xs font-bold border-0", info.color)}>{info.label}</Badge>
               </CardContent>
             </Card>
@@ -191,32 +191,32 @@ export default function LeadsPage() {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar lead..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 h-11 rounded-xl"
+          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 h-11 rounded-xl"
         />
       </div>
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-red-" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
-            <UserPlus className="w-16 h-16 text-slate-300 dark:text-slate-700 mb-4" />
-            <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 mb-2">
+            <UserPlus className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
+            <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
               {search ? "Nenhum cliente encontrado" : "Nenhum cliente cadastrado"}
             </h3>
-            <p className="text-slate-400 text-sm mb-6">
+            <p className="text-zinc-400 text-sm mb-6">
               Importe clientes ou cadastre quem visitou/comprou para converter em alunos.
             </p>
             <Button
               onClick={() => setIsNewDialogOpen(true)}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl"
+              className="bg-red- hover:bg-red- text-white font-bold rounded-xl"
             >
               <Plus className="w-4 h-4 mr-2" /> Cadastrar Cliente
             </Button>
@@ -227,17 +227,17 @@ export default function LeadsPage() {
           {filtered.map((lead) => {
             const stage = stageMap[lead.stage] ?? stageMap.new
             return (
-              <Card key={lead.id} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 hover:shadow-md transition-shadow">
+              <Card key={lead.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
                 <CardContent className="p-4 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-full bg-indigo-600/10 flex items-center justify-center font-black text-indigo-600 text-base flex-shrink-0">
+                    <div className="w-11 h-11 rounded-full bg-[#e40014] flex items-center justify-center font-black text-red- text-base flex-shrink-0">
                       {lead.name?.[0]?.toUpperCase() || "L"}
                     </div>
                     <div>
-                      <p className="font-bold text-slate-900 dark:text-white">{lead.name}</p>
+                      <p className="font-bold text-white dark:text-white">{lead.name}</p>
                       <div className="flex items-center gap-3 mt-1 flex-wrap">
-                        {lead.email && <span className="flex items-center gap-1 text-xs text-slate-500"><Mail className="w-3 h-3" />{lead.email}</span>}
-                        {lead.phone && <span className="flex items-center gap-1 text-xs text-slate-500"><Phone className="w-3 h-3" />{lead.phone}</span>}
+                        {lead.email && <span className="flex items-center gap-1 text-xs text-zinc-500"><Mail className="w-3 h-3" />{lead.email}</span>}
+                        {lead.phone && <span className="flex items-center gap-1 text-xs text-zinc-500"><Phone className="w-3 h-3" />{lead.phone}</span>}
                       </div>
                     </div>
                   </div>
@@ -248,7 +248,7 @@ export default function LeadsPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleContatar(lead)}
-                      className="h-7 px-3 text-xs font-bold rounded-lg text-indigo-600 border-indigo-200 hover:bg-indigo-50 dark:border-indigo-600/30 dark:text-indigo-400 dark:hover:bg-indigo-600/10"
+                      className="h-7 px-3 text-xs font-bold rounded-lg text-red- border-red- hover:bg-red- dark:border-[#e40014] dark:text-red- dark:hover:bg-[#e40014]"
                     >
                       <MessageCircle className="w-3 h-3 mr-1" />
                       Contatar
@@ -261,8 +261,8 @@ export default function LeadsPage() {
                       className={cn(
                         "h-7 px-3 text-xs font-bold rounded-lg transition-all",
                         copiedLinkId === lead.id
-                          ? "bg-emerald-50 border-emerald-300 text-emerald-600 dark:bg-emerald-600/10 dark:border-emerald-600/30 dark:text-emerald-400"
-                          : "text-violet-600 border-violet-200 hover:bg-violet-50 dark:border-violet-600/30 dark:text-violet-400 dark:hover:bg-violet-600/10"
+                          ? "bg-red- border-red- text-red- dark:bg-[#e40014] dark:border-[#e40014] dark:text-red-"
+                          : "text-[#e40014] border-[#e40014] hover:bg-[#e40014] dark:border-[#e40014] dark:text-[#e40014] dark:hover:bg-[#e40014]"
                       )}
                     >
                       {copiedLinkId === lead.id
@@ -277,7 +277,7 @@ export default function LeadsPage() {
                         variant="outline"
                         onClick={() => handleConverter(lead)}
                         disabled={convertingId === lead.id}
-                        className="h-7 px-3 text-xs font-bold rounded-lg text-emerald-600 border-emerald-200 hover:bg-emerald-50 dark:border-emerald-600/30 dark:text-emerald-400 dark:hover:bg-emerald-600/10"
+                        className="h-7 px-3 text-xs font-bold rounded-lg text-red- border-red- hover:bg-red- dark:border-[#e40014] dark:text-red- dark:hover:bg-[#e40014]"
                       >
                         {convertingId === lead.id
                           ? <Loader2 className="w-3 h-3 animate-spin" />
@@ -345,7 +345,7 @@ export default function LeadsPage() {
               <Button
                 onClick={handleCreateLead}
                 disabled={isSaving || !newForm.name.trim()}
-                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold"
+                className="flex-1 bg-red- hover:bg-red- text-white font-bold"
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                 Cadastrar Cliente

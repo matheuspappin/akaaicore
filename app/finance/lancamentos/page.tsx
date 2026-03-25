@@ -143,7 +143,7 @@ export default function LancamentosPage() {
             <DollarSign className="w-6 h-6 text-emerald-600" />
             Lançamentos
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
             Receitas e despesas
           </p>
         </div>
@@ -164,15 +164,15 @@ export default function LancamentosPage() {
         ))}
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-zinc-950/50 shadow-sm">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-slate-100 dark:border-white/5">
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Descrição</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Cliente</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Valor</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500 hidden sm:table-cell">Vencimento</th>
-              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">Status</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Descrição</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 hidden md:table-cell">Cliente</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Valor</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 hidden sm:table-cell">Vencimento</th>
+              <th className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500">Status</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -187,7 +187,7 @@ export default function LancamentosPage() {
                       <span className="font-bold text-slate-900 dark:text-white text-xs">{l.descricao}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-slate-500 text-xs hidden md:table-cell">
+                  <td className="px-4 py-3 text-zinc-500 text-xs hidden md:table-cell">
                     <Building2 className="w-3.5 h-3.5 inline mr-1" />{l.cliente}
                   </td>
                   <td className="px-4 py-3">
@@ -195,7 +195,7 @@ export default function LancamentosPage() {
                       {l.tipo === "despesa" ? "−" : "+"} R$ {l.valor.toLocaleString("pt-BR")}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-slate-500 text-xs hidden sm:table-cell">{l.vencimento}</td>
+                  <td className="px-4 py-3 text-zinc-500 text-xs hidden sm:table-cell">{l.vencimento}</td>
                   <td className="px-4 py-3">
                     <Badge className={cn("text-xs font-bold border-0", st.className)}>{st.label}</Badge>
                   </td>

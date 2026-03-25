@@ -88,7 +88,7 @@ export default function TechnicianDashboard() {
           <QrCodeIcon className="w-10 h-10 text-white" />
         </div>
         <h1 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Bem-vindo, Técnico de Campo!</h1>
-        <p className="text-slate-500 max-w-xs mb-8 text-sm">
+        <p className="text-zinc-500 max-w-xs mb-8 text-sm">
           Sua conta foi criada com sucesso, mas você ainda não está vinculado a nenhuma empresa. <br/><br/>
           Aguarde o <b>link de convite</b> da sua empresa para começar a gerenciar suas ordens de serviço!
         </p>
@@ -114,7 +114,7 @@ export default function TechnicianDashboard() {
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Olá, {technicianData?.name?.split(' ')[0]}! 👋</h2>
           <p className="text-sm text-muted-foreground">Portal do Técnico de Campo • Painel Geral</p>
         </div>
-        <Badge variant="outline" className="w-fit bg-white dark:bg-slate-900 border-indigo-100 py-1.5 px-3">
+        <Badge variant="outline" className="w-fit bg-white dark:bg-zinc-950 border-indigo-100 py-1.5 px-3">
           <CheckCircle2 className="w-4 h-4 text-emerald-500 mr-2" />
           Sessão Ativa
         </Badge>
@@ -137,7 +137,7 @@ export default function TechnicianDashboard() {
           </Card>
         </Link>
         <Link href="/technician/os-list">
-          <Card className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm border-none h-full">
+          <Card className="bg-white dark:bg-zinc-950 text-slate-900 dark:text-white cursor-pointer hover:bg-slate-50 dark:hover:bg-zinc-900 transition-colors shadow-sm border-none h-full">
               <CardContent className="p-6 flex items-center justify-between">
                   <div>
                       <h3 className="text-xl font-bold flex items-center gap-2">
@@ -210,7 +210,7 @@ export default function TechnicianDashboard() {
                             </div>
                             
                             {os.customer?.address && (
-                                <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 p-2 rounded-lg text-xs text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-700">
+                                <div className="flex items-center gap-2 bg-slate-50 dark:bg-zinc-900 p-2 rounded-lg text-xs text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-700">
                                     <MapPin className="w-3 h-3 text-rose-500 shrink-0" />
                                     <span className="truncate flex-1">{os.customer.address}</span>
                                     <a 
@@ -224,9 +224,9 @@ export default function TechnicianDashboard() {
                                 </div>
                             )}
                             
-                            <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800 mt-1">
+                            <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-zinc-800 mt-1">
                                 <Link href={`/technician/os-details/${os.id}`} className="w-full">
-                                    <Button size="sm" variant="outline" className="w-full h-8 text-xs font-bold bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">
+                                    <Button size="sm" variant="outline" className="w-full h-8 text-xs font-bold bg-white dark:bg-zinc-900 hover:bg-slate-50 dark:hover:bg-slate-700">
                                         <ClipboardCheck className="w-3 h-3 mr-2" />
                                         Ver Detalhes / Iniciar
                                     </Button>

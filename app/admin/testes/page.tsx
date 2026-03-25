@@ -200,7 +200,7 @@ export default function TestesLaboraisPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-10">
+    <div className="min-h-screen bg-slate-50 dark:bg-black pb-10">
       <AdminHeader title="Testes Laborais" />
 
       <div className="p-6 max-w-7xl mx-auto space-y-8">
@@ -208,14 +208,14 @@ export default function TestesLaboraisPage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div>
               <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Laboratório de IA & Estresse</h2>
-              <p className="text-slate-500">Ambiente controlado para treinamento de modelos e testes de carga.</p>
+              <p className="text-zinc-500">Ambiente controlado para treinamento de modelos e testes de carga.</p>
             </div>
             
-            <TabsList className="bg-slate-200/50 dark:bg-slate-800/50 p-1 h-12">
-              <TabsTrigger value="monitoramento" className="px-6 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
+            <TabsList className="bg-slate-200/50 dark:bg-zinc-900/50 p-1 h-12">
+              <TabsTrigger value="monitoramento" className="px-6 data-[state=active]:bg-white dark:data-[state=active]:bg-black">
                 Monitoramento
               </TabsTrigger>
-              <TabsTrigger value="controlador" className="px-6 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
+              <TabsTrigger value="controlador" className="px-6 data-[state=active]:bg-white dark:data-[state=active]:bg-black">
                 Controlador de IA
               </TabsTrigger>
             </TabsList>
@@ -271,24 +271,24 @@ export default function TestesLaboraisPage() {
                         </Badge>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-                        <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-900/50">
-                          <p className="text-xs text-slate-500 uppercase font-bold">Latência média</p>
+                        <div className="p-3 rounded-lg bg-white/50 dark:bg-zinc-950/50">
+                          <p className="text-xs text-zinc-500 uppercase font-bold">Latência média</p>
                           <p className="font-black text-orange-700 dark:text-orange-400">
                             {stressResult.latencies.length
                               ? Math.round(stressResult.latencies.reduce((a, b) => a + b, 0) / stressResult.latencies.length)
                               : 0}ms
                           </p>
                         </div>
-                        <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-900/50">
-                          <p className="text-xs text-slate-500 uppercase font-bold">Mín</p>
+                        <div className="p-3 rounded-lg bg-white/50 dark:bg-zinc-950/50">
+                          <p className="text-xs text-zinc-500 uppercase font-bold">Mín</p>
                           <p className="font-black">{stressResult.latencies[0] ?? 0}ms</p>
                         </div>
-                        <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-900/50">
-                          <p className="text-xs text-slate-500 uppercase font-bold">Máx</p>
+                        <div className="p-3 rounded-lg bg-white/50 dark:bg-zinc-950/50">
+                          <p className="text-xs text-zinc-500 uppercase font-bold">Máx</p>
                           <p className="font-black">{stressResult.latencies[stressResult.latencies.length - 1] ?? 0}ms</p>
                         </div>
-                        <div className="p-3 rounded-lg bg-white/50 dark:bg-slate-900/50">
-                          <p className="text-xs text-slate-500 uppercase font-bold">Tempo total</p>
+                        <div className="p-3 rounded-lg bg-white/50 dark:bg-zinc-950/50">
+                          <p className="text-xs text-zinc-500 uppercase font-bold">Tempo total</p>
                           <p className="font-black">{stressResult.totalTimeMs}ms</p>
                         </div>
                       </div>
@@ -313,8 +313,8 @@ export default function TestesLaboraisPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-xl">
-                    <p className="text-xs text-slate-500 uppercase font-bold mb-1">Base de Conhecimento</p>
+                  <div className="p-4 bg-slate-100 dark:bg-zinc-900 rounded-xl">
+                    <p className="text-xs text-zinc-500 uppercase font-bold mb-1">Base de Conhecimento</p>
                     <p className="text-2xl font-black">{conversations.length} Conversas</p>
                   </div>
                   <div className="p-4 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl">
@@ -330,7 +330,7 @@ export default function TestesLaboraisPage() {
 
               {/* Base de Dados de Conversas */}
               <Card className="lg:col-span-2 border-none shadow-sm overflow-hidden">
-                <CardHeader className="bg-white dark:bg-slate-900 border-b">
+                <CardHeader className="bg-white dark:bg-zinc-950 border-b">
                   <div className="flex items-center justify-between">
                     <div>
                       <CardTitle className="flex items-center gap-2">
@@ -342,20 +342,20 @@ export default function TestesLaboraisPage() {
                     <Badge className="bg-indigo-600">Simulação Ativa</Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="p-0 max-h-[600px] overflow-y-auto bg-white dark:bg-slate-900">
+                <CardContent className="p-0 max-h-[600px] overflow-y-auto bg-white dark:bg-zinc-950">
                   <div className="divide-y">
                     {loading ? (
                       <div className="p-20 text-center">
                         <Loader2 className="w-10 h-10 animate-spin mx-auto text-indigo-600 mb-4" />
-                        <p className="text-slate-500">Carregando base de dados...</p>
+                        <p className="text-zinc-500">Carregando base de dados...</p>
                       </div>
                     ) : conversations.map((conv) => (
-                      <div key={conv.id} className="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                      <div key={conv.id} className="p-4 hover:bg-slate-50 dark:hover:bg-zinc-900/50 transition-colors">
                         <div className="flex items-center gap-2 mb-2">
                           <Badge variant="outline" className={conv.scenario_type === 'enrollment' ? 'text-emerald-600 border-emerald-200' : 'text-blue-600 border-blue-200'}>
                             {conv.scenario_type === 'enrollment' ? 'MATRÍCULA' : 'AGENDAMENTO'}
                           </Badge>
-                          <span className="text-[10px] text-slate-400">{new Date(conv.created_at).toLocaleDateString()}</span>
+                          <span className="text-[10px] text-zinc-400">{new Date(conv.created_at).toLocaleDateString()}</span>
                         </div>
                         <div className="space-y-3">
                           <div className="flex gap-2">
@@ -388,7 +388,7 @@ export default function TestesLaboraisPage() {
                     <CardDescription>Envie arquivos .txt com conversas simuladas para treinar a IA. Formato: --- | MATRÍCULA ou AGENDAMENTO ou VISTORIA ou OS | Usuário: msg | IA: resposta</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center hover:border-indigo-500 transition-colors cursor-pointer relative">
+                    <div className="border-2 border-dashed border-slate-200 dark:border-zinc-800 rounded-2xl p-8 text-center hover:border-indigo-500 transition-colors cursor-pointer relative">
                       <input 
                         type="file" 
                         accept=".txt" 
@@ -400,7 +400,7 @@ export default function TestesLaboraisPage() {
                           <FileText className="w-6 h-6 text-indigo-600" />
                         </div>
                         <p className="font-bold text-sm">{trainingFile ? trainingFile.name : "Clique ou arraste o arquivo .txt"}</p>
-                        <p className="text-xs text-slate-500">Tamanho máximo: 5MB</p>
+                        <p className="text-xs text-zinc-500">Tamanho máximo: 5MB</p>
                       </div>
                     </div>
 
@@ -409,7 +409,7 @@ export default function TestesLaboraisPage() {
                       <select
                         value={trainingNiche}
                         onChange={(e) => setTrainingNiche(e.target.value as any)}
-                        className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm font-medium"
+                        className="w-full h-10 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-black px-3 text-sm font-medium"
                       >
                         <option value="dance">DanceFlow (dança)</option>
                         <option value="fire_protection">Fire Protection</option>
@@ -420,7 +420,7 @@ export default function TestesLaboraisPage() {
                       <Label>Valores e Regras Específicas</Label>
                       <Textarea 
                         placeholder="Ex: Mensalidade Ballet R$ 200,00. Desconto de 10% para irmãos..."
-                        className="min-h-[120px] bg-slate-50 dark:bg-slate-950 border-none"
+                        className="min-h-[120px] bg-slate-50 dark:bg-black border-none"
                         value={customKnowledge}
                         onChange={(e) => setCustomKnowledge(e.target.value)}
                       />
@@ -440,24 +440,24 @@ export default function TestesLaboraisPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <button 
                         onClick={() => setResponseStyle('simple')}
-                        className={`p-4 rounded-2xl border-2 transition-all text-left space-y-2 ${responseStyle === 'simple' ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/20' : 'border-transparent bg-slate-100 dark:bg-slate-800'}`}
+                        className={`p-4 rounded-2xl border-2 transition-all text-left space-y-2 ${responseStyle === 'simple' ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/20' : 'border-transparent bg-slate-100 dark:bg-zinc-900'}`}
                       >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${responseStyle === 'simple' ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${responseStyle === 'simple' ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-zinc-500'}`}>
                           <Zap className="w-4 h-4" />
                         </div>
                         <p className="font-bold text-sm">Leve & Direta</p>
-                        <p className="text-xs text-slate-500">Respostas curtas, ideais para dúvidas rápidas e agendamentos.</p>
+                        <p className="text-xs text-zinc-500">Respostas curtas, ideais para dúvidas rápidas e agendamentos.</p>
                       </button>
 
                       <button 
                         onClick={() => setResponseStyle('complex')}
-                        className={`p-4 rounded-2xl border-2 transition-all text-left space-y-2 ${responseStyle === 'complex' ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/20' : 'border-transparent bg-slate-100 dark:bg-slate-800'}`}
+                        className={`p-4 rounded-2xl border-2 transition-all text-left space-y-2 ${responseStyle === 'complex' ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/20' : 'border-transparent bg-slate-100 dark:bg-zinc-900'}`}
                       >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${responseStyle === 'complex' ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${responseStyle === 'complex' ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-zinc-500'}`}>
                           <Brain className="w-4 h-4" />
                         </div>
                         <p className="font-bold text-sm">Complexa & Consultiva</p>
-                        <p className="text-xs text-slate-500">Respostas detalhadas, explicativas e com foco em conversão.</p>
+                        <p className="text-xs text-zinc-500">Respostas detalhadas, explicativas e com foco em conversão.</p>
                       </button>
                     </div>
                   </CardContent>

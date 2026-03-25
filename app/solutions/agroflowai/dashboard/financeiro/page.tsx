@@ -154,7 +154,7 @@ export default function FinanceiroPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">Financeiro</h1>
-          <p className="text-slate-400 mt-1">Controle de receitas, despesas e cobranças da consultoria</p>
+          <p className="text-zinc-400 mt-1">Controle de receitas, despesas e cobranças da consultoria</p>
         </div>
         <Button
           onClick={() => setShowForm(true)}
@@ -173,20 +173,20 @@ export default function FinanceiroPage() {
           { icon: TrendingDown, label: "Despesas", value: formatBRL(totalDespesas), color: "text-red-400", bg: "bg-red-400/10", border: "border-l-red-400" },
           { icon: DollarSign, label: "Saldo do Mês", value: formatBRL(saldo), color: saldo >= 0 ? "text-emerald-400" : "text-red-400", bg: saldo >= 0 ? "bg-emerald-400/10" : "bg-red-400/10", border: saldo >= 0 ? "border-l-emerald-400" : "border-l-red-400" },
         ].map(k => (
-          <Card key={k.label} className={cn("bg-slate-900/50 border-l-4 border-slate-800", k.border)}>
+          <Card key={k.label} className={cn("bg-zinc-950/50 border-l-4 border-zinc-800", k.border)}>
             <CardContent className="p-5">
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", k.bg)}>
                 <k.icon className={cn("w-5 h-5", k.color)} />
               </div>
               <p className={cn("text-2xl font-black", k.color)}>{k.value}</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mt-1">{k.label}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">{k.label}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Chart placeholder */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-zinc-950/50 border-zinc-800">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-emerald-400" />
@@ -204,10 +204,10 @@ export default function FinanceiroPage() {
             ].map(item => (
               <div key={item.cat} className="space-y-1">
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-400 font-bold">{item.cat}</span>
+                  <span className="text-zinc-400 font-bold">{item.cat}</span>
                   <span className="text-emerald-400 font-black">{formatBRL(item.value)}</span>
                 </div>
-                <div className="w-full bg-slate-800 rounded-full h-2">
+                <div className="w-full bg-zinc-900 rounded-full h-2">
                   <div className="h-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 transition-all" style={{ width: `${item.pct}%` }} />
                 </div>
               </div>
@@ -219,13 +219,13 @@ export default function FinanceiroPage() {
       {/* Form Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <Card className="w-full max-w-lg bg-slate-900 border-slate-700 shadow-2xl">
+          <Card className="w-full max-w-lg bg-zinc-950 border-slate-700 shadow-2xl">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-white flex items-center gap-2">
                 <CreditCard className="w-5 h-5 text-emerald-400" />
                 Novo Lançamento
               </CardTitle>
-              <button onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white">
+              <button onClick={() => setShowForm(false)} className="text-zinc-500 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </CardHeader>
@@ -241,7 +241,7 @@ export default function FinanceiroPage() {
                         "flex-1 py-2.5 rounded-xl text-sm font-bold uppercase tracking-widest border transition-all",
                         form.type === t
                           ? t === "receita" ? "border-emerald-500 bg-emerald-600/20 text-emerald-400" : "border-red-500 bg-red-600/20 text-red-400"
-                          : "border-slate-700 bg-slate-800 text-slate-500"
+                          : "border-slate-700 bg-zinc-900 text-zinc-500"
                       )}
                     >
                       {t === "receita" ? "Receita" : "Despesa"}
@@ -249,61 +249,61 @@ export default function FinanceiroPage() {
                   ))}
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Descrição *</label>
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Descrição *</label>
                   <Input
                     value={form.description}
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
                     placeholder="Ex: Laudo CAR - Fazenda..."
                     required
-                    className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                    className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Valor (R$) *</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Valor (R$) *</label>
                     <Input
                       type="number"
                       value={form.amount}
                       onChange={(e) => setForm({ ...form, amount: e.target.value })}
                       placeholder="0,00"
                       required
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Data Vencimento</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Data Vencimento</label>
                     <Input
                       type="date"
                       value={form.due_date}
                       onChange={(e) => setForm({ ...form, due_date: e.target.value })}
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   {form.type === "receita" && (
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Cliente</label>
+                      <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Cliente</label>
                       <Input
                         value={form.client}
                         onChange={(e) => setForm({ ...form, client: e.target.value })}
                         placeholder="Nome do cliente"
-                        className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                        className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                       />
                     </div>
                   )}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Categoria</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Categoria</label>
                     <Input
                       value={form.category}
                       onChange={(e) => setForm({ ...form, category: e.target.value })}
                       placeholder="Ex: Laudos, Software..."
-                      className="bg-slate-800 border-slate-700 text-white rounded-xl"
+                      className="bg-zinc-900 border-slate-700 text-white rounded-xl"
                     />
                   </div>
                 </div>
                 <div className="flex gap-3 pt-2">
-                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-slate-400">
+                  <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="flex-1 border-slate-700 text-zinc-400">
                     Cancelar
                   </Button>
                   <Button type="submit" disabled={saving} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold">
@@ -330,7 +330,7 @@ export default function FinanceiroPage() {
               "px-4 py-2 rounded-xl text-sm font-bold transition-all",
               filter === f.key
                 ? "bg-emerald-600 text-white"
-                : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+                : "bg-zinc-900 text-zinc-400 hover:bg-slate-700 hover:text-white"
             )}
           >
             {f.label}
@@ -343,7 +343,7 @@ export default function FinanceiroPage() {
         {filtered.map(t => {
           const st = statusConfig[t.status]
           return (
-            <Card key={t.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-colors">
+            <Card key={t.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-colors">
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
                   <div className={cn(
@@ -357,7 +357,7 @@ export default function FinanceiroPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-white truncate">{t.description}</p>
-                    <div className="flex flex-wrap gap-2 mt-1 text-xs text-slate-500">
+                    <div className="flex flex-wrap gap-2 mt-1 text-xs text-zinc-500">
                       {t.client && <span>{t.client}</span>}
                       <span>Venc: {t.due_date}</span>
                       <span className="text-slate-600">·</span>

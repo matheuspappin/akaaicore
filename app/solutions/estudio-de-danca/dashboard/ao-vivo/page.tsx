@@ -82,19 +82,19 @@ export default function DanceFlowLiveClassesPage() {
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-500 flex items-center justify-center animate-pulse">
+            <h2 className="text-3xl font-black text-white dark:text-white flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-red- flex items-center justify-center animate-pulse">
                 <Video className="w-6 h-6 text-white" />
               </div>
               {vocabulary.services} Acontecendo Agora
             </h2>
-            <p className="text-slate-500 mt-1">
+            <p className="text-zinc-500 mt-1">
               Monitore quem está no {vocabulary.establishment.toLowerCase()} em tempo real.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <p className="text-xs text-slate-400 font-medium">
+            <p className="text-xs text-zinc-400 font-medium">
               Última atualização: {lastUpdate.toLocaleTimeString()}
             </p>
             <Button
@@ -121,11 +121,11 @@ export default function DanceFlowLiveClassesPage() {
             {liveData.classes.map((cls: any) => (
               <Card
                 key={cls.id}
-                className="border-none shadow-xl overflow-hidden bg-white dark:bg-slate-900 flex flex-col"
+                className="border-none shadow-xl overflow-hidden bg-white/5 dark:bg-black flex flex-col"
               >
-                <CardHeader className="bg-gradient-to-br from-indigo-600 to-violet-700 text-white p-6">
+                <CardHeader className="bg-gradient-to-br from-red- to-red-700 text-white p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <Badge className="bg-rose-500 border-none text-[10px] animate-pulse">
+                    <Badge className="bg-red- border-none text-[10px] animate-pulse">
                       AO VIVO
                     </Badge>
                     <div className="flex items-center gap-1 text-sm font-bold bg-black/20 px-3 py-1 rounded-full">
@@ -134,12 +134,12 @@ export default function DanceFlowLiveClassesPage() {
                     </div>
                   </div>
                   <CardTitle className="text-2xl font-black">{cls.name}</CardTitle>
-                  <CardDescription className="text-indigo-100 font-medium flex items-center gap-2">
+                  <CardDescription className="text-red- font-medium flex items-center gap-2">
                     <PlayCircle className="w-4 h-4" />
                     {cls.style} • {cls.level}
                   </CardDescription>
                   <div className="mt-4 flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
+                    <div className="w-8 h-8 rounded-full bg-white/5/20 flex items-center justify-center font-bold text-xs">
                       {cls.teacher?.[0] || vocabulary.provider[0]}
                     </div>
                     <span className="text-sm font-bold">{cls.teacher || vocabulary.provider}</span>
@@ -147,10 +147,10 @@ export default function DanceFlowLiveClassesPage() {
                 </CardHeader>
 
                 <CardContent className="p-0 flex-1 flex flex-col">
-                  <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-800/50">
+                  <div className="p-4 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-black dark:bg-zinc-950/50">
                     <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-slate-400" />
-                      <span className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                      <Users className="w-4 h-4 text-zinc-400" />
+                      <span className="text-sm font-bold text-zinc-400 dark:text-slate-300">
                         {vocabulary.clients} na {vocabulary.service}
                       </span>
                     </div>
@@ -163,19 +163,19 @@ export default function DanceFlowLiveClassesPage() {
                     {cls.students.map((student: any) => (
                       <div
                         key={student.id}
-                        className="flex items-center justify-between group p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                        className="flex items-center justify-between group p-2 rounded-xl hover:bg-black dark:hover:bg-zinc-950 transition-colors"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center font-bold text-indigo-600 text-sm">
+                          <div className="w-10 h-10 rounded-full bg-red- dark:bg-[#e40014] flex items-center justify-center font-bold text-red- text-sm">
                             {student.name.substring(0, 2).toUpperCase()}
                           </div>
                           <div>
-                            <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                            <p className="text-sm font-bold text-white dark:text-slate-100">
                               {student.name}
                             </p>
-                            <p className="text-[10px] text-slate-500 flex items-center gap-1">
+                            <p className="text-[10px] text-zinc-500 flex items-center gap-1">
                               {student.status === "present" ? (
-                                <span className="flex items-center gap-1 text-emerald-600 font-bold">
+                                <span className="flex items-center gap-1 text-red- font-bold">
                                   <UserCheck className="w-3 h-3" />
                                   Check-in às{" "}
                                   {new Date(student.checkInTime).toLocaleTimeString([], {
@@ -184,7 +184,7 @@ export default function DanceFlowLiveClassesPage() {
                                   })}
                                 </span>
                               ) : (
-                                <span className="flex items-center gap-1 text-amber-500 font-bold">
+                                <span className="flex items-center gap-1 text-red- font-bold">
                                   <Clock className="w-3 h-3" />
                                   Aguardando entrada...
                                 </span>
@@ -235,11 +235,11 @@ export default function DanceFlowLiveClassesPage() {
                     ))}
                   </div>
 
-                  <div className="p-4 border-t border-slate-100 dark:border-slate-800 mt-auto">
+                  <div className="p-4 border-t border-slate-100 dark:border-zinc-800 mt-auto">
                     <Link href={`${DANCE_BASE}/turmas/${cls.id}/chamada`} className="w-full">
                       <Button
                         variant="ghost"
-                        className="w-full justify-between font-bold text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 px-2 group"
+                        className="w-full justify-between font-bold text-red- hover:text-red- hover:bg-red- px-2 group"
                       >
                         Gerenciar Chamada
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -253,13 +253,13 @@ export default function DanceFlowLiveClassesPage() {
         ) : (
           <Card className="border-none shadow-sm py-20 text-center">
             <CardContent>
-              <div className="w-20 h-20 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 rounded-full bg-slate-100 dark:bg-zinc-950 flex items-center justify-center mx-auto mb-6">
                 <Clock className="w-10 h-10 text-slate-300" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+              <h3 className="text-xl font-bold text-white dark:text-white">
                 Silêncio no {vocabulary.establishment}...
               </h3>
-              <p className="text-slate-500 mt-2 max-w-xs mx-auto">
+              <p className="text-zinc-500 mt-2 max-w-xs mx-auto">
                 Não há nenhuma {vocabulary.service.toLowerCase()} agendada acontecendo neste exato
                 momento ({liveData?.currentTime}).
               </p>

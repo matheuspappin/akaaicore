@@ -67,18 +67,18 @@ export default function MatriculaPublicPage() {
   const registerUrl = `/solutions/estudio-de-danca/register?role=student&code=${code}`
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ scale: [1, 1.3, 1], opacity: [0.04, 0.08, 0.04] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-1/3 -left-1/3 w-[80vw] h-[80vw] rounded-full bg-violet-600"
+          className="absolute -top-1/3 -left-1/3 w-[80vw] h-[80vw] rounded-full bg-[#e40014]"
         />
         <motion.div
           animate={{ scale: [1.2, 1, 1.2], opacity: [0.03, 0.07, 0.03] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-          className="absolute -bottom-1/3 -right-1/3 w-[70vw] h-[70vw] rounded-full bg-pink-600"
+          className="absolute -bottom-1/3 -right-1/3 w-[70vw] h-[70vw] rounded-full bg-[#e40014]"
         />
       </div>
 
@@ -86,22 +86,22 @@ export default function MatriculaPublicPage() {
         {stage === "loading" && (
           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="flex flex-col items-center gap-4 text-white">
-            <div className="w-16 h-16 rounded-2xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center">
-              <Loader2 className="w-8 h-8 text-violet-400 animate-spin" />
+            <div className="w-16 h-16 rounded-2xl bg-[#e40014] border border-[#e40014] flex items-center justify-center">
+              <Loader2 className="w-8 h-8 text-[#e40014] animate-spin" />
             </div>
-            <p className="text-slate-400 text-sm font-medium">Carregando informações do estúdio...</p>
+            <p className="text-zinc-400 text-sm font-medium">Carregando informações do estúdio...</p>
           </motion.div>
         )}
 
         {stage === "invalid" && (
           <motion.div key="invalid" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             className="max-w-sm w-full text-center space-y-6">
-            <div className="w-20 h-20 rounded-3xl bg-red-600/10 border border-red-500/20 flex items-center justify-center mx-auto">
-              <Music className="w-10 h-10 text-red-400" />
+            <div className="w-20 h-20 rounded-3xl bg-[#e40014] border border-[#e40014] flex items-center justify-center mx-auto">
+              <Music className="w-10 h-10 text-[#e40014]" />
             </div>
             <div>
               <h1 className="text-2xl font-black text-white mb-2">Link Inválido</h1>
-              <p className="text-slate-400 text-sm">Este link de convite é inválido ou expirou. Peça ao seu estúdio um novo link.</p>
+              <p className="text-zinc-400 text-sm">Este link de convite é inválido ou expirou. Peça ao seu estúdio um novo link.</p>
             </div>
           </motion.div>
         )}
@@ -111,18 +111,18 @@ export default function MatriculaPublicPage() {
             className="w-full max-w-md space-y-6 relative z-10">
             {/* Header */}
             <div className="text-center space-y-3">
-              <div className="w-16 h-16 rounded-2xl bg-violet-600 flex items-center justify-center mx-auto shadow-2xl shadow-violet-600/40">
+              <div className="w-16 h-16 rounded-2xl bg-[#e40014] flex items-center justify-center mx-auto shadow-2xl shadow-red-600/40">
                 <Music className="w-8 h-8 text-white" />
               </div>
               <div>
-                <p className="text-violet-400 text-xs font-black uppercase tracking-widest mb-1">Pré-Matrícula</p>
+                <p className="text-[#e40014] text-xs font-black uppercase tracking-widest mb-1">Pré-Matrícula</p>
                 <h1 className="text-3xl font-black text-white tracking-tight">{studioName}</h1>
-                <p className="text-slate-400 text-sm mt-1">Preencha seus dados e aguarde o contato do estúdio.</p>
+                <p className="text-zinc-400 text-sm mt-1">Preencha seus dados e aguarde o contato do estúdio.</p>
               </div>
             </div>
 
             {/* Form Card */}
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+            <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
                   <Label className="text-slate-300 text-xs font-black uppercase tracking-widest flex items-center gap-1.5">
@@ -133,7 +133,7 @@ export default function MatriculaPublicPage() {
                     value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                     required
-                    className="bg-slate-800/60 border-white/8 text-white h-12 rounded-xl placeholder:text-slate-500 focus:border-violet-500/60"
+                    className="bg-zinc-950/60 border-white/8 text-white h-12 rounded-xl placeholder:text-zinc-500 focus:border-[#e40014]"
                   />
                 </div>
 
@@ -146,7 +146,7 @@ export default function MatriculaPublicPage() {
                     placeholder="seu@email.com"
                     value={form.email}
                     onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                    className="bg-slate-800/60 border-white/8 text-white h-12 rounded-xl placeholder:text-slate-500 focus:border-violet-500/60"
+                    className="bg-zinc-950/60 border-white/8 text-white h-12 rounded-xl placeholder:text-zinc-500 focus:border-[#e40014]"
                   />
                 </div>
 
@@ -158,7 +158,7 @@ export default function MatriculaPublicPage() {
                     placeholder="(00) 00000-0000"
                     value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: formatPhone(e.target.value) }))}
-                    className="bg-slate-800/60 border-white/8 text-white h-12 rounded-xl placeholder:text-slate-500 focus:border-violet-500/60"
+                    className="bg-zinc-950/60 border-white/8 text-white h-12 rounded-xl placeholder:text-zinc-500 focus:border-[#e40014]"
                   />
                 </div>
 
@@ -175,8 +175,8 @@ export default function MatriculaPublicPage() {
                         className={cn(
                           "px-3 py-1.5 rounded-lg text-xs font-bold border transition-all",
                           form.modality === m
-                            ? "bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-600/20"
-                            : "bg-slate-800/60 border-white/8 text-slate-400 hover:border-white/20 hover:text-slate-200"
+                            ? "bg-[#e40014] border-[#e40014] text-white shadow-lg shadow-red-600/20"
+                            : "bg-zinc-950/60 border-white/8 text-zinc-400 hover:border-white/20 hover:text-slate-200"
                         )}
                       >
                         {m}
@@ -188,7 +188,7 @@ export default function MatriculaPublicPage() {
                 <Button
                   type="submit"
                   disabled={submitting || !form.name.trim()}
-                  className="w-full bg-violet-600 hover:bg-violet-700 text-white font-black h-14 rounded-2xl text-base shadow-xl shadow-violet-600/25 hover:scale-[1.01] transition-all disabled:opacity-50 disabled:scale-100"
+                  className="w-full bg-[#e40014] hover:bg-[#e40014] text-white font-black h-14 rounded-2xl text-base shadow-xl shadow-red-600/25 hover:scale-[1.01] transition-all disabled:opacity-50 disabled:scale-100"
                 >
                   {submitting
                     ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Enviando...</>
@@ -199,9 +199,9 @@ export default function MatriculaPublicPage() {
             </div>
 
             {/* Already have account? */}
-            <p className="text-center text-sm text-slate-500">
+            <p className="text-center text-sm text-zinc-500">
               Já tem conta no DanceFlow?{" "}
-              <Link href={registerUrl} className="text-violet-400 hover:text-violet-300 font-bold underline underline-offset-4">
+              <Link href={registerUrl} className="text-[#e40014] hover:text-[#e40014] font-bold underline underline-offset-4">
                 Entrar com login
               </Link>
             </p>
@@ -214,24 +214,24 @@ export default function MatriculaPublicPage() {
             <motion.div
               initial={{ scale: 0 }} animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-              className="w-24 h-24 rounded-3xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto"
+              className="w-24 h-24 rounded-3xl bg-[#e40014] border border-[#e40014] flex items-center justify-center mx-auto"
             >
-              <CheckCircle2 className="w-12 h-12 text-emerald-400" />
+              <CheckCircle2 className="w-12 h-12 text-red-" />
             </motion.div>
 
             <div className="space-y-2">
               <h1 className="text-3xl font-black text-white">
                 Incrível, {leadName}! 🎉
               </h1>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 Sua solicitação foi enviada para <strong className="text-white">{studioName}</strong>.
                 Em breve eles entrarão em contato.
               </p>
             </div>
 
             {/* Próximo passo */}
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-violet-500/20 rounded-3xl p-6 space-y-4">
-              <div className="flex items-center gap-2 text-violet-400">
+            <div className="bg-black/80 backdrop-blur-xl border border-[#e40014] rounded-3xl p-6 space-y-4">
+              <div className="flex items-center gap-2 text-[#e40014]">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-xs font-black uppercase tracking-widest">Próximo Passo</span>
               </div>
@@ -240,7 +240,7 @@ export default function MatriculaPublicPage() {
                 ver sua agenda de aulas e gerenciar suas mensalidades.
               </p>
               <Link href={registerUrl}>
-                <Button className="w-full bg-violet-600 hover:bg-violet-700 text-white font-black h-12 rounded-2xl shadow-lg shadow-violet-600/25 hover:scale-[1.01] transition-all">
+                <Button className="w-full bg-[#e40014] hover:bg-[#e40014] text-white font-black h-12 rounded-2xl shadow-lg shadow-red-600/25 hover:scale-[1.01] transition-all">
                   Criar Minha Conta Grátis
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>

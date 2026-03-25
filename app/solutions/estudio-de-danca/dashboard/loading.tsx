@@ -15,7 +15,7 @@ export default function DashboardLoading() {
       {/* Quick actions skeleton */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[1, 2, 3].map((i) => (
-          <Card key={i} className="border-slate-200 dark:border-slate-800">
+          <Card key={i} className="border-white/10 dark:border-zinc-800">
             <CardContent className="p-6 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-slate-200 dark:bg-slate-700" />
@@ -32,7 +32,7 @@ export default function DashboardLoading() {
       {/* Stats skeleton */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4].map((i) => (
-          <Card key={i} className="border-slate-200 dark:border-slate-800">
+          <Card key={i} className="border-white/10 dark:border-zinc-800">
             <CardContent className="p-5">
               <div className="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-700 mb-3" />
               <div className="h-9 w-16 bg-slate-200 dark:bg-slate-700 rounded mb-2" />
@@ -44,17 +44,17 @@ export default function DashboardLoading() {
 
       {/* Bottom row skeleton */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="border-slate-200 dark:border-slate-800">
+        <Card className="border-white/10 dark:border-zinc-800">
           <CardContent className="p-6">
             <div className="h-6 w-40 bg-slate-200 dark:bg-slate-700 rounded mb-4" />
             <div className="h-32 bg-slate-200 dark:bg-slate-700 rounded-xl" />
           </CardContent>
         </Card>
         <div className="space-y-4">
-          <Card className="border-slate-200 dark:border-slate-800">
+          <Card className="border-white/10 dark:border-zinc-800">
             <CardContent className="p-5 h-24" />
           </Card>
-          <Card className="border-slate-200 dark:border-slate-800">
+          <Card className="border-white/10 dark:border-zinc-800">
             <CardContent className="p-5 h-32" />
           </Card>
         </div>

@@ -19,11 +19,11 @@ interface TeacherClass {
 }
 
 const COLORS = [
-  "from-pink-500 to-rose-500",
-  "from-violet-500 to-purple-500",
-  "from-indigo-500 to-blue-500",
-  "from-emerald-500 to-teal-500",
-  "from-amber-500 to-orange-500",
+  "from-red-500 to-red-",
+  "from-red-500 to-purple-500",
+  "from-red- to-blue-500",
+  "from-red- to-teal-500",
+  "from-red- to-orange-500",
 ]
 
 const DAY_NAMES = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"]
@@ -85,19 +85,19 @@ export default function TeacherTurmasPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-          <Calendar className="w-6 h-6 text-pink-600" />
+        <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+          <Calendar className="w-6 h-6 text-[#e40014]" />
           Minhas Turmas
         </h1>
-        <p className="text-slate-500 text-sm mt-1">Turmas sob sua responsabilidade</p>
+        <p className="text-zinc-500 text-sm mt-1">Turmas sob sua responsabilidade</p>
       </div>
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : classes.length === 0 ? (
-        <p className="text-sm text-slate-500 dark:text-slate-400">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">
           Nenhuma turma encontrada para o seu usuário.
         </p>
       ) : (
@@ -105,37 +105,37 @@ export default function TeacherTurmasPage() {
           {classes.map((turma, index) => (
             <Card
               key={turma.id}
-              className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 hover:shadow-lg transition-all overflow-hidden"
+              className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-lg transition-all overflow-hidden"
             >
               <div className={cn("h-2 bg-gradient-to-r", COLORS[index % COLORS.length])} />
               <CardContent className="p-5 space-y-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-black text-slate-900 dark:text-white">{turma.name}</h3>
+                    <h3 className="font-black text-white dark:text-white">{turma.name}</h3>
                     {turma.dance_style && (
-                      <p className="text-xs text-slate-500 mt-0.5">{turma.dance_style}</p>
+                      <p className="text-xs text-zinc-500 mt-0.5">{turma.dance_style}</p>
                     )}
                   </div>
                   {turma.level && (
-                    <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-600/20 dark:text-pink-400 border-0 text-xs font-bold">
+                    <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-xs font-bold">
                       {turma.level}
                     </Badge>
                   )}
                 </div>
 
-                <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                <div className="space-y-2 text-sm text-zinc-400 dark:text-zinc-400">
                   <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-pink-500" />
+                    <Clock className="w-4 h-4 text-[#e40014]" />
                     <span>{formatSchedule(turma.schedule)}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-violet-500" />
+                    <Users className="w-4 h-4 text-[#e40014]" />
                     <span>{turma.enrolledCount} {turma.enrolledCount === 1 ? "aluno" : "alunos"}</span>
                   </div>
                 </div>
 
                 <Link href={`/solutions/estudio-de-danca/teacher/chamada?classId=${turma.id}`}>
-                  <Button className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl text-sm">
+                  <Button className="w-full bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl text-sm">
                     <ClipboardList className="w-4 h-4 mr-2" />
                     Fazer Chamada
                   </Button>

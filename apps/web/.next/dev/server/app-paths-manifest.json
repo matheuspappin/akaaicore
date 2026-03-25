@@ -1,9 +1,0 @@
-{
-  "/api/dance-studio/inventory/route": "app/api/dance-studio/inventory/route.js",
-  "/api/dance-studio/students/route": "app/api/dance-studio/students/route.js",
-  "/api/dance-studio/usage/route": "app/api/dance-studio/usage/route.js",
-  "/api/pagbank/oauth/authorize/route": "app/api/pagbank/oauth/authorize/route.js",
-  "/solutions/estudio-de-danca/dashboard/configuracoes/page": "app/solutions/estudio-de-danca/dashboard/configuracoes/page.js",
-  "/solutions/estudio-de-danca/dashboard/page": "app/solutions/estudio-de-danca/dashboard/page.js",
-  "/solutions/estudio-de-danca/dashboard/vendas/page": "app/solutions/estudio-de-danca/dashboard/vendas/page.js"
-}

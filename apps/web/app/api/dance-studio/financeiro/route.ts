@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0)
       .toISOString().split('T')[0]
 
-    const [paymentsRes, expensesRes, professionalFinancesRes] = await Promise.all([
+    const [paymentsRes, expensesRes, professionalFinancesRes, erpOrdersRes, packagesRes, settingsRes] = await Promise.all([
       supabase
         .from('payments')
         .select('id, amount, description, status, due_date, payment_date, created_at, student_id, payment_method, reference_month, payment_source, credits_used, reference_id, student:students(id, name)')
@@ -53,12 +53,61 @@ export async function GET(request: NextRequest) {
         .eq('studio_id', studioId)
         .order('created_at', { ascending: false })
         .limit(50),
+
+      supabase
+        .from('erp_orders')
+        .select('id, total_amount, customer_name, status, created_at, integration_channels(name)')
+        .eq('studio_id', studioId)
+        .in('status', ['finished', 'paid'])
+        .order('created_at', { ascending: false }),
+
+      supabase
+        .from('lesson_packages')
+        .select('price, lessons_count')
+        .eq('studio_id', studioId)
+        .eq('is_active', true),
+
+      supabase
+        .from('studio_settings')
+        .select('setting_value')
+        .eq('studio_id', studioId)
+        .eq('setting_key', 'pdv_credit_reais_per_unit')
+        .maybeSingle(),
     ])
+
+    // Cálculo da taxa de conversão de créditos (Equivalente em R$)
+    let conversionRate = 70
+    if (settingsRes.data?.setting_value) {
+      conversionRate = parseFloat(settingsRes.data.setting_value)
+    } else {
+      const packages = packagesRes.data || []
+      if (packages.length > 0) {
+        const rates = packages.map((p: any) => (Number(p.price) || 0) / Math.max(1, Number(p.lessons_count) || 1))
+        conversionRate = Math.min(...rates)
+      }
+    }
 
     const payments = (paymentsRes.data || []).map((p: any) => ({
       ...p,
       student_name: p.student?.name ?? 'Aluno',
     }))
+
+    const erpOrders = (erpOrdersRes.data || []).map((o: any) => ({
+      id: o.id,
+      amount: o.total_amount,
+      description: `Venda: ${o.customer_name || 'Consumidor'} (${o.integration_channels?.name || 'PDV'})`,
+      status: 'paid', // finished no ERP equivale a paid no financeiro
+      payment_date: o.created_at,
+      due_date: o.created_at,
+      student_name: o.customer_name || 'Consumidor',
+      payment_method: 'Omnichannel',
+      payment_source: 'erp'
+    }))
+
+    const allReceitas = [...payments, ...erpOrders].sort((a, b) => 
+      new Date(b.payment_date || b.due_date || 0).getTime() - 
+      new Date(a.payment_date || a.due_date || 0).getTime()
+    )
 
     const expenses = expensesRes.data || []
 
@@ -72,7 +121,17 @@ export async function GET(request: NextRequest) {
       p.status === 'paid' &&
       (p.payment_date?.startsWith(currentMonth) || p.due_date?.startsWith(currentMonth))
     )
-    const totalReceita = monthPaidPayments.reduce((s: number, p: any) => s + Number(p.amount || 0), 0)
+    const totalReceitaMensalidades = monthPaidPayments.reduce((s: number, p: any) => {
+      const amount = Number(p.amount || 0)
+      const creditValue = (Number(p.credits_used) || 0) * conversionRate
+      // Soma o valor em reais OU o valor equivalente do crédito (se o valor em reais for 0)
+      return s + amount + (amount === 0 ? creditValue : 0)
+    }, 0)
+
+    const monthPaidERP = erpOrders.filter((o: any) => o.payment_date?.startsWith(currentMonth))
+    const totalReceitaERP = monthPaidERP.reduce((s: number, o: any) => s + Number(o.amount || 0), 0)
+
+    const totalReceita = totalReceitaMensalidades + totalReceitaERP
 
     // KPI: despesas do mês
     const monthExpenses = expenses.filter((e: any) => e.due_date?.startsWith(currentMonth))
@@ -95,7 +154,15 @@ export async function GET(request: NextRequest) {
     payments.forEach((p: any) => {
       if (p.status !== 'paid') return
       const key = (p.payment_date || p.due_date || '').substring(0, 7)
-      if (monthlyData[key]) monthlyData[key].receita += Number(p.amount || 0)
+      if (monthlyData[key]) {
+        const amount = Number(p.amount || 0)
+        const creditValue = (Number(p.credits_used) || 0) * conversionRate
+        monthlyData[key].receita += amount + (amount === 0 ? creditValue : 0)
+      }
+    })
+    erpOrders.forEach((o: any) => {
+      const key = (o.payment_date || '').substring(0, 7)
+      if (monthlyData[key]) monthlyData[key].receita += Number(o.amount || 0)
     })
     expenses.forEach((e: any) => {
       const key = (e.due_date || '').substring(0, 7)
@@ -110,9 +177,10 @@ export async function GET(request: NextRequest) {
     const expensesByCategory = Object.entries(categoryMap).map(([category, valor]) => ({ category, valor }))
 
     return NextResponse.json({
-      payments,
+      payments: allReceitas,
       expenses,
       professionalFinances,
+      conversionRate, // Adicionado para uso na UI
       stats: {
         totalReceita,
         totalDespesas,

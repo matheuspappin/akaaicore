@@ -112,6 +112,7 @@ interface FinanceData {
   payments: Payment[]
   expenses: Expense[]
   professionalFinances: ProfessionalFinance[]
+  conversionRate?: number
   stats: {
     totalReceita: number
     totalDespesas: number
@@ -127,10 +128,10 @@ interface FinanceData {
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const statusMap: Record<string, { label: string; className: string; icon: LucideIcon }> = {
-  paid:      { label: "Pago",      className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400", icon: CheckCircle2 },
-  pending:   { label: "Pendente",  className: "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400",         icon: Clock },
-  overdue:   { label: "Vencido",   className: "bg-rose-100 text-rose-700 dark:bg-rose-600/20 dark:text-rose-400",             icon: AlertCircle },
-  cancelled: { label: "Cancelado", className: "bg-slate-100 text-slate-500 dark:bg-slate-700/30 dark:text-slate-400",         icon: AlertCircle },
+  paid:      { label: "Pago",      className: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-", icon: CheckCircle2 },
+  pending:   { label: "Pendente",  className: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-",         icon: Clock },
+  overdue:   { label: "Vencido",   className: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-",             icon: AlertCircle },
+  cancelled: { label: "Cancelado", className: "bg-slate-100 text-zinc-500 dark:bg-slate-700/30 dark:text-zinc-400",         icon: AlertCircle },
 }
 
 const sourceMap: Record<string, { label: string; short: string }> = {
@@ -209,28 +210,28 @@ function StatCard({
   trend?: "up" | "down"
 }) {
   const colors = {
-    emerald: { bg: "bg-emerald-500/10", text: "text-emerald-500", val: "text-emerald-600 dark:text-emerald-400", border: "border-l-emerald-500" },
-    red:     { bg: "bg-red-500/10",     text: "text-red-500",     val: "text-red-600 dark:text-red-400",         border: "border-l-red-500" },
-    indigo:  { bg: "bg-indigo-500/10",  text: "text-indigo-500",  val: "text-indigo-600 dark:text-indigo-400",   border: "border-l-indigo-500" },
-    amber:   { bg: "bg-amber-500/10",   text: "text-amber-500",   val: "text-amber-600 dark:text-amber-400",     border: "border-l-amber-500" },
+    emerald: { bg: "bg-[#e40014]", text: "text-red-", val: "text-red- dark:text-red-", border: "border-l-red-" },
+    red:     { bg: "bg-[#e40014]",     text: "text-[#e40014]",     val: "text-[#e40014] dark:text-[#e40014]",         border: "border-l-red-500" },
+    indigo:  { bg: "bg-[#e40014]",  text: "text-red-",  val: "text-red- dark:text-red-",   border: "border-l-red-" },
+    amber:   { bg: "bg-[#e40014]",   text: "text-red-",   val: "text-red- dark:text-red-",     border: "border-l-red-" },
   }
   const c = colors[color]
   return (
-    <Card className={cn("border-l-4 bg-white dark:bg-slate-900/50", c.border)}>
+    <Card className={cn("border-l-4 bg-white/5 dark:bg-black/50", c.border)}>
       <CardContent className="p-5">
         <div className="flex items-center justify-between mb-3">
           <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", c.bg)}>
             <Icon className={cn("w-5 h-5", c.text)} />
           </div>
           {trend && (
-            <div className={cn("flex items-center gap-1 text-xs font-bold", trend === "up" ? "text-emerald-500" : "text-red-500")}>
+            <div className={cn("flex items-center gap-1 text-xs font-bold", trend === "up" ? "text-red-" : "text-[#e40014]")}>
               {trend === "up" ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownRight className="w-3.5 h-3.5" />}
             </div>
           )}
         </div>
         <p className={cn("text-2xl font-black", c.val)}>R$ {fmt(value)}</p>
-        <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-0.5">{label}</p>
-        <p className="text-xs text-slate-400 mt-0.5">{sub}</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-0.5">{label}</p>
+        <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>
       </CardContent>
     </Card>
   )
@@ -459,7 +460,7 @@ export default function FinanceiroPage() {
 
   // ─── Render ────────────────────────────────────────────────────────────────
 
-  const { payments, expenses, professionalFinances, stats, chartData } = data
+  const { payments, expenses, professionalFinances, stats, chartData, conversionRate } = data
   const pendingPayments = payments.filter(p => p.status === "pending" || p.status === "overdue")
   const pendingExpenses = expenses.filter(e => e.status === "pending")
 
@@ -467,7 +468,7 @@ export default function FinanceiroPage() {
     return (
       <ModuleGuard module="financial" showFullError>
         <div className="flex items-center justify-center py-24">
-          <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-red-" />
         </div>
       </ModuleGuard>
     )
@@ -479,24 +480,24 @@ export default function FinanceiroPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <DollarSign className="w-6 h-6 text-emerald-500" />
+          <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
+            <DollarSign className="w-6 h-6 text-red-" />
             Financeiro
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Receitas, despesas, cobranças e repasses</p>
+          <p className="text-zinc-500 text-sm mt-1">Receitas, despesas, cobranças e repasses</p>
         </div>
         <div className="flex gap-2">
           <Button
             variant="outline"
             onClick={openNewExpense}
-            className="font-bold rounded-xl border-rose-200 text-rose-600 hover:bg-rose-50 dark:border-rose-800 dark:text-rose-400 dark:hover:bg-rose-950"
+            className="font-bold rounded-xl border-red- text-red- hover:bg-red- dark:border-red- dark:text-red- dark:hover:bg-red-"
           >
             <ShoppingBag className="w-4 h-4 mr-2" />
             Nova Despesa
           </Button>
           <Button
             onClick={() => setIsPaymentDialogOpen(true)}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg shadow-emerald-600/20"
+            className="bg-red- hover:bg-red- text-white font-bold rounded-xl shadow-lg shadow-red-/20"
           >
             <Plus className="w-4 h-4 mr-2" />
             Nova Cobrança
@@ -514,29 +515,29 @@ export default function FinanceiroPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl p-1.5 shadow-sm">
+        <div className="bg-white/5 dark:bg-black border border-white/10 dark:border-white/10 rounded-2xl p-1.5 shadow-sm">
           <TabsList className="bg-transparent flex flex-wrap gap-1 h-auto">
-            <TabsTrigger value="visao-geral" className="rounded-xl data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-700 dark:data-[state=active]:bg-emerald-900/30 dark:data-[state=active]:text-emerald-400 font-bold">
+            <TabsTrigger value="visao-geral" className="rounded-xl data-[state=active]:bg-red- data-[state=active]:text-red- dark:data-[state=active]:bg-[#e40014] dark:data-[state=active]:text-red- font-bold">
               Visão Geral
             </TabsTrigger>
-            <TabsTrigger value="mensalidades" className="rounded-xl data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-700 dark:data-[state=active]:bg-emerald-900/30 dark:data-[state=active]:text-emerald-400 font-bold">
+            <TabsTrigger value="mensalidades" className="rounded-xl data-[state=active]:bg-red- data-[state=active]:text-red- dark:data-[state=active]:bg-[#e40014] dark:data-[state=active]:text-red- font-bold">
               Cobranças
               {pendingPayments.length > 0 && (
-                <span className="ml-1.5 bg-amber-500 text-white text-[10px] font-black rounded-full px-1.5 py-0.5">
+                <span className="ml-1.5 bg-red- text-white text-[10px] font-black rounded-full px-1.5 py-0.5">
                   {pendingPayments.length}
                 </span>
               )}
             </TabsTrigger>
-            <TabsTrigger value="despesas" className="rounded-xl data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-700 dark:data-[state=active]:bg-emerald-900/30 dark:data-[state=active]:text-emerald-400 font-bold">
+            <TabsTrigger value="despesas" className="rounded-xl data-[state=active]:bg-red- data-[state=active]:text-red- dark:data-[state=active]:bg-[#e40014] dark:data-[state=active]:text-red- font-bold">
               Despesas
               {pendingExpenses.length > 0 && (
-                <span className="ml-1.5 bg-rose-500 text-white text-[10px] font-black rounded-full px-1.5 py-0.5">
+                <span className="ml-1.5 bg-red- text-white text-[10px] font-black rounded-full px-1.5 py-0.5">
                   {pendingExpenses.length}
                 </span>
               )}
             </TabsTrigger>
             {professionalFinances.length > 0 && (
-              <TabsTrigger value="professores" className="rounded-xl data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-700 dark:data-[state=active]:bg-emerald-900/30 dark:data-[state=active]:text-emerald-400 font-bold">
+              <TabsTrigger value="professores" className="rounded-xl data-[state=active]:bg-red- data-[state=active]:text-red- dark:data-[state=active]:bg-[#e40014] dark:data-[state=active]:text-red- font-bold">
                 Professores
               </TabsTrigger>
             )}
@@ -547,17 +548,17 @@ export default function FinanceiroPage() {
         <TabsContent value="visao-geral" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Revenue vs Expenses chart */}
-            <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+            <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-bold flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-emerald-500" />
+                  <TrendingUp className="w-4 h-4 text-red-" />
                   Fluxo de Caixa
                 </CardTitle>
                 <CardDescription>Receita vs Despesas nos últimos 6 meses</CardDescription>
               </CardHeader>
               <CardContent>
                 {chartData.monthly.length === 0 ? (
-                  <div className="h-52 flex items-center justify-center text-slate-400 text-sm">
+                  <div className="h-52 flex items-center justify-center text-zinc-400 text-sm">
                     Sem dados suficientes para o gráfico.
                   </div>
                 ) : (
@@ -586,12 +587,12 @@ export default function FinanceiroPage() {
                   </ResponsiveContainer>
                 )}
                 <div className="flex gap-4 mt-2 justify-center">
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                    <div className="w-3 h-1.5 rounded-full bg-emerald-500" />
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500">
+                    <div className="w-3 h-1.5 rounded-full bg-red-" />
                     Receita
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                    <div className="w-3 h-1.5 rounded-full bg-red-500" />
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500">
+                    <div className="w-3 h-1.5 rounded-full bg-[#e40014]" />
                     Despesas
                   </div>
                 </div>
@@ -599,17 +600,17 @@ export default function FinanceiroPage() {
             </Card>
 
             {/* Expenses by category */}
-            <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10">
+            <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-bold flex items-center gap-2">
-                  <Receipt className="w-4 h-4 text-rose-500" />
+                  <Receipt className="w-4 h-4 text-red-" />
                   Despesas por Categoria
                 </CardTitle>
                 <CardDescription>Distribuição dos gastos cadastrados</CardDescription>
               </CardHeader>
               <CardContent>
                 {chartData.byCategory.length === 0 ? (
-                  <div className="h-52 flex items-center justify-center text-slate-400 text-sm">
+                  <div className="h-52 flex items-center justify-center text-zinc-400 text-sm">
                     Nenhuma despesa cadastrada ainda.
                   </div>
                 ) : (
@@ -631,17 +632,17 @@ export default function FinanceiroPage() {
           </div>
 
           {/* Recent transactions */}
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
             <CardHeader className="border-b border-slate-100 dark:border-white/5">
               <CardTitle className="text-base font-bold flex items-center gap-2">
-                <RefreshCw className="w-4 h-4 text-indigo-500" />
+                <RefreshCw className="w-4 h-4 text-red-" />
                 Lançamentos Recentes
               </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                  <TableRow className="bg-black/50 dark:bg-zinc-950/30">
                     <TableHead className="pl-6">Aluno</TableHead>
                     <TableHead>Descrição</TableHead>
                     <TableHead>Vencimento</TableHead>
@@ -655,11 +656,20 @@ export default function FinanceiroPage() {
                     const Icon = st.icon
                     return (
                       <TableRow key={p.id}>
-                        <TableCell className="pl-6 font-bold text-slate-900 dark:text-white">{p.student_name}</TableCell>
-                        <TableCell className="text-slate-600 dark:text-slate-400 text-sm">{p.description}</TableCell>
-                        <TableCell className="font-mono text-xs text-slate-500">{fmtDate(p.due_date)}</TableCell>
-                        <TableCell className={cn("font-black", p.status === "paid" ? "text-emerald-600" : "text-slate-900 dark:text-white")}>
-                          R$ {fmt(Number(p.amount))}
+                        <TableCell className="pl-6 font-bold text-white dark:text-white">{p.student_name}</TableCell>
+                        <TableCell className="text-zinc-400 dark:text-zinc-400 text-sm">{p.description}</TableCell>
+                        <TableCell className="font-mono text-xs text-zinc-500">{fmtDate(p.due_date)}</TableCell>
+                        <TableCell className={cn("font-black", p.status === "paid" ? "text-red-" : "text-white dark:text-white")}>
+                          {p.credits_used && Number(p.amount) === 0 ? (
+                            <div className="flex flex-col">
+                              <span className="text-red- dark:text-red-">{p.credits_used} crédito{p.credits_used !== 1 ? "s" : ""}</span>
+                              {conversionRate && (
+                                <span className="text-[10px] text-zinc-500 font-medium">(R$ {fmt(p.credits_used * conversionRate)})</span>
+                              )}
+                            </div>
+                          ) : (
+                            <>R$ {fmt(Number(p.amount))}</>
+                          )}
                         </TableCell>
                         <TableCell className="pr-6">
                           <Badge className={cn("text-xs border-0 font-bold flex items-center gap-1 w-fit", st.className)}>
@@ -672,7 +682,7 @@ export default function FinanceiroPage() {
                   })}
                   {payments.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center py-12 text-slate-400">
+                      <TableCell colSpan={5} className="text-center py-12 text-zinc-400">
                         Nenhum lançamento ainda.
                       </TableCell>
                     </TableRow>
@@ -685,12 +695,12 @@ export default function FinanceiroPage() {
 
         {/* ── Cobranças / Mensalidades ─────────────────────────────────────────── */}
         <TabsContent value="mensalidades" className="space-y-4">
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
             <CardHeader className="border-b border-slate-100 dark:border-white/5">
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle className="text-base font-bold flex items-center gap-2">
-                    <Users className="w-4 h-4 text-emerald-500" />
+                    <Users className="w-4 h-4 text-red-" />
                     Cobranças e Mensalidades
                   </CardTitle>
                   <CardDescription>Todas as cobranças de alunos</CardDescription>
@@ -698,7 +708,7 @@ export default function FinanceiroPage() {
                 <Button
                   size="sm"
                   onClick={() => setIsPaymentDialogOpen(true)}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl"
+                  className="bg-red- hover:bg-red- text-white font-bold rounded-xl"
                 >
                   <Plus className="w-4 h-4 mr-1.5" />
                   Nova Cobrança
@@ -708,7 +718,7 @@ export default function FinanceiroPage() {
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                  <TableRow className="bg-black/50 dark:bg-zinc-950/30">
                     <TableHead className="pl-6">Aluno</TableHead>
                     <TableHead>Descrição</TableHead>
                     <TableHead>Vencimento</TableHead>
@@ -720,7 +730,7 @@ export default function FinanceiroPage() {
                 <TableBody>
                   {payments.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-12 text-slate-400">
+                      <TableCell colSpan={6} className="text-center py-12 text-zinc-400">
                         <DollarSign className="w-10 h-10 mx-auto mb-2 opacity-20" />
                         Nenhuma cobrança cadastrada.
                       </TableCell>
@@ -730,29 +740,34 @@ export default function FinanceiroPage() {
                       const st = statusMap[p.status] ?? statusMap.pending
                       const Icon = st.icon
                       return (
-                        <TableRow key={p.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <TableRow key={p.id} className="hover:bg-black/50 dark:hover:bg-zinc-950/30">
                           <TableCell className="pl-6">
                             <div className="flex items-center gap-2">
-                              <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center font-black text-emerald-600 text-xs flex-shrink-0">
+                              <div className="w-8 h-8 rounded-full bg-red- dark:bg-[#e40014] flex items-center justify-center font-black text-red- text-xs flex-shrink-0">
                                 {p.student_name[0]?.toUpperCase()}
                               </div>
-                              <span className="font-bold text-sm text-slate-900 dark:text-white">{p.student_name}</span>
+                              <span className="font-bold text-sm text-white dark:text-white">{p.student_name}</span>
                             </div>
                           </TableCell>
-                          <TableCell className="text-slate-600 dark:text-slate-400 text-sm">
+                          <TableCell className="text-zinc-400 dark:text-zinc-400 text-sm">
                             <div className="flex flex-col gap-0.5">
                               {p.payment_source && sourceMap[p.payment_source] && (
-                                <Badge variant="outline" className="text-[10px] w-fit font-medium text-slate-500 border-slate-200 dark:border-slate-600">
+                                <Badge variant="outline" className="text-[10px] w-fit font-medium text-zinc-500 border-white/10 dark:border-slate-600">
                                   {sourceMap[p.payment_source].short}
                                 </Badge>
                               )}
                               <span>{p.description}</span>
                             </div>
                           </TableCell>
-                          <TableCell className="font-mono text-xs text-slate-500">{fmtDate(p.due_date)}</TableCell>
-                          <TableCell className="font-black text-slate-900 dark:text-white">
+                          <TableCell className="font-mono text-xs text-zinc-500">{fmtDate(p.due_date)}</TableCell>
+                          <TableCell className="font-black text-white dark:text-white">
                             {p.credits_used ? (
-                              <span className="text-indigo-600 dark:text-indigo-400">{p.credits_used} crédito{p.credits_used !== 1 ? "s" : ""}</span>
+                              <div className="flex flex-col">
+                                <span className="text-red- dark:text-red-">{p.credits_used} crédito{p.credits_used !== 1 ? "s" : ""}</span>
+                                {conversionRate && (
+                                  <span className="text-[10px] text-zinc-500 font-medium">(R$ {fmt(p.credits_used * conversionRate)})</span>
+                                )}
+                              </div>
                             ) : (
                               <>R$ {fmt(Number(p.amount))}</>
                             )}
@@ -769,7 +784,7 @@ export default function FinanceiroPage() {
                                 <Button
                                   variant="outline"
                                   size="sm"
-                                  className="font-bold text-xs border-emerald-200 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-800 dark:text-emerald-400"
+                                  className="font-bold text-xs border-red- text-red- hover:bg-red- dark:border-red- dark:text-red-"
                                   onClick={() => { setMarkPaidTarget(p); setMarkPaidMethod("pix") }}
                                 >
                                   <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
@@ -779,7 +794,7 @@ export default function FinanceiroPage() {
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-8 w-8 text-slate-400 hover:text-rose-600"
+                                className="h-8 w-8 text-zinc-400 hover:text-red-"
                                 onClick={() => handleDeletePayment(p)}
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
@@ -798,12 +813,12 @@ export default function FinanceiroPage() {
 
         {/* ── Despesas ─────────────────────────────────────────────────────────── */}
         <TabsContent value="despesas" className="space-y-4">
-          <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden">
+          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
             <CardHeader className="border-b border-slate-100 dark:border-white/5">
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle className="text-base font-bold flex items-center gap-2">
-                    <Receipt className="w-4 h-4 text-rose-500" />
+                    <Receipt className="w-4 h-4 text-red-" />
                     Controle de Despesas
                   </CardTitle>
                   <CardDescription>Aluguel, contas, marketing e outros custos do estúdio</CardDescription>
@@ -811,7 +826,7 @@ export default function FinanceiroPage() {
                 <Button
                   size="sm"
                   onClick={openNewExpense}
-                  className="bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl"
+                  className="bg-red- hover:bg-red- text-white font-bold rounded-xl"
                 >
                   <Plus className="w-4 h-4 mr-1.5" />
                   Nova Despesa
@@ -821,7 +836,7 @@ export default function FinanceiroPage() {
             <CardContent className="p-0">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                  <TableRow className="bg-black/50 dark:bg-zinc-950/30">
                     <TableHead className="pl-6">Descrição</TableHead>
                     <TableHead>Categoria</TableHead>
                     <TableHead>Vencimento</TableHead>
@@ -833,34 +848,34 @@ export default function FinanceiroPage() {
                 <TableBody>
                   {expenses.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-12 text-slate-400">
+                      <TableCell colSpan={6} className="text-center py-12 text-zinc-400">
                         <Receipt className="w-10 h-10 mx-auto mb-2 opacity-20" />
                         Nenhuma despesa cadastrada.
                       </TableCell>
                     </TableRow>
                   ) : (
                     expenses.map((e) => (
-                      <TableRow key={e.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
-                        <TableCell className="pl-6 font-bold text-slate-900 dark:text-white">
+                      <TableRow key={e.id} className="hover:bg-black/50 dark:hover:bg-zinc-950/30">
+                        <TableCell className="pl-6 font-bold text-white dark:text-white">
                           <div className="flex items-center gap-2">
                             {e.description}
                             {e.is_recurring && (
-                              <span title="Recorrente"><Repeat className="w-3.5 h-3.5 text-indigo-500 flex-shrink-0" /></span>
+                              <span title="Recorrente"><Repeat className="w-3.5 h-3.5 text-red- flex-shrink-0" /></span>
                             )}
                           </div>
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-wider">{e.category}</Badge>
                         </TableCell>
-                        <TableCell className="font-mono text-xs text-slate-500">{fmtDate(e.due_date)}</TableCell>
-                        <TableCell className="font-black text-rose-600">R$ {fmt(Number(e.amount))}</TableCell>
+                        <TableCell className="font-mono text-xs text-zinc-500">{fmtDate(e.due_date)}</TableCell>
+                        <TableCell className="font-black text-red-">R$ {fmt(Number(e.amount))}</TableCell>
                         <TableCell>
                           <Badge className={cn("text-xs border-0 font-bold w-fit",
                             e.status === "paid"
-                              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400"
+                              ? "bg-red- text-red- dark:bg-[#e40014] dark:text-red-"
                               : e.status === "cancelled"
-                              ? "bg-slate-100 text-slate-500"
-                              : "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400"
+                              ? "bg-slate-100 text-zinc-500"
+                              : "bg-red- text-red- dark:bg-[#e40014] dark:text-red-"
                           )}>
                             {e.status === "paid" ? "Pago" : e.status === "cancelled" ? "Cancelado" : "Pendente"}
                           </Badge>
@@ -871,7 +886,7 @@ export default function FinanceiroPage() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="font-bold text-xs border-emerald-200 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-800 dark:text-emerald-400"
+                                className="font-bold text-xs border-red- text-red- hover:bg-red- dark:border-red- dark:text-red-"
                                 onClick={() => handleMarkExpensePaid(e)}
                               >
                                 <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
@@ -881,7 +896,7 @@ export default function FinanceiroPage() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-8 w-8 text-slate-400 hover:text-indigo-600"
+                              className="h-8 w-8 text-zinc-400 hover:text-red-"
                               onClick={() => openEditExpense(e)}
                             >
                               <Edit className="w-3.5 h-3.5" />
@@ -889,7 +904,7 @@ export default function FinanceiroPage() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-8 w-8 text-slate-400 hover:text-rose-600"
+                              className="h-8 w-8 text-zinc-400 hover:text-red-"
                               onClick={() => handleDeleteExpense(e)}
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -908,10 +923,10 @@ export default function FinanceiroPage() {
         {/* ── Professores ──────────────────────────────────────────────────────── */}
         {professionalFinances.length > 0 && (
           <TabsContent value="professores" className="space-y-4">
-            <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 overflow-hidden">
+            <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
               <CardHeader className="border-b border-slate-100 dark:border-white/5">
                 <CardTitle className="text-base font-bold flex items-center gap-2">
-                  <GraduationCap className="w-4 h-4 text-indigo-500" />
+                  <GraduationCap className="w-4 h-4 text-red-" />
                   Repasses de Professores
                 </CardTitle>
                 <CardDescription>Valores a pagar aos professores pelo mês</CardDescription>
@@ -919,7 +934,7 @@ export default function FinanceiroPage() {
               <CardContent className="p-0">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-slate-50/50 dark:bg-slate-800/30">
+                    <TableRow className="bg-black/50 dark:bg-zinc-950/30">
                       <TableHead className="pl-6">Professor</TableHead>
                       <TableHead>Aulas</TableHead>
                       <TableHead>Base / Aula</TableHead>
@@ -930,15 +945,15 @@ export default function FinanceiroPage() {
                   <TableBody>
                     {professionalFinances.map((pf) => (
                       <TableRow key={pf.id}>
-                        <TableCell className="pl-6 font-bold text-slate-900 dark:text-white">{pf.professional_name}</TableCell>
-                        <TableCell className="text-slate-600 dark:text-slate-400">{pf.student_count} aulas</TableCell>
-                        <TableCell className="text-slate-500 text-sm">R$ {fmt(Number(pf.base_amount))}</TableCell>
-                        <TableCell className="font-black text-indigo-600">R$ {fmt(Number(pf.total_amount))}</TableCell>
+                        <TableCell className="pl-6 font-bold text-white dark:text-white">{pf.professional_name}</TableCell>
+                        <TableCell className="text-zinc-400 dark:text-zinc-400">{pf.student_count} aulas</TableCell>
+                        <TableCell className="text-zinc-500 text-sm">R$ {fmt(Number(pf.base_amount))}</TableCell>
+                        <TableCell className="font-black text-red-">R$ {fmt(Number(pf.total_amount))}</TableCell>
                         <TableCell className="pr-6">
                           <Badge className={cn("text-xs border-0 font-bold w-fit",
                             pf.payment_status === "pago"
-                              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400"
-                              : "bg-amber-100 text-amber-700 dark:bg-amber-600/20 dark:text-amber-400"
+                              ? "bg-red- text-red- dark:bg-[#e40014] dark:text-red-"
+                              : "bg-red- text-red- dark:bg-[#e40014] dark:text-red-"
                           )}>
                             {pf.payment_status === "pago" ? "Pago" : "Pendente"}
                           </Badge>
@@ -1038,7 +1053,7 @@ export default function FinanceiroPage() {
             <Button
               onClick={handleCreatePayment}
               disabled={isSavingPayment || !paymentForm.amount}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+              className="bg-red- hover:bg-red- text-white font-bold"
             >
               {isSavingPayment ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
               Criar Cobrança
@@ -1074,7 +1089,7 @@ export default function FinanceiroPage() {
             <Button
               onClick={handleMarkAsPaid}
               disabled={isMarkingPaid}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+              className="bg-red- hover:bg-red- text-white font-bold"
             >
               {isMarkingPaid ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <CheckCircle2 className="w-4 h-4 mr-2" />}
               Confirmar
@@ -1156,13 +1171,13 @@ export default function FinanceiroPage() {
             </div>
 
             {/* Recorrência */}
-            <div className="border-t border-slate-100 dark:border-slate-800 pt-3">
-              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+            <div className="border-t border-slate-100 dark:border-zinc-800 pt-3">
+              <div className="flex items-center justify-between p-3 bg-black dark:bg-zinc-950/50 rounded-xl">
                 <div className="flex items-center gap-2">
-                  <Repeat className="w-4 h-4 text-indigo-500" />
+                  <Repeat className="w-4 h-4 text-red-" />
                   <div>
-                    <p className="text-sm font-bold text-slate-900 dark:text-white">Despesa Recorrente</p>
-                    <p className="text-[11px] text-slate-500">Gera automaticamente a próxima ao ser paga</p>
+                    <p className="text-sm font-bold text-white dark:text-white">Despesa Recorrente</p>
+                    <p className="text-[11px] text-zinc-500">Gera automaticamente a próxima ao ser paga</p>
                   </div>
                 </div>
                 <Switch
@@ -1174,7 +1189,7 @@ export default function FinanceiroPage() {
                 <div className="mt-3 space-y-1">
                   <Label>Frequência</Label>
                   <Select value={expenseForm.recurrence_period} onValueChange={v => setExpenseForm(f => ({ ...f, recurrence_period: v }))}>
-                    <SelectTrigger className="bg-indigo-50/50 border-indigo-100 dark:bg-indigo-900/10">
+                    <SelectTrigger className="bg-[#e40014] border-red- dark:bg-[#e40014]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -1192,7 +1207,7 @@ export default function FinanceiroPage() {
             <Button
               onClick={handleSaveExpense}
               disabled={isSavingExpense}
-              className="bg-rose-600 hover:bg-rose-700 text-white font-bold"
+              className="bg-red- hover:bg-red- text-white font-bold"
             >
               {isSavingExpense ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
               {editingExpense ? "Salvar Alterações" : "Cadastrar Despesa"}

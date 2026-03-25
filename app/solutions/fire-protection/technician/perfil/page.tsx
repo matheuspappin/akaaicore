@@ -166,7 +166,7 @@ export default function TechnicianPerfilPage() {
           <UserCircle className="w-6 h-6 text-orange-600" />
           Meu Perfil
         </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
           Suas informações como técnico de campo
         </p>
       </div>
@@ -202,17 +202,17 @@ export default function TechnicianPerfilPage() {
           { label: "Concluídas", value: stats.concluidas, color: "text-emerald-600" },
           { label: "Vistorias", value: stats.vistorias, color: "text-red-600" },
         ].map(s => (
-          <Card key={s.label} className="bg-white dark:bg-slate-900/50 shadow-sm border-none">
+          <Card key={s.label} className="bg-white dark:bg-zinc-950/50 shadow-sm border-none">
             <CardContent className="p-4 text-center">
               <p className={cn("text-3xl font-black", s.color)}>{s.value}</p>
-              <p className="text-xs text-slate-500 font-medium mt-1">{s.label}</p>
+              <p className="text-xs text-zinc-500 font-medium mt-1">{s.label}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Vínculo com Empresa */}
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold flex items-center gap-2">
@@ -222,14 +222,14 @@ export default function TechnicianPerfilPage() {
             <Button
               variant="ghost"
               size="icon"
-              className="w-8 h-8 text-slate-400 hover:text-slate-700"
+              className="w-8 h-8 text-zinc-400 hover:text-slate-700"
               onClick={loadVinculo}
               disabled={loadingVinculo}
             >
               <RefreshCw className={cn("w-3.5 h-3.5", loadingVinculo && "animate-spin")} />
             </Button>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
             Vincule-se a uma empresa para receber Ordens de Serviço
           </p>
         </CardHeader>
@@ -284,12 +284,12 @@ export default function TechnicianPerfilPage() {
               </div>
 
               <div>
-                <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">
                   Código de Convite da Empresa
                 </Label>
                 <div className="flex gap-2 mt-1.5">
                   <div className="relative flex-1">
-                    <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                     <Input
                       className="pl-9 font-mono uppercase tracking-widest"
                       value={inviteCode}
@@ -310,7 +310,7 @@ export default function TechnicianPerfilPage() {
                     )}
                   </Button>
                 </div>
-                <p className="text-xs text-slate-400 mt-1.5">
+                <p className="text-xs text-zinc-400 mt-1.5">
                   O código é fornecido pelo administrador da empresa no painel FireControl.
                 </p>
               </div>
@@ -333,16 +333,16 @@ export default function TechnicianPerfilPage() {
       </Card>
 
       {/* Form de Perfil */}
-      <Card className="bg-white dark:bg-slate-900/50 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-bold">Editar Informações</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSave} className="space-y-4">
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">Nome completo</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">Nome completo</Label>
               <div className="relative mt-1.5">
-                <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.name}
@@ -352,9 +352,9 @@ export default function TechnicianPerfilPage() {
               </div>
             </div>
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">Telefone / WhatsApp</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">Telefone / WhatsApp</Label>
               <div className="relative mt-1.5">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.phone}
@@ -365,9 +365,9 @@ export default function TechnicianPerfilPage() {
               </div>
             </div>
             <div>
-              <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">E-mail</Label>
+              <Label className="text-xs font-bold uppercase tracking-wider text-zinc-500">E-mail</Label>
               <div className="relative mt-1.5">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <Input
                   className="pl-9"
                   value={form.email}
@@ -376,7 +376,7 @@ export default function TechnicianPerfilPage() {
                   placeholder="Seu e-mail"
                 />
               </div>
-              <p className="text-xs text-slate-400 mt-1">O e-mail não pode ser alterado aqui.</p>
+              <p className="text-xs text-zinc-400 mt-1">O e-mail não pode ser alterado aqui.</p>
             </div>
             <Button
               type="submit"

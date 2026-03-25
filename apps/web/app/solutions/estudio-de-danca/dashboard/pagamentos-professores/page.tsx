@@ -6,10 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Wallet, Loader2, CheckCircle2, Clock, ArrowDownToLine, Settings2, RefreshCw, Banknote, GraduationCap, List } from "lucide-react"
+import { Wallet, Loader2, CheckCircle2, Clock, ArrowDownToLine, Settings2, RefreshCw, Banknote, GraduationCap, List, Plus } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   Select,
@@ -40,8 +47,11 @@ export default function PagamentosProfessoresPage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [releasing, setReleasing] = useState(false)
   const [markingPaid, setMarkingPaid] = useState<string | null>(null)
-  const [markingStripe, setMarkingStripe] = useState<string | null>(null)
   const [showConfig, setShowConfig] = useState(false)
+  const [professores, setProfessores] = useState<any[]>([])
+  const [isManualDialogOpen, setIsManualDialogOpen] = useState(false)
+  const [manualForm, setManualForm] = useState({ professional_id: "", amount: "", description: "" })
+  const [isSavingManual, setIsSavingManual] = useState(false)
   const { toast } = useToast()
 
   const load = useCallback(async () => {
@@ -51,14 +61,16 @@ export default function PagamentosProfessoresPage() {
     if (!sid) { setLoading(false); return }
 
     try {
-      const [payRes, configRes, withdrawalsRes] = await Promise.all([
+      const [payRes, configRes, withdrawalsRes, profRes] = await Promise.all([
         fetch(`/api/dance-studio/teacher-payments?studioId=${sid}`, { credentials: "include" }),
         fetch(`/api/dance-studio/teacher-compensation?studioId=${sid}`, { credentials: "include" }),
         fetch(`/api/dance-studio/teacher-withdrawals?studioId=${sid}`, { credentials: "include" }),
+        fetch(`/api/dance-studio/teachers?studioId=${sid}`),
       ])
       const payData = await payRes.json()
       const configData = await configRes.json()
       const withdrawalsData = await withdrawalsRes.json()
+      const profData = await profRes.json()
       setEntries(payData.entries || [])
       setTotals(payData.totals || { pending: 0, released: 0, withdrawn: 0 })
       setConfig({
@@ -70,6 +82,7 @@ export default function PagamentosProfessoresPage() {
       setConfigSchedule(configData.paymentSchedule || "manual")
       setConfigDayOfMonth(String(configData.paymentDayOfMonth || 5))
       setWithdrawals(withdrawalsData || [])
+      setProfessores(Array.isArray(profData) ? profData : [])
     } catch {
       toast({ title: "Erro ao carregar", variant: "destructive" })
     } finally {
@@ -132,30 +145,6 @@ export default function PagamentosProfessoresPage() {
     }
   }
 
-  const handleStripePayout = async (withdrawalId: string) => {
-    if (!studioId) return
-    setMarkingStripe(withdrawalId)
-    try {
-      const res = await fetch("/api/dance-studio/teacher-withdrawals/execute-stripe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ studioId, withdrawalId }),
-        credentials: "include",
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || "Erro na transferência Stripe")
-      toast({
-        title: "Transferência Stripe enviada",
-        description: data.transferId ? `ID: ${data.transferId}` : "Professor receberá no saldo Connect.",
-      })
-      load()
-    } catch (e: any) {
-      toast({ title: "Erro Stripe", description: e.message, variant: "destructive" })
-    } finally {
-      setMarkingStripe(null)
-    }
-  }
-
   const handleMarkAsPaid = async (withdrawalId: string) => {
     if (!studioId) return
     setMarkingPaid(withdrawalId)
@@ -173,6 +162,33 @@ export default function PagamentosProfessoresPage() {
       toast({ title: "Erro ao lançar", description: e.message, variant: "destructive" })
     } finally {
       setMarkingPaid(null)
+    }
+  }
+
+  const handleCreateManualPayment = async () => {
+    if (!studioId || !manualForm.professional_id || !manualForm.amount) return
+    setIsSavingManual(true)
+    try {
+      const res = await fetch("/api/dance-studio/teacher-payments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          studioId,
+          professional_id: manualForm.professional_id,
+          amount: parseFloat(manualForm.amount.replace(',', '.')),
+          description: manualForm.description
+        }),
+        credentials: "include",
+      })
+      if (!res.ok) throw new Error((await res.json()).error)
+      toast({ title: "Lançamento criado!" })
+      setManualForm({ professional_id: "", amount: "", description: "" })
+      setIsManualDialogOpen(false)
+      load()
+    } catch (e: any) {
+      toast({ title: "Erro ao criar lançamento", description: e.message, variant: "destructive" })
+    } finally {
+      setIsSavingManual(false)
     }
   }
 
@@ -224,6 +240,10 @@ export default function PagamentosProfessoresPage() {
           <p className="text-slate-500 text-sm mt-1">Valor por aula, liberação, saques e lançamento manual</p>
         </div>
         <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setIsManualDialogOpen(true)} className="rounded-xl font-bold bg-pink-50 text-pink-600 border-pink-200 hover:bg-pink-100 hover:text-pink-700">
+            <Plus className="w-4 h-4 mr-2" />
+            Lançar Pagamento
+          </Button>
           <Button variant="outline" onClick={() => setShowConfig(!showConfig)} className="rounded-xl font-bold">
             <Settings2 className="w-4 h-4 mr-2" />
             Configurar
@@ -324,6 +344,64 @@ export default function PagamentosProfessoresPage() {
           </CardContent>
         </Card>
       </div>
+
+      <Dialog open={isManualDialogOpen} onOpenChange={setIsManualDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Lançamento Manual</DialogTitle>
+            <DialogDescription>Crie um lançamento de pagamento manual (ex: Salário fixo, bônus, ajuda de custo).</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label>Professor *</Label>
+              <Select value={manualForm.professional_id} onValueChange={(v) => setManualForm(f => ({ ...f, professional_id: v }))}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione o professor" />
+                </SelectTrigger>
+                <SelectContent>
+                  {professores.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.name} {p.contract_type === 'clt' ? '(CLT)' : p.contract_type === 'fixed' ? '(Fixo)' : ''}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Valor (R$) *</Label>
+              <Input
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="0.00"
+                value={manualForm.amount}
+                onChange={(e) => setManualForm(f => ({ ...f, amount: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label>Descrição (Opcional)</Label>
+              <Input
+                placeholder="Ex: Salário Mensal, Ajuda de Custo..."
+                value={manualForm.description}
+                onChange={(e) => setManualForm(f => ({ ...f, description: e.target.value }))}
+              />
+            </div>
+            <div className="flex gap-2 pt-2">
+              <Button variant="outline" className="flex-1" onClick={() => setIsManualDialogOpen(false)}>
+                Cancelar
+              </Button>
+              <Button
+                onClick={handleCreateManualPayment}
+                disabled={isSavingManual || !manualForm.professional_id || !manualForm.amount}
+                className="flex-1 bg-pink-600 hover:bg-pink-700 text-white font-bold"
+              >
+                {isSavingManual ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <CheckCircle2 className="w-4 h-4 mr-2" />}
+                Lançar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Tabs defaultValue="lancamentos" className="space-y-4">
         <TabsList className="grid w-full grid-cols-3 max-w-md">
@@ -426,10 +504,7 @@ export default function PagamentosProfessoresPage() {
             <CardHeader>
               <CardTitle>Saques solicitados</CardTitle>
               <CardDescription>
-                <span className="block">
-                  PIX manual: após transferir, use &quot;Lançar pagamento&quot;. Stripe: professor precisa ter Connect em &quot;Meus Pagamentos&quot; e a plataforma precisa de saldo +{" "}
-                  <code className="text-xs bg-slate-100 dark:bg-slate-800 px-1 rounded">STRIPE_TEACHER_TRANSFERS_ENABLED=true</code>.
-                </span>
+                Após transferir o valor via PIX para o professor, clique em &quot;Lançar pagamento&quot; para marcar como pago.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -451,41 +526,21 @@ export default function PagamentosProfessoresPage() {
                           {(w.professionals as any)?.name || "—"}
                         </p>
                         <p className="text-xs text-slate-500">
-                          {w.payout_method === "stripe_transfer" && w.stripe_transfer_id
-                            ? `Stripe · ${w.stripe_transfer_id}`
-                            : `PIX ${w.pix_key_type}: ${w.pix_key}`}{" "}
-                          · {formatDate(w.created_at)}
+                          PIX {w.pix_key_type}: {w.pix_key} · {formatDate(w.created_at)}
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 flex-wrap justify-end">
+                      <div className="flex items-center gap-3">
                         <span className="font-black">{formatMoney(w.amount)}</span>
                         {w.status === "pending" && (
-                          <>
-                            {(w.professionals as { stripe_account_id?: string })?.stripe_account_id && (
-                              <Button
-                                size="sm"
-                                variant="secondary"
-                                className="font-bold"
-                                onClick={() => handleStripePayout(w.id)}
-                                disabled={markingStripe === w.id}
-                              >
-                                {markingStripe === w.id ? (
-                                  <Loader2 className="w-4 h-4 animate-spin" />
-                                ) : (
-                                  "Pagar via Stripe"
-                                )}
-                              </Button>
-                            )}
-                            <Button
-                              size="sm"
-                              className="bg-emerald-600 hover:bg-emerald-700"
-                              onClick={() => handleMarkAsPaid(w.id)}
-                              disabled={markingPaid === w.id}
-                            >
-                              {markingPaid === w.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Banknote className="w-4 h-4 mr-1" />}
-                              Lançar pagamento
-                            </Button>
-                          </>
+                          <Button
+                            size="sm"
+                            className="bg-emerald-600 hover:bg-emerald-700"
+                            onClick={() => handleMarkAsPaid(w.id)}
+                            disabled={markingPaid === w.id}
+                          >
+                            {markingPaid === w.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Banknote className="w-4 h-4 mr-1" />}
+                            Lançar pagamento
+                          </Button>
                         )}
                         {w.status === "completed" && (
                           <Badge className="bg-emerald-100 text-emerald-700">Pago</Badge>

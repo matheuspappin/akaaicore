@@ -250,7 +250,7 @@ function PortalLandingContent() {
       <section id="cliente" className="py-24 px-4 bg-secondary/50">
         <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <Badge variant="outline" className={`bg-white dark:bg-slate-900 ${themeText} ${themeBorder} py-1.5 px-4 rounded-full font-bold`}>
+            <Badge variant="outline" className={`bg-white dark:bg-zinc-950 ${themeText} ${themeBorder} py-1.5 px-4 rounded-full font-bold`}>
               {content.clientSection.badge}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-black text-foreground leading-tight tracking-tight">
@@ -267,7 +267,7 @@ function PortalLandingContent() {
                 { icon: isFireProtection ? Calendar : Calendar, text: content.clientSection.feature4 }
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-4 group">
-                  <div className={`w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-border flex items-center justify-center group-hover:scale-110 transition-transform ${themeText}`}>
+                  <div className={`w-12 h-12 rounded-2xl bg-white dark:bg-zinc-950 shadow-sm border border-border flex items-center justify-center group-hover:scale-110 transition-transform ${themeText}`}>
                     <item.icon className="w-6 h-6" />
                   </div>
                   <p className="text-base font-medium text-foreground/80">
@@ -281,14 +281,14 @@ function PortalLandingContent() {
           <div className="relative flex justify-center">
             <div className={`absolute -inset-10 ${isFireProtection ? 'bg-red-500/10' : 'bg-indigo-500/10'} rounded-full blur-[100px] opacity-50`}></div>
             {/* UI Mockup for Client */}
-            <div className="relative w-full max-w-[320px] aspect-[9/18.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-slate-800 rounded-b-2xl z-20"></div>
-              <div className="p-6 h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+            <div className="relative w-full max-w-[320px] aspect-[9/18.5] bg-zinc-950 rounded-[3rem] border-[8px] border-zinc-800 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-zinc-900 rounded-b-2xl z-20"></div>
+              <div className="p-6 h-full flex flex-col bg-slate-50 dark:bg-black text-slate-900 dark:text-slate-100">
                 <div className="flex items-center justify-between pt-6 mb-8">
                   <div className={`w-10 h-10 rounded-xl bg-${themeColor} flex items-center justify-center`}>
                     <ClientIcon className="w-5 h-5 text-white" />
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800"></div>
+                  <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-zinc-900"></div>
                 </div>
 
                 <div className="space-y-6">
@@ -302,7 +302,7 @@ function PortalLandingContent() {
                       <div className="text-sm font-bold">{isFireProtection ? "Próximas Vistorias" : t.portal.experience.today}</div>
                     </div>
                     
-                    <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-border space-y-4">
+                    <div className="p-4 bg-white dark:bg-zinc-950 rounded-2xl shadow-sm border border-border space-y-4">
                       <div className="flex gap-3">
                         <div className={`w-10 h-10 rounded-lg ${themeBgLight} flex items-center justify-center ${themeText}`}>
                           {isFireProtection ? <ClipboardCheck className="w-5 h-5" /> : <Star className="w-5 h-5" />}
@@ -319,24 +319,24 @@ function PortalLandingContent() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-border text-center space-y-1">
+                    <div className="p-4 bg-white dark:bg-zinc-950 rounded-2xl border border-border text-center space-y-1">
                       <div className="text-xs font-bold text-muted-foreground uppercase tracking-tighter italic">{isFireProtection ? "Laudos" : "Check-ins"}</div>
                       <div className={`text-xl font-black ${themeText}`}>{isFireProtection ? "12" : "48"}</div>
                     </div>
-                    <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-border text-center space-y-1">
+                    <div className="p-4 bg-white dark:bg-zinc-950 rounded-2xl border border-border text-center space-y-1">
                       <div className="text-xs font-bold text-muted-foreground uppercase tracking-tighter italic">Status</div>
                       <div className="text-xl font-black text-emerald-500">{isFireProtection ? "OK" : "+12%"}</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-auto h-16 bg-white dark:bg-slate-900 border-t flex items-center justify-around -mx-6 -mb-6 px-4">
+                <div className="mt-auto h-16 bg-white dark:bg-zinc-950 border-t flex items-center justify-around -mx-6 -mb-6 px-4">
                   <div className={`w-10 h-10 rounded-xl ${isFireProtection ? 'bg-red-50 dark:bg-red-900/20' : 'bg-indigo-50 dark:bg-indigo-900/20'} flex items-center justify-center`}>
                     <LayoutDashboard className={`w-5 h-5 ${themeText}`} />
                   </div>
-                  <Calendar className="w-5 h-5 text-slate-400" />
-                  <FileText className="w-5 h-5 text-slate-400" />
-                  <User className="w-5 h-5 text-slate-400" />
+                  <Calendar className="w-5 h-5 text-zinc-400" />
+                  <FileText className="w-5 h-5 text-zinc-400" />
+                  <User className="w-5 h-5 text-zinc-400" />
                 </div>
               </div>
             </div>
@@ -379,23 +379,23 @@ function PortalLandingContent() {
           <div className="relative flex justify-center md:order-1">
             <div className={`absolute -inset-10 ${isFireProtection ? 'bg-red-500/10' : 'bg-violet-500/10'} rounded-full blur-[100px] opacity-50`}></div>
             {/* UI Mockup for Professional */}
-            <div className="relative w-full max-w-[320px] aspect-[9/18.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-slate-800 rounded-b-2xl z-20"></div>
-              <div className="p-6 h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+            <div className="relative w-full max-w-[320px] aspect-[9/18.5] bg-zinc-950 rounded-[3rem] border-[8px] border-zinc-800 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-zinc-900 rounded-b-2xl z-20"></div>
+              <div className="p-6 h-full flex flex-col bg-slate-50 dark:bg-black text-slate-900 dark:text-slate-100">
                 <div className="flex items-center justify-between pt-6 mb-8">
                   <div className={`w-10 h-10 rounded-xl bg-${isFireProtection ? 'red-600' : 'violet-600'} flex items-center justify-center`}>
                     {isFireProtection ? <ClipboardCheck className="w-5 h-5 text-white" /> : <Users className="w-5 h-5 text-white" />}
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800"></div>
+                  <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-zinc-900"></div>
                 </div>
 
                 <div className="space-y-5">
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-border space-y-1">
+                    <div className="p-4 bg-white dark:bg-zinc-950 rounded-2xl border border-border space-y-1">
                       <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{isFireProtection ? "Vistorias" : t.sidebar.dashboard}</div>
                       <div className={`text-xl font-black ${isFireProtection ? 'text-red-600' : 'text-violet-600'}`}>{isFireProtection ? "14" : "R$ 4.2k"}</div>
                     </div>
-                    <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-border space-y-1">
+                    <div className="p-4 bg-white dark:bg-zinc-950 rounded-2xl border border-border space-y-1">
                       <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{isFireProtection ? "Pendentes" : t.common.active}</div>
                       <div className={`text-xl font-black ${isFireProtection ? 'text-red-600' : 'text-violet-600'}`}>{isFireProtection ? "3" : "128"}</div>
                     </div>
@@ -411,7 +411,7 @@ function PortalLandingContent() {
                       { time: "08:30", name: "Cond. Solar", class: isFireProtection ? "Recarga de Extintores" : "Yoga Flow" },
                       { time: "10:00", name: "Supermercado X", class: isFireProtection ? "Vistoria PPCI" : "Personal Training" }
                     ].map((session, sIdx) => (
-                      <div key={sIdx} className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-border flex items-center gap-3">
+                      <div key={sIdx} className="p-3 bg-white dark:bg-zinc-950 rounded-xl border border-border flex items-center gap-3">
                         <div className={`text-[10px] font-black ${isFireProtection ? 'text-red-600' : 'text-violet-600'} w-10 border-r border-border pr-2 leading-none uppercase tracking-tighter italic`}>
                           {session.time}
                         </div>
@@ -433,13 +433,13 @@ function PortalLandingContent() {
                   </div>
                 </div>
 
-                <div className="mt-auto h-16 bg-white dark:bg-slate-900 border-t flex items-center justify-around -mx-6 -mb-6 px-4">
+                <div className="mt-auto h-16 bg-white dark:bg-zinc-950 border-t flex items-center justify-around -mx-6 -mb-6 px-4">
                   <div className={`w-10 h-10 rounded-xl ${isFireProtection ? 'bg-red-50 dark:bg-red-900/20' : 'bg-violet-50 dark:bg-violet-900/20'} flex items-center justify-center`}>
                     <LayoutDashboard className={`w-5 h-5 ${isFireProtection ? 'text-red-600' : 'text-violet-600'}`} />
                   </div>
-                  <Users className="w-5 h-5 text-slate-400" />
-                  <MessageSquare className="w-5 h-5 text-slate-400" />
-                  <Settings className="w-5 h-5 text-slate-400" />
+                  <Users className="w-5 h-5 text-zinc-400" />
+                  <MessageSquare className="w-5 h-5 text-zinc-400" />
+                  <Settings className="w-5 h-5 text-zinc-400" />
                 </div>
               </div>
             </div>
@@ -448,7 +448,7 @@ function PortalLandingContent() {
       </section>
 
       {/* Features Showcase */}
-      <section className="py-32 px-4 relative overflow-hidden bg-slate-950 text-white">
+      <section className="py-32 px-4 relative overflow-hidden bg-black text-white">
         <div className={`absolute top-0 right-0 w-1/2 h-full ${isFireProtection ? 'bg-red-600/10' : 'bg-indigo-600/10'} blur-[120px] -z-10`}></div>
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-20">
@@ -459,7 +459,7 @@ function PortalLandingContent() {
               <h2 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tighter">
                 {renderTitle(isFireProtection ? "Sua segurança técnica, {uncomplicated}." : t.portal.experience.title, "uncomplicated", isFireProtection ? "sem complicações" : t.portal.experience.uncomplicated, isFireProtection ? "text-red-400" : "text-indigo-400")}
               </h2>
-              <p className="text-xl text-slate-400 leading-relaxed max-w-xl">
+              <p className="text-xl text-zinc-400 leading-relaxed max-w-xl">
                 {isFireProtection 
                   ? "Toda a documentação de segurança contra incêndio digitalizada e acessível. Do extintor ao PPCI, tudo sob controle."
                   : t.portal.experience.description}
@@ -477,7 +477,7 @@ function PortalLandingContent() {
                       </div>
                       <h4 className="font-black text-xl tracking-tight italic">{item.title}</h4>
                     </div>
-                    <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -486,14 +486,14 @@ function PortalLandingContent() {
             <div className="flex-1 relative flex justify-center">
               <div className={`absolute -inset-10 ${isFireProtection ? 'bg-red-500/20' : 'bg-indigo-500/20'} rounded-full blur-[100px] opacity-30`}></div>
               {/* App Mockup */}
-              <div className="relative w-full max-w-[300px] aspect-[9/19] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden scale-110">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-slate-800 rounded-b-2xl z-20"></div>
-                <div className="p-6 h-full flex flex-col justify-between relative z-10 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+              <div className="relative w-full max-w-[300px] aspect-[9/19] bg-zinc-950 rounded-[3rem] border-[8px] border-zinc-800 shadow-2xl overflow-hidden scale-110">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-zinc-900 rounded-b-2xl z-20"></div>
+                <div className="p-6 h-full flex flex-col justify-between relative z-10 bg-slate-50 dark:bg-black text-slate-900 dark:text-slate-100">
                    <div className="flex items-center justify-between pt-4">
                       <div className={`w-8 h-8 rounded-lg bg-${themeColor} flex items-center justify-center`}>
                         <MainIcon className="w-4 h-4 text-white" />
                       </div>
-                      <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800"></div>
+                      <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-zinc-900"></div>
                    </div>
 
                    <div className="space-y-4">
@@ -504,9 +504,9 @@ function PortalLandingContent() {
                          </div>
                       </div>
 
-                      <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-3">
+                      <div className="p-4 bg-white dark:bg-zinc-950 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800 space-y-3">
                          <div className="flex justify-between items-center">
-                            <div className="h-2 w-20 bg-slate-100 dark:bg-slate-800 rounded-full"></div>
+                            <div className="h-2 w-20 bg-slate-100 dark:bg-zinc-900 rounded-full"></div>
                             <Badge className={`${isFireProtection ? 'bg-red-100 text-red-600' : 'bg-indigo-100 text-indigo-600'} border-none text-[8px] font-black`}>{t.portal.experience.today}</Badge>
                          </div>
                          <div className="font-bold text-sm italic">{isFireProtection ? "Inspeção Central" : "Ballet Intermediário"}</div>
@@ -514,13 +514,13 @@ function PortalLandingContent() {
                       </div>
                    </div>
 
-                   <div className="h-12 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex items-center justify-around -mx-6 -mb-6 px-4 text-slate-900 dark:text-slate-100">
+                   <div className="h-12 bg-white dark:bg-zinc-950 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-around -mx-6 -mb-6 px-4 text-slate-900 dark:text-slate-100">
                       <div className={`w-6 h-6 rounded ${isFireProtection ? 'bg-red-100' : 'bg-indigo-100'} flex items-center justify-center`}>
                          <LayoutDashboard className={`w-3 h-3 ${themeText}`} />
                       </div>
-                      <Calendar className="w-4 h-4 text-slate-400" />
-                      <FileText className="w-4 h-4 text-slate-400" />
-                      <User className="w-4 h-4 text-slate-400" />
+                      <Calendar className="w-4 h-4 text-zinc-400" />
+                      <FileText className="w-4 h-4 text-zinc-400" />
+                      <User className="w-4 h-4 text-zinc-400" />
                    </div>
                 </div>
               </div>
@@ -530,7 +530,7 @@ function PortalLandingContent() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-4 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 border-t border-border">
+      <footer className="py-16 px-4 bg-slate-50 dark:bg-black text-slate-600 dark:text-zinc-400 border-t border-border">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-2">

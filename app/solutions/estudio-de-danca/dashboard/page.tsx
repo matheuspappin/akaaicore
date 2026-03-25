@@ -91,25 +91,25 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
   }
 
   return (
-    <Card className={cn("border shadow-sm", borderColor, color)}>
+    <Card className={cn("border shadow-sm border-white/10 bg-[#0a0a0a]")}>
       <CardHeader className="pb-3">
-        <CardTitle className={cn("text-base font-bold flex items-center gap-2", titleColor)}>
+        <CardTitle className={cn("text-base font-bold flex items-center gap-2 text-white")}>
           <Link2 className="w-4 h-4" />
           Código de Convite — {label}
         </CardTitle>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{description}</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{description}</p>
       </CardHeader>
       <CardContent>
         {loading ? (
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
+          <div className="flex items-center gap-2 text-zinc-400 text-sm">
             <Loader2 className="w-4 h-4 animate-spin" />
             Carregando código...
           </div>
         ) : (
           <div className="flex items-center gap-3">
-            <div className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Código</p>
-              <p className="font-mono text-2xl font-black text-slate-900 dark:text-white tracking-[0.3em]">
+            <div className="flex-1 bg-black border border-white/10 rounded-xl px-4 py-3">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Código</p>
+              <p className="font-mono text-2xl font-black text-white tracking-[0.3em]">
                 {inviteCode || "—"}
               </p>
             </div>
@@ -117,7 +117,7 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
               <Button
                 size="icon"
                 variant="outline"
-                className={cn("h-10 w-10 rounded-xl transition-all", copied && "bg-emerald-50 border-emerald-300 text-emerald-600")}
+                className={cn("h-10 w-10 rounded-xl transition-all border-white/10 hover:bg-white/5/5 bg-black", copied && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500")}
                 onClick={handleCopy}
                 title="Copiar código"
               >
@@ -126,7 +126,7 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
               <Button
                 size="icon"
                 variant="outline"
-                className={cn("h-10 w-10 rounded-xl transition-all", copiedLink && "bg-emerald-50 border-emerald-300 text-emerald-600")}
+                className={cn("h-10 w-10 rounded-xl transition-all border-white/10 hover:bg-white/5/5 bg-black", copiedLink && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500")}
                 onClick={handleCopyLink}
                 title="Copiar link"
               >
@@ -135,18 +135,18 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
               <Button
                 size="icon"
                 variant="outline"
-                className="h-10 w-10 rounded-xl"
+                className="h-10 w-10 rounded-xl border-white/10 hover:bg-white/5/5 bg-black"
                 onClick={handleRegenerate}
                 disabled={regenerating}
                 title="Gerar novo código"
               >
-                <RefreshCw className={cn("w-4 h-4", regenerating && "animate-spin")} />
+                <RefreshCw className={cn("w-4 h-4 text-zinc-400", regenerating && "animate-spin")} />
               </Button>
             </div>
           </div>
         )}
-        <p className="text-xs text-slate-400 mt-3">
-          Envie o link (recomendado) ou o código. Quem já tem conta pode acessar <span className="font-bold text-slate-600 dark:text-slate-300">Meu Perfil → Estúdio Vinculado</span> e inserir o código.
+        <p className="text-xs text-zinc-400 mt-3">
+          Envie o link (recomendado) ou o código. Quem já tem conta pode acessar <span className="font-bold text-white">Meu Perfil → Estúdio Vinculado</span> e inserir o código.
         </p>
       </CardContent>
     </Card>
@@ -286,27 +286,27 @@ export default function DanceStudioDashboard() {
       label: "Alunos Ativos",
       value: loading ? "..." : String(stats.alunos),
       icon: Users,
-      color: "text-violet-600",
-      bg: "bg-violet-600/10",
-      border: "border-l-violet-600",
+      color: "text-[#e40014]",
+      bg: "bg-[#e40014]/10",
+      border: "border-l-[#e40014]",
       href: "/solutions/estudio-de-danca/dashboard/alunos"
     },
     {
       label: "Professores",
       value: loading ? "..." : String(stats.professores),
       icon: GraduationCap,
-      color: "text-pink-500",
-      bg: "bg-pink-500/10",
-      border: "border-l-pink-500",
+      color: "text-white/80",
+      bg: "bg-white/5",
+      border: "border-l-zinc-800",
       href: "/solutions/estudio-de-danca/dashboard/professores"
     },
     {
       label: "Turmas Ativas",
       value: loading ? "..." : String(stats.turmas),
       icon: Calendar,
-      color: "text-indigo-500",
-      bg: "bg-indigo-500/10",
-      border: "border-l-indigo-500",
+      color: "text-white/80",
+      bg: "bg-white/5",
+      border: "border-l-zinc-800",
       href: "/solutions/estudio-de-danca/dashboard/turmas"
     },
     {
@@ -315,7 +315,7 @@ export default function DanceStudioDashboard() {
       sub: stats.faturamentoGrowth !== 0 && !loading && (
         <span className={cn(
           "text-xs font-semibold mt-0.5 block",
-          stats.faturamentoGrowth >= 0 ? "text-emerald-600" : "text-rose-600"
+          stats.faturamentoGrowth >= 0 ? "text-emerald-500" : "text-[#e40014]"
         )}>
           {stats.faturamentoGrowth >= 0 ? "+" : ""}{stats.faturamentoGrowth}% em relação ao mês anterior
         </span>
@@ -329,25 +329,25 @@ export default function DanceStudioDashboard() {
   ]
 
   const quickActions = [
-    { label: "Aulas ao Vivo", sub: "Monitore quem está no estúdio agora", href: "/solutions/estudio-de-danca/dashboard/ao-vivo", icon: Video, color: "bg-rose-600 hover:bg-rose-700" },
-    { label: "Novo Aluno", sub: "Matricular aluno", href: "/solutions/estudio-de-danca/dashboard/alunos", icon: UserPlus, color: "bg-violet-600 hover:bg-violet-700" },
-    { label: "Nova Turma", sub: "Criar turma de dança", href: "/solutions/estudio-de-danca/dashboard/turmas", icon: Calendar, color: "bg-pink-600 hover:bg-pink-700" },
-    { label: "Financeiro", sub: "Cobranças e pagamentos", href: "/solutions/estudio-de-danca/dashboard/financeiro", icon: DollarSign, color: "bg-emerald-600 hover:bg-emerald-700" },
+    { label: "Aulas ao Vivo", sub: "Monitore quem está no estúdio agora", href: "/solutions/estudio-de-danca/dashboard/ao-vivo", icon: Video, color: "bg-black border border-white/10 hover:border-[#e40014]" },
+    { label: "Novo Aluno", sub: "Matricular aluno", href: "/solutions/estudio-de-danca/dashboard/alunos", icon: UserPlus, color: "bg-[#e40014] hover:bg-[#ff6568]" },
+    { label: "Nova Turma", sub: "Criar turma de dança", href: "/solutions/estudio-de-danca/dashboard/turmas", icon: Calendar, color: "bg-black border border-white/10 hover:border-[#e40014]" },
+    { label: "Financeiro", sub: "Cobranças e pagamentos", href: "/solutions/estudio-de-danca/dashboard/financeiro", icon: DollarSign, color: "bg-black border border-white/10 hover:border-[#e40014]" },
   ]
 
   return (
     <div className="space-y-8">
       {/* Error Banner */}
       {error && (
-        <Card className="border-rose-200 dark:border-rose-800/50 bg-rose-50 dark:bg-rose-900/10">
+          <Card className="border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]">
           <CardContent className="py-4 flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0" />
-            <p className="text-sm font-medium text-rose-800 dark:text-rose-200">{error}</p>
+            <AlertCircle className="w-5 h-5 text-[#e40014] flex-shrink-0" />
+            <p className="text-sm font-medium text-[#e40014] dark:text-[#e40014]">{error}</p>
             {studioId && (
               <Button
                 size="sm"
                 variant="outline"
-                className="ml-auto border-rose-300 text-rose-700 hover:bg-rose-100"
+                className="ml-auto border-[#e40014] text-[#e40014] hover:bg-[#e40014]"
                 onClick={() => loadStats(studioId)}
               >
                 <RefreshCw className="w-4 h-4 mr-1" />
@@ -361,14 +361,14 @@ export default function DanceStudioDashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+          <h1 className="text-3xl font-black text-white tracking-tight">
             Olá, {user?.user_metadata?.name || "Admin"} 👋
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
             Painel de Controle — Estúdio de Dança
           </p>
         </div>
-        <Button type="button" className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl shadow-lg shadow-violet-600/20" asChild>
+        <Button type="button" className="bg-[#e40014] hover:bg-[#ff6568] text-white font-bold rounded-xl shadow-lg shadow-red-600/20" asChild>
           <Link href="/solutions/estudio-de-danca/dashboard/alunos">
             <Plus className="w-4 h-4 mr-2" />
             Novo Aluno
@@ -380,10 +380,10 @@ export default function DanceStudioDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {quickActions.map((action) => (
           <Link key={action.href} href={action.href}>
-            <Card className={cn("text-white border-none shadow-lg cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98]", action.color)}>
+            <Card className={cn("text-white shadow-lg cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98]", action.color)}>
               <CardContent className="p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-white/5/10 flex items-center justify-center">
                     <action.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -403,7 +403,7 @@ export default function DanceStudioDashboard() {
         {statCards.map((stat) => (
           <Link key={stat.label} href={stat.href}>
             <Card className={cn(
-              "border-l-4 bg-white dark:bg-slate-900/50 shadow-sm hover:shadow-md transition-all cursor-pointer",
+              "border-l-4 border-t-0 border-r-0 border-b-0 border-white/10 bg-black shadow-lg hover:shadow-xl transition-all cursor-pointer",
               loading && "animate-pulse",
               stat.border
             )}>
@@ -411,8 +411,8 @@ export default function DanceStudioDashboard() {
                 <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", stat.bg)}>
                   <stat.icon className={cn("w-5 h-5", stat.color)} />
                 </div>
-                <p className={cn("text-3xl font-black", stat.color)}>{stat.value}</p>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">{stat.label}</p>
+                <p className="text-3xl font-black text-white">{stat.value}</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-1">{stat.label}</p>
                 {"sub" in stat && stat.sub}
               </CardContent>
             </Card>
@@ -423,36 +423,36 @@ export default function DanceStudioDashboard() {
       {/* Bottom Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Turmas de Hoje */}
-        <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+        <Card className="bg-[#0a0a0a] shadow-sm border border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <div>
-              <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-violet-600" />
+              <CardTitle className="text-white flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-white/50" />
                 Turmas de Hoje
               </CardTitle>
-              <CardDescription>Aulas programadas para hoje</CardDescription>
+              <CardDescription className="text-zinc-500">Aulas programadas para hoje</CardDescription>
             </div>
             <Link href="/solutions/estudio-de-danca/dashboard/turmas">
-              <Button variant="ghost" size="sm" className="text-violet-600 font-bold text-xs">
+              <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/5 font-bold text-xs">
                 Ver todas <ArrowRight className="w-3 h-3 ml-1" />
               </Button>
             </Link>
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="flex items-center justify-center py-12 gap-2 text-slate-400">
+              <div className="flex items-center justify-center py-12 gap-2 text-zinc-400">
                 <Loader2 className="w-5 h-5 animate-spin" />
                 <span className="text-sm font-medium">Carregando...</span>
               </div>
             ) : stats.turmasDeHoje.length === 0 ? (
               <div className="text-center py-10">
-                <Music className="w-12 h-12 mx-auto mb-3 text-slate-300 dark:text-slate-600" />
-                <p className="font-medium text-slate-500 dark:text-slate-400 mb-2">
+                <Music className="w-12 h-12 mx-auto mb-3 text-zinc-600" />
+                <p className="font-medium text-zinc-400 mb-2">
                   {stats.turmas === 0
                     ? "Nenhuma turma cadastrada ainda"
                     : "Nenhuma turma programada para hoje"}
                 </p>
-                <Button type="button" size="sm" className="bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl" asChild>
+                <Button type="button" size="sm" className="bg-[#e40014] hover:bg-[#ff6568] text-white font-bold rounded-xl" asChild>
                   <Link href="/solutions/estudio-de-danca/dashboard/turmas">
                     <Plus className="w-4 h-4 mr-1" /> {stats.turmas === 0 ? "Criar primeira turma" : "Ver turmas"}
                   </Link>
@@ -464,18 +464,18 @@ export default function DanceStudioDashboard() {
                   <Link
                     key={t.id}
                     href={`/solutions/estudio-de-danca/dashboard/turmas/${t.id}/chamada`}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-6 h-6 text-violet-600" />
+                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/5">
+                      <Clock className="w-5 h-5 text-zinc-400 group-hover:text-[#e40014] transition-colors" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold text-slate-900 dark:text-white truncate">{t.name}</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                      <p className="font-bold text-white truncate">{t.name}</p>
+                      <p className="text-xs text-zinc-400">
                         {t.slots.map((s) => `${s.time}`).join(", ")} · {t.teacherName}
                       </p>
                     </div>
-                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-violet-600 flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-zinc-500 group-hover:text-white flex-shrink-0" />
                   </Link>
                 ))}
               </div>
@@ -486,16 +486,17 @@ export default function DanceStudioDashboard() {
         {/* Convites e Gamificação */}
         <div className="space-y-4">
           {/* Destaque Gamificação */}
-          <Card className="bg-gradient-to-br from-violet-600 to-pink-600 text-white border-none shadow-lg">
-            <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
-                <Trophy className="w-6 h-6 text-white" />
+          <Card className="bg-[#0a0a0a] border border-white/10 shadow-lg relative overflow-hidden">
+            <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#e40014]/20 to-transparent pointer-events-none" />
+            <CardContent className="p-5 flex items-center gap-4 relative z-10">
+              <div className="w-12 h-12 rounded-xl bg-[#e40014]/10 flex items-center justify-center flex-shrink-0 border border-[#e40014]/20">
+                <Trophy className="w-6 h-6 text-[#e40014]" />
               </div>
               <div className="flex-1">
                 <p className="font-bold text-white">Gamificação de Alunos</p>
-                <p className="text-sm text-white/70">Rankings, conquistas e engajamento</p>
+                <p className="text-sm text-zinc-400">Rankings, conquistas e engajamento</p>
               </div>
-              <Button type="button" size="sm" variant="secondary" className="font-bold rounded-xl" asChild>
+              <Button type="button" size="sm" variant="outline" className="font-bold rounded-xl border-white/10 text-white hover:bg-white/5/10" asChild>
                 <Link href="/solutions/estudio-de-danca/dashboard/gamificacao">Ver</Link>
               </Button>
             </CardContent>
@@ -506,10 +507,10 @@ export default function DanceStudioDashboard() {
             type="teacher"
             label="Professor"
             description="Compartilhe com professores para que se vinculem ao estúdio."
-            color="bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-600/10 dark:to-rose-600/10"
-            borderColor="border border-pink-200 dark:border-pink-600/20"
-            titleColor="text-pink-700 dark:text-pink-400"
-            buttonColor="bg-pink-600 hover:bg-pink-700"
+            color="bg-[#0a0a0a]"
+            borderColor="border border-white/10"
+            titleColor="text-white"
+            buttonColor="bg-white/5/10 hover:bg-white/5/20"
           />
 
           {/* Código de Convite — Aluno */}
@@ -517,24 +518,24 @@ export default function DanceStudioDashboard() {
             type="student"
             label="Aluno"
             description="Compartilhe com alunos para que se vinculem ao estúdio."
-            color="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-600/10 dark:to-purple-600/10"
-            borderColor="border border-violet-200 dark:border-violet-600/20"
-            titleColor="text-violet-700 dark:text-violet-400"
-            buttonColor="bg-violet-600 hover:bg-violet-700"
+            color="bg-[#0a0a0a]"
+            borderColor="border border-white/10"
+            titleColor="text-white"
+            buttonColor="bg-[#e40014] hover:bg-[#ff6568]"
           />
 
           {/* Clientes (CRM) */}
-          <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-indigo-200 dark:border-indigo-600/20">
+          <Card className="bg-[#0a0a0a] border border-white/10 shadow-lg">
             <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-600/20 flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-6 h-6 text-indigo-600" />
+              <div className="w-12 h-12 rounded-xl bg-white/5/5 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-6 h-6 text-zinc-400" />
               </div>
               <div>
-                <p className="font-bold text-slate-900 dark:text-white">Clientes (CRM)</p>
-                <p className="text-sm text-slate-500">Quem comprou/visitou — converta em alunos</p>
+                <p className="font-bold text-white">Clientes (CRM)</p>
+                <p className="text-sm text-zinc-500">Quem comprou/visitou</p>
               </div>
               <Link href="/solutions/estudio-de-danca/dashboard/leads" className="ml-auto">
-                <Button type="button" size="sm" variant="outline" className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 font-bold rounded-xl">
+                <Button type="button" size="sm" variant="outline" className="border-white/10 text-zinc-300 hover:text-white hover:bg-white/5/5 font-bold rounded-xl">
                   Ver
                 </Button>
               </Link>

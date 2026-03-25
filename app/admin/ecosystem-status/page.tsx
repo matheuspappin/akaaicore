@@ -41,7 +41,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 const VERTICAL_STATUS_CONFIG = {
   active:       { label: 'Ativo',   className: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', icon: CheckCircle2 },
   beta:         { label: 'Beta',    className: 'bg-amber-500/10 text-amber-400 border-amber-500/20',       icon: AlertCircle },
-  coming_soon:  { label: 'Em Breve', className: 'bg-slate-500/10 text-slate-400 border-slate-500/20',     icon: XCircle },
+  coming_soon:  { label: 'Em Breve', className: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20',     icon: XCircle },
 }
 
 const ECOSYSTEM_ROUTES = [
@@ -110,7 +110,7 @@ export default function EcosystemStatusPage() {
   }, 0)
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 pb-10">
+    <div className="flex flex-col min-h-screen bg-black pb-10">
       <AdminHeader title="Status do Ecossistema" />
 
       <div className="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
@@ -122,7 +122,7 @@ export default function EcosystemStatusPage() {
           </div>
           <div className="flex-1">
             <h2 className="text-2xl font-black text-white mb-1">AKAAI CORE — Status do Ecossistema</h2>
-            <p className="text-slate-400 text-sm">
+            <p className="text-zinc-400 text-sm">
               O AKAAI CORE é o <strong className="text-indigo-300">coração do ecossistema</strong> — não é comercializado diretamente.
               Cada verticalização abaixo é um produto independente construído sobre esta engine.
             </p>
@@ -132,7 +132,7 @@ export default function EcosystemStatusPage() {
             size="sm"
             onClick={() => setRefreshKey(k => k + 1)}
             disabled={loading}
-            className="border-slate-700 text-slate-400 hover:text-white gap-2 flex-shrink-0"
+            className="border-slate-700 text-zinc-400 hover:text-white gap-2 flex-shrink-0"
           >
             <RefreshCw className={cn("w-4 h-4", loading && "animate-spin")} />
             Atualizar
@@ -147,7 +147,7 @@ export default function EcosystemStatusPage() {
             { icon: Database, label: 'Módulos Ativos', value: loading ? '...' : String(totalModulesEnabled), color: 'text-violet-400', bg: 'bg-violet-500/10' },
             { icon: Layers, label: 'Verticalizações Total', value: loading ? '...' : String(verticalizations.length), color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
           ].map(kpi => (
-            <Card key={kpi.label} className="bg-slate-900/50 border-slate-800">
+            <Card key={kpi.label} className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="pt-5 pb-4">
                 <div className={cn('w-9 h-9 rounded-lg flex items-center justify-center mb-3', kpi.bg)}>
                   <kpi.icon className={cn('w-4 h-4', kpi.color)} />
@@ -179,11 +179,11 @@ export default function EcosystemStatusPage() {
                 const activeModulesCount = Object.values(v.modules || {}).filter(Boolean).length
 
                 return (
-                  <Card key={v.id} className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-all">
+                  <Card key={v.id} className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-all">
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div className={cn('w-11 h-11 rounded-xl border flex items-center justify-center', v.icon_bg)}>
-                          <IconComp className={cn('w-5 h-5', v.icon_color ?? 'text-slate-400')} />
+                          <IconComp className={cn('w-5 h-5', v.icon_color ?? 'text-zinc-400')} />
                         </div>
                         <span className={cn('flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border', statusCfg.className)}>
                           <StatusIcon className="w-3 h-3" />
@@ -192,9 +192,9 @@ export default function EcosystemStatusPage() {
                       </div>
 
                       <h4 className="font-black text-white text-lg mb-1">{v.name}</h4>
-                      <p className="text-slate-500 text-xs mb-4">Nicho: <span className="text-slate-400">{v.niche}</span></p>
+                      <p className="text-zinc-500 text-xs mb-4">Nicho: <span className="text-zinc-400">{v.niche}</span></p>
 
-                      <div className="grid grid-cols-3 gap-3 py-3 border-t border-b border-slate-800 mb-4">
+                      <div className="grid grid-cols-3 gap-3 py-3 border-t border-b border-zinc-800 mb-4">
                         <div className="text-center">
                           <p className="text-lg font-black text-white">{v.stats?.tenants ?? 0}</p>
                           <p className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Empresas</p>
@@ -218,7 +218,7 @@ export default function EcosystemStatusPage() {
                         </Link>
                         {v.landing_url && (
                           <Link href={v.landing_url} target="_blank">
-                            <Button size="sm" variant="outline" className="border-slate-700 text-slate-400 hover:text-white">
+                            <Button size="sm" variant="outline" className="border-slate-700 text-zinc-400 hover:text-white">
                               <ExternalLink className="w-3.5 h-3.5" />
                             </Button>
                           </Link>
@@ -242,7 +242,7 @@ export default function EcosystemStatusPage() {
             {ECOSYSTEM_ROUTES.map(eco => {
               const IconComp = eco.icon
               return (
-                <Card key={eco.label} className="bg-slate-900/50 border-slate-800">
+                <Card key={eco.label} className="bg-zinc-950/50 border-zinc-800">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-3">
                       <div className={cn('w-9 h-9 rounded-lg flex items-center justify-center', eco.bg)}>
@@ -260,7 +260,7 @@ export default function EcosystemStatusPage() {
                         key={route.path}
                         href={route.path}
                         target="_blank"
-                        className="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors group"
+                        className="flex items-center justify-between p-2.5 rounded-lg bg-zinc-900/50 hover:bg-zinc-900 transition-colors group"
                       >
                         <div className="flex items-center gap-2">
                           <span className={cn(
@@ -271,11 +271,11 @@ export default function EcosystemStatusPage() {
                           )}>
                             {route.public ? 'Público' : 'Auth'}
                           </span>
-                          <span className="text-slate-400 text-xs font-medium group-hover:text-white transition-colors">{route.name}</span>
+                          <span className="text-zinc-400 text-xs font-medium group-hover:text-white transition-colors">{route.name}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <span className="text-slate-600 text-[10px] font-mono hidden md:block">{route.path}</span>
-                          <ExternalLink className="w-3 h-3 text-slate-600 group-hover:text-slate-400" />
+                          <ExternalLink className="w-3 h-3 text-slate-600 group-hover:text-zinc-400" />
                         </div>
                       </Link>
                     ))}
@@ -287,7 +287,7 @@ export default function EcosystemStatusPage() {
         </div>
 
         {/* Quick Links */}
-        <Card className="bg-slate-900/30 border-slate-800">
+        <Card className="bg-zinc-950/30 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-slate-200 text-sm flex items-center gap-2">
               <ArrowRight className="w-4 h-4 text-indigo-400" />
@@ -302,7 +302,7 @@ export default function EcosystemStatusPage() {
               { label: 'Logs do Sistema', href: '/admin/logs' },
             ].map(link => (
               <Link key={link.href} href={link.href}>
-                <Button size="sm" variant="outline" className="border-slate-700 text-slate-400 hover:text-white hover:border-slate-600 gap-2">
+                <Button size="sm" variant="outline" className="border-slate-700 text-zinc-400 hover:text-white hover:border-slate-600 gap-2">
                   <ArrowRight className="w-3.5 h-3.5" />
                   {link.label}
                 </Button>

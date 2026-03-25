@@ -22,7 +22,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 const statusConfig = {
   active: { label: 'Ativo', className: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
   beta: { label: 'Beta', className: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
-  coming_soon: { label: 'Em Breve', className: 'bg-slate-500/10 text-slate-400 border-slate-500/20' },
+  coming_soon: { label: 'Em Breve', className: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20' },
 }
 
 function VerticalCard({ v }: { v: VerticalRecord }) {
@@ -30,7 +30,7 @@ function VerticalCard({ v }: { v: VerticalRecord }) {
   const IconComponent = ICON_MAP[v.icon_name] || Layers
 
   return (
-    <Card className="bg-slate-900/50 border-slate-800 hover:border-slate-700 transition-all duration-300 group overflow-hidden">
+    <Card className="bg-zinc-950/50 border-zinc-800 hover:border-slate-700 transition-all duration-300 group overflow-hidden">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between mb-4">
           <div className={`w-14 h-14 rounded-xl border flex items-center justify-center flex-shrink-0 ${v.icon_bg}`}>
@@ -43,7 +43,7 @@ function VerticalCard({ v }: { v: VerticalRecord }) {
         <CardTitle className="text-xl font-black text-white tracking-tight">
           {v.name}
         </CardTitle>
-        <CardDescription className="text-slate-500 text-sm leading-relaxed line-clamp-3">
+        <CardDescription className="text-zinc-500 text-sm leading-relaxed line-clamp-3">
           {v.description}
         </CardDescription>
       </CardHeader>
@@ -55,7 +55,7 @@ function VerticalCard({ v }: { v: VerticalRecord }) {
             {v.tags.map((tag: string) => (
               <span
                 key={tag}
-                className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md bg-slate-800 text-slate-500"
+                className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md bg-zinc-900 text-zinc-500"
               >
                 {tag}
               </span>
@@ -64,7 +64,7 @@ function VerticalCard({ v }: { v: VerticalRecord }) {
         )}
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 py-4 border-t border-b border-slate-800">
+        <div className="grid grid-cols-3 gap-3 py-4 border-t border-b border-zinc-800">
           <div className="text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Users className="w-3.5 h-3.5 text-indigo-400" />
@@ -107,7 +107,7 @@ function VerticalCard({ v }: { v: VerticalRecord }) {
               <Button
                 variant="outline"
                 size="sm"
-                className="border-slate-700 text-slate-400 hover:text-white hover:border-slate-600"
+                className="border-slate-700 text-zinc-400 hover:text-white hover:border-slate-600"
                 title="Abrir landing page"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -125,7 +125,7 @@ export default async function VerticalizationsPage() {
   const activeCount = verticalizations.filter(v => v.status === 'active').length
 
   return (
-    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-black">
       <AdminHeader title="Central de Verticalizações" />
 
       <div className="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
@@ -139,7 +139,7 @@ export default async function VerticalizationsPage() {
             <h2 className="text-2xl font-black text-white tracking-tight mb-1">
               AKAAI CORE — O Coração do Ecossistema
             </h2>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl">
+            <p className="text-zinc-400 text-sm leading-relaxed max-w-2xl">
               O <strong className="text-indigo-300">AKAAI CORE</strong> é o coração do ecossistema — a engine central não comercializada diretamente.
               Cada verticalização (Fire Protection, DanceFlow, AgroFlow AI...) é uma solução white-label independente construída sobre esta base.
               Gerencie todas as soluções, tenants e módulos a partir deste painel de controle.
@@ -148,12 +148,12 @@ export default async function VerticalizationsPage() {
           <div className="hidden lg:flex items-center gap-3">
             <div className="text-center">
               <p className="text-3xl font-black text-white">{activeCount}</p>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Ativas</p>
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Ativas</p>
             </div>
-            <div className="w-px h-10 bg-slate-800" />
+            <div className="w-px h-10 bg-zinc-900" />
             <div className="text-center">
               <p className="text-3xl font-black text-white">{verticalizations.length}</p>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Total</p>
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Total</p>
             </div>
           </div>
         </div>
@@ -179,13 +179,13 @@ export default async function VerticalizationsPage() {
           {verticalizations.length === 0 ? (
             /* Estado vazio — antes de rodar a migration */
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              <Card className="bg-slate-900/20 border-slate-800/50 border-dashed opacity-50">
+              <Card className="bg-zinc-950/20 border-zinc-800/50 border-dashed opacity-50">
                 <CardContent className="flex flex-col items-center justify-center h-full min-h-[280px] gap-4 text-center">
                   <div className="w-14 h-14 rounded-xl border border-dashed border-slate-700 flex items-center justify-center">
                     <Plus className="w-6 h-6 text-slate-600" />
                   </div>
                   <div>
-                    <p className="text-slate-500 font-bold text-sm">Nova Verticalização</p>
+                    <p className="text-zinc-500 font-bold text-sm">Nova Verticalização</p>
                     <p className="text-slate-700 text-xs mt-1">Em desenvolvimento</p>
                   </div>
                 </CardContent>
@@ -199,16 +199,16 @@ export default async function VerticalizationsPage() {
 
               {/* Card placeholder "Nova Verticalização" */}
               <Link href="/admin/verticalizations/new" className="group">
-                <Card className="bg-slate-900/20 border-slate-800/50 border-dashed hover:border-indigo-500/30 hover:bg-indigo-500/5 transition-all duration-300 h-full min-h-[280px]">
+                <Card className="bg-zinc-950/20 border-zinc-800/50 border-dashed hover:border-indigo-500/30 hover:bg-indigo-500/5 transition-all duration-300 h-full min-h-[280px]">
                   <CardContent className="flex flex-col items-center justify-center h-full min-h-[280px] gap-4 text-center">
                     <div className="w-14 h-14 rounded-xl border border-dashed border-slate-700 group-hover:border-indigo-500/50 flex items-center justify-center transition-all">
                       <Plus className="w-6 h-6 text-slate-600 group-hover:text-indigo-400 transition-colors" />
                     </div>
                     <div>
-                      <p className="text-slate-500 group-hover:text-slate-300 font-bold text-sm transition-colors">
+                      <p className="text-zinc-500 group-hover:text-slate-300 font-bold text-sm transition-colors">
                         Nova Verticalização
                       </p>
-                      <p className="text-slate-700 group-hover:text-slate-500 text-xs mt-1 transition-colors">
+                      <p className="text-slate-700 group-hover:text-zinc-500 text-xs mt-1 transition-colors">
                         Clique para criar uma nova solução white-label
                       </p>
                     </div>
@@ -220,7 +220,7 @@ export default async function VerticalizationsPage() {
         </div>
 
         {/* Arquitetura Info */}
-        <Card className="bg-slate-900/30 border-slate-800">
+        <Card className="bg-zinc-950/30 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-slate-200 flex items-center gap-2 text-base">
               <Layers className="w-5 h-5 text-indigo-400" />
@@ -258,7 +258,7 @@ export default async function VerticalizationsPage() {
                   </div>
                   <div>
                     <p className={`font-bold text-sm ${item.color}`}>{item.title}</p>
-                    <p className="text-slate-500 text-xs mt-1 leading-relaxed">{item.desc}</p>
+                    <p className="text-zinc-500 text-xs mt-1 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}

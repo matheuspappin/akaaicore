@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const PAGBANK_CLIENT_ID = process.env.PAGBANK_CLIENT_ID; // Seu Client ID do PagBank
-  const REDIRECT_URI = `https://akaaicore.com/api/pagbank/oauth/callback`; // URL de callback fixa para produção
+  const origin = req.nextUrl.origin;
+  const REDIRECT_URI = `${origin}/api/pagbank/oauth/callback`; // URL de callback dinâmica (local ou prod)
 
   if (!PAGBANK_CLIENT_ID) {
     return NextResponse.json({ message: 'PAGBANK_CLIENT_ID não configurado.' }, { status: 500 });

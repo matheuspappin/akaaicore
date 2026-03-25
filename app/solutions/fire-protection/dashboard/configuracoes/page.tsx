@@ -158,7 +158,7 @@ function InviteUserButton() {
                   <Copy className="w-4 h-4" />
                 </Button>
               </div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-zinc-500">
                 Envie este link ao {roleLabels[role].toLowerCase()}. Ele fará login e ao acessar o link aceitará o convite.
               </p>
             </div>
@@ -252,7 +252,7 @@ function TabEmpresa({
 
   return (
     <div className="space-y-6">
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base font-black flex items-center gap-2">
             <FireExtinguisher className="w-5 h-5 text-red-600" />
@@ -270,7 +270,7 @@ function TabEmpresa({
                 <Upload className="w-4 h-4 mr-2" />
                 Alterar Logo (em breve)
               </Button>
-              <p className="text-xs text-slate-400 mt-1">PNG ou JPG, máx. 2 MB</p>
+              <p className="text-xs text-zinc-400 mt-1">PNG ou JPG, máx. 2 MB</p>
             </div>
           </div>
 
@@ -343,7 +343,7 @@ function TabEmpresa({
         </CardContent>
       </Card>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base font-black flex items-center gap-2">
             <Palette className="w-5 h-5 text-purple-600" />
@@ -374,7 +374,7 @@ function TabEmpresa({
                 onChange={(e) => setEmpresa((p) => ({ ...p, primary_color: e.target.value }))}
                 className="w-32"
               />
-              <span className="text-sm text-slate-500">Cor tema</span>
+              <span className="text-sm text-zinc-500">Cor tema</span>
             </div>
           </div>
           <Button
@@ -462,7 +462,7 @@ function TabNotificacoes({
   return (
     <div className="space-y-4">
       {grupos.map((grupo) => (
-        <Card key={grupo.titulo} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+        <Card key={grupo.titulo} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-black flex items-center gap-2">
               <Bell className="w-4 h-4 text-red-600" />
@@ -474,7 +474,7 @@ function TabNotificacoes({
               <div key={item.key} className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm font-bold text-slate-900 dark:text-white">{item.label}</p>
-                  <p className="text-xs text-slate-500">{item.sub}</p>
+                  <p className="text-xs text-zinc-500">{item.sub}</p>
                 </div>
                 <Switch
                   checked={notifs[item.key as keyof typeof notifs]}
@@ -522,7 +522,7 @@ function TabSeguranca() {
 
   return (
     <div className="space-y-4">
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base font-black flex items-center gap-2">
             <Key className="w-5 h-5 text-red-600" />
@@ -569,7 +569,7 @@ function TabSeguranca() {
         </CardContent>
       </Card>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base font-black flex items-center gap-2">
             <Shield className="w-5 h-5 text-emerald-600" />
@@ -579,7 +579,7 @@ function TabSeguranca() {
         <CardContent className="flex items-center justify-between">
           <div>
             <p className="text-sm font-bold text-slate-900 dark:text-white">2FA via Autenticador</p>
-            <p className="text-xs text-slate-500">Proteja sua conta com verificação extra</p>
+            <p className="text-xs text-zinc-500">Proteja sua conta com verificação extra</p>
           </div>
           <div className="flex items-center gap-2">
             <Badge className="bg-amber-100 text-amber-700 border-0 font-bold">Inativo</Badge>
@@ -588,7 +588,7 @@ function TabSeguranca() {
         </CardContent>
       </Card>
 
-      <Card className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+      <Card className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base font-black flex items-center gap-2">
             <Users className="w-5 h-5 text-blue-600" />
@@ -608,7 +608,7 @@ function TabSeguranca() {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-slate-900 dark:text-white">{u.nome}</p>
-                  <p className="text-xs text-slate-400">{u.email} · {u.role}</p>
+                  <p className="text-xs text-zinc-400">{u.email} · {u.role}</p>
                 </div>
               </div>
               <Badge className={cn(
@@ -805,19 +805,19 @@ function TabIntegracoes({ studioId, status, onSaved }: { studioId: string | null
       {integracoes.map((integ) => {
         const ativo = status[integ.id] ?? false
         return (
-          <Card key={integ.nome} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 shadow-sm">
+          <Card key={integ.nome} className="bg-white dark:bg-zinc-950/50 border border-slate-200 dark:border-white/10 shadow-sm">
             <CardContent className="p-5 flex items-center gap-4">
               <div className={cn("w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0", integ.bg)}>
                 <integ.icone className={cn("w-5 h-5", integ.color)} />
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-slate-900 dark:text-white">{integ.nome}</h3>
-                <p className="text-sm text-slate-500">{integ.sub}</p>
+                <p className="text-sm text-zinc-500">{integ.sub}</p>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 <Badge className={cn(
                   "font-bold border-0 text-xs",
-                  ativo ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" : "bg-slate-100 text-slate-500 dark:bg-slate-600/20"
+                  ativo ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-600/20 dark:text-emerald-400" : "bg-slate-100 text-zinc-500 dark:bg-slate-600/20"
                 )}>
                   {ativo ? "Conectado" : "Desconectado"}
                 </Badge>
@@ -1078,13 +1078,13 @@ export default function ConfiguracoesPage() {
           <Settings className="w-6 h-6 text-red-600" />
           Configurações
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-0.5">
           Gerencie as configurações do sistema
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-slate-100 dark:bg-slate-800 rounded-xl p-1 overflow-x-auto">
+      <div className="flex gap-1 bg-slate-100 dark:bg-zinc-900 rounded-xl p-1 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.key}
@@ -1092,8 +1092,8 @@ export default function ConfiguracoesPage() {
             className={cn(
               "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap",
               activeTab === tab.key
-                ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm"
-                : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                ? "bg-white dark:bg-zinc-950 text-slate-900 dark:text-white shadow-sm"
+                : "text-zinc-500 hover:text-slate-700 dark:hover:text-slate-300"
             )}
           >
             <tab.icon className="w-4 h-4" />

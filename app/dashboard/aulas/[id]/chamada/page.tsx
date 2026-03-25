@@ -359,7 +359,7 @@ export default function AdminAttendancePage() {
         </div>
 
         <div className="grid grid-cols-1 gap-6">
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
                 <Save className="w-5 h-5 text-indigo-600" />
@@ -369,7 +369,7 @@ export default function AdminAttendancePage() {
             </CardHeader>
             <CardContent>
               <textarea
-                className="w-full min-h-[80px] p-3 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-sm"
+                className="w-full min-h-[80px] p-3 rounded-xl border border-slate-100 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/50 focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-sm"
                 placeholder="O que foi ensinado hoje?..."
                 value={contentTaught}
                 onChange={(e) => setContentTaught(e.target.value)}
@@ -377,8 +377,8 @@ export default function AdminAttendancePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-sm overflow-hidden bg-white dark:bg-slate-900">
-            <CardHeader className="border-b border-slate-50 dark:border-slate-800">
+          <Card className="border-none shadow-sm overflow-hidden bg-white dark:bg-zinc-950">
+            <CardHeader className="border-b border-slate-50 dark:border-zinc-800">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Users className="w-5 h-5 text-indigo-600" />
@@ -391,14 +391,14 @@ export default function AdminAttendancePage() {
               </div>
             </CardHeader>
             <CardContent className="p-0">
-              <div className="divide-y divide-slate-50 dark:divide-slate-800">
+              <div className="divide-y divide-slate-50 dark:divide-zinc-800">
                 {students.length > 0 ? (
                   students.map((student) => (
                     <div 
                       key={student.id} 
                       className={cn(
                         "p-4 transition-colors",
-                        attendance[student.id] === 'absent' ? "bg-rose-50/20" : "bg-white dark:bg-slate-900/50"
+                        attendance[student.id] === 'absent' ? "bg-rose-50/20" : "bg-white dark:bg-zinc-950/50"
                       )}
                     >
                       <div className="flex items-center justify-between gap-4">
@@ -438,7 +438,7 @@ export default function AdminAttendancePage() {
                       
                       <Input
                         placeholder={`Observação da admin sobre este ${vocabulary.client.toLowerCase()}...`}
-                        className="mt-3 h-8 text-[10px] bg-slate-50/50 dark:bg-slate-800/50 border-none rounded-lg"
+                        className="mt-3 h-8 text-[10px] bg-slate-50/50 dark:bg-zinc-900/50 border-none rounded-lg"
                         value={studentNotes[student.id] || ""}
                         onChange={(e) => setStudentNotes(prev => ({ ...prev, [student.id]: e.target.value }))}
                       />

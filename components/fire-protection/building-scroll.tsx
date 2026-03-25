@@ -386,7 +386,7 @@ export function FireBuildingScrollSection() {
     <section
       id="how-it-works"
       ref={containerRef}
-      className="relative bg-slate-950 overflow-hidden isolate"
+      className="relative bg-black overflow-hidden isolate"
       style={{ height: '300vh' }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex items-center" style={{ willChange: 'transform' }}>
@@ -406,7 +406,7 @@ export function FireBuildingScrollSection() {
                 {[1, 2, 3, 4, 5].map((i) => (
                   <motion.div
                     key={i}
-                    className={cn('absolute w-1 h-1 rounded-full', currentPalette ? currentPalette.particle : 'bg-slate-500/30')}
+                    className={cn('absolute w-1 h-1 rounded-full', currentPalette ? currentPalette.particle : 'bg-zinc-500/30')}
                     style={{ left: `${15 + i * 18}%`, top: `${25 + (i % 3) * 20}%` }}
                     animate={{ y: [0, -8, 0], opacity: [0.3, 0.8, 0.3] }}
                     transition={{ duration: 2.5 + i * 0.3, repeat: Infinity, delay: i * 0.2 }}
@@ -582,12 +582,12 @@ export function FireBuildingScrollSection() {
 
               <div className="order-1 lg:order-2 relative" style={{ minHeight: '320px' }}>
                 <motion.div className="absolute inset-0 flex flex-col justify-center" animate={{ opacity: activeScene < 0 ? 1 : 0, y: activeScene < 0 ? 0 : -20 }} transition={{ duration: 0.5 }} style={{ pointerEvents: activeScene < 0 ? 'auto' : 'none' }}>
-                  <p className="text-[10px] uppercase tracking-[0.28em] text-slate-500 font-black mb-5">Como funciona</p>
+                  <p className="text-[10px] uppercase tracking-[0.28em] text-zinc-500 font-black mb-5">Como funciona</p>
                   <h2 className="text-4xl lg:text-5xl xl:text-[3.2rem] font-black text-white leading-[1.05] mb-6">
                     Proteção Contra<br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">Incêndio Digital</span>
                   </h2>
-                  <p className="text-slate-400 text-lg leading-relaxed max-w-md">Role para explorar o interior do prédio e veja como o FireControl organiza cada andar do seu negócio.</p>
+                  <p className="text-zinc-400 text-lg leading-relaxed max-w-md">Role para explorar o interior do prédio e veja como o FireControl organiza cada andar do seu negócio.</p>
                 </motion.div>
 
                 {SCENES.map((scene, i) => {
@@ -636,8 +636,8 @@ export function FireBuildingScrollSection() {
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ opacity: activeScene < 0 ? 0.5 : 0, transition: 'opacity 0.5s ease' }}>
-          <p className="text-[9px] text-slate-500 uppercase tracking-[0.22em] font-bold">Role para explorar</p>
-          <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent rounded-full" />
+          <p className="text-[9px] text-zinc-500 uppercase tracking-[0.22em] font-bold">Role para explorar</p>
+          <div className="w-px h-12 bg-gradient-to-b from-zinc-500 to-transparent rounded-full" />
         </div>
       </div>
     </section>

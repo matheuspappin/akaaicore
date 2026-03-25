@@ -207,7 +207,7 @@ export function NicheLandingClient({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed"
             >
               {content.heroSubheadline}
             </motion.p>
@@ -237,7 +237,7 @@ export function NicheLandingClient({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.35 }}
-                className="mt-10 sm:mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-slate-500 text-sm"
+                className="mt-10 sm:mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-zinc-500 text-sm"
               >
                 {content.trustBadges.map((badge, i) => (
                   <span key={i} className="flex items-center gap-2">
@@ -259,7 +259,7 @@ export function NicheLandingClient({
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">Você passa por isso?</h2>
-              <p className="text-slate-400 max-w-xl mx-auto text-base sm:text-lg">Problemas comuns que resolvemos todos os dias</p>
+              <p className="text-zinc-400 max-w-xl mx-auto text-base sm:text-lg">Problemas comuns que resolvemos todos os dias</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {content.painPoints.map((pain, i) => (
@@ -277,7 +277,7 @@ export function NicheLandingClient({
                     </div>
                     <div>
                       <p className="text-sm font-bold text-white/90 mb-2 group-hover:text-white transition-colors">{pain.title}</p>
-                      <p className="text-slate-400 text-sm leading-relaxed">{pain.description}</p>
+                      <p className="text-zinc-400 text-sm leading-relaxed">{pain.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -292,7 +292,7 @@ export function NicheLandingClient({
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">Tudo que você precisa em um só lugar</h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-base sm:text-lg">Funcionalidades pensadas para o seu dia a dia</p>
+            <p className="text-zinc-400 max-w-xl mx-auto text-base sm:text-lg">Funcionalidades pensadas para o seu dia a dia</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -320,7 +320,7 @@ export function NicheLandingClient({
                     <FeatureIcon className="w-6 h-6" />
                   </div>
                   <h3 className={cn("text-lg font-bold mb-2", isHighlight ? "text-white" : "text-white group-hover:text-white")}>{feature.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
+                  <p className="text-zinc-400 text-sm leading-relaxed">{feature.description}</p>
                 </motion.div>
               )
             })}
@@ -333,7 +333,7 @@ export function NicheLandingClient({
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">Comece em 3 passos</h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-base sm:text-lg">Simples, rápido e sem complicação</p>
+            <p className="text-zinc-400 max-w-xl mx-auto text-base sm:text-lg">Simples, rápido e sem complicação</p>
           </div>
           <div className="relative max-w-4xl mx-auto">
             <div className="hidden md:block absolute top-7 left-[16%] right-[16%] h-0.5 bg-white/10" />
@@ -352,7 +352,7 @@ export function NicheLandingClient({
                       {step.step}
                     </div>
                     <h3 className="text-lg font-bold text-white mt-4 mb-2">{step.title}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed max-w-[240px]">{step.description}</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed max-w-[240px]">{step.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -388,7 +388,7 @@ export function NicheLandingClient({
                     <p className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
                       {stat.value}
                     </p>
-                    <p className="text-slate-400 text-sm sm:text-base mt-1 font-medium">{stat.label}</p>
+                    <p className="text-zinc-400 text-sm sm:text-base mt-1 font-medium">{stat.label}</p>
                   </motion.div>
                 )
               })}
@@ -403,7 +403,7 @@ export function NicheLandingClient({
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">O que dizem quem usa</h2>
-              <p className="text-slate-400 max-w-xl mx-auto text-base sm:text-lg">Profissionais que já transformaram a gestão do negócio</p>
+              <p className="text-zinc-400 max-w-xl mx-auto text-base sm:text-lg">Profissionais que já transformaram a gestão do negócio</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               {content.testimonials.map((t, i) => (
@@ -419,7 +419,7 @@ export function NicheLandingClient({
                   <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 pr-8">&ldquo;{t.quote}&rdquo;</p>
                   <div className="pt-4 border-t border-white/5">
                     <p className="font-bold text-white">{t.author}</p>
-                    <p className="text-slate-500 text-sm">{t.role}</p>
+                    <p className="text-zinc-500 text-sm">{t.role}</p>
                   </div>
                 </motion.div>
               ))}
@@ -434,7 +434,7 @@ export function NicheLandingClient({
           <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">Perguntas frequentes</h2>
-              <p className="text-slate-400 text-base sm:text-lg">Tire suas dúvidas antes de começar</p>
+              <p className="text-zinc-400 text-base sm:text-lg">Tire suas dúvidas antes de começar</p>
             </div>
             <div className="space-y-3">
               {content.faq.map((item, i) => (
@@ -454,10 +454,10 @@ export function NicheLandingClient({
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   >
                     <span className="text-sm sm:text-base">{item.question}</span>
-                    <ChevronDown className={cn("w-5 h-5 shrink-0 text-slate-400 transition-transform duration-200", openFaq === i && "rotate-180")} />
+                    <ChevronDown className={cn("w-5 h-5 shrink-0 text-zinc-400 transition-transform duration-200", openFaq === i && "rotate-180")} />
                   </button>
                   {openFaq === i && (
-                    <div className="px-5 sm:px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-3">
+                    <div className="px-5 sm:px-6 pb-5 text-zinc-400 text-sm leading-relaxed border-t border-white/5 pt-3">
                       {item.answer}
                     </div>
                   )}
@@ -483,7 +483,7 @@ export function NicheLandingClient({
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
               Pronto para transformar seu negócio?
             </h2>
-            <p className="text-slate-400 mb-10 max-w-xl mx-auto text-base sm:text-lg">
+            <p className="text-zinc-400 mb-10 max-w-xl mx-auto text-base sm:text-lg">
               Crie sua conta em 2 minutos. Teste grátis por 14 dias. Sem cartão de crédito.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -499,7 +499,7 @@ export function NicheLandingClient({
                 </Button>
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-slate-500 text-sm">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-zinc-500 text-sm">
               <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-white/80" /> LGPD</span>
               <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-white/80" /> Ative em minutos</span>
             </div>
@@ -520,11 +520,11 @@ export function NicheLandingClient({
                 <span className="text-white/50 text-sm">· {nicheName}</span>
               </div>
             </div>
-            <p className="text-slate-500 text-sm">Powered by AKAAI CORE</p>
+            <p className="text-zinc-500 text-sm">Powered by AKAAI CORE</p>
             <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-              <Link href={loginUrl} className="text-slate-500 hover:text-white transition-colors">Login</Link>
-              <Link href="/register" className="text-slate-500 hover:text-white transition-colors">Cadastrar</Link>
-              <Link href="/home" className="text-slate-500 hover:text-white transition-colors">AKAAI HUB</Link>
+              <Link href={loginUrl} className="text-zinc-500 hover:text-white transition-colors">Login</Link>
+              <Link href="/register" className="text-zinc-500 hover:text-white transition-colors">Cadastrar</Link>
+              <Link href="/home" className="text-zinc-500 hover:text-white transition-colors">AKAAI HUB</Link>
             </nav>
           </div>
         </div>

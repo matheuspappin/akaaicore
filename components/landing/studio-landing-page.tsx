@@ -190,7 +190,7 @@ export function StudioLandingPage({ studio, niche, vocabulary }: StudioLandingPa
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10"
+              className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-10"
             >
               Gestão inteligente para {nicheName}. Cadastro, agenda, financeiro e muito mais em uma única plataforma.
             </motion.p>
@@ -222,7 +222,7 @@ export function StudioLandingPage({ studio, niche, vocabulary }: StudioLandingPa
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black mb-4">Tudo em um só lugar</h2>
-            <p className="text-slate-400 max-w-xl mx-auto">
+            <p className="text-zinc-400 max-w-xl mx-auto">
               A plataforma completa para gerenciar seu {nicheName.toLowerCase()}.
             </p>
           </div>
@@ -241,7 +241,7 @@ export function StudioLandingPage({ studio, niche, vocabulary }: StudioLandingPa
                 )}
               >
                 <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-slate-400 text-sm">{feature.description}</p>
+                <p className="text-zinc-400 text-sm">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -263,7 +263,7 @@ export function StudioLandingPage({ studio, niche, vocabulary }: StudioLandingPa
             <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
               Pronto para começar?
             </h2>
-            <p className="text-slate-400 mb-8">
+            <p className="text-zinc-400 mb-8">
               Crie sua conta e tenha acesso completo ao sistema em minutos.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -288,14 +288,14 @@ export function StudioLandingPage({ studio, niche, vocabulary }: StudioLandingPa
           <Icon className="w-5 h-5 text-white/80" />
           <span className="font-bold text-white">{studio.name}</span>
         </div>
-        <p className="text-slate-500 text-sm mb-6">
+        <p className="text-zinc-500 text-sm mb-6">
           Powered by akaaicore · AKAAI CORE
         </p>
         <div className="flex justify-center gap-6 text-sm">
-          <Link href={`/s/${studio.slug}/login`} className="text-slate-500 hover:text-white transition-colors">
+          <Link href={`/s/${studio.slug}/login`} className="text-zinc-500 hover:text-white transition-colors">
             Login
           </Link>
-          <Link href="/home" className="text-slate-500 hover:text-white transition-colors">
+          <Link href="/home" className="text-zinc-500 hover:text-white transition-colors">
             AKAAI HUB
           </Link>
         </div>

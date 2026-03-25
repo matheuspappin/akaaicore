@@ -143,18 +143,18 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
           <Link2 className="w-4 h-4" />
           {label}
         </CardTitle>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{description}</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{description}</p>
       </CardHeader>
       <CardContent>
         {loading ? (
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
+          <div className="flex items-center gap-2 text-zinc-400 text-sm">
             <Loader2 className="w-4 h-4 animate-spin" />
             Carregando código...
           </div>
         ) : (
           <div className="flex items-center gap-3">
-            <div className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Código</p>
+            <div className="flex-1 bg-white dark:bg-zinc-950 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3">
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Código</p>
               <p className="font-mono text-2xl font-black text-slate-900 dark:text-white tracking-[0.3em]">
                 {inviteCode || "—"}
               </p>
@@ -191,7 +191,7 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
             </div>
           </div>
         )}
-        <p className="text-xs text-slate-400 mt-3">
+        <p className="text-xs text-zinc-400 mt-3">
           Envie o link (recomendado) ou o código. Quem já tem conta pode acessar <span className="font-bold text-slate-600 dark:text-slate-300">Meu Perfil → Estabelecimento Vinculado</span> e inserir o código.
         </p>
       </CardContent>
@@ -324,7 +324,7 @@ export default function DashboardPage() {
           {/* Módulo Scanner (Portaria) */}
           {enabledModules.scanner && (
             <Link href="/dashboard/scanner">
-              <Card className="bg-slate-900 text-white border-none shadow-lg hover:bg-slate-800 transition-all cursor-pointer group h-full">
+              <Card className="bg-zinc-950 text-white border-none shadow-lg hover:bg-zinc-900 transition-all cursor-pointer group h-full">
                 <CardContent className="p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center">
@@ -332,7 +332,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="text-lg font-bold">{t.dashboard.gate}</p>
-                      <p className="text-xs text-slate-400">{t.dashboard.validate}</p>
+                      <p className="text-xs text-zinc-400">{t.dashboard.validate}</p>
                     </div>
                   </div>
                   <ArrowRight className="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-all" />
@@ -364,7 +364,7 @@ export default function DashboardPage() {
           {/* Módulo AI Chat (Insights) */}
           {enabledModules.ai_chat && (
             <Link href="/dashboard/chat">
-              <Card className="bg-slate-900 text-white border-none shadow-lg hover:bg-slate-800 transition-all cursor-pointer group h-full">
+              <Card className="bg-zinc-950 text-white border-none shadow-lg hover:bg-zinc-900 transition-all cursor-pointer group h-full">
                 <CardContent className="p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center">
@@ -372,7 +372,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="text-lg font-bold">{t.dashboard.aiAnalysis}</p>
-                      <p className="text-xs text-slate-400">{t.dashboard.insights}</p>
+                      <p className="text-xs text-zinc-400">{t.dashboard.insights}</p>
                     </div>
                   </div>
                   <ArrowRight className="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-all" />
@@ -469,7 +469,7 @@ export default function DashboardPage() {
             <Card className="bg-card border-border border-l-4 border-l-slate-900">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-slate-900/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-zinc-950/10 flex items-center justify-center">
                     <DollarSign className="w-6 h-6 text-slate-900" />
                   </div>
                   <div className={`flex items-center gap-1 text-sm ${dashboardData.revenueGrowth?.startsWith('-') ? 'text-destructive' : 'text-emerald-600'}`}>

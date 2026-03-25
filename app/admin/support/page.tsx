@@ -228,24 +228,24 @@ export default function AdminSupportPage() {
               </div>
             </CardContent>
           </Card>
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Média Resolução</p>
+                <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">Média Resolução</p>
                 <div className="text-3xl font-bold">4.2h</div>
               </div>
             </CardContent>
           </Card>
-          <Card className="border-none shadow-sm bg-white dark:bg-slate-900">
+          <Card className="border-none shadow-sm bg-white dark:bg-zinc-950">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500">
                 <LifeBuoy className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">NPS Suporte</p>
+                <p className="text-sm font-bold text-zinc-400 uppercase tracking-widest">NPS Suporte</p>
                 <div className="text-3xl font-bold">9.8</div>
               </div>
             </CardContent>
@@ -254,16 +254,16 @@ export default function AdminSupportPage() {
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="relative w-full md:w-96">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
             <Input 
               placeholder="Buscar por assunto, ID ou cliente..." 
-              className="pl-9 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+              className="pl-9 bg-white dark:bg-zinc-950 border-slate-200 dark:border-zinc-800"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <div className="flex gap-2 w-full md:w-auto">
-            <Button variant="outline" className="gap-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+            <Button variant="outline" className="gap-2 border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
               <Filter className="w-4 h-4" /> Filtrar
             </Button>
           </div>
@@ -271,52 +271,52 @@ export default function AdminSupportPage() {
 
         <div className="grid grid-cols-1 gap-4">
           {tickets.map((ticket) => (
-            <Card key={ticket.id} className="border-none shadow-sm bg-white dark:bg-slate-900 hover:ring-1 hover:ring-indigo-500 transition-all cursor-pointer">
+            <Card key={ticket.id} className="border-none shadow-sm bg-white dark:bg-zinc-950 hover:ring-1 hover:ring-indigo-500 transition-all cursor-pointer">
               <CardContent className="p-0">
                 <div className="flex flex-col md:flex-row md:items-center p-6 gap-6">
                   <div className="flex-1 space-y-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-slate-400">{ticket.id}</span>
+                      <span className="text-xs font-mono text-zinc-400">{ticket.id}</span>
                       {getStatusBadge(ticket.status)}
                       {getPriorityBadge(ticket.priority)}
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
                       {ticket.subject}
                     </h3>
-                    <p className="text-sm text-slate-500 line-clamp-1 italic">
+                    <p className="text-sm text-zinc-500 line-clamp-1 italic">
                       "{ticket.lastMessage}"
                     </p>
                   </div>
 
                   <div className="flex items-center gap-10">
                     <div className="flex items-center gap-3">
-                      <Avatar className="w-10 h-10 border border-slate-100 dark:border-slate-800">
+                      <Avatar className="w-10 h-10 border border-slate-100 dark:border-zinc-800">
                         <AvatarFallback className="bg-slate-100 text-slate-600 font-bold uppercase">
                           {(ticket.customer ?? ticket.user?.email ?? '?').substring(0, 2).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
                       <div>
                         <p className="text-sm font-bold text-slate-900 dark:text-white">{ticket.customer ?? ticket.user?.email ?? '—'}</p>
-                        <p className="text-xs text-slate-400 flex items-center gap-1">
+                        <p className="text-xs text-zinc-400 flex items-center gap-1">
                           <Building2 className="w-3 h-3" /> {typeof ticket.studio === 'object' ? ticket.studio?.name : ticket.studio ?? '—'}
                         </p>
                       </div>
                     </div>
 
                     <div className="hidden lg:block text-right">
-                      <p className="text-xs text-slate-400 uppercase tracking-widest font-bold">Criado em</p>
+                      <p className="text-xs text-zinc-400 uppercase tracking-widest font-bold">Criado em</p>
                       <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
                         {new Date(ticket.created_at).toLocaleDateString('pt-BR')}
                       </p>
                     </div>
 
                     <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" className="text-slate-400 hover:text-indigo-600" onClick={() => handleTicketClick(ticket)}>
+                      <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-indigo-600" onClick={() => handleTicketClick(ticket)}>
                         <ExternalLink className="w-4 h-4" />
                       </Button>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-slate-400">
+                          <Button variant="ghost" size="icon" className="text-zinc-400">
                             <MoreVertical className="w-4 h-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -337,10 +337,10 @@ export default function AdminSupportPage() {
           ))}
         </div>
 
-        <div className="text-center py-10 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800">
+        <div className="text-center py-10 bg-slate-50 dark:bg-zinc-950/50 rounded-2xl border-2 border-dashed border-slate-200 dark:border-zinc-800">
           <LifeBuoy className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-slate-400">Nenhum outro ticket pendente</h3>
-          <p className="text-sm text-slate-400">Bom trabalho! Todos os clientes foram atendidos.</p>
+          <h3 className="text-lg font-bold text-zinc-400">Nenhum outro ticket pendente</h3>
+          <p className="text-sm text-zinc-400">Bom trabalho! Todos os clientes foram atendidos.</p>
         </div>
       </div>
 
@@ -348,12 +348,12 @@ export default function AdminSupportPage() {
         <SheetContent className="w-full sm:w-[540px] flex flex-col p-0" side="right">
           {selectedTicket && (
             <>
-              <div className="p-6 border-b border-slate-200 dark:border-slate-800">
+              <div className="p-6 border-b border-slate-200 dark:border-zinc-800">
                 <SheetHeader>
                   <div className="flex items-center gap-2 mb-2">
                     {getStatusBadge(selectedTicket.status)}
                     {getPriorityBadge(selectedTicket.priority)}
-                    <span className="text-xs font-mono text-slate-400">{selectedTicket.id}</span>
+                    <span className="text-xs font-mono text-zinc-400">{selectedTicket.id}</span>
                   </div>
                   <SheetTitle className="text-xl">{selectedTicket.subject}</SheetTitle>
                   <SheetDescription>
@@ -361,21 +361,21 @@ export default function AdminSupportPage() {
                   </SheetDescription>
                 </SheetHeader>
                 <div className="mt-4 flex items-center gap-3">
-                  <Avatar className="w-10 h-10 border border-slate-100 dark:border-slate-800">
+                  <Avatar className="w-10 h-10 border border-slate-100 dark:border-zinc-800">
                     <AvatarFallback className="bg-slate-100 text-slate-600 font-bold uppercase">
                       {selectedTicket.user?.email?.substring(0, 2) || 'US'}
                     </AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="text-sm font-bold text-slate-900 dark:text-white">{selectedTicket.user?.email}</p>
-                    <p className="text-xs text-slate-400 flex items-center gap-1">
+                    <p className="text-xs text-zinc-400 flex items-center gap-1">
                       <Building2 className="w-3 h-3" /> {typeof selectedTicket.studio === 'object' ? selectedTicket.studio?.name : selectedTicket.studio ?? 'Sem estúdio'}
                     </p>
                   </div>
                 </div>
               </div>
               
-              <ScrollArea className="flex-1 p-6 bg-slate-50/50 dark:bg-slate-950/50">
+              <ScrollArea className="flex-1 p-6 bg-slate-50/50 dark:bg-black/50">
                 <div className="space-y-6">
                   {messages.map((msg) => {
                     const isMe = false // In admin view, we are not the user usually, but let's check properly if we had auth user info
@@ -385,13 +385,13 @@ export default function AdminSupportPage() {
                     return (
                       <div key={msg.id} className={`flex flex-col gap-2 ${msg.is_internal ? 'items-end' : 'items-start'}`}>
                          <div className={`flex items-center gap-2 ${msg.is_internal ? 'flex-row-reverse' : ''}`}>
-                          <span className="text-xs font-bold text-slate-500">{msg.user?.email}</span>
-                          <span className="text-[10px] text-slate-400">{new Date(msg.created_at).toLocaleString('pt-BR')}</span>
+                          <span className="text-xs font-bold text-zinc-500">{msg.user?.email}</span>
+                          <span className="text-[10px] text-zinc-400">{new Date(msg.created_at).toLocaleString('pt-BR')}</span>
                          </div>
                          <div className={`p-4 rounded-xl max-w-[85%] text-sm ${
                            msg.is_internal 
                              ? 'bg-indigo-600 text-white rounded-tr-none' 
-                             : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-tl-none shadow-sm'
+                             : 'bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-tl-none shadow-sm'
                          }`}>
                            {msg.message}
                          </div>
@@ -401,7 +401,7 @@ export default function AdminSupportPage() {
                 </div>
               </ScrollArea>
 
-              <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+              <div className="p-4 border-t border-slate-200 dark:border-zinc-800 bg-white dark:bg-black">
                 <form onSubmit={handleSendMessage} className="flex flex-col gap-4">
                   <Textarea 
                     placeholder="Digite sua resposta..." 

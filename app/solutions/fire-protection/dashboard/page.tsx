@@ -47,7 +47,7 @@ const statusMap: Record<string, { label: string; className: string }> = {
   open:        { label: "Aberta",       className: "bg-amber-100 text-amber-700" },
   in_progress: { label: "Andamento",    className: "bg-blue-100 text-blue-700" },
   finished:    { label: "Concluída",    className: "bg-emerald-100 text-emerald-700" },
-  cancelled:   { label: "Cancelada",    className: "bg-slate-100 text-slate-500" },
+  cancelled:   { label: "Cancelada",    className: "bg-slate-100 text-zinc-500" },
   nao_conforme:{ label: "Não Conforme", className: "bg-rose-100 text-rose-700" },
 }
 
@@ -129,7 +129,7 @@ export default function FireProtectionDashboard() {
 
   const quickActions = [
     { label: "Nova OS", sub: "Abrir ordem de serviço", href: "/solutions/fire-protection/dashboard/os/nova", icon: Wrench, color: "bg-red-600 hover:bg-red-700" },
-    { label: "Nova Vistoria", sub: "Agendar inspeção", href: "/solutions/fire-protection/dashboard/vistorias/nova", icon: Calendar, color: "bg-slate-800 hover:bg-slate-700 dark:bg-slate-800" },
+    { label: "Nova Vistoria", sub: "Agendar inspeção", href: "/solutions/fire-protection/dashboard/vistorias/nova", icon: Calendar, color: "bg-zinc-900 hover:bg-slate-700 dark:bg-zinc-900" },
     { label: "Clientes", sub: "Gerenciar edificações", href: "/solutions/fire-protection/dashboard/clientes", icon: Building2, color: "bg-orange-600 hover:bg-orange-700" },
   ]
 
@@ -147,7 +147,7 @@ export default function FireProtectionDashboard() {
           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Bem-vindo, {user?.user_metadata?.name || "Admin"}
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-zinc-500 dark:text-zinc-400 font-medium mt-1">
             Painel de Controle — Segurança Contra Incêndio
           </p>
         </div>
@@ -185,13 +185,13 @@ export default function FireProtectionDashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
           <Link key={stat.label} href={stat.href}>
-            <Card className={cn("border-l-4 bg-white dark:bg-slate-900/50 shadow-sm hover:shadow-md transition-shadow cursor-pointer", stat.border)}>
+            <Card className={cn("border-l-4 bg-white dark:bg-zinc-950/50 shadow-sm hover:shadow-md transition-shadow cursor-pointer", stat.border)}>
               <CardContent className="p-5">
                 <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3", stat.bg)}>
                   <stat.icon className={cn("w-5 h-5", stat.color)} />
                 </div>
                 <p className={cn("text-3xl font-black", stat.color)}>{stat.value}</p>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">{stat.label}</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mt-1">{stat.label}</p>
               </CardContent>
             </Card>
           </Link>
@@ -201,7 +201,7 @@ export default function FireProtectionDashboard() {
       {/* Bottom Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* OS Recentes */}
-        <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+        <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <div>
               <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
@@ -222,7 +222,7 @@ export default function FireProtectionDashboard() {
                 <div className="w-5 h-5 border-2 border-red-600 border-t-transparent rounded-full animate-spin" />
               </div>
             ) : recentOS.length === 0 ? (
-              <div className="text-center py-10 text-slate-400">
+              <div className="text-center py-10 text-zinc-400">
                 <ClipboardList className="w-12 h-12 mx-auto mb-3 opacity-20" />
                 <p className="font-medium">Nenhuma OS registrada ainda</p>
                 <Button type="button" className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl" size="sm" asChild>
@@ -237,15 +237,15 @@ export default function FireProtectionDashboard() {
                   const st = statusMap[os.status] ?? statusMap.open
                   return (
                     <Link key={os.id} href="/solutions/fire-protection/dashboard/os">
-                      <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer gap-3">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/50 hover:bg-slate-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer gap-3">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="text-xs font-black text-red-600">#{os.tracking_code}</span>
                             <Badge className={cn("text-[10px] border-0 font-bold", st.className)}>{st.label}</Badge>
                           </div>
-                          <p className="text-sm font-bold text-slate-800 dark:text-slate-200 truncate mt-0.5">{os.title}</p>
+                          <p className="text-sm font-bold text-zinc-800 dark:text-slate-200 truncate mt-0.5">{os.title}</p>
                           {os.customer && (
-                            <p className="text-xs text-slate-500 truncate">{os.customer.name}</p>
+                            <p className="text-xs text-zinc-500 truncate">{os.customer.name}</p>
                           )}
                         </div>
                         <ArrowRight className="w-4 h-4 text-slate-300 flex-shrink-0" />
@@ -261,14 +261,14 @@ export default function FireProtectionDashboard() {
         {/* Convites & Alertas */}
         <div className="space-y-4">
           {/* Extintores vencendo */}
-          <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-rose-200 dark:border-rose-600/20 bg-rose-50 dark:bg-rose-600/5">
+          <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-rose-200 dark:border-rose-600/20 bg-rose-50 dark:bg-rose-600/5">
             <CardContent className="p-5 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-600/20 flex items-center justify-center flex-shrink-0">
                 <AlertTriangle className="w-6 h-6 text-rose-600" />
               </div>
               <div>
                 <p className="font-bold text-slate-900 dark:text-white">Extintores com validade próxima</p>
-                <p className="text-sm text-slate-500">Cadastre extintores para monitorar vencimentos</p>
+                <p className="text-sm text-zinc-500">Cadastre extintores para monitorar vencimentos</p>
               </div>
               <Link href="/solutions/fire-protection/dashboard/extintores" className="ml-auto">
                 <Button type="button" size="sm" variant="outline" className="border-rose-300 text-rose-600 hover:bg-rose-50 font-bold rounded-xl">
@@ -280,7 +280,7 @@ export default function FireProtectionDashboard() {
 
           {/* Links de convite */}
           {studioSlug && (
-            <Card className="bg-white dark:bg-slate-900/50 shadow-sm border border-slate-200 dark:border-white/10">
+            <Card className="bg-white dark:bg-zinc-950/50 shadow-sm border border-slate-200 dark:border-white/10">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">
                   Convites de Acesso

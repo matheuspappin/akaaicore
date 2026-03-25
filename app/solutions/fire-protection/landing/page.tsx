@@ -48,7 +48,7 @@ function Navbar() {
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-500",
       scrolled 
-        ? "bg-slate-950/80 backdrop-blur-xl border-b border-white/10 shadow-md py-3" 
+        ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-md py-3" 
         : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -100,7 +100,7 @@ function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 w-full bg-slate-900/90 backdrop-blur-xl border-b border-white/10 shadow-2xl overflow-hidden"
+            className="md:hidden absolute top-full left-0 w-full bg-zinc-950/90 backdrop-blur-xl border-b border-white/10 shadow-2xl overflow-hidden"
           >
             <div className="flex flex-col p-6 space-y-4 font-semibold text-white">
               {navItems.map((item) => (
@@ -202,19 +202,19 @@ function InteractiveDemo() {
 
         <div className="grid md:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
           <div className="md:col-span-5 flex justify-center">
-            <div className="relative w-[300px] h-[600px] bg-slate-950 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-xl z-20"></div>
+            <div className="relative w-[300px] h-[600px] bg-black rounded-[3rem] border-8 border-zinc-800 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-900 rounded-b-xl z-20"></div>
               
               <div className="w-full h-full bg-slate-50 pt-10 pb-4 px-4 flex flex-col relative">
                 {activeTab === 'scanner' && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col h-full">
                     <div className="bg-white p-4 rounded-2xl shadow-sm mb-4 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-slate-800 font-bold">
+                        <div className="flex items-center gap-2 text-zinc-800 font-bold">
                             <QrCode className="w-5 h-5 text-red-600" /> Scanner
                         </div>
                         <Badge className="bg-red-500/90 text-white border-none rounded-lg px-2.5 py-1 text-[10px] font-bold shadow-[0_2px_8px_rgba(239,68,68,0.4)]">Vistoria</Badge>
                     </div>
-                    <div className="flex-1 bg-slate-900 rounded-3xl relative overflow-hidden flex items-center justify-center mb-4 border-2 border-red-500">
+                    <div className="flex-1 bg-zinc-950 rounded-3xl relative overflow-hidden flex items-center justify-center mb-4 border-2 border-red-500">
                         <div className="w-48 h-48 border-2 border-white/50 rounded-lg relative z-10 animate-pulse flex items-center justify-center p-6">
                             <QRCode 
                                 value="FIRE-CONTROL-DEMO-123456"
@@ -230,13 +230,13 @@ function InteractiveDemo() {
                         <div className="flex items-center gap-3 mb-2">
                             <CheckCircle2 className="w-6 h-6 text-emerald-500" />
                             <div>
-                                <p className="font-bold text-slate-800 text-sm">PQS 4kg - Hall Térreo</p>
-                                <p className="text-xs text-slate-500">Selo: 12345678</p>
+                                <p className="font-bold text-zinc-800 text-sm">PQS 4kg - Hall Térreo</p>
+                                <p className="text-xs text-zinc-500">Selo: 12345678</p>
                             </div>
                         </div>
                         <div className="flex justify-between items-center mt-2 border-t pt-2">
                             <span className="text-xs font-bold text-emerald-600 uppercase">Validade OK</span>
-                            <span className="text-xs text-slate-400">Vence: 12/2026</span>
+                            <span className="text-xs text-zinc-400">Vence: 12/2026</span>
                         </div>
                     </div>
                   </motion.div>
@@ -246,8 +246,8 @@ function InteractiveDemo() {
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col h-full">
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <h3 className="font-bold text-lg text-slate-800">Olá, Carlos 👋</h3>
-                            <p className="text-xs text-slate-500">Roteiro: 5 visitas</p>
+                            <h3 className="font-bold text-lg text-zinc-800">Olá, Carlos 👋</h3>
+                            <p className="text-xs text-zinc-500">Roteiro: 5 visitas</p>
                         </div>
                         <div className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center">
                             <HardHat className="w-5 h-5 text-slate-600" />
@@ -256,8 +256,8 @@ function InteractiveDemo() {
                     <div className="space-y-3">
                         {[1, 2].map(i => (
                             <div key={i} className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                                <h4 className="font-bold text-sm text-slate-800">Cond. Solar dos Ipês</h4>
-                                <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                                <h4 className="font-bold text-sm text-zinc-800">Cond. Solar dos Ipês</h4>
+                                <div className="flex items-center gap-2 text-xs text-zinc-500 mb-3">
                                     <MapPin className="w-3 h-3 text-red-500" /> Av. Paulista, 1000
                                 </div>
                                 <Button size="sm" className="h-8 text-xs bg-green-500 hover:bg-green-400 text-white w-full rounded-xl font-bold shadow-[0_2px_8px_rgba(34,197,94,0.3)] hover:shadow-[0_4px_12px_rgba(34,197,94,0.4)] transition-all">Waze</Button>
@@ -288,7 +288,7 @@ function InteractiveDemo() {
                 )}
               >
                 <div className="flex gap-4">
-                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shrink-0", activeTab === feature.id ? "bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-lg shadow-orange-500/30" : "bg-slate-700/80 text-slate-400")}>
+                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shrink-0", activeTab === feature.id ? "bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-lg shadow-orange-500/30" : "bg-slate-700/80 text-zinc-400")}>
                     <feature.icon className="w-6 h-6" />
                   </div>
                   <div>
@@ -320,34 +320,34 @@ function ClientPortalMockup() {
         </div>
         <div className="grid md:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
           <div className="md:col-span-5 flex justify-center">
-            <div className="relative w-[300px] h-[600px] bg-slate-950 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-xl z-20"></div>
+            <div className="relative w-[300px] h-[600px] bg-black rounded-[3rem] border-8 border-zinc-800 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-900 rounded-b-xl z-20"></div>
               <div className="w-full h-full bg-slate-50 pt-10 pb-4 px-4 flex flex-col relative">
                 <div className="flex flex-col h-full">
-                  <div className="bg-slate-950 p-4 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden mb-4">
-                    <div className="bg-slate-800 p-4 flex items-center justify-between border-b border-slate-700">
+                  <div className="bg-black p-4 rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden mb-4">
+                    <div className="bg-zinc-900 p-4 flex items-center justify-between border-b border-slate-700">
                         <span className="font-bold text-sm text-white">Portal FireControl</span>
                         <div className="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white">CLI</div>
                     </div>
-                    <div className="p-8 bg-slate-900 space-y-6">
+                    <div className="p-8 bg-zinc-950 space-y-6">
                         <div className="bg-red-800/20 border border-red-700/50 p-4 rounded-xl flex items-center gap-3">
                             <AlertTriangle className="w-5 h-5 text-red-500 shrink-0" />
                             <p className="text-sm font-bold text-red-300">Atenção: 2 Extintores Vencidos!</p>
                             <Button variant="outline" size="sm" className="bg-red-600 hover:bg-red-500 border-none text-white ml-auto text-xs rounded-xl font-semibold shadow-[0_2px_8px_rgba(220,38,38,0.3)] transition-colors">Recarregar</Button>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-slate-800 p-4 rounded-xl text-center">
+                            <div className="bg-zinc-900 p-4 rounded-xl text-center">
                                 <p className="text-3xl font-black text-emerald-400">28</p>
-                                <p className="text-[10px] uppercase font-bold text-slate-400">Em Dia</p>
+                                <p className="text-[10px] uppercase font-bold text-zinc-400">Em Dia</p>
                             </div>
-                            <div className="bg-slate-800 p-4 rounded-xl text-center">
+                            <div className="bg-zinc-900 p-4 rounded-xl text-center">
                                 <p className="text-3xl font-black text-red-400">3</p>
-                                <p className="text-[10px] uppercase font-bold text-slate-400">Atenção</p>
+                                <p className="text-[10px] uppercase font-bold text-zinc-400">Atenção</p>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-<Button variant="outline" className="bg-slate-800 hover:bg-slate-700 border-slate-600 gap-2 text-white rounded-xl font-medium transition-colors"><FileDown className="w-4 h-4" /> Laudos</Button>
-                                            <Button variant="outline" className="bg-slate-800 hover:bg-slate-700 border-slate-600 gap-2 text-white rounded-xl font-medium transition-colors"><Download className="w-4 h-4" /> Notas</Button>
+<Button variant="outline" className="bg-zinc-900 hover:bg-slate-700 border-slate-600 gap-2 text-white rounded-xl font-medium transition-colors"><FileDown className="w-4 h-4" /> Laudos</Button>
+                                            <Button variant="outline" className="bg-zinc-900 hover:bg-slate-700 border-slate-600 gap-2 text-white rounded-xl font-medium transition-colors"><Download className="w-4 h-4" /> Notas</Button>
                         </div>
                     </div>
                   </div>
@@ -424,55 +424,55 @@ function ArchitectPortalMockup() {
           </div>
 
           <div className="md:col-span-5 flex justify-center order-1 md:order-2">
-            <div className="relative w-[300px] h-[600px] bg-slate-950 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-xl z-20"></div>
+            <div className="relative w-[300px] h-[600px] bg-black rounded-[3rem] border-8 border-zinc-800 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-900 rounded-b-xl z-20"></div>
               <div className="w-full h-full bg-slate-50 pt-10 pb-4 px-4 flex flex-col relative">
                 <div className="flex flex-col h-full">
-                  <div className="bg-slate-950 p-4 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden mb-4">
-                    <div className="bg-slate-800 p-3 flex items-center justify-between border-b border-slate-700">
+                  <div className="bg-black p-4 rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden mb-4">
+                    <div className="bg-zinc-900 p-3 flex items-center justify-between border-b border-slate-700">
                         <span className="font-bold text-[10px] text-white uppercase tracking-tighter">Portal FireControl</span>
                         <div className="w-7 h-7 rounded-full bg-orange-600 flex items-center justify-center font-bold text-[10px] text-white">ARQ</div>
                     </div>
-                    <div className="p-5 bg-slate-900 space-y-4">
+                    <div className="p-5 bg-zinc-950 space-y-4">
                         <div className="bg-orange-800/20 border border-orange-700/50 p-3 rounded-xl">
                             <div className="flex items-center gap-2 mb-1">
                                 <AlertTriangle className="w-4 h-4 text-orange-500 shrink-0" />
                                 <p className="text-[11px] font-bold text-orange-300 uppercase tracking-tighter">Aprovação Pendente</p>
                             </div>
-                            <p className="text-[10px] text-slate-400">Bloco B - Condomínio Solar</p>
+                            <p className="text-[10px] text-zinc-400">Bloco B - Condomínio Solar</p>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
-                            <div className="bg-slate-800 p-3 rounded-xl text-center border border-white/5">
+                            <div className="bg-zinc-900 p-3 rounded-xl text-center border border-white/5">
                                 <p className="text-2xl font-black text-orange-400">12</p>
-                                <p className="text-[8px] uppercase font-bold text-slate-500 tracking-widest">Ativos</p>
+                                <p className="text-[8px] uppercase font-bold text-zinc-500 tracking-widest">Ativos</p>
                             </div>
-                            <div className="bg-slate-800 p-3 rounded-xl text-center border border-white/5">
+                            <div className="bg-zinc-900 p-3 rounded-xl text-center border border-white/5">
                                 <p className="text-2xl font-black text-blue-400">4</p>
-                                <p className="text-[8px] uppercase font-bold text-slate-500 tracking-widest">Análise</p>
+                                <p className="text-[8px] uppercase font-bold text-zinc-500 tracking-widest">Análise</p>
                             </div>
                         </div>
                         <div className="space-y-2">
                           <Button variant="outline" size="sm" className="w-full bg-orange-600 hover:bg-orange-500 border-none text-white text-[10px] font-black h-9 rounded-xl uppercase tracking-widest shadow-[0_4px_12px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_16px_rgba(234,88,12,0.4)] transition-all">
                             <FilePlus className="w-3 h-3 mr-2" /> Upload Planta
                           </Button>
-                          <Button variant="outline" size="sm" className="w-full bg-slate-800 hover:bg-slate-700 border-slate-600 text-white text-[10px] font-bold h-9 rounded-xl transition-colors">
+                          <Button variant="outline" size="sm" className="w-full bg-zinc-900 hover:bg-slate-700 border-slate-600 text-white text-[10px] font-bold h-9 rounded-xl transition-colors">
                             <PencilRuler className="w-3 h-3 mr-2" /> Memorial Descritivo
                           </Button>
                         </div>
                     </div>
                   </div>
                   <div className="space-y-3 px-2">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Atividades Recentes</p>
+                    <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Atividades Recentes</p>
                     {[
                       { title: "Planta Aprovada", sub: "Edifício Alpha", time: "2h atrás" },
                       { title: "Novo Comentário", sub: "Eng. Ricardo", time: "5h atrás" }
                     ].map((item, i) => (
                       <div key={i} className="bg-white p-3 rounded-xl shadow-sm border border-slate-100 flex items-center justify-between">
                         <div>
-                          <p className="text-[11px] font-bold text-slate-800">{item.title}</p>
-                          <p className="text-[9px] text-slate-500">{item.sub}</p>
+                          <p className="text-[11px] font-bold text-zinc-800">{item.title}</p>
+                          <p className="text-[9px] text-zinc-500">{item.sub}</p>
                         </div>
-                        <span className="text-[8px] font-bold text-slate-400">{item.time}</span>
+                        <span className="text-[8px] font-bold text-zinc-400">{item.time}</span>
                       </div>
                     ))}
                   </div>
@@ -500,7 +500,7 @@ function AdminDashboardMockup() {
     { label: 'Gamificação', icon: Trophy, color: "bg-yellow-500", shadow: "shadow-yellow-500/20", description: "Incentivos e metas para técnicos de campo e equipe de vendas." },
     { label: 'CRM / Leads', icon: UserPlus, color: "bg-blue-600", shadow: "shadow-blue-600/20", description: "Gestão de funil de vendas e prospecção de novos contratos." },
     { label: 'Marketplace', icon: ShoppingBag, color: "bg-teal-500", shadow: "shadow-teal-500/20", description: "Loja de insumos e equipamentos integrada para reposição." },
-    { label: 'ERP', icon: Building2, color: "bg-slate-900", shadow: "shadow-slate-900/20", description: "Gestão empresarial completa, emissão de notas e relatórios fiscais." },
+    { label: 'ERP', icon: Building2, color: "bg-zinc-950", shadow: "shadow-slate-900/20", description: "Gestão empresarial completa, emissão de notas e relatórios fiscais." },
     { label: 'Multi-unidade', icon: Layers, color: "bg-violet-500", shadow: "shadow-violet-500/20", description: "Controle centralizado para empresas com múltiplas filiais." },
     { label: 'Agendas', icon: Calendar, color: "bg-amber-500", shadow: "shadow-amber-500/20", description: "Organização de visitas técnicas e prazos de manutenção." },
   ]
@@ -515,8 +515,8 @@ function AdminDashboardMockup() {
                   <p className="text-slate-300 max-w-xl mx-auto">Uma central de comando poderosa com todos os módulos integrados para o seu negócio.</p>
                 </motion.div>
             </div>
-            <div className="max-w-6xl mx-auto rounded-[2.5rem] shadow-2xl overflow-hidden relative backdrop-blur-xl bg-slate-900/60 border border-white/10">
-                <div className="bg-slate-900 text-white p-6 flex items-center justify-between">
+            <div className="max-w-6xl mx-auto rounded-[2.5rem] shadow-2xl overflow-hidden relative backdrop-blur-xl bg-zinc-950/60 border border-white/10">
+                <div className="bg-zinc-950 text-white p-6 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="flex gap-1.5">
                             <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -526,7 +526,7 @@ function AdminDashboardMockup() {
                         <span className="font-bold text-sm ml-4 opacity-50">fire-control-admin-v2.exe</span>
                     </div>
                     <div className="flex items-center gap-4">
-                        <span className="text-xs font-medium text-slate-400">Status: <span className="text-emerald-400 uppercase font-black">Online</span></span>
+                        <span className="text-xs font-medium text-zinc-400">Status: <span className="text-emerald-400 uppercase font-black">Online</span></span>
                         <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center font-bold text-xs shadow-lg shadow-red-600/20">ADM</div>
                     </div>
                 </div>
@@ -560,7 +560,7 @@ function AdminDashboardMockup() {
                                             <span className="text-[10px] sm:text-xs font-bold text-slate-300 text-center uppercase tracking-tighter group-hover:text-red-400 transition-colors">{mod.label}</span>
                                         </motion.div>
                                     </TooltipTrigger>
-                                    <TooltipContent side="bottom" className="max-w-[200px] text-center bg-slate-900 text-white border-slate-800 p-3 rounded-xl shadow-xl">
+                                    <TooltipContent side="bottom" className="max-w-[200px] text-center bg-zinc-950 text-white border-zinc-800 p-3 rounded-xl shadow-xl">
                                         <p className="font-bold mb-1 text-red-400 uppercase tracking-tighter text-[10px]">{mod.label}</p>
                                         <p className="text-[11px] leading-tight text-slate-300">{mod.description}</p>
                                     </TooltipContent>
@@ -673,16 +673,16 @@ function PricingSection() {
 
 function Footer() {
   return (
-    <footer className="text-slate-400 py-12 border-t border-white/10 text-center backdrop-blur-sm">
+    <footer className="text-zinc-400 py-12 border-t border-white/10 text-center backdrop-blur-sm">
       <div className="flex items-center justify-center gap-2 mb-6 font-bold text-xl text-white">
         <FireExtinguisher className="w-6 h-6 text-orange-500" />
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-cyan-400">FireControl</span>
       </div>
-      <p className="mb-8 text-xs max-w-md mx-auto text-slate-400">A plataforma líder em gestão para empresas de extintores no Brasil.</p>
+      <p className="mb-8 text-xs max-w-md mx-auto text-zinc-400">A plataforma líder em gestão para empresas de extintores no Brasil.</p>
       <div className="flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest mb-8">
         <Link href="#">Termos</Link><Link href="#">Privacidade</Link><Link href="#">Contato</Link>
       </div>
-      <p className="text-[10px] text-slate-500 mb-10">© 2026 akaaicore Builder.</p>
+      <p className="text-[10px] text-zinc-500 mb-10">© 2026 akaaicore Builder.</p>
 
       <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-3">
         <Link href="/home" className="flex items-center gap-2.5 group">

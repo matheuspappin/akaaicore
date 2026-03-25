@@ -79,7 +79,7 @@ export function ModuleUpgradeBarrier({
         </CardHeader>
         
         <CardContent className="space-y-6 pt-6">
-          <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg border border-slate-100 dark:border-slate-800">
+          <div className="bg-slate-50 dark:bg-zinc-950/50 p-4 rounded-lg border border-slate-100 dark:border-zinc-800">
             <div className="flex items-baseline justify-center gap-1">
               <span className="text-sm text-muted-foreground">Adicione por apenas</span>
               <span className="text-3xl font-bold text-primary">R$ {pricing.price},00</span>
