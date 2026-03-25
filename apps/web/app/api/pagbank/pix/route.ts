@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
             country: body.customer.phones?.[0]?.country || '55',
             area: body.customer.phones?.[0]?.area || '11',
             number: body.customer.phones?.[0]?.number || '999999999',
-            type: 'MOBILE',
+            type: 'MOBILE' as const,
           },
         ],
       },
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
 
     // TODO: Obter o tenantId de forma segura (por exemplo, do usuário autenticado ou cabeçalhos da requisição)
     const tenantId = 'default-tenant-id'; // Substitua por lógica real para obter o tenantId
-    const pagBankResponse = await createPagBankPixOrder(orderRequest, tenantId);
+    const pagBankResponse = await createPagBankPixOrder({ orderRequest, tenantId });
 
     return NextResponse.json(pagBankResponse);
   } catch (error) {

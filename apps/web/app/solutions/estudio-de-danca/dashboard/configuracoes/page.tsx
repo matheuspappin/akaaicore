@@ -24,7 +24,7 @@ import { PasswordStrengthMeter } from "@/components/ui/password-strength-meter"
 import {
   User, Building2, Bell, Shield, Palette, MessageSquare,
   Save, Loader2, Phone, Copy, Check, QrCode, Link2, Trophy,
-  GraduationCap, ExternalLink, Music, Zap, CheckCircle, XCircle, Unlink
+  GraduationCap, ExternalLink, Music, Zap, CheckCircle, XCircle, Unlink, Settings, Users
 } from "lucide-react"
 
 // ─── tipos ────────────────────────────────────────────────────────────────────

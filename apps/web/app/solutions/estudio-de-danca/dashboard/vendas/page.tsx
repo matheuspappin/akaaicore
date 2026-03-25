@@ -21,6 +21,7 @@ import {
 import { useToast } from "@/hooks/use-toast"
 import type { Product } from "@/lib/actions/inventory"
 import { processPosPayment, createPosStripeSession, getPdvCreditConversionRate, getStudentCredits } from "@/lib/actions/pos"
+import { createPagBankPixOrder } from "@/lib/payment-gateway/pagbank-provider"
 import { BarcodeScanner } from "@/components/dashboard/barcode-scanner"
 import { OrganizationProvider } from "@/components/providers/organization-provider"
 import { ModuleGuard } from "@/components/providers/module-guard"
@@ -152,7 +153,7 @@ function POSContent() {
     toast({ title: "OS Adicionada", description: `#${os.tracking_code}` })
   }
 
-  const handleFinalizeSale = async (forcedMethod?: 'money' | 'card' | 'pix' | 'credit') => {
+  const handleFinalizeSale = async (forcedMethod?: 'money' | 'card' | 'pix' | 'pagbank_pix' | 'credit') => {
     console.log('handleFinalizeSale chamada!');
     const method = forcedMethod || paymentMethod || (businessModel === 'MONETARY' ? 'money' : 'credit');
     console.log('Método de pagamento:', method);
@@ -460,7 +461,7 @@ function POSContent() {
                       <div className="flex flex-col items-center justify-center space-y-4 py-4">
                         <p className="font-medium text-center">Escaneie o QR Code abaixo no seu aplicativo bancário</p>
                         <div className="bg-white p-4 rounded-xl">
-                           {console.log('Final pixQRCodeUrl for img src:', pixQRCodeUrl)} {/* Novo log de depuração */}
+                        {console.log('Final pixQRCodeUrl for img src:', pixQRCodeUrl)} {/* Novo log de depuração */}
                            <img src={pixQRCodeUrl} alt="QR Code PIX PagBank" className="w-48 h-48 object-contain" />
                         </div>
                         {pixText && (

@@ -12,3 +12,26 @@
    Creating an optimized production build ...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
 [@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
+ ✓ Compiled successfully in 19.5s
+   Running next.config.js provided runAfterProductionCompile ...
+[@sentry/nextjs - After Production Compile] Info: Sending telemetry data on issues and performance to Sentry. To disable telemetry, set `options.telemetry` to `false`.
+[@sentry/nextjs - After Production Compile] Warning: No auth token provided. Will not create release. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+You seem to be using Turborepo, did you forget to put SENTRY_AUTH_TOKEN in `passThroughEnv`? https://turbo.build/repo/docs/reference/configuration#passthroughenv
+[@sentry/nextjs - After Production Compile] Warning: No auth token provided. Will not upload source maps. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
+You seem to be using Turborepo, did you forget to put SENTRY_AUTH_TOKEN in `passThroughEnv`? https://turbo.build/repo/docs/reference/configuration#passthroughenv
+ ✓ Completed runAfterProductionCompile in 1523ms
+   Running TypeScript ...
+Failed to compile.
+
+./app/solutions/estudio-de-danca/dashboard/configuracoes/page.tsx:476:92
+Type error: Cannot find name 'Users'. Did you mean 'User'?
+
+[0m [90m 474 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"space-y-4 max-w-xl"[39m[33m>[39m
+ [90m 475 |[39m           {[
+[31m[1m>[22m[39m[90m 476 |[39m             { label[33m:[39m [32m"Portal do Aluno"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca/student"[39m[33m,[39m icon[33m:[39m [33mUsers[39m[33m,[39m color[33m:[39m [32m"text-blue-500"[39m[33m,[39m desc[33m:[39m [32m"Acesso de alunos para ver turmas, créditos e check-in"[39m }[33m,[39m
+ [90m     |[39m                                                                                            [31m[1m^[22m[39m
+ [90m 477 |[39m             { label[33m:[39m [32m"Portal do Professor"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca/teacher"[39m[33m,[39m icon[33m:[39m [33mGraduationCap[39m[33m,[39m color[33m:[39m [32m"text-emerald-500"[39m[33m,[39m desc[33m:[39m [32m"Acesso de professores para chamadas e turmas"[39m }[33m,[39m
+ [90m 478 |[39m             { label[33m:[39m [32m"Registro (Novo Admin)"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca/register"[39m[33m,[39m icon[33m:[39m [33mBuilding2[39m[33m,[39m color[33m:[39m [32m"text-violet-500"[39m[33m,[39m desc[33m:[39m [32m"Página de cadastro de novo estúdio/admin"[39m }[33m,[39m
+ [90m 479 |[39m             { label[33m:[39m [32m"Landing Page Pública"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca"[39m[33m,[39m icon[33m:[39m [33mExternalLink[39m[33m,[39m color[33m:[39m [32m"text-orange-500"[39m[33m,[39m desc[33m:[39m [32m"Página de apresentação pública do sistema"[39m }[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.

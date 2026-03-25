@@ -143,10 +143,11 @@ async function getPagBankCredentialsForTenant(tenantId: string) {
 }
 
 
-export async function createPagBankPixOrder(
-  orderRequest: PagBankOrderRequest,
-  tenantId: string,
-): Promise<PagBankOrderResponse> {
+export async function createPagBankPixOrder(params: {
+  orderRequest: PagBankOrderRequest;
+  tenantId: string;
+}): Promise<PagBankOrderResponse> {
+  const { orderRequest, tenantId } = params;
   const PAGBANK_API_URL = process.env.NODE_ENV === 'production' 
     ? 'https://api.pagseguro.com/orders' 
     : 'https://sandbox.api.pagseguro.com/orders';
