@@ -292,7 +292,7 @@ export default function PlanosPage() {
     Math.abs(Number(latestPaidInvoice.amount) - Number(limits.price || 0)) > 1
 
   return (
-    <div className="min-h-screen bg-black dark:bg-black">
+    <div className="min-h-screen bg-black bg-black">
       <div className="flex items-center gap-3 mb-6 px-1">
         <Link
           href="/solutions/estudio-de-danca/dashboard/configuracoes"
@@ -341,7 +341,7 @@ export default function PlanosPage() {
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <div className="text-right">
-                    <p className="text-3xl font-bold text-red- dark:text-red-">
+                    <p className="text-3xl font-bold text-[#e40014] dark:text-[#e40014]">
                       {!usageLoaded ? "—" : `R$ ${Number(limits.price || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}
                     </p>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">/mês</p>
@@ -350,7 +350,7 @@ export default function PlanosPage() {
                     {searchParams.get("session_id") && (
                       <Button
                         size="sm"
-                        className="h-9 px-4 text-sm font-semibold bg-red- hover:bg-red- text-white border-0"
+                        className="h-9 px-4 text-sm font-semibold bg-[#e40014] hover:bg-[#e40014] text-white border-0"
                         onClick={() => verifyPayment(searchParams.get("session_id")!)}
                         disabled={isVerifyingPayment}
                       >
@@ -368,7 +368,7 @@ export default function PlanosPage() {
                         variant={planPriceMismatch ? "default" : "outline"}
                         className={cn(
                           "h-9 px-4 text-sm font-semibold",
-                          planPriceMismatch && "bg-red- hover:bg-red- text-white border-0"
+                          planPriceMismatch && "bg-[#e40014] hover:bg-[#e40014] text-white border-0"
                         )}
                         onClick={syncPlanFromInvoice}
                         disabled={isSyncingFromInvoice}
@@ -399,7 +399,7 @@ export default function PlanosPage() {
                         "h-full transition-all duration-300 rounded-full",
                         usage.students >= (limits.max_students ?? 10)
                           ? "bg-[#e40014]"
-                          : "bg-red- dark:bg-red-"
+                          : "bg-[#e40014] dark:bg-[#e40014]"
                       )}
                       style={{
                         width: `${Math.min(
@@ -423,7 +423,7 @@ export default function PlanosPage() {
                         "h-full transition-all duration-300 rounded-full",
                         usage.teachers >= (limits.max_teachers ?? 1)
                           ? "bg-[#e40014]"
-                          : "bg-red- dark:bg-red-"
+                          : "bg-[#e40014] dark:bg-[#e40014]"
                       )}
                       style={{
                         width: `${Math.min(
@@ -452,7 +452,7 @@ export default function PlanosPage() {
                           className={cn(
                             "gap-1.5 px-3 py-1 font-medium",
                             has
-                              ? "bg-[#e40014] text-red- dark:text-red- border-[#e40014]"
+                              ? "bg-[#e40014] text-[#e40014] dark:text-[#e40014] border-[#e40014]"
                               : "bg-slate-200/80 dark:bg-slate-700/80 text-zinc-500 dark:text-zinc-400 border-slate-300/50 dark:border-slate-600"
                           )}
                         >
@@ -467,7 +467,7 @@ export default function PlanosPage() {
 
             <div className="flex flex-wrap gap-3">
               <Button
-                className="bg-red- hover:bg-red- font-semibold shadow-md hover:shadow-lg transition-shadow"
+                className="bg-[#e40014] hover:bg-[#e40014] font-semibold shadow-md hover:shadow-lg transition-shadow"
                 onClick={() => {
                   setSelectedNewPlan(null)
                   setIsPlanModalOpen(true)
@@ -503,7 +503,7 @@ export default function PlanosPage() {
                         variant={invoice.status === "paid" ? "default" : "secondary"}
                         className={
                           invoice.status === "paid"
-                            ? "bg-[#e40014] text-red- hover:bg-[#e40014] border-[#e40014]"
+                            ? "bg-[#e40014] text-[#e40014] hover:bg-[#e40014] border-[#e40014]"
                             : ""
                         }
                       >
@@ -588,7 +588,7 @@ export default function PlanosPage() {
                         </span>
                       </div>
                       {billingInterval === "yearly" && plan.price_annual && (
-                        <p className="text-[10px] text-red- dark:text-red- mt-0.5">
+                        <p className="text-[10px] text-[#e40014] dark:text-[#e40014] mt-0.5">
                           Economize {plan.annual_discount_percent ?? 17}%
                         </p>
                       )}

@@ -416,7 +416,7 @@ export default function DanceConfiguracoesPage() {
 
   // ─── render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-black dark:bg-black">
+    <div className="min-h-screen bg-black bg-black">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6 px-1">
         <div className="w-9 h-9 rounded-xl bg-[#e40014] flex items-center justify-center shadow-lg shadow-red-600/20">
@@ -441,7 +441,7 @@ export default function DanceConfiguracoesPage() {
                   "flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all",
                   activeTab === tab.id
                     ? "bg-[#e40014] text-white shadow-md shadow-red-600/20"
-                    : "text-zinc-500 dark:text-zinc-400 hover:bg-white/5 dark:hover:bg-white/5/5 hover:text-zinc-400 dark:hover:text-white"
+                    : "text-zinc-500 dark:text-zinc-400 hover:bg-white/5 dark:hover:bg-white/5 hover:text-zinc-400 dark:hover:text-white"
                 )}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -547,7 +547,7 @@ export default function DanceConfiguracoesPage() {
                       "px-3 py-1.5 rounded-full text-xs font-bold border transition-all",
                       studio.modalities.includes(mod)
                         ? "bg-[#e40014] text-white border-[#e40014] shadow-sm"
-                        : "bg-white/5 dark:bg-white/5/5 text-zinc-400 dark:text-slate-300 border-white/10 dark:border-white/10 hover:border-[#e40014]"
+                        : "bg-white/5 dark:bg-white/5 text-zinc-400 dark:text-slate-300 border-white/10 border-white/10 hover:border-[#e40014]"
                     )}
                   >
                     {mod}
@@ -569,7 +569,7 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           {[
             { label: "Portal do Aluno", path: "/solutions/estudio-de-danca/student", icon: Users, color: "text-blue-500", desc: "Acesso de alunos para ver turmas, créditos e check-in" },
-            { label: "Portal do Professor", path: "/solutions/estudio-de-danca/teacher", icon: GraduationCap, color: "text-red-", desc: "Acesso de professores para chamadas e turmas" },
+            { label: "Portal do Professor", path: "/solutions/estudio-de-danca/teacher", icon: GraduationCap, color: "text-[#e40014]", desc: "Acesso de professores para chamadas e turmas" },
             { label: "Registro (Novo Admin)", path: "/solutions/estudio-de-danca/register", icon: Building2, color: "text-[#e40014]", desc: "Página de cadastro de novo estúdio/admin" },
             { label: "Landing Page Pública", path: "/solutions/estudio-de-danca", icon: ExternalLink, color: "text-orange-500", desc: "Página de apresentação pública do sistema" },
           ].map(portal => {
@@ -578,13 +578,13 @@ export default function DanceConfiguracoesPage() {
             return (
               <Card key={portal.path}>
                 <CardContent className="p-4 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5/5 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0">
                     <Icon className={cn("w-5 h-5", portal.color)} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-sm">{portal.label}</p>
                     <p className="text-xs text-zinc-500 mb-2">{portal.desc}</p>
-                    <div className="flex items-center gap-2 p-2 rounded-lg bg-black dark:bg-white/5/5 border border-white/10 dark:border-white/10">
+                    <div className="flex items-center gap-2 p-2 rounded-lg bg-black dark:bg-white/5 border border-white/10 border-white/10">
                       <code className="flex-1 text-xs font-mono text-zinc-400 dark:text-slate-300 truncate">{link}</code>
                       <Button size="icon" variant="ghost" className="h-6 w-6 flex-shrink-0" onClick={() => copyLink(link)}>
                         {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
@@ -610,7 +610,7 @@ export default function DanceConfiguracoesPage() {
                 <CardDescription>Compartilhe com alunos para se cadastrarem</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-white/5 dark:bg-white/5/5 border border-[#e40014] dark:border-[#e40014]">
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-white/5 dark:bg-white/5 border border-[#e40014] dark:border-[#e40014]">
                   <code className="flex-1 text-sm font-mono text-[#e40014] dark:text-[#e40014] truncate">
                     {origin}/s/{studio.slug}
                   </code>
@@ -683,7 +683,7 @@ export default function DanceConfiguracoesPage() {
                       onClick={() => { setTheme(t); document.documentElement.classList.toggle("dark", t === "dark") }}
                       className={cn(
                         "p-3 rounded-xl border text-sm font-bold transition-all",
-                        theme === t ? "bg-[#e40014] text-white border-[#e40014]" : "bg-white/5 dark:bg-white/5/5 border-white/10 dark:border-white/10 text-zinc-400 dark:text-slate-300"
+                        theme === t ? "bg-[#e40014] text-white border-[#e40014]" : "bg-white/5 dark:bg-white/5 border-white/10 border-white/10 text-zinc-400 dark:text-slate-300"
                       )}
                     >
                       {{ light: "☀️ Claro", dark: "🌙 Escuro", system: "💻 Sistema" }[t]}
@@ -700,7 +700,7 @@ export default function DanceConfiguracoesPage() {
                       onClick={() => setLang(l)}
                       className={cn(
                         "p-3 rounded-xl border text-sm font-bold transition-all",
-                        lang === l ? "bg-[#e40014] text-white border-[#e40014]" : "bg-white/5 dark:bg-white/5/5 border-white/10 dark:border-white/10 text-zinc-400 dark:text-slate-300"
+                        lang === l ? "bg-[#e40014] text-white border-[#e40014]" : "bg-white/5 dark:bg-white/5 border-white/10 border-white/10 text-zinc-400 dark:text-slate-300"
                       )}
                     >
                       {{ pt: "🇧🇷 Português", en: "🇺🇸 English" }[l]}
@@ -809,7 +809,7 @@ export default function DanceConfiguracoesPage() {
               ) : (
                 <div className="space-y-2 mb-4">
                   {creditPackages.map(pkg => (
-                    <div key={pkg.id} className="flex items-center justify-between p-3 rounded-xl border bg-white/5 dark:bg-white/5/5">
+                    <div key={pkg.id} className="flex items-center justify-between p-3 rounded-xl border bg-white/5 dark:bg-white/5">
                       <div>
                         <p className="font-bold text-sm">{pkg.name || `Pacote ${pkg.lessons_count} aulas`}</p>
                         <p className="text-xs text-zinc-500">{pkg.lessons_count} sessões · válido por {pkg.validity_days || 90} dias</p>
@@ -869,11 +869,11 @@ export default function DanceConfiguracoesPage() {
         <div className="space-y-4 max-w-xl">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base"><Trophy className="w-4 h-4 text-red-" /> Configuração da Gamificação</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base"><Trophy className="w-4 h-4 text-[#e40014]" /> Configuração da Gamificação</CardTitle>
               <CardDescription>Configure pontos e recompensas para engajar seus alunos</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-red- dark:bg-[#e40014] border border-red- dark:border-[#e40014]">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-[#e40014] dark:bg-[#e40014] border border-[#e40014] dark:border-[#e40014]">
                 <div>
                   <p className="font-bold text-sm">Gamificação Ativa</p>
                   <p className="text-xs text-zinc-500">Ativar ranking, pontos e conquistas para alunos</p>
@@ -888,7 +888,7 @@ export default function DanceConfiguracoesPage() {
                   { key: "points_per_referral", label: "Pontos por Indicação",     desc: "Quando um aluno indicado se cadastra" },
                   { key: "streak_bonus",        label: "Bônus de Sequência",       desc: "Pontos extras por semana sem faltar" },
                 ].map(({ key, label, desc }) => (
-                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white/5 dark:bg-white/5/5">
+                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white/5 dark:bg-white/5">
                     <div>
                       <p className="text-sm font-bold">{label}</p>
                       <p className="text-xs text-zinc-500">{desc}</p>
@@ -909,7 +909,7 @@ export default function DanceConfiguracoesPage() {
                   { key: "milestone_6",  label: "🥈 Marco de 6 meses" },
                   { key: "milestone_12", label: "🥇 Marco de 1 ano" },
                 ].map(({ key, label }) => (
-                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white/5 dark:bg-white/5/5">
+                  <div key={key} className="flex items-center justify-between gap-4 p-3 rounded-xl border bg-white/5 dark:bg-white/5">
                     <p className="text-sm font-bold">{label} <span className="font-normal text-zinc-500">(pts)</span></p>
                     <Input
                       type="number" min={0} className="w-20 text-center font-bold"
@@ -924,7 +924,7 @@ export default function DanceConfiguracoesPage() {
                 <p className="text-xs font-bold uppercase tracking-wide text-zinc-500">Conquistas Personalizadas</p>
                 <p className="text-xs text-zinc-500">Edite nome, descrição e pontos de cada conquista exibida no ranking.</p>
                 {(gamif as any).achievements?.map((ach: any, i: number) => (
-                  <div key={ach.id || i} className="p-3 rounded-xl border bg-white/5 dark:bg-white/5/5 space-y-2">
+                  <div key={ach.id || i} className="p-3 rounded-xl border bg-white/5 dark:bg-white/5 space-y-2">
                     <div className="flex items-center justify-between gap-2">
                       <Input
                         placeholder="Nome da conquista"
@@ -988,7 +988,7 @@ export default function DanceConfiguracoesPage() {
               </div>
             </CardContent>
           </Card>
-          <Button className="w-full bg-red- hover:bg-red- text-white font-bold" onClick={saveGamification} disabled={saving}>
+          <Button className="w-full bg-[#e40014] hover:bg-[#e40014] text-white font-bold" onClick={saveGamification} disabled={saving}>
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             Salvar Configurações de Gamificação
           </Button>
@@ -1002,7 +1002,7 @@ export default function DanceConfiguracoesPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between text-base">
-                <div className="flex items-center gap-2"><MessageSquare className="w-4 h-4 text-red-" /> WhatsApp (Evolution API)</div>
+                <div className="flex items-center gap-2"><MessageSquare className="w-4 h-4 text-[#e40014]" /> WhatsApp (Evolution API)</div>
                 <div className="flex items-center gap-1.5 text-xs">
                   {statusIcon(waStatus)}
                   <span className="font-bold text-zinc-500 capitalize">{waStatus === "connected" ? "Conectado" : waStatus === "connecting" ? "Verificando..." : "Desconectado"}</span>
@@ -1023,7 +1023,7 @@ export default function DanceConfiguracoesPage() {
                 <Input type="password" value={waSettings.apiKey} onChange={e => setWaSettings(p => ({ ...p, apiKey: e.target.value }))} />
               </div>
               <div className="flex gap-2">
-                <Button className="flex-1 bg-red- hover:bg-red- text-white" onClick={saveWhatsApp}>
+                <Button className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white" onClick={saveWhatsApp}>
                   {waStatus === "connecting" ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Phone className="w-4 h-4 mr-2" />}
                   Salvar e Testar
                 </Button>

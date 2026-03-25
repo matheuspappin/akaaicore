@@ -89,10 +89,10 @@ export default function GamificacaoPage() {
       <ModuleGuard module="gamification" showFullError>
         <div className="space-y-6">
           <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
-            <Trophy className="w-6 h-6 text-red-" />
+            <Trophy className="w-6 h-6 text-[#e40014]" />
             Gamificação
           </h1>
-          <Card className="bg-red- dark:bg-[#e40014] border-red- dark:border-[#e40014]">
+          <Card className="bg-[#e40014] dark:bg-[#e40014] border-[#e40014] dark:border-[#e40014]">
             <CardContent className="p-6 text-center">
               <p className="text-zinc-400 dark:text-zinc-400">Estúdio não identificado. Faça login novamente.</p>
             </CardContent>
@@ -112,7 +112,7 @@ export default function GamificacaoPage() {
   }
 
   const colorByPos = (pos: number) =>
-    pos === 1 ? "text-red-" : pos === 2 ? "text-zinc-400" : pos === 3 ? "text-red-" : "text-zinc-500"
+    pos === 1 ? "text-[#e40014]" : pos === 2 ? "text-zinc-400" : pos === 3 ? "text-[#e40014]" : "text-zinc-500"
 
   return (
     <ModuleGuard module="gamification" showFullError>
@@ -120,7 +120,7 @@ export default function GamificacaoPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
-            <Trophy className="w-6 h-6 text-red-" />
+            <Trophy className="w-6 h-6 text-[#e40014]" />
             Gamificação
           </h1>
           <p className="text-zinc-500 text-sm mt-1">Rankings, conquistas e engajamento dos alunos</p>
@@ -135,16 +135,16 @@ export default function GamificacaoPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Ranking */}
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardHeader className="pb-3">
             <CardTitle className="text-white dark:text-white flex items-center gap-2 text-base">
-              <Trophy className="w-5 h-5 text-red-" />
+              <Trophy className="w-5 h-5 text-[#e40014]" />
               Ranking Geral
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {ranking.length === 0 ? (
-              <div className="p-8 text-center rounded-xl bg-black dark:bg-white/5/5">
+              <div className="p-8 text-center rounded-xl bg-black dark:bg-white/5">
                 <Trophy className="w-12 h-12 mx-auto mb-2 text-slate-300 dark:text-zinc-400" />
                 <p className="text-sm font-medium text-zinc-400 dark:text-zinc-400">Nenhum aluno com pontos ainda</p>
                 <p className="text-xs text-zinc-500 mt-1">Os pontos aparecem quando os alunos conquistam badges ou fazem check-in</p>
@@ -156,8 +156,8 @@ export default function GamificacaoPage() {
                   className={cn(
                     "flex items-center justify-between p-3 rounded-xl transition-all",
                     item.pos <= 3
-                      ? "bg-gradient-to-r from-red- to-transparent dark:from-red-/10 dark:to-transparent border border-red- dark:border-[#e40014]"
-                      : "bg-black dark:bg-white/5/5"
+                      ? "bg-gradient-to-r from-red- to-transparent dark:from-red-/10 dark:to-transparent border border-[#e40014] dark:border-[#e40014]"
+                      : "bg-black dark:bg-white/5"
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -168,7 +168,7 @@ export default function GamificacaoPage() {
                     <span className="font-bold text-zinc-800 dark:text-white text-sm">{item.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="w-3.5 h-3.5 text-red-" />
+                    <Star className="w-3.5 h-3.5 text-[#e40014]" />
                     <span className={cn("font-black text-sm", colorByPos(item.pos))}>{item.points} pts</span>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function GamificacaoPage() {
         </Card>
 
         {/* Conquistas */}
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardHeader className="pb-3">
             <CardTitle className="text-white dark:text-white flex items-center gap-2 text-base">
               <Award className="w-5 h-5 text-[#e40014]" />
@@ -187,7 +187,7 @@ export default function GamificacaoPage() {
           </CardHeader>
           <CardContent className="space-y-2">
             {achievements.length === 0 ? (
-              <div className="p-8 text-center rounded-xl bg-black dark:bg-white/5/5">
+              <div className="p-8 text-center rounded-xl bg-black dark:bg-white/5">
                 <Award className="w-12 h-12 mx-auto mb-2 text-slate-300 dark:text-zinc-400" />
                 <p className="text-sm font-medium text-zinc-400 dark:text-zinc-400">Configure as conquistas em Personalizar</p>
               </div>
@@ -195,15 +195,15 @@ export default function GamificacaoPage() {
               achievements.map((ach, i) => {
                 const IconComp = (ach.icon && ICON_MAP[ach.icon]) || [Star, Zap, TrendingUp, Award, Crown, Medal][i % 6]
                 const colors = [
-                  "text-red- bg-red- dark:bg-[#e40014]",
                   "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
-                  "text-red- bg-red- dark:bg-[#e40014]",
                   "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
-                  "text-red- bg-red- dark:bg-[#e40014]",
+                  "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
+                  "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
+                  "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
                 ]
                 const color = colors[i % colors.length]
                 return (
-                  <div key={ach.label + i} className="flex items-center justify-between p-3 rounded-xl bg-black dark:bg-white/5/5">
+                  <div key={ach.label + i} className="flex items-center justify-between p-3 rounded-xl bg-black dark:bg-white/5">
                     <div className="flex items-center gap-3">
                       <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center", color)}>
                         <IconComp className="w-4 h-4" />
@@ -213,7 +213,7 @@ export default function GamificacaoPage() {
                         <p className="text-xs text-zinc-500">{ach.desc}</p>
                       </div>
                     </div>
-                    <Badge className="bg-red- text-red- dark:bg-[#e40014] dark:text-red- border-0 text-xs font-black">
+                    <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-xs font-black">
                       +{ach.points}
                     </Badge>
                   </div>
@@ -229,10 +229,10 @@ export default function GamificacaoPage() {
         {[
           { label: "Alunos Ativos", value: String(stats.studentsActive), icon: Users, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
           { label: "Conquistas Desbloqueadas", value: String(stats.achievementsUnlocked), icon: Award, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
-          { label: "Pontos Distribuídos", value: stats.totalPoints >= 1000 ? `${(stats.totalPoints / 1000).toFixed(1)}k` : String(stats.totalPoints), icon: Star, color: "text-red- bg-red- dark:bg-[#e40014]" },
-          { label: "Taxa de Engajamento", value: `${stats.engagementRate}%`, icon: TrendingUp, color: "text-red- bg-red- dark:bg-[#e40014]" },
+          { label: "Pontos Distribuídos", value: stats.totalPoints >= 1000 ? `${(stats.totalPoints / 1000).toFixed(1)}k` : String(stats.totalPoints), icon: Star, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
+          { label: "Taxa de Engajamento", value: `${stats.engagementRate}%`, icon: TrendingUp, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
         ].map((s) => (
-          <Card key={s.label} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card key={s.label} className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardContent className="p-5 text-center">
               <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mx-auto mb-3", s.color)}>
                 <s.icon className="w-5 h-5" />

@@ -167,7 +167,7 @@ export default function ChamadaPage() {
 
       {/* Seleção de turma */}
       {turmas.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="text-center py-16">
             <Calendar className="w-12 h-12 mx-auto mb-3 text-slate-300" />
             <p className="font-bold text-zinc-400 dark:text-zinc-400">Nenhuma turma encontrada</p>
@@ -184,7 +184,7 @@ export default function ChamadaPage() {
                   "px-4 py-2 rounded-xl text-sm font-bold transition-all border",
                   selectedTurma?.id === t.id
                     ? "bg-[#e40014] text-white border-[#e40014] shadow-lg shadow-red-600/20"
-                    : "bg-white/5 dark:bg-black/50 border-white/10 dark:border-white/10 text-zinc-400 dark:text-zinc-400 hover:border-red-"
+                    : "bg-white/5 bg-black border-white/10 border-white/10 text-zinc-400 dark:text-zinc-400 hover:border-[#e40014]"
                 )}
               >
                 {t.name}
@@ -197,7 +197,7 @@ export default function ChamadaPage() {
             ))}
           </div>
 
-          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardHeader className="pb-3 flex flex-row items-center justify-between">
               <CardTitle className="text-base font-bold text-white dark:text-white flex items-center gap-2">
                 <Users className="w-4 h-4 text-[#e40014]" />
@@ -233,14 +233,14 @@ export default function ChamadaPage() {
                         className={cn(
                           "w-full flex items-center justify-between p-3 rounded-xl border-2 transition-all",
                           isPresent
-                            ? "border-red- bg-red- dark:border-[#e40014] dark:bg-[#e40014]"
-                            : "border-red- bg-red- dark:border-[#e40014] dark:bg-[#e40014]"
+                            ? "border-[#e40014] bg-[#e40014] dark:border-[#e40014] dark:bg-[#e40014]"
+                            : "border-[#e40014] bg-[#e40014] dark:border-[#e40014] dark:bg-[#e40014]"
                         )}
                       >
                         <div className="flex items-center gap-3">
                           <div className={cn(
                             "w-9 h-9 rounded-full flex items-center justify-center font-black text-sm text-white",
-                            isPresent ? "bg-red-" : "bg-slate-300 dark:bg-slate-600"
+                            isPresent ? "bg-[#e40014]" : "bg-slate-300 dark:bg-slate-600"
                           )}>
                             {student.name[0]?.toUpperCase()}
                           </div>
@@ -249,8 +249,8 @@ export default function ChamadaPage() {
                           </span>
                         </div>
                         {isPresent
-                          ? <CheckCircle2 className="w-5 h-5 text-red-" />
-                          : <XCircle className="w-5 h-5 text-red-" />
+                          ? <CheckCircle2 className="w-5 h-5 text-[#e40014]" />
+                          : <XCircle className="w-5 h-5 text-[#e40014]" />
                         }
                       </button>
                     )
@@ -263,7 +263,7 @@ export default function ChamadaPage() {
                       className={cn(
                         "w-full font-bold rounded-xl h-12",
                         saved
-                          ? "bg-red- hover:bg-red-"
+                          ? "bg-[#e40014] hover:bg-[#e40014]"
                           : "bg-[#e40014] hover:bg-[#e40014]"
                       )}
                     >

@@ -335,7 +335,7 @@ function RegisterContent() {
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 className="flex items-center gap-4 text-white/90"
               >
-                <div className="w-8 h-8 rounded-full bg-white/5/20 flex items-center justify-center border border-white/30">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/30">
                   <Check className="w-5 h-5" />
                 </div>
                 <span className="text-xl font-bold tracking-tight">{benefit}</span>
@@ -462,7 +462,7 @@ function RegisterContent() {
                   <div className="space-y-2 col-span-full sm:col-span-1">
                     <Label className="flex items-center gap-2 text-slate-300 font-bold uppercase tracking-widest text-[10px]">
                       E-mail
-                      {isEmailVerified && <CheckCircle2 className="w-4 h-4 text-red-" />}
+                      {isEmailVerified && <CheckCircle2 className="w-4 h-4 text-[#e40014]" />}
                     </Label>
                     <div className="flex gap-2">
                       <Input
@@ -563,7 +563,7 @@ function RegisterContent() {
                           <CardContent className="p-6 space-y-4">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                               {systemModules.map(mod => (
-                                <div key={mod.id} className="flex items-center justify-between p-3 bg-black/50 rounded-xl border border-white/5">
+                                <div key={mod.id} className="flex items-center justify-between p-3 bg-black rounded-xl border border-white/5">
                                   <div className="flex flex-col">
                                     <span className="text-xs font-bold text-white uppercase tracking-tighter">{mod.label}</span>
                                     <span className="text-[9px] text-zinc-500">{Number(mod.price) === 0 ? "Grátis" : `+ R$ ${Number(mod.price)}`}</span>

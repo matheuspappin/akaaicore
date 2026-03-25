@@ -168,7 +168,7 @@ export default function ChatPage() {
       </div>
 
       {/* Chat */}
-      <Card className="flex-1 bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 flex flex-col overflow-hidden">
+      <Card className="flex-1 bg-white/5 bg-black border border-white/10 border-white/10 flex flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.map((msg) => (
             <div
@@ -186,7 +186,7 @@ export default function ChatPage() {
                   className={cn(
                     "max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed",
                     msg.role === "assistant"
-                      ? "bg-slate-100 dark:bg-white/5/10 text-zinc-800 dark:text-slate-200 rounded-tl-sm"
+                      ? "bg-slate-100 dark:bg-white/10 text-zinc-800 dark:text-slate-200 rounded-tl-sm"
                       : "bg-[#e40014] text-white rounded-tr-sm"
                   )}
                 >
@@ -218,7 +218,7 @@ export default function ChatPage() {
               <div className="w-8 h-8 rounded-full bg-[#e40014] flex items-center justify-center">
                 <Bot className="w-4 h-4 text-white" />
               </div>
-              <div className="bg-slate-100 dark:bg-white/5/10 px-4 py-3 rounded-2xl rounded-tl-sm">
+              <div className="bg-slate-100 dark:bg-white/10 px-4 py-3 rounded-2xl rounded-tl-sm">
                 <Loader2 className="w-4 h-4 animate-spin text-[#e40014]" />
               </div>
             </div>
@@ -226,7 +226,7 @@ export default function ChatPage() {
           <div ref={bottomRef} />
         </div>
 
-        <div className="p-4 border-t border-slate-100 dark:border-white/10">
+        <div className="p-4 border-t border-white/10 border-white/10">
           <form
             onSubmit={(e) => { e.preventDefault(); send() }}
             className="flex gap-2"
@@ -235,7 +235,7 @@ export default function ChatPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Pergunte algo sobre seu estúdio..."
-              className="flex-1 bg-black dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11"
+              className="flex-1 bg-black dark:bg-white/5 border-white/10 border-white/10 rounded-xl h-11"
               disabled={loading}
             />
             <Button

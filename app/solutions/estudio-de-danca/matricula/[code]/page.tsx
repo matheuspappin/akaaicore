@@ -216,7 +216,7 @@ export default function MatriculaPublicPage() {
               transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
               className="w-24 h-24 rounded-3xl bg-[#e40014] border border-[#e40014] flex items-center justify-center mx-auto"
             >
-              <CheckCircle2 className="w-12 h-12 text-red-" />
+              <CheckCircle2 className="w-12 h-12 text-[#e40014]" />
             </motion.div>
 
             <div className="space-y-2">

@@ -141,7 +141,7 @@ export default function TenantsPage() {
         title: "Empresa Excluída",
         description: `A empresa '${tenantToDelete.name}' foi excluída permanentemente.`
       })
-      loadTenants() // Recarregar a lista de tenants
+      fetchTenants() // Recarregar a lista de tenants
     } catch (error) {
       console.error('Erro ao deletar tenant:', error)
       toast({

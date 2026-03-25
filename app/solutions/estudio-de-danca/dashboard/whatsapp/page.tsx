@@ -98,7 +98,7 @@ export default function WhatsAppPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
-          <Phone className="w-6 h-6 text-red-" />
+          <Phone className="w-6 h-6 text-[#e40014]" />
           WhatsApp
         </h1>
         <p className="text-zinc-500 text-sm mt-1">Comunicação automática com alunos e responsáveis</p>
@@ -106,14 +106,14 @@ export default function WhatsAppPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {[
-          { icon: Bell, title: "Avisos de Falta", desc: "Notificação automática para responsáveis quando o aluno não comparecer.", color: "text-red- bg-red- dark:bg-[#e40014]", status: "Automático", statusColor: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
-          { icon: Send, title: "Cobranças de Mensalidade", desc: "Lembrete automático antes e após vencimento da mensalidade.", color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]", status: "Automático", statusColor: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
-          { icon: MessageCircle, title: "Comunicados do Estúdio", desc: "Envie avisos de reposições, recitais e feriados para todos.", color: "text-red- bg-red- dark:bg-[#e40014]", status: "Manual", statusColor: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
-          { icon: Users, title: "Boas-vindas Automáticas", desc: "Mensagem de boas-vindas para novos alunos matriculados.", color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]", status: "Automático", statusColor: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
-          { icon: CheckCircle2, title: "Confirmação de Aula", desc: "Lembrete 24h antes da aula para reduzir faltas.", color: "text-teal-500 bg-teal-100 dark:bg-teal-600/20", status: "Automático", statusColor: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
+          { icon: Bell, title: "Avisos de Falta", desc: "Notificação automática para responsáveis quando o aluno não comparecer.", color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]", status: "Automático", statusColor: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
+          { icon: Send, title: "Cobranças de Mensalidade", desc: "Lembrete automático antes e após vencimento da mensalidade.", color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]", status: "Automático", statusColor: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
+          { icon: MessageCircle, title: "Comunicados do Estúdio", desc: "Envie avisos de reposições, recitais e feriados para todos.", color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]", status: "Manual", statusColor: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
+          { icon: Users, title: "Boas-vindas Automáticas", desc: "Mensagem de boas-vindas para novos alunos matriculados.", color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]", status: "Automático", statusColor: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
+          { icon: CheckCircle2, title: "Confirmação de Aula", desc: "Lembrete 24h antes da aula para reduzir faltas.", color: "text-teal-500 bg-teal-100 dark:bg-teal-600/20", status: "Automático", statusColor: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
           { icon: Zap, title: "Campanhas Personalizadas", desc: "Crie disparos customizados para segmentos de alunos.", color: "text-orange-500 bg-orange-100 dark:bg-orange-600/20", status: "Em breve", statusColor: "bg-slate-100 text-zinc-500 dark:bg-zinc-950 dark:text-zinc-400" },
         ].map((item) => (
-          <Card key={item.title} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
+          <Card key={item.title} className="bg-white/5 bg-black border border-white/10 border-white/10 hover:shadow-md transition-shadow">
             <CardContent className="p-5">
               <div className="flex items-center justify-between mb-4">
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${item.color}`}>
@@ -134,18 +134,18 @@ export default function WhatsAppPage() {
         <CardContent className="p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-black mb-2">Conectar WhatsApp</h3>
-            <p className="text-red- text-sm max-w-sm mb-2">
+            <p className="text-[#e40014] text-sm max-w-sm mb-2">
               Escaneie o QR Code para vincular seu número e ativar a Catarina IA + todos os envios automáticos.
             </p>
             {connectionStatus === 'connected' && (
-              <div className="flex items-center gap-2 text-red- text-sm">
-                <div className="w-2 h-2 rounded-full bg-red- animate-pulse" />
+              <div className="flex items-center gap-2 text-[#e40014] text-sm">
+                <div className="w-2 h-2 rounded-full bg-[#e40014] animate-pulse" />
                 <span>Conectado</span>
               </div>
             )}
           </div>
           <Button
-            className="bg-white/5 text-red- hover:bg-red- font-black rounded-xl px-8 h-12 shadow-lg"
+            className="bg-white/5 text-[#e40014] hover:bg-[#e40014] font-black rounded-xl px-8 h-12 shadow-lg"
             onClick={fetchQrCode}
             disabled={isFetchingQr}
           >

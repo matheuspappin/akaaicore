@@ -23,11 +23,11 @@ const stageMap: Record<string, { label: string; color: string }> = {
   new:             { label: "Novo",        color: "bg-blue-100 text-blue-700 dark:bg-blue-600/20 dark:text-blue-400" },
   contacted:       { label: "Contactado",  color: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
   trial_scheduled: { label: "Aula agendada", color: "bg-cyan-100 text-cyan-700 dark:bg-cyan-600/20 dark:text-cyan-400" },
-  trial_done:      { label: "Aula feita",  color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
+  trial_done:      { label: "Aula feita",  color: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
   negotiating:     { label: "Negociando", color: "bg-orange-100 text-orange-700 dark:bg-orange-600/20 dark:text-orange-400" },
-  interested:      { label: "Interessado", color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
-  converted:       { label: "Convertido",  color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
-  won:             { label: "Convertido (aluno)", color: "bg-red- text-red- dark:bg-[#e40014] dark:text-red-" },
+  interested:      { label: "Interessado", color: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
+  converted:       { label: "Convertido",  color: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
+  won:             { label: "Convertido (aluno)", color: "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]" },
   lost:            { label: "Perdido",    color: "bg-slate-100 text-zinc-500 dark:bg-zinc-950 dark:text-zinc-400" },
 }
 
@@ -161,14 +161,14 @@ export default function LeadsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-white dark:text-white tracking-tight flex items-center gap-2">
-            <TrendingUp className="w-6 h-6 text-red-" />
+            <TrendingUp className="w-6 h-6 text-[#e40014]" />
             Clientes (CRM)
           </h1>
           <p className="text-zinc-500 text-sm mt-1">Quem comprou, visitou ou participou — converta em alunos</p>
         </div>
         <Button
           onClick={() => setIsNewDialogOpen(true)}
-          className="bg-red- hover:bg-red- text-white font-bold rounded-xl shadow-lg shadow-red-/20"
+          className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl shadow-lg shadow-[#e40014]/20"
         >
           <Plus className="w-4 h-4 mr-2" />
           Novo Cliente
@@ -180,7 +180,7 @@ export default function LeadsPage() {
         {Object.entries(stageMap).filter(([k]) => k !== 'lost').map(([stage, info]) => {
           const count = leads.filter(l => l.stage === stage || (!l.stage && stage === 'new')).length
           return (
-            <Card key={stage} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+            <Card key={stage} className="bg-white/5 bg-black border border-white/10 border-white/10">
               <CardContent className="p-4 text-center">
                 <p className="text-2xl font-black text-white dark:text-white">{count}</p>
                 <Badge className={cn("mt-1 text-xs font-bold border-0", info.color)}>{info.label}</Badge>
@@ -196,16 +196,16 @@ export default function LeadsPage() {
           placeholder="Buscar lead..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 h-11 rounded-xl"
+          className="pl-9 bg-white/5 bg-black border-white/10 border-white/10 h-11 rounded-xl"
         />
       </div>
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <Loader2 className="w-8 h-8 animate-spin text-red-" />
+          <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
             <UserPlus className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
             <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
@@ -216,7 +216,7 @@ export default function LeadsPage() {
             </p>
             <Button
               onClick={() => setIsNewDialogOpen(true)}
-              className="bg-red- hover:bg-red- text-white font-bold rounded-xl"
+              className="bg-[#e40014] hover:bg-[#e40014] text-white font-bold rounded-xl"
             >
               <Plus className="w-4 h-4 mr-2" /> Cadastrar Cliente
             </Button>
@@ -227,10 +227,10 @@ export default function LeadsPage() {
           {filtered.map((lead) => {
             const stage = stageMap[lead.stage] ?? stageMap.new
             return (
-              <Card key={lead.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
+              <Card key={lead.id} className="bg-white/5 bg-black border border-white/10 border-white/10 hover:shadow-md transition-shadow">
                 <CardContent className="p-4 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-full bg-[#e40014] flex items-center justify-center font-black text-red- text-base flex-shrink-0">
+                    <div className="w-11 h-11 rounded-full bg-[#e40014] flex items-center justify-center font-black text-[#e40014] text-base flex-shrink-0">
                       {lead.name?.[0]?.toUpperCase() || "L"}
                     </div>
                     <div>
@@ -248,7 +248,7 @@ export default function LeadsPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => handleContatar(lead)}
-                      className="h-7 px-3 text-xs font-bold rounded-lg text-red- border-red- hover:bg-red- dark:border-[#e40014] dark:text-red- dark:hover:bg-[#e40014]"
+                      className="h-7 px-3 text-xs font-bold rounded-lg text-[#e40014] border-[#e40014] hover:bg-[#e40014] dark:border-[#e40014] dark:text-[#e40014] dark:hover:bg-[#e40014]"
                     >
                       <MessageCircle className="w-3 h-3 mr-1" />
                       Contatar
@@ -261,7 +261,7 @@ export default function LeadsPage() {
                       className={cn(
                         "h-7 px-3 text-xs font-bold rounded-lg transition-all",
                         copiedLinkId === lead.id
-                          ? "bg-red- border-red- text-red- dark:bg-[#e40014] dark:border-[#e40014] dark:text-red-"
+                          ? "bg-[#e40014] border-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:border-[#e40014] dark:text-[#e40014]"
                           : "text-[#e40014] border-[#e40014] hover:bg-[#e40014] dark:border-[#e40014] dark:text-[#e40014] dark:hover:bg-[#e40014]"
                       )}
                     >
@@ -277,7 +277,7 @@ export default function LeadsPage() {
                         variant="outline"
                         onClick={() => handleConverter(lead)}
                         disabled={convertingId === lead.id}
-                        className="h-7 px-3 text-xs font-bold rounded-lg text-red- border-red- hover:bg-red- dark:border-[#e40014] dark:text-red- dark:hover:bg-[#e40014]"
+                        className="h-7 px-3 text-xs font-bold rounded-lg text-[#e40014] border-[#e40014] hover:bg-[#e40014] dark:border-[#e40014] dark:text-[#e40014] dark:hover:bg-[#e40014]"
                       >
                         {convertingId === lead.id
                           ? <Loader2 className="w-3 h-3 animate-spin" />
@@ -345,7 +345,7 @@ export default function LeadsPage() {
               <Button
                 onClick={handleCreateLead}
                 disabled={isSaving || !newForm.name.trim()}
-                className="flex-1 bg-red- hover:bg-red- text-white font-bold"
+                className="flex-1 bg-[#e40014] hover:bg-[#e40014] text-white font-bold"
               >
                 {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                 Cadastrar Cliente

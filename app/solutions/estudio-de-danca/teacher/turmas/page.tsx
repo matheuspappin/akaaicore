@@ -105,7 +105,7 @@ export default function TeacherTurmasPage() {
           {classes.map((turma, index) => (
             <Card
               key={turma.id}
-              className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-lg transition-all overflow-hidden"
+              className="bg-white/5 bg-black border border-white/10 border-white/10 hover:shadow-lg transition-all overflow-hidden"
             >
               <div className={cn("h-2 bg-gradient-to-r", COLORS[index % COLORS.length])} />
               <CardContent className="p-5 space-y-4">

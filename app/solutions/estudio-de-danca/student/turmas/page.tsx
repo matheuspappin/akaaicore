@@ -180,7 +180,7 @@ export default function StudentTurmasPage() {
           <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : turmas.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10 overflow-hidden">
           <div className="h-1.5 bg-gradient-to-r from-red-500 to-red-500" />
           <CardContent className="flex flex-col items-center justify-center py-20 text-center px-6">
             <div className="w-20 h-20 rounded-2xl bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center mb-4">
@@ -207,7 +207,7 @@ export default function StudentTurmasPage() {
         <>
           <div className="space-y-4">
             {turmas.map((turma: any, i: number) => (
-              <Card key={turma.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 overflow-hidden">
+              <Card key={turma.id} className="bg-white/5 bg-black border border-white/10 border-white/10 overflow-hidden">
                 <div className={cn("h-1.5 bg-gradient-to-r", COLORS[i % COLORS.length])} />
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-4">
@@ -232,7 +232,7 @@ export default function StudentTurmasPage() {
 
                     <div className="flex flex-wrap gap-2 mt-1">
                       {(turma.schedule || []).map((s: any, si: number) => (
-                        <div key={si} className="flex items-center gap-1.5 bg-black dark:bg-white/5/5 rounded-lg px-3 py-1.5">
+                        <div key={si} className="flex items-center gap-1.5 bg-black dark:bg-white/5 rounded-lg px-3 py-1.5">
                           <Clock className="w-3.5 h-3.5 text-[#e40014]" />
                           <span className="text-xs font-bold text-zinc-400 dark:text-slate-300">
                             {DAY_NAMES[s.day_of_week]} às {s.start_time}
@@ -309,7 +309,7 @@ export default function StudentTurmasPage() {
                     level="H"
                     viewBox="0 0 256 256"
                   />
-                  <div className="bg-black dark:bg-black px-4 py-2 rounded-lg border border-slate-100 dark:border-zinc-800 w-full text-center">
+                  <div className="bg-black bg-black px-4 py-2 rounded-lg border border-white/10 dark:border-zinc-800 w-full text-center">
                     <p className="text-[10px] text-zinc-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
                     <p className="font-mono text-lg font-black text-[#e40014] tracking-widest">
                       DF-{activeAttendanceId.toString().slice(-8).toUpperCase()}

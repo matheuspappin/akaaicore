@@ -39,11 +39,11 @@ const COLORS = [
 ]
 
 const CAL_COLORS = [
-  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-red- dark:text-[#e40014]", border: "border-red- dark:border-[#e40014]" },
-  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-red- dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
-  { bg: "bg-red- dark:bg-[#e40014]", text: "text-red- dark:text-red-", border: "border-red- dark:border-red-" },
-  { bg: "bg-red- dark:bg-[#e40014]", text: "text-red- dark:text-red-", border: "border-red- dark:border-red-" },
-  { bg: "bg-red- dark:bg-[#e40014]", text: "text-red- dark:text-red-", border: "border-red- dark:border-red-" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-[#e40014] dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-[#e40014] dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-[#e40014] dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-[#e40014] dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
+  { bg: "bg-[#e40014] dark:bg-[#e40014]", text: "text-[#e40014] dark:text-[#e40014]", border: "border-[#e40014] dark:border-[#e40014]" },
   { bg: "bg-sky-100 dark:bg-sky-900/40", text: "text-sky-800 dark:text-sky-200", border: "border-sky-300 dark:border-sky-700" },
 ]
 
@@ -99,7 +99,7 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
 
   if (withSchedule.length === 0) {
     return (
-      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+      <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
         <CardContent className="flex flex-col items-center justify-center py-16 text-center">
           <CalendarDays className="w-12 h-12 text-slate-300 dark:text-zinc-400 mb-3" />
           <p className="font-bold text-zinc-400 dark:text-zinc-400">Nenhuma turma com horário definido</p>
@@ -125,20 +125,20 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
       </div>
 
       {/* Grade */}
-      <div className="overflow-x-auto rounded-xl border border-white/10 dark:border-white/10 bg-white/5 dark:bg-black/80 shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-white/10 border-white/10 bg-white/5 bg-black/80 shadow-sm">
         <div className="min-w-[640px]">
           {/* Cabeçalho dias */}
           <div
-            className="grid border-b border-white/10 dark:border-white/10 bg-black dark:bg-black sticky top-0 z-10"
+            className="grid border-b border-white/10 border-white/10 bg-black bg-black sticky top-0 z-10"
             style={{ gridTemplateColumns: "56px repeat(7, 1fr)" }}
           >
-            <div className="p-2 border-r border-slate-100 dark:border-white/5" />
+            <div className="p-2 border-r border-white/10 dark:border-white/5" />
             {DISPLAY_DAYS_SHORT.map((day, i) => (
               <div
                 key={day}
                 className={cn(
                   "py-3 text-center text-[11px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400",
-                  i < 6 && "border-r border-slate-100 dark:border-white/5"
+                  i < 6 && "border-r border-white/10 dark:border-white/5"
                 )}
               >
                 {day}
@@ -150,11 +150,11 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
           {hours.map((hour) => (
             <div
               key={hour}
-              className="grid border-b border-slate-100 dark:border-white/5 last:border-b-0"
+              className="grid border-b border-white/10 dark:border-white/5 last:border-b-0"
               style={{ gridTemplateColumns: "56px repeat(7, 1fr)", minHeight: "64px" }}
             >
               {/* Hora */}
-              <div className="px-2 pt-2 border-r border-slate-100 dark:border-white/5 flex items-start justify-end">
+              <div className="px-2 pt-2 border-r border-white/10 dark:border-white/5 flex items-start justify-end">
                 <span className="text-[11px] font-bold text-zinc-400 dark:text-zinc-400">
                   {String(hour).padStart(2, "0")}:00
                 </span>
@@ -166,7 +166,7 @@ function WeekCalendar({ turmas }: { turmas: any[] }) {
                 return (
                   <div
                     key={dayIndex}
-                    className={cn("p-1 relative", dayIndex < 6 && "border-r border-slate-100 dark:border-white/5")}
+                    className={cn("p-1 relative", dayIndex < 6 && "border-r border-white/10 dark:border-white/5")}
                   >
                     {items.map(({ turma, slot }) => {
                       const c = CAL_COLORS[colorMap[turma.id]]
@@ -481,7 +481,7 @@ export default function TurmasPage() {
       ) : view === "calendar" ? (
         <WeekCalendar turmas={turmas} />
       ) : filtered.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
             <Music className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
             <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
@@ -500,7 +500,7 @@ export default function TurmasPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filtered.map((turma, i) => (
-            <Card key={turma.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-lg transition-all overflow-hidden">
+            <Card key={turma.id} className="bg-white/5 bg-black border border-white/10 border-white/10 hover:shadow-lg transition-all overflow-hidden">
               <div className={cn("h-2 bg-gradient-to-r", COLORS[i % COLORS.length])} />
               <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-3">
@@ -524,7 +524,7 @@ export default function TurmasPage() {
                     <span>{turma.scheduleSummary}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
-                    <Users className="w-4 h-4 text-red-" />
+                    <Users className="w-4 h-4 text-[#e40014]" />
                     <span>{turma.enrolledCount} {turma.enrolledCount === 1 ? "aluno" : "alunos"}</span>
                   </div>
                 </div>
@@ -635,13 +635,13 @@ export default function TurmasPage() {
               </div>
 
               {newForm.scheduleItems.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-white/10 dark:border-white/10 p-4 text-center text-xs text-zinc-400">
+                <div className="rounded-xl border border-dashed border-white/10 border-white/10 p-4 text-center text-xs text-zinc-400">
                   Sem horários definidos — a turma aparecerá apenas na visão em cards.
                 </div>
               ) : (
                 <div className="space-y-2">
                   {newForm.scheduleItems.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-black dark:bg-white/5/5 border border-slate-100 dark:border-white/10">
+                    <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-black dark:bg-white/5 border border-white/10 border-white/10">
                       <Select
                         value={String(item.day_of_week)}
                         onValueChange={(v) => updateScheduleItem(idx, "day_of_week", parseInt(v))}
@@ -802,13 +802,13 @@ export default function TurmasPage() {
                       </Button>
                     </div>
                     {editForm.scheduleItems.length === 0 ? (
-                      <div className="rounded-xl border border-dashed border-white/10 dark:border-white/10 p-4 text-center text-xs text-zinc-400">
+                      <div className="rounded-xl border border-dashed border-white/10 border-white/10 p-4 text-center text-xs text-zinc-400">
                         Sem horários definidos
                       </div>
                     ) : (
                       <div className="space-y-2">
                         {editForm.scheduleItems.map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-black dark:bg-white/5/5 border border-slate-100 dark:border-white/10">
+                          <div key={idx} className="flex items-center gap-2 p-2.5 rounded-xl bg-black dark:bg-white/5 border border-white/10 border-white/10">
                             <Select
                               value={String(item.day_of_week)}
                               onValueChange={(v) => updateEditScheduleItem(idx, "day_of_week", parseInt(v))}
@@ -881,7 +881,7 @@ export default function TurmasPage() {
                       <span>{selectedTurma.scheduleSummary ?? "Sem horário"}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-400">
-                      <Users className="w-4 h-4 text-red- shrink-0" />
+                      <Users className="w-4 h-4 text-[#e40014] shrink-0" />
                       <span>
                         {selectedTurma.enrolledCount ?? 0} de {selectedTurma.max_students ?? 15} alunos
                       </span>

@@ -93,9 +93,9 @@ export default function TeacherDashboard() {
         {[
           { label: "Turmas Hoje", value: loading ? '—' : String(stats.turmasHoje), icon: Calendar, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
           { label: "Total Alunos", value: loading ? '—' : String(stats.totalAlunos), icon: Users, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
-          { label: "Chamadas Feitas", value: loading ? '—' : String(stats.chamadasFeitas), icon: CheckCircle2, color: "text-red- bg-red- dark:bg-[#e40014]" },
+          { label: "Chamadas Feitas", value: loading ? '—' : String(stats.chamadasFeitas), icon: CheckCircle2, color: "text-[#e40014] bg-[#e40014] dark:bg-[#e40014]" },
         ].map((s) => (
-          <Card key={s.label} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card key={s.label} className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardContent className="p-4 text-center">
               <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-2", s.color)}>
                 <s.icon className="w-4 h-4" />
@@ -108,7 +108,7 @@ export default function TeacherDashboard() {
       </div>
 
       {/* Aulas de hoje */}
-      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+      <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
         <CardHeader className="flex flex-row items-center justify-between pb-3">
           <CardTitle className="text-white dark:text-white flex items-center gap-2 text-base">
             <Calendar className="w-5 h-5 text-[#e40014]" />
@@ -132,7 +132,7 @@ export default function TeacherDashboard() {
             </div>
           ) : (
             todayClasses.map((turma, i) => (
-              <div key={turma.id} className={cn("p-4 rounded-xl bg-black dark:bg-white/5/5 border-l-4", COLORS[i % COLORS.length])}>
+              <div key={turma.id} className={cn("p-4 rounded-xl bg-black dark:bg-white/5 border-l-4", COLORS[i % COLORS.length])}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-bold text-zinc-800 dark:text-white">{turma.name}</p>

@@ -159,9 +159,9 @@ export default function TeacherPagamentosPage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card className="border-red- dark:border-[#e40014]">
+        <Card className="border-[#e40014] dark:border-[#e40014]">
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-red-">
+            <div className="flex items-center gap-2 text-[#e40014]">
               <Clock className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Congelado</span>
             </div>
@@ -169,9 +169,9 @@ export default function TeacherPagamentosPage() {
             <p className="text-xs text-zinc-500 mt-0.5">Aguardando liberação do estúdio</p>
           </CardContent>
         </Card>
-        <Card className="border-red- dark:border-[#e40014]">
+        <Card className="border-[#e40014] dark:border-[#e40014]">
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-red-">
+            <div className="flex items-center gap-2 text-[#e40014]">
               <ArrowDownToLine className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Disponível</span>
             </div>
@@ -232,7 +232,7 @@ export default function TeacherPagamentosPage() {
       </Card>
 
       {balance.availableToWithdraw > 0 && (
-        <Card className="border-red- dark:border-[#e40014]">
+        <Card className="border-[#e40014] dark:border-[#e40014]">
           <CardHeader>
             <CardTitle>Solicitar Saque</CardTitle>
             <CardDescription>
@@ -258,7 +258,7 @@ export default function TeacherPagamentosPage() {
             <Button
               onClick={handleWithdraw}
               disabled={withdrawing || !pixSettings?.pix_key || !withdrawAmount}
-              className="bg-red- hover:bg-red- self-end"
+              className="bg-[#e40014] hover:bg-[#e40014] self-end"
             >
               {withdrawing ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <ArrowDownToLine className="w-4 h-4 mr-2" />}
               Sacar
@@ -282,9 +282,9 @@ export default function TeacherPagamentosPage() {
                   key={e.id}
                   className={cn(
                     "flex items-center justify-between p-3 rounded-xl border",
-                    e.status === "pending" && "border-red- dark:border-[#e40014]",
-                    e.status === "released" && "border-red- dark:border-[#e40014]",
-                    e.status === "withdrawn" && "border-white/10 dark:border-white/10"
+                    e.status === "pending" && "border-[#e40014] dark:border-[#e40014]",
+                    e.status === "released" && "border-[#e40014] dark:border-[#e40014]",
+                    e.status === "withdrawn" && "border-white/10 border-white/10"
                   )}
                 >
                   <div>
@@ -296,8 +296,8 @@ export default function TeacherPagamentosPage() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        e.status === "pending" && "border-red- text-red-",
-                        e.status === "released" && "border-red- text-red-",
+                        e.status === "pending" && "border-[#e40014] text-[#e40014]",
+                        e.status === "released" && "border-[#e40014] text-[#e40014]",
                         e.status === "withdrawn" && "border-slate-300 text-zinc-400"
                       )}
                     >

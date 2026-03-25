@@ -84,7 +84,7 @@ function DanceSidebar({
                       "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all",
                       isActive
                         ? "bg-[#e40014] text-white shadow-lg shadow-red-600/20"
-                        : "text-white/50 hover:text-white hover:bg-white/5/5",
+                        : "text-white/50 hover:text-white hover:bg-white/5",
                       collapsed && "justify-center"
                     )}
                     title={collapsed ? item.label : undefined}
@@ -238,7 +238,7 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
   if (!authorized) return null
 
   return (
-    <div className="min-h-screen bg-black text-white relative selection:bg-white/5/20">
+    <div className="min-h-screen bg-black text-white relative selection:bg-white/5">
       {/* Background radial gradient similar to AKAAI CORE */}
       <div 
         className="fixed inset-0 z-0 pointer-events-none" 
@@ -270,7 +270,7 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-white hover:bg-white/5/5 transition-all"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all"
                         onClick={() => setMobileOpen(false)}
                       >
                         <Icon className="w-4 h-4" />

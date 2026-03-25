@@ -58,7 +58,7 @@ function PageBackgroundCanvas() {
           vx: (Math.random() - 0.5) * 0.4,
           vy: (Math.random() - 0.5) * 0.3,
           size: Math.random() * 2 + 0.5,
-          hue: 200 + Math.random() * 120,
+          hue: 0, // Red hue in HSL is 0
         })
       }
     }
@@ -67,17 +67,17 @@ function PageBackgroundCanvas() {
       const w = window.innerWidth
       const h = window.innerHeight
 
-      ctx.fillStyle = "rgba(2, 6, 23, 0.12)"
+      ctx.fillStyle = "rgba(0, 0, 0, 0.12)"
       ctx.fillRect(0, 0, w, h)
 
       time += 0.005
 
-      // Ondas de gradiente animadas
+      // Ondas de gradiente animadas (MANTENDO MONOCROMÁTICO COM TOQUE DE VERMELHO)
       const gradient = ctx.createLinearGradient(0, 0, w, h)
       const t = Math.sin(time) * 0.5 + 0.5
-      gradient.addColorStop(0, `rgba(0, 255, 255, ${0.03 + t * 0.02})`)
-      gradient.addColorStop(0.5, `rgba(168, 85, 247, ${0.02 + (1 - t) * 0.02})`)
-      gradient.addColorStop(1, `rgba(236, 72, 153, ${0.02 + t * 0.015})`)
+      gradient.addColorStop(0, `rgba(228, 0, 20, ${0.03 + t * 0.02})`)
+      gradient.addColorStop(0.5, `rgba(255, 255, 255, ${0.01 + (1 - t) * 0.01})`)
+      gradient.addColorStop(1, `rgba(228, 0, 20, ${0.02 + t * 0.015})`)
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, w, h)
 
@@ -187,7 +187,7 @@ function Navbar() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-white hover:opacity-80 transition-opacity">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-700 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative w-9 h-9 rounded-lg bg-[#e40014] flex items-center justify-center text-white shadow-lg">
               <Music className="w-5 h-5" />
             </div>
@@ -289,7 +289,7 @@ function HeroCanvas() {
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 2 + 0.5,
-          hue: 180 + Math.random() * 80, // cyan a magenta
+          hue: 0, // Red
         })
       }
     }
@@ -298,14 +298,14 @@ function HeroCanvas() {
       const w = canvas.offsetWidth
       const h = canvas.offsetHeight
 
-      // Clear com fade sutil
-      ctx.fillStyle = "rgba(2, 6, 23, 0.12)"
+      // Clear com fade sutil (Pure black)
+      ctx.fillStyle = "rgba(0, 0, 0, 0.12)"
       ctx.fillRect(0, 0, w, h)
 
       time += 0.008
 
       // Grid perspectiva futurista
-      ctx.strokeStyle = "rgba(0, 255, 255, 0.04)"
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.04)"
       ctx.lineWidth = 1
       const centerX = w / 2
       const centerY = h / 2 + 100
@@ -341,7 +341,7 @@ function HeroCanvas() {
           const dist = Math.hypot(dx, dy)
           if (dist < 120) {
             const alpha = (1 - dist / 120) * 0.15
-            ctx.strokeStyle = `hsla(${(a.hue + b.hue) / 2}, 100%, 70%, ${alpha})`
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
@@ -354,11 +354,11 @@ function HeroCanvas() {
       particles.forEach((p) => {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `hsla(${p.hue}, 100%, 70%, 0.6)`
+        ctx.fillStyle = `rgba(228, 0, 20, 0.6)`
         ctx.fill()
       })
 
-      // Orbs luminosos
+      // Orbs luminosos (MUDANÇA PARA RED/WHITE)
       const orb1 = { x: w * 0.2, y: h * 0.3, r: 120 }
       const orb2 = { x: w * 0.8, y: h * 0.6, r: 100 }
       const orb3 = { x: w * 0.5, y: h * 0.2, r: 80 }
@@ -369,8 +369,8 @@ function HeroCanvas() {
           orb.x, orb.y, 0,
           orb.x, orb.y, orb.r * pulse
         )
-        gradient.addColorStop(0, i === 0 ? "rgba(0, 255, 255, 0.08)" : i === 1 ? "rgba(168, 85, 247, 0.08)" : "rgba(236, 72, 153, 0.06)")
-        gradient.addColorStop(0.5, "rgba(0, 255, 255, 0.02)")
+        gradient.addColorStop(0, i === 0 ? "rgba(228, 0, 20, 0.08)" : i === 1 ? "rgba(255, 255, 255, 0.08)" : "rgba(228, 0, 20, 0.06)")
+        gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.02)")
         gradient.addColorStop(1, "transparent")
         ctx.fillStyle = gradient
         ctx.beginPath()
@@ -382,7 +382,7 @@ function HeroCanvas() {
       const scanY = (h * 0.5 + Math.sin(time * 2) * h * 0.2) % h
       const scanGradient = ctx.createLinearGradient(0, scanY - 30, 0, scanY + 30)
       scanGradient.addColorStop(0, "transparent")
-      scanGradient.addColorStop(0.5, "rgba(0, 255, 255, 0.03)")
+      scanGradient.addColorStop(0.5, "rgba(228, 0, 20, 0.03)")
       scanGradient.addColorStop(1, "transparent")
       ctx.fillStyle = scanGradient
       ctx.fillRect(0, 0, w, h)
@@ -419,13 +419,13 @@ function HeroCanvas() {
 
 function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-black/90 text-white">
+    <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-black text-white selection:bg-white/5/20">
+      <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(70% 50% at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 55%)' }}></div>
       <div className="absolute inset-0 -z-10">
         <HeroCanvas />
-        <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-fuchsia-500/5" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_80%_50%_at_50%_40%,rgba(0,255,255,0.06)_0%,transparent_60%)]" />
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-500/15 rounded-full blur-[140px] animate-pulse" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-fuchsia-500/15 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: "700ms" }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_80%_50%_at_50%_40%,rgba(228,0,20,0.06)_0%,transparent_60%)]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#e40014]/10 rounded-full blur-[140px] animate-pulse" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-zinc-800/20 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: "700ms" }} />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -433,24 +433,24 @@ function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md text-sm font-bold text-cyan-300 mb-10 shadow-[0_0_20px_rgba(0,255,255,0.15)]"
+            className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-white/10 bg-white/5/5 backdrop-blur-md text-xs font-black text-[#e40014] mb-10 shadow-[0_0_20px_rgba(228,0,20,0.1)] uppercase tracking-[0.2em]"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e40014] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e40014]"></span>
             </span>
-            Novo: Frequência automática via QR Code no app
+            Novo: Ecossistema AKAAI integrado
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-[90px] font-black tracking-tighter mb-8 leading-[0.95]"
+            className="text-5xl md:text-7xl lg:text-[100px] font-black tracking-tighter mb-8 leading-[0.9] text-white"
           >
-            Gestão Inteligente para <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-fuchsia-400 to-cyan-400 drop-shadow-[0_0_30px_rgba(0,255,255,0.2)]">
-              Estúdios de Dança
+            GESTÃO TECH PARA <br />
+            <span className="text-[#e40014] drop-shadow-[0_0_30px_rgba(228,0,20,0.2)]">
+              DANCE STUDIOS
             </span>
           </motion.h1>
 
@@ -458,9 +458,9 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
+            className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed font-bold uppercase tracking-tight"
           >
-            Matrículas, turmas, frequência de alunos, pagamentos e comunicação com responsáveis — tudo em um só lugar. Foque na dança, não na burocracia.
+            A plataforma definitiva para automatizar matrículas, frequência e pagamentos. Desenvolvido para o futuro da dança.
           </motion.p>
 
           <motion.div
@@ -469,17 +469,16 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-5"
           >
-            <Button size="lg" className="h-16 px-10 text-xl rounded-full bg-gradient-to-r from-cyan-500 to-fuchsia-600 hover:from-cyan-400 hover:to-fuchsia-500 shadow-[0_0_40px_rgba(0,255,255,0.25)] hover:shadow-[0_0_60px_rgba(168,85,247,0.3)] transition-all hover:scale-105 font-bold text-white border-none group" asChild>
+            <Button size="lg" className="h-16 px-12 text-xl rounded-full bg-[#e40014] hover:bg-[#ff6568] shadow-[0_0_40px_rgba(228,0,20,0.3)] transition-all hover:scale-105 font-black text-white border-none group uppercase tracking-widest" asChild>
               <Link href="/solutions/estudio-de-danca/register">
-                Começar Grátis
+                COMEÇAR GRÁTIS
                 <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button type="button" size="lg" variant="outline" className="h-16 px-10 text-xl rounded-full border-2 border-cyan-500/30 hover:bg-cyan-500/10 hover:text-cyan-300 hover:border-cyan-400 font-bold text-slate-300 bg-transparent backdrop-blur-sm" onClick={() => {
-              // Scroll to pricing or demo section
-              document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+            <Button type="button" size="lg" variant="outline" className="h-16 px-12 text-xl rounded-full border-2 border-white/10 hover:bg-white/5/5 hover:text-white font-black text-white bg-transparent backdrop-blur-sm uppercase tracking-widest" onClick={() => {
+              document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
             }}>
-              Ver Demonstração
+              FUNCIONALIDADES
             </Button>
           </motion.div>
 
@@ -513,33 +512,35 @@ function TeacherAppSection() {
   const [activeTab, setActiveTab] = useState<'chamada' | 'turma'>('chamada')
 
   return (
-    <section id="teacher-app" className="py-24 bg-black/90 relative overflow-hidden">
+    <section id="teacher-app" className="py-24 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(228, 0, 20, 0.05), transparent 70%)' }}></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-white">
-            Tudo na palma da mão do <span className="text-[#e40014]">Professor</span>
+          <Badge className="bg-[#e40014]/10 text-[#e40014] border border-[#e40014]/20 px-4 py-1.5 mb-6 uppercase tracking-[0.2em] text-[10px] font-black">Teacher Portal</Badge>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white">
+            GESTÃO NA PALMA DA MÃO DO <span className="text-[#e40014]">PROFESSOR</span>
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            Chamada digital, frequência automática por QR Code e gestão de turmas sem complicação.
+          <p className="text-zinc-500 max-w-2xl mx-auto text-lg font-bold uppercase tracking-tight">
+            Chamada digital, frequência automática por QR Code e gestão de turmas com alta performance.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
           {/* Mockup do celular */}
           <div className="md:col-span-5 flex justify-center">
-            <div className="relative w-[300px] h-[600px] bg-black rounded-[3rem] border-8 border-zinc-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-950 rounded-b-xl z-20"></div>
-              <div className="w-full h-full bg-black pt-10 pb-4 px-4 flex flex-col relative">
+            <div className="relative w-[320px] h-[640px] bg-black rounded-[3.5rem] border-[10px] border-zinc-900 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-zinc-950 rounded-b-2xl z-20"></div>
+              <div className="w-full h-full bg-black pt-12 pb-6 px-5 flex flex-col relative">
 
                 {activeTab === 'chamada' && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col h-full">
-                    <div className="bg-white/5 p-4 rounded-2xl shadow-sm mb-4 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-zinc-800 font-bold">
-                        <ClipboardList className="w-5 h-5 text-[#e40014]" /> Chamada
+                    <div className="bg-zinc-900 p-4 rounded-2xl border border-white/5 mb-4 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-white font-black text-xs uppercase tracking-widest">
+                        <ClipboardList className="w-4 h-4 text-[#e40014]" /> Chamada
                       </div>
-                      <Badge className="bg-[#e40014] text-[#e40014] border-none">Turma Ballet</Badge>
+                      <Badge className="bg-[#e40014] text-white border-none text-[8px] font-black">BALLET PRO</Badge>
                     </div>
-                    <div className="space-y-2 flex-1 overflow-auto">
+                    <div className="space-y-2.5 flex-1 overflow-auto">
                       {[
                         { name: "Ana Souza", present: true },
                         { name: "Beatriz Lima", present: true },
@@ -548,26 +549,26 @@ function TeacherAppSection() {
                         { name: "Elena Freitas", present: false },
                       ].map((aluno) => (
                         <div key={aluno.name} className={cn(
-                          "bg-white/5 p-3 rounded-xl shadow-sm flex items-center justify-between border-l-4",
-                          aluno.present ? "border-l-red-" : "border-l-red-400"
+                          "bg-white/5/5 p-3.5 rounded-xl flex items-center justify-between border-l-4 transition-all hover:bg-white/5/10",
+                          aluno.present ? "border-l-[#e40014]" : "border-l-zinc-800"
                         )}>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-3">
                             <div className={cn(
-                              "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white",
-                              aluno.present ? "bg-red-" : "bg-slate-300"
+                              "w-9 h-9 rounded-full flex items-center justify-center text-xs font-black text-white shadow-lg",
+                              aluno.present ? "bg-[#e40014]" : "bg-zinc-800"
                             )}>
                               {aluno.name[0]}
                             </div>
-                            <span className="text-sm font-semibold text-zinc-400">{aluno.name}</span>
+                            <span className="text-xs font-bold text-white uppercase tracking-tight">{aluno.name}</span>
                           </div>
                           {aluno.present
-                            ? <CheckCircle2 className="w-5 h-5 text-red-" />
-                            : <AlertTriangle className="w-5 h-5 text-[#e40014]" />
+                            ? <CheckCircle2 className="w-5 h-5 text-[#e40014]" />
+                            : <AlertTriangle className="w-5 h-5 text-zinc-600" />
                           }
                         </div>
                       ))}
                     </div>
-                    <Button size="sm" className="mt-4 bg-[#e40014] text-white w-full rounded-xl">
+                    <Button size="sm" className="mt-4 bg-[#e40014] hover:bg-[#ff6568] text-white w-full rounded-xl font-black uppercase tracking-widest text-[10px] h-11 border-none">
                       Salvar Chamada
                     </Button>
                   </motion.div>
@@ -575,32 +576,32 @@ function TeacherAppSection() {
 
                 {activeTab === 'turma' && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col h-full">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="font-bold text-lg text-zinc-800">Olá, Ana 👋</h3>
-                        <p className="text-xs text-zinc-500">Hoje: 3 turmas</p>
+                        <h3 className="font-black text-lg text-white tracking-tighter uppercase">Olá, Ana 👋</h3>
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">3 turmas hoje</p>
                       </div>
-                      <div className="w-10 h-10 bg-[#e40014] rounded-full flex items-center justify-center">
-                        <Music className="w-5 h-5 text-[#e40014]" />
+                      <div className="w-12 h-12 bg-white/5/5 rounded-2xl flex items-center justify-center border border-white/10">
+                        <Music className="w-6 h-6 text-[#e40014]" />
                       </div>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {[
-                        { name: "Ballet Infantil", time: "09:00", students: 12, color: "border-l-red-400" },
-                        { name: "Jazz Adulto", time: "11:00", students: 8, color: "border-l-red-400" },
-                        { name: "Contemporâneo", time: "19:00", students: 15, color: "border-l-red-" },
+                        { name: "Ballet Avançado", time: "09:00", students: 12, color: "border-l-[#e40014]" },
+                        { name: "Jazz Tech", time: "11:00", students: 8, color: "border-l-zinc-700" },
+                        { name: "Contemporâneo", time: "19:00", students: 15, color: "border-l-[#e40014]" },
                       ].map((turma) => (
-                        <div key={turma.name} className={cn("bg-white/5 p-4 rounded-2xl shadow-sm border-l-4", turma.color)}>
-                          <h4 className="font-bold text-sm text-zinc-800">{turma.name}</h4>
-                          <div className="flex items-center justify-between mt-1">
-                            <div className="flex items-center gap-1 text-xs text-zinc-500">
-                              <Clock className="w-3 h-3" /> {turma.time}
+                        <div key={turma.name} className={cn("bg-white/5/5 p-4 rounded-2xl border-l-4 hover:bg-white/5/10 transition-colors", turma.color)}>
+                          <h4 className="font-black text-xs text-white uppercase tracking-tight">{turma.name}</h4>
+                          <div className="flex items-center justify-between mt-2">
+                            <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-bold uppercase">
+                              <Clock className="w-3 h-3 text-[#e40014]" /> {turma.time}
                             </div>
-                            <div className="flex items-center gap-1 text-xs text-zinc-500">
-                              <Users className="w-3 h-3" /> {turma.students} alunos
+                            <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-bold uppercase">
+                              <Users className="w-3 h-3 text-[#e40014]" /> {turma.students} alunos
                             </div>
                           </div>
-                          <Button size="sm" className="h-7 text-xs bg-black text-white w-full mt-2">Fazer Chamada</Button>
+                          <Button size="sm" className="h-8 text-[9px] font-black bg-black text-black hover:bg-zinc-200 w-full mt-3 rounded-lg uppercase tracking-widest border-none">Fazer Chamada</Button>
                         </div>
                       ))}
                     </div>
@@ -613,25 +614,25 @@ function TeacherAppSection() {
           {/* Features à direita */}
           <div className="md:col-span-7 space-y-6">
             {[
-              { id: 'chamada', title: 'Chamada Digital', desc: 'Frequência em segundos, sem papel. Histórico completo por aluno.', icon: ClipboardList },
-              { id: 'turma', title: 'Agenda de Turmas', desc: 'Visualize todas as turmas do dia com horários e número de alunos.', icon: Calendar },
-              { id: 'qrcode', title: 'Check-in por QR Code', desc: 'Alunos fazem check-in autônomo na entrada do estúdio.', icon: Smartphone }
+              { id: 'chamada', title: 'CHAMADA DIGITAL', desc: 'Frequência em milissegundos, sem papel. Registro imutável por aluno.', icon: ClipboardList },
+              { id: 'turma', title: 'AGENDA EM TEMPO REAL', desc: 'Sincronização instantânea de horários, salas e disponibilidade.', icon: Calendar },
+              { id: 'qrcode', title: 'CHECK-IN QR CODE', desc: 'Validação automática e segura via aplicativo do aluno.', icon: Smartphone }
             ].map((feature) => (
               <div
                 key={feature.id}
                 onClick={() => (feature.id === 'chamada' || feature.id === 'turma') && setActiveTab(feature.id as 'chamada' | 'turma')}
                 className={cn(
-                  "p-6 rounded-2xl cursor-pointer transition-all border group",
-                  activeTab === feature.id ? "bg-zinc-950 border-[#e40014] shadow-lg" : "bg-black/50 border-white/5"
+                  "p-8 rounded-[2rem] cursor-pointer transition-all border group relative overflow-hidden",
+                  activeTab === feature.id ? "bg-[#e40014]/5 border-[#e40014] shadow-2xl" : "bg-white/5/5 border-white/10 hover:border-white/20"
                 )}
               >
-                <div className="flex gap-4">
-                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shrink-0", activeTab === feature.id ? "bg-[#e40014] text-white" : "bg-slate-700 text-zinc-400")}>
-                    <feature.icon className="w-6 h-6" />
+                <div className="flex gap-6 items-center">
+                  <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 shadow-lg", activeTab === feature.id ? "bg-[#e40014] text-white" : "bg-zinc-900 text-zinc-500")}>
+                    <feature.icon className="w-7 h-7" />
                   </div>
                   <div>
-                    <h3 className={cn("text-xl font-bold mb-2", activeTab === feature.id ? "text-white" : "text-slate-300")}>{feature.title}</h3>
-                    <p className="text-zinc-400 text-sm">{feature.desc}</p>
+                    <h3 className={cn("text-xl font-black mb-1 tracking-tight uppercase", activeTab === feature.id ? "text-white" : "text-zinc-400")}>{feature.title}</h3>
+                    <p className="text-zinc-500 text-sm font-bold uppercase tracking-tight leading-relaxed">{feature.desc}</p>
                   </div>
                 </div>
               </div>
@@ -647,58 +648,66 @@ function TeacherAppSection() {
 
 function GuardianPortalSection() {
   return (
-    <section id="guardian-portal" className="py-24 bg-black/90 text-white relative overflow-hidden">
+    <section id="guardian-portal" className="py-24 bg-black text-white relative overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'radial-gradient(circle at top right, rgba(228, 0, 20, 0.05), transparent 70%)' }}></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <Badge className="bg-[#e40014] text-[#e40014] border-none px-4 py-1 mb-4 uppercase tracking-widest text-[10px] font-black">Portal do Responsável</Badge>
-          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-white">
-            Transparência para <span className="text-[#e40014]">as Famílias</span>
+          <Badge className="bg-[#e40014]/10 text-[#e40014] border border-[#e40014]/20 px-5 py-1.5 mb-6 uppercase tracking-[0.2em] text-[10px] font-black">Student & Guardian Portal</Badge>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white">
+            CONEXÃO TOTAL COM <span className="text-[#e40014]">AS FAMÍLIAS</span>
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            Pais e responsáveis acompanham frequência, recebem comunicados e pagam mensalidades pelo celular.
+          <p className="text-zinc-500 max-w-2xl mx-auto text-lg font-bold uppercase tracking-tight">
+            Monitoramento de performance, pagamentos integrados e comunicação segura via aplicativo.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
           {/* Mockup */}
           <div className="md:col-span-5 flex justify-center">
-            <div className="relative w-[300px] h-[600px] bg-black rounded-[3rem] border-8 border-zinc-800 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-950 rounded-b-xl z-20"></div>
-              <div className="w-full h-full bg-black pt-10 pb-4 px-4 flex flex-col">
+            <div className="relative w-[320px] h-[640px] bg-black rounded-[3.5rem] border-[10px] border-zinc-900 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-zinc-950 rounded-b-2xl z-20"></div>
+              <div className="w-full h-full bg-black pt-12 pb-6 px-5 flex flex-col">
                 {/* Header portal */}
-                <div className="bg-[#e40014] p-4 rounded-2xl shadow-xl border border-[#e40014] mb-4">
+                <div className="bg-[#e40014] p-5 rounded-2xl shadow-xl mb-4 border border-[#e40014]">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-white">DanceFlow — Portal</span>
-                    <div className="w-8 h-8 rounded-full bg-white/5/20 flex items-center justify-center font-bold text-xs text-white">RS</div>
+                    <span className="font-black text-xs text-white uppercase tracking-widest">PORTAL AKAAI</span>
+                    <div className="w-9 h-9 rounded-full bg-white/5/20 flex items-center justify-center font-black text-xs text-white border border-white/20">RS</div>
                   </div>
                 </div>
                 {/* Alerta de mensalidade */}
-                <div className="bg-red- border border-red- p-3 rounded-xl flex items-center gap-2 mb-3">
-                  <Bell className="w-4 h-4 text-red- shrink-0" />
-                  <p className="text-xs font-semibold text-red-">Mensalidade de Mar/26 em aberto</p>
-                  <Button variant="outline" size="sm" className="ml-auto bg-red- border-none text-white text-[10px] h-6 px-2">Pagar</Button>
+                <div className="bg-white/5/5 border border-white/10 p-4 rounded-xl flex items-center gap-3 mb-4 group hover:border-[#e40014]/50 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-[#e40014]/10 flex items-center justify-center shrink-0">
+                    <Bell className="w-5 h-5 text-[#e40014]" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-white uppercase tracking-widest">MENSALIDADE MAR/26</p>
+                    <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-tight">Vencimento em 5 dias</p>
+                  </div>
+                  <Button size="sm" className="ml-auto bg-white/5 text-black hover:bg-zinc-200 text-[9px] font-black h-7 px-3 rounded-full border-none">PAGAR</Button>
                 </div>
                 {/* Stats do aluno */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                  <div className="bg-white/5 p-3 rounded-xl text-center shadow-sm">
-                    <p className="text-2xl font-black text-[#e40014]">92%</p>
-                    <p className="text-[10px] font-bold uppercase text-zinc-400">Frequência</p>
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-zinc-900 p-4 rounded-2xl text-center border border-white/5 shadow-lg group hover:border-[#e40014]/30 transition-colors">
+                    <p className="text-3xl font-black text-[#e40014] tracking-tighter">92%</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-zinc-500 mt-1">Frequência</p>
                   </div>
-                  <div className="bg-white/5 p-3 rounded-xl text-center shadow-sm">
-                    <p className="text-2xl font-black text-red-">18</p>
-                    <p className="text-[10px] font-bold uppercase text-zinc-400">Aulas em dia</p>
+                  <div className="bg-zinc-900 p-4 rounded-2xl text-center border border-white/5 shadow-lg group hover:border-[#e40014]/30 transition-colors">
+                    <p className="text-3xl font-black text-white tracking-tighter">18</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-zinc-500 mt-1">Aulas</p>
                   </div>
                 </div>
                 {/* Comunicados */}
-                <div className="bg-white/5 p-3 rounded-xl shadow-sm flex-1 overflow-auto">
-                  <p className="text-xs font-bold uppercase text-zinc-400 mb-2">Comunicados</p>
+                <div className="bg-zinc-900 p-5 rounded-2xl border border-white/5 flex-1 overflow-auto">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-4">COMUNICADOS</p>
                   {[
-                    { text: "Recital de Inverno: 15/06 às 19h", icon: Star, color: "text-[#e40014]" },
-                    { text: "Reposição de aula: Sábado 10h", icon: Calendar, color: "text-[#e40014]" },
+                    { text: "Recital de Inverno: 15/06", icon: Star, color: "text-[#e40014]" },
+                    { text: "Reposição: Sábado 10h", icon: Calendar, color: "text-zinc-400" },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-2 py-2 border-b border-slate-100 last:border-0">
-                      <item.icon className={cn("w-4 h-4 shrink-0 mt-0.5", item.color)} />
-                      <p className="text-xs text-zinc-400">{item.text}</p>
+                    <div key={i} className="flex items-center gap-3 py-3 border-b border-white/5 last:border-0 group cursor-pointer">
+                      <div className="w-8 h-8 rounded-lg bg-white/5/5 flex items-center justify-center shrink-0 group-hover:bg-[#e40014]/10 transition-colors">
+                        <item.icon className={cn("w-4 h-4", item.color)} />
+                      </div>
+                      <p className="text-xs font-bold text-zinc-400 uppercase tracking-tight group-hover:text-white transition-colors">{item.text}</p>
                     </div>
                   ))}
                 </div>
@@ -709,18 +718,18 @@ function GuardianPortalSection() {
           {/* Features */}
           <div className="md:col-span-7 space-y-6">
             {[
-              { title: 'Frequência em Tempo Real', desc: 'Pais acompanham cada aula e recebem alertas de falta.', icon: TrendingUp, color: "bg-[#e40014]" },
-              { title: 'Pagamentos Online', desc: 'Boleto, cartão ou Pix. Histórico completo de mensalidades.', icon: CreditCard, color: "bg-[#e40014]" },
-              { title: 'Comunicados & Eventos', desc: 'Avisos de reposições, recitais e feriados diretamente no app.', icon: MessageSquare, color: "bg-red-" },
+              { title: 'PERFORMANCE ANALYTICS', desc: 'Acompanhamento detalhado da evolução técnica e presença do aluno.', icon: TrendingUp, color: "bg-[#e40014]" },
+              { title: 'FINANCIAL HUB', desc: 'Gateway de pagamento integrado com Pix e Checkout Transparente.', icon: CreditCard, color: "bg-[#e40014]" },
+              { title: 'DIRECT COMMS', desc: 'Canal direto de comunicação via push e WhatsApp automatizado.', icon: MessageSquare, color: "bg-[#e40014]" },
             ].map((feature) => (
-              <div key={feature.title} className="p-6 rounded-2xl bg-zinc-950 border border-[#e40014] shadow-lg">
-                <div className="flex gap-4">
-                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white", feature.color)}>
-                    <feature.icon className="w-6 h-6" />
+              <div key={feature.title} className="p-8 rounded-[2rem] bg-white/5/5 border border-white/10 hover:border-[#e40014]/50 transition-all group">
+                <div className="flex gap-6 items-center">
+                  <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-white shadow-lg transition-transform group-hover:scale-110", feature.color)}>
+                    <feature.icon className="w-7 h-7" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2 text-white">{feature.title}</h3>
-                    <p className="text-zinc-400 text-sm">{feature.desc}</p>
+                    <h3 className="text-xl font-black mb-1 text-white uppercase tracking-tight">{feature.title}</h3>
+                    <p className="text-zinc-500 text-sm font-bold uppercase tracking-tight leading-relaxed">{feature.desc}</p>
                   </div>
                 </div>
               </div>
@@ -737,100 +746,103 @@ function GuardianPortalSection() {
 function ManagementDashboard() {
   const stats = [
     { label: "Alunos Ativos", value: "124", icon: Users, color: "text-[#e40014]", trend: "+8 este mês" },
-    { label: "Faturamento", value: "R$ 14.800", icon: DollarSign, color: "text-red-", trend: "+12% vs. mês anterior" },
+    { label: "Faturamento", value: "R$ 14.800", icon: DollarSign, color: "text-[#e40014]", trend: "+12% vs. mês anterior" },
     { label: "Taxa de Retenção", value: "94%", icon: Heart, color: "text-[#e40014]", trend: "Acima da média" },
-    { label: "Turmas Ativas", value: "18", icon: Calendar, color: "text-red-", trend: "3 novas turmas" },
+    { label: "Turmas Ativas", value: "18", icon: Calendar, color: "text-[#e40014]", trend: "3 novas turmas" },
   ]
 
   const modules = [
-    { label: "Turmas", icon: GraduationCap, color: "bg-[#e40014]", shadow: "shadow-red-500/30", description: "Crie e gerencie turmas por modalidade e nível." },
-    { label: "Alunos", icon: Users, color: "bg-[#e40014]", shadow: "shadow-red-500/30", description: "Cadastro completo com histórico de frequência." },
-    { label: "Financeiro", icon: DollarSign, color: "bg-red-", shadow: "shadow-red-/30", description: "Mensalidades, cobranças e relatórios financeiros." },
-    { label: "Comunicados", icon: MessageSquare, color: "bg-red-", shadow: "shadow-red-/30", description: "WhatsApp e notificações automáticas." },
-    { label: "Recitais", icon: Star, color: "bg-red-", shadow: "shadow-red-/30", description: "Gestão de eventos e apresentações." },
-    { label: "Professores", icon: Heart, color: "bg-red-", shadow: "shadow-red-/30", description: "Agenda, pagamentos e avaliações de professores." },
-    { label: "Relatórios", icon: BarChart3, color: "bg-cyan-600", shadow: "shadow-cyan-500/30", description: "Análises de frequência, receita e crescimento." },
-    { label: "Matrículas", icon: UserPlus, color: "bg-teal-600", shadow: "shadow-teal-500/30", description: "Fluxo de captação e onboarding de novos alunos." },
-    { label: "Multi-Unidade", icon: Building2, color: "bg-slate-600", shadow: "shadow-zinc-500/30", description: "Gerencie várias unidades em uma conta só." },
-    { label: "Gamificação", icon: Trophy, color: "bg-yellow-500", shadow: "shadow-yellow-500/30", description: "Rankings, conquistas e engajamento dos alunos." },
+    { label: "Turmas", icon: GraduationCap, color: "bg-[#e40014]", shadow: "shadow-[#e40014]/30", description: "Crie e gerencie turmas por modalidade e nível." },
+    { label: "Alunos", icon: Users, color: "bg-[#e40014]", shadow: "shadow-[#e40014]/30", description: "Cadastro completo com histórico de frequência." },
+    { label: "Financeiro", icon: DollarSign, color: "bg-[#e40014]", shadow: "shadow-[#e40014]/30", description: "Mensalidades, cobranças e relatórios financeiros." },
+    { label: "Comunicados", icon: MessageSquare, color: "bg-[#e40014]", shadow: "shadow-[#e40014]/30", description: "WhatsApp e notificações automáticas." },
+    { label: "Recitais", icon: Star, color: "bg-[#e40014]", shadow: "shadow-[#e40014]/30", description: "Gestão de eventos e apresentações." },
+    { label: "Professores", icon: Heart, color: "bg-[#e40014]", shadow: "shadow-[#e40014]/30", description: "Agenda, pagamentos e avaliações de professores." },
+    { label: "Relatórios", icon: BarChart3, color: "bg-zinc-800", shadow: "shadow-zinc-800/30", description: "Análises de frequência, receita e crescimento." },
+    { label: "Matrículas", icon: UserPlus, color: "bg-zinc-900", shadow: "shadow-zinc-900/30", description: "Fluxo de captação e onboarding de novos alunos." },
+    { label: "Multi-Unidade", icon: Building2, color: "bg-zinc-800", shadow: "shadow-zinc-800/30", description: "Gerencie várias unidades em uma conta só." },
+    { label: "Gamificação", icon: Trophy, color: "bg-zinc-950", shadow: "shadow-zinc-950/30", description: "Rankings, conquistas e engajamento dos alunos." },
   ]
 
   return (
-    <section id="management" className="py-24 bg-black/90 relative overflow-hidden">
+    <section id="management" className="py-24 bg-black relative overflow-hidden">
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-[20%] right-[-5%] w-[400px] h-[400px] bg-[#e40014] rounded-full blur-[100px]" />
-        <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] bg-[#e40014] rounded-full blur-[100px]" />
+        <div className="absolute top-[20%] right-[-5%] w-[400px] h-[400px] bg-[#e40014]/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] bg-[#e40014]/10 rounded-full blur-[100px]" />
       </div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <Badge className="bg-[#e40014] text-[#e40014] border-[#e40014] px-4 py-1 mb-4 uppercase tracking-widest text-[10px] font-black">Painel Administrativo</Badge>
-          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-white">
-            Controle total do seu <span className="text-[#e40014]">Estúdio</span>
+          <Badge className="bg-[#e40014]/10 text-[#e40014] border border-[#e40014]/20 px-5 py-1.5 mb-6 uppercase tracking-[0.2em] text-[10px] font-black">Admin Dashboard</Badge>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white">
+            CONTROLE TOTAL DO SEU <span className="text-[#e40014]">ESTÚDIO</span>
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            Dashboard completo com métricas em tempo real, controle financeiro e gestão de toda a operação.
+          <p className="text-zinc-500 max-w-2xl mx-auto text-lg font-bold uppercase tracking-tight">
+            Métricas em tempo real, automação financeira e gestão de alta performance.
           </p>
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          <div className="bg-black rounded-3xl border border-zinc-800 shadow-2xl overflow-hidden p-8">
-            {/* Stats grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white/5 p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider">{stat.label}</div>
-                    <stat.icon className={cn("w-4 h-4", stat.color)} />
-                  </div>
-                  <div className="text-2xl font-black text-white">{stat.value}</div>
-                  <div className={cn("text-[10px] font-bold mt-1 uppercase tracking-tight", stat.color)}>{stat.trend}</div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Modules */}
-            <TooltipProvider>
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-6">
-                {modules.map((mod, i) => (
-                  <Tooltip key={i}>
-                    <TooltipTrigger asChild>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 + i * 0.05 }}
-                        whileHover={{ y: -5, scale: 1.05, transition: { duration: 0.2 } }}
-                        className="flex flex-col items-center gap-3 group cursor-pointer"
-                      >
-                        <div className={cn(
-                          "w-16 h-16 sm:w-20 sm:h-20 rounded-[1.75rem] flex items-center justify-center text-white transition-all duration-300 group-hover:rotate-6",
-                          mod.color, mod.shadow, "shadow-lg group-hover:shadow-2xl"
-                        )}>
-                          <mod.icon className="w-8 h-8 sm:w-10 sm:h-10" />
-                        </div>
-                        <span className="text-[10px] sm:text-xs font-bold text-zinc-400 text-center uppercase tracking-tighter group-hover:text-[#e40014] transition-colors">
-                          {mod.label}
-                        </span>
-                      </motion.div>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="max-w-[200px] text-center bg-black text-white border-zinc-800 p-3 rounded-xl shadow-xl">
-                      <p className="font-bold mb-1 text-[#e40014] uppercase tracking-tighter text-[10px]">{mod.label}</p>
-                      <p className="text-[11px] leading-tight text-slate-300">{mod.description}</p>
-                    </TooltipContent>
-                  </Tooltip>
+          <div className="bg-[#0a0a0a] rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden p-10 relative">
+            <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(228, 0, 20, 0.03), transparent 70%)' }}></div>
+            <div className="relative z-10">
+              {/* Stats grid */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {stats.map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-black p-6 rounded-2xl border border-white/10 shadow-lg hover:border-[#e40014]/30 transition-all"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em]">{stat.label}</div>
+                      <stat.icon className={cn("w-4 h-4", stat.color)} />
+                    </div>
+                    <div className="text-3xl font-black text-white tracking-tighter">{stat.value}</div>
+                    <div className={cn("text-[9px] font-black mt-2 uppercase tracking-widest", stat.color)}>{stat.trend}</div>
+                  </motion.div>
                 ))}
               </div>
-            </TooltipProvider>
+
+              {/* Modules */}
+              <TooltipProvider>
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-8">
+                  {modules.map((mod, i) => (
+                    <Tooltip key={i}>
+                      <TooltipTrigger asChild>
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 + i * 0.05 }}
+                          whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.2 } }}
+                          className="flex flex-col items-center gap-4 group cursor-pointer"
+                        >
+                          <div className={cn(
+                            "w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center text-white transition-all duration-500 group-hover:rotate-6 border border-white/10",
+                            mod.color, mod.shadow, "shadow-xl group-hover:shadow-[0_0_30px_rgba(228,0,20,0.4)]"
+                          )}>
+                            <mod.icon className="w-8 h-8 sm:w-10 sm:h-10" />
+                          </div>
+                          <span className="text-[10px] font-black text-zinc-500 text-center uppercase tracking-widest group-hover:text-white transition-colors">
+                            {mod.label}
+                          </span>
+                        </motion.div>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom" className="max-w-[200px] text-center bg-black text-white border-white/10 p-4 rounded-xl shadow-2xl backdrop-blur-xl">
+                        <p className="font-black mb-1 text-[#e40014] uppercase tracking-widest text-[10px]">{mod.label}</p>
+                        <p className="text-[11px] font-medium leading-relaxed text-zinc-400">{mod.description}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
+              </TooltipProvider>
+            </div>
 
             {/* Decoration */}
-            <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none">
-              <Music className="w-64 h-64 rotate-12" />
+            <div className="absolute bottom-0 right-0 p-10 opacity-[0.03] pointer-events-none">
+              <Music className="w-80 h-80 rotate-12 text-[#e40014]" />
             </div>
           </div>
         </div>
@@ -843,10 +855,10 @@ function ManagementDashboard() {
 
 function FeatureGrid() {
   const features = [
-    { title: "Controle de Mensalidades", description: "Cobranças automáticas com boleto, cartão ou Pix. Inadimplência em destaque.", icon: CreditCard, color: "from-red-500 to-purple-400" },
-    { title: "WhatsApp Automático", description: "Avisos de falta, cobrança e comunicados enviados automaticamente.", icon: MessageSquare, color: "from-red- to-teal-400" },
-    { title: "Captação de Alunos", description: "Formulário de matrícula online e funil de leads integrado.", icon: UserPlus, color: "from-red-500 to-red-" },
-    { title: "Multi-Modalidade", description: "Ballet, jazz, funk, sapateado, contemporâneo e muito mais.", icon: Music, color: "from-red- to-orange-400" },
+    { title: "Controle de Mensalidades", description: "Cobranças automáticas com boleto, cartão ou Pix. Inadimplência em destaque.", icon: CreditCard, color: "from-[#e40014] to-red-900" },
+    { title: "WhatsApp Automático", description: "Avisos de falta, cobrança e comunicados enviados automaticamente.", icon: MessageSquare, color: "from-zinc-900 to-black" },
+    { title: "Captação de Alunos", description: "Formulário de matrícula online e funil de leads integrado.", icon: UserPlus, color: "from-[#e40014] to-black" },
+    { title: "Multi-Modalidade", description: "Ballet, jazz, funk, sapateado, contemporâneo e muito mais.", icon: Music, color: "from-zinc-800 to-zinc-950" },
   ]
 
   return (
@@ -863,7 +875,7 @@ function FeatureGrid() {
               Recursos
             </Badge>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
-              Tudo em um <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-600">só lugar</span>
+              Tudo em um <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-700">só lugar</span>
             </h2>
             <p className="text-zinc-500 max-w-2xl mx-auto text-lg leading-relaxed">
               A plataforma mais completa para modernizar a gestão do seu estúdio de dança e encantar alunos e responsáveis.
@@ -880,7 +892,7 @@ function FeatureGrid() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className="group bg-white/5 rounded-[2.5rem] border border-slate-100 p-8 shadow-sm hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500 relative overflow-hidden"
+              className="group bg-white/5/5 rounded-[2.5rem] border border-white/10 p-8 shadow-sm hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500 relative overflow-hidden"
             >
               <div className="absolute -inset-2 bg-gradient-to-r from-red-500/0 to-red-500/0 group-hover:from-red-500/5 group-hover:to-red-500/5 transition-all duration-500 blur-xl opacity-0 group-hover:opacity-100" />
               <div className={cn(
@@ -910,13 +922,13 @@ function PricingSection() {
   ]
 
   return (
-    <section id="pricing" className="py-32 bg-white/5 relative overflow-hidden">
+    <section id="pricing" className="py-32 bg-white/5/5 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
         <Badge className="bg-[#e40014] text-[#e40014] border-none px-4 py-1.5 mb-6 uppercase tracking-[0.2em] text-[10px] font-black">
           Implementação
         </Badge>
         <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
-          Instalado pelo <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-600">nosso time</span>
+          Instalado pelo <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-700">nosso time</span>
         </h2>
         <p className="text-zinc-500 max-w-2xl mx-auto text-lg mb-16">
           O DanceFlow é implantado com suporte especializado. Entre em contato para que nossa equipe entenda o seu estúdio e configure a plataforma perfeita para vocês.
@@ -930,7 +942,7 @@ function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex items-start gap-4 bg-black rounded-2xl p-6 border border-slate-100 text-left"
+              className="flex items-start gap-4 bg-black rounded-2xl p-6 border border-white/10 text-left"
             >
               <span className="text-3xl">{h.icon}</span>
               <div>
@@ -941,7 +953,7 @@ function PricingSection() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-red-600 to-red-600 rounded-3xl p-10 text-white shadow-2xl shadow-red-500/20">
+        <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-3xl p-10 text-white shadow-2xl shadow-black">
           <h3 className="text-2xl font-black mb-3">Pronto para transformar seu estúdio?</h3>
           <p className="text-[#e40014] mb-8">
             Fale com nosso time e receba uma demonstração exclusiva do DanceFlow para o seu estúdio.
@@ -951,7 +963,7 @@ function PricingSection() {
               href="https://wa.me/5511999999999?text=Olá! Tenho interesse no DanceFlow para meu estúdio de dança."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white/5 text-[#e40014] hover:bg-[#e40014] font-bold h-14 px-8 rounded-2xl transition-all shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-white/5/5 text-[#e40014] hover:bg-[#e40014] font-bold h-14 px-8 rounded-2xl transition-all shadow-lg"
             >
               <Music className="w-5 h-5" />
               Falar com um especialista
@@ -973,7 +985,7 @@ function PricingSection() {
 
 function CTASection() {
   return (
-    <section className="py-32 bg-black/90 relative overflow-hidden">
+    <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-red-900/30 via-transparent to-transparent" />
       </div>
@@ -1001,7 +1013,7 @@ function CTASection() {
                 <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="h-16 px-12 text-xl rounded-full border-2 border-white/10 hover:bg-white/5/10 hover:text-white font-bold text-slate-300 bg-transparent" asChild>
+            <Button size="lg" variant="outline" className="h-16 px-12 text-xl rounded-full border-2 border-white/10 hover:bg-white/5/10 hover:text-white font-bold text-zinc-400 bg-transparent" asChild>
               <Link href="/solutions/estudio-de-danca/login">Já tenho conta</Link>
             </Button>
           </div>
@@ -1015,7 +1027,7 @@ function CTASection() {
 
 function Footer() {
   return (
-    <footer className="bg-black/90 border-t border-white/5 py-12">
+    <footer className="bg-black border-t border-white/5 py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
@@ -1030,8 +1042,8 @@ function Footer() {
             © {new Date().getFullYear()} DanceFlow — powered by akaaicore. Todos os direitos reservados.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#" className="text-zinc-500 hover:text-slate-300 text-sm transition-colors">Privacidade</Link>
-            <Link href="#" className="text-zinc-500 hover:text-slate-300 text-sm transition-colors">Termos</Link>
+            <Link href="#" className="text-zinc-500 hover:text-zinc-400 text-sm transition-colors">Privacidade</Link>
+            <Link href="#" className="text-zinc-500 hover:text-zinc-400 text-sm transition-colors">Termos</Link>
             <Link href="/solutions/estudio-de-danca/login" className="text-zinc-500 hover:text-[#e40014] text-sm transition-colors">Login</Link>
           </div>
         </div>

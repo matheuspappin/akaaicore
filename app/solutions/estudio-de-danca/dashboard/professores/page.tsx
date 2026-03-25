@@ -112,7 +112,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
         ) : (
           <div className="space-y-4 pt-1">
             {/* Código */}
-            <div className="rounded-xl bg-black dark:bg-black border border-white/10 dark:border-white/10 p-4">
+            <div className="rounded-xl bg-black bg-black border border-white/10 border-white/10 p-4">
               <div className="flex items-center justify-between mb-1">
                 <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Código de Convite</p>
                 <Button size="icon" variant="ghost" className="h-7 w-7 rounded-lg" onClick={handleRegenerate} disabled={regenerating} title="Gerar novo código">
@@ -123,7 +123,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
                 <p className="font-mono text-2xl font-black text-white dark:text-white tracking-[0.3em] flex-1">
                   {code || "—"}
                 </p>
-                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-red- border-red- text-red-" : ""}`} onClick={handleCopyCode}>
+                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-[#e40014] border-[#e40014] text-[#e40014]" : ""}`} onClick={handleCopyCode}>
                   {copiedCode ? <><CheckCheck className="w-3.5 h-3.5 mr-1.5" />Copiado</> : <><Copy className="w-3.5 h-3.5 mr-1.5" />Copiar</>}
                 </Button>
               </div>
@@ -132,9 +132,9 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
 
             {/* Divisor */}
             <div className="flex items-center gap-2">
-              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
+              <div className="flex-1 border-t border-white/10 border-white/10" />
               <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">ou</span>
-              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
+              <div className="flex-1 border-t border-white/10 border-white/10" />
             </div>
 
             {/* Link direto */}
@@ -145,7 +145,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
               </div>
               <div className="flex gap-2">
                 <Button
-                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-red- hover:bg-red-" : "bg-[#e40014] hover:bg-[#e40014]"} text-white`}
+                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-[#e40014] hover:bg-[#e40014]" : "bg-[#e40014] hover:bg-[#e40014]"} text-white`}
                   onClick={handleCopyLink}
                 >
                   {copiedLink ? <><CheckCheck className="w-4 h-4 mr-2" />Link Copiado!</> : <><ExternalLink className="w-4 h-4 mr-2" />Copiar Link</>}
@@ -301,7 +301,7 @@ export default function ProfessoresPage() {
           placeholder="Buscar professor..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 h-11 rounded-xl"
+          className="pl-9 bg-white/5 bg-black border-white/10 border-white/10 h-11 rounded-xl"
         />
       </div>
 
@@ -310,7 +310,7 @@ export default function ProfessoresPage() {
           <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
             <GraduationCap className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
             <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
@@ -327,7 +327,7 @@ export default function ProfessoresPage() {
       ) : (
         <div className="grid gap-3">
           {filtered.map((prof) => (
-            <Card key={prof.id} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
+            <Card key={prof.id} className="bg-white/5 bg-black border border-white/10 border-white/10 hover:shadow-md transition-shadow">
               <CardContent className="p-4 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-[#e40014] flex items-center justify-center font-black text-[#e40014] text-lg flex-shrink-0">

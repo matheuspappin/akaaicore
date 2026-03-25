@@ -82,7 +82,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
         gradient: null,
         accentText: "text-white",
         accentBg: "bg-white/5",
-        accentBgMuted: "bg-white/5/10",
+        accentBgMuted: "bg-white/10",
         accentShadow: "shadow-white/20",
         accentForeground: "text-black",
         secondaryColor: "text-white/70",
@@ -468,7 +468,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
             {studios.length > 1 ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between px-3 h-10 border-white/10 bg-white/5/5 hover:bg-white/5/10 text-white">
+                  <Button variant="outline" className="w-full justify-between px-3 h-10 border-white/10 bg-white/5 hover:bg-white/10 text-white">
                     <div className="flex items-center gap-2 truncate">
                       <Building className={cn("w-4 h-4 flex-shrink-0", branding.secondaryColor)} />
                       <span className="truncate text-xs font-bold uppercase tracking-widest">{activeStudio?.name || t.sidebar.selectStudio}</span>
@@ -478,12 +478,12 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-[200px] bg-zinc-950 border-white/10 text-white">
                   <DropdownMenuLabel className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">{t.sidebar.switchStudio}</DropdownMenuLabel>
-                  <DropdownMenuSeparator className="bg-white/5/10" />
+                  <DropdownMenuSeparator className="bg-white/10" />
                   {studios.map(studio => (
                     <DropdownMenuItem 
                       key={studio.id} 
                       onClick={() => switchStudio(studio.id)}
-                      className={cn("gap-2 cursor-pointer hover:bg-white/5/5 focus:bg-white/5/5", studio.id === studioId && `${branding.accentBgMuted ?? "bg-[#e40014]"} ${branding.secondaryColor} font-bold`)}
+                      className={cn("gap-2 cursor-pointer hover:bg-white/5 focus:bg-white/5", studio.id === studioId && `${branding.accentBgMuted ?? "bg-[#e40014]"} ${branding.secondaryColor} font-bold`)}
                     >
                       <Building className="w-3 h-3" />
                       <span className="truncate">{studio.name}</span>
@@ -493,7 +493,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div className="flex items-center gap-2 px-3 h-10 rounded-md border border-white/10 bg-white/5/5 text-zinc-400">
+              <div className="flex items-center gap-2 px-3 h-10 rounded-md border border-white/10 bg-white/5 text-zinc-400">
                 <Building className={cn("w-4 h-4 flex-shrink-0", branding.secondaryColor)} />
                 <span className="truncate text-xs font-bold uppercase tracking-widest">{studios[0].name}</span>
               </div>
@@ -529,7 +529,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                             "flex items-center justify-between px-3 py-2.5 rounded-lg transition-all group relative",
                             isActive
                               ? `${branding.accentBg ?? "bg-[#e40014]"} ${(branding as { accentForeground?: string }).accentForeground ?? "text-white"} shadow-lg ${branding.accentShadow ?? "shadow-red-600/20"} font-bold`
-                              : "text-zinc-400 hover:bg-white/5/5 hover:text-white",
+                              : "text-zinc-400 hover:bg-white/5 hover:text-white",
                             collapsed && "justify-center"
                           )}
                           title={collapsed ? item.label : undefined}
@@ -562,7 +562,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                       "flex items-center justify-between px-3 py-2.5 rounded-lg transition-all group relative",
                       isActive
                         ? `${branding.accentBg ?? "bg-[#e40014]"} ${(branding as { accentForeground?: string }).accentForeground ?? "text-white"} shadow-lg ${branding.accentShadow ?? "shadow-red-600/20"} font-bold`
-                        : "text-zinc-400 hover:bg-white/5/5 hover:text-white"
+                        : "text-zinc-400 hover:bg-white/5 hover:text-white"
                     )}
                   >
                     <div className="flex items-center gap-3">
@@ -608,14 +608,14 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                         </div>
 
                         {!collapsed && (
-                          <div className="flex items-center bg-red- dark:bg-[#e40014] px-1.5 py-0.5 rounded text-[10px] font-bold text-red- dark:text-red- border border-red- dark:border-red-">
+                          <div className="flex items-center bg-[#e40014] dark:bg-[#e40014] px-1.5 py-0.5 rounded text-[10px] font-bold text-[#e40014] dark:text-[#e40014] border border-[#e40014] dark:border-[#e40014]">
                             <Lock className="w-2.5 h-2.5 mr-1" />
                             PRO
                           </div>
                         )}
 
                         {collapsed && (
-                          <div className="absolute top-1 right-1 bg-red- rounded-full p-0.5 border border-background">
+                          <div className="absolute top-1 right-1 bg-[#e40014] rounded-full p-0.5 border border-background">
                             <Lock className="w-2 h-2 text-white" />
                           </div>
                         )}
@@ -635,7 +635,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
           onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
           className={cn(
             "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full group",
-            "text-zinc-400 hover:bg-white/5/5 hover:text-white"
+            "text-zinc-400 hover:bg-white/5 hover:text-white"
           )}
         >
           <Languages className={cn("w-5 h-5 flex-shrink-0 transition-colors", branding.secondaryColor === "text-white/70" ? "group-hover:text-white/70" : "group-hover:text-[#e40014]")} />
@@ -651,7 +651,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
           className={cn(
             "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full group",
             "text-zinc-400",
-            branding.secondaryColor === "text-white/70" ? "hover:bg-white/5/10 hover:text-white" : "hover:bg-[#e40014] hover:text-[#e40014]"
+            branding.secondaryColor === "text-white/70" ? "hover:bg-white/10 hover:text-white" : "hover:bg-[#e40014] hover:text-[#e40014]"
           )}
         >
           <LogOut className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />

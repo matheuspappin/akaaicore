@@ -114,7 +114,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
   if (!authorized) return null
 
   return (
-    <div className="min-h-screen bg-black dark:bg-black flex flex-col">
+    <div className="min-h-screen bg-black bg-black flex flex-col">
       {/* Header */}
       <header className="sticky top-0 z-50 h-16 flex items-center justify-between gap-4 px-4 md:px-6 bg-black/95 border-b border-white/10 backdrop-blur-md">
         <Link href="/solutions/estudio-de-danca/student" className="flex items-center gap-3 group">
@@ -150,7 +150,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       </header>
 
       {/* Desktop nav */}
-      <nav className="hidden md:flex bg-white/5 dark:bg-black/50 border-b border-white/10 dark:border-white/10 px-4 md:px-6">
+      <nav className="hidden md:flex bg-white/5 bg-black border-b border-white/10 border-white/10 px-4 md:px-6">
         <div className="flex gap-1 max-w-4xl w-full">
           {navItems.map((item) => {
             const isActive =
@@ -180,7 +180,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       </main>
 
       {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 flex bg-white/5 dark:bg-black border-t border-white/10 dark:border-white/10 pb-[env(safe-area-inset-bottom)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 flex bg-white/5 bg-black border-t border-white/10 border-white/10 pb-[env(safe-area-inset-bottom)]">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href ||

@@ -315,7 +315,7 @@ export default function PagamentosProfessoresPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-red-">
+            <div className="flex items-center gap-2 text-[#e40014]">
               <Clock className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Congelado</span>
             </div>
@@ -325,7 +325,7 @@ export default function PagamentosProfessoresPage() {
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="flex items-center gap-2 text-red-">
+            <div className="flex items-center gap-2 text-[#e40014]">
               <ArrowDownToLine className="w-5 h-5" />
               <span className="text-sm font-bold uppercase">Liberado</span>
             </div>
@@ -431,7 +431,7 @@ export default function PagamentosProfessoresPage() {
                 <Button
                   onClick={handleRelease}
                   disabled={releasing || selectedIds.size === 0}
-                  className="mt-2 bg-red- hover:bg-red-"
+                  className="mt-2 bg-[#e40014] hover:bg-[#e40014]"
                 >
                   {releasing ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <ArrowDownToLine className="w-4 h-4 mr-2" />}
                   Liberar {selectedIds.size > 0 ? `${selectedIds.size} selecionado(s)` : "selecionados"}
@@ -457,9 +457,9 @@ export default function PagamentosProfessoresPage() {
                       key={e.id}
                       className={cn(
                         "flex items-center justify-between p-3 rounded-xl border",
-                        e.status === "pending" && "border-red- dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
-                        e.status === "released" && "border-red- dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
-                        e.status === "withdrawn" && "border-white/10 dark:border-white/10"
+                        e.status === "pending" && "border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
+                        e.status === "released" && "border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]",
+                        e.status === "withdrawn" && "border-white/10 border-white/10"
                       )}
                     >
                       <div className="flex items-center gap-3">
@@ -481,8 +481,8 @@ export default function PagamentosProfessoresPage() {
                         <Badge
                           variant="outline"
                           className={cn(
-                            e.status === "pending" && "border-red- text-red-",
-                            e.status === "released" && "border-red- text-red-",
+                            e.status === "pending" && "border-[#e40014] text-[#e40014]",
+                            e.status === "released" && "border-[#e40014] text-[#e40014]",
                             e.status === "withdrawn" && "border-slate-300 text-zinc-400"
                           )}
                         >
@@ -517,8 +517,8 @@ export default function PagamentosProfessoresPage() {
                       key={w.id}
                       className={cn(
                         "flex items-center justify-between p-3 rounded-xl border",
-                        w.status === "pending" && "border-red- dark:border-[#e40014] bg-[#e40014]",
-                        w.status === "completed" && "border-white/10 dark:border-white/10"
+                        w.status === "pending" && "border-[#e40014] dark:border-[#e40014] bg-[#e40014]",
+                        w.status === "completed" && "border-white/10 border-white/10"
                       )}
                     >
                       <div>
@@ -534,7 +534,7 @@ export default function PagamentosProfessoresPage() {
                         {w.status === "pending" && (
                           <Button
                             size="sm"
-                            className="bg-red- hover:bg-red-"
+                            className="bg-[#e40014] hover:bg-[#e40014]"
                             onClick={() => handleMarkAsPaid(w.id)}
                             disabled={markingPaid === w.id}
                           >
@@ -543,7 +543,7 @@ export default function PagamentosProfessoresPage() {
                           </Button>
                         )}
                         {w.status === "completed" && (
-                          <Badge className="bg-red- text-red-">Pago</Badge>
+                          <Badge className="bg-[#e40014] text-[#e40014]">Pago</Badge>
                         )}
                       </div>
                     </div>
@@ -582,7 +582,7 @@ export default function PagamentosProfessoresPage() {
                           .map((e: any) => (
                             <div
                               key={e.id}
-                              className="flex items-center justify-between py-2 px-3 rounded-lg bg-black dark:bg-black/50"
+                              className="flex items-center justify-between py-2 px-3 rounded-lg bg-black bg-black"
                             >
                               <div>
                                 <span className="font-medium">{e.class_name || "Aula"}</span>
@@ -594,8 +594,8 @@ export default function PagamentosProfessoresPage() {
                                   variant="outline"
                                   className={cn(
                                     "text-xs",
-                                    e.status === "pending" && "border-red- text-red-",
-                                    e.status === "released" && "border-red- text-red-",
+                                    e.status === "pending" && "border-[#e40014] text-[#e40014]",
+                                    e.status === "released" && "border-[#e40014] text-[#e40014]",
                                     e.status === "withdrawn" && "border-slate-300 text-zinc-400"
                                   )}
                                 >

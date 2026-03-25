@@ -117,7 +117,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
         ) : (
           <div className="space-y-4 pt-1">
             {/* Código */}
-            <div className="rounded-xl bg-black dark:bg-black border border-white/10 dark:border-white/10 p-4">
+            <div className="rounded-xl bg-black bg-black border border-white/10 border-white/10 p-4">
               <div className="flex items-center justify-between mb-1">
                 <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Código de Convite</p>
                 <Button size="icon" variant="ghost" className="h-7 w-7 rounded-lg" onClick={handleRegenerate} disabled={regenerating} title="Gerar novo código">
@@ -128,7 +128,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
                 <p className="font-mono text-2xl font-black text-white dark:text-white tracking-[0.3em] flex-1">
                   {code || "—"}
                 </p>
-                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-red- border-red- text-red-" : ""}`} onClick={handleCopyCode}>
+                <Button size="sm" variant="outline" className={`rounded-lg h-8 text-xs font-bold transition-all ${copiedCode ? "bg-[#e40014] border-[#e40014] text-[#e40014]" : ""}`} onClick={handleCopyCode}>
                   {copiedCode ? <><CheckCheck className="w-3.5 h-3.5 mr-1.5" />Copiado</> : <><Copy className="w-3.5 h-3.5 mr-1.5" />Copiar</>}
                 </Button>
               </div>
@@ -137,9 +137,9 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
 
             {/* Divisor */}
             <div className="flex items-center gap-2">
-              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
+              <div className="flex-1 border-t border-white/10 border-white/10" />
               <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">ou</span>
-              <div className="flex-1 border-t border-white/10 dark:border-white/10" />
+              <div className="flex-1 border-t border-white/10 border-white/10" />
             </div>
 
             {/* Link direto */}
@@ -150,7 +150,7 @@ function InviteCodeDialog({ open, onOpenChange }: { open: boolean; onOpenChange:
               </div>
               <div className="flex gap-2">
                 <Button
-                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-red- hover:bg-red-" : "bg-[#e40014] hover:bg-[#e40014]"} text-white`}
+                  className={`flex-1 font-bold rounded-xl text-sm transition-all ${copiedLink ? "bg-[#e40014] hover:bg-[#e40014]" : "bg-[#e40014] hover:bg-[#e40014]"} text-white`}
                   onClick={handleCopyLink}
                 >
                   {copiedLink ? <><CheckCheck className="w-4 h-4 mr-2" />Link Copiado!</> : <><ExternalLink className="w-4 h-4 mr-2" />Copiar Link</>}
@@ -293,14 +293,14 @@ export default function AlunosPage() {
 
     if (isExpired && credits > 0) {
       return (
-        <Badge variant="outline" className="bg-red- text-red- border-red-">
+        <Badge variant="outline" className="bg-[#e40014] text-[#e40014] border-[#e40014]">
           <AlertTriangle className="w-3 h-3 mr-1" /> Congelado
         </Badge>
       );
     }
 
     if (credits > 0) {
-      return <Badge className="bg-red- text-red- hover:bg-red-"><CheckCircle className="w-3 h-3 mr-1" />Ativo</Badge>
+      return <Badge className="bg-[#e40014] text-[#e40014] hover:bg-[#e40014]"><CheckCircle className="w-3 h-3 mr-1" />Ativo</Badge>
     } else {
       return <Badge variant="secondary">Sem créditos</Badge>
     }
@@ -457,7 +457,7 @@ export default function AlunosPage() {
           placeholder="Buscar aluno por nome ou e-mail..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 h-11 rounded-xl"
+          className="pl-9 bg-white/5 bg-black border-white/10 border-white/10 h-11 rounded-xl"
         />
       </div>
 
@@ -466,7 +466,7 @@ export default function AlunosPage() {
           <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-20 text-center">
             <Users className="w-16 h-16 text-slate-300 dark:text-zinc-400 mb-4" />
             <h3 className="text-lg font-bold text-zinc-400 dark:text-slate-300 mb-2">
@@ -501,7 +501,7 @@ export default function AlunosPage() {
       ) : (
         <div className="grid gap-3">
           {filtered.map((aluno, idx) => (
-            <Card key={aluno.id ?? `aluno-${idx}`} className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10 hover:shadow-md transition-shadow">
+            <Card key={aluno.id ?? `aluno-${idx}`} className="bg-white/5 bg-black border border-white/10 border-white/10 hover:shadow-md transition-shadow">
               <CardContent className="p-4 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-[#e40014] flex items-center justify-center font-black text-[#e40014] text-lg flex-shrink-0">
@@ -544,7 +544,7 @@ export default function AlunosPage() {
                 <div className="flex items-center gap-2 flex-shrink-0">
                   {businessModel === 'CREDIT' && (
                     <div className="flex items-center gap-2 mr-2">
-                      <Badge variant="outline" className="bg-red- text-red- font-bold">
+                      <Badge variant="outline" className="bg-[#e40014] text-[#e40014] font-bold">
                         {aluno.credits ?? 0} créditos
                       </Badge>
                       {getStatusBadge(aluno.credits, aluno.expiryDate)}
@@ -554,7 +554,7 @@ export default function AlunosPage() {
                     className={cn(
                       "text-xs font-bold border-0",
                       aluno.status === 'active' || !aluno.status
-                        ? "bg-red- text-red- dark:bg-[#e40014] dark:text-red-"
+                        ? "bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]"
                         : "bg-slate-100 text-zinc-500 dark:bg-zinc-950 dark:text-zinc-400"
                     )}
                   >
@@ -827,7 +827,7 @@ export default function AlunosPage() {
             </Collapsible>
 
             {/* Créditos manuais (ajuste pontual - não depende da automação) */}
-            <div className="space-y-4 rounded-xl border border-white/10 dark:border-white/10 p-4 bg-black/50 dark:bg-black/30">
+            <div className="space-y-4 rounded-xl border border-white/10 border-white/10 p-4 bg-black bg-black/30">
                 <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider flex items-center gap-2">
                   <Coins className="w-3.5 h-3.5" />
                   Créditos manuais (ajuste pontual)
@@ -850,7 +850,7 @@ export default function AlunosPage() {
                   <Button
                     onClick={() => handleAdjustCredits('add')}
                     disabled={isAdjusting || adjustAmount <= 0}
-                    className="flex-1 bg-red- hover:bg-red-"
+                    className="flex-1 bg-[#e40014] hover:bg-[#e40014]"
                   >
                     {isAdjusting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
                     Adicionar

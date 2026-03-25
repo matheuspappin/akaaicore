@@ -170,7 +170,7 @@ export default function TeacherPerfilPage() {
       </div>
 
       {/* Vínculo com Estúdio */}
-      <Card className="bg-white/5 dark:bg-black/50 shadow-sm border border-white/10 dark:border-white/10">
+      <Card className="bg-white/5 bg-black shadow-sm border border-white/10 border-white/10">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base font-bold flex items-center gap-2">
@@ -198,13 +198,13 @@ export default function TeacherPerfilPage() {
             </div>
           ) : vinculo.linked && vinculo.studio ? (
             <div className="space-y-4">
-              <div className="flex items-start gap-3 p-4 rounded-xl bg-red- dark:bg-[#e40014] border border-red- dark:border-[#e40014]">
-                <div className="w-10 h-10 rounded-xl bg-red- dark:bg-[#e40014] flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-red-" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-[#e40014] dark:bg-[#e40014] border border-[#e40014] dark:border-[#e40014]">
+                <div className="w-10 h-10 rounded-xl bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-[#e40014]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-red- dark:text-red- text-sm">Vinculado com sucesso</p>
-                  <p className="text-red- dark:text-red- font-black text-base mt-0.5 truncate">
+                  <p className="font-bold text-[#e40014] dark:text-[#e40014] text-sm">Vinculado com sucesso</p>
+                  <p className="text-[#e40014] dark:text-[#e40014] font-black text-base mt-0.5 truncate">
                     {vinculo.studio.name}
                   </p>
                   <p className="text-[#e40014] text-xs mt-1">
@@ -228,10 +228,10 @@ export default function TeacherPerfilPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="flex items-start gap-3 p-4 rounded-xl bg-red- dark:bg-[#e40014] border border-red- dark:border-[#e40014]">
-                <AlertCircle className="w-5 h-5 text-red- flex-shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-[#e40014] dark:bg-[#e40014] border border-[#e40014] dark:border-[#e40014]">
+                <AlertCircle className="w-5 h-5 text-[#e40014] flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-red- dark:text-red- text-sm">Nenhum estúdio vinculado</p>
+                  <p className="font-bold text-[#e40014] dark:text-[#e40014] text-sm">Nenhum estúdio vinculado</p>
                   <p className="text-[#e40014] dark:text-[#e40014] text-xs mt-0.5">
                     Solicite o código de professor ao administrador do estúdio e insira abaixo.
                   </p>
@@ -286,7 +286,7 @@ export default function TeacherPerfilPage() {
       </Card>
 
       {/* Form de Perfil */}
-      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+      <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
         <CardHeader>
           <CardTitle className="text-base font-bold text-white dark:text-white">Dados Profissionais</CardTitle>
         </CardHeader>
@@ -296,7 +296,7 @@ export default function TeacherPerfilPage() {
             <Input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="bg-black dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11"
+              className="bg-black dark:bg-white/5 border-white/10 border-white/10 rounded-xl h-11"
             />
           </div>
           <div className="space-y-2">
@@ -306,7 +306,7 @@ export default function TeacherPerfilPage() {
             <Input
               value={form.email}
               disabled
-              className="bg-slate-100 dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11 opacity-60 cursor-not-allowed"
+              className="bg-slate-100 dark:bg-white/5 border-white/10 border-white/10 rounded-xl h-11 opacity-60 cursor-not-allowed"
             />
           </div>
           <div className="space-y-2">
@@ -317,7 +317,7 @@ export default function TeacherPerfilPage() {
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder="(00) 00000-0000"
-              className="bg-black dark:bg-white/5/5 border-white/10 dark:border-white/10 rounded-xl h-11"
+              className="bg-black dark:bg-white/5 border-white/10 border-white/10 rounded-xl h-11"
             />
           </div>
           <Button

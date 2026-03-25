@@ -117,7 +117,7 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
               <Button
                 size="icon"
                 variant="outline"
-                className={cn("h-10 w-10 rounded-xl transition-all border-white/10 hover:bg-white/5/5 bg-black", copied && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500")}
+                className={cn("h-10 w-10 rounded-xl transition-all border-white/10 hover:bg-white/5 bg-black", copied && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500")}
                 onClick={handleCopy}
                 title="Copiar código"
               >
@@ -126,7 +126,7 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
               <Button
                 size="icon"
                 variant="outline"
-                className={cn("h-10 w-10 rounded-xl transition-all border-white/10 hover:bg-white/5/5 bg-black", copiedLink && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500")}
+                className={cn("h-10 w-10 rounded-xl transition-all border-white/10 hover:bg-white/5 bg-black", copiedLink && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500")}
                 onClick={handleCopyLink}
                 title="Copiar link"
               >
@@ -135,7 +135,7 @@ function InviteCodeCard({ type, label, description, color, borderColor, titleCol
               <Button
                 size="icon"
                 variant="outline"
-                className="h-10 w-10 rounded-xl border-white/10 hover:bg-white/5/5 bg-black"
+                className="h-10 w-10 rounded-xl border-white/10 hover:bg-white/5 bg-black"
                 onClick={handleRegenerate}
                 disabled={regenerating}
                 title="Gerar novo código"
@@ -383,7 +383,7 @@ export default function DanceStudioDashboard() {
             <Card className={cn("text-white shadow-lg cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98]", action.color)}>
               <CardContent className="p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/5/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
                     <action.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -496,7 +496,7 @@ export default function DanceStudioDashboard() {
                 <p className="font-bold text-white">Gamificação de Alunos</p>
                 <p className="text-sm text-zinc-400">Rankings, conquistas e engajamento</p>
               </div>
-              <Button type="button" size="sm" variant="outline" className="font-bold rounded-xl border-white/10 text-white hover:bg-white/5/10" asChild>
+              <Button type="button" size="sm" variant="outline" className="font-bold rounded-xl border-white/10 text-white hover:bg-white/10" asChild>
                 <Link href="/solutions/estudio-de-danca/dashboard/gamificacao">Ver</Link>
               </Button>
             </CardContent>
@@ -510,7 +510,7 @@ export default function DanceStudioDashboard() {
             color="bg-[#0a0a0a]"
             borderColor="border border-white/10"
             titleColor="text-white"
-            buttonColor="bg-white/5/10 hover:bg-white/5/20"
+            buttonColor="bg-white/10 hover:bg-white/5"
           />
 
           {/* Código de Convite — Aluno */}
@@ -527,7 +527,7 @@ export default function DanceStudioDashboard() {
           {/* Clientes (CRM) */}
           <Card className="bg-[#0a0a0a] border border-white/10 shadow-lg">
             <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-white/5/5 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="w-6 h-6 text-zinc-400" />
               </div>
               <div>
@@ -535,7 +535,7 @@ export default function DanceStudioDashboard() {
                 <p className="text-sm text-zinc-500">Quem comprou/visitou</p>
               </div>
               <Link href="/solutions/estudio-de-danca/dashboard/leads" className="ml-auto">
-                <Button type="button" size="sm" variant="outline" className="border-white/10 text-zinc-300 hover:text-white hover:bg-white/5/5 font-bold rounded-xl">
+                <Button type="button" size="sm" variant="outline" className="border-white/10 text-zinc-300 hover:text-white hover:bg-white/5 font-bold rounded-xl">
                   Ver
                 </Button>
               </Link>

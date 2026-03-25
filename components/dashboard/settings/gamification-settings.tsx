@@ -110,7 +110,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4 border p-4 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 bg-red- dark:bg-[#e40014] rounded-full text-red- dark:text-red-">
+                <div className="p-2 bg-[#e40014] dark:bg-[#e40014] rounded-full text-[#e40014] dark:text-[#e40014]">
                   <Star className="w-4 h-4" />
                 </div>
                 <h3 className="font-semibold">Pontos por Presença</h3>
@@ -132,7 +132,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
 
             <div className="space-y-4 border p-4 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 bg-red- dark:bg-[#e40014] rounded-full text-red- dark:text-red-">
+                <div className="p-2 bg-[#e40014] dark:bg-[#e40014] rounded-full text-[#e40014] dark:text-[#e40014]">
                   <Users className="w-4 h-4" />
                 </div>
                 <h3 className="font-semibold">Indicação de Amigos</h3>
@@ -154,7 +154,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
 
             <div className="space-y-4 border p-4 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <div className="p-2 bg-red- dark:bg-[#e40014] rounded-full text-red- dark:text-red-">
+                <div className="p-2 bg-[#e40014] dark:bg-[#e40014] rounded-full text-[#e40014] dark:text-[#e40014]">
                   <MessageSquare className="w-4 h-4" />
                 </div>
                 <h3 className="font-semibold">Avaliação da Aula</h3>
@@ -178,7 +178,7 @@ export function GamificationSettings({ studioId }: { studioId: string }) {
           </div>
 
           <div className="flex justify-end pt-4">
-            <Button onClick={handleSave} disabled={saving} className="bg-red- hover:bg-red-">
+            <Button onClick={handleSave} disabled={saving} className="bg-[#e40014] hover:bg-[#e40014]">
               {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Salvar Configurações
             </Button>

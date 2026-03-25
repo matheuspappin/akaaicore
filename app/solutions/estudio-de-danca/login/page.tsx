@@ -201,9 +201,9 @@ function LoginContent() {
                     <div className="flex items-center gap-3">
                       <div className={cn(
                         "w-8 h-8 rounded-lg flex items-center justify-center transition-colors",
-                        role === 'super_admin' && "bg-[#e40014] text-red-",
+                        role === 'super_admin' && "bg-[#e40014] text-[#e40014]",
                         role === 'admin' && "bg-[#e40014] text-[#e40014]",
-                        role === 'finance' && "bg-[#e40014] text-red-",
+                        role === 'finance' && "bg-[#e40014] text-[#e40014]",
                         role === 'teacher' && "bg-[#e40014] text-[#e40014]",
                         role === 'student' && "bg-zinc-500/20 text-zinc-400"
                       )}>
@@ -224,7 +224,7 @@ function LoginContent() {
                             onClick={() => { setRole(p.id); setProfileDropdownOpen(false) }}
                             className={cn(
                               "w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors",
-                              role === p.id ? "bg-[#e40014] text-[#e40014]" : "text-zinc-400 hover:bg-white/5/5 hover:text-white"
+                              role === p.id ? "bg-[#e40014] text-[#e40014]" : "text-zinc-400 hover:bg-white/5 hover:text-white"
                             )}
                           >
                             <p.icon className="w-4 h-4 shrink-0 opacity-70" />
@@ -305,7 +305,7 @@ function LoginContent() {
                 </p>
                 <Link
                   href="/login"
-                  className="flex items-center justify-center gap-2 text-xs text-red- hover:text-red- font-medium transition-colors"
+                  className="flex items-center justify-center gap-2 text-xs text-[#e40014] hover:text-[#e40014] font-medium transition-colors"
                 >
                   <Shield className="w-3.5 h-3.5" />
                   Super Admin? Acessar painel akaaicore

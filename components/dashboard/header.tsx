@@ -47,7 +47,7 @@ export function Header({ title, children }: HeaderProps) {
   const pathname = usePathname()
   const { language, vocabulary, studios, studioId, switchStudio, t, niche } = useOrganization()
   const branding = getNicheBranding(niche || 'dance')
-  const isDance = branding.secondaryColor === "text-red-"
+  const isDance = branding.secondaryColor === "text-[#e40014]"
 
   const isDanceStudio = pathname?.startsWith("/solutions/estudio-de-danca")
   const settingsHref = isDanceStudio
@@ -122,7 +122,7 @@ export function Header({ title, children }: HeaderProps) {
         {studios.length > 1 && (
           <div className="hidden lg:block ml-4">
             <Select value={studioId || ""} onValueChange={switchStudio}>
-              <SelectTrigger className="h-9 w-[220px] bg-white/5/5 border-white/10 hover:bg-white/5/10 transition-colors text-white">
+              <SelectTrigger className="h-9 w-[220px] bg-white/5 border-white/10 hover:bg-white/10 transition-colors text-white">
                 <div className="flex items-center gap-2 truncate">
                   <Building2 className={cn("w-4 h-4 shrink-0", branding.secondaryColor)} />
                   <SelectValue placeholder="Selecionar Unidade" />
@@ -130,7 +130,7 @@ export function Header({ title, children }: HeaderProps) {
               </SelectTrigger>
               <SelectContent className="bg-[#09090b] border-white/10 text-white">
                 {studios.map((studio) => (
-                  <SelectItem key={studio.id} value={studio.id} className={isDance ? "hover:bg-red- focus:bg-red-" : "hover:bg-[#e40014] focus:bg-[#e40014]"}>
+                  <SelectItem key={studio.id} value={studio.id} className={isDance ? "hover:bg-[#e40014] focus:bg-[#e40014]" : "hover:bg-[#e40014] focus:bg-[#e40014]"}>
                     {studio.name}
                   </SelectItem>
                 ))}
@@ -146,20 +146,20 @@ export function Header({ title, children }: HeaderProps) {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
           <Input
             placeholder={t.common.searchPlaceholder}
-            className={cn("w-64 pl-9 bg-white/5/5 border-white/10 text-white placeholder:text-zinc-500", isDance ? "focus:border-[#e40014]" : "focus:border-[#e40014]")}
+            className={cn("w-64 pl-9 bg-white/5 border-white/10 text-white placeholder:text-zinc-500", isDance ? "focus:border-[#e40014]" : "focus:border-[#e40014]")}
           />
         </div>
 
         {/* Language Switcher */}
-        <LanguageSwitcher variant="ghost" showIcon={true} className="hidden md:flex text-zinc-400 hover:text-white hover:bg-white/5/10" />
+        <LanguageSwitcher variant="ghost" showIcon={true} className="hidden md:flex text-zinc-400 hover:text-white hover:bg-white/10" />
 
         {/* Notifications */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative text-zinc-400 hover:text-white hover:bg-white/5/10">
+            <Button variant="ghost" size="icon" className="relative text-zinc-400 hover:text-white hover:bg-white/10">
               <Bell className="w-5 h-5" />
               {unreadCount > 0 && (
-                <Badge className={cn("absolute -top-1 -right-1 w-5 h-5 p-0 flex items-center justify-center text-white text-xs border-none", isDance ? "bg-red-" : "bg-[#e40014]")}>
+                <Badge className={cn("absolute -top-1 -right-1 w-5 h-5 p-0 flex items-center justify-center text-white text-xs border-none", isDance ? "bg-[#e40014]" : "bg-[#e40014]")}>
                   {unreadCount}
                 </Badge>
               )}
@@ -168,7 +168,7 @@ export function Header({ title, children }: HeaderProps) {
           <DropdownMenuContent align="end" className="w-80 bg-zinc-950 border-white/10 text-white">
             <div className="flex items-center justify-between p-4 border-b border-white/10">
                <span className="font-bold text-sm uppercase tracking-widest text-zinc-400">{t.common.notifications}</span>
-               {unreadCount > 0 && <Badge className={cn("text-white border-none text-[10px]", isDance ? "bg-red-" : "bg-[#e40014]")}>{unreadCount} {t.common.newNotifications}</Badge>}
+               {unreadCount > 0 && <Badge className={cn("text-white border-none text-[10px]", isDance ? "bg-[#e40014]" : "bg-[#e40014]")}>{unreadCount} {t.common.newNotifications}</Badge>}
             </div>
             <div className="max-h-[300px] overflow-y-auto">
               {loadingNotifications ? (
@@ -177,12 +177,12 @@ export function Header({ title, children }: HeaderProps) {
                 notifications.map((notification) => (
                   <DropdownMenuItem 
                     key={notification.id} 
-                    className="flex flex-col items-start gap-1 p-4 cursor-default border-b border-white/5 last:border-0 hover:bg-white/5/5 focus:bg-white/5/5"
+                    className="flex flex-col items-start gap-1 p-4 cursor-default border-b border-white/5 last:border-0 hover:bg-white/5 focus:bg-white/5"
                     onClick={() => markAsRead(notification.id)}
                   >
                     <div className="flex items-center gap-2 w-full">
                       {!notification.is_read && (
-                        <div className={cn("w-2 h-2 rounded-full shrink-0", isDance ? "bg-red-" : "bg-[#e40014]")} />
+                        <div className={cn("w-2 h-2 rounded-full shrink-0", isDance ? "bg-[#e40014]" : "bg-[#e40014]")} />
                       )}
                       <span className={`text-sm font-bold truncate ${!notification.is_read ? 'text-white' : 'text-zinc-500'}`}>
                         {notification.title}
@@ -204,7 +204,7 @@ export function Header({ title, children }: HeaderProps) {
             </div>
             {notifications.length > 0 && (
               <div className="p-2 border-t border-white/10">
-                 <Button variant="ghost" className={cn("w-full h-8 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5/5", isDance ? "text-red- hover:text-red-" : "text-[#e40014] hover:text-[#e40014]")}>{t.dashboard.viewAll}</Button>
+                 <Button variant="ghost" className={cn("w-full h-8 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5", isDance ? "text-[#e40014] hover:text-[#e40014]" : "text-[#e40014] hover:text-[#e40014]")}>{t.dashboard.viewAll}</Button>
               </div>
             )}
           </DropdownMenuContent>
@@ -213,8 +213,8 @@ export function Header({ title, children }: HeaderProps) {
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-2 px-2 hover:bg-white/5/5 group">
-              <div className={cn("w-8 h-8 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform", isDance ? "bg-red- shadow-red-/20" : "bg-[#e40014] shadow-red-600/20")}>
+            <Button variant="ghost" className="flex items-center gap-2 px-2 hover:bg-white/5 group">
+              <div className={cn("w-8 h-8 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform", isDance ? "bg-[#e40014] shadow-[#e40014]/20" : "bg-[#e40014] shadow-red-600/20")}>
                 <User className="w-4 h-4 text-white" />
               </div>
               <div className="hidden md:block text-left">
@@ -225,19 +225,19 @@ export function Header({ title, children }: HeaderProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 bg-zinc-950 border-white/10 text-white">
             <DropdownMenuLabel className="text-xs font-bold uppercase tracking-widest text-zinc-500">{t.common.myAccount}</DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-white/5/10" />
-            <DropdownMenuItem onClick={() => router.push(profileHref)} className="hover:bg-white/5/5 focus:bg-white/5/5 cursor-pointer">
+            <DropdownMenuSeparator className="bg-white/10" />
+            <DropdownMenuItem onClick={() => router.push(profileHref)} className="hover:bg-white/5 focus:bg-white/5 cursor-pointer">
               <UserCircle className={cn("w-4 h-4 mr-2", branding.secondaryColor)} />
               {t.common.adminProfile}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => router.push(settingsHref)} className="hover:bg-white/5/5 focus:bg-white/5/5 cursor-pointer">
+            <DropdownMenuItem onClick={() => router.push(settingsHref)} className="hover:bg-white/5 focus:bg-white/5 cursor-pointer">
               <Settings className={cn("w-4 h-4 mr-2", branding.secondaryColor)} />
               {t.common.systemSettings}
             </DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-white/5/10" />
+            <DropdownMenuSeparator className="bg-white/10" />
             <DropdownMenuItem
               onClick={handleLogout}
-              className={cn("cursor-pointer font-bold", isDance ? "text-red- hover:bg-[#e40014] focus:bg-[#e40014]" : "text-[#e40014] hover:bg-[#e40014] focus:bg-[#e40014]")}
+              className={cn("cursor-pointer font-bold", isDance ? "text-[#e40014] hover:bg-[#e40014] focus:bg-[#e40014]" : "text-[#e40014] hover:bg-[#e40014] focus:bg-[#e40014]")}
             >
               <LogOut className="w-4 h-4 mr-2" />
               {t.sidebar.logout}

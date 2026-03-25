@@ -42,9 +42,9 @@ const LEVEL_LABELS: Record<string, string> = {
   advanced: 'Avançado',
 }
 const LEVEL_COLORS: Record<string, string> = {
-  beginner: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-',
-  intermediate: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-',
-  advanced: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-',
+  beginner: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]',
+  intermediate: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]',
+  advanced: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]',
 }
 
 export default function CatalogoTurmasPage() {
@@ -304,21 +304,21 @@ export default function CatalogoTurmasPage() {
         <div className={cn(
           "rounded-2xl p-4 flex items-center gap-3 border",
           creditsExpired
-            ? "bg-red- dark:bg-[#e40014] border-red- dark:border-red-"
+            ? "bg-[#e40014] dark:bg-[#e40014] border-[#e40014] dark:border-[#e40014]"
             : hasCredits
-              ? "bg-[#e40014] dark:bg-[#e40014] border-[#e40014] dark:border-red-"
-              : "bg-red- dark:bg-[#e40014] border-red- dark:border-red-"
+              ? "bg-[#e40014] dark:bg-[#e40014] border-[#e40014] dark:border-[#e40014]"
+              : "bg-[#e40014] dark:bg-[#e40014] border-[#e40014] dark:border-[#e40014]"
         )}>
           {creditsExpired ? (
-            <AlertCircle className="w-5 h-5 text-red- shrink-0" />
+            <AlertCircle className="w-5 h-5 text-[#e40014] shrink-0" />
           ) : hasCredits ? (
             <CreditCard className="w-5 h-5 text-[#e40014] shrink-0" />
           ) : (
-            <AlertCircle className="w-5 h-5 text-red- shrink-0" />
+            <AlertCircle className="w-5 h-5 text-[#e40014] shrink-0" />
           )}
           <div className="flex-1">
             {creditsExpired ? (
-              <p className="text-xs font-bold text-red- dark:text-red-">
+              <p className="text-xs font-bold text-[#e40014] dark:text-[#e40014]">
                 Seus créditos expiraram em {new Date(studentCredits.expiry_date).toLocaleDateString('pt-BR')}. Renove para se matricular.
               </p>
             ) : hasCredits ? (
@@ -327,7 +327,7 @@ export default function CatalogoTurmasPage() {
                 {studentCredits.expiry_date && ` — válidos até ${new Date(studentCredits.expiry_date).toLocaleDateString('pt-BR')}`}
               </p>
             ) : (
-              <p className="text-xs font-bold text-red- dark:text-red-">
+              <p className="text-xs font-bold text-[#e40014] dark:text-[#e40014]">
                 Sem créditos disponíveis. Compre um pacote para se matricular.
               </p>
             )}
@@ -343,10 +343,10 @@ export default function CatalogoTurmasPage() {
       )}
 
       {!loading && !studentCredits && (
-        <div className="rounded-2xl p-4 flex items-center gap-3 border border-red- dark:border-red- bg-red- dark:bg-[#e40014]">
-          <AlertCircle className="w-5 h-5 text-red- shrink-0" />
+        <div className="rounded-2xl p-4 flex items-center gap-3 border border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]">
+          <AlertCircle className="w-5 h-5 text-[#e40014] shrink-0" />
           <div className="flex-1">
-            <p className="text-xs font-bold text-red- dark:text-red-">
+            <p className="text-xs font-bold text-[#e40014] dark:text-[#e40014]">
               Você ainda não tem créditos. Compre um pacote para se matricular nas turmas.
             </p>
           </div>
@@ -363,7 +363,7 @@ export default function CatalogoTurmasPage() {
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
         <Input
           placeholder="Buscar por nome, estilo ou professor..."
-          className="pl-9 bg-white/5 dark:bg-black border-white/10 dark:border-white/10 rounded-xl h-11"
+          className="pl-9 bg-white/5 bg-black border-white/10 border-white/10 rounded-xl h-11"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -375,7 +375,7 @@ export default function CatalogoTurmasPage() {
           <Loader2 className="w-8 h-8 animate-spin text-[#e40014]" />
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <Music className="w-14 h-14 text-slate-300 dark:text-zinc-400 mb-4" />
             <h3 className="font-bold text-zinc-400 dark:text-slate-300">
@@ -400,19 +400,19 @@ export default function CatalogoTurmasPage() {
               <Card
                 key={cls.id}
                 className={cn(
-                  "bg-white/5 dark:bg-black/50 border overflow-hidden transition-all",
+                  "bg-white/5 bg-black border overflow-hidden transition-all",
                   isEnrolled
-                    ? "border-red- dark:border-[#e40014]"
-                    : "border-white/10 dark:border-white/10 hover:border-[#e40014] dark:hover:border-[#e40014]"
+                    ? "border-[#e40014] dark:border-[#e40014]"
+                    : "border-white/10 border-white/10 hover:border-[#e40014] dark:hover:border-[#e40014]"
                 )}
               >
                 {/* Barra colorida de status */}
                 <div className={cn(
                   "h-1",
                   isEnrolled
-                    ? "bg-red-"
+                    ? "bg-[#e40014]"
                     : cls.isCancelledToday
-                      ? "bg-red-"
+                      ? "bg-[#e40014]"
                       : "bg-gradient-to-r from-red-500 to-red-500"
                 )} />
 
@@ -424,7 +424,7 @@ export default function CatalogoTurmasPage() {
                           {cls.name}
                         </h3>
                         {cls.isCancelledToday && (
-                          <Badge className="bg-red- text-red- dark:bg-[#e40014] dark:text-red- border-0 text-[10px] font-bold animate-pulse">
+                          <Badge className="bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014] border-0 text-[10px] font-bold animate-pulse">
                             CANCELADA HOJE
                           </Badge>
                         )}
@@ -453,7 +453,7 @@ export default function CatalogoTurmasPage() {
                         <Users className="w-3.5 h-3.5 text-[#e40014] shrink-0" />
                         <span>
                           {cls.enrolledCount}/{cls.max_students} vagas
-                          {isFull && <span className="text-red- font-bold ml-1">· LOTADA</span>}
+                          {isFull && <span className="text-[#e40014] font-bold ml-1">· LOTADA</span>}
                         </span>
                       </div>
                     )}
@@ -463,7 +463,7 @@ export default function CatalogoTurmasPage() {
                         {(cls.schedule || []).map((s: any, i: number) => (
                           <div
                             key={i}
-                            className="flex items-center gap-1 bg-black dark:bg-white/5/5 rounded-lg px-2.5 py-1"
+                            className="flex items-center gap-1 bg-black dark:bg-white/5 rounded-lg px-2.5 py-1"
                           >
                             <Clock className="w-3 h-3 text-[#e40014]" />
                             <span className="text-[11px] font-bold text-zinc-400 dark:text-slate-300">
@@ -478,9 +478,9 @@ export default function CatalogoTurmasPage() {
 
                   {isEnrolled ? (
                     <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-2 bg-red- dark:bg-[#e40014] rounded-xl px-4 py-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-red- shrink-0" />
-                        <span className="text-sm font-bold text-red- dark:text-red-">
+                      <div className="flex items-center gap-2 bg-[#e40014] dark:bg-[#e40014] rounded-xl px-4 py-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-[#e40014] shrink-0" />
+                        <span className="text-sm font-bold text-[#e40014] dark:text-[#e40014]">
                           Você já está matriculado
                         </span>
                       </div>
@@ -505,7 +505,7 @@ export default function CatalogoTurmasPage() {
                         "w-full h-10 rounded-xl font-bold text-sm",
                         canEnroll
                           ? "bg-[#e40014] hover:bg-[#e40014] text-white shadow-sm shadow-red-600/20"
-                          : "bg-slate-100 dark:bg-white/5/5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed"
+                          : "bg-slate-100 dark:bg-white/5 text-zinc-400 dark:text-zinc-500 cursor-not-allowed"
                       )}
                       onClick={() => canEnroll && handleEnroll(cls)}
                       disabled={!canEnroll || joining === cls.id}
@@ -556,7 +556,7 @@ export default function CatalogoTurmasPage() {
                     level="H"
                     viewBox="0 0 256 256"
                   />
-                  <div className="bg-black dark:bg-black px-4 py-2 rounded-lg border border-slate-100 dark:border-zinc-800 w-full text-center">
+                  <div className="bg-black bg-black px-4 py-2 rounded-lg border border-white/10 dark:border-zinc-800 w-full text-center">
                     <p className="text-[10px] text-zinc-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
                     <p className="font-mono text-lg font-black text-[#e40014] tracking-widest">
                       DF-{activeAttendanceId.toString().slice(-8).toUpperCase()}

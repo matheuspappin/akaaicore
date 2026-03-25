@@ -320,7 +320,7 @@ export default function StudentHome() {
         <button
           onClick={handleRefresh}
           disabled={loading}
-          className="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/5/20 hover:bg-white/5/30 flex items-center justify-center transition-all"
+          className="absolute top-4 right-4 w-8 h-8 rounded-xl bg-white/5 hover:bg-white/5 flex items-center justify-center transition-all"
           title="Atualizar"
         >
           <RefreshCw className={cn("w-4 h-4 text-white", loading && "animate-spin")} />
@@ -334,7 +334,7 @@ export default function StudentHome() {
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-3">
-          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardContent className="p-4 text-center">
               <div className="w-10 h-10 rounded-xl bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center mx-auto mb-2">
                 <Star className="w-5 h-5 text-[#e40014]" />
@@ -345,12 +345,12 @@ export default function StudentHome() {
               <p className="text-xs font-bold uppercase text-zinc-400 mt-0.5">Frequência</p>
             </CardContent>
           </Card>
-          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardContent className="p-4 text-center">
-              <div className="w-10 h-10 rounded-xl bg-red- dark:bg-[#e40014] flex items-center justify-center mx-auto mb-2">
-                <CheckCircle2 className="w-5 h-5 text-red-" />
+              <div className="w-10 h-10 rounded-xl bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center mx-auto mb-2">
+                <CheckCircle2 className="w-5 h-5 text-[#e40014]" />
               </div>
-              <p className="text-2xl font-black text-red-">
+              <p className="text-2xl font-black text-[#e40014]">
                 {frequencia ? frequencia.totalMes : '—'}
               </p>
               <p className="text-xs font-bold uppercase text-zinc-400 mt-0.5">Aulas no mês</p>
@@ -364,17 +364,17 @@ export default function StudentHome() {
         <Card className={cn(
           "border",
           financeiro.vencido > 0
-            ? "border-red- dark:border-[#e40014] bg-red- dark:bg-[#e40014]"
-            : "border-red- dark:border-[#e40014] bg-red- dark:bg-[#e40014]"
+            ? "border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]"
+            : "border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]"
         )}>
           <CardContent className="p-4 flex items-center gap-4">
             <div className={cn(
               "w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0",
               financeiro.vencido > 0
-                ? "bg-red- dark:bg-[#e40014]"
-                : "bg-red- dark:bg-[#e40014]"
+                ? "bg-[#e40014] dark:bg-[#e40014]"
+                : "bg-[#e40014] dark:bg-[#e40014]"
             )}>
-              <AlertCircle className={cn("w-5 h-5", financeiro.vencido > 0 ? "text-red-" : "text-red-")} />
+              <AlertCircle className={cn("w-5 h-5", financeiro.vencido > 0 ? "text-[#e40014]" : "text-[#e40014]")} />
             </div>
             <div className="flex-1">
               <p className="font-bold text-white dark:text-white text-sm">
@@ -388,7 +388,7 @@ export default function StudentHome() {
             <Link href="/solutions/estudio-de-danca/student/financeiro">
               <Button type="button" size="sm" className={cn(
                 "font-bold rounded-xl text-white text-xs",
-                financeiro.vencido > 0 ? "bg-red- hover:bg-red-" : "bg-red- hover:bg-red-"
+                financeiro.vencido > 0 ? "bg-[#e40014] hover:bg-[#e40014]" : "bg-[#e40014] hover:bg-[#e40014]"
               )}>
                 Pagar
               </Button>
@@ -404,7 +404,7 @@ export default function StudentHome() {
             <div className="p-5 space-y-4">
               <div className="flex justify-between items-start">
                 <div>
-                  <Badge className="bg-white/5/20 text-white border-none uppercase mb-2">CHECK-IN</Badge>
+                  <Badge className="bg-white/5 text-white border-none uppercase mb-2">CHECK-IN</Badge>
                   <h3 className="text-xl font-bold">{nextClass.name}</h3>
                 </div>
               </div>
@@ -425,13 +425,13 @@ export default function StudentHome() {
                     : 'CRÉDITOS INSUFICIENTES ⚠️'}
               </span>
               {attendanceRecord?.status === 'present' ? (
-                <Badge className="bg-red- text-white border-none">VALIDADO</Badge>
+                <Badge className="bg-[#e40014] text-white border-none">VALIDADO</Badge>
               ) : studentCredits?.remaining_credits > 0 ? (
                 <Button
                   type="button"
                   size="sm"
                   variant="secondary"
-                  className="bg-white/5 text-[#e40014] hover:bg-white/5/90 gap-1 text-xs font-bold"
+                  className="bg-white/5 text-[#e40014] hover:bg-white/5 gap-1 text-xs font-bold"
                   onClick={() => handleConfirmAttendance()}
                   disabled={isReserving}
                 >
@@ -439,7 +439,7 @@ export default function StudentHome() {
                   Ver QR Check-in
                 </Button>
               ) : (
-                <Button type="button" size="sm" variant="secondary" className="bg-[#e40014] hover:bg-red- text-white gap-1 text-xs font-bold" asChild>
+                <Button type="button" size="sm" variant="secondary" className="bg-[#e40014] hover:bg-[#e40014] text-white gap-1 text-xs font-bold" asChild>
                   <Link href="/solutions/estudio-de-danca/student/financeiro">
                     <CreditCard className="w-3 h-3" /> Comprar Créditos
                   </Link>
@@ -452,7 +452,7 @@ export default function StudentHome() {
 
       {/* Reservar aula (classes de hoje/amanhã) */}
       {!loading && studentCredits?.remaining_credits > 0 && availableToday.length > 0 && (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="p-4">
             <h3 className="font-bold text-white dark:text-white flex items-center gap-2 text-sm mb-4">
               <PlayCircle className="w-4 h-4 text-[#e40014]" />
@@ -464,13 +464,13 @@ export default function StudentHome() {
                 const isPresent = attForClass?.status === 'present'
                 const hasReservation = attForClass && attForClass.status !== 'present'
                 return (
-                  <div key={cls.id} className="flex items-center justify-between p-3 rounded-xl bg-black dark:bg-white/5/5 border border-slate-100 dark:border-white/5">
+                  <div key={cls.id} className="flex items-center justify-between p-3 rounded-xl bg-black dark:bg-white/5 border border-white/10 dark:border-white/5">
                     <div>
                       <p className="font-bold text-zinc-800 dark:text-white text-sm">{cls.name}</p>
                       <p className="text-[10px] text-zinc-500 uppercase">{cls.display_day} às {cls.display_time}</p>
                     </div>
                     {isPresent ? (
-                      <Badge className="bg-red- text-red- border-0">Validado</Badge>
+                      <Badge className="bg-[#e40014] text-[#e40014] border-0">Validado</Badge>
                     ) : hasReservation ? (
                       <Button
                         type="button"
@@ -506,7 +506,7 @@ export default function StudentHome() {
       )}
 
       {/* Próximas aulas */}
-      <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+      <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
         <CardContent className="p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-white dark:text-white flex items-center gap-2 text-sm">
@@ -529,7 +529,7 @@ export default function StudentHome() {
           ) : (
             <div className="space-y-3">
               {proximasAulas.map((aula, i) => (
-                <div key={i} className={cn("p-3 rounded-xl bg-black dark:bg-white/5/5 border-l-4", aula.color)}>
+                <div key={i} className={cn("p-3 rounded-xl bg-black dark:bg-white/5 border-l-4", aula.color)}>
                   <div className="flex items-center justify-between">
                     <p className="font-bold text-zinc-800 dark:text-white text-sm">{aula.name}</p>
                     <div className="flex items-center gap-1 text-xs text-zinc-500">
@@ -547,7 +547,7 @@ export default function StudentHome() {
 
       {/* Turmas matriculadas (resumo) */}
       {!loading && turmas.length > 0 && (
-        <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+        <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
           <CardContent className="p-4">
             <h3 className="font-bold text-white dark:text-white flex items-center gap-2 text-sm mb-4">
               <Music className="w-4 h-4 text-[#e40014]" />
@@ -555,7 +555,7 @@ export default function StudentHome() {
             </h3>
             <div className="space-y-2">
               {turmas.slice(0, 3).map((t: any) => (
-                <div key={t.id} className="flex items-center justify-between p-2 rounded-lg bg-black dark:bg-white/5/5">
+                <div key={t.id} className="flex items-center justify-between p-2 rounded-lg bg-black dark:bg-white/5">
                   <div>
                     <p className="font-bold text-sm text-zinc-800 dark:text-white">{t.name}</p>
                     <p className="text-xs text-zinc-500">{t.scheduleSummary}</p>
@@ -591,7 +591,7 @@ export default function StudentHome() {
                     level="H"
                     viewBox="0 0 256 256"
                   />
-                  <div className="bg-black dark:bg-black px-4 py-2 rounded-lg border border-slate-100 dark:border-zinc-800 w-full text-center">
+                  <div className="bg-black bg-black px-4 py-2 rounded-lg border border-white/10 dark:border-zinc-800 w-full text-center">
                     <p className="text-[10px] text-zinc-500 font-bold uppercase mb-1 tracking-wider">Chave de Acesso</p>
                     <p className="font-mono text-lg font-black text-[#e40014] tracking-widest">
                       DF-{(activeAttendanceId || attendanceRecord?.id)?.toString().slice(-8).toUpperCase()}
@@ -599,7 +599,7 @@ export default function StudentHome() {
                   </div>
                 </div>
               ) : (
-                <div className="w-56 h-56 flex flex-col items-center justify-center text-center p-4 bg-black dark:bg-black rounded-xl">
+                <div className="w-56 h-56 flex flex-col items-center justify-center text-center p-4 bg-black bg-black rounded-xl">
                   <Loader2 className="w-8 h-8 animate-spin text-[#e40014] mb-2" />
                   <p className="text-xs text-zinc-500 font-medium">Gerando Código Seguro...</p>
                 </div>

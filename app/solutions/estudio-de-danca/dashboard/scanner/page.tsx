@@ -228,7 +228,7 @@ export default function DanceFlowScannerPage() {
         </div>
       </div>
 
-      <Card className="border-none shadow-xl overflow-hidden bg-white/5 dark:bg-black">
+      <Card className="border-none shadow-xl overflow-hidden bg-white/5 bg-black">
         <CardHeader className="text-center pb-2">
           <CardTitle className="flex items-center justify-center gap-2 text-[#e40014]">
             <QrCodeIcon className="w-6 h-6" />
@@ -242,7 +242,7 @@ export default function DanceFlowScannerPage() {
               <div className="text-center p-6 flex flex-col items-center">
                 <Camera className="w-20 h-20 text-slate-300 mb-4" />
                 {cameraError && (
-                  <div className="bg-red- dark:bg-[#e40014] text-red- p-3 rounded-lg text-xs font-medium mb-4 text-left flex gap-2 items-start">
+                  <div className="bg-[#e40014] dark:bg-[#e40014] text-[#e40014] p-3 rounded-lg text-xs font-medium mb-4 text-left flex gap-2 items-start">
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                     <p>{cameraError}</p>
                   </div>
@@ -272,7 +272,7 @@ export default function DanceFlowScannerPage() {
                 </p>
                 <Button
                   variant="ghost"
-                  className="absolute bottom-4 z-10 text-white hover:bg-white/5/10 bg-black/40 border border-white/20"
+                  className="absolute bottom-4 z-10 text-white hover:bg-white/10 bg-black/40 border border-white/20"
                   onClick={stopScanner}
                 >
                   {SCANNER_TEXTS.closeCamera}
@@ -292,18 +292,18 @@ export default function DanceFlowScannerPage() {
             <div
               className={`w-full p-4 rounded-2xl border flex items-center gap-4 ${
                 lastResult.type === "success"
-                  ? "bg-red- dark:bg-[#e40014] border-red-"
+                  ? "bg-[#e40014] dark:bg-[#e40014] border-[#e40014]"
                   : lastResult.type === "warning"
-                    ? "bg-red- dark:bg-[#e40014] border-red-"
-                    : "bg-red- dark:bg-[#e40014] border-red-"
+                    ? "bg-[#e40014] dark:bg-[#e40014] border-[#e40014]"
+                    : "bg-[#e40014] dark:bg-[#e40014] border-[#e40014]"
               }`}
             >
               {lastResult.type === "success" ? (
-                <CheckCircle2 className="w-8 h-8 text-red- shrink-0" />
+                <CheckCircle2 className="w-8 h-8 text-[#e40014] shrink-0" />
               ) : lastResult.type === "warning" ? (
-                <AlertCircle className="w-8 h-8 text-red- shrink-0" />
+                <AlertCircle className="w-8 h-8 text-[#e40014] shrink-0" />
               ) : (
-                <XCircle className="w-8 h-8 text-red- shrink-0" />
+                <XCircle className="w-8 h-8 text-[#e40014] shrink-0" />
               )}
               <div className="flex-1">
                 <p className="font-black text-[10px] uppercase tracking-widest">
@@ -335,7 +335,7 @@ export default function DanceFlowScannerPage() {
           )}
 
           {!isScanning && !loading && !lastResult && (
-            <div className="w-full space-y-3 pt-4 border-t border-slate-100 dark:border-zinc-800">
+            <div className="w-full space-y-3 pt-4 border-t border-white/10 dark:border-zinc-800">
               <p className="text-[10px] text-center uppercase tracking-widest font-bold text-zinc-400">
                 {SCANNER_TEXTS.manualCode}
               </p>
@@ -362,7 +362,7 @@ export default function DanceFlowScannerPage() {
       <Card className="border-none shadow-sm bg-[#e40014] dark:bg-[#e40014]">
         <CardContent className="p-4 flex gap-3 text-left">
           <AlertCircle className="w-5 h-5 text-[#e40014] shrink-0 mt-0.5" />
-          <p className="text-xs text-red- dark:text-[#e40014] leading-relaxed">
+          <p className="text-xs text-[#e40014] dark:text-[#e40014] leading-relaxed">
             {SCANNER_TEXTS.autoCheck}
           </p>
         </CardContent>

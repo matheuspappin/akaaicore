@@ -144,7 +144,7 @@ export function FiscalCertificateSettings({ studioId }: FiscalCertificateSetting
           </div>
         ) : status?.configured ? (
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-red-">
+            <div className="flex items-center gap-2 text-[#e40014]">
               <CheckCircle className="h-5 w-5" />
               <span className="font-medium">Certificado configurado</span>
             </div>
@@ -195,7 +195,7 @@ export function FiscalCertificateSettings({ studioId }: FiscalCertificateSetting
           </div>
         ) : (
           <form onSubmit={handleUpload} className="space-y-4">
-            <div className="flex items-center gap-2 text-red-">
+            <div className="flex items-center gap-2 text-[#e40014]">
               <AlertCircle className="h-5 w-5" />
               <span className="font-medium">Certificado não configurado</span>
             </div>

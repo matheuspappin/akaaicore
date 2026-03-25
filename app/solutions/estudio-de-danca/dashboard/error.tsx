@@ -19,10 +19,10 @@ export default function DashboardError({
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-6">
-      <Card className="max-w-md w-full border-red- dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]">
+      <Card className="max-w-md w-full border-[#e40014] dark:border-[#e40014] bg-[#e40014] dark:bg-[#e40014]">
         <CardContent className="p-8 text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-red- dark:bg-[#e40014] flex items-center justify-center mx-auto">
-            <AlertCircle className="w-8 h-8 text-red- dark:text-red-" />
+          <div className="w-16 h-16 rounded-full bg-[#e40014] dark:bg-[#e40014] flex items-center justify-center mx-auto">
+            <AlertCircle className="w-8 h-8 text-[#e40014] dark:text-[#e40014]" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white dark:text-white">

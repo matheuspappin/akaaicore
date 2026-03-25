@@ -93,7 +93,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
               "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all",
               pathname === item.href
                 ? "bg-[#e40014] text-white shadow-lg shadow-red-600/20"
-                : "text-white/50 hover:text-white hover:bg-white/5/5",
+                : "text-white/50 hover:text-white hover:bg-white/5",
               collapsed && !isMobile && "justify-center"
             )}
           >
@@ -118,7 +118,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
   )
 
   return (
-    <div className="min-h-screen bg-black dark:bg-black">
+    <div className="min-h-screen bg-black bg-black">
       <aside
         className={cn(
           "hidden md:flex flex-col fixed top-0 left-0 h-full bg-black border-r border-white/10 z-50 transition-all duration-300",

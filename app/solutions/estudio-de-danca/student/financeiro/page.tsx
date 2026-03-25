@@ -91,14 +91,14 @@ function daysUntil(expiryDate: string | null) {
 
 const usageConfig: Record<UsageEntry['usage_type'], { label: string; icon: any; color: string; sign: string }> = {
   class_attendance: { label: 'Aula realizada',    icon: Zap,         color: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014]', sign: '-' },
-  manual_adjustment:{ label: 'Ajuste manual',      icon: RotateCcw,   color: 'bg-red- text-red- dark:bg-[#e40014]',    sign: '' },
-  refund:           { label: 'Estorno',             icon: TrendingUp,  color: 'bg-red- text-red- dark:bg-[#e40014]', sign: '+' },
+  manual_adjustment:{ label: 'Ajuste manual',      icon: RotateCcw,   color: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014]',    sign: '' },
+  refund:           { label: 'Estorno',             icon: TrendingUp,  color: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014]', sign: '+' },
 }
 
 const paymentStatusConfig = {
-  paid:    { label: 'Pago',     icon: CheckCircle2, badge: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-' },
-  pending: { label: 'Pendente', icon: Clock,         badge: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-' },
-  overdue: { label: 'Vencido',  icon: AlertCircle,   badge: 'bg-red- text-red- dark:bg-[#e40014] dark:text-red-' },
+  paid:    { label: 'Pago',     icon: CheckCircle2, badge: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]' },
+  pending: { label: 'Pendente', icon: Clock,         badge: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]' },
+  overdue: { label: 'Vencido',  icon: AlertCircle,   badge: 'bg-[#e40014] text-[#e40014] dark:bg-[#e40014] dark:text-[#e40014]' },
 }
 
 // ─── componente ──────────────────────────────────────────────────────────────
@@ -359,8 +359,8 @@ function FinanceiroContent() {
                   : 'bg-gradient-to-br from-red-600 via-red- to-purple-700'
             )}>
               {/* Decoração de fundo */}
-              <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/5/5 -translate-y-1/2 translate-x-1/4" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-white/5/5 translate-y-1/2 -translate-x-1/4" />
+              <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/4" />
 
               <div className="relative">
                 <div className="flex justify-between items-start mb-5">
@@ -377,13 +377,13 @@ function FinanceiroContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="bg-white/5/20 backdrop-blur-sm rounded-2xl p-3">
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-3">
                     <CreditCard className="w-6 h-6 text-white" />
                   </div>
                 </div>
 
                 {/* Barra de progresso */}
-                <div className="h-2 bg-white/5/20 rounded-full overflow-hidden mb-4">
+                <div className="h-2 bg-white/5 rounded-full overflow-hidden mb-4">
                   <div
                     className="h-full bg-white/5 rounded-full transition-all duration-500"
                     style={{ width: `${creditPercent}%` }}
@@ -394,7 +394,7 @@ function FinanceiroContent() {
                 <div className="flex items-center justify-between">
                   <div>
                     {expired ? (
-                      <p className="text-xs font-bold text-red-">
+                      <p className="text-xs font-bold text-[#e40014]">
                         ⚠ Créditos expirados em {fmtDate(credits.expiry_date)}
                       </p>
                     ) : credits.expiry_date ? (
@@ -413,7 +413,7 @@ function FinanceiroContent() {
                     )}
                   </div>
                   {credits.remaining_credits <= 2 && !expired && (
-                    <Badge className="bg-white/5/20 text-white border-none text-[10px] font-bold animate-pulse">
+                    <Badge className="bg-white/5 text-white border-none text-[10px] font-bold animate-pulse">
                       QUASE ACABANDO
                     </Badge>
                   )}
@@ -433,11 +433,11 @@ function FinanceiroContent() {
 
           {/* Alertas de créditos baixos / expirados */}
           {credits && expired && (
-            <div className="rounded-2xl bg-red- dark:bg-[#e40014] border border-red- dark:border-red- p-4 flex gap-3 items-start">
-              <AlertCircle className="w-5 h-5 text-red- shrink-0 mt-0.5" />
+            <div className="rounded-2xl bg-[#e40014] dark:bg-[#e40014] border border-[#e40014] dark:border-[#e40014] p-4 flex gap-3 items-start">
+              <AlertCircle className="w-5 h-5 text-[#e40014] shrink-0 mt-0.5" />
               <div>
-                <p className="font-bold text-red- dark:text-red- text-sm">Créditos expirados</p>
-                <p className="text-xs text-[#e40014] dark:text-red- mt-0.5">
+                <p className="font-bold text-[#e40014] dark:text-[#e40014] text-sm">Créditos expirados</p>
+                <p className="text-xs text-[#e40014] dark:text-[#e40014] mt-0.5">
                   Seus créditos expiraram e foram congelados. Renove comprando um novo pacote abaixo — a validade será renovada automaticamente.
                 </p>
               </div>
@@ -457,8 +457,8 @@ function FinanceiroContent() {
               <div key={p.id} className={cn(
                 'rounded-2xl p-4 flex items-center gap-3 border',
                 p.status === 'overdue'
-                  ? 'bg-red- dark:bg-[#e40014] border-red-'
-                  : 'bg-red- dark:bg-[#e40014] border-red-'
+                  ? 'bg-[#e40014] dark:bg-[#e40014] border-[#e40014]'
+                  : 'bg-[#e40014] dark:bg-[#e40014] border-[#e40014]'
               )}>
                 <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center shrink-0', cfg.badge)}>
                   <StatusIcon className="w-5 h-5" />
@@ -487,7 +487,7 @@ function FinanceiroContent() {
         </div>
 
         {packages.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-white/10 dark:border-white/10 p-8 text-center">
+          <div className="rounded-2xl border border-dashed border-white/10 border-white/10 p-8 text-center">
             <Sparkles className="w-10 h-10 mx-auto text-slate-300 dark:text-zinc-400 mb-3" />
             <p className="text-sm text-zinc-500">Nenhum pacote disponível no momento.</p>
             <p className="text-xs text-zinc-400 mt-1">Entre em contato com o estúdio.</p>
@@ -505,7 +505,7 @@ function FinanceiroContent() {
                     'relative rounded-2xl border-2 overflow-hidden transition-all',
                     isPopular
                       ? 'border-[#e40014] bg-[#e40014] dark:bg-[#e40014] shadow-md shadow-red-500/10'
-                      : 'border-white/10 dark:border-white/10 bg-white/5 dark:bg-black/50 hover:border-[#e40014] dark:hover:border-[#e40014]'
+                      : 'border-white/10 border-white/10 bg-white/5 bg-black hover:border-[#e40014] dark:hover:border-[#e40014]'
                   )}
                 >
                   {isPopular && (
@@ -586,7 +586,7 @@ function FinanceiroContent() {
             </p>
           </div>
 
-          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardContent className="p-0">
               <div className="divide-y divide-slate-100 dark:divide-white/5">
                 {visibleUsage.map((entry) => {
@@ -608,7 +608,7 @@ function FinanceiroContent() {
                       </div>
                       <div className={cn(
                         'font-black text-base shrink-0',
-                        isGain ? 'text-red-' : isManual ? 'text-red-' : 'text-zinc-400 dark:text-slate-300'
+                        isGain ? 'text-[#e40014]' : isManual ? 'text-[#e40014]' : 'text-zinc-400 dark:text-slate-300'
                       )}>
                         {isGain ? '+' : isManual ? '±' : '-'}{entry.credits_used}
                       </div>
@@ -620,7 +620,7 @@ function FinanceiroContent() {
               {usage.length > 5 && (
                 <button
                   onClick={() => setShowAllUsage(v => !v)}
-                  className="w-full py-3 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-white/5"
+                  className="w-full py-3 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors flex items-center justify-center gap-1.5 border-t border-white/10 dark:border-white/5"
                 >
                   {showAllUsage ? (
                     <><ChevronUp className="w-3.5 h-3.5" /> Mostrar menos</>
@@ -644,7 +644,7 @@ function FinanceiroContent() {
             </p>
           </div>
 
-          <Card className="bg-white/5 dark:bg-black/50 border border-white/10 dark:border-white/10">
+          <Card className="bg-white/5 bg-black border border-white/10 border-white/10">
             <CardContent className="p-0">
               <div className="divide-y divide-slate-100 dark:divide-white/5">
                 {visiblePayments.map((p) => {
@@ -682,7 +682,7 @@ function FinanceiroContent() {
               {payments.length > 5 && (
                 <button
                   onClick={() => setShowAllPayments(v => !v)}
-                  className="w-full py-3 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors flex items-center justify-center gap-1.5 border-t border-slate-100 dark:border-white/5"
+                  className="w-full py-3 text-xs font-bold text-[#e40014] hover:text-[#e40014] hover:bg-[#e40014] dark:hover:bg-[#e40014] transition-colors flex items-center justify-center gap-1.5 border-t border-white/10 dark:border-white/5"
                 >
                   {showAllPayments ? (
                     <><ChevronUp className="w-3.5 h-3.5" /> Mostrar menos</>
