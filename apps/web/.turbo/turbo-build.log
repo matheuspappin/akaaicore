@@ -12,26 +12,472 @@
    Creating an optimized production build ...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
 [@sentry/nextjs] DEPRECATION WARNING: disableLogger is deprecated and will be removed in a future version. Use webpack.treeshake.removeDebugLogging instead. (Not supported with Turbopack.)
- ✓ Compiled successfully in 19.5s
+ ✓ Compiled successfully in 20.1s
    Running next.config.js provided runAfterProductionCompile ...
 [@sentry/nextjs - After Production Compile] Info: Sending telemetry data on issues and performance to Sentry. To disable telemetry, set `options.telemetry` to `false`.
 [@sentry/nextjs - After Production Compile] Warning: No auth token provided. Will not create release. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
 You seem to be using Turborepo, did you forget to put SENTRY_AUTH_TOKEN in `passThroughEnv`? https://turbo.build/repo/docs/reference/configuration#passthroughenv
 [@sentry/nextjs - After Production Compile] Warning: No auth token provided. Will not upload source maps. Please set the `authToken` option. You can find information on how to generate a Sentry auth token here: https://docs.sentry.io/api/auth/
 You seem to be using Turborepo, did you forget to put SENTRY_AUTH_TOKEN in `passThroughEnv`? https://turbo.build/repo/docs/reference/configuration#passthroughenv
- ✓ Completed runAfterProductionCompile in 1523ms
+ ✓ Completed runAfterProductionCompile in 948ms
    Running TypeScript ...
-Failed to compile.
+   Collecting page data using 15 workers ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 15 workers (0/338) ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 15 workers (84/338) 
+{"level":"error","time":"2026-03-25T17:04:34.087Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/affiliates couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.089Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/affiliates couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.140Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/ecosystems/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.141Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/ecosystems/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.160Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/catarina couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.160Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/catarina couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.173Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/ecosystem-status couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.173Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/ecosystem-status couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.184Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/import couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.184Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/import couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.207Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/logs couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.208Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/logs couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+   Generating static pages using 15 workers (168/338) 
+{"level":"error","time":"2026-03-25T17:04:34.368Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.369Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.494Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/settings couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.494Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/settings couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.510Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/plans couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.510Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/plans couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.533Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/studios couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.533Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/studios couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.552Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/verticalizations/agroflowai couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.552Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/verticalizations/agroflowai couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.569Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/testes couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.569Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/testes couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.584Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/support couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.584Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/support couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.602Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.602Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/users couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+   Generating static pages using 15 workers (253/338) 
+{"level":"error","time":"2026-03-25T17:04:34.828Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/verticalizations/estudio-de-danca couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.829Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/verticalizations/estudio-de-danca couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.842Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/verticalizations/fire-protection couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.842Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/verticalizations/fire-protection couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.852Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/verticalizations/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.852Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/verticalizations/new couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.887Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/verticalizations couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.887Z","msg":"Erro ao criar cliente autenticado:","args":[{"description":"Route /admin/verticalizations couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+{"level":"error","time":"2026-03-25T17:04:34.887Z","msg":"❌ checkSuperAdminDetailed: Erro crítico na verificação","args":[{"description":"Route /admin/verticalizations couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","digest":"DYNAMIC_SERVER_USAGE"}]}
+ ✓ Generating static pages using 15 workers (338/338) in 3.8s
+   Finalizing page optimization ...
 
-./app/solutions/estudio-de-danca/dashboard/configuracoes/page.tsx:476:92
-Type error: Cannot find name 'Users'. Did you mean 'User'?
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /admin
+├ ƒ /admin/affiliates
+├ ƒ /admin/catarina
+├ ƒ /admin/ecosystem-status
+├ ƒ /admin/ecosystems/new
+├ ƒ /admin/import
+├ ƒ /admin/logs
+├ ƒ /admin/plans
+├ ƒ /admin/settings
+├ ƒ /admin/studios
+├ ƒ /admin/studios/[id]
+├ ƒ /admin/support
+├ ƒ /admin/testes
+├ ƒ /admin/users
+├ ƒ /admin/verticalizations
+├ ƒ /admin/verticalizations/[slug]
+├ ƒ /admin/verticalizations/[slug]/new-ecosystem
+├ ƒ /admin/verticalizations/agroflowai
+├ ƒ /admin/verticalizations/estudio-de-danca
+├ ƒ /admin/verticalizations/fire-protection
+├ ƒ /admin/verticalizations/new
+├ ƒ /api/admin/ai-training
+├ ƒ /api/admin/alerts
+├ ƒ /api/admin/catarina
+├ ƒ /api/admin/catarina/chat
+├ ƒ /api/admin/catarina/feedback
+├ ƒ /api/admin/checkout
+├ ƒ /api/admin/checkout/sync-plan
+├ ƒ /api/admin/checkout/verify
+├ ƒ /api/admin/confirm-scan
+├ ƒ /api/admin/env
+├ ƒ /api/admin/fire-protection/production-config
+├ ƒ /api/admin/import
+├ ƒ /api/admin/import/execute
+├ ƒ /api/admin/integrations/save
+├ ƒ /api/admin/logs
+├ ƒ /api/admin/logs/health
+├ ƒ /api/admin/maintenance
+├ ƒ /api/admin/metrics
+├ ƒ /api/admin/reports/download/[id]
+├ ƒ /api/admin/reports/generate
+├ ƒ /api/admin/stats
+├ ƒ /api/admin/stripe/lookup-price
+├ ƒ /api/admin/studios
+├ ƒ /api/admin/studios/[id]
+├ ƒ /api/admin/studios/[id]/api-keys
+├ ƒ /api/admin/studios/[id]/invite-link
+├ ƒ /api/admin/studios/[id]/resend-invite
+├ ƒ /api/admin/users
+├ ƒ /api/admin/users/deactivate
+├ ƒ /api/admin/verticalizations
+├ ƒ /api/admin/whatsapp-master
+├ ƒ /api/admin/whatsapp-master/logout
+├ ƒ /api/affiliate/commission
+├ ƒ /api/affiliate/stripe-balance
+├ ƒ /api/affiliate/stripe-connect
+├ ƒ /api/affiliate/stripe-payout
+├ ƒ /api/affiliate/studio/[studioId]/settings
+├ ƒ /api/agroflowai/ai/chat
+├ ƒ /api/agroflowai/alertas
+├ ƒ /api/agroflowai/clientes
+├ ƒ /api/agroflowai/configuracoes
+├ ƒ /api/agroflowai/documentos
+├ ƒ /api/agroflowai/engenheiros
+├ ƒ /api/agroflowai/financeiro
+├ ƒ /api/agroflowai/laudos
+├ ƒ /api/agroflowai/laudos/[id]
+├ ƒ /api/agroflowai/leads
+├ ƒ /api/agroflowai/ndvi
+├ ƒ /api/agroflowai/notificacoes
+├ ƒ /api/agroflowai/os
+├ ƒ /api/agroflowai/os/[id]
+├ ƒ /api/agroflowai/os/[id]/history
+├ ƒ /api/agroflowai/propriedades
+├ ƒ /api/agroflowai/propriedades/[id]
+├ ƒ /api/agroflowai/satelite
+├ ƒ /api/agroflowai/satellite-image
+├ ƒ /api/agroflowai/tecnicos
+├ ƒ /api/ai/appointments
+├ ƒ /api/ai/learning
+├ ƒ /api/attendance
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/register
+├ ƒ /api/auth/resend-confirmation
+├ ƒ /api/auth/verify-email/confirm
+├ ƒ /api/auth/verify-email/send
+├ ƒ /api/auth/verify-phone/confirm
+├ ƒ /api/auth/verify-phone/send
+├ ƒ /api/chat
+├ ƒ /api/checkout
+├ ƒ /api/cron/fire-protection-reminders
+├ ƒ /api/cron/fiscal-health
+├ ƒ /api/cron/process-nfe-queue
+├ ƒ /api/cron/process-no-shows
+├ ƒ /api/cron/refresh-ai-reports
+├ ƒ /api/cron/reminders
+├ ƒ /api/cron/studios-cleanup
+├ ƒ /api/dance-studio/classes
+├ ƒ /api/dance-studio/config
+├ ƒ /api/dance-studio/dashboard/stats
+├ ƒ /api/dance-studio/enrollments
+├ ƒ /api/dance-studio/expenses
+├ ƒ /api/dance-studio/financeiro
+├ ƒ /api/dance-studio/gamification
+├ ƒ /api/dance-studio/inventory
+├ ƒ /api/dance-studio/leads
+├ ƒ /api/dance-studio/leads/convert
+├ ƒ /api/dance-studio/matricula
+├ ƒ /api/dance-studio/packages
+├ ƒ /api/dance-studio/packages/checkout
+├ ƒ /api/dance-studio/packages/confirm-credit
+├ ƒ /api/dance-studio/sessions/complete-chamada
+├ ƒ /api/dance-studio/stripe-connect
+├ ƒ /api/dance-studio/students
+├ ƒ /api/dance-studio/studio/invite-code
+├ ƒ /api/dance-studio/sync-plan
+├ ƒ /api/dance-studio/teacher-compensation
+├ ƒ /api/dance-studio/teacher-payments
+├ ƒ /api/dance-studio/teacher-payments/balance
+├ ƒ /api/dance-studio/teacher-payments/release
+├ ƒ /api/dance-studio/teacher-payout-settings
+├ ƒ /api/dance-studio/teacher-stripe-connect
+├ ƒ /api/dance-studio/teacher-withdrawals
+├ ƒ /api/dance-studio/teacher-withdrawals/execute-stripe
+├ ƒ /api/dance-studio/teachers
+├ ƒ /api/dance-studio/usage
+├ ƒ /api/dance-studio/vincular
+├ ƒ /api/dashboard/live-classes
+├ ƒ /api/dashboard/stats
+├ ƒ /api/debug-user
+├ ƒ /api/finance/employee-payments
+├ ƒ /api/finance/expenses
+├ ƒ /api/finance/notas
+├ ƒ /api/fire-protection/ai/chat
+├ ƒ /api/fire-protection/assets
+├ ƒ /api/fire-protection/assets/bulk
+├ ƒ /api/fire-protection/catalog
+├ ƒ /api/fire-protection/chat-sessions
+├ ƒ /api/fire-protection/chat-sessions/[id]
+├ ƒ /api/fire-protection/client/dashboard
+├ ƒ /api/fire-protection/client/documentos
+├ ƒ /api/fire-protection/client/solicitar
+├ ƒ /api/fire-protection/configuracoes
+├ ƒ /api/fire-protection/customers
+├ ƒ /api/fire-protection/customers/[id]
+├ ƒ /api/fire-protection/internal/vincular
+├ ƒ /api/fire-protection/os
+├ ƒ /api/fire-protection/os/[id]
+├ ƒ /api/fire-protection/pdv
+├ ƒ /api/fire-protection/pdv/historico
+├ ƒ /api/fire-protection/reminders
+├ ƒ /api/fire-protection/studio/invite-code
+├ ƒ /api/fire-protection/technician/asset-action
+├ ƒ /api/fire-protection/technician/os
+├ ƒ /api/fire-protection/technician/os/[id]
+├ ƒ /api/fire-protection/technician/os/[id]/extintores
+├ ƒ /api/fire-protection/technician/scanner
+├ ƒ /api/fire-protection/technician/scanner/inspecionar
+├ ƒ /api/fire-protection/technician/vincular
+├ ƒ /api/fire-protection/technicians
+├ ƒ /api/fire-protection/technicians/[id]
+├ ƒ /api/fire-protection/vistorias
+├ ƒ /api/fire-protection/vistorias/[id]
+├ ƒ /api/fire-protection/vistorias/[id]/laudo
+├ ƒ /api/fiscal/certificate
+├ ƒ /api/gemini
+├ ƒ /api/gemini/models
+├ ƒ /api/gemini/query
+├ ƒ /api/init-marketplace
+├ ƒ /api/invites/professionals
+├ ƒ /api/nfe/emit
+├ ƒ /api/nfe/pending
+├ ƒ /api/niche/config
+├ ƒ /api/notifications
+├ ƒ /api/notifications/mark-all-read
+├ ƒ /api/pagbank/oauth/authorize
+├ ƒ /api/pagbank/oauth/callback
+├ ƒ /api/pagbank/pix
+├ ƒ /api/stripe/create-checkout-session
+├ ƒ /api/studio/invite-code
+├ ƒ /api/studio/professionals-tier
+├ ƒ /api/studio/resolve-invite
+├ ƒ /api/studio/vincular
+├ ƒ /api/subscribe/renew
+├ ƒ /api/support/tickets
+├ ƒ /api/support/tickets/[id]
+├ ƒ /api/support/tickets/[id]/messages
+├ ƒ /api/teacher/asset-action
+├ ƒ /api/test-supabase
+├ ƒ /api/verticalization/plans
+├ ƒ /api/verticalization/usage
+├ ƒ /api/webhooks/stripe
+├ ƒ /api/webhooks/whatsapp
+├ ƒ /api/whatsapp/connect
+├ ƒ /api/whatsapp/logout
+├ ƒ /api/whatsapp/notify-low-credits
+├ ƒ /api/whatsapp/send
+├ ○ /auth/set-password
+├ ○ /dashboard
+├ ○ /dashboard/ai-learning
+├ ○ /dashboard/ai-secretary
+├ ○ /dashboard/alunos
+├ ○ /dashboard/ao-vivo
+├ ○ /dashboard/aulas
+├ ƒ /dashboard/aulas/[id]/chamada
+├ ○ /dashboard/chat
+├ ○ /dashboard/configuracoes
+├ ○ /dashboard/erp
+├ ○ /dashboard/erp/import
+├ ƒ /dashboard/erp/pos
+├ ○ /dashboard/erp/pos/demo
+├ ○ /dashboard/estoque
+├ ○ /dashboard/financeiro
+├ ○ /dashboard/leads
+├ ○ /dashboard/marketplace
+├ ○ /dashboard/multi-unit
+├ ○ /dashboard/os
+├ ○ /dashboard/professores
+├ ○ /dashboard/projetos
+├ ○ /dashboard/scanner
+├ ○ /dashboard/support
+├ ○ /dashboard/vendas
+├ ○ /dashboard/whatsapp
+├ ○ /finance
+├ ○ /finance/funcionarios
+├ ○ /finance/inadimplencia
+├ ○ /finance/lancamentos
+├ ○ /finance/notas
+├ ○ /finance/relatorios
+├ ○ /forgot-password
+├ ○ /home
+├ ○ /login
+├ ○ /maintenance
+├ ○ /partner
+├ ○ /portal
+├ ○ /portal/affiliate
+├ ○ /portal/affiliate/dashboard
+├ ○ /portal/affiliate/ecosystems
+├ ○ /portal/affiliate/ecosystems/new
+├ ○ /portal/affiliate/login
+├ ○ /portal/affiliate/materiais
+├ ○ /portal/affiliate/profile
+├ ○ /portal/affiliate/register
+├ ○ /portal/affiliate/settings
+├ ○ /portal/affiliate/support
+├ ○ /portal/login
+├ ○ /portal/register
+├ ○ /register
+├ ○ /reset-password
+├ ƒ /s/[slug]
+├ ƒ /s/[slug]/join
+├ ƒ /s/[slug]/login
+├ ƒ /s/[slug]/register
+├ ○ /seller/clientes
+├ ○ /seller/dashboard
+├ ○ /seller/os
+├ ○ /seller/support
+├ ƒ /setup/invite/[token]
+├ ƒ /shop/[slug]
+├ ○ /solutions/agroflowai
+├ ○ /solutions/agroflowai/client
+├ ○ /solutions/agroflowai/client/laudos
+├ ○ /solutions/agroflowai/client/notificacoes
+├ ○ /solutions/agroflowai/client/os
+├ ○ /solutions/agroflowai/client/perfil
+├ ○ /solutions/agroflowai/client/propriedades
+├ ○ /solutions/agroflowai/dashboard
+├ ○ /solutions/agroflowai/dashboard/chat
+├ ○ /solutions/agroflowai/dashboard/clientes
+├ ○ /solutions/agroflowai/dashboard/configuracoes
+├ ○ /solutions/agroflowai/dashboard/engenheiros
+├ ○ /solutions/agroflowai/dashboard/financeiro
+├ ○ /solutions/agroflowai/dashboard/laudos
+├ ○ /solutions/agroflowai/dashboard/leads
+├ ○ /solutions/agroflowai/dashboard/ordens-servico
+├ ○ /solutions/agroflowai/dashboard/planos
+├ ○ /solutions/agroflowai/dashboard/propriedades
+├ ○ /solutions/agroflowai/dashboard/relatorios
+├ ○ /solutions/agroflowai/dashboard/satelite
+├ ○ /solutions/agroflowai/dashboard/tecnicos
+├ ○ /solutions/agroflowai/login
+├ ○ /solutions/agroflowai/register
+├ ○ /solutions/estudio-de-danca
+├ ○ /solutions/estudio-de-danca/dashboard
+├ ○ /solutions/estudio-de-danca/dashboard/alunos
+├ ○ /solutions/estudio-de-danca/dashboard/ao-vivo
+├ ○ /solutions/estudio-de-danca/dashboard/chat
+├ ○ /solutions/estudio-de-danca/dashboard/configuracoes
+├ ○ /solutions/estudio-de-danca/dashboard/emissor-fiscal
+├ ○ /solutions/estudio-de-danca/dashboard/erp
+├ ○ /solutions/estudio-de-danca/dashboard/erp/import
+├ ○ /solutions/estudio-de-danca/dashboard/estoque
+├ ○ /solutions/estudio-de-danca/dashboard/financeiro
+├ ○ /solutions/estudio-de-danca/dashboard/gamificacao
+├ ○ /solutions/estudio-de-danca/dashboard/leads
+├ ○ /solutions/estudio-de-danca/dashboard/marketplace
+├ ○ /solutions/estudio-de-danca/dashboard/pagamentos-professores
+├ ○ /solutions/estudio-de-danca/dashboard/planos
+├ ○ /solutions/estudio-de-danca/dashboard/professores
+├ ○ /solutions/estudio-de-danca/dashboard/relatorios
+├ ○ /solutions/estudio-de-danca/dashboard/scanner
+├ ○ /solutions/estudio-de-danca/dashboard/settings/payment
+├ ○ /solutions/estudio-de-danca/dashboard/turmas
+├ ƒ /solutions/estudio-de-danca/dashboard/turmas/[id]/chamada
+├ ○ /solutions/estudio-de-danca/dashboard/vendas
+├ ○ /solutions/estudio-de-danca/dashboard/whatsapp
+├ ○ /solutions/estudio-de-danca/login
+├ ƒ /solutions/estudio-de-danca/matricula/[code]
+├ ○ /solutions/estudio-de-danca/register
+├ ○ /solutions/estudio-de-danca/student
+├ ○ /solutions/estudio-de-danca/student/financeiro
+├ ○ /solutions/estudio-de-danca/student/perfil
+├ ○ /solutions/estudio-de-danca/student/perfil/preferencias
+├ ○ /solutions/estudio-de-danca/student/perfil/privacidade
+├ ○ /solutions/estudio-de-danca/student/turmas
+├ ○ /solutions/estudio-de-danca/student/turmas/catalogo
+├ ○ /solutions/estudio-de-danca/teacher
+├ ○ /solutions/estudio-de-danca/teacher/chamada
+├ ○ /solutions/estudio-de-danca/teacher/pagamentos
+├ ○ /solutions/estudio-de-danca/teacher/perfil
+├ ○ /solutions/estudio-de-danca/teacher/turmas
+├ ○ /solutions/fire-protection
+├ ○ /solutions/fire-protection/architect
+├ ○ /solutions/fire-protection/architect/perfil
+├ ○ /solutions/fire-protection/architect/projetos
+├ ƒ /solutions/fire-protection/architect/projetos/[id]
+├ ○ /solutions/fire-protection/client
+├ ○ /solutions/fire-protection/client/documentos
+├ ○ /solutions/fire-protection/client/extintores
+├ ○ /solutions/fire-protection/client/perfil
+├ ○ /solutions/fire-protection/dashboard
+├ ○ /solutions/fire-protection/dashboard/arquitetos
+├ ○ /solutions/fire-protection/dashboard/chat
+├ ○ /solutions/fire-protection/dashboard/clientes
+├ ○ /solutions/fire-protection/dashboard/configuracoes
+├ ○ /solutions/fire-protection/dashboard/engenheiros
+├ ○ /solutions/fire-protection/dashboard/extintores
+├ ○ /solutions/fire-protection/dashboard/financeiro
+├ ○ /solutions/fire-protection/dashboard/leads
+├ ○ /solutions/fire-protection/dashboard/os
+├ ○ /solutions/fire-protection/dashboard/os/nova
+├ ○ /solutions/fire-protection/dashboard/planos
+├ ○ /solutions/fire-protection/dashboard/portal-vendedor
+├ ○ /solutions/fire-protection/dashboard/relatorios
+├ ○ /solutions/fire-protection/dashboard/tecnicos
+├ ○ /solutions/fire-protection/dashboard/vendas
+├ ○ /solutions/fire-protection/dashboard/vistorias
+├ ○ /solutions/fire-protection/dashboard/vistorias/nova
+├ ○ /solutions/fire-protection/dashboard/whatsapp
+├ ○ /solutions/fire-protection/engineer
+├ ○ /solutions/fire-protection/engineer/perfil
+├ ○ /solutions/fire-protection/engineer/projetos
+├ ƒ /solutions/fire-protection/engineer/projetos/[id]
+├ ○ /solutions/fire-protection/landing
+├ ○ /solutions/fire-protection/login
+├ ○ /solutions/fire-protection/register
+├ ○ /solutions/fire-protection/technician
+├ ○ /solutions/fire-protection/technician/os
+├ ƒ /solutions/fire-protection/technician/os/[id]/extintores
+├ ○ /solutions/fire-protection/technician/perfil
+├ ○ /solutions/fire-protection/technician/scanner
+├ ƒ /solutions/nichos/[nicho]
+├ ○ /student
+├ ○ /student/classes
+├ ○ /student/classes/catalogo
+├ ○ /student/os
+├ ƒ /student/os/[id]
+├ ○ /student/payments
+├ ○ /student/profile
+├ ○ /subscription-expired
+├ ○ /technician
+├ ƒ /technician/os-details/[id]
+├ ○ /technician/os-list
+├ ○ /technician/scanner
+└ ○ /white-label
 
-[0m [90m 474 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"space-y-4 max-w-xl"[39m[33m>[39m
- [90m 475 |[39m           {[
-[31m[1m>[22m[39m[90m 476 |[39m             { label[33m:[39m [32m"Portal do Aluno"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca/student"[39m[33m,[39m icon[33m:[39m [33mUsers[39m[33m,[39m color[33m:[39m [32m"text-blue-500"[39m[33m,[39m desc[33m:[39m [32m"Acesso de alunos para ver turmas, créditos e check-in"[39m }[33m,[39m
- [90m     |[39m                                                                                            [31m[1m^[22m[39m
- [90m 477 |[39m             { label[33m:[39m [32m"Portal do Professor"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca/teacher"[39m[33m,[39m icon[33m:[39m [33mGraduationCap[39m[33m,[39m color[33m:[39m [32m"text-emerald-500"[39m[33m,[39m desc[33m:[39m [32m"Acesso de professores para chamadas e turmas"[39m }[33m,[39m
- [90m 478 |[39m             { label[33m:[39m [32m"Registro (Novo Admin)"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca/register"[39m[33m,[39m icon[33m:[39m [33mBuilding2[39m[33m,[39m color[33m:[39m [32m"text-violet-500"[39m[33m,[39m desc[33m:[39m [32m"Página de cadastro de novo estúdio/admin"[39m }[33m,[39m
- [90m 479 |[39m             { label[33m:[39m [32m"Landing Page Pública"[39m[33m,[39m path[33m:[39m [32m"/solutions/estudio-de-danca"[39m[33m,[39m icon[33m:[39m [33mExternalLink[39m[33m,[39m color[33m:[39m [32m"text-orange-500"[39m[33m,[39m desc[33m:[39m [32m"Página de apresentação pública do sistema"[39m }[33m,[39m[0m
-Next.js build worker exited with code: 1 and signal: null
- ELIFECYCLE  Command failed with exit code 1.
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

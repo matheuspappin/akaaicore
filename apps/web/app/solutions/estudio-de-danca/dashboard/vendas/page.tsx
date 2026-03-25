@@ -213,16 +213,21 @@ function POSContent() {
               name: selectedStudentId && selectedStudentId !== 'none' ? students.find(s => s.id === selectedStudentId)?.name : 'Cliente Avulso',
               email: customerEmail,
               tax_id: customerTaxIdInput || (selectedStudentId && selectedStudentId !== 'none' ? students.find(s => s.id === selectedStudentId)?.tax_id : undefined),
-              phones: [{ country: '55', area: '11', number: '999999999', type: 'MOBILE' }],
+              phones: [{ country: '55', area: '11', number: '999999999', type: 'MOBILE' as const }],
             },
             items: items.map(item => ({
               name: item.name,
               quantity: item.quantity,
               unit_amount: Math.round(item.priceInCurrency * 100),
             })),
-            amount: Math.round(totalAmount * 100),
-          },
-          studioId! // Passa o studioId como tenantId
+            qr_codes: [
+              {
+                amount: {
+                  value: Math.round(totalAmount * 100),
+                },
+              },
+            ],
+          } as any
         );
         console.log('Resposta PagBank Pix Completa:', JSON.stringify(pagbankResponse, null, 2)); // Log para depuração profunda
         
@@ -230,13 +235,25 @@ function POSContent() {
             const qrCodeInfo = pagbankResponse.qr_codes[0];
             console.log('Informações do QR Code:', JSON.stringify(qrCodeInfo, null, 2)); // Log para depuração profunda
   
-            const qrCodeImageLink = qrCodeInfo.links?.find((link: any) => link.rel === 'QRCODE.PNG');
-            if (qrCodeImageLink) {
-               setPixQRCodeUrl(qrCodeImageLink.href);
-               console.log('URL do QR Code (PNG):', qrCodeImageLink.href); // Log para depuração
+            if ((qrCodeInfo as any).links) {
+               const qrCodeImageLink = (qrCodeInfo as any).links.find((link: any) => link.rel === 'QRCODE.PNG');
+               if (qrCodeImageLink) {
+                  setPixQRCodeUrl(qrCodeImageLink.href);
+                  console.log('URL do QR Code (PNG):', qrCodeImageLink.href); // Log para depuração
+               }
+            } else if (qrCodeInfo.base64_image) {
+                // PagBank sometimes returns a base64 encoded image instead of a link
+                setPixQRCodeUrl(`data:image/png;base64,${qrCodeInfo.base64_image}`);
+                console.log('Imagem do QR Code (Base64) gerada'); // Log para depuração
             }
-            setPixText(qrCodeInfo.text);
-            console.log('Código Pix Copia e Cola:', qrCodeInfo.text); // Log para depuração
+
+            if (qrCodeInfo.text_code) {
+               setPixText(qrCodeInfo.text_code);
+               console.log('Código Pix Copia e Cola:', qrCodeInfo.text_code); // Log para depuração
+            } else if ((qrCodeInfo as any).text) {
+               setPixText((qrCodeInfo as any).text);
+               console.log('Código Pix Copia e Cola:', (qrCodeInfo as any).text); // Log para depuração
+            }
             toast({ title: 'Pix Gerado com Sucesso!', description: 'Leia o QR Code abaixo para pagar.' });
           } else {
             toast({ title: 'Aviso', description: 'Pedido gerado, mas QR Code não retornado.', variant: 'destructive' });
@@ -461,7 +478,7 @@ function POSContent() {
                       <div className="flex flex-col items-center justify-center space-y-4 py-4">
                         <p className="font-medium text-center">Escaneie o QR Code abaixo no seu aplicativo bancário</p>
                         <div className="bg-white p-4 rounded-xl">
-                        {console.log('Final pixQRCodeUrl for img src:', pixQRCodeUrl)} {/* Novo log de depuração */}
+                        {/* {console.log('Final pixQRCodeUrl for img src:', pixQRCodeUrl)} */} {/* Novo log de depuração */}
                            <img src={pixQRCodeUrl} alt="QR Code PIX PagBank" className="w-48 h-48 object-contain" />
                         </div>
                         {pixText && (
