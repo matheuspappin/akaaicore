@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import {
-  Check, ArrowRight, Music, CreditCard, Calendar,
+  Check, ArrowRight, ArrowLeft, Music, CreditCard, Calendar,
   DollarSign, Layout,
   ChevronRight, Menu, X, Users, Star,
   ClipboardList, AlertTriangle, FileText, CheckCircle2,
@@ -193,7 +193,7 @@ function Navbar() {
             </div>
           </div>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-            Dance<span className="text-[#e40014] font-black">Flow</span>
+            AKAAI <span className="text-[#e40014] font-black">Dance</span>
           </span>
         </Link>
 
@@ -931,7 +931,7 @@ function PricingSection() {
           Instalado pelo <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-700">nosso time</span>
         </h2>
         <p className="text-zinc-500 max-w-2xl mx-auto text-lg mb-16">
-          O DanceFlow é implantado com suporte especializado. Entre em contato para que nossa equipe entenda o seu estúdio e configure a plataforma perfeita para vocês.
+          O AKAAI Dance é implantado com suporte especializado. Entre em contato para que nossa equipe entenda o seu estúdio e configure a plataforma perfeita para vocês.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-6 mb-16">
@@ -956,11 +956,11 @@ function PricingSection() {
         <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-3xl p-10 text-white shadow-2xl shadow-black">
           <h3 className="text-2xl font-black mb-3">Pronto para transformar seu estúdio?</h3>
           <p className="text-[#e40014] mb-8">
-            Fale com nosso time e receba uma demonstração exclusiva do DanceFlow para o seu estúdio.
+            Fale com nosso time e receba uma demonstração exclusiva do AKAAI Dance para o seu estúdio.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/5511999999999?text=Olá! Tenho interesse no DanceFlow para meu estúdio de dança."
+              href="https://wa.me/5511999999999?text=Olá! Tenho interesse no AKAAI Dance para meu estúdio de dança."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-white/5/5 text-[#e40014] hover:bg-[#e40014] font-bold h-14 px-8 rounded-2xl transition-all shadow-lg"
@@ -1004,7 +1004,7 @@ function CTASection() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-400">seu estúdio?</span>
           </h2>
           <p className="text-zinc-400 text-xl max-w-2xl mx-auto mb-12">
-            Junte-se a centenas de estúdios que já modernizaram sua gestão com o DanceFlow.
+            Junte-se a centenas de estúdios que já modernizaram sua gestão com o AKAAI Dance.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="h-16 px-12 text-xl rounded-full bg-[#e40014] hover:bg-[#e40014] shadow-[0_10px_40px_-10px_rgba(139,92,246,0.6)] hover:scale-105 transition-all font-bold text-white border-none group" asChild>
@@ -1027,24 +1027,73 @@ function CTASection() {
 
 function Footer() {
   return (
-    <footer className="bg-black border-t border-white/5 py-12">
+    <footer className="bg-black border-t border-white/5 py-16">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#e40014] flex items-center justify-center">
-              <Music className="w-4 h-4 text-white" />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 pb-12 border-b border-white/10">
+          <div className="md:col-span-5 space-y-6">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-[#e40014] flex items-center justify-center shadow-lg shadow-red-600/20">
+                <Music className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-white font-black text-xl tracking-tight">
+                AKAAI <span className="text-[#e40014] font-black">Dance</span>
+              </span>
             </div>
-            <span className="text-white font-black text-lg">
-              Dance<span className="text-[#e40014]">Flow</span>
-            </span>
+            <p className="text-zinc-400 text-sm leading-relaxed max-w-sm uppercase font-bold tracking-tight">
+              A plataforma definitiva para gestão de estúdios de dança. 
+              Foque na arte e na evolução dos seus alunos, nós cuidamos da burocracia.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Button size="sm" variant="outline" className="rounded-full border-white/10 hover:bg-white/5 text-zinc-300 transition-all group uppercase font-black tracking-widest text-[10px] h-10 px-6" asChild>
+                <Link href="/home" className="flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                  Voltar ao Início
+                </Link>
+              </Button>
+            </div>
           </div>
-          <p className="text-zinc-400 text-sm text-center">
-            © {new Date().getFullYear()} DanceFlow — powered by akaaicore. Todos os direitos reservados.
+
+          <div className="md:col-span-4 space-y-6">
+            <h4 className="text-white font-black text-xs uppercase tracking-[0.2em]">Tecnologia</h4>
+            <div className="flex items-center gap-2 group">
+              <div className="w-6 h-6 rounded bg-zinc-800 flex items-center justify-center group-hover:bg-red-500/10 transition-colors">
+                <Zap className="w-3.5 h-3.5 text-red-600 animate-pulse" />
+              </div>
+              <span className="text-white font-black text-sm tracking-widest uppercase italic">
+                akaai<span className="text-red-600">core</span>
+              </span>
+            </div>
+            <p className="text-zinc-500 text-xs font-bold leading-relaxed uppercase tracking-tight">
+              O ecossistema **akaaicore** fornece a infraestrutura robusta, modular e baseada em IA que alimenta o AKAAI Dance, 
+              garantindo escalabilidade máxima, segurança de dados e inteligência em cada processo de gestão.
+            </p>
+          </div>
+
+          <div className="md:col-span-3 space-y-6">
+            <h4 className="text-white font-black text-xs uppercase tracking-[0.2em]">Links Rápidos</h4>
+            <nav className="flex flex-col gap-3">
+              <Link href="#" className="text-zinc-500 hover:text-white text-xs font-black tracking-widest uppercase transition-colors flex items-center gap-2 group">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-600/50 group-hover:bg-red-600 transition-colors" />
+                Privacidade
+              </Link>
+              <Link href="#" className="text-zinc-500 hover:text-white text-xs font-black tracking-widest uppercase transition-colors flex items-center gap-2 group">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-600/50 group-hover:bg-red-600 transition-colors" />
+                Termos de Uso
+              </Link>
+              <Link href="/solutions/estudio-de-danca/login" className="text-zinc-500 hover:text-red-600 text-xs font-black tracking-widest uppercase transition-colors flex items-center gap-2 group">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-600/50 group-hover:bg-red-600 transition-colors" />
+                Login no Sistema
+              </Link>
+            </nav>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-4">
+          <p className="text-zinc-700 text-[10px] uppercase tracking-[0.2em] font-black italic">
+            © {new Date().getFullYear()} AKAAI Dance — powered by akaaicore.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="#" className="text-zinc-500 hover:text-zinc-400 text-sm transition-colors">Privacidade</Link>
-            <Link href="#" className="text-zinc-500 hover:text-zinc-400 text-sm transition-colors">Termos</Link>
-            <Link href="/solutions/estudio-de-danca/login" className="text-zinc-500 hover:text-[#e40014] text-sm transition-colors">Login</Link>
+          <div className="flex items-center gap-4 text-zinc-800">
+             <span className="text-[10px] uppercase tracking-[0.4em] font-black italic">Engineered for Excellence</span>
           </div>
         </div>
       </div>

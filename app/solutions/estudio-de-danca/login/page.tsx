@@ -117,7 +117,7 @@ function LoginContent() {
         <ArrowLeft className="w-4 h-4" /> Voltar para o Site
       </button>
 
-      {/* Left Side — DanceFlow Branding */}
+      {/* Left Side — AKAAI Dance Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-red- via-red-700 to-red-700 p-12 flex-col justify-between relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[128px] -translate-y-1/2 translate-x-1/2" />
@@ -129,7 +129,7 @@ function LoginContent() {
             <Music className="w-6 h-6 text-[#e40014]" />
           </div>
           <span className="text-2xl font-black text-white tracking-tighter">
-            Dance<span className="text-[#e40014]">Flow</span>
+            AKAAI <span className="text-[#e40014]">Dance</span>
           </span>
         </Link>
 
@@ -170,7 +170,7 @@ function LoginContent() {
                 <Music className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-black text-white tracking-tighter">
-                Dance<span className="text-[#e40014]">Flow</span>
+                AKAAI <span className="text-[#e40014]">Dance</span>
               </span>
             </Link>
           </div>

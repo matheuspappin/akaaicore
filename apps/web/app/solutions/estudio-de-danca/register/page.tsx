@@ -270,7 +270,7 @@ function RegisterContent() {
           }
         }
 
-        toast({ title: "Conta criada com sucesso!", description: inviteStudioName ? `Bem-vindo ao ${inviteStudioName}!` : "Bem-vindo ao DanceFlow!" })
+        toast({ title: "Conta criada com sucesso!", description: inviteStudioName ? `Bem-vindo ao ${inviteStudioName}!` : "Bem-vindo ao AKAAI Dance!" })
         await new Promise(resolve => setTimeout(resolve, 400))
         if (role === 'student') router.push("/solutions/estudio-de-danca/student")
         else if (role === 'teacher') router.push("/solutions/estudio-de-danca/teacher")
@@ -307,7 +307,7 @@ function RegisterContent() {
             <Music className="w-6 h-6 text-violet-600" />
           </div>
           <span className="text-2xl font-black text-white tracking-tighter">
-            Dance<span className="text-violet-200">Flow</span>
+            AKAAI <span className="text-violet-200">Dance</span>
           </span>
         </Link>
 
@@ -349,7 +349,7 @@ function RegisterContent() {
             <p className="text-[10px] font-black text-white/80 uppercase tracking-[0.2em]">+500 Estúdios</p>
           </div>
           <p className="text-sm text-white/80 leading-relaxed font-medium">
-            O <span className="text-white font-bold">DanceFlow</span> transformou minha gestão. Antes eu passava horas com planilhas, agora tudo é automático.
+            O <span className="text-white font-bold">AKAAI Dance</span> transformou minha gestão. Antes eu passava horas com planilhas, agora tudo é automático.
           </p>
           <div className="mt-3 flex gap-0.5">
             {[1, 2, 3, 4, 5].map(i => <span key={i} className="text-xs">⭐</span>)}

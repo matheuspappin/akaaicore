@@ -73,7 +73,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
           </div>
           {(!collapsed || isMobile) && (
             <div>
-              <span className="font-black text-white tracking-tighter text-xs block">DanceFlow</span>
+              <span className="font-black text-white tracking-tighter text-xs block">AKAAI Dance</span>
               <span className="text-[10px] text-[#e40014] font-bold uppercase tracking-widest">Professor</span>
             </div>
           )}
@@ -134,7 +134,7 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
             <GraduationCap className="w-4 h-4 text-white" />
           </div>
           <span className="font-black text-white text-sm">
-            DanceFlow <span className="text-[#e40014]">Professor</span>
+            AKAAI Dance <span className="text-[#e40014]">Professor</span>
           </span>
         </div>
         <button onClick={() => setMobileOpen(true)} className="text-white/60 hover:text-white p-2">

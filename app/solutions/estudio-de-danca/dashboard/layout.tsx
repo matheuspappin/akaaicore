@@ -46,7 +46,7 @@ function DanceSidebar({
               <Music className="w-4 h-4 text-white" />
             </div>
             <span className="font-black text-white tracking-tighter text-sm">
-              Dance<span className="text-[#e40014]">Flow</span>
+              AKAAI <span className="text-[#e40014]">Dance</span>
             </span>
           </Link>
         )}
@@ -124,7 +124,7 @@ function DanceMobileHeader({ onOpen, onLogout }: { onOpen: () => void; onLogout:
           <Music className="w-4 h-4 text-white" />
         </div>
         <span className="font-black text-white tracking-tighter text-sm">
-          Dance<span className="text-[#e40014]">Flow</span>
+          AKAAI <span className="text-[#e40014]">Dance</span>
         </span>
       </Link>
       <div className="flex items-center gap-1">
@@ -254,7 +254,7 @@ export default function DanceDashboardLayout({ children }: { children: React.Rea
               <Music className="w-4 h-4 text-white" />
             </div>
             <span className="font-black text-white tracking-tighter text-sm">
-              Dance<span className="text-[#e40014]">Flow</span>
+              AKAAI <span className="text-[#e40014]">Dance</span>
             </span>
           </div>
           <nav className="p-2 overflow-y-auto max-h-[calc(100vh-80px)]">

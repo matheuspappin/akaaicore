@@ -47,19 +47,49 @@ import {
   Star,
   Sparkles,
   Upload,
-  FileSpreadsheet,
   Menu,
+  Footprints,
+  Sun,
+  Bone,
+  Target,
+  Swords,
+  Waves,
+  Palette,
+  Droplets,
+  Sofa,
+  PartyPopper,
+  PenTool,
+  MonitorSmartphone,
+  Scale,
+  Brain,
+  Wine,
+  Beer,
+  Coffee,
+  Cake,
+  Megaphone,
+  Code,
+  CalendarDays,
+  HardHat,
+  Baby,
+  Trophy,
+  Flower2,
+  Apple,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { clearLocalUser } from "@/lib/constants/storage-keys"
+import { useAdminLayout } from "./admin-layout-context"
 
 // Mapa de ícones por nome (igual ao usado nas páginas de verticalização)
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   FireExtinguisher, Shield, Stethoscope, Wrench, Hammer, Truck, Car,
   Scissors, Dumbbell, ChefHat, Leaf, Music, Camera, Home, BookOpen,
   GraduationCap, ShoppingCart, Briefcase, Package, Heart, Globe, Layers,
-  Zap, Star, Users, Settings, Building2,
+  Zap, Star, Users, Settings, Building2, Footprints, Sun, Bone, Target,
+  Swords, Waves, Palette, Droplets, Sofa, PartyPopper, PenTool,
+  MonitorSmartphone, Scale, Brain, Wine, Beer, Coffee, Cake, Megaphone,
+  Code, CalendarDays, HardHat, Baby, Trophy, ShieldCheck, Activity,
+  Sparkles, Flower2, Apple,
 }
 
 const STATUS_BADGE: Record<string, { label: string; className: string }> = {
@@ -80,8 +110,13 @@ interface SidebarVerticalization {
 
 export function AdminSidebarClient() {
   const pathname = usePathname()
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const { 
+    sidebarCollapsed, 
+    setSidebarCollapsed, 
+    mobileOpen, 
+    setMobileOpen 
+  } = useAdminLayout()
+  
   const [verticalizationsOpen, setVerticalizationsOpen] = useState(
     pathname.startsWith('/admin/verticalizations')
   )
@@ -138,17 +173,6 @@ export function AdminSidebarClient() {
 
   return (
     <>
-      {/* Botão hambúrguer fixo no mobile (fora da sidebar) */}
-      {!mobileOpen && (
-        <button
-          onClick={() => setMobileOpen(true)}
-          className="fixed top-0 right-0 h-16 px-4 lg:hidden z-40 flex items-center text-white"
-          aria-label="Abrir menu"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
-      )}
-
       {/* Overlay para Mobile */}
       {mobileOpen && (
         <div
@@ -160,7 +184,7 @@ export function AdminSidebarClient() {
       <aside
         className={cn(
           "fixed left-0 top-0 h-full bg-black text-white border-r border-white/10 flex flex-col transition-all duration-300 z-50 lg:z-40",
-          mobileOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0",
+          mobileOpen ? "translate-x-0 w-64 shadow-2xl shadow-white/5" : "-translate-x-full lg:translate-x-0",
           sidebarCollapsed ? "lg:w-[72px]" : "lg:w-64"
         )}
       >

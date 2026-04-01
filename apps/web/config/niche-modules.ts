@@ -42,7 +42,7 @@ const defaultModules: ModuleConfig = {
 
 // Grupo A: Aulas/Turmas
 const classBasedNiches: NicheType[] = [
-  'dance', 'gym', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 
+  'dance', 'gym', 'boxing', 'pilates', 'yoga', 'crossfit', 'swim_school', 'personal', 
   'beach_tennis', 'music_school', 'language_school', 'art_studio', 
   'cooking_school', 'photography', 'tutoring', 'driving_school', 
   'sports_center', 'martial_arts'
@@ -191,6 +191,14 @@ export const NICHE_CONCEPTS: Record<string, BusinessConcept> = {
     }
   },
   gym: {
+    hiddenModules: [],
+    priorityModules: ['dashboard', 'scanner', 'classes', 'students'],
+    sidebarOverrides: {
+      'scanner': 'Catraca/Acesso',
+      'classes': 'Grade de Horários',
+    }
+  },
+  boxing: {
     hiddenModules: [],
     priorityModules: ['dashboard', 'scanner', 'classes', 'students'],
     sidebarOverrides: {
@@ -428,6 +436,7 @@ export function getDefaultModulesForNiche(niche: NicheType): ModuleConfig {
       break;
 
     case 'gym':
+    case 'boxing':
     case 'crossfit':
     case 'martial_arts':
       modules.scanner = true; // Controle de acesso de alunos

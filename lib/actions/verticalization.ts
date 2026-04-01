@@ -6,6 +6,32 @@ import { cookies } from "next/headers"
 import logger from "@/lib/logger"
 import { generateUniqueSlug } from "@/lib/utils/slug"
 import { logAdmin } from "@/lib/admin-logs"
+import fs from "fs"
+import path from "path"
+
+async function replaceSlugInDirectory(dirPath: string, oldSlug: string, newSlug: string) {
+  if (!fs.existsSync(dirPath)) return
+  
+  const files = await fs.promises.readdir(dirPath, { withFileTypes: true })
+  
+  for (const file of files) {
+    const fullPath = path.join(dirPath, file.name)
+    if (file.isDirectory()) {
+      await replaceSlugInDirectory(fullPath, oldSlug, newSlug)
+    } else if (file.isFile() && /\.(ts|tsx|js|jsx|css|scss|html|yml|yaml|json|md)$/i.test(file.name)) {
+      try {
+        let content = await fs.promises.readFile(fullPath, 'utf8')
+        if (content.includes(oldSlug)) {
+          // Substitui o slug em imports, chaves, etc.
+          content = content.replace(new RegExp(oldSlug, 'g'), newSlug)
+          await fs.promises.writeFile(fullPath, content, 'utf8')
+        }
+      } catch (err) {
+        logger.warn(`Aviso: não foi possível processar o arquivo ${fullPath} durante o clone`, err)
+      }
+    }
+  }
+}
 
 export interface VerticalData {
   name: string
@@ -21,6 +47,7 @@ export interface VerticalData {
   tags: string[]
   modules?: Record<string, boolean>
   accessToken?: string
+  source_slug?: string // Para clonar a lógica da vertical (arquivos)
 }
 
 export interface VerticalRecord extends Omit<VerticalData, 'accessToken'> {
@@ -134,6 +161,54 @@ export async function createVerticalization(data: VerticalData) {
       throw new Error(`Já existe uma verticalização com o slug "${slug}". Escolha outro nome.`)
     }
     throw new Error(`Erro ao salvar: ${error.message}`)
+  }
+
+  // Se houver um source_slug, copiar os arquivos para a nova verticalização
+  if (data.source_slug && data.source_slug !== slug) {
+    logger.info(`📂 Clonando arquivos da verticalização ${data.source_slug} para ${slug}...`)
+    try {
+      // 1. Clonar em app/solutions/ (se existir na raiz)
+      const rootSourcePath = path.join(process.cwd(), 'app', 'solutions', data.source_slug)
+      const rootDestPath = path.join(process.cwd(), 'app', 'solutions', slug)
+      if (fs.existsSync(rootSourcePath)) {
+        await fs.promises.cp(rootSourcePath, rootDestPath, { recursive: true })
+        await replaceSlugInDirectory(rootDestPath, data.source_slug, slug)
+        logger.info(`✅ Arquivos clonados em app/solutions/${slug}`)
+      }
+
+      // 2. Clonar em apps/web/app/solutions/ (se existir)
+      const webSourcePath = path.join(process.cwd(), 'apps', 'web', 'app', 'solutions', data.source_slug)
+      const webDestPath = path.join(process.cwd(), 'apps', 'web', 'app', 'solutions', slug)
+      if (fs.existsSync(webSourcePath)) {
+        await fs.promises.cp(webSourcePath, webDestPath, { recursive: true })
+        await replaceSlugInDirectory(webDestPath, data.source_slug, slug)
+        logger.info(`✅ Arquivos clonados em apps/web/app/solutions/${slug}`)
+      }
+
+      // 3. Clonar em app/api/ (se existir)
+      const rootApiSourcePath = path.join(process.cwd(), 'app', 'api', data.source_slug)
+      const rootApiDestPath = path.join(process.cwd(), 'app', 'api', slug)
+      if (fs.existsSync(rootApiSourcePath)) {
+        await fs.promises.cp(rootApiSourcePath, rootApiDestPath, { recursive: true })
+        await replaceSlugInDirectory(rootApiDestPath, data.source_slug, slug)
+        logger.info(`✅ Arquivos clonados em app/api/${slug}`)
+      }
+
+      // 4. Clonar em apps/web/app/api/ (se existir)
+      const webApiSourcePath = path.join(process.cwd(), 'apps', 'web', 'app', 'api', data.source_slug)
+      const webApiDestPath = path.join(process.cwd(), 'apps', 'web', 'app', 'api', slug)
+      if (fs.existsSync(webApiSourcePath)) {
+        await fs.promises.cp(webApiSourcePath, webApiDestPath, { recursive: true })
+        await replaceSlugInDirectory(webApiDestPath, data.source_slug, slug)
+        logger.info(`✅ Arquivos clonados em apps/web/app/api/${slug}`)
+      }
+
+    } catch (fsError: any) {
+      logger.error('❌ Erro ao clonar arquivos da verticalização:', fsError)
+      // Não damos throw aqui para não desfazer a criação no banco,
+      // mas registramos no log que falhou.
+      await logAdmin('error', 'super-admin/verticalization', `Erro ao copiar arquivos para "${slug}"`, { metadata: { verticalId: vertical.id, error: fsError.message } })
+    }
   }
 
   logger.info('✅ Verticalização criada com ID:', vertical.id)

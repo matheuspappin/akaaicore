@@ -24,7 +24,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
-export default function DanceFlowAttendancePage() {
+export default function AKAAI DanceAttendancePage() {
   const { id } = useParams() as { id: string }
   const router = useRouter()
   const { toast } = useToast()

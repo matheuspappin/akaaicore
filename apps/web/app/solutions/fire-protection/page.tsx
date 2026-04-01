@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { FireWaterCanvas } from "@/components/fire-protection/fire-water-canvas"
-import { FireControlLogoCanvas } from "@/components/fire-protection/fire-control-logo-canvas"
+import { FireControlLogoCanvas as FireControlLogoCanvas } from "@/components/fire-protection/fire-control-logo-canvas"
 import { ExtinguisherIcon } from "@/components/fire-protection/extinguisher-icon"
 import { OFFICIAL_LOGO } from "@/config/branding"
 
@@ -58,7 +58,7 @@ export default function FireControlPrePage() {
                 <ExtinguisherIcon className="w-8 h-8 text-white" />
               </motion.div>
               <div className="h-14 md:h-16 min-w-[280px] md:min-w-[360px] w-full max-w-[360px] flex items-center justify-center overflow-visible" aria-label="FireControl">
-                <FireControlLogoCanvas className="w-full h-full" />
+                <FireControlLogoCanvas className="w-full h-full" text="FireControl" />
               </div>
             </div>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-300 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">

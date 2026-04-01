@@ -1,0 +1,169 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { useRouter, usePathname } from "next/navigation"
+import Link from "next/link"
+import { supabase } from "@/lib/supabase"
+import { cn } from "@/lib/utils"
+import { Sheet, SheetContent } from "@/components/ui/sheet"
+import {
+  FireExtinguisher,
+  LayoutDashboard,
+  FolderKanban,
+  UserCircle,
+  LogOut,
+  Menu,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  HardHat,
+} from "lucide-react"
+
+const navItems = [
+  { href: "/solutions/interior_design/engineer", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/solutions/interior_design/engineer/projetos", label: "Projetos PPCI", icon: FolderKanban },
+  { href: "/solutions/interior_design/engineer/perfil", label: "Meu Perfil", icon: UserCircle },
+]
+
+export default function FireEngineerLayout({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const [collapsed, setCollapsed] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [authorized, setAuthorized] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        router.push("/solutions/interior_design/login")
+        return
+      }
+      const role = session.user.user_metadata?.role
+      if (role !== 'engineer' && role !== 'super_admin') {
+        router.push("/solutions/interior_design/login")
+        return
+      }
+      setAuthorized(true)
+      setLoading(false)
+    })
+  }, [router])
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" })
+    await supabase.auth.signOut()
+    localStorage.removeItem("danceflow_user")
+    router.push("/solutions/interior_design/login")
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-slate-600" />
+      </div>
+    )
+  }
+
+  if (!authorized) return null
+
+  const SidebarContent = ({ isMobile = false }: { isMobile?: boolean }) => (
+    <div className="flex flex-col h-full">
+      <div className="flex items-center justify-between p-4 border-b border-white/10">
+        <Link href="/solutions/interior_design" className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-slate-600 flex items-center justify-center">
+            <FireExtinguisher className="w-4 h-4 text-white" />
+          </div>
+          {(!collapsed || isMobile) && (
+            <div>
+              <span className="font-black text-white tracking-tighter text-xs block">DesigndeInteriores</span>
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Engenheiro</span>
+            </div>
+          )}
+        </Link>
+        {!isMobile && (
+          <button onClick={() => setCollapsed(!collapsed)} className="text-white/40 hover:text-white transition-colors">
+            {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+          </button>
+        )}
+      </div>
+      <nav className="flex-1 p-2 space-y-1">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all",
+              pathname === item.href
+                ? "bg-slate-600 text-white shadow-lg shadow-slate-600/20"
+                : "text-white/50 hover:text-white hover:bg-white/5",
+              collapsed && !isMobile && "justify-center"
+            )}
+          >
+            <item.icon className="w-4 h-4 flex-shrink-0" />
+            {(!collapsed || isMobile) && <span>{item.label}</span>}
+          </Link>
+        ))}
+      </nav>
+      <div className="p-2 border-t border-white/10">
+        <button
+          onClick={handleLogout}
+          className={cn(
+            "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-white/50 hover:text-slate-400 hover:bg-slate-600/10 transition-all w-full",
+            collapsed && !isMobile && "justify-center"
+          )}
+        >
+          <LogOut className="w-4 h-4 flex-shrink-0" />
+          {(!collapsed || isMobile) && <span>Sair</span>}
+        </button>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      {/* Desktop Sidebar */}
+      <aside
+        className={cn(
+          "hidden md:flex flex-col fixed top-0 left-0 h-full bg-slate-950 border-r border-white/10 z-50 transition-all duration-300",
+          collapsed ? "w-[72px]" : "w-64"
+        )}
+      >
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile header */}
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-slate-950 border-b border-white/10 flex items-center justify-between px-4 z-40">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-slate-600 flex items-center justify-center">
+            <HardHat className="w-4 h-4 text-white" />
+          </div>
+          <span className="font-black text-white text-sm">DesigndeInteriores <span className="text-slate-400">Eng</span></span>
+        </div>
+        <button onClick={() => setMobileOpen(true)} className="text-white/60 hover:text-white p-2">
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
+
+      <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+        <SheetContent side="left" className="p-0 bg-slate-950 border-r border-white/10 w-72">
+          <SidebarContent isMobile />
+        </SheetContent>
+      </Sheet>
+
+      <main
+        className={cn(
+          "transition-all duration-300 min-h-screen pt-16 md:pt-0",
+          collapsed ? "md:ml-[72px]" : "md:ml-64"
+        )}
+      >
+        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+          {children}
+        </div>
+      </main>
+    </div>
+  )
+}

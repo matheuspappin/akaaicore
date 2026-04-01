@@ -31,7 +31,7 @@ import { getLocalUser } from "@/lib/constants/storage-keys"
 
 const DANCE_BASE = "/solutions/estudio-de-danca/dashboard"
 
-export default function DanceFlowLiveClassesPage() {
+export default function AKAAI DanceLiveClassesPage() {
   const { toast } = useToast()
   const { vocabulary } = useVocabulary()
   const [loading, setLoading] = useState(true)

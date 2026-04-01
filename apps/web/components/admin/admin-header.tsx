@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Bell, Search, User, Globe, ExternalLink, Settings, LogOut } from "lucide-react"
+import { Bell, Search, User, Globe, ExternalLink, Settings, LogOut, Menu } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
+import { useAdminLayout } from "./admin-layout-context"
 
 interface AdminHeaderProps {
   title: string
@@ -24,6 +25,7 @@ interface AdminHeaderProps {
 export function AdminHeader({ title }: AdminHeaderProps) {
   const router = useRouter()
   const [userName, setUserName] = useState("Admin")
+  const { setMobileOpen } = useAdminLayout()
 
   useEffect(() => {
     const user = localStorage.getItem("danceflow_user")
@@ -36,6 +38,14 @@ export function AdminHeader({ title }: AdminHeaderProps) {
   return (
     <header className="h-16 border-b border-white/10 bg-black flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
       <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="lg:hidden text-white/60 hover:text-white"
+          onClick={() => setMobileOpen(true)}
+        >
+          <Menu className="w-5 h-5" />
+        </Button>
         <h1 className="text-lg md:text-xl font-black tracking-tight text-white truncate">{title}</h1>
       </div>
 

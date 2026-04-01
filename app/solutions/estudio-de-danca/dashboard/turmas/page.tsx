@@ -248,7 +248,7 @@ export default function TurmasPage() {
         const uniqueStyles = [...new Set(list.map((c: any) => c.dance_style).filter(Boolean))] as string[]
         setStyles(uniqueStyles)
 
-        // Carrega professores via API DanceFlow (professionals com professional_type = 'teacher')
+        // Carrega professores via API AKAAI Dance (professionals com professional_type = 'teacher')
         const teachersRes = await fetch(`/api/dance-studio/teachers?studioId=${sid}`)
         const profs = await teachersRes.json()
         if (Array.isArray(profs)) {

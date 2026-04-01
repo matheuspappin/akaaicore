@@ -211,6 +211,14 @@
   animation: tech-pulse 3s ease-in-out infinite;
 }
 
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
 /* Fix para canvas 2D (pixel art, QR codes, sprites) — NÃO aplicar ao WebGL/Three.js */
 canvas.pixel-art {
   image-rendering: -moz-crisp-edges;

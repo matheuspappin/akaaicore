@@ -265,7 +265,7 @@ export default function TeacherPerfilPage() {
                   </Button>
                 </div>
                 <p className="text-xs text-slate-400 mt-1.5">
-                  O código é fornecido pelo administrador do estúdio no painel DanceFlow.
+                  O código é fornecido pelo administrador do estúdio no painel AKAAI Dance.
                 </p>
               </div>
               <Button

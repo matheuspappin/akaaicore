@@ -6,6 +6,57 @@ import { cookies } from "next/headers"
 import logger from "@/lib/logger"
 import { generateUniqueSlug } from "@/lib/utils/slug"
 import { logAdmin } from "@/lib/admin-logs"
+import fs from "fs"
+import path from "path"
+
+async function replaceSlugInDirectory(dirPath: string, oldSlug: string, newSlug: string, oldNiche?: string, newNiche?: string) {
+  if (!fs.existsSync(dirPath)) return
+  
+  const files = await fs.promises.readdir(dirPath, { withFileTypes: true })
+  
+  for (const file of files) {
+    const fullPath = path.join(dirPath, file.name)
+    if (file.isDirectory()) {
+      await replaceSlugInDirectory(fullPath, oldSlug, newSlug, oldNiche, newNiche)
+    } else if (file.isFile() && /\.(ts|tsx|js|jsx|css|scss|html|yml|yaml|json|md)$/i.test(file.name)) {
+      try {
+        let content = await fs.promises.readFile(fullPath, 'utf8')
+        let changed = false
+
+        // 1. Substitui o slug (ex: estudio-de-danca -> academia-de-boxe)
+        if (content.includes(oldSlug)) {
+          content = content.replace(new RegExp(oldSlug, 'g'), newSlug)
+          changed = true
+        }
+
+        // 2. Substitui o ID do nicho se fornecido (ex: 'dance' -> 'boxing')
+        // Usamos padrões mais específicos para evitar substituições acidentais
+        if (oldNiche && newNiche && oldNiche !== newNiche) {
+          const nichePatterns = [
+            { from: `NICHE_ID: NicheType = '${oldNiche}'`, to: `NICHE_ID: NicheType = '${newNiche}'` },
+            { from: `niche: '${oldNiche}'`, to: `niche: '${newNiche}'` },
+            { from: `niche: "${oldNiche}"`, to: `niche: "${newNiche}"` },
+            { from: `niche === '${oldNiche}'`, to: `niche === '${newNiche}'` },
+            { from: `niche === "${oldNiche}"`, to: `niche === "${newNiche}"` },
+          ]
+
+          for (const pattern of nichePatterns) {
+            if (content.includes(pattern.from)) {
+              content = content.replace(new RegExp(pattern.from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), pattern.to)
+              changed = true
+            }
+          }
+        }
+
+        if (changed) {
+          await fs.promises.writeFile(fullPath, content, 'utf8')
+        }
+      } catch (err) {
+        logger.warn(`Aviso: não foi possível processar o arquivo ${fullPath} durante o clone`, err)
+      }
+    }
+  }
+}
 
 export interface VerticalData {
   name: string
@@ -21,6 +72,7 @@ export interface VerticalData {
   tags: string[]
   modules?: Record<string, boolean>
   accessToken?: string
+  source_slug?: string // Para clonar a lógica da vertical (arquivos)
 }
 
 export interface VerticalRecord extends Omit<VerticalData, 'accessToken'> {
@@ -134,6 +186,97 @@ export async function createVerticalization(data: VerticalData) {
       throw new Error(`Já existe uma verticalização com o slug "${slug}". Escolha outro nome.`)
     }
     throw new Error(`Erro ao salvar: ${error.message}`)
+  }
+
+  // Se houver um source_slug, copiar os arquivos para a nova verticalização
+  if (data.source_slug && data.source_slug !== slug) {
+    logger.info(`📂 Clonando arquivos da verticalização ${data.source_slug} para ${slug}...`)
+    try {
+      // Buscar o nicho da verticalização de origem para poder substituir no código
+      const { data: sourceVertical } = await dbClient
+        .from('verticalizations')
+        .select('niche')
+        .eq('slug', data.source_slug)
+        .maybeSingle()
+      
+      const oldNiche = sourceVertical?.niche
+      const newNiche = data.niche
+
+      const findSourceDir = (basePath: string, sourceSlug: string) => {
+        const exactPath = path.join(process.cwd(), basePath, sourceSlug)
+        if (fs.existsSync(exactPath)) return exactPath
+
+        const variations = [
+          sourceSlug.replace(/-/g, '_'),
+          sourceSlug === 'estudio-de-danca' ? 'dance-studio' : null,
+          sourceSlug === 'dance-studio' ? 'estudio-de-danca' : null,
+        ].filter(Boolean)
+
+        for (const v of variations) {
+          const p = path.join(process.cwd(), basePath, v!)
+          if (fs.existsSync(p)) return p
+        }
+        return null
+      }
+
+      // 1. Clonar em app/solutions/
+      const solutionsSource = findSourceDir('app/solutions', data.source_slug)
+      if (solutionsSource) {
+        const dest = path.join(process.cwd(), 'app', 'solutions', slug)
+        await fs.promises.cp(solutionsSource, dest, { recursive: true })
+        const oldFolderName = path.basename(solutionsSource)
+        await replaceSlugInDirectory(dest, oldFolderName, slug, oldNiche, newNiche)
+        if (oldFolderName !== data.source_slug) {
+          await replaceSlugInDirectory(dest, data.source_slug, slug, oldNiche, newNiche)
+        }
+        logger.info(`✅ Arquivos clonados em app/solutions/${slug} (de ${oldFolderName})`)
+      }
+
+      // 2. Clonar em apps/web/app/solutions/
+      const webSolutionsSource = findSourceDir('apps/web/app/solutions', data.source_slug)
+      if (webSolutionsSource) {
+        const dest = path.join(process.cwd(), 'apps', 'web', 'app', 'solutions', slug)
+        await fs.promises.cp(webSolutionsSource, dest, { recursive: true })
+        const oldFolderName = path.basename(webSolutionsSource)
+        await replaceSlugInDirectory(dest, oldFolderName, slug, oldNiche, newNiche)
+        if (oldFolderName !== data.source_slug) {
+          await replaceSlugInDirectory(dest, data.source_slug, slug, oldNiche, newNiche)
+        }
+        logger.info(`✅ Arquivos clonados em apps/web/app/solutions/${slug} (de ${oldFolderName})`)
+      }
+
+      // 3. Clonar em app/api/
+      const apiSource = findSourceDir('app/api', data.source_slug)
+      if (apiSource) {
+        const dest = path.join(process.cwd(), 'app', 'api', slug)
+        await fs.promises.cp(apiSource, dest, { recursive: true })
+        const oldFolderName = path.basename(apiSource)
+        await replaceSlugInDirectory(dest, oldFolderName, slug, oldNiche, newNiche)
+        if (oldFolderName !== data.source_slug) {
+          await replaceSlugInDirectory(dest, data.source_slug, slug, oldNiche, newNiche)
+        }
+        logger.info(`✅ Arquivos clonados em app/api/${slug} (de ${oldFolderName})`)
+      }
+
+      // 4. Clonar em apps/web/app/api/
+      const webApiSource = findSourceDir('apps/web/app/api', data.source_slug)
+      if (webApiSource) {
+        const dest = path.join(process.cwd(), 'apps', 'web', 'app', 'api', slug)
+        await fs.promises.cp(webApiSource, dest, { recursive: true })
+        const oldFolderName = path.basename(webApiSource)
+        await replaceSlugInDirectory(dest, oldFolderName, slug, oldNiche, newNiche)
+        if (oldFolderName !== data.source_slug) {
+          await replaceSlugInDirectory(dest, data.source_slug, slug, oldNiche, newNiche)
+        }
+        logger.info(`✅ Arquivos clonados em apps/web/app/api/${slug} (de ${oldFolderName})`)
+      }
+
+    } catch (fsError: any) {
+      logger.error('❌ Erro ao clonar arquivos da verticalização:', fsError)
+      // Não damos throw aqui para não desfazer a criação no banco,
+      // mas registramos no log que falhou.
+      await logAdmin('error', 'super-admin/verticalization', `Erro ao copiar arquivos para "${slug}"`, { metadata: { verticalId: vertical.id, error: fsError.message } })
+    }
   }
 
   logger.info('✅ Verticalização criada com ID:', vertical.id)

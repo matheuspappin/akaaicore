@@ -222,7 +222,7 @@ export default function StudentHome() {
           } catch { /* sem turmas */ }
         })(),
 
-        // Financeiro — busca cobranças do aluno via API DanceFlow
+        // Financeiro — busca cobranças do aluno via API AKAAI Dance
         (async () => {
           try {
             const res = await fetch(`/api/dance-studio/financeiro?studioId=${sid}`)

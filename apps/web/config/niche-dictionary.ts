@@ -1,7 +1,7 @@
 export const nicheDictionary = {
   pt: {
     dance: {
-      name: 'Dança',
+      name: 'AKAAI Dance',
       businessModel: 'CREDIT',
       client: 'Aluno',
       provider: 'Professor',
@@ -10,7 +10,7 @@ export const nicheDictionary = {
       category: 'Modalidade'
     },
     dentist: {
-      name: 'Odontologia',
+      name: 'AKAAI Smile',
       businessModel: 'MONETARY',
       client: 'Paciente',
       provider: 'Doutor',
@@ -19,7 +19,7 @@ export const nicheDictionary = {
       category: 'Especialidade'
     },
     gym: {
-      name: 'Fitness/Academia',
+      name: 'AKAAI Fit',
       businessModel: 'CREDIT',
       client: 'Membro',
       provider: 'Instrutor',
@@ -27,8 +27,17 @@ export const nicheDictionary = {
       establishment: 'Academia',
       category: 'Modalidade'
     },
+    boxing: {
+      name: 'AKAAI Combat',
+      businessModel: 'CREDIT',
+      client: 'Atleta',
+      provider: 'Treinador',
+      service: 'Treino',
+      establishment: 'Academia',
+      category: 'Modalidade'
+    },
     clinic: {
-      name: 'Clínica Médica',
+      name: 'AKAAI Med',
       businessModel: 'MONETARY',
       client: 'Paciente',
       provider: 'Médico',
@@ -37,7 +46,7 @@ export const nicheDictionary = {
       category: 'Especialidade'
     },
     beauty: {
-      name: 'Beleza e Estética',
+      name: 'AKAAI Glow',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Profissional',
@@ -46,7 +55,7 @@ export const nicheDictionary = {
       category: 'Serviço'
     },
     aesthetics: {
-      name: 'Estética',
+      name: 'AKAAI Glow',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Esteticista',
@@ -55,7 +64,7 @@ export const nicheDictionary = {
       category: 'Procedimento'
     },
     pilates: {
-      name: 'Pilates',
+      name: 'AKAAI Zen',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -64,7 +73,7 @@ export const nicheDictionary = {
       category: 'Nível'
     },
     yoga: {
-      name: 'Yoga',
+      name: 'AKAAI Zen',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -73,7 +82,7 @@ export const nicheDictionary = {
       category: 'Estilo'
     },
     barber: {
-      name: 'Barbearia',
+      name: 'AKAAI Barber',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Barbeiro',
@@ -82,7 +91,7 @@ export const nicheDictionary = {
       category: 'Serviço'
     },
     spa: {
-      name: 'Spa',
+      name: 'AKAAI Glow',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Terapeuta',
@@ -91,7 +100,7 @@ export const nicheDictionary = {
       category: 'Tratamento'
     },
     physio: {
-      name: 'Fisioterapia',
+      name: 'AKAAI Fisio',
       businessModel: 'MONETARY',
       client: 'Paciente',
       provider: 'Fisioterapeuta',
@@ -100,7 +109,7 @@ export const nicheDictionary = {
       category: 'Tratamento'
     },
     nutrition: {
-      name: 'Nutrição',
+      name: 'AKAAI Nutri',
       businessModel: 'MONETARY',
       client: 'Paciente',
       provider: 'Nutricionista',
@@ -109,7 +118,7 @@ export const nicheDictionary = {
       category: 'Plano'
     },
     podiatry: {
-      name: 'Podologia',
+      name: 'AKAAI Feet',
       businessModel: 'MONETARY',
       client: 'Paciente',
       provider: 'Podólogo',
@@ -118,7 +127,7 @@ export const nicheDictionary = {
       category: 'Serviço'
     },
     tanning: {
-      name: 'Bronzeamento',
+      name: 'AKAAI Sun',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Atendente',
@@ -127,7 +136,7 @@ export const nicheDictionary = {
       category: 'Tipo'
     },
     pet_shop: {
-      name: 'Pet Shop',
+      name: 'AKAAI Pet',
       businessModel: 'MONETARY',
       client: 'Tutor',
       provider: 'Tosador',
@@ -136,7 +145,7 @@ export const nicheDictionary = {
       category: 'Serviço'
     },
     vet: {
-      name: 'Veterinária',
+      name: 'AKAAI Vet',
       businessModel: 'MONETARY',
       client: 'Tutor',
       provider: 'Veterinário',
@@ -145,7 +154,7 @@ export const nicheDictionary = {
       category: 'Especialidade'
     },
     dog_daycare: {
-      name: 'Creche Canina',
+      name: 'AKAAI Pet',
       businessModel: 'CREDIT',
       client: 'Tutor',
       provider: 'Monitor',
@@ -154,7 +163,7 @@ export const nicheDictionary = {
       category: 'Atividade'
     },
     dog_trainer: {
-      name: 'Adestramento',
+      name: 'AKAAI K9',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -163,7 +172,7 @@ export const nicheDictionary = {
       category: 'Nível'
     },
     pet_hotel: {
-      name: 'Hotel Pet',
+      name: 'AKAAI Pet',
       businessModel: 'MONETARY',
       client: 'Hóspede',
       provider: 'Cuidador',
@@ -172,7 +181,7 @@ export const nicheDictionary = {
       category: 'Acomodação'
     },
     martial_arts: {
-      name: 'Artes Marciais',
+      name: 'AKAAI Combat',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -181,7 +190,7 @@ export const nicheDictionary = {
       category: 'Modalidade'
     },
     crossfit: {
-      name: 'Crossfit',
+      name: 'AKAAI Combat',
       businessModel: 'CREDIT',
       client: 'Atleta',
       provider: 'Coach',
@@ -190,7 +199,7 @@ export const nicheDictionary = {
       category: 'Tipo'
     },
     swim_school: {
-      name: 'Natação',
+      name: 'AKAAI Aqua',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -199,7 +208,7 @@ export const nicheDictionary = {
       category: 'Nível'
     },
     personal: {
-      name: 'Personal Trainer',
+      name: 'AKAAI Fit',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Profissional',
@@ -208,7 +217,7 @@ export const nicheDictionary = {
       category: 'Foco'
     },
     beach_tennis: {
-      name: 'Beach Tennis',
+      name: 'AKAAI Court',
       businessModel: 'CREDIT',
       client: 'Jogador',
       provider: 'Professor',
@@ -217,7 +226,7 @@ export const nicheDictionary = {
       category: 'Nível'
     },
     music_school: {
-      name: 'Escola de Música',
+      name: 'AKAAI Music',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -226,7 +235,7 @@ export const nicheDictionary = {
       category: 'Instrumento'
     },
     language_school: {
-      name: 'Escola de Idiomas',
+      name: 'AKAAI Lingo',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -235,7 +244,7 @@ export const nicheDictionary = {
       category: 'Idioma'
     },
     art_studio: {
-      name: 'Ateliê de Arte',
+      name: 'AKAAI Art',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Profissional',
@@ -244,7 +253,7 @@ export const nicheDictionary = {
       category: 'Técnica'
     },
     cooking_school: {
-      name: 'Gastronomia',
+      name: 'AKAAI Chef',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Profissional',
@@ -253,7 +262,7 @@ export const nicheDictionary = {
       category: 'Culinária'
     },
     photography: {
-      name: 'Fotografia (Escola)',
+      name: 'AKAAI Focus',
       businessModel: 'CREDIT',
       client: 'Cliente',
       provider: 'Profissional',
@@ -262,7 +271,7 @@ export const nicheDictionary = {
       category: 'Estilo'
     },
     auto_detail: {
-      name: 'Estética Automotiva',
+      name: 'AKAAI Auto',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Profissional',
@@ -271,7 +280,7 @@ export const nicheDictionary = {
       category: 'Tipo'
     },
     mechanic: {
-      name: 'Oficina Mecânica',
+      name: 'AKAAI Gear',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Mecânico',
@@ -280,7 +289,7 @@ export const nicheDictionary = {
       category: 'Serviço'
     },
     car_wash: {
-      name: 'Lava-jato',
+      name: 'AKAAI Auto',
       businessModel: 'MONETARY',
       client: 'Assinante',
       provider: 'Lavador',
@@ -298,7 +307,7 @@ export const nicheDictionary = {
       category: 'Tipo'
     },
     interior_design: {
-      name: 'Design de Interiores',
+      name: 'AKAAI Design',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Designer',
@@ -307,7 +316,7 @@ export const nicheDictionary = {
       category: 'Estilo'
     },
     party_venue: {
-      name: 'Espaço de Eventos',
+      name: 'AKAAI CO',
       businessModel: 'MONETARY',
       client: 'Contratante',
       provider: 'Organizador',
@@ -325,7 +334,7 @@ export const nicheDictionary = {
       category: 'Estilo'
     },
     coworking: {
-      name: 'Coworking',
+      name: 'AKAAI CO',
       businessModel: 'MONETARY',
       client: 'Coworker',
       provider: 'Gestor',
@@ -343,7 +352,7 @@ export const nicheDictionary = {
       category: 'Estilo'
     },
     tech_repair: {
-      name: 'Assistência Técnica',
+      name: 'AKAAI Fix',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Técnico',
@@ -352,7 +361,7 @@ export const nicheDictionary = {
       category: 'Aparelho'
     },
     law: {
-      name: 'Advocacia',
+      name: 'AKAAI Law',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Advogado',
@@ -361,7 +370,7 @@ export const nicheDictionary = {
       category: 'Área'
     },
     psychology: {
-      name: 'Psicologia',
+      name: 'AKAAI Mind',
       businessModel: 'MONETARY',
       client: 'Paciente',
       provider: 'Psicólogo',
@@ -370,7 +379,7 @@ export const nicheDictionary = {
       category: 'Abordagem'
     },
     wine_club: {
-      name: 'Clube do Vinho',
+      name: 'AKAAI Drink',
       businessModel: 'MONETARY',
       client: 'Sócio',
       provider: 'Sommelier',
@@ -379,7 +388,7 @@ export const nicheDictionary = {
       category: 'Tipo'
     },
     brewery: {
-      name: 'Cervejaria',
+      name: 'AKAAI Drink',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Mestre',
@@ -388,7 +397,7 @@ export const nicheDictionary = {
       category: 'Estilo'
     },
     barista: {
-      name: 'Cafeteria/Barista',
+      name: 'AKAAI Brew',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Profissional',
@@ -397,7 +406,7 @@ export const nicheDictionary = {
       category: 'Grão'
     },
     confectionery: {
-      name: 'Confeitaria',
+      name: 'AKAAI Brew',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Confeiteiro',
@@ -406,7 +415,7 @@ export const nicheDictionary = {
       category: 'Produto'
     },
     real_estate: {
-      name: 'Imobiliária',
+      name: 'AKAAI Prop',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Corretor',
@@ -415,7 +424,7 @@ export const nicheDictionary = {
       category: 'Imóvel'
     },
     consulting: {
-      name: 'Consultoria',
+      name: 'AKAAI MKT',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Consultor',
@@ -424,7 +433,7 @@ export const nicheDictionary = {
       category: 'Projeto'
     },
     marketing_agency: {
-      name: 'Agência de Marketing',
+      name: 'AKAAI MKT',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Analista',
@@ -451,7 +460,7 @@ export const nicheDictionary = {
       category: 'Tipo'
     },
     travel_agency: {
-      name: 'Agência de Viagens',
+      name: 'AKAAI Trip',
       businessModel: 'MONETARY',
       client: 'Viajante',
       provider: 'Agente',
@@ -460,7 +469,7 @@ export const nicheDictionary = {
       category: 'Destino'
     },
     insurance: {
-      name: 'Corretora de Seguros',
+      name: 'AKAAI Safe',
       businessModel: 'MONETARY',
       client: 'Segurado',
       provider: 'Corretor',
@@ -469,7 +478,7 @@ export const nicheDictionary = {
       category: 'Ramo'
     },
     landscaping: {
-      name: 'Paisagismo',
+      name: 'AKAAI Design',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Paisagista',
@@ -496,7 +505,7 @@ export const nicheDictionary = {
       category: 'Serviço'
     },
     construction: {
-      name: 'Construção Civil',
+      name: 'AKAAI Build',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Engenheiro',
@@ -505,7 +514,7 @@ export const nicheDictionary = {
       category: 'Etapa'
     },
     fire_protection: {
-      name: 'Empresa de Extintores e PPCI',
+      name: 'AKAAI Fire',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Técnico',
@@ -514,7 +523,7 @@ export const nicheDictionary = {
       category: 'Equipamento'
     },
     environmental_compliance: {
-      name: 'Compliance Ambiental e Engenharia',
+      name: 'AKAAI Eco',
       businessModel: 'MONETARY',
       client: 'Cliente / Proprietário Rural',
       provider: 'Engenheiro / Técnico',
@@ -523,7 +532,7 @@ export const nicheDictionary = {
       category: 'Tipo de Serviço'
     },
     logistics: {
-      name: 'Logística',
+      name: 'AKAAI Log',
       businessModel: 'MONETARY',
       client: 'Cliente',
       provider: 'Entregador',
@@ -577,7 +586,7 @@ export const nicheDictionary = {
       category: 'Categoria'
     },
     sports_center: {
-      name: 'Centro Esportivo',
+      name: 'AKAAI Court',
       businessModel: 'CREDIT',
       client: 'Atleta',
       provider: 'Instrutor',
@@ -586,7 +595,7 @@ export const nicheDictionary = {
       category: 'Esporte'
     },
     clinic_vet: {
-      name: 'Clínica Veterinária',
+      name: 'AKAAI Vet',
       businessModel: 'MONETARY',
       client: 'Tutor',
       provider: 'Veterinário',
@@ -606,7 +615,7 @@ export const nicheDictionary = {
   },
   en: {
     dance: {
-      name: 'Dance',
+      name: 'AKAAI Dance',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Teacher',
@@ -615,7 +624,7 @@ export const nicheDictionary = {
       category: 'Modality'
     },
     dentist: {
-      name: 'Dentistry',
+      name: 'AKAAI Smile',
       businessModel: 'MONETARY',
       client: 'Patient',
       provider: 'Doctor',
@@ -624,7 +633,7 @@ export const nicheDictionary = {
       category: 'Specialty'
     },
     gym: {
-      name: 'Fitness/Gym',
+      name: 'AKAAI Fit',
       businessModel: 'CREDIT',
       client: 'Member',
       provider: 'Instructor',
@@ -632,8 +641,17 @@ export const nicheDictionary = {
       establishment: 'Gym',
       category: 'Modality'
     },
+    boxing: {
+      name: 'AKAAI Combat',
+      businessModel: 'CREDIT',
+      client: 'Athlete',
+      provider: 'Coach',
+      service: 'Workout',
+      establishment: 'Gym',
+      category: 'Modality'
+    },
     clinic: {
-      name: 'Medical Clinic',
+      name: 'AKAAI Med',
       businessModel: 'MONETARY',
       client: 'Patient',
       provider: 'Doctor',
@@ -642,7 +660,7 @@ export const nicheDictionary = {
       category: 'Specialty'
     },
     beauty: {
-      name: 'Beauty & Aesthetics',
+      name: 'AKAAI Glow',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Professional',
@@ -651,7 +669,7 @@ export const nicheDictionary = {
       category: 'Service'
     },
     aesthetics: {
-      name: 'Aesthetics',
+      name: 'AKAAI Glow',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Aesthetician',
@@ -660,7 +678,7 @@ export const nicheDictionary = {
       category: 'Procedure'
     },
     pilates: {
-      name: 'Pilates',
+      name: 'AKAAI Zen',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Instructor',
@@ -669,7 +687,7 @@ export const nicheDictionary = {
       category: 'Level'
     },
     yoga: {
-      name: 'Yoga',
+      name: 'AKAAI Zen',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Instructor',
@@ -678,7 +696,7 @@ export const nicheDictionary = {
       category: 'Style'
     },
     barber: {
-      name: 'Barbershop',
+      name: 'AKAAI Barber',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Barber',
@@ -687,7 +705,7 @@ export const nicheDictionary = {
       category: 'Service'
     },
     spa: {
-      name: 'Spa',
+      name: 'AKAAI Glow',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Therapist',
@@ -696,7 +714,7 @@ export const nicheDictionary = {
       category: 'Treatment'
     },
     physio: {
-      name: 'Physiotherapy',
+      name: 'AKAAI Fisio',
       businessModel: 'MONETARY',
       client: 'Patient',
       provider: 'Physiotherapist',
@@ -705,7 +723,7 @@ export const nicheDictionary = {
       category: 'Treatment'
     },
     nutrition: {
-      name: 'Nutrition',
+      name: 'AKAAI Nutri',
       businessModel: 'MONETARY',
       client: 'Patient',
       provider: 'Nutritionist',
@@ -714,7 +732,7 @@ export const nicheDictionary = {
       category: 'Plan'
     },
     podiatry: {
-      name: 'Podiatry',
+      name: 'AKAAI Feet',
       businessModel: 'MONETARY',
       client: 'Patient',
       provider: 'Podiatrist',
@@ -723,7 +741,7 @@ export const nicheDictionary = {
       category: 'Service'
     },
     tanning: {
-      name: 'Tanning',
+      name: 'AKAAI Sun',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Attendant',
@@ -732,7 +750,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     pet_shop: {
-      name: 'Pet Shop',
+      name: 'AKAAI Pet',
       businessModel: 'MONETARY',
       client: 'Owner',
       provider: 'Groomer',
@@ -741,7 +759,7 @@ export const nicheDictionary = {
       category: 'Service'
     },
     vet: {
-      name: 'Veterinary',
+      name: 'AKAAI Vet',
       businessModel: 'MONETARY',
       client: 'Owner',
       provider: 'Veterinarian',
@@ -750,7 +768,7 @@ export const nicheDictionary = {
       category: 'Specialty'
     },
     dog_daycare: {
-      name: 'Dog Daycare',
+      name: 'AKAAI Pet',
       businessModel: 'CREDIT',
       client: 'Owner',
       provider: 'Staff',
@@ -759,7 +777,7 @@ export const nicheDictionary = {
       category: 'Activity'
     },
     dog_trainer: {
-      name: 'Dog Training',
+      name: 'AKAAI K9',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Trainer',
@@ -768,7 +786,7 @@ export const nicheDictionary = {
       category: 'Level'
     },
     pet_hotel: {
-      name: 'Pet Hotel',
+      name: 'AKAAI Pet',
       businessModel: 'MONETARY',
       client: 'Guest',
       provider: 'Caretaker',
@@ -777,7 +795,7 @@ export const nicheDictionary = {
       category: 'Accommodation'
     },
     martial_arts: {
-      name: 'Martial Arts',
+      name: 'AKAAI Combat',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Sensei',
@@ -786,7 +804,7 @@ export const nicheDictionary = {
       category: 'Modality'
     },
     crossfit: {
-      name: 'Crossfit',
+      name: 'AKAAI Combat',
       businessModel: 'CREDIT',
       client: 'Athlete',
       provider: 'Coach',
@@ -795,7 +813,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     swim_school: {
-      name: 'Swimming',
+      name: 'AKAAI Aqua',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Instructor',
@@ -804,7 +822,7 @@ export const nicheDictionary = {
       category: 'Level'
     },
     personal: {
-      name: 'Personal Trainer',
+      name: 'AKAAI Fit',
       businessModel: 'MONETARY',
       client: 'Student',
       provider: 'Personal',
@@ -813,7 +831,7 @@ export const nicheDictionary = {
       category: 'Focus'
     },
     beach_tennis: {
-      name: 'Beach Tennis',
+      name: 'AKAAI Court',
       businessModel: 'CREDIT',
       client: 'Player',
       provider: 'Teacher',
@@ -822,7 +840,7 @@ export const nicheDictionary = {
       category: 'Level'
     },
     music_school: {
-      name: 'Music School',
+      name: 'AKAAI Music',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Teacher',
@@ -831,7 +849,7 @@ export const nicheDictionary = {
       category: 'Instrument'
     },
     language_school: {
-      name: 'Language School',
+      name: 'AKAAI Lingo',
       businessModel: 'CREDIT',
       client: 'Student',
       provider: 'Teacher',
@@ -840,7 +858,7 @@ export const nicheDictionary = {
       category: 'Language'
     },
     art_studio: {
-      name: 'Art Studio',
+      name: 'AKAAI Art',
       businessModel: 'MONETARY',
       client: 'Student',
       provider: 'Instructor',
@@ -849,7 +867,7 @@ export const nicheDictionary = {
       category: 'Technique'
     },
     cooking_school: {
-      name: 'Gastronomy',
+      name: 'AKAAI Chef',
       businessModel: 'MONETARY',
       client: 'Student',
       provider: 'Chef',
@@ -867,7 +885,7 @@ export const nicheDictionary = {
       category: 'Style'
     },
     auto_detail: {
-      name: 'Auto Detailing',
+      name: 'AKAAI Auto',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Professional',
@@ -876,7 +894,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     mechanic: {
-      name: 'Mechanic Shop',
+      name: 'AKAAI Gear',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Mechanic',
@@ -885,7 +903,7 @@ export const nicheDictionary = {
       category: 'Service'
     },
     car_wash: {
-      name: 'Car Wash',
+      name: 'AKAAI Auto',
       businessModel: 'MONETARY',
       client: 'Subscriber',
       provider: 'Washer',
@@ -903,7 +921,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     interior_design: {
-      name: 'Interior Design',
+      name: 'AKAAI Design',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Designer',
@@ -912,7 +930,7 @@ export const nicheDictionary = {
       category: 'Style'
     },
     party_venue: {
-      name: 'Event Space',
+      name: 'AKAAI CO',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Organizer',
@@ -930,7 +948,7 @@ export const nicheDictionary = {
       category: 'Style'
     },
     coworking: {
-      name: 'Coworking',
+      name: 'AKAAI CO',
       businessModel: 'MONETARY',
       client: 'Coworker',
       provider: 'Manager',
@@ -948,7 +966,7 @@ export const nicheDictionary = {
       category: 'Style'
     },
     tech_repair: {
-      name: 'Tech Repair',
+      name: 'AKAAI Fix',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Technician',
@@ -957,7 +975,7 @@ export const nicheDictionary = {
       category: 'Device'
     },
     law: {
-      name: 'Law',
+      name: 'AKAAI Law',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Lawyer',
@@ -966,7 +984,7 @@ export const nicheDictionary = {
       category: 'Area'
     },
     psychology: {
-      name: 'Psychology',
+      name: 'AKAAI Mind',
       businessModel: 'MONETARY',
       client: 'Patient',
       provider: 'Psychologist',
@@ -975,7 +993,7 @@ export const nicheDictionary = {
       category: 'Approach'
     },
     wine_club: {
-      name: 'Wine Club',
+      name: 'AKAAI Drink',
       businessModel: 'MONETARY',
       client: 'Member',
       provider: 'Sommelier',
@@ -984,7 +1002,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     brewery: {
-      name: 'Brewery',
+      name: 'AKAAI Drink',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Master',
@@ -993,7 +1011,7 @@ export const nicheDictionary = {
       category: 'Style'
     },
     barista: {
-      name: 'Coffee Shop/Barista',
+      name: 'AKAAI Brew',
       businessModel: 'MONETARY',
       client: 'Student',
       provider: 'Barista',
@@ -1011,7 +1029,7 @@ export const nicheDictionary = {
       category: 'Product'
     },
     real_estate: {
-      name: 'Real Estate',
+      name: 'AKAAI Prop',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Realtor',
@@ -1020,7 +1038,7 @@ export const nicheDictionary = {
       category: 'Property'
     },
     consulting: {
-      name: 'Consulting',
+      name: 'AKAAI MKT',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Consultant',
@@ -1029,7 +1047,7 @@ export const nicheDictionary = {
       category: 'Project'
     },
     marketing_agency: {
-      name: 'Marketing Agency',
+      name: 'AKAAI MKT',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Analyst',
@@ -1056,7 +1074,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     travel_agency: {
-      name: 'Travel Agency',
+      name: 'AKAAI Trip',
       businessModel: 'MONETARY',
       client: 'Traveler',
       provider: 'Agent',
@@ -1065,7 +1083,7 @@ export const nicheDictionary = {
       category: 'Destination'
     },
     insurance: {
-      name: 'Insurance Brokerage',
+      name: 'AKAAI Safe',
       businessModel: 'MONETARY',
       client: 'Insured',
       provider: 'Broker',
@@ -1074,7 +1092,7 @@ export const nicheDictionary = {
       category: 'Type'
     },
     landscaping: {
-      name: 'Landscaping',
+      name: 'AKAAI Design',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Landscaper',
@@ -1101,7 +1119,7 @@ export const nicheDictionary = {
       category: 'Service'
     },
     construction: {
-      name: 'Construction',
+      name: 'AKAAI Build',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Engineer',
@@ -1110,7 +1128,7 @@ export const nicheDictionary = {
       category: 'Stage'
     },
     fire_protection: {
-      name: 'Fire Protection & PPCI',
+      name: 'AKAAI Fire',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Technician',
@@ -1119,7 +1137,7 @@ export const nicheDictionary = {
       category: 'Equipment'
     },
     environmental_compliance: {
-      name: 'Environmental Compliance & Engineering',
+      name: 'AKAAI Eco',
       businessModel: 'MONETARY',
       client: 'Client / Rural Owner',
       provider: 'Engineer / Technician',
@@ -1128,7 +1146,7 @@ export const nicheDictionary = {
       category: 'Service Type'
     },
     logistics: {
-      name: 'Logistics',
+      name: 'AKAAI Log',
       businessModel: 'MONETARY',
       client: 'Client',
       provider: 'Delivery Person',
@@ -1182,7 +1200,7 @@ export const nicheDictionary = {
       category: 'Category'
     },
     sports_center: {
-      name: 'Sports Center',
+      name: 'AKAAI Court',
       businessModel: 'CREDIT',
       client: 'Athlete',
       provider: 'Instructor',
@@ -1191,7 +1209,7 @@ export const nicheDictionary = {
       category: 'Sport'
     },
     clinic_vet: {
-      name: 'Veterinary Clinic',
+      name: 'AKAAI Vet',
       businessModel: 'MONETARY',
       client: 'Owner',
       provider: 'Veterinarian',

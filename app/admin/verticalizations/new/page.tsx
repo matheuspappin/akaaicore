@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { AdminHeader } from "@/components/admin/admin-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import { supabase } from "@/lib/supabase"
-import { createVerticalization } from "@/lib/actions/verticalization"
+import { createVerticalization, getVerticalizations, type VerticalRecord } from "@/lib/actions/verticalization"
 import { nicheDictionary, NicheType } from "@/config/niche-dictionary"
 import { getDefaultModulesForNiche } from "@/config/niche-modules"
 import { Switch } from "@/components/ui/switch"
@@ -112,12 +112,30 @@ function slugify(text: string): string {
     .trim()
 }
 
-export default function NewVerticalizationPage() {
+function NewVerticalizationContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const cloneFromId = searchParams.get('clone')
+
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [tagInput, setTagInput] = useState('')
   const [slugEdited, setSlugEdited] = useState(false)
+  const [verticalizations, setVerticalizations] = useState<VerticalRecord[]>([])
+  const [isCloning, setIsCloning] = useState(false)
+
+  // Load existing verticalizations for cloning
+  useEffect(() => {
+    async function loadVerticalizations() {
+      try {
+        const data = await getVerticalizations()
+        setVerticalizations(data || [])
+      } catch (err) {
+        console.error("Erro ao carregar verticalizações", err)
+      }
+    }
+    loadVerticalizations()
+  }, [])
 
   const [formData, setFormData] = useState({
     name: '',
@@ -136,20 +154,93 @@ export default function NewVerticalizationPage() {
     getDefaultModulesForNiche('fire_protection' as NicheType)
   )
   const [modulePreset, setModulePreset] = useState<string>('custom')
+  const [selectedCloneId, setSelectedCloneId] = useState<string>(cloneFromId || 'none')
+
+  // Auto-clone se vier na URL
+  useEffect(() => {
+    if (cloneFromId && verticalizations.length > 0 && selectedCloneId !== cloneFromId) {
+      handleClone(cloneFromId)
+    }
+  }, [cloneFromId, verticalizations])
+
+  const handleClone = (idOrSlug: string) => {
+    if (idOrSlug === 'none') {
+      setSelectedCloneId('none')
+      setFormData({
+        name: '',
+        slug: '',
+        description: '',
+        niche: 'fire_protection' as NicheType,
+        icon_name: 'Layers',
+        icon_color: 'text-indigo-400',
+        icon_bg: 'bg-indigo-500/10 border-indigo-500/20',
+        landing_url: '',
+        admin_url: '',
+        status: 'coming_soon',
+        tags: [],
+      })
+      setSlugEdited(false)
+      setModules(getDefaultModulesForNiche('fire_protection' as NicheType))
+      setModulePreset('custom')
+      return
+    }
+
+    const source = verticalizations.find(v => v.id === idOrSlug || v.slug === idOrSlug)
+    if (!source) return
+
+    setSelectedCloneId(source.id)
+    setIsCloning(true)
+
+    setFormData({
+      name: source.name ? `${source.name} (Cópia)` : 'Cópia',
+      slug: '', // Vai auto-gerar baseado no nome acima
+      description: source.description || '',
+      niche: (source.niche || 'fire_protection') as NicheType,
+      icon_name: source.icon_name || 'Layers',
+      icon_color: source.icon_color || 'text-indigo-400',
+      icon_bg: source.icon_bg || 'bg-indigo-500/10 border-indigo-500/20',
+      landing_url: '',
+      admin_url: '',
+      status: source.status || 'coming_soon',
+      tags: source.tags ? [...source.tags] : [],
+    })
+    setSlugEdited(false)
+    setModules(source.modules ? { ...source.modules } : {})
+    setModulePreset('custom')
+
+    toast.success(`Configurações de ${source.name || 'solução'} copiadas!`)
+    setIsCloning(false)
+  }
 
   // Auto-gera slug a partir do nome
   useEffect(() => {
-    if (!slugEdited && formData.name) {
+    if (!slugEdited && formData.name && formData.slug !== slugify(formData.name)) {
       setFormData(prev => ({ ...prev, slug: slugify(prev.name) }))
     }
-  }, [formData.name, slugEdited])
+  }, [formData.name, slugEdited, formData.slug])
 
-  // Atualiza módulos quando o nicho muda (aplica padrão do nicho)
-  useEffect(() => {
-    setModules(getDefaultModulesForNiche(formData.niche))
-    setModulePreset('custom')
-  }, [formData.niche])
+  const handleNicheChange = (v: string) => {
+    setTimeout(() => {
+      const newNiche = v as NicheType;
+      setFormData(prev => ({ ...prev, niche: newNiche }))
+      
+      // Se não estiver clonando, atualiza os módulos para o padrão do novo nicho
+      // Se estiver clonando, mantém os módulos que vieram do clone (a menos que o usuário queira resetar)
+      if (selectedCloneId === 'none') {
+        setModules(prev => {
+          const newModules = getDefaultModulesForNiche(newNiche);
+          if (JSON.stringify(prev) === JSON.stringify(newModules)) return prev;
+          return newModules;
+        })
+        setModulePreset('custom')
+      } else {
+        toast.info(`Nicho alterado para ${nicheDictionary.pt[newNiche]?.name || newNiche}. Os módulos clonados foram mantidos.`)
+      }
+    }, 0);
+  }
 
+  const sourceVertical = selectedCloneId !== 'none' ? verticalizations.find(v => v.id === selectedCloneId) : null
+  
   const selectedIcon = ICON_OPTIONS.find(i => i.name === formData.icon_name) || ICON_OPTIONS[0]
   const selectedPalette = COLOR_PALETTES.find(p => p.iconColor === formData.icon_color) || COLOR_PALETTES[0]
   const selectedStatus = STATUS_OPTIONS.find(s => s.value === formData.status) || STATUS_OPTIONS[2]
@@ -176,11 +267,11 @@ export default function NewVerticalizationPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.name.trim()) {
+    if (!(formData.name || '').trim()) {
       toast.error('O nome da solução é obrigatório.')
       return
     }
-    if (!formData.description.trim()) {
+    if (!(formData.description || '').trim()) {
       toast.error('A descrição é obrigatória.')
       return
     }
@@ -193,10 +284,15 @@ export default function NewVerticalizationPage() {
         return
       }
 
+      const sourceSlug = selectedCloneId !== 'none' 
+        ? verticalizations.find(v => v.id === selectedCloneId)?.slug 
+        : undefined
+
       await createVerticalization({
         ...formData,
         modules,
         accessToken: session.access_token,
+        source_slug: sourceSlug
       })
 
       setSuccess(true)
@@ -298,6 +394,46 @@ export default function NewVerticalizationPage() {
           {/* Coluna Principal */}
           <div className="lg:col-span-2 space-y-6">
 
+            {/* Clonar Existente */}
+            {verticalizations.length > 0 && (
+              <Card className="bg-zinc-950/50 border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <RefreshCw className="w-5 h-5 text-indigo-400" />
+                    Clonar Solução Existente
+                  </CardTitle>
+                  <CardDescription>
+                    Copie todas as configurações (módulos, nicho, tags, cores) de uma verticalização já existente para acelerar a criação.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-4">
+                    <Select
+                      value={selectedCloneId}
+                      onValueChange={handleClone}
+                      disabled={isCloning}
+                    >
+                      <SelectTrigger className="bg-black border-slate-700 text-white focus:border-indigo-500 flex-1">
+                        <SelectValue placeholder="Selecione uma verticalização para clonar..." />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px] bg-zinc-950 border-slate-700">
+                        <SelectItem value="none" className="text-slate-400 italic">Não clonar (criar do zero)</SelectItem>
+                        {verticalizations.map((v) => (
+                          <SelectItem key={v.id} value={v.id} className="text-slate-200 focus:bg-zinc-900">
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold">{v.name}</span>
+                              <span className="text-xs text-zinc-500">({v.slug})</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {isCloning && <Loader2 className="w-5 h-5 animate-spin text-indigo-400" />}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Identidade da Solução */}
             <Card className="bg-zinc-950/50 border-zinc-800">
               <CardHeader>
@@ -348,11 +484,21 @@ export default function NewVerticalizationPage() {
             </Card>
 
             {/* Nicho e Configurações */}
-            <Card className="bg-zinc-950/50 border-zinc-800">
+            <Card className={cn(
+              "bg-zinc-950/50 border-zinc-800 transition-all",
+              selectedCloneId !== 'none' && "border-violet-500/30 ring-1 ring-violet-500/10"
+            )}>
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-violet-400" />
-                  Nicho e Configurações
+                <CardTitle className="text-white flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-5 h-5 text-violet-400" />
+                    Nicho e Configurações
+                  </div>
+                  {selectedCloneId !== 'none' && sourceVertical && (
+                    <Badge variant="outline" className="bg-violet-500/10 text-violet-400 border-violet-500/20 gap-1 font-medium">
+                      Origem: {nicheDictionary.pt[sourceVertical.niche as NicheType]?.name || sourceVertical.niche}
+                    </Badge>
+                  )}
                 </CardTitle>
                 <CardDescription>Segmento de mercado e status de lançamento.</CardDescription>
               </CardHeader>
@@ -361,18 +507,20 @@ export default function NewVerticalizationPage() {
                   <Label className="text-slate-300">Nicho de Mercado</Label>
                   <Select
                     value={formData.niche}
-                    onValueChange={v => setFormData(prev => ({ ...prev, niche: v as NicheType }))}
+                    onValueChange={handleNicheChange}
                   >
                     <SelectTrigger className="bg-black border-slate-700 text-white focus:border-indigo-500">
-                      <SelectValue />
+                      <SelectValue placeholder="Selecione o nicho" />
                     </SelectTrigger>
                     <SelectContent className="max-h-[300px] bg-zinc-950 border-slate-700">
                       {Object.entries(nicheDictionary.pt).map(([key, value]) => (
                         <SelectItem key={key} value={key} className="text-slate-200 focus:bg-zinc-900">
-                          <span className="font-bold">{value.name}</span>
-                          <span className="ml-2 text-xs text-zinc-500 italic">
-                            ({value.establishment}, {value.client})
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold">{value.name}</span>
+                            <span className="text-xs text-zinc-500 italic">
+                              ({value.establishment}, {value.client})
+                            </span>
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -431,14 +579,28 @@ export default function NewVerticalizationPage() {
             </Card>
 
             {/* Módulos Ativos */}
-            <Card className="bg-zinc-950/50 border-zinc-800">
+            <Card className={cn(
+              "bg-zinc-950/50 border-zinc-800 transition-all",
+              selectedCloneId !== 'none' && "border-indigo-500/30 ring-1 ring-indigo-500/10"
+            )}>
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
-                  <Puzzle className="w-5 h-5 text-indigo-400" />
-                  Módulos Ativos
+                <CardTitle className="text-white flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Puzzle className="w-5 h-5 text-indigo-400" />
+                    Módulos Ativos
+                  </div>
+                  {selectedCloneId !== 'none' && sourceVertical && (
+                    <Badge variant="outline" className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 gap-1 font-medium">
+                      <RefreshCw className="w-3 h-3 animate-spin-slow" />
+                      Clonado de {sourceVertical.name}
+                    </Badge>
+                  )}
                 </CardTitle>
                 <CardDescription>
-                  Selecione o que estará disponível neste plano.
+                  {selectedCloneId !== 'none' 
+                    ? `Estes módulos foram copiados de ${sourceVertical?.name}. Você pode personalizá-los abaixo.`
+                    : 'Selecione o que estará disponível neste plano.'
+                  }
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col gap-6">
@@ -742,7 +904,7 @@ export default function NewVerticalizationPage() {
             <Button
               type="submit"
               className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-lg shadow-indigo-500/20"
-              disabled={loading || !formData.name.trim() || !formData.description.trim()}
+              disabled={loading || !(formData.name || '').trim() || !(formData.description || '').trim()}
             >
               {loading ? (
                 <>
@@ -760,5 +922,13 @@ export default function NewVerticalizationPage() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function NewVerticalizationPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-indigo-500" /></div>}>
+      <NewVerticalizationContent />
+    </Suspense>
   )
 }

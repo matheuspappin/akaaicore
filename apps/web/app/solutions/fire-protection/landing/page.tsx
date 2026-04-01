@@ -60,7 +60,7 @@ function Navbar() {
             </div>
           </div>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-cyan-200/90">
-            Fire<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-cyan-400 font-black">Control</span>
+            AKAAI <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-cyan-400 font-black">Fire</span>
           </span>
         </Link>
 
@@ -676,7 +676,7 @@ function Footer() {
     <footer className="text-slate-400 py-12 border-t border-white/10 text-center backdrop-blur-sm">
       <div className="flex items-center justify-center gap-2 mb-6 font-bold text-xl text-white">
         <FireExtinguisher className="w-6 h-6 text-orange-500" />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-cyan-400">FireControl</span>
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-cyan-400">AKAAI Fire</span>
       </div>
       <p className="mb-8 text-xs max-w-md mx-auto text-slate-400">A plataforma líder em gestão para empresas de extintores no Brasil.</p>
       <div className="flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest mb-8">

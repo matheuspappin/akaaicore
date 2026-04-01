@@ -200,7 +200,7 @@ export default function MatriculaPublicPage() {
 
             {/* Already have account? */}
             <p className="text-center text-sm text-slate-500">
-              Já tem conta no DanceFlow?{" "}
+              Já tem conta no AKAAI Dance?{" "}
               <Link href={registerUrl} className="text-violet-400 hover:text-violet-300 font-bold underline underline-offset-4">
                 Entrar com login
               </Link>

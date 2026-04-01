@@ -571,19 +571,19 @@ function RegisterContent() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="admin">
-                      <div className="flex items-center gap-2">
+                      <span className="flex items-center gap-2">
                         <Building2 className="w-4 h-4" /> {v(t.auth.register.businessOwner)}
-                      </div>
+                      </span>
                     </SelectItem>
                     <SelectItem value="student">
-                      <div className="flex items-center gap-2">
+                      <span className="flex items-center gap-2">
                         <User className="w-4 h-4" /> {v(t.auth.register.clientStudent)}
-                      </div>
+                      </span>
                     </SelectItem>
                     <SelectItem value="teacher">
-                      <div className="flex items-center gap-2">
+                      <span className="flex items-center gap-2">
                         <GraduationCap className="w-4 h-4" /> {v(t.auth.register.professional)}
-                      </div>
+                      </span>
                     </SelectItem>
                   </SelectContent>
                 </Select>
@@ -783,16 +783,16 @@ function RegisterContent() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="CREDIT">
-                            <div className="flex flex-col">
+                            <span className="flex flex-col">
                               <span className="font-bold">{v(t.auth.register.businessModelCredit)}</span>
                               <span className="text-[10px] text-muted-foreground">{v(t.auth.register.businessModelCreditDesc)}</span>
-                            </div>
+                            </span>
                           </SelectItem>
                           <SelectItem value="MONETARY">
-                            <div className="flex flex-col">
+                            <span className="flex flex-col">
                               <span className="font-bold">{v(t.auth.register.businessModelMonetary)}</span>
                               <span className="text-[10px] text-muted-foreground">{v(t.auth.register.businessModelMonetaryDesc)}</span>
-                            </div>
+                            </span>
                           </SelectItem>
                         </SelectContent>
                       </Select>

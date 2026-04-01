@@ -7,7 +7,7 @@ import {
   Plus, Layers, Globe, Zap, Shield, Truck, Building2, Heart, Scissors,
   Dumbbell, ChefHat, Stethoscope, Hammer, Home, BookOpen, Wrench,
   Car, Leaf, Music, Camera, ShoppingCart, Briefcase, GraduationCap,
-  Package, Star,
+  Package, Star, Copy,
 } from "lucide-react"
 import { getVerticalizations, type VerticalRecord } from "@/lib/actions/verticalization"
 
@@ -102,12 +102,22 @@ function VerticalCard({ v }: { v: VerticalRecord }) {
               <ArrowRight className="w-3.5 h-3.5" />
             </Button>
           </Link>
+          <Link href={`/admin/verticalizations/new?clone=${v.id}`}>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-slate-700 text-zinc-400 hover:text-white hover:border-indigo-400 transition-colors"
+              title="Clonar Verticalização"
+            >
+              <Copy className="w-3.5 h-3.5" />
+            </Button>
+          </Link>
           {v.landing_url && (
             <Link href={v.landing_url} target="_blank">
               <Button
                 variant="outline"
                 size="sm"
-                className="border-slate-700 text-zinc-400 hover:text-white hover:border-slate-600"
+                className="border-slate-700 text-zinc-400 hover:text-white hover:border-slate-600 transition-colors"
                 title="Abrir landing page"
               >
                 <ExternalLink className="w-3.5 h-3.5" />

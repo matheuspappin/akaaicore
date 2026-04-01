@@ -122,7 +122,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
             <Music className="w-5 h-5 text-white" />
           </div>
           <div>
-            <span className="font-black text-white tracking-tighter text-base block leading-tight">DanceFlow</span>
+            <span className="font-black text-white tracking-tighter text-base block leading-tight">AKAAI Dance</span>
             <span className="text-[10px] text-violet-400 font-bold uppercase tracking-widest">Portal do Aluno</span>
           </div>
         </Link>

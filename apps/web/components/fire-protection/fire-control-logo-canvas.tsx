@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react"
 
-export function FireControlLogoCanvas({ className }: { className?: string }) {
+export function FireControlLogoCanvas({ className, text = "FireControl" }: { className?: string, text?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const timeRef = useRef(0)
   const animRef = useRef<number>(0)
@@ -61,13 +61,13 @@ export function FireControlLogoCanvas({ className }: { className?: string }) {
       glowGrad.addColorStop(0.5, `rgba(220, 38, 38, ${0.04 * glowPulse})`)
       glowGrad.addColorStop(1, "transparent")
       ctx.fillStyle = glowGrad
-      ctx.fillText("FireControl", logoX, logoY)
+      ctx.fillText(text, logoX, logoY)
 
       // Outline escuro para definição
       ctx.strokeStyle = `rgba(0, 0, 0, ${0.6})`
       ctx.lineWidth = logoSize * 0.06
       ctx.lineJoin = "round"
-      ctx.strokeText("FireControl", logoX, logoY)
+      ctx.strokeText(text, logoX, logoY)
 
       // Gradiente animado: Fire (branco/laranja) → Control (vermelho → ciano)
       const grad = ctx.createLinearGradient(logoX - 120, 0, logoX + 120, 0)
@@ -79,7 +79,7 @@ export function FireControlLogoCanvas({ className }: { className?: string }) {
       grad.addColorStop(0.8, `rgba(180, 120, 180, ${firePhase * 0.95})`)
       grad.addColorStop(1, `rgba(80, 160, 255, ${firePhase * 0.9})`)
       ctx.fillStyle = grad
-      ctx.fillText("FireControl", logoX, logoY)
+      ctx.fillText(text, logoX, logoY)
 
       animRef.current = requestAnimationFrame(animate)
     }
@@ -90,7 +90,7 @@ export function FireControlLogoCanvas({ className }: { className?: string }) {
       cancelAnimationFrame(animRef.current)
       ro.disconnect()
     }
-  }, [])
+  }, [text])
 
   return (
     <canvas

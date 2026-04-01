@@ -47,7 +47,7 @@ const SCANNER_TEXTS = {
   manualPlaceholder: "DF-XXXXXXXX ou 8 caracteres",
 }
 
-export default function DanceFlowScannerPage() {
+export default function AKAAI DanceScannerPage() {
   const { toast } = useToast()
   const [adminData, setAdminData] = useState<any>(null)
   const [isScanning, setIsScanning] = useState(false)
@@ -150,7 +150,7 @@ export default function DanceFlowScannerPage() {
       }
       throw lastErr || new Error(SCANNER_TEXTS.cameraNotFound)
     } catch (err: any) {
-      logger.error("Erro no scanner DanceFlow:", err)
+      logger.error("Erro no scanner AKAAI Dance:", err)
       let msg = SCANNER_TEXTS.cameraPermission
       if (err.name === "NotAllowedError" || err.toString().includes("Permission denied")) {
         msg = SCANNER_TEXTS.cameraPermission

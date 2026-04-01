@@ -1,0 +1,1230 @@
+{
+  "pt": {
+    "dance": {
+      "name": "AKAAI Dance",
+      "businessModel": "CREDIT",
+      "client": "Aluno",
+      "provider": "Professor",
+      "service": "Aula",
+      "establishment": "Estúdio",
+      "category": "Modalidade"
+    },
+    "dentist": {
+      "name": "AKAAI Smile",
+      "businessModel": "MONETARY",
+      "client": "Paciente",
+      "provider": "Doutor",
+      "service": "Consulta",
+      "establishment": "Consultório",
+      "category": "Especialidade"
+    },
+    "gym": {
+      "name": "AKAAI Fit",
+      "businessModel": "CREDIT",
+      "client": "Membro",
+      "provider": "Instrutor",
+      "service": "Treino",
+      "establishment": "Academia",
+      "category": "Modalidade"
+    },
+    "boxing": {
+      "name": "AKAAI Combat",
+      "businessModel": "CREDIT",
+      "client": "Atleta",
+      "provider": "Treinador",
+      "service": "Treino",
+      "establishment": "Academia",
+      "category": "Modalidade"
+    },
+    "clinic": {
+      "name": "AKAAI Med",
+      "businessModel": "MONETARY",
+      "client": "Paciente",
+      "provider": "Médico",
+      "service": "Exame",
+      "establishment": "Clínica",
+      "category": "Especialidade"
+    },
+    "beauty": {
+      "name": "AKAAI Glow",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Procedimento",
+      "establishment": "Salão",
+      "category": "Serviço"
+    },
+    "aesthetics": {
+      "name": "AKAAI Glow",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Esteticista",
+      "service": "Sessão",
+      "establishment": "Clínica",
+      "category": "Procedimento"
+    },
+    "pilates": {
+      "name": "AKAAI Zen",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Studio",
+      "category": "Nível"
+    },
+    "yoga": {
+      "name": "AKAAI Zen",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Prática",
+      "establishment": "Studio",
+      "category": "Estilo"
+    },
+    "barber": {
+      "name": "AKAAI Barber",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Barbeiro",
+      "service": "Corte",
+      "establishment": "Barbearia",
+      "category": "Serviço"
+    },
+    "spa": {
+      "name": "AKAAI Glow",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Terapeuta",
+      "service": "Massagem",
+      "establishment": "Spa",
+      "category": "Tratamento"
+    },
+    "physio": {
+      "name": "AKAAI Fisio",
+      "businessModel": "MONETARY",
+      "client": "Paciente",
+      "provider": "Fisioterapeuta",
+      "service": "Sessão",
+      "establishment": "Clínica",
+      "category": "Tratamento"
+    },
+    "nutrition": {
+      "name": "AKAAI Nutri",
+      "businessModel": "MONETARY",
+      "client": "Paciente",
+      "provider": "Nutricionista",
+      "service": "Consulta",
+      "establishment": "Consultório",
+      "category": "Plano"
+    },
+    "podiatry": {
+      "name": "AKAAI Feet",
+      "businessModel": "MONETARY",
+      "client": "Paciente",
+      "provider": "Podólogo",
+      "service": "Atendimento",
+      "establishment": "Consultório",
+      "category": "Serviço"
+    },
+    "tanning": {
+      "name": "AKAAI Sun",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Atendente",
+      "service": "Sessão",
+      "establishment": "Studio",
+      "category": "Tipo"
+    },
+    "pet_shop": {
+      "name": "AKAAI Pet",
+      "businessModel": "MONETARY",
+      "client": "Tutor",
+      "provider": "Tosador",
+      "service": "Banho/Tosa",
+      "establishment": "Pet Shop",
+      "category": "Serviço"
+    },
+    "vet": {
+      "name": "AKAAI Vet",
+      "businessModel": "MONETARY",
+      "client": "Tutor",
+      "provider": "Veterinário",
+      "service": "Consulta",
+      "establishment": "Clínica",
+      "category": "Especialidade"
+    },
+    "dog_daycare": {
+      "name": "AKAAI Pet",
+      "businessModel": "CREDIT",
+      "client": "Tutor",
+      "provider": "Monitor",
+      "service": "Diária",
+      "establishment": "Creche",
+      "category": "Atividade"
+    },
+    "dog_trainer": {
+      "name": "AKAAI K9",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Centro",
+      "category": "Nível"
+    },
+    "pet_hotel": {
+      "name": "AKAAI Pet",
+      "businessModel": "MONETARY",
+      "client": "Hóspede",
+      "provider": "Cuidador",
+      "service": "Hospedagem",
+      "establishment": "Hotel",
+      "category": "Acomodação"
+    },
+    "martial_arts": {
+      "name": "AKAAI Combat",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Treino",
+      "establishment": "Dojo",
+      "category": "Modalidade"
+    },
+    "crossfit": {
+      "name": "AKAAI Combat",
+      "businessModel": "CREDIT",
+      "client": "Atleta",
+      "provider": "Coach",
+      "service": "WOD",
+      "establishment": "Box",
+      "category": "Tipo"
+    },
+    "swim_school": {
+      "name": "AKAAI Aqua",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Escola",
+      "category": "Nível"
+    },
+    "personal": {
+      "name": "AKAAI Fit",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Treino",
+      "establishment": "Consultoria",
+      "category": "Foco"
+    },
+    "beach_tennis": {
+      "name": "AKAAI Court",
+      "businessModel": "CREDIT",
+      "client": "Jogador",
+      "provider": "Professor",
+      "service": "Aula",
+      "establishment": "Arena",
+      "category": "Nível"
+    },
+    "music_school": {
+      "name": "AKAAI Music",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Escola",
+      "category": "Instrumento"
+    },
+    "language_school": {
+      "name": "AKAAI Lingo",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Escola",
+      "category": "Idioma"
+    },
+    "art_studio": {
+      "name": "AKAAI Art",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Workshop",
+      "establishment": "Ateliê",
+      "category": "Técnica"
+    },
+    "cooking_school": {
+      "name": "AKAAI Chef",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Escola",
+      "category": "Culinária"
+    },
+    "photography": {
+      "name": "AKAAI Focus",
+      "businessModel": "CREDIT",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Curso",
+      "establishment": "Escola",
+      "category": "Estilo"
+    },
+    "auto_detail": {
+      "name": "AKAAI Auto",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Serviço",
+      "establishment": "Estética Automotiva",
+      "category": "Tipo"
+    },
+    "mechanic": {
+      "name": "AKAAI Gear",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Mecânico",
+      "service": "Reparo",
+      "establishment": "Oficina",
+      "category": "Serviço"
+    },
+    "car_wash": {
+      "name": "AKAAI Auto",
+      "businessModel": "MONETARY",
+      "client": "Assinante",
+      "provider": "Lavador",
+      "service": "Lavagem",
+      "establishment": "Lava-jato",
+      "category": "Tipo"
+    },
+    "cleaning": {
+      "name": "Serviços de Limpeza",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Limpeza",
+      "establishment": "Empresa",
+      "category": "Tipo"
+    },
+    "interior_design": {
+      "name": "AKAAI Design",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Designer",
+      "service": "Projeto",
+      "establishment": "Escritório",
+      "category": "Estilo"
+    },
+    "party_venue": {
+      "name": "AKAAI CO",
+      "businessModel": "MONETARY",
+      "client": "Contratante",
+      "provider": "Organizador",
+      "service": "Evento",
+      "establishment": "Espaço",
+      "category": "Tipo"
+    },
+    "photographer": {
+      "name": "AKAAI Focus",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Fotógrafo",
+      "service": "Ensaio",
+      "establishment": "Estúdio",
+      "category": "Estilo"
+    },
+    "coworking": {
+      "name": "AKAAI CO",
+      "businessModel": "MONETARY",
+      "client": "Coworker",
+      "provider": "Gestor",
+      "service": "Reserva",
+      "establishment": "Coworking",
+      "category": "Espaço"
+    },
+    "tattoo": {
+      "name": "Tattoo & Piercing",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Tatuador",
+      "service": "Sessão",
+      "establishment": "Estúdio",
+      "category": "Estilo"
+    },
+    "tech_repair": {
+      "name": "AKAAI Fix",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Técnico",
+      "service": "Reparo",
+      "establishment": "Assistência",
+      "category": "Aparelho"
+    },
+    "law": {
+      "name": "AKAAI Law",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Advogado",
+      "service": "Processo",
+      "establishment": "Escritório",
+      "category": "Área"
+    },
+    "psychology": {
+      "name": "AKAAI Mind",
+      "businessModel": "MONETARY",
+      "client": "Paciente",
+      "provider": "Psicólogo",
+      "service": "Sessão",
+      "establishment": "Consultório",
+      "category": "Abordagem"
+    },
+    "wine_club": {
+      "name": "AKAAI Drink",
+      "businessModel": "MONETARY",
+      "client": "Sócio",
+      "provider": "Sommelier",
+      "service": "Degustação",
+      "establishment": "Clube",
+      "category": "Tipo"
+    },
+    "brewery": {
+      "name": "AKAAI Drink",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Mestre",
+      "service": "Degustação",
+      "establishment": "Cervejaria",
+      "category": "Estilo"
+    },
+    "barista": {
+      "name": "AKAAI Brew",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Curso",
+      "establishment": "Cafeteria",
+      "category": "Grão"
+    },
+    "confectionery": {
+      "name": "AKAAI Brew",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Confeiteiro",
+      "service": "Encomenda",
+      "establishment": "Confeitaria",
+      "category": "Produto"
+    },
+    "real_estate": {
+      "name": "AKAAI Prop",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Corretor",
+      "service": "Visita",
+      "establishment": "Imobiliária",
+      "category": "Imóvel"
+    },
+    "consulting": {
+      "name": "AKAAI MKT",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Consultor",
+      "service": "Reunião",
+      "establishment": "Empresa",
+      "category": "Projeto"
+    },
+    "marketing_agency": {
+      "name": "AKAAI MKT",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Analista",
+      "service": "Campanha",
+      "establishment": "Agência",
+      "category": "Canal"
+    },
+    "dev_studio": {
+      "name": "Desenvolvimento",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Dev",
+      "service": "Sprint",
+      "establishment": "Studio",
+      "category": "Tech"
+    },
+    "event_planning": {
+      "name": "Organização de Eventos",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Organizador",
+      "service": "Evento",
+      "establishment": "Agência",
+      "category": "Tipo"
+    },
+    "travel_agency": {
+      "name": "AKAAI Trip",
+      "businessModel": "MONETARY",
+      "client": "Viajante",
+      "provider": "Agente",
+      "service": "Roteiro",
+      "establishment": "Agência",
+      "category": "Destino"
+    },
+    "insurance": {
+      "name": "AKAAI Safe",
+      "businessModel": "MONETARY",
+      "client": "Segurado",
+      "provider": "Corretor",
+      "service": "Apólice",
+      "establishment": "Corretora",
+      "category": "Ramo"
+    },
+    "landscaping": {
+      "name": "AKAAI Design",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Paisagista",
+      "service": "Manutenção",
+      "establishment": "Empresa",
+      "category": "Área"
+    },
+    "plumbing": {
+      "name": "Encanador",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Encanador",
+      "service": "Reparo",
+      "establishment": "Empresa",
+      "category": "Serviço"
+    },
+    "electrician": {
+      "name": "Eletricista",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Eletricista",
+      "service": "Instalação",
+      "establishment": "Empresa",
+      "category": "Serviço"
+    },
+    "construction": {
+      "name": "AKAAI Build",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Engenheiro",
+      "service": "Obra",
+      "establishment": "Construtora",
+      "category": "Etapa"
+    },
+    "fire_protection": {
+      "name": "AKAAI Fire",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Técnico",
+      "service": "Vistoria/OS",
+      "establishment": "Empresa",
+      "category": "Equipamento"
+    },
+    "environmental_compliance": {
+      "name": "AKAAI Eco",
+      "businessModel": "MONETARY",
+      "client": "Cliente / Proprietário Rural",
+      "provider": "Engenheiro / Técnico",
+      "service": "Laudo / Vistoria / Regularização",
+      "establishment": "Consultoria / Escritório",
+      "category": "Tipo de Serviço"
+    },
+    "logistics": {
+      "name": "AKAAI Log",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Entregador",
+      "service": "Entrega",
+      "establishment": "Transportadora",
+      "category": "Rota"
+    },
+    "tailoring": {
+      "name": "Alfaiataria/Costura",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Costureiro(a)",
+      "service": "Ajuste",
+      "establishment": "Ateliê",
+      "category": "Peça"
+    },
+    "tutoring": {
+      "name": "Aulas Particulares",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula",
+      "establishment": "Local",
+      "category": "Matéria"
+    },
+    "daycare": {
+      "name": "Creche Infantil",
+      "businessModel": "MONETARY",
+      "client": "Responsável",
+      "provider": "Cuidador",
+      "service": "Diária",
+      "establishment": "Creche",
+      "category": "Turma"
+    },
+    "elderly_care": {
+      "name": "Casa de Repouso",
+      "businessModel": "MONETARY",
+      "client": "Residente",
+      "provider": "Cuidador",
+      "service": "Estadia",
+      "establishment": "Casa",
+      "category": "Cuidados"
+    },
+    "driving_school": {
+      "name": "Auto Escola",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Aula Prática",
+      "establishment": "CFC",
+      "category": "Categoria"
+    },
+    "sports_center": {
+      "name": "AKAAI Court",
+      "businessModel": "CREDIT",
+      "client": "Atleta",
+      "provider": "Instrutor",
+      "service": "Treino",
+      "establishment": "Centro",
+      "category": "Esporte"
+    },
+    "clinic_vet": {
+      "name": "AKAAI Vet",
+      "businessModel": "MONETARY",
+      "client": "Tutor",
+      "provider": "Veterinário",
+      "service": "Consulta",
+      "establishment": "Clínica",
+      "category": "Especialidade"
+    },
+    "default_generic": {
+      "name": "Geral",
+      "businessModel": "MONETARY",
+      "client": "Cliente",
+      "provider": "Profissional",
+      "service": "Serviço",
+      "establishment": "Estabelecimento",
+      "category": "Categoria"
+    }
+  },
+  "en": {
+    "dance": {
+      "name": "AKAAI Dance",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Teacher",
+      "service": "Class",
+      "establishment": "Studio",
+      "category": "Modality"
+    },
+    "dentist": {
+      "name": "AKAAI Smile",
+      "businessModel": "MONETARY",
+      "client": "Patient",
+      "provider": "Doctor",
+      "service": "Appointment",
+      "establishment": "Clinic",
+      "category": "Specialty"
+    },
+    "gym": {
+      "name": "AKAAI Fit",
+      "businessModel": "CREDIT",
+      "client": "Member",
+      "provider": "Instructor",
+      "service": "Workout",
+      "establishment": "Gym",
+      "category": "Modality"
+    },
+    "boxing": {
+      "name": "AKAAI Combat",
+      "businessModel": "CREDIT",
+      "client": "Athlete",
+      "provider": "Coach",
+      "service": "Workout",
+      "establishment": "Gym",
+      "category": "Modality"
+    },
+    "clinic": {
+      "name": "AKAAI Med",
+      "businessModel": "MONETARY",
+      "client": "Patient",
+      "provider": "Doctor",
+      "service": "Exam",
+      "establishment": "Clinic",
+      "category": "Specialty"
+    },
+    "beauty": {
+      "name": "AKAAI Glow",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Professional",
+      "service": "Procedure",
+      "establishment": "Salon",
+      "category": "Service"
+    },
+    "aesthetics": {
+      "name": "AKAAI Glow",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Aesthetician",
+      "service": "Session",
+      "establishment": "Clinic",
+      "category": "Procedure"
+    },
+    "pilates": {
+      "name": "AKAAI Zen",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Instructor",
+      "service": "Class",
+      "establishment": "Studio",
+      "category": "Level"
+    },
+    "yoga": {
+      "name": "AKAAI Zen",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Instructor",
+      "service": "Practice",
+      "establishment": "Studio",
+      "category": "Style"
+    },
+    "barber": {
+      "name": "AKAAI Barber",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Barber",
+      "service": "Cut",
+      "establishment": "Barbershop",
+      "category": "Service"
+    },
+    "spa": {
+      "name": "AKAAI Glow",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Therapist",
+      "service": "Massage",
+      "establishment": "Spa",
+      "category": "Treatment"
+    },
+    "physio": {
+      "name": "AKAAI Fisio",
+      "businessModel": "MONETARY",
+      "client": "Patient",
+      "provider": "Physiotherapist",
+      "service": "Session",
+      "establishment": "Clinic",
+      "category": "Treatment"
+    },
+    "nutrition": {
+      "name": "AKAAI Nutri",
+      "businessModel": "MONETARY",
+      "client": "Patient",
+      "provider": "Nutritionist",
+      "service": "Appointment",
+      "establishment": "Office",
+      "category": "Plan"
+    },
+    "podiatry": {
+      "name": "AKAAI Feet",
+      "businessModel": "MONETARY",
+      "client": "Patient",
+      "provider": "Podiatrist",
+      "service": "Service",
+      "establishment": "Office",
+      "category": "Service"
+    },
+    "tanning": {
+      "name": "AKAAI Sun",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Attendant",
+      "service": "Session",
+      "establishment": "Studio",
+      "category": "Type"
+    },
+    "pet_shop": {
+      "name": "AKAAI Pet",
+      "businessModel": "MONETARY",
+      "client": "Owner",
+      "provider": "Groomer",
+      "service": "Grooming",
+      "establishment": "Pet Shop",
+      "category": "Service"
+    },
+    "vet": {
+      "name": "AKAAI Vet",
+      "businessModel": "MONETARY",
+      "client": "Owner",
+      "provider": "Veterinarian",
+      "service": "Appointment",
+      "establishment": "Clinic",
+      "category": "Specialty"
+    },
+    "dog_daycare": {
+      "name": "AKAAI Pet",
+      "businessModel": "CREDIT",
+      "client": "Owner",
+      "provider": "Staff",
+      "service": "Daily",
+      "establishment": "Daycare",
+      "category": "Activity"
+    },
+    "dog_trainer": {
+      "name": "AKAAI K9",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Trainer",
+      "service": "Class",
+      "establishment": "Center",
+      "category": "Level"
+    },
+    "pet_hotel": {
+      "name": "AKAAI Pet",
+      "businessModel": "MONETARY",
+      "client": "Guest",
+      "provider": "Caretaker",
+      "service": "Lodging",
+      "establishment": "Hotel",
+      "category": "Accommodation"
+    },
+    "martial_arts": {
+      "name": "AKAAI Combat",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Sensei",
+      "service": "Workout",
+      "establishment": "Dojo",
+      "category": "Modality"
+    },
+    "crossfit": {
+      "name": "AKAAI Combat",
+      "businessModel": "CREDIT",
+      "client": "Athlete",
+      "provider": "Coach",
+      "service": "WOD",
+      "establishment": "Box",
+      "category": "Type"
+    },
+    "swim_school": {
+      "name": "AKAAI Aqua",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Instructor",
+      "service": "Class",
+      "establishment": "School",
+      "category": "Level"
+    },
+    "personal": {
+      "name": "AKAAI Fit",
+      "businessModel": "MONETARY",
+      "client": "Student",
+      "provider": "Personal",
+      "service": "Workout",
+      "establishment": "Consulting",
+      "category": "Focus"
+    },
+    "beach_tennis": {
+      "name": "AKAAI Court",
+      "businessModel": "CREDIT",
+      "client": "Player",
+      "provider": "Teacher",
+      "service": "Class",
+      "establishment": "Arena",
+      "category": "Level"
+    },
+    "music_school": {
+      "name": "AKAAI Music",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Teacher",
+      "service": "Class",
+      "establishment": "School",
+      "category": "Instrument"
+    },
+    "language_school": {
+      "name": "AKAAI Lingo",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Teacher",
+      "service": "Class",
+      "establishment": "School",
+      "category": "Language"
+    },
+    "art_studio": {
+      "name": "AKAAI Art",
+      "businessModel": "MONETARY",
+      "client": "Student",
+      "provider": "Instructor",
+      "service": "Workshop",
+      "establishment": "Studio",
+      "category": "Technique"
+    },
+    "cooking_school": {
+      "name": "AKAAI Chef",
+      "businessModel": "MONETARY",
+      "client": "Student",
+      "provider": "Chef",
+      "service": "Class",
+      "establishment": "School",
+      "category": "Cuisine"
+    },
+    "photography": {
+      "name": "Photography (School)",
+      "businessModel": "CREDIT",
+      "client": "Student",
+      "provider": "Photographer",
+      "service": "Course",
+      "establishment": "School",
+      "category": "Style"
+    },
+    "auto_detail": {
+      "name": "AKAAI Auto",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Professional",
+      "service": "Service",
+      "establishment": "Auto Detailing Shop",
+      "category": "Type"
+    },
+    "mechanic": {
+      "name": "AKAAI Gear",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Mechanic",
+      "service": "Repair",
+      "establishment": "Workshop",
+      "category": "Service"
+    },
+    "car_wash": {
+      "name": "AKAAI Auto",
+      "businessModel": "MONETARY",
+      "client": "Subscriber",
+      "provider": "Washer",
+      "service": "Wash",
+      "establishment": "Car Wash",
+      "category": "Type"
+    },
+    "cleaning": {
+      "name": "Cleaning Services",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Professional",
+      "service": "Cleaning",
+      "establishment": "Company",
+      "category": "Type"
+    },
+    "interior_design": {
+      "name": "AKAAI Design",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Designer",
+      "service": "Project",
+      "establishment": "Office",
+      "category": "Style"
+    },
+    "party_venue": {
+      "name": "AKAAI CO",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Organizer",
+      "service": "Event",
+      "establishment": "Space",
+      "category": "Type"
+    },
+    "photographer": {
+      "name": "Photographer (Studio)",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Photographer",
+      "service": "Photoshoot",
+      "establishment": "Studio",
+      "category": "Style"
+    },
+    "coworking": {
+      "name": "AKAAI CO",
+      "businessModel": "MONETARY",
+      "client": "Coworker",
+      "provider": "Manager",
+      "service": "Booking",
+      "establishment": "Coworking",
+      "category": "Space"
+    },
+    "tattoo": {
+      "name": "Tattoo & Piercing",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Tattoo Artist",
+      "service": "Session",
+      "establishment": "Studio",
+      "category": "Style"
+    },
+    "tech_repair": {
+      "name": "AKAAI Fix",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Technician",
+      "service": "Repair",
+      "establishment": "Repair Shop",
+      "category": "Device"
+    },
+    "law": {
+      "name": "AKAAI Law",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Lawyer",
+      "service": "Case",
+      "establishment": "Office",
+      "category": "Area"
+    },
+    "psychology": {
+      "name": "AKAAI Mind",
+      "businessModel": "MONETARY",
+      "client": "Patient",
+      "provider": "Psychologist",
+      "service": "Session",
+      "establishment": "Office",
+      "category": "Approach"
+    },
+    "wine_club": {
+      "name": "AKAAI Drink",
+      "businessModel": "MONETARY",
+      "client": "Member",
+      "provider": "Sommelier",
+      "service": "Tasting",
+      "establishment": "Club",
+      "category": "Type"
+    },
+    "brewery": {
+      "name": "AKAAI Drink",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Master",
+      "service": "Tasting",
+      "establishment": "Brewery",
+      "category": "Style"
+    },
+    "barista": {
+      "name": "AKAAI Brew",
+      "businessModel": "MONETARY",
+      "client": "Student",
+      "provider": "Barista",
+      "service": "Course",
+      "establishment": "Coffee Shop",
+      "category": "Bean"
+    },
+    "confectionery": {
+      "name": "Confectionery",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Pastry Chef",
+      "service": "Order",
+      "establishment": "Confectionery",
+      "category": "Product"
+    },
+    "real_estate": {
+      "name": "AKAAI Prop",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Realtor",
+      "service": "Visit",
+      "establishment": "Real Estate Agency",
+      "category": "Property"
+    },
+    "consulting": {
+      "name": "AKAAI MKT",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Consultant",
+      "service": "Meeting",
+      "establishment": "Company",
+      "category": "Project"
+    },
+    "marketing_agency": {
+      "name": "AKAAI MKT",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Analyst",
+      "service": "Campaign",
+      "establishment": "Agency",
+      "category": "Channel"
+    },
+    "dev_studio": {
+      "name": "Development",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Developer",
+      "service": "Sprint",
+      "establishment": "Studio",
+      "category": "Tech"
+    },
+    "event_planning": {
+      "name": "Event Planning",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Organizer",
+      "service": "Event",
+      "establishment": "Agency",
+      "category": "Type"
+    },
+    "travel_agency": {
+      "name": "AKAAI Trip",
+      "businessModel": "MONETARY",
+      "client": "Traveler",
+      "provider": "Agent",
+      "service": "Itinerary",
+      "establishment": "Agency",
+      "category": "Destination"
+    },
+    "insurance": {
+      "name": "AKAAI Safe",
+      "businessModel": "MONETARY",
+      "client": "Insured",
+      "provider": "Broker",
+      "service": "Policy",
+      "establishment": "Brokerage",
+      "category": "Type"
+    },
+    "landscaping": {
+      "name": "AKAAI Design",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Landscaper",
+      "service": "Maintenance",
+      "establishment": "Company",
+      "category": "Area"
+    },
+    "plumbing": {
+      "name": "Plumbing",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Plumber",
+      "service": "Repair",
+      "establishment": "Company",
+      "category": "Service"
+    },
+    "electrician": {
+      "name": "Electrician",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Electrician",
+      "service": "Installation",
+      "establishment": "Company",
+      "category": "Service"
+    },
+    "construction": {
+      "name": "AKAAI Build",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Engineer",
+      "service": "Work",
+      "establishment": "Construction Company",
+      "category": "Stage"
+    },
+    "fire_protection": {
+      "name": "AKAAI Fire",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Technician",
+      "service": "Inspection/OS",
+      "establishment": "Company",
+      "category": "Equipment"
+    },
+    "environmental_compliance": {
+      "name": "AKAAI Eco",
+      "businessModel": "MONETARY",
+      "client": "Client / Rural Owner",
+      "provider": "Engineer / Technician",
+      "service": "Report / Inspection / Regularization",
+      "establishment": "Consultancy / Office",
+      "category": "Service Type"
+    },
+    "logistics": {
+      "name": "AKAAI Log",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Delivery Person",
+      "service": "Delivery",
+      "establishment": "Carrier",
+      "category": "Rota"
+    },
+    "tailoring": {
+      "name": "Tailoring/Sewing",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Tailor",
+      "service": "Adjustment",
+      "establishment": "Studio",
+      "category": "Garment"
+    },
+    "tutoring": {
+      "name": "Private Tutoring",
+      "businessModel": "MONETARY",
+      "client": "Student",
+      "provider": "Tutor",
+      "service": "Class",
+      "establishment": "Location",
+      "category": "Subject"
+    },
+    "daycare": {
+      "name": "Child Daycare",
+      "businessModel": "MONETARY",
+      "client": "Guardian",
+      "provider": "Caretaker",
+      "service": "Daily",
+      "establishment": "Daycare",
+      "category": "Group"
+    },
+    "elderly_care": {
+      "name": "Nursing Home",
+      "businessModel": "MONETARY",
+      "client": "Resident",
+      "provider": "Caretaker",
+      "service": "Stay",
+      "establishment": "Home",
+      "category": "Care"
+    },
+    "driving_school": {
+      "name": "Driving School",
+      "businessModel": "MONETARY",
+      "client": "Student",
+      "provider": "Instructor",
+      "service": "Driving Lesson",
+      "establishment": "Driving School",
+      "category": "Category"
+    },
+    "sports_center": {
+      "name": "AKAAI Court",
+      "businessModel": "CREDIT",
+      "client": "Athlete",
+      "provider": "Instructor",
+      "service": "Workout",
+      "establishment": "Center",
+      "category": "Sport"
+    },
+    "clinic_vet": {
+      "name": "AKAAI Vet",
+      "businessModel": "MONETARY",
+      "client": "Owner",
+      "provider": "Veterinarian",
+      "service": "Appointment",
+      "establishment": "Clinic",
+      "category": "Specialty"
+    },
+    "default_generic": {
+      "name": "General",
+      "businessModel": "MONETARY",
+      "client": "Client",
+      "provider": "Professional",
+      "service": "Service",
+      "establishment": "Establishment",
+      "category": "Category"
+    }
+  }
+}

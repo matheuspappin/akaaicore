@@ -137,7 +137,7 @@ const techConfig = [
   { label: "Roles disponíveis", value: "admin, finance, teacher, student", color: "text-rose-400" },
   { label: "Vocabulário: cliente", value: "Aluno", color: "text-violet-300" },
   { label: "Vocabulário: profissional", value: "Professor", color: "text-pink-300" },
-  { label: "Chave de sessão", value: "danceflow_user (localStorage)", color: "text-slate-400" },
+  { label: "Chave de sessão", value: "danceflow_user (localStorage)", color: "text-zinc-400" },
   { label: "RPCs Supabase", value: "enroll_student_in_class, adjust_student_credits", color: "text-indigo-300" },
   { label: "QR Check-in formato", value: "DF-{attendanceId[:8]}", color: "text-cyan-300" },
   { label: "Scanner admin", value: "/dashboard/scanner", color: "text-teal-300" },
@@ -246,14 +246,14 @@ export default function DanceFlowAdminPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-black">
       <AdminHeader title="DanceFlow — Gestão da Verticalização" />
 
       <div className="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm">
-          <Link href="/admin/verticalizations" className="text-slate-500 hover:text-slate-300 transition-colors flex items-center gap-1">
+          <Link href="/admin/verticalizations" className="text-zinc-500 hover:text-slate-300 transition-colors flex items-center gap-1">
             <ArrowLeft className="w-3.5 h-3.5" /> Verticalizações
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-700" />
@@ -287,7 +287,7 @@ export default function DanceFlowAdminPage() {
                     CREDIT
                   </Badge>
                 </div>
-                <p className="text-slate-400 text-sm max-w-xl leading-relaxed">
+                <p className="text-zinc-400 text-sm max-w-xl leading-relaxed">
                   Verticalização white-label para estúdios de dança. Inclui 3 portais (admin, professor, aluno),
                   QR check-in, controle de mensalidades, gamificação e chamada digital.
                   Nicho: <strong className="text-violet-300">dance</strong> — Gerenciado via Akaai Core.
@@ -300,7 +300,7 @@ export default function DanceFlowAdminPage() {
                 size="sm"
                 onClick={loadStats}
                 disabled={loading}
-                className="border-slate-700 text-slate-400 hover:text-white gap-2"
+                className="border-slate-700 text-zinc-400 hover:text-white gap-2"
               >
                 <RefreshCw className={cn("w-3.5 h-3.5", loading && "animate-spin")} />
                 Atualizar
@@ -319,7 +319,7 @@ export default function DanceFlowAdminPage() {
         {/* KPIs */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {kpis.map((kpi) => (
-            <Card key={kpi.label} className="bg-slate-900/50 border-slate-800">
+            <Card key={kpi.label} className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="pt-5 pb-4">
                 <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center mb-3", kpi.bg)}>
                   <kpi.icon className={cn("w-4 h-4", kpi.color)} />
@@ -344,7 +344,7 @@ export default function DanceFlowAdminPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Ações Rápidas */}
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-slate-200 text-base flex items-center gap-2">
                 <Settings className="w-4 h-4 text-violet-400" />
@@ -360,7 +360,7 @@ export default function DanceFlowAdminPage() {
                   <Button
                     variant={action.variant}
                     size="sm"
-                    className="w-full justify-start gap-2 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 mb-1"
+                    className="w-full justify-start gap-2 border-zinc-800 text-zinc-400 hover:text-white hover:border-slate-700 mb-1"
                   >
                     <action.icon className="w-3.5 h-3.5" />
                     {action.label}
@@ -368,7 +368,7 @@ export default function DanceFlowAdminPage() {
                   </Button>
                 </Link>
               ))}
-              <div className="pt-3 border-t border-slate-800">
+              <div className="pt-3 border-t border-zinc-800">
                 <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-2">Acesso Interno</p>
                 <Link href="/admin/studios?niche=dance">
                   <Button size="sm" className="w-full justify-start gap-2 bg-violet-600/10 hover:bg-violet-600/20 text-violet-400 border border-violet-500/20">
@@ -382,7 +382,7 @@ export default function DanceFlowAdminPage() {
           </Card>
 
           {/* Portais */}
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-slate-200 text-base flex items-center gap-2">
                 <Smartphone className="w-4 h-4 text-pink-400" />
@@ -396,7 +396,7 @@ export default function DanceFlowAdminPage() {
               {portalLinks.map((portal) => (
                 <Link key={portal.label} href={portal.href} target="_blank">
                   <div className={cn(
-                    "flex items-center gap-3 p-3 rounded-xl border cursor-pointer group hover:bg-slate-800/60 transition-all mb-1",
+                    "flex items-center gap-3 p-3 rounded-xl border cursor-pointer group hover:bg-zinc-900/60 transition-all mb-1",
                     portal.bg
                   )}>
                     <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0", portal.bg)}>
@@ -406,13 +406,13 @@ export default function DanceFlowAdminPage() {
                       <p className={cn("text-sm font-semibold", portal.color)}>{portal.label}</p>
                       <p className="text-slate-600 text-[10px] truncate">{portal.description}</p>
                     </div>
-                    <ExternalLink className="w-3 h-3 text-slate-700 group-hover:text-slate-400 flex-shrink-0" />
+                    <ExternalLink className="w-3 h-3 text-slate-700 group-hover:text-zinc-400 flex-shrink-0" />
                   </div>
                 </Link>
               ))}
-              <div className="pt-2 border-t border-slate-800">
+              <div className="pt-2 border-t border-zinc-800">
                 <Link href="/solutions/estudio-de-danca/dashboard/scanner" target="_blank">
-                  <Button size="sm" variant="outline" className="w-full justify-start gap-2 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700">
+                  <Button size="sm" variant="outline" className="w-full justify-start gap-2 border-zinc-800 text-zinc-400 hover:text-white hover:border-slate-700">
                     <QrCode className="w-3.5 h-3.5 text-cyan-400" />
                     Scanner QR Check-in
                     <ExternalLink className="w-3 h-3 ml-auto opacity-40" />
@@ -423,7 +423,7 @@ export default function DanceFlowAdminPage() {
           </Card>
 
           {/* Módulos */}
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-slate-200 text-base flex items-center gap-2">
                 <Star className="w-4 h-4 text-yellow-400" />
@@ -438,12 +438,12 @@ export default function DanceFlowAdminPage() {
                 {featureModules.map((m) => (
                   <div
                     key={m.label}
-                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/50 transition-colors"
+                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-900/50 transition-colors"
                   >
                     <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0", m.bg)}>
                       <m.icon className={cn("w-3.5 h-3.5", m.color)} />
                     </div>
-                    <span className="text-slate-400 text-sm flex-1">{m.label}</span>
+                    <span className="text-zinc-400 text-sm flex-1">{m.label}</span>
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
                   </div>
                 ))}
@@ -454,7 +454,7 @@ export default function DanceFlowAdminPage() {
         </div>
 
         {/* Tenants Recentes */}
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-zinc-950/50 border-zinc-800">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -471,7 +471,7 @@ export default function DanceFlowAdminPage() {
                 size="sm"
                 onClick={loadStats}
                 disabled={loading}
-                className="text-slate-500 hover:text-white"
+                className="text-zinc-500 hover:text-white"
               >
                 <RefreshCw className={cn("w-3.5 h-3.5", loading && "animate-spin")} />
               </Button>
@@ -488,7 +488,7 @@ export default function DanceFlowAdminPage() {
                   <Link
                     key={tenant.id}
                     href={`/admin/studios/${tenant.id}`}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800 transition-colors group"
+                    className="flex items-center gap-3 p-3 rounded-xl bg-zinc-900/40 hover:bg-zinc-900 transition-colors group"
                   >
                     <div className="w-9 h-9 rounded-lg bg-violet-600/20 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
                       <span className="text-violet-400 text-sm font-black">
@@ -504,23 +504,23 @@ export default function DanceFlowAdminPage() {
                         {new Date(tenant.created_at).toLocaleDateString('pt-BR')}
                       </p>
                     </div>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-700 group-hover:text-slate-400 transition-colors flex-shrink-0" />
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-700 group-hover:text-zinc-400 transition-colors flex-shrink-0" />
                   </Link>
                 ))}
                 <Link
                   href="/admin/studios?niche=dance"
-                  className="flex items-center justify-center gap-1.5 p-3 rounded-xl border border-dashed border-slate-800 hover:border-violet-500/30 text-[11px] font-bold text-slate-600 hover:text-violet-400 transition-all uppercase tracking-widest"
+                  className="flex items-center justify-center gap-1.5 p-3 rounded-xl border border-dashed border-zinc-800 hover:border-violet-500/30 text-[11px] font-bold text-slate-600 hover:text-violet-400 transition-all uppercase tracking-widest"
                 >
                   Ver todos <ChevronRight className="w-3 h-3" />
                 </Link>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-12 gap-3 text-center">
-                <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-2xl bg-zinc-900 border border-slate-700 flex items-center justify-center">
                   <Music className="w-6 h-6 text-slate-600" />
                 </div>
                 <div>
-                  <p className="text-slate-500 text-sm font-semibold">Nenhum estúdio ainda</p>
+                  <p className="text-zinc-500 text-sm font-semibold">Nenhum estúdio ainda</p>
                   <p className="text-slate-700 text-xs mt-1">
                     Estúdios cadastrados via{' '}
                     <Link href="/solutions/estudio-de-danca/register" target="_blank" className="text-violet-500 hover:underline">
@@ -535,7 +535,7 @@ export default function DanceFlowAdminPage() {
         </Card>
 
         {/* Info: modelo de negócio CREDIT */}
-        <Card className="bg-slate-900/30 border-slate-800">
+        <Card className="bg-zinc-950/30 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-slate-200 text-base flex items-center gap-2">
               <Heart className="w-4 h-4 text-pink-400" />
@@ -551,23 +551,23 @@ export default function DanceFlowAdminPage() {
                 <p className="text-violet-400 font-bold text-sm mb-1 flex items-center gap-2">
                   <QrCode className="w-4 h-4" /> Modelo CREDIT (padrão)
                 </p>
-                <p className="text-slate-500 text-xs leading-relaxed">
+                <p className="text-zinc-500 text-xs leading-relaxed">
                   Alunos possuem saldo de créditos (aulas). Ao reservar uma aula via app, a RPC
-                  <code className="text-violet-300 mx-1 bg-slate-900 px-1 rounded">enroll_student_in_class</code>
+                  <code className="text-violet-300 mx-1 bg-zinc-950 px-1 rounded">enroll_student_in_class</code>
                   gera um <strong className="text-slate-300">QR Code DF-{"{id}"}</strong> para check-in.
                   O admin ajusta créditos via{' '}
-                  <code className="text-violet-300 bg-slate-900 px-1 rounded">adjust_student_credits</code>.
+                  <code className="text-violet-300 bg-zinc-950 px-1 rounded">adjust_student_credits</code>.
                 </p>
               </div>
               <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
                 <p className="text-emerald-400 font-bold text-sm mb-1 flex items-center gap-2">
                   <DollarSign className="w-4 h-4" /> Modelo MONETARY (opcional)
                 </p>
-                <p className="text-slate-500 text-xs leading-relaxed">
+                <p className="text-zinc-500 text-xs leading-relaxed">
                   Estúdio opera com mensalidade fixa. O portal do aluno mostra cobranças na tabela
-                  <code className="text-emerald-300 mx-1 bg-slate-900 px-1 rounded">payments</code>
+                  <code className="text-emerald-300 mx-1 bg-zinc-950 px-1 rounded">payments</code>
                   (pending / overdue / paid). Alertas de inadimplência na tela principal.
-                  Configurado em <code className="text-emerald-300 bg-slate-900 px-1 rounded">studios.business_model</code>.
+                  Configurado em <code className="text-emerald-300 bg-zinc-950 px-1 rounded">studios.business_model</code>.
                 </p>
               </div>
             </div>
@@ -575,10 +575,10 @@ export default function DanceFlowAdminPage() {
         </Card>
 
         {/* Configuração Técnica */}
-        <Card className="bg-slate-900/30 border-slate-800">
+        <Card className="bg-zinc-950/30 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-slate-200 text-base flex items-center gap-2">
-              <Settings className="w-4 h-4 text-slate-400" />
+              <Settings className="w-4 h-4 text-zinc-400" />
               Configuração Técnica
             </CardTitle>
             <CardDescription className="text-slate-600 text-xs">
@@ -588,7 +588,7 @@ export default function DanceFlowAdminPage() {
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {techConfig.map((item) => (
-                <div key={item.label} className="p-3 rounded-xl bg-slate-800/50">
+                <div key={item.label} className="p-3 rounded-xl bg-zinc-900/50">
                   <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-1">
                     {item.label}
                   </p>
@@ -602,7 +602,7 @@ export default function DanceFlowAdminPage() {
         </Card>
 
         {/* Fluxo QR Check-in */}
-        <Card className="bg-slate-900/30 border-slate-800">
+        <Card className="bg-zinc-950/30 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-slate-200 text-base flex items-center gap-2">
               <QrCode className="w-4 h-4 text-cyan-400" />

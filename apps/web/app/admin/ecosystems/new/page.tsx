@@ -69,9 +69,11 @@ export default function NewEcosystemPage() {
 
   const handleNicheChange = (niche: NicheType) => {
     setFormData(prev => ({ ...prev, niche }))
-    // Ao mudar o nicho, carregamos os módulos padrão dele
-    const defaultModules = getDefaultModulesForNiche(niche)
-    setModules(defaultModules)
+    setTimeout(() => {
+      // Ao mudar o nicho, carregamos os módulos padrão dele
+      const defaultModules = getDefaultModulesForNiche(niche)
+      setModules(defaultModules)
+    }, 0)
   }
 
   const handlePackageChange = (type: PackageType) => {
@@ -216,14 +218,16 @@ export default function NewEcosystemPage() {
                     onValueChange={v => handleNicheChange(v as NicheType)}
                   >
                     <SelectTrigger>
-                      <SelectValue />
+                      <SelectValue placeholder="Selecione o nicho" />
                     </SelectTrigger>
                     <SelectContent className="max-h-[300px]">
                       {Object.entries(nicheDictionary.pt).map(([key, value]) => (
                         <SelectItem key={key} value={key}>
-                          <span className="font-bold">{value.name}</span>
-                          <span className="ml-2 text-xs text-muted-foreground italic">
-                            ({value.establishment}, {value.client}, {value.service})
+                          <span className="flex items-center gap-2">
+                            <span className="font-bold">{value.name}</span>
+                            <span className="text-xs text-muted-foreground italic">
+                              ({value.establishment}, {value.client}, {value.service})
+                            </span>
                           </span>
                         </SelectItem>
                       ))}
@@ -237,19 +241,23 @@ export default function NewEcosystemPage() {
                     onValueChange={v => setFormData({...formData, businessModel: v as "CREDIT" | "MONETARY"})}
                   >
                     <SelectTrigger>
-                      <SelectValue />
+                      <SelectValue placeholder="Modelo de cobrança" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="CREDIT">
-                        <span className="font-bold">Créditos (Flex Pass)</span>
-                        <span className="ml-2 text-xs text-muted-foreground italic">
-                          (Ideal para pacotes de aulas)
+                        <span className="flex items-center gap-2">
+                          <span className="font-bold">Créditos (Flex Pass)</span>
+                          <span className="text-xs text-muted-foreground italic">
+                            (Ideal para pacotes de aulas)
+                          </span>
                         </span>
                       </SelectItem>
                       <SelectItem value="MONETARY">
-                        <span className="font-bold">Monetário (Direto)</span>
-                        <span className="ml-2 text-xs text-muted-foreground italic">
-                          (Cobrança em moeda por serviço)
+                        <span className="flex items-center gap-2">
+                          <span className="font-bold">Monetário (Direto)</span>
+                          <span className="text-xs text-muted-foreground italic">
+                            (Cobrança em moeda por serviço)
+                          </span>
                         </span>
                       </SelectItem>
                     </SelectContent>

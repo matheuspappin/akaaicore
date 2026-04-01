@@ -157,14 +157,14 @@ export default function AgroFlowAIAdminPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-slate-950">
+    <div className="flex flex-col min-h-screen pb-10 bg-slate-50/50 dark:bg-black">
       <AdminHeader title="AgroFlowAI — Gestão da Verticalização" />
 
       <div className="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm">
-          <Link href="/admin/verticalizations" className="text-slate-500 hover:text-slate-300 transition-colors flex items-center gap-1">
+          <Link href="/admin/verticalizations" className="text-zinc-500 hover:text-slate-300 transition-colors flex items-center gap-1">
             <ArrowLeft className="w-3.5 h-3.5" /> Verticalizações
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-700" />
@@ -191,7 +191,7 @@ export default function AgroFlowAIAdminPage() {
                     Em Breve
                   </span>
                 </div>
-                <p className="text-slate-400 text-sm max-w-xl">
+                <p className="text-zinc-400 text-sm max-w-xl">
                   Compliance Ambiental e Engenharia no agronegócio. Laudos, CAR, licenciamentos e monitoramento satelital.
                   Nicho: <strong className="text-emerald-300">environmental_compliance</strong>
                 </p>
@@ -203,7 +203,7 @@ export default function AgroFlowAIAdminPage() {
                 size="sm"
                 onClick={loadStats}
                 disabled={loading}
-                className="border-slate-700 text-slate-400 hover:text-white gap-2"
+                className="border-slate-700 text-zinc-400 hover:text-white gap-2"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
                 Atualizar
@@ -222,7 +222,7 @@ export default function AgroFlowAIAdminPage() {
         {/* KPIs */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {kpis.map((kpi) => (
-            <Card key={kpi.label} className="bg-slate-900/50 border-slate-800">
+            <Card key={kpi.label} className="bg-zinc-950/50 border-zinc-800">
               <CardContent className="pt-5 pb-4">
                 <div className={`w-8 h-8 rounded-lg ${kpi.bg} flex items-center justify-center mb-3`}>
                   <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
@@ -246,7 +246,7 @@ export default function AgroFlowAIAdminPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Ações Rápidas */}
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-slate-200 text-base flex items-center gap-2">
                 <Settings className="w-4 h-4 text-emerald-400" />
@@ -262,7 +262,7 @@ export default function AgroFlowAIAdminPage() {
                   <Button
                     variant={action.variant}
                     size="sm"
-                    className="w-full justify-start gap-2 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700"
+                    className="w-full justify-start gap-2 border-zinc-800 text-zinc-400 hover:text-white hover:border-slate-700"
                   >
                     <action.icon className="w-3.5 h-3.5" />
                     {action.label}
@@ -270,7 +270,7 @@ export default function AgroFlowAIAdminPage() {
                   </Button>
                 </Link>
               ))}
-              <div className="pt-3 border-t border-slate-800">
+              <div className="pt-3 border-t border-zinc-800">
                 <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-2">Acesso Interno</p>
                 <Link href="/admin/studios?niche=environmental_compliance">
                   <Button size="sm" className="w-full justify-start gap-2 bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/20">
@@ -284,7 +284,7 @@ export default function AgroFlowAIAdminPage() {
           </Card>
 
           {/* Módulos Ativos */}
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-slate-200 text-base flex items-center gap-2">
                 <ClipboardList className="w-4 h-4 text-teal-400" />
@@ -297,11 +297,11 @@ export default function AgroFlowAIAdminPage() {
             <CardContent>
               <div className="space-y-2">
                 {featureModules.map((m) => (
-                  <div key={m.label} className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/50 transition-colors">
+                  <div key={m.label} className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-900/50 transition-colors">
                     <div className={`w-7 h-7 rounded-lg ${m.bg} flex items-center justify-center flex-shrink-0`}>
                       <m.icon className={`w-3.5 h-3.5 ${m.color}`} />
                     </div>
-                    <span className="text-slate-400 text-sm">{m.label}</span>
+                    <span className="text-zinc-400 text-sm">{m.label}</span>
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 ml-auto" />
                   </div>
                 ))}
@@ -310,7 +310,7 @@ export default function AgroFlowAIAdminPage() {
           </Card>
 
           {/* Tenants Recentes */}
-          <Card className="bg-slate-900/50 border-slate-800">
+          <Card className="bg-zinc-950/50 border-zinc-800">
             <CardHeader>
               <CardTitle className="text-slate-200 text-base flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-blue-400" />
@@ -331,7 +331,7 @@ export default function AgroFlowAIAdminPage() {
                     <Link
                       key={tenant.id}
                       href={`/admin/studios/${tenant.id}`}
-                      className="flex items-center gap-3 p-2.5 rounded-lg bg-slate-800/40 hover:bg-slate-800 transition-colors group"
+                      className="flex items-center gap-3 p-2.5 rounded-lg bg-zinc-900/40 hover:bg-zinc-900 transition-colors group"
                     >
                       <div className="w-8 h-8 rounded-lg bg-emerald-600/20 flex items-center justify-center flex-shrink-0">
                         <span className="text-emerald-400 text-xs font-black">{tenant.name.charAt(0).toUpperCase()}</span>
@@ -340,7 +340,7 @@ export default function AgroFlowAIAdminPage() {
                         <p className="text-slate-300 text-sm font-semibold truncate">{tenant.name}</p>
                         <p className="text-slate-600 text-[10px]">{tenant.slug}</p>
                       </div>
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-700 group-hover:text-slate-400 transition-colors" />
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-700 group-hover:text-zinc-400 transition-colors" />
                     </Link>
                   ))}
                   <Link
@@ -352,11 +352,11 @@ export default function AgroFlowAIAdminPage() {
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-8 gap-3 text-center">
-                  <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center">
                     <Building2 className="w-5 h-5 text-slate-600" />
                   </div>
                   <div>
-                    <p className="text-slate-500 text-sm font-semibold">Nenhuma empresa ainda</p>
+                    <p className="text-zinc-500 text-sm font-semibold">Nenhuma empresa ainda</p>
                     <p className="text-slate-700 text-xs mt-1">
                       Empresas cadastradas pelo{' '}
                       <Link href="/solutions/agroflowai/register" target="_blank" className="text-emerald-500 hover:underline">
@@ -372,10 +372,10 @@ export default function AgroFlowAIAdminPage() {
         </div>
 
         {/* Configurações da Verticalização */}
-        <Card className="bg-slate-900/30 border-slate-800">
+        <Card className="bg-zinc-950/30 border-zinc-800">
           <CardHeader>
             <CardTitle className="text-slate-200 text-base flex items-center gap-2">
-              <Settings className="w-4 h-4 text-slate-400" />
+              <Settings className="w-4 h-4 text-zinc-400" />
               Configuração Técnica
             </CardTitle>
             <CardDescription className="text-slate-600 text-xs">
@@ -394,7 +394,7 @@ export default function AgroFlowAIAdminPage() {
                 { label: "Vocabulário: cliente", value: "Cliente / Proprietário Rural", color: "text-pink-400" },
                 { label: "Vocabulário: profissional", value: "Engenheiro / Técnico", color: "text-cyan-400" },
               ].map((item) => (
-                <div key={item.label} className="p-3 rounded-lg bg-slate-800/50">
+                <div key={item.label} className="p-3 rounded-lg bg-zinc-900/50">
                   <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-1">{item.label}</p>
                   <p className={`text-sm font-mono font-semibold ${item.color}`}>{item.value}</p>
                 </div>
