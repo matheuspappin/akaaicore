@@ -91,7 +91,7 @@ export default withSentryConfig(nextConfig, {
   // For all available options, see: https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
+  widenClientFileUpload: false,
 
   // Transpiles SDK during package build to avoid needing an extra step when
   // working with hardcoded dependencies (e.g. at the app level)
@@ -105,9 +105,13 @@ export default withSentryConfig(nextConfig, {
 
   org: "my-org",
   project: "my-project",
+  telemetry: false,
 }, {
   // For all available options, see: https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
   // Suppresses source map uploading logs during build
   silent: true,
+
+  // telemetry is false to prevent hanging on Vercel
+  telemetry: false,
 });
