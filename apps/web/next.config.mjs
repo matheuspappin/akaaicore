@@ -103,9 +103,6 @@ export default withSentryConfig(nextConfig, {
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
   org: "my-org",
   project: "my-project",
 }, {
@@ -113,8 +110,4 @@ export default withSentryConfig(nextConfig, {
 
   // Suppresses source map uploading logs during build
   silent: true,
-
-  // For all available options, see: https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
 });
