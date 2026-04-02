@@ -47,7 +47,7 @@ const SCANNER_TEXTS = {
   manualPlaceholder: "DF-XXXXXXXX ou 8 caracteres",
 }
 
-export default function AKAAI DanceScannerPage() {
+export default function AKAAIDanceScannerPage() {
   const { toast } = useToast()
   const [adminData, setAdminData] = useState<any>(null)
   const [isScanning, setIsScanning] = useState(false)

@@ -34,7 +34,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 
-export default function AKAAI DanceAttendancePage() {
+export default function AKAAIDanceAttendancePage() {
   const { id } = useParams() as { id: string }
   const router = useRouter()
   const { toast } = useToast()
