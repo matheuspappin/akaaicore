@@ -286,6 +286,7 @@ function NewVerticalizationContent() {
 
     if (isNone) {
       // ... reset logic ...
+      const defaultModules = getDefaultModulesForNiche(formData.niche)
       setInitialQueueSize(AVAILABLE_MODULES.length)
       setModuleQueue(AVAILABLE_MODULES.map(m => ({ id: m.id, value: !!defaultModules[m.id] })))
       setClonePhase('modules')
