@@ -13,7 +13,6 @@ export default function GenericNichePrePage() {
   const params = useParams()
   const nicheId = params.niche as string;
 
-  // Carrega as configurações do nicho atual de forma automática
   const config = useMemo(() => getNicheConfig(nicheId), [nicheId]);
   const NicheIcon = config.icon;
 
@@ -92,7 +91,43 @@ export default function GenericNichePrePage() {
           </Button>
         </motion.div>
 
-        {/* ... mais conteúdo comum ... */}
+        <motion.div
+          className="mt-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+        >
+          <Button
+            type="button"
+            variant="ghost"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 border border-white/10 hover:border-white/20"
+            asChild
+          >
+            <Link href={`/solutions/${nicheId}/login`}>
+              Já tenho conta
+            </Link>
+          </Button>
+        </motion.div>
+
+        <motion.div
+          className="mt-16 pt-8 border-t border-white/10 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4 }}
+        >
+          <Button
+            type="button"
+            variant="ghost"
+            className="flex items-center gap-2.5 group text-white/50 hover:text-white/80"
+            asChild
+          >
+            <Link href="/home">
+              <img src={OFFICIAL_LOGO} alt="AKAAI HUB" className="w-7 h-7 opacity-60 group-hover:opacity-90 transition-opacity object-contain" />
+              <span className="font-black text-xs tracking-tight group-hover:text-white/80 transition-colors">AKAAI <span className="text-white/35">HUB</span></span>
+            </Link>
+          </Button>
+          <span className="text-[10px] font-mono text-white/35 uppercase tracking-widest">Powered by AKAAI CORE</span>
+        </motion.div>
       </div>
     </div>
   )
