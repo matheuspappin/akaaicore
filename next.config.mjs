@@ -104,12 +104,13 @@ export default withSentryConfig(nextConfig, {
   org: "my-org",
   project: "my-project",
   telemetry: false,
-}, {
-  // For all available options, see: https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
   // Suppresses source map uploading logs during build
   silent: true,
 
-  // telemetry is false to prevent hanging on Vercel
-  telemetry: false,
+  // Desabilita o upload de source maps se não houver token configurado
+  // Isso evita que o build do Vercel trave tentando se conectar ao Sentry sem credenciais
+  sourcemaps: {
+    disable: true,
+  }
 });
