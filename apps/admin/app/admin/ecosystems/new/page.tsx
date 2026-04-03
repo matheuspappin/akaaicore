@@ -62,7 +62,7 @@ export default function NewEcosystemPage() {
     businessModel: "CREDIT" as "CREDIT" | "MONETARY",
     studioSlug: "",
   })
-  const [modules, setModules] = useState<Record<string, boolean>>(getDefaultModulesForNiche("law"))
+  const [modules, setModules] = useState<Record<string, boolean>>(getDefaultModulesForNiche("law") as Record<string, boolean>)
 
   const currentVocabulary = nicheDictionary.pt[formData.niche] || nicheDictionary.pt.dance
   const availableModules = GET_AVAILABLE_MODULES(currentVocabulary, t)
@@ -70,7 +70,7 @@ export default function NewEcosystemPage() {
   const handleNicheChange = (niche: NicheType) => {
     setFormData(prev => ({ ...prev, niche }))
     // Ao mudar o nicho, carregamos os módulos padrão dele
-    const defaultModules = getDefaultModulesForNiche(niche)
+    const defaultModules = getDefaultModulesForNiche(niche) as Record<string, boolean>
     setModules(defaultModules)
   }
 

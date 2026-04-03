@@ -86,7 +86,7 @@ export const getNicheBranding = (niche: NicheType | string): NicheBranding => {
 }
 
 // Mapeamento de ícones para clientes
-const clientIcons: Record<NicheType, LucideIcon> = {
+const clientIcons: Record<string, LucideIcon> = {
   pet_shop: PawPrint,
   vet: PawPrint,
   dog_daycare: PawPrint,

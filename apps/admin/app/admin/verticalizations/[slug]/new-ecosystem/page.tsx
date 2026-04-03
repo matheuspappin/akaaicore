@@ -89,7 +89,7 @@ export default function NewEcosystemForVerticalPage() {
       // Pre-carregar módulos da verticalização (ou defaults do nicho)
       const savedModules = data.modules && Object.keys(data.modules).length > 0
         ? data.modules
-        : getDefaultModulesForNiche(data.niche as NicheType)
+        : getDefaultModulesForNiche(data.niche as NicheType) as Record<string, boolean>
       setModules(savedModules)
 
       // Pre-selecionar modelo de cobrança baseado no nicho
@@ -118,7 +118,7 @@ export default function NewEcosystemForVerticalPage() {
     if (!vertical) return
     const defaults = vertical.modules && Object.keys(vertical.modules).length > 0
       ? vertical.modules
-      : getDefaultModulesForNiche(vertical.niche as NicheType)
+      : getDefaultModulesForNiche(vertical.niche as NicheType) as Record<string, boolean>
     setModules(defaults)
     toast.info('Módulos restaurados ao padrão da verticalização.')
   }

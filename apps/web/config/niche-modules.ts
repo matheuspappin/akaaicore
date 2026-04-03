@@ -18,6 +18,7 @@ export type ModuleConfig = {
   multi_unit: boolean;
   fiscal: boolean;
   satellite_monitor?: boolean;
+  [key: string]: boolean | undefined;
 };
 
 const defaultModules: ModuleConfig = {

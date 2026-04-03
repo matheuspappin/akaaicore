@@ -257,7 +257,7 @@ export default function VerticalizationManagePage() {
       // Init modules: use saved modules or fallback to niche defaults
       const savedModules = data.modules && Object.keys(data.modules).length > 0
         ? data.modules
-        : getDefaultModulesForNiche(data.niche as NicheType)
+        : getDefaultModulesForNiche(data.niche as NicheType) as Record<string, boolean>
       setModules(savedModules)
 
       // Load tenants
@@ -330,7 +330,7 @@ export default function VerticalizationManagePage() {
 
   const handleApplyDefaults = () => {
     if (!vertical) return
-    const defaults = getDefaultModulesForNiche(vertical.niche as NicheType)
+    const defaults = getDefaultModulesForNiche(vertical.niche as NicheType) as Record<string, boolean>
     setModules(defaults)
     setModulesDirty(true)
     toast.info('Módulos padrão do nicho aplicados. Clique em Salvar para confirmar.')

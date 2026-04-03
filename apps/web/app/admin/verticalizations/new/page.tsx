@@ -99,7 +99,7 @@ const AVAILABLE_MODULES = [
 ]
 
 const MODULE_PRESETS: { id: string; label: string; desc: string; getModules: (niche?: NicheType) => Record<string, boolean> }[] = [
-  { id: 'custom', label: 'Personalizado', desc: 'Padrão do nicho ou seleção manual', getModules: (niche) => getDefaultModulesForNiche(niche!) },
+  { id: 'custom', label: 'Personalizado', desc: 'Padrão do nicho ou seleção manual', getModules: (niche) => getDefaultModulesForNiche(niche!) as Record<string, boolean> },
   { id: 'basic', label: 'Básico (3 Módulos)', desc: 'Dashboard, Clientes e Financeiro', getModules: () => ({ dashboard: true, students: true, financial: true }) },
   { id: 'professional', label: 'Profissional (Completo)', desc: 'Todos os módulos disponíveis', getModules: () => AVAILABLE_MODULES.reduce((acc, m) => ({ ...acc, [m.id]: true }), {} as Record<string, boolean>) },
 ]
@@ -202,7 +202,7 @@ function NewVerticalizationContent() {
     tags: [] as string[],
   })
   const [modules, setModules] = useState<Record<string, boolean>>(() =>
-    getDefaultModulesForNiche('fire_protection' as NicheType)
+    getDefaultModulesForNiche('fire_protection' as NicheType) as Record<string, boolean>
   )
   const [modulePreset, setModulePreset] = useState<string>('custom')
   const [selectedCloneId, setSelectedCloneId] = useState<string>(cloneFromId || 'none')
@@ -288,7 +288,7 @@ function NewVerticalizationContent() {
       // ... reset logic ...
       const defaultModules = getDefaultModulesForNiche(formData.niche)
       setInitialQueueSize(AVAILABLE_MODULES.length)
-      setModuleQueue(AVAILABLE_MODULES.map(m => ({ id: m.id, value: !!defaultModules[m.id] })))
+      setModuleQueue(AVAILABLE_MODULES.map(m => ({ id: m.id, value: !!(defaultModules as any)[m.id] })))
       setClonePhase('modules')
     } else if (source) {
       // 1. Primeiro limpamos todos os módulos para começar o "preenchimento" do zero (linear)
@@ -348,7 +348,7 @@ function NewVerticalizationContent() {
       setIsCloning(true) // Mostra progresso para feedback real
       setCurrentStepName("Atualizando nicho")
       const newModules = getDefaultModulesForNiche(newNiche);
-      const queue = AVAILABLE_MODULES.map(m => ({ id: m.id, value: !!newModules[m.id] }))
+      const queue = AVAILABLE_MODULES.map(m => ({ id: m.id, value: !!(newModules as any)[m.id] }))
       setInitialQueueSize(queue.length)
       setModuleQueue(queue)
       setModulePreset('custom')
@@ -810,7 +810,7 @@ function NewVerticalizationContent() {
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      setModules(getDefaultModulesForNiche(formData.niche))
+                      setModules(getDefaultModulesForNiche(formData.niche) as Record<string, boolean>)
                       setModulePreset('custom')
                       toast.info('Padrão do nicho aplicado.')
                     }}
