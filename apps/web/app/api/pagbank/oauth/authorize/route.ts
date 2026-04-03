@@ -11,8 +11,8 @@ export async function GET(req: NextRequest) {
   }
 
   const PAGBANK_AUTH_URL = process.env.NODE_ENV === 'production'
-    ? 'https://connect.pagseguro.uol.com.br/oauth2/authorize'
-    : 'https://connect.sandbox.pagseguro.uol.com.br/oauth2/authorize';
+    ? 'https://connect.pagbank.com.br/oauth2/authorize'
+    : 'https://connect.sandbox.pagbank.com.br/oauth2/authorize';
 
   const state = req.nextUrl.searchParams.get('studio_id') || 'akaai_hub'; // Passamos o studio_id no state se houver, ou um fixo
   

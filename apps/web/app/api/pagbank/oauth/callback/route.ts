@@ -67,10 +67,11 @@ export async function GET(req: NextRequest) {
     const tokenResponse = await fetch(PAGBANK_TOKEN_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Basic ${Buffer.from(`${PAGBANK_CLIENT_ID}:${PAGBANK_CLIENT_SECRET}`).toString('base64')}`
+        'Content-Type': 'application/json',
+        'X_CLIENT_ID': PAGBANK_CLIENT_ID,
+        'X_CLIENT_SECRET': PAGBANK_CLIENT_SECRET
       },
-      body: new URLSearchParams({
+      body: JSON.stringify({
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: REDIRECT_URI,
