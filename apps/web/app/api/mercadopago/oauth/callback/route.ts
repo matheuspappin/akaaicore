@@ -1,8 +1,7 @@
-// apps/web/app/api/pagbank/oauth/callback/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server'; // Para obter o ID do tenant
-import { encrypt } from '@/lib/utils/encryption'; // Funções de criptografia
-import { supabaseAdmin } from '@/lib/supabase'; // Cliente Supabase com privilégios de admin
+import { createClient } from '@/lib/supabase/server'; 
+import { encrypt } from '@/lib/utils/encryption'; 
+import { supabaseAdmin } from '@/lib/supabase'; 
 
 export async function GET(req: NextRequest) {
   const code = req.nextUrl.searchParams.get('code');
@@ -13,9 +12,9 @@ export async function GET(req: NextRequest) {
     const REDIRECT_DASHBOARD = new URL('/solutions/estudio-de-danca/dashboard/settings/payment', req.nextUrl.origin);
 
   if (error) {
-    console.error('Erro no callback OAuth do PagBank:', error, errorDescription);
+    console.error('Erro no callback OAuth do Mercado Pago:', error, errorDescription);
     REDIRECT_DASHBOARD.searchParams.append('status', 'error');
-    REDIRECT_DASHBOARD.searchParams.append('message', 'PagBank authorization failed');
+    REDIRECT_DASHBOARD.searchParams.append('message', 'Mercado Pago authorization failed');
     return NextResponse.redirect(REDIRECT_DASHBOARD);
   }
 
@@ -50,28 +49,27 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(REDIRECT_DASHBOARD);
     }
 
-    const PAGBANK_CLIENT_ID = process.env.PAGBANK_CLIENT_ID;
-    const PAGBANK_CLIENT_SECRET = process.env.PAGBANK_CLIENT_SECRET;
+    const MERCADOPAGO_CLIENT_ID = process.env.MERCADOPAGO_CLIENT_ID;
+    const MERCADOPAGO_CLIENT_SECRET = process.env.MERCADOPAGO_CLIENT_SECRET;
     
-    if (!PAGBANK_CLIENT_ID || !PAGBANK_CLIENT_SECRET) {
-      return NextResponse.json({ message: 'Credenciais PagBank do aplicativo não configuradas.' }, { status: 500 });
+    if (!MERCADOPAGO_CLIENT_ID || !MERCADOPAGO_CLIENT_SECRET) {
+      return NextResponse.json({ message: 'Credenciais Mercado Pago do aplicativo não configuradas.' }, { status: 500 });
     }
 
-    const REDIRECT_URI = `${req.nextUrl.origin}/api/pagbank/oauth/callback`;
+    const REDIRECT_URI = `${req.nextUrl.origin}/api/mercadopago/oauth/callback`;
 
-    const PAGBANK_TOKEN_URL = process.env.NODE_ENV === 'production'
-      ? 'https://api.pagseguro.com/oauth2/token'
-      : 'https://sandbox.api.pagseguro.com/oauth2/token';
+    const MERCADOPAGO_TOKEN_URL = 'https://api.mercadopago.com/oauth/token';
 
-    // Chamada real à API do PagBank para trocar o CODE por TOKEN
-    const tokenResponse = await fetch(PAGBANK_TOKEN_URL, {
+    // Chamada real à API do Mercado Pago para trocar o CODE por TOKEN
+    const tokenResponse = await fetch(MERCADOPAGO_TOKEN_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'X_CLIENT_ID': PAGBANK_CLIENT_ID,
-        'X_CLIENT_SECRET': PAGBANK_CLIENT_SECRET
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Bearer ${MERCADOPAGO_CLIENT_SECRET}` // Optional depending on MP version, but recommended
       },
-      body: JSON.stringify({
+      body: new URLSearchParams({
+        client_id: MERCADOPAGO_CLIENT_ID,
+        client_secret: MERCADOPAGO_CLIENT_SECRET,
         grant_type: 'authorization_code',
         code: code,
         redirect_uri: REDIRECT_URI,
@@ -81,13 +79,13 @@ export async function GET(req: NextRequest) {
     const tokenData = await tokenResponse.json();
 
     if (!tokenResponse.ok) {
-      console.error('Erro ao trocar token PagBank:', tokenData);
+      console.error('Erro ao trocar token Mercado Pago:', tokenData);
       REDIRECT_DASHBOARD.searchParams.append('status', 'error');
-      REDIRECT_DASHBOARD.searchParams.append('message', tokenData.error_description || 'Erro ao obter token do PagBank');
+      REDIRECT_DASHBOARD.searchParams.append('message', tokenData.message || 'Erro ao obter token do Mercado Pago');
       return NextResponse.redirect(REDIRECT_DASHBOARD);
     }
 
-    const { access_token, refresh_token, expires_in } = tokenData;
+    const { access_token, refresh_token, expires_in, public_key } = tokenData;
 
     const encryptedAccessToken = encrypt(access_token, process.env.ENCRYPTION_KEY!);
     const encryptedRefreshToken = encrypt(refresh_token, process.env.ENCRYPTION_KEY!);
@@ -96,25 +94,26 @@ export async function GET(req: NextRequest) {
     const { error: dbError } = await supabaseAdmin
       .from('studios')
       .update({
-        pagbank_access_token: encryptedAccessToken,
-        pagbank_refresh_token: encryptedRefreshToken,
-        pagbank_token_expires_at: tokenExpiresAt.toISOString(),
+        mercadopago_access_token: encryptedAccessToken,
+        mercadopago_refresh_token: encryptedRefreshToken,
+        mercadopago_token_expires_at: tokenExpiresAt.toISOString(),
+        mercadopago_public_key: public_key, // Save public key if needed for frontend
       })
       .eq('id', tenantId);
 
     if (dbError) {
-      console.error('Erro ao salvar tokens PagBank no DB:', dbError);
+      console.error('Erro ao salvar tokens Mercado Pago no DB:', dbError);
       REDIRECT_DASHBOARD.searchParams.append('status', 'error');
-      REDIRECT_DASHBOARD.searchParams.append('message', 'Failed to save PagBank tokens');
+      REDIRECT_DASHBOARD.searchParams.append('message', 'Failed to save Mercado Pago tokens');
       return NextResponse.redirect(REDIRECT_DASHBOARD);
     }
 
     REDIRECT_DASHBOARD.searchParams.append('status', 'success');
-    REDIRECT_DASHBOARD.searchParams.append('message', 'Conta PagBank conectada com sucesso!');
+    REDIRECT_DASHBOARD.searchParams.append('message', 'Conta Mercado Pago conectada com sucesso!');
     return NextResponse.redirect(REDIRECT_DASHBOARD);
 
   } catch (err: any) {
-    console.error('Erro no callback OAuth do PagBank:', err);
+    console.error('Erro no callback OAuth do Mercado Pago:', err);
     REDIRECT_DASHBOARD.searchParams.append('status', 'error');
     REDIRECT_DASHBOARD.searchParams.append('message', err.message);
     return NextResponse.redirect(REDIRECT_DASHBOARD);

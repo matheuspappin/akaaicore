@@ -47,5 +47,8 @@
       "import-in-the-middle": "3.0.0"
     }
   },
-  "packageManager": "pnpm@8.15.0"
+  "packageManager": "pnpm@8.15.0",
+  "dependencies": {
+    "mercadopago": "^2.12.0"
+  }
 }
