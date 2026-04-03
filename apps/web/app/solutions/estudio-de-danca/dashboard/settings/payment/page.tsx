@@ -177,8 +177,9 @@ export default function PaymentSettingsPage() {
   }, [searchParams, router, toast]);
 
   const handleConnectMercadopago = () => {
+    if (!studioId) return;
     setMercadopagoLoading(true);
-    window.location.href = "/api/mercadopago/oauth/authorize";
+    window.location.href = `/api/mercadopago/oauth/authorize?studio_id=${studioId}`;
   };
 
   const handleDisconnectMercadopago = async () => {

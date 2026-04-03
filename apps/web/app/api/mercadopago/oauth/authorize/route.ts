@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const MERCADOPAGO_CLIENT_ID = process.env.MERCADOPAGO_CLIENT_ID; 
-  const origin = req.nextUrl.origin;
+  const origin = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
   const REDIRECT_URI = `${origin}/api/mercadopago/oauth/callback`; 
 
   if (!MERCADOPAGO_CLIENT_ID) {
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 
   const MERCADOPAGO_AUTH_URL = 'https://auth.mercadopago.com/authorization';
 
-  const state = req.nextUrl.searchParams.get('studio_id') || 'akaai_hub'; 
+  const state = req.nextUrl.searchParams.get('tenantId') || req.nextUrl.searchParams.get('studio_id') || 'akaai_hub'; 
   
   const authorizeUrl = new URL(MERCADOPAGO_AUTH_URL); 
   authorizeUrl.searchParams.append('client_id', MERCADOPAGO_CLIENT_ID);

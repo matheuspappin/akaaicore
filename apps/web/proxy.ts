@@ -128,6 +128,7 @@ export async function proxy(request: NextRequest) {
       '/api/auth/resend-confirmation',
       '/api/webhooks',
       '/api/cron',
+      '/api/mercadopago',
     ]
     if (PUBLIC_API_ROUTES.some(r => pathname.startsWith(r))) {
       return response

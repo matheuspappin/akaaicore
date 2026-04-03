@@ -2,17 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import logger from "@/lib/logger";
 import { MercadoPagoConfig, Payment } from "mercadopago";
+import { decrypt } from "@/lib/utils/encryption";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     logger.info("Mercado Pago Webhook received:", body);
 
-    const { type, data } = body;
+    const { type, data, user_id: mpUserId } = body;
 
     // Mercado Pago envia notificações de diferentes tipos
-    if (type !== "payment") {
-      logger.info("Ignorando webhook que não é de pagamento:", type);
+    if (type !== "payment" && type !== "order") {
+      logger.info("Ignorando webhook que não é de pagamento nem order:", type);
       return NextResponse.json({ message: "Ignored" }, { status: 200 });
     }
 
@@ -21,41 +22,76 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Missing data.id" }, { status: 200 });
     }
 
-    // Como as ordens Pix são geradas no servidor, precisamos consultar a API do Mercado Pago para obter a descrição (que usamos como reference_id)
-    // Precisaríamos do access token do tenant aqui. Para simplificar, assumimos que temos um token global ou buscamos baseado na URL.
-    // Idealmente, deveríamos ter salvo a transação no banco antes e buscar aqui.
-    // Como a integração usa description para passar o reference_id, vamos buscar a transação:
+    // Busca o token do tenant específico se o user_id do Mercado Pago estiver presente
+    let accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN;
 
-    // ATENÇÃO: Em produção, você precisa buscar o token do tenant específico se não usar token global.
-    const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN;
+    if (mpUserId) {
+      const { data: studio } = await supabaseAdmin
+        .from("studios")
+        .select("mercadopago_access_token")
+        .eq("mercadopago_user_id", String(mpUserId))
+        .maybeSingle();
+      
+      if (studio?.mercadopago_access_token) {
+        try {
+          accessToken = decrypt(studio.mercadopago_access_token, process.env.ENCRYPTION_KEY!);
+        } catch (decryptError) {
+          logger.error("Erro ao descriptografar token do tenant no webhook:", decryptError);
+        }
+      }
+    }
+
     if (!accessToken) {
       logger.error(
-        "Token Mercado Pago global não configurado para processar webhook",
+        "Token Mercado Pago não encontrado para o user_id:", mpUserId
       );
       return NextResponse.json(
         { message: "Token não configurado" },
-        { status: 500 },
+        { status: 200 }, // Retorna 200 para evitar retries infinitos se não temos o token
       );
     }
 
-    const client = new MercadoPagoConfig({ accessToken: accessToken });
-    const paymentClient = new Payment(client);
+    let reference_id = "";
+    let status = "";
+    let amount = 0;
+    let paymentMethod = "PIX";
 
-    const paymentData = await paymentClient.get({ id: data.id });
+    if (type === "payment") {
+      const client = new MercadoPagoConfig({ accessToken: accessToken });
+      const paymentClient = new Payment(client);
+      const paymentData = await paymentClient.get({ id: data.id });
 
-    if (!paymentData || !paymentData.description) {
-      logger.warn(
-        "Transação não encontrada ou sem description no Mercado Pago:",
-        data.id,
-      );
-      return NextResponse.json(
-        { message: "Missing description" },
-        { status: 200 },
-      );
+      if (!paymentData || !paymentData.description) {
+        logger.warn("Transação não encontrada ou sem description:", data.id);
+        return NextResponse.json({ message: "Missing description" }, { status: 200 });
+      }
+
+      reference_id = paymentData.description;
+      status = paymentData.status || "";
+      amount = paymentData.transaction_amount || 0;
+      paymentMethod = paymentData.payment_method_id || "PIX";
+
+    } else if (type === "order") {
+      // É uma ordem de QR Code
+      const response = await fetch(`https://api.mercadopago.com/v1/orders/${data.id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+      if (!response.ok) {
+        return NextResponse.json({ message: "Order not found" }, { status: 200 });
+      }
+      const orderData = await response.json();
+      
+      if (!orderData || !orderData.external_reference) {
+        return NextResponse.json({ message: "Missing external_reference" }, { status: 200 });
+      }
+
+      reference_id = orderData.external_reference;
+      status = orderData.status; // status da order: "processed" é pago. "created" pendente.
+      amount = parseFloat(orderData.total_amount) || 0;
+
+      // Converter "processed" para "approved" para manter a lógica uniforme
+      if (status === "processed") status = "approved";
     }
-
-    const reference_id = paymentData.description;
-    const status = paymentData.status;
 
     // Formato do Reference ID: mp_order_${studioId}_${studentId || 'anon'}_${type}_${invoiceId}_${Date.now()}
     const parts = reference_id.split("_");
@@ -79,9 +115,6 @@ export async function POST(req: NextRequest) {
       logger.info(
         `✅ Pagamento Mercado Pago CONFIRMADO: ${reference_id} (Studio: ${studioId})`,
       );
-
-      const amount = paymentData.transaction_amount || 0;
-      const paymentMethod = paymentData.payment_method_id || "PIX";
 
       // 1. Registrar o pagamento na tabela de pagamentos
       const { data: savedPayment, error: paymentError } = await supabaseAdmin

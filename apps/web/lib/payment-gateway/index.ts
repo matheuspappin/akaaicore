@@ -13,4 +13,5 @@
  */
 
 export { createStripeCheckoutSession, getStripePaymentMethodsForBRL } from './stripe-provider';
+export { createMercadoPagoPixOrder, createMercadoPagoQrOrder, getMercadoPagoQrOrder, cancelMercadoPagoQrOrder, refundMercadoPagoQrOrder } from './mercadopago-provider';
 export type { PaymentMethod, CreateCheckoutParams, CreateCheckoutResult, PaymentGateway } from './types';

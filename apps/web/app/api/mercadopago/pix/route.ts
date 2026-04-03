@@ -15,8 +15,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'studioId é obrigatório' }, { status: 400 });
     }
 
-    const origin = req.nextUrl.origin;
-    const NOTIFICATION_URL = `${origin}/api/webhooks/mercadopago`;
+    const origin = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
+    const NOTIFICATION_URL = process.env.MERCADOPAGO_WEBHOOK_URL || `${origin}/api/webhooks/mercadopago`;
 
     const studentId = body.studentId || body.customerId;
     const type = body.type || 'payment'; // 'package' ou 'payment'
@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
       transaction_amount: (body.amount || 1000) / 100, // Mercado pago espera reais (ex: 10.00), não centavos
       description: body.description || `mp_order_${studioId}_${studentId || 'anon'}_${type}_${invoiceId}_${Date.now()}`.substring(0,200),
       payment_method_id: 'pix' as const,
+      notification_url: NOTIFICATION_URL,
       payer: {
         email: body.customer?.email || 'cliente.avulso@exemplo.com', // Usando um email genérico em caso de não fornecimento
         first_name: body.customer?.name?.split(' ')[0] || 'Nome',

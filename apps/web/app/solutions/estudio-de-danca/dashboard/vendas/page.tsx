@@ -42,7 +42,6 @@ import {
   getPdvCreditConversionRate,
   getStudentCredits,
 } from "@/lib/actions/pos";
-import { createMercadoPagoPixOrder } from "@/lib/payment-gateway/mercadopago-provider";
 import { BarcodeScanner } from "@/components/dashboard/barcode-scanner";
 import { OrganizationProvider } from "@/components/providers/organization-provider";
 import { ModuleGuard } from "@/components/providers/module-guard";
@@ -272,33 +271,37 @@ function POSContent() {
             ? students.find((s) => s.id === selectedStudentId)?.email ||
               "cliente@exemplo.com"
             : "cliente.avulso@exemplo.com";
+        const customerName =
+          selectedStudentId && selectedStudentId !== "none"
+            ? students.find((s) => s.id === selectedStudentId)?.name ||
+              "Cliente"
+            : "Cliente";
 
-        const mercadopagoResponse = await createMercadoPagoPixOrder({
-          transaction_amount: totalAmount,
-          description:
-            `Compra PDV - ${items.map((i) => i.name).join(", ")}`.substring(
-              0,
-              200,
-            ),
-          payment_method_id: "pix",
-          payer: {
-            email: customerEmail,
-            first_name:
-              selectedStudentId && selectedStudentId !== "none"
-                ? students.find((s) => s.id === selectedStudentId)?.name
-                : "Cliente",
-            identification: customerTaxIdInput
-              ? {
-                  type: customerTaxIdInput.length > 11 ? "CNPJ" : "CPF",
-                  number: customerTaxIdInput,
-                }
-              : undefined,
-          },
-        } as any);
+        const response = await fetch('/api/mercadopago/pix', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: totalAmount * 100, // API espera centavos para converter internamente
+            studioId: studioId,
+            description: `Compra PDV - ${items.map((i) => i.name).join(", ")}`.substring(0, 200),
+            customer: {
+              email: customerEmail,
+              name: customerName,
+              tax_id: customerTaxIdInput,
+            },
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.details || errorData.error || 'Erro ao gerar Pix');
+        }
+
+        const mercadopagoResponse = await response.json();
         console.log(
           "Resposta Mercado Pago Pix Completa:",
           JSON.stringify(mercadopagoResponse, null, 2),
-        ); // Log para depuração profunda
+        ); 
 
         if (mercadopagoResponse.point_of_interaction?.transaction_data) {
           const qrCodeInfo =

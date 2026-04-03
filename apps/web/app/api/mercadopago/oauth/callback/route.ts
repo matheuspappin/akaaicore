@@ -25,27 +25,27 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
-      REDIRECT_DASHBOARD.searchParams.append('status', 'error');
-      REDIRECT_DASHBOARD.searchParams.append('message', 'User not authenticated');
-      return NextResponse.redirect(REDIRECT_DASHBOARD);
+    const state = req.nextUrl.searchParams.get('state');
+    let tenantId = state;
+
+    // Se o state não for um ID válido ou for o padrão, tenta buscar pelo usuário logado
+    if (!tenantId || tenantId === 'akaai_hub') {
+      const supabase = await createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (user) {
+        const { data: profile } = await supabase
+          .from('users_internal')
+          .select('studio_id')
+          .eq('id', user.id)
+          .single();
+        tenantId = profile?.studio_id;
+      }
     }
 
-    // Busca o studio_id (tenantId) do usuário logado
-    const { data: profile } = await supabase
-      .from('users_internal')
-      .select('studio_id')
-      .eq('id', user.id)
-      .single();
-
-    const tenantId = profile?.studio_id;
-
-    if (!tenantId) {
+    if (!tenantId || tenantId === 'akaai_hub') {
       REDIRECT_DASHBOARD.searchParams.append('status', 'error');
-      REDIRECT_DASHBOARD.searchParams.append('message', 'Tenant not found');
+      REDIRECT_DASHBOARD.searchParams.append('message', 'ID do estúdio não encontrado no retorno do Mercado Pago');
       return NextResponse.redirect(REDIRECT_DASHBOARD);
     }
 
@@ -61,11 +61,12 @@ export async function GET(req: NextRequest) {
     const MERCADOPAGO_TOKEN_URL = 'https://api.mercadopago.com/oauth/token';
 
     // Chamada real à API do Mercado Pago para trocar o CODE por TOKEN
+    // De acordo com a documentação, client_id e client_secret podem ir no body
     const tokenResponse = await fetch(MERCADOPAGO_TOKEN_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${MERCADOPAGO_CLIENT_SECRET}` // Optional depending on MP version, but recommended
+        'Accept': 'application/json'
       },
       body: new URLSearchParams({
         client_id: MERCADOPAGO_CLIENT_ID,
@@ -85,7 +86,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(REDIRECT_DASHBOARD);
     }
 
-    const { access_token, refresh_token, expires_in, public_key } = tokenData;
+    const { access_token, refresh_token, expires_in, public_key, user_id } = tokenData;
 
     const encryptedAccessToken = encrypt(access_token, process.env.ENCRYPTION_KEY!);
     const encryptedRefreshToken = encrypt(refresh_token, process.env.ENCRYPTION_KEY!);
@@ -98,6 +99,7 @@ export async function GET(req: NextRequest) {
         mercadopago_refresh_token: encryptedRefreshToken,
         mercadopago_token_expires_at: tokenExpiresAt.toISOString(),
         mercadopago_public_key: public_key, // Save public key if needed for frontend
+        mercadopago_user_id: String(user_id),
       })
       .eq('id', tenantId);
 
