@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const MERCADOPAGO_CLIENT_ID = process.env.MERCADOPAGO_CLIENT_ID; 
-  const origin = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
+  const origin = process.env.NEXT_PUBLIC_APP_URL || 'https://akaaicore.com';
   const REDIRECT_URI = `${origin}/api/mercadopago/oauth/callback`; 
 
   if (!MERCADOPAGO_CLIENT_ID) {

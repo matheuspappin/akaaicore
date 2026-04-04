@@ -56,7 +56,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: 'Credenciais Mercado Pago do aplicativo não configuradas.' }, { status: 500 });
     }
 
-    const origin = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
+    const origin = process.env.NEXT_PUBLIC_APP_URL || 'https://akaaicore.com';
     const REDIRECT_URI = `${origin}/api/mercadopago/oauth/callback`;
 
     const MERCADOPAGO_TOKEN_URL = 'https://api.mercadopago.com/oauth/token';
