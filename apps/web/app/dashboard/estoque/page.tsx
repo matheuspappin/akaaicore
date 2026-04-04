@@ -375,6 +375,7 @@ export default function InventoryPage() {
           selling_price: fromCatalog?.suggested_price ?? 0,
           sku: decodedText,
           ncm: "",
+          show_in_marketplace: true,
         })
         setNewProductMoneyDrafts({ cost: null, markup: null, selling: null, profit: null })
         setIsNewProductOpen(true)
