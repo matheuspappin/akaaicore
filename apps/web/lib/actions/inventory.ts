@@ -20,6 +20,7 @@ export interface Product {
   ncm?: string // Adicionado campo NCM
   image_url?: string
   status: 'active' | 'archived'
+  show_in_marketplace?: boolean
 }
 
 export interface Transaction {
