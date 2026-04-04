@@ -56,7 +56,8 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: 'Credenciais Mercado Pago do aplicativo não configuradas.' }, { status: 500 });
     }
 
-    const REDIRECT_URI = `${req.nextUrl.origin}/api/mercadopago/oauth/callback`;
+    const origin = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
+    const REDIRECT_URI = `${origin}/api/mercadopago/oauth/callback`;
 
     const MERCADOPAGO_TOKEN_URL = 'https://api.mercadopago.com/oauth/token';
 
