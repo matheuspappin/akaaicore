@@ -29,6 +29,7 @@ import { searchNcm, type Ncm } from "@/lib/services/brasil-api"
 import { validateGTIN } from "@/lib/validation-utils"
 import { formatMoneyBr, parseMoneyInput } from "@/lib/money-format"
 import { ModuleGuard } from "@/components/providers/module-guard"
+import { Switch } from "@/components/ui/switch"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -83,6 +84,7 @@ export default function InventoryPage() {
   
   // Busca
   const [searchInput, setSearchInput] = useState("")
+  const [showMarketplaceOnly, setShowMarketplaceOnly] = useState(false)
 
   // Formulários
   const [newProduct, setNewProduct] = useState({ 
@@ -94,7 +96,8 @@ export default function InventoryPage() {
     cost_price: 0, 
     selling_price: 0, 
     sku: "", 
-    ncm: "" 
+    ncm: "",
+    show_in_marketplace: true 
   })
 
   const allSubcategoriesForNew = useMemo(() => {
@@ -449,6 +452,7 @@ export default function InventoryPage() {
       selling_price: 0,
       sku: "",
       ncm: "",
+      show_in_marketplace: true,
     })
     setCatalogSearchQuery("")
     setCatalogResults([])
@@ -470,11 +474,15 @@ export default function InventoryPage() {
 
   const filteredProducts = products.filter(p => {
     const q = searchInput.toLowerCase()
-    return (
+    const matchesSearch = (
       p.name.toLowerCase().includes(q) ||
       (p.sku && p.sku.includes(searchInput)) ||
       (p.subcategory && String(p.subcategory).toLowerCase().includes(q))
     )
+    if (showMarketplaceOnly) {
+      return matchesSearch && p.show_in_marketplace === true
+    }
+    return matchesSearch
   })
 
   return (
@@ -546,7 +554,19 @@ export default function InventoryPage() {
         {/* MAIN CONTENT: PRODUCTS TABLE */}
         <Card className="border-none shadow-sm">
           <CardHeader className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <CardTitle>Inventário Atual</CardTitle>
+            <div>
+              <CardTitle>Inventário Atual</CardTitle>
+              <div className="flex items-center gap-2 mt-2">
+                <Switch 
+                  id="marketplace-filter" 
+                  checked={showMarketplaceOnly} 
+                  onCheckedChange={setShowMarketplaceOnly} 
+                />
+                <Label htmlFor="marketplace-filter" className="text-xs text-muted-foreground cursor-pointer">
+                  Ver somente Marketplace
+                </Label>
+              </div>
+            </div>
             <div className="relative w-full md:w-96">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input 
@@ -589,6 +609,11 @@ export default function InventoryPage() {
                                 <p className="text-[10px] text-muted-foreground">
                                   SKU: {product.sku}
                                 </p>
+                              )}
+                              {product.show_in_marketplace && (
+                                <Badge variant="outline" className="text-[10px] h-4 px-1 py-0 font-normal border-blue-200 text-blue-600 bg-blue-50">
+                                  Marketplace
+                                </Badge>
                               )}
                             </div>
                           </div>
@@ -883,6 +908,18 @@ export default function InventoryPage() {
                 </div>
               </div>
             </div>
+            <div className="flex items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <Label>Mostrar no Marketplace</Label>
+                <p className="text-xs text-muted-foreground">
+                  Disponibilize este produto para venda online nos portais.
+                </p>
+              </div>
+              <Switch
+                checked={newProduct.show_in_marketplace}
+                onCheckedChange={(checked) => setNewProduct({ ...newProduct, show_in_marketplace: checked })}
+              />
+            </div>
             <div className="grid gap-2">
               <Label>Estoque Inicial</Label>
               <Input
@@ -1086,6 +1123,18 @@ export default function InventoryPage() {
                     />
                   </div>
                 </div>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border p-4">
+                <div className="space-y-0.5">
+                  <Label>Mostrar no Marketplace</Label>
+                  <p className="text-xs text-muted-foreground">
+                    Disponibilize este produto para venda online nos portais.
+                  </p>
+                </div>
+                <Switch
+                  checked={editingProduct.show_in_marketplace}
+                  onCheckedChange={(checked) => setEditingProduct({ ...editingProduct, show_in_marketplace: checked })}
+                />
               </div>
               <div className="grid gap-2">
                 <Label>Estoque Inicial</Label>

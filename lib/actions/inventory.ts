@@ -19,6 +19,7 @@ export interface Product {
   ncm?: string // Adicionado campo NCM
   image_url?: string
   status: 'active' | 'archived'
+  show_in_marketplace?: boolean
 }
 
 export interface Transaction {
@@ -128,6 +129,7 @@ export async function createProduct(productData: any, studioId: string) {
       cost_price: productData.cost_price ?? 0,
       selling_price: productData.selling_price ?? 0,
       status: 'active',
+      show_in_marketplace: productData.show_in_marketplace ?? false,
     }
     const skuVal = productData.sku?.toString?.()?.trim?.()
     if (skuVal) insertData.sku = skuVal

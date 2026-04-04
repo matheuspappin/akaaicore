@@ -8,9 +8,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { useToast } from "@/hooks/use-toast"
-import { getMarketplaceSettings, updateMarketplaceSettings, type MarketplaceSettings } from "@/lib/actions/marketplace"
+import { getMarketplaceSettings, updateMarketplaceSettings, isSlugAvailable, type MarketplaceSettings } from "@/lib/actions/marketplace"
 import { getERPCatalog } from "@/lib/actions/erp"
-import { Loader2, ExternalLink, Store, Smartphone, Palette, Globe, Upload, Search, ShoppingBag } from "lucide-react"
+import { Loader2, ExternalLink, Store, Smartphone, Palette, Globe, Upload, Search, ShoppingBag, Copy, CheckCircle2, AlertCircle } from "lucide-react"
 import { ModuleGuard } from "@/components/providers/module-guard"
 import { useOrganization } from "@/components/providers/organization-provider"
 import Link from "next/link"
@@ -48,6 +48,31 @@ export default function MarketplacePage() {
         welcomeSubtitle: t.marketplace.welcomeSubtitle
     }
   })
+
+  const [baseUrl, setBaseUrl] = useState("")
+  const [slugStatus, setSlugStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Usar a URL do navegador garante que o link exibido sempre condiz com o ambiente atual (dev, prod, akaaicore)
+      setBaseUrl(`${window.location.protocol}//${window.location.host}`)
+    }
+  }, [])
+
+  // Validação de slug em tempo real
+  useEffect(() => {
+    const check = async () => {
+        if (!settings.slug || settings.slug.length < 3) {
+            setSlugStatus('idle')
+            return
+        }
+        setSlugStatus('checking')
+        const available = await isSlugAvailable(settings.slug, studioId || '')
+        setSlugStatus(available ? 'available' : 'taken')
+    }
+    const timer = setTimeout(check, 500)
+    return () => clearTimeout(timer)
+  }, [settings.slug, studioId])
 
   useEffect(() => {
     const init = async () => {
@@ -114,6 +139,15 @@ export default function MarketplacePage() {
       return
     }
 
+    if (slugStatus === 'taken') {
+        toast({ 
+            title: "Endereço indisponível", 
+            description: "Este endereço já está em uso por outro studio. Escolha um nome diferente.", 
+            variant: "destructive" 
+        })
+        return
+    }
+
     setSaving(true)
     console.log("Enviando para o Supabase:", { id: currentStudioId, settings })
 
@@ -163,43 +197,114 @@ export default function MarketplacePage() {
                   </div>
               </div>
 
-              <Card>
+              <Card className="border-2 border-primary/10 shadow-lg">
                 <CardHeader>
-                  <div className="flex items-center gap-2">
-                      <Globe className="w-5 h-5 text-primary" />
-                      <CardTitle>{t.marketplace.domainVisibility}</CardTitle>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <Globe className="w-5 h-5 text-primary" />
+                        <CardTitle>{t.marketplace.domainVisibility}</CardTitle>
+                    </div>
+                    <Badge variant={settings.is_active ? "default" : "secondary"} className={settings.is_active ? "bg-green-500 hover:bg-green-600" : ""}>
+                        {settings.is_active ? t.marketplace.visible : t.marketplace.hidden}
+                    </Badge>
                   </div>
+                  <CardDescription>{t.marketplace.domainDescription}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/20">
-                    <div className="space-y-0.5">
-                      <Label className="text-base">{t.marketplace.onlineStore}</Label>
+                  <div className="flex items-center justify-between p-4 border rounded-xl bg-muted/30">
+                    <div className="space-y-1">
+                      <Label className="text-base font-bold">{t.marketplace.onlineStore}</Label>
                       <p className="text-sm text-muted-foreground">
-                        {settings.is_active ? t.marketplace.visible : t.marketplace.hidden}
+                        {settings.is_active ? t.marketplace.publishedStatus : t.marketplace.maintenanceStatus}
                       </p>
                     </div>
                     <Switch 
                       checked={settings.is_active}
                       onCheckedChange={checked => setSettings({...settings, is_active: checked})}
+                      className="data-[state=checked]:bg-green-500"
                     />
                   </div>
 
-                    <div className="grid gap-2">
-                      <Label>{t.marketplace.storeAddress}</Label>
-                      <div className="flex items-center">
-                        <span className="bg-yellow-100 text-yellow-800 px-3 py-2 text-sm border border-r-0 rounded-l-md truncate font-mono">
-                          test-env.app.com/shop/
-                        </span>
-                        <Input 
-                          className="rounded-l-none"
-                          value={settings.slug} 
-                          onChange={e => setSettings({...settings, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '')})}
-                          required
-                        />
+                    <div className="grid gap-4">
+                      <div className="flex items-center justify-between">
+                        <Label className="font-bold">{t.marketplace.storeAddress}</Label>
+                        {settings.slug && (
+                            <Link 
+                                href={`/shop/${settings.slug}`} 
+                                target="_blank"
+                                className="text-xs text-primary hover:underline flex items-center gap-1 font-medium"
+                            >
+                                <ExternalLink className="w-3 h-3" />
+                                {t.marketplace.openInNewTab}
+                            </Link>
+                        )}
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {t.marketplace.stagingNotice.replace('{upgradeLink}', t.marketplace.upgrade)}
-                      </p>
+                      
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center group">
+                            <div className="bg-muted text-muted-foreground px-4 py-2.5 text-sm border border-r-0 rounded-l-xl font-mono select-none">
+                            {baseUrl.replace('https://', '').replace('http://', '')}/shop/
+                            </div>
+                            <Input 
+                            className="rounded-none border-x-0 h-10.5 focus-visible:ring-0 font-mono text-primary font-bold px-1"
+                            value={settings.slug} 
+                            onChange={e => {
+                                const val = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '')
+                                setSettings({...settings, slug: val})
+                            }}
+                            required
+                            placeholder="minha-loja"
+                            />
+                            <Button 
+                            type="button" 
+                            variant="secondary" 
+                            className="rounded-l-none border-l-0 h-10.5 rounded-r-xl px-4 hover:bg-primary hover:text-white transition-all"
+                            onClick={() => {
+                                if (!settings.slug) return;
+                                const url = `${baseUrl}/shop/${settings.slug}`;
+                                navigator.clipboard.writeText(url);
+                                toast({ 
+                                    title: t.marketplace.linkCopied, 
+                                    description: t.marketplace.linkCopiedDesc,
+                                    className: "bg-green-50 border-green-200 dark:bg-green-900/20"
+                                });
+                            }}
+                            >
+                            <Copy className="w-4 h-4 mr-2" />
+                            {t.common.copyLink || "Copiar"}
+                            </Button>
+                        </div>
+                        
+                        <div className="flex items-center gap-2 px-1">
+                            {slugStatus === 'checking' && (
+                                <span className="flex items-center gap-1.5 text-xs text-muted-foreground animate-pulse">
+                                    <Loader2 className="w-3 h-3 animate-spin" /> {t.marketplace.checkingAvailability}
+                                </span>
+                            )}
+                            {slugStatus === 'available' && (
+                                <span className="flex items-center gap-1.5 text-xs text-green-600 font-medium">
+                                    <CheckCircle2 className="w-3.5 h-3.5" /> {t.marketplace.addressAvailable}
+                                </span>
+                            )}
+                            {slugStatus === 'taken' && (
+                                <span className="flex items-center gap-1.5 text-xs text-red-500 font-medium">
+                                    <AlertCircle className="w-3.5 h-3.5" /> {t.marketplace.addressTaken}
+                                </span>
+                            )}
+                            {!settings.slug && (
+                                <span className="text-[10px] text-muted-foreground italic">
+                                    {t.marketplace.chooseShortName}
+                                </span>
+                            )}
+                        </div>
+                      </div>
+
+                      <div className="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-900/30">
+                        <p className="text-[11px] text-amber-700 dark:text-amber-400 flex gap-2">
+                          <span className="shrink-0">⚠️</span>
+                          {t.marketplace.addressChangeWarning}
+                        </p>
+                      </div>
                     </div>
                 </CardContent>
               </Card>
@@ -301,7 +406,8 @@ export default function MarketplacePage() {
                           await handleSave(); // Salva antes de tentar visualizar
                           // Redireciona para a loja após salvar
                           if (settings.slug) {
-                            window.open(`/shop/${settings.slug}`, '_blank');
+                            const targetUrl = `${window.location.origin}/shop/${settings.slug}`;
+                            window.open(targetUrl, '_blank');
                           }
                       }} 
                       disabled={saving} 
@@ -318,7 +424,8 @@ export default function MarketplacePage() {
                       disabled={!settings.slug} 
                       onClick={() => {
                           if (settings.slug) {
-                              window.open(`/shop/${settings.slug}`, '_blank');
+                              const targetUrl = `${window.location.origin}/shop/${settings.slug}`;
+                              window.open(targetUrl, '_blank');
                           }
                       }}
                   >
@@ -345,7 +452,7 @@ export default function MarketplacePage() {
                       {/* Mock Browser Bar */}
                       <div className="bg-gray-100 text-[10px] text-center py-1 text-gray-500 border-b flex items-center justify-center gap-1 pt-7">
                           <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-                          app.com/shop/{settings.slug}
+                          {baseUrl.replace('https://', '').replace('http://', '')}/shop/{settings.slug}
                       </div>
 
                       {/* Store Header Preview */}

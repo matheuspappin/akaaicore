@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
-import { Leaf, LogOut, Home, FileText, MapPin, Bell, User, Menu, X } from "lucide-react"
+import { Leaf, LogOut, Home, FileText, MapPin, Bell, User, Menu, X, ShoppingBag } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { getSessionKey, clearLocalUser } from "@/lib/constants/storage-keys"
@@ -15,6 +15,7 @@ const CLIENT_NAV = [
   { href: "/solutions/agroflowai/client", label: "Início", icon: Home },
   { href: "/solutions/agroflowai/client/laudos", label: "Meus Laudos", icon: FileText },
   { href: "/solutions/agroflowai/client/propriedades", label: "Propriedades", icon: MapPin },
+  { href: "/shop/redirect", label: "Loja", icon: ShoppingBag },
   { href: "/solutions/agroflowai/client/notificacoes", label: "Notificações", icon: Bell },
   { href: "/solutions/agroflowai/client/perfil", label: "Meu Perfil", icon: User },
 ]

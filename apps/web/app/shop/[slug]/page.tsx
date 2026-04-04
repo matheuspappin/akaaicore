@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
 import { getStoreBySlug, type MarketplaceSettings } from "@/lib/actions/marketplace"
-import { createERPOrder } from "@/lib/actions/erp"
+import { createPublicERPOrder as createERPOrder } from "@/lib/actions/erp"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"

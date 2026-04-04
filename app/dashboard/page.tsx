@@ -381,6 +381,26 @@ export default function DashboardPage() {
             </Link>
           )}
 
+          {/* Módulo Marketplace */}
+          {enabledModules.marketplace && (
+            <Link href="/shop/redirect">
+              <Card className="bg-emerald-600 text-white border-none shadow-lg hover:bg-emerald-700 transition-all cursor-pointer group h-full">
+                <CardContent className="p-6 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                      <ShoppingBag className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-lg font-bold">Minha Loja</p>
+                      <p className="text-xs text-emerald-100">Marketplace Online</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-5 h-5 opacity-50 group-hover:translate-x-1 transition-all" />
+                </CardContent>
+              </Card>
+            </Link>
+          )}
+
           {/* Convites por código (padrão DanceFlow — todos os nichos genéricos) */}
           {studioId && (
             <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">

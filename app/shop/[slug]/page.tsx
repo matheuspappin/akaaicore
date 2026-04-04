@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
 import { getStoreBySlug, type MarketplaceSettings } from "@/lib/actions/marketplace"
-import { createERPOrder } from "@/lib/actions/erp"
+import { createPublicERPOrder as createERPOrder } from "@/lib/actions/erp"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -31,14 +31,20 @@ export default function ShopPage() {
   const [customerInfo, setCustomerInfo] = useState({ name: '', email: '', phone: '' })
   const [processing, setProcessing] = useState(false)
   const [activeCategory, setActiveCategory] = useState("Todos")
+  const [storeStatus, setStoreStatus] = useState<'active' | 'disabled' | 'not_found'>('active')
 
   useEffect(() => {
     const loadStore = async () => {
       if (slug) {
         const data = await getStoreBySlug(slug)
-        if (data) {
+        if (data && data.store) {
           setStore(data.store)
           setProducts(data.products || [])
+          setStoreStatus('active')
+        } else if (data && (data as any).status === 'disabled') {
+          setStoreStatus('disabled')
+        } else {
+          setStoreStatus('not_found')
         }
       }
       setLoading(false)
@@ -132,10 +138,22 @@ export default function ShopPage() {
 
   if (loading) return <div className="h-screen flex items-center justify-center bg-white"><Loader2 className="w-8 h-8 animate-spin text-black" /></div>
 
-  if (!store) return (
+  if (storeStatus === 'disabled') return (
+    <div className="h-screen flex flex-col items-center justify-center text-center p-4 bg-white">
+      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+        <ShoppingBag className="w-8 h-8 text-gray-400" />
+      </div>
+      <h1 className="text-4xl font-black tracking-tighter mb-4">LOJA TEMPORARIAMENTE INDISPONÍVEL</h1>
+      <p className="text-gray-500 max-w-md mx-auto">Esta loja está passando por atualizações e voltará em breve. Entre em contato com o estabelecimento para mais informações.</p>
+      <Button variant="outline" className="mt-8" onClick={() => window.history.back()}>Voltar</Button>
+    </div>
+  )
+
+  if (!store || storeStatus === 'not_found') return (
     <div className="h-screen flex flex-col items-center justify-center text-center p-4 bg-white">
       <h1 className="text-4xl font-black tracking-tighter mb-4">LOJA NÃO ENCONTRADA</h1>
       <p className="text-gray-500">Verifique a URL digitada.</p>
+      <Button variant="outline" className="mt-8" onClick={() => window.location.href = '/'}>Página Inicial</Button>
     </div>
   )
 

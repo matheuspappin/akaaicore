@@ -90,150 +90,170 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
       }
     : { ...baseBranding, useLogo: false as const }
 
+  const getNicheHref = (href: string) => {
+    if (!niche || isAffiliate || isSeller || isFinance) return href;
+    
+    const nicheRoutes: Record<string, string> = {
+      'dance': '/solutions/estudio-de-danca/dashboard',
+      'agroflowai': '/solutions/agroflowai/dashboard',
+      'fire_protection': '/solutions/fire-protection/dashboard',
+      'barber': '/solutions/barber/dashboard',
+    };
+
+    const nichePrefix = nicheRoutes[niche as keyof typeof nicheRoutes];
+    if (!nichePrefix) return href;
+
+    if (href === '/dashboard') return nichePrefix;
+    if (href.startsWith('/dashboard/')) {
+      return href.replace('/dashboard/', `${nichePrefix}/`);
+    }
+    return href;
+  };
+
   const dashboardMenuItems = [
     {
       id: 'dashboard',
       icon: LayoutDashboard,
       label: t.sidebar.dashboard,
-      href: "/dashboard"
+      href: getNicheHref("/dashboard")
     },
     {
       id: 'ao-vivo',
       icon: Video,
       label: `${vocabulary.services} ${t.sidebar.live}`,
-      href: "/dashboard/ao-vivo",
+      href: getNicheHref("/dashboard/ao-vivo"),
       module: 'classes'
     },
     {
       id: 'scanner',
       icon: QrCodeIcon,
       label: t.sidebar.scanner.replace('{establishment}', branding.name),
-      href: "/dashboard/scanner",
+      href: getNicheHref("/dashboard/scanner"),
       module: 'scanner'
     },
     {
       id: 'pos',
       icon: ShoppingCart,
       label: t.sidebar.pos,
-      href: "/dashboard/vendas",
+      href: getNicheHref("/dashboard/vendas"),
       module: 'pos' 
     },
     {
       id: 'students',
       icon: Users,
       label: vocabulary.clients,
-      href: "/dashboard/alunos",
+      href: getNicheHref("/dashboard/alunos"),
       module: 'students'
     },
     {
       id: 'leads',
       icon: TrendingUp,
       label: t.sidebar.leads,
-      href: "/dashboard/leads",
+      href: getNicheHref("/dashboard/leads"),
       module: 'leads'
     },
     {
       id: 'teachers',
       icon: GraduationCap,
       label: vocabulary.providers,
-      href: "/dashboard/professores",
+      href: getNicheHref("/dashboard/professores"),
       module: 'classes'
     },
     {
       id: 'classes',
       icon: Calendar,
       label: vocabulary.services,
-      href: "/dashboard/aulas",
+      href: getNicheHref("/dashboard/aulas"),
       module: 'classes'
     },
     {
       id: 'service-orders',
       icon: Wrench,
       label: t.sidebar.service_orders.replace('{services}', vocabulary.services),
-      href: "/dashboard/os",
+      href: getNicheHref("/dashboard/os"),
       module: 'service_orders'
     },
     {
       id: 'projects',
       icon: HardHat,
       label: t.sidebar.projects,
-      href: "/dashboard/projetos",
+      href: getNicheHref("/dashboard/projetos"),
       module: 'service_orders'
     },
     {
       id: 'financial',
       icon: DollarSign,
       label: t.sidebar.financial,
-      href: "/dashboard/financeiro",
+      href: getNicheHref("/dashboard/financeiro"),
       module: 'financial'
     },
     {
       id: 'whatsapp',
       icon: Phone,
       label: t.sidebar.whatsapp,
-      href: "/dashboard/whatsapp",
+      href: getNicheHref("/dashboard/whatsapp"),
       module: 'whatsapp'
     },
     {
       id: 'inventory',
       icon: Package,
       label: t.sidebar.inventory,
-      href: "/dashboard/estoque",
+      href: getNicheHref("/dashboard/estoque"),
       module: 'inventory'
     },
     {
       id: 'gamification',
       icon: Trophy,
       label: t.sidebar.gamification,
-      href: "/dashboard/gamification",
+      href: getNicheHref("/dashboard/gamification"),
       module: 'gamification'
     },
     {
       id: 'multi-unit',
       icon: Globe,
       label: t.sidebar.multi_unit,
-      href: "/dashboard/multi-unit",
+      href: getNicheHref("/dashboard/multi-unit"),
       module: 'multi_unit'
     },
     {
       id: 'erp',
       icon: Layers,
       label: t.sidebar.erp,
-      href: "/dashboard/erp",
+      href: getNicheHref("/dashboard/erp"),
       module: 'erp'
     },
     {
       id: 'marketplace',
       icon: ShoppingBag,
       label: t.sidebar.marketplace,
-      href: "/dashboard/marketplace",
+      href: getNicheHref("/dashboard/marketplace"),
       module: 'marketplace'
     },
     {
       id: 'ai_chat',
       icon: MessageSquare,
       label: t.sidebar.ai_chat,
-      href: "/dashboard/chat",
+      href: getNicheHref("/dashboard/chat"),
       module: 'ai_chat'
     },
     {
       id: 'ai_learning',
       icon: BarChart3,
       label: t.sidebar.ai_learning,
-      href: "/dashboard/ai-learning",
+      href: getNicheHref("/dashboard/ai-learning"),
       module: 'ai_chat'
     },
     {
       id: 'settings',
       icon: Settings,
       label: t.sidebar.settings,
-      href: "/dashboard/configuracoes"
+      href: getNicheHref("/dashboard/configuracoes")
     },
     {
       id: 'support',
       icon: LifeBuoy,
       label: t.sidebar.support,
-      href: "/dashboard/suporte"
+      href: getNicheHref("/dashboard/suporte")
     },
   ]
 
@@ -344,20 +364,15 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
 
   const handleLogout = async () => {
     try {
-      // 1. Sign out do Supabase no cliente
       await supabase.auth.signOut()
-      
-      // 2. Chama a API para limpar cookies no servidor
       await fetch('/api/auth/logout', { method: 'POST' })
     } catch (e) {
       logger.error('Erro ao realizar logout:', e)
     }
     
-    // 3. Limpa localStorage
     localStorage.removeItem("danceflow_user")
     localStorage.removeItem("workflow_pro_active_studio")
 
-    // 4. Redirecionamento total para limpar estado do Next.js
     if (isAffiliate) {
       window.location.href = "/portal/affiliate/login"
       return
@@ -366,57 +381,39 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
     window.location.href = getLoginUrlForNiche(niche)
   }
 
-  // A lógica de módulos PRO e BASE_MODULES só se aplica ao dashboard principal
   const BASE_MODULES = ['dashboard', 'settings', 'support']
 
-  // Se ERP está ativo, Estoque e Marketplace ficam acessíveis automaticamente
-  // (compartilham a mesma tabela products e são dependentes do ERP)
   const effectiveModules = {
     ...enabledModules,
     ...(enabledModules.erp ? { inventory: true, marketplace: true } : {}),
   }
 
-  // ALTERAÇÃO: Filtramos os itens para mostrar apenas o que está ativo no builder
   const filteredItems = menuItems.filter(item => {
-    // 1. Se for o portal de afiliado, mostra tudo
     if (isAffiliate) return true;
-
     const moduleKey = (item as any).module
-    
-    // 2. Itens sem módulo ou módulos base sempre aparecem
     if (!moduleKey || BASE_MODULES.includes(item.id)) {
       return true;
     }
-
-    // 3. Só mostra se o módulo estiver explicitamente ativo nas configurações da organização
     const isModuleEnabled = effectiveModules[moduleKey as keyof typeof effectiveModules] === true
-    
-    // Regras de adaptação para Modo Monetário baseadas no conceito do nicho
     if (concept.hiddenModules.includes(item.id) || concept.hiddenModules.includes(moduleKey)) {
       return false;
     }
-
-    // Fallback de segurança para Gamificação se estiver em modo MONETARY
     if (moduleKey === 'gamification' && businessModel === 'MONETARY') {
       return false;
     }
-
     return isModuleEnabled
   })
 
-  // Reordenação baseada em prioridade do conceito
   const activeItems = [...filteredItems].sort((a, b) => {
     const priorityA = concept.priorityModules.indexOf(a.id);
     const priorityB = concept.priorityModules.indexOf(b.id);
-    
     if (priorityA !== -1 && priorityB !== -1) return priorityA - priorityB;
     if (priorityA !== -1) return -1;
     if (priorityB !== -1) return 1;
     return 0;
   });
 
-  // Módulos não selecionados são BLOQUEADOS (não aparecem nem no marketplace se não forem habilitados)
-  const marketplaceItems: any[] = [] // Desativado conforme pedido: bloquear o que não foi escolhido
+  const marketplaceItems: any[] = []
 
   const fireProtectionGroups = [
     {
@@ -434,11 +431,13 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
   ]
 
   return (
-    <div className="flex flex-col h-full bg-black text-white border-r border-white/10">
-      {/* Logo */}
+    <div className={cn(
+      "flex flex-col h-full border-r",
+      niche === 'dance' ? "bg-black text-white border-white/10" : "bg-sidebar text-sidebar-foreground border-sidebar-border"
+    )}>
       <div className="flex flex-col border-b border-white/10">
         <div className="h-16 flex items-center px-4">
-          <Link href={isAffiliate ? "/portal/affiliate/dashboard" : "/dashboard"} className="flex items-center gap-2" onClick={onNavigate}>
+          <Link href={getNicheHref(isAffiliate ? "/portal/affiliate/dashboard" : "/dashboard")} className="flex items-center gap-2" onClick={onNavigate}>
             {(branding as { useLogo?: boolean }).useLogo ? (
               <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <Image src={OFFICIAL_LOGO} alt="AKAAI CORE" width={28} height={28} className="object-contain" />
@@ -453,7 +452,10 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
               </div>
             )}
             {!collapsed && (
-              <span className="text-lg font-black tracking-tighter">
+              <span className={cn(
+                "text-lg font-black tracking-tighter",
+                niche === 'dance' ? "text-white" : "text-sidebar-foreground"
+              )}>
                 {branding.name}<span className={branding.accentText ?? "text-red-600"}>
                   {branding.accentName}
                 </span>
@@ -462,13 +464,15 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
           </Link>
         </div>
 
-        {/* Studio Switcher */}
         {!isAffiliate && !collapsed && studios.length > 0 && (
           <div className="px-3 pb-3">
             {studios.length > 1 ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between px-3 h-10 border-white/10 bg-white/5 hover:bg-white/10 text-white">
+                  <Button variant="outline" className={cn(
+                    "w-full justify-between px-3 h-10 border-white/10 transition-colors",
+                    niche === 'dance' ? "bg-white/5 hover:bg-white/10 text-white" : "bg-sidebar-accent text-sidebar-accent-foreground"
+                  )}>
                     <div className="flex items-center gap-2 truncate">
                       <Building className={cn("w-4 h-4 flex-shrink-0", branding.secondaryColor)} />
                       <span className="truncate text-xs font-bold uppercase tracking-widest">{activeStudio?.name || t.sidebar.selectStudio}</span>
@@ -476,8 +480,11 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                     <ChevronDown className="w-4 h-4 opacity-50 flex-shrink-0" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-[200px] bg-slate-900 border-white/10 text-white">
-                  <DropdownMenuLabel className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t.sidebar.switchStudio}</DropdownMenuLabel>
+                <DropdownMenuContent align="start" className={cn(
+                  "w-[200px] border-white/10 text-white",
+                  niche === 'dance' ? "bg-zinc-950" : "bg-popover text-popover-foreground"
+                )}>
+                  <DropdownMenuLabel className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">{t.sidebar.switchStudio}</DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-white/10" />
                   {studios.map(studio => (
                     <DropdownMenuItem 
@@ -493,7 +500,10 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div className="flex items-center gap-2 px-3 h-10 rounded-md border border-white/10 bg-white/5 text-slate-400">
+              <div className={cn(
+                "flex items-center gap-2 px-3 h-10 rounded-md border border-white/10",
+                niche === 'dance' ? "bg-white/5 text-zinc-400" : "bg-sidebar-accent text-sidebar-accent-foreground"
+              )}>
                 <Building className={cn("w-4 h-4 flex-shrink-0", branding.secondaryColor)} />
                 <span className="truncate text-xs font-bold uppercase tracking-widest">{studios[0].name}</span>
               </div>
@@ -502,7 +512,6 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
         )}
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 py-4 px-2 overflow-y-auto">
         {isFireProtection ? (
           <div className="space-y-4">
@@ -576,60 +585,10 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
                 </li>
               )
             })}
-
-            {/* Seção Marketplace para módulos não ativos */}
-            {!isAffiliate && marketplaceItems.length > 0 && (
-              <>
-                <div className="mt-6 mb-2 px-3">
-                  <div className="h-px bg-sidebar-border w-full mb-4" />
-                  {!collapsed && (
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
-                      <ShoppingBag className="w-3 h-3" />
-                      {t.sidebar.marketplaceUpgrades}
-                    </div>
-                  )}
-                </div>
-                
-                {marketplaceItems.map((item) => {
-                  const isActive = pathname === item.href
-                  return (
-                    <li key={item.id + item.href}>
-                      <Link
-                        href="/dashboard/marketplace"
-                        onClick={onNavigate}
-                        className={cn(
-                          "flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors group relative",
-                          "text-sidebar-foreground/40 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground opacity-80"
-                        )}
-                      >
-                        <div className="flex items-center gap-3">
-                          <item.icon className="w-5 h-5 flex-shrink-0" />
-                          {!collapsed && <span className="text-sm font-medium">{item.label}</span>}
-                        </div>
-
-                        {!collapsed && (
-                          <div className="flex items-center bg-amber-100 dark:bg-amber-900/30 px-1.5 py-0.5 rounded text-[10px] font-bold text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
-                            <Lock className="w-2.5 h-2.5 mr-1" />
-                            PRO
-                          </div>
-                        )}
-
-                        {collapsed && (
-                          <div className="absolute top-1 right-1 bg-amber-500 rounded-full p-0.5 border border-background">
-                            <Lock className="w-2 h-2 text-white" />
-                          </div>
-                        )}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </>
-            )}
           </ul>
         )}
       </nav>
 
-      {/* Footer */}
       <div className="p-2 border-t border-white/10 space-y-1">
         <button
           onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}

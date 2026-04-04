@@ -90,150 +90,171 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
       }
     : { ...baseBranding, useLogo: false as const }
 
+  const getNicheHref = (href: string) => {
+    if (!niche || isAffiliate || isSeller || isFinance) return href;
+    
+    // Mapeamento de rotas genéricas para rotas de nicho
+    const nicheRoutes: Record<string, string> = {
+      'dance': '/solutions/estudio-de-danca/dashboard',
+      'agroflowai': '/solutions/agroflowai/dashboard',
+      'fire_protection': '/solutions/fire-protection/dashboard',
+      'barber': '/solutions/barber/dashboard',
+    };
+
+    const nichePrefix = nicheRoutes[niche as keyof typeof nicheRoutes];
+    if (!nichePrefix) return href;
+
+    if (href === '/dashboard') return nichePrefix;
+    if (href.startsWith('/dashboard/')) {
+      return href.replace('/dashboard/', `${nichePrefix}/`);
+    }
+    return href;
+  };
+
   const dashboardMenuItems = [
     {
       id: 'dashboard',
       icon: LayoutDashboard,
       label: t.sidebar.dashboard,
-      href: "/dashboard"
+      href: getNicheHref("/dashboard")
     },
     {
       id: 'ao-vivo',
       icon: Video,
       label: `${vocabulary.services} ${t.sidebar.live}`,
-      href: "/dashboard/ao-vivo",
+      href: getNicheHref("/dashboard/ao-vivo"),
       module: 'classes'
     },
     {
       id: 'scanner',
       icon: QrCodeIcon,
       label: t.sidebar.scanner.replace('{establishment}', branding.name),
-      href: "/dashboard/scanner",
+      href: getNicheHref("/dashboard/scanner"),
       module: 'scanner'
     },
     {
       id: 'pos',
       icon: ShoppingCart,
       label: t.sidebar.pos,
-      href: "/dashboard/vendas",
+      href: getNicheHref("/dashboard/vendas"),
       module: 'pos' 
     },
     {
       id: 'students',
       icon: Users,
       label: vocabulary.clients,
-      href: "/dashboard/alunos",
+      href: getNicheHref("/dashboard/alunos"),
       module: 'students'
     },
     {
       id: 'leads',
       icon: TrendingUp,
       label: t.sidebar.leads,
-      href: "/dashboard/leads",
+      href: getNicheHref("/dashboard/leads"),
       module: 'leads'
     },
     {
       id: 'teachers',
       icon: GraduationCap,
       label: vocabulary.providers,
-      href: "/dashboard/professores",
+      href: getNicheHref("/dashboard/professores"),
       module: 'classes'
     },
     {
       id: 'classes',
       icon: Calendar,
       label: vocabulary.services,
-      href: "/dashboard/aulas",
+      href: getNicheHref("/dashboard/aulas"),
       module: 'classes'
     },
     {
       id: 'service-orders',
       icon: Wrench,
       label: t.sidebar.service_orders.replace('{services}', vocabulary.services),
-      href: "/dashboard/os",
+      href: getNicheHref("/dashboard/os"),
       module: 'service_orders'
     },
     {
       id: 'projects',
       icon: HardHat,
       label: t.sidebar.projects,
-      href: "/dashboard/projetos",
+      href: getNicheHref("/dashboard/projetos"),
       module: 'service_orders'
     },
     {
       id: 'financial',
       icon: DollarSign,
       label: t.sidebar.financial,
-      href: "/dashboard/financeiro",
+      href: getNicheHref("/dashboard/financeiro"),
       module: 'financial'
     },
     {
       id: 'whatsapp',
       icon: Phone,
       label: t.sidebar.whatsapp,
-      href: "/dashboard/whatsapp",
+      href: getNicheHref("/dashboard/whatsapp"),
       module: 'whatsapp'
     },
     {
       id: 'inventory',
       icon: Package,
       label: t.sidebar.inventory,
-      href: "/dashboard/estoque",
+      href: getNicheHref("/dashboard/estoque"),
       module: 'inventory'
     },
     {
       id: 'gamification',
       icon: Trophy,
       label: t.sidebar.gamification,
-      href: "/dashboard/gamification",
+      href: getNicheHref("/dashboard/gamification"),
       module: 'gamification'
     },
     {
       id: 'multi-unit',
       icon: Globe,
       label: t.sidebar.multi_unit,
-      href: "/dashboard/multi-unit",
+      href: getNicheHref("/dashboard/multi-unit"),
       module: 'multi_unit'
     },
     {
       id: 'erp',
       icon: Layers,
       label: t.sidebar.erp,
-      href: "/dashboard/erp",
+      href: getNicheHref("/dashboard/erp"),
       module: 'erp'
     },
     {
       id: 'marketplace',
       icon: ShoppingBag,
       label: t.sidebar.marketplace,
-      href: "/dashboard/marketplace",
+      href: getNicheHref("/dashboard/marketplace"),
       module: 'marketplace'
     },
     {
       id: 'ai_chat',
       icon: MessageSquare,
       label: t.sidebar.ai_chat,
-      href: "/dashboard/chat",
+      href: getNicheHref("/dashboard/chat"),
       module: 'ai_chat'
     },
     {
       id: 'ai_learning',
       icon: BarChart3,
       label: t.sidebar.ai_learning,
-      href: "/dashboard/ai-learning",
+      href: getNicheHref("/dashboard/ai-learning"),
       module: 'ai_chat'
     },
     {
       id: 'settings',
       icon: Settings,
       label: t.sidebar.settings,
-      href: "/dashboard/configuracoes"
+      href: getNicheHref("/dashboard/configuracoes")
     },
     {
       id: 'support',
       icon: LifeBuoy,
       label: t.sidebar.support,
-      href: "/dashboard/suporte"
+      href: getNicheHref("/dashboard/suporte")
     },
   ]
 
@@ -438,7 +459,7 @@ export function NavContent({ collapsed = false, onNavigate, isAffiliate = false,
       {/* Logo */}
       <div className="flex flex-col border-b border-white/10">
         <div className="h-16 flex items-center px-4">
-          <Link href={isAffiliate ? "/portal/affiliate/dashboard" : "/dashboard"} className="flex items-center gap-2" onClick={onNavigate}>
+          <Link href={getNicheHref(isAffiliate ? "/portal/affiliate/dashboard" : "/dashboard")} className="flex items-center gap-2" onClick={onNavigate}>
             {(branding as { useLogo?: boolean }).useLogo ? (
               <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <Image src={OFFICIAL_LOGO} alt="AKAAI CORE" width={28} height={28} className="object-contain" />

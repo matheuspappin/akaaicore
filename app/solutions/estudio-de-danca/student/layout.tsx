@@ -5,12 +5,13 @@ import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 import { cn } from "@/lib/utils"
-import { Music, LayoutDashboard, Calendar, DollarSign, UserCircle, LogOut, Loader2, Zap } from "lucide-react"
+import { Music, LayoutDashboard, Calendar, DollarSign, UserCircle, LogOut, Loader2, Zap, ShoppingBag } from "lucide-react"
 
 const navItems = [
   { href: "/solutions/estudio-de-danca/student",            label: "Início",        icon: LayoutDashboard },
   { href: "/solutions/estudio-de-danca/student/turmas",     label: "Minhas Turmas", icon: Calendar },
   { href: "/solutions/estudio-de-danca/student/financeiro", label: "Créditos",      icon: DollarSign },
+  { href: "/solutions/estudio-de-danca/student/marketplace", label: "Marketplace",   icon: ShoppingBag },
   { href: "/solutions/estudio-de-danca/student/perfil",     label: "Meu Perfil",    icon: UserCircle },
 ]
 

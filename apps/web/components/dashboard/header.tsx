@@ -47,7 +47,7 @@ export function Header({ title, children }: HeaderProps) {
   const pathname = usePathname()
   const { language, vocabulary, studios, studioId, switchStudio, t, niche } = useOrganization()
   const branding = getNicheBranding(niche || 'dance')
-  const isDance = branding.secondaryColor === "text-violet-400"
+  const isDance = niche === 'dance'
 
   const isDanceStudio = pathname?.startsWith("/solutions/estudio-de-danca")
   const settingsHref = isDanceStudio
@@ -114,23 +114,40 @@ export function Header({ title, children }: HeaderProps) {
   const unreadCount = notifications.filter((n) => !n.is_read).length
 
   return (
-    <header className="h-16 bg-slate-950 border-b border-white/10 flex items-center justify-between px-6">
+    <header className={cn(
+      "h-16 border-b flex items-center justify-between px-6 sticky top-0 z-40 transition-all",
+      niche === 'dance' ? "bg-black border-white/5" : "bg-background border-border",
+      "hidden md:flex" // Hide on mobile to avoid duplication with MobileNav
+    )}>
       <div className="flex items-center gap-4">
-        <h1 className="text-xl font-black text-white tracking-tight">{title}</h1>
+        <h1 className={cn(
+          "text-xl font-black tracking-tight",
+          niche === 'dance' ? "text-white" : "text-foreground"
+        )}>{title}</h1>
         {children}
 
         {studios.length > 1 && (
           <div className="hidden lg:block ml-4">
             <Select value={studioId || ""} onValueChange={switchStudio}>
-              <SelectTrigger className="h-9 w-[220px] bg-white/5 border-white/10 hover:bg-white/10 transition-colors text-white">
+              <SelectTrigger className={cn(
+                "h-9 w-[220px] transition-colors",
+                niche === 'dance' 
+                  ? "bg-white/5 border-white/10 hover:bg-white/10 text-white" 
+                  : "bg-muted/50 border-input hover:bg-muted text-foreground"
+              )}>
                 <div className="flex items-center gap-2 truncate">
                   <Building2 className={cn("w-4 h-4 shrink-0", branding.secondaryColor)} />
                   <SelectValue placeholder="Selecionar Unidade" />
                 </div>
               </SelectTrigger>
-              <SelectContent className="bg-slate-900 border-white/10 text-white">
+              <SelectContent className={cn(
+                niche === 'dance' ? "bg-zinc-950 border-white/10 text-white" : "bg-popover border-border text-popover-foreground"
+              )}>
                 {studios.map((studio) => (
-                  <SelectItem key={studio.id} value={studio.id} className={isDance ? "hover:bg-violet-600 focus:bg-violet-600" : "hover:bg-red-600 focus:bg-red-600"}>
+                  <SelectItem key={studio.id} value={studio.id} className={cn(
+                    "cursor-pointer",
+                    isDance ? "hover:bg-[#e40014] focus:bg-[#e40014]" : "hover:bg-primary focus:bg-primary"
+                  )}>
                     {studio.name}
                   </SelectItem>
                 ))}
@@ -143,68 +160,95 @@ export function Header({ title, children }: HeaderProps) {
       <div className="flex items-center gap-4">
         {/* Search */}
         <div className="relative hidden md:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder={t.common.searchPlaceholder}
-            className={cn("w-64 pl-9 bg-white/5 border-white/10 text-white placeholder:text-slate-500", isDance ? "focus:border-violet-500/50" : "focus:border-red-500/50")}
+            className={cn(
+              "w-64 pl-9 transition-all",
+              niche === 'dance' 
+                ? "bg-white/5 border-white/10 text-white placeholder:text-zinc-500 focus:border-[#e40014]" 
+                : "bg-muted/50 border-input text-foreground placeholder:text-muted-foreground focus:border-primary"
+            )}
           />
         </div>
 
         {/* Language Switcher */}
-        <LanguageSwitcher variant="ghost" showIcon={true} className="hidden md:flex text-slate-400 hover:text-white hover:bg-white/10" />
+        <LanguageSwitcher 
+          variant="ghost" 
+          showIcon={true} 
+          className={cn(
+            "hidden md:flex transition-colors",
+            niche === 'dance' ? "text-zinc-400 hover:text-white hover:bg-white/10" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+          )} 
+        />
 
         {/* Notifications */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative text-slate-400 hover:text-white hover:bg-white/10">
+            <Button variant="ghost" size="icon" className={cn(
+              "relative transition-colors",
+              niche === 'dance' ? "text-zinc-400 hover:text-white hover:bg-white/10" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}>
               <Bell className="w-5 h-5" />
               {unreadCount > 0 && (
-                <Badge className={cn("absolute -top-1 -right-1 w-5 h-5 p-0 flex items-center justify-center text-white text-xs border-none", isDance ? "bg-violet-600" : "bg-red-600")}>
+                <Badge className={cn(
+                  "absolute -top-1 -right-1 w-5 h-5 p-0 flex items-center justify-center text-white text-xs border-none",
+                  isDance ? "bg-[#e40014]" : "bg-primary"
+                )}>
                   {unreadCount}
                 </Badge>
               )}
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80 bg-slate-900 border-white/10 text-white">
+          <DropdownMenuContent align="end" className={cn(
+            "w-80",
+            niche === 'dance' ? "bg-zinc-950 border-white/10 text-white" : "bg-popover border-border text-popover-foreground"
+          )}>
             <div className="flex items-center justify-between p-4 border-b border-white/10">
-               <span className="font-bold text-sm uppercase tracking-widest text-slate-400">{t.common.notifications}</span>
-               {unreadCount > 0 && <Badge className={cn("text-white border-none text-[10px]", isDance ? "bg-violet-600" : "bg-red-600")}>{unreadCount} {t.common.newNotifications}</Badge>}
+               <span className="font-bold text-sm uppercase tracking-widest text-muted-foreground">{t.common.notifications}</span>
+               {unreadCount > 0 && <Badge className={cn("text-white border-none text-[10px]", isDance ? "bg-[#e40014]" : "bg-primary")}>{unreadCount} {t.common.newNotifications}</Badge>}
             </div>
             <div className="max-h-[300px] overflow-y-auto">
               {loadingNotifications ? (
-                <div className="p-4 text-center text-xs text-slate-500 italic">{t.common.loading}</div>
+                <div className="p-4 text-center text-xs text-muted-foreground italic">{t.common.loading}</div>
               ) : notifications.length > 0 ? (
                 notifications.map((notification) => (
                   <DropdownMenuItem 
                     key={notification.id} 
-                    className="flex flex-col items-start gap-1 p-4 cursor-default border-b border-white/5 last:border-0 hover:bg-white/5 focus:bg-white/5"
+                    className="flex flex-col items-start gap-1 p-4 cursor-default border-b border-white/5 last:border-0 hover:bg-muted/50 focus:bg-muted/50"
                     onClick={() => markAsRead(notification.id)}
                   >
                     <div className="flex items-center gap-2 w-full">
                       {!notification.is_read && (
-                        <div className={cn("w-2 h-2 rounded-full shrink-0", isDance ? "bg-violet-600" : "bg-red-600")} />
+                        <div className={cn("w-2 h-2 rounded-full shrink-0", isDance ? "bg-[#e40014]" : "bg-primary")} />
                       )}
-                      <span className={`text-sm font-bold truncate ${!notification.is_read ? 'text-white' : 'text-slate-500'}`}>
+                      <span className={cn(
+                        "text-sm font-bold truncate",
+                        !notification.is_read ? (niche === 'dance' ? 'text-white' : 'text-foreground') : 'text-muted-foreground'
+                      )}>
                         {notification.title}
                       </span>
-                      <span className="ml-auto text-[10px] text-slate-500 whitespace-nowrap">
+                      <span className="ml-auto text-[10px] text-muted-foreground whitespace-nowrap">
                         {new Date(notification.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-400 leading-relaxed line-clamp-2 pl-4">
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 pl-4">
                       {notification.message}
                     </p>
                   </DropdownMenuItem>
                 ))
               ) : (
-                <div className="p-8 text-center text-xs text-slate-500">
+                <div className="p-8 text-center text-xs text-muted-foreground">
                    {t.common.noNotifications}
                 </div>
               )}
             </div>
             {notifications.length > 0 && (
               <div className="p-2 border-t border-white/10">
-                 <Button variant="ghost" className={cn("w-full h-8 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5", isDance ? "text-violet-400 hover:text-violet-300" : "text-red-500 hover:text-red-400")}>{t.dashboard.viewAll}</Button>
+                 <Button variant="ghost" className={cn(
+                   "w-full h-8 text-[10px] font-bold uppercase tracking-widest hover:bg-muted/50",
+                   isDance ? "text-[#e40014] hover:text-[#e40014]" : "text-primary hover:text-primary"
+                 )}>{t.dashboard.viewAll}</Button>
               </div>
             )}
           </DropdownMenuContent>
@@ -213,31 +257,43 @@ export function Header({ title, children }: HeaderProps) {
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-2 px-2 hover:bg-white/5 group">
-              <div className={cn("w-8 h-8 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform", isDance ? "bg-violet-600 shadow-violet-600/20" : "bg-red-600 shadow-red-600/20")}>
+            <Button variant="ghost" className={cn(
+              "flex items-center gap-2 px-2 transition-all group",
+              niche === 'dance' ? "hover:bg-white/5" : "hover:bg-muted"
+            )}>
+              <div className={cn(
+                "w-8 h-8 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform",
+                isDance ? "bg-[#e40014] shadow-[#e40014]/20" : "bg-primary shadow-primary/20"
+              )}>
                 <User className="w-4 h-4 text-white" />
               </div>
               <div className="hidden md:block text-left">
-                <p className="text-sm font-bold text-white leading-none">{user?.name || t.common.user}</p>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter mt-1">{user?.studioName || vocabulary.establishment}</p>
+                <p className={cn(
+                  "text-sm font-bold leading-none",
+                  niche === 'dance' ? "text-white" : "text-foreground"
+                )}>{user?.name || t.common.user}</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter mt-1">{user?.studioName || vocabulary.establishment}</p>
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56 bg-slate-900 border-white/10 text-white">
-            <DropdownMenuLabel className="text-xs font-bold uppercase tracking-widest text-slate-500">{t.common.myAccount}</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className={cn(
+            "w-56",
+            niche === 'dance' ? "bg-zinc-950 border-white/10 text-white" : "bg-popover border-border text-popover-foreground"
+          )}>
+            <DropdownMenuLabel className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{t.common.myAccount}</DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-white/10" />
-            <DropdownMenuItem onClick={() => router.push(profileHref)} className="hover:bg-white/5 focus:bg-white/5 cursor-pointer">
+            <DropdownMenuItem onClick={() => router.push(profileHref)} className="hover:bg-muted/50 focus:bg-muted/50 cursor-pointer">
               <UserCircle className={cn("w-4 h-4 mr-2", branding.secondaryColor)} />
               {t.common.adminProfile}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => router.push(settingsHref)} className="hover:bg-white/5 focus:bg-white/5 cursor-pointer">
+            <DropdownMenuItem onClick={() => router.push(settingsHref)} className="hover:bg-muted/50 focus:bg-muted/50 cursor-pointer">
               <Settings className={cn("w-4 h-4 mr-2", branding.secondaryColor)} />
               {t.common.systemSettings}
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-white/10" />
             <DropdownMenuItem
               onClick={handleLogout}
-              className={cn("cursor-pointer font-bold", isDance ? "text-violet-400 hover:bg-violet-500/10 focus:bg-violet-500/10" : "text-red-500 hover:bg-red-500/10 focus:bg-red-500/10")}
+              className={cn("cursor-pointer font-bold", isDance ? "text-[#e40014] hover:bg-[#e40014]/10" : "text-destructive hover:bg-destructive/10")}
             >
               <LogOut className="w-4 h-4 mr-2" />
               {t.sidebar.logout}
