@@ -145,7 +145,8 @@ export const translations = {
       technician: "Técnico",
       engineer: "Engenheiro",
       architect: "Arquiteto",
-      other: "Outro"
+      other: "Outro",
+      copyLink: "Copiar Link"
     },
     whatsapp: {
       title: "Integração WhatsApp",
@@ -1158,7 +1159,8 @@ export const translations = {
       technician: "Technician",
       engineer: "Engineer",
       architect: "Architect",
-      other: "Other"
+      other: "Other",
+      copyLink: "Copy Link"
     },
     erp: {
       studioIdNotFound: "Studio ID not found. Please log in again.",
